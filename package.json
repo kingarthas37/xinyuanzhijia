@@ -1,10 +1,10 @@
 {
-  "name": "node-js-getting-started",
+  "name": "xyzj",
   "version": "1.0.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "xyzj",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node --harmony server.js"
   },
   "keywords": [
     "node",
@@ -65,5 +65,60 @@
   },
   "engines": {
     "node": "4.x"
+  },
+  "browser": {
+    "jquery": "./public/js/jquery.min.js",
+    "amazeui": "./public/js/amazeui.min.js",
+    "underscore": "./public/js/underscore.min.js",
+    "jquery-jcarousel": "./public/js/jquery.jcarousel.min.js",
+    "jquery-cookie": "./public/js/jquery.cookie.js",
+    "jquery-lazyload": "./public/js/jquery.lazyload.js",
+    "jquery-validate": "./public/js/jquery.validate.min.js",
+    "jquery-select2": "./public/js/select2.min.js",
+    "jquery-datetimepicker": "./public/js/jquery.datetimepicker.min.js",
+    "jquery-zoom": "./public/js/jquery.zoom.js",
+    "jquery-zclip": "./public/js/jquery.zclip.min.js",
+    "jquery-form": "./public/js/jquery.form.min.js",
+    "flash-detect": "./public/js/flash.detect.min.js",
+    "bloodhound": "./public/js/bloodhound.min.js",
+    "typeahead": "./public/js/typeahead.jquery.min.js",
+    "swfobject": "./public/js/swfobject.js"
+  },
+  "browserify": {
+    "transform": "browserify-shim"
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "swfobject": "swfobject",
+    "flash-detect": "FlashDetect"
+  },
+  "css-common": [
+    "public/css/amazeui.min.css",
+    "public/css/admin.css",
+    "public/css/jquery.datetimepicker.css"
+  ],
+  "sprites": [
+    {
+      "name": "common",
+      "algorithm": "binary-tree"
+    },
+    {
+      "name": "page",
+      "algorithm": "binary-tree"
+    }
+  ],
+  "path": {
+    "base": "public/",
+    "dist": "public/dist",
+    "min": "public/min/",
+    "jsDev": "public/dev/js/",
+    "jsDist": "public/dist/js/",
+    "jsMin": "public/min/js/",
+    "cssDev": "public/dev/css/",
+    "cssDist": "public/dist/css/",
+    "cssMin": "public/min/css/",
+    "imageDev": "public/dev/images/",
+    "imageDist": "public/dist/images/",
+    "imageMin": "public/min/images/"
   }
 }
