@@ -1,1 +1,15 @@
+build
+bin
+.settings
+.idea/
+.project
+nbproject
+*.iml
+.DS_Store
+
+node_modules/
+.avoscloud/
+
+npm-debug.log
  
+public/min/
