@@ -4,10 +4,12 @@ var path = require('path');
 
 var gulp = require('gulp');
 var RevAll = require('gulp-rev-all');
+var fingerprint = require('gulp-fingerprint');
 var async = require('async');
 
 var args = require('../util/arg-parse');
 var config = require('../../package.json');
+
 
 //执行rev md5需要依赖所有的task
 gulp.task('rev',['clean:rev','image:prod','css-common:prod','css:prod','browserify:prod'],function() {
@@ -16,7 +18,7 @@ gulp.task('rev',['clean:rev','image:prod','css-common:prod','css:prod','browseri
     if(!args.md5) {
         return;
     }
-    
+     
     async.series([
         //执行js,css rev到相应路径
         function() {

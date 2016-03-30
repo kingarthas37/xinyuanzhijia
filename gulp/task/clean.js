@@ -43,6 +43,14 @@ gulp.task('clean:files', function () {
         });
     }
 
+    //查找images md5
+    if(fs.existsSync(path.join(config.path.imageMin,'image-manifest.json'))) {
+        var imageMap = require(path.resolve(path.join(config.path.imageMin,'rev-manifest.json')));
+        _.each(imageMap,function(value) {
+            unlinkArr.push(path.join('images',value));
+        });
+    }
+
     //执行删除
     if(unlinkArr.length) {
         for(var i=0; i< unlinkArr.length;i++) {

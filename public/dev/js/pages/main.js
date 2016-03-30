@@ -1,11 +1,18 @@
 require('../../../js/main');
 
-require('./index/page');
-require('./index/nav');
-require('./index/image-view');
-require('./index/head-line');
-require('./index/image-list');
-require('./index/brand-list');
-require('./login/page');
-require('./login/login-btns');
-require('./account/page');
+require('./index');
+require('./sign');
+require('./product');
+require('./book');
+require('./music');
+require('./purchase');
+require('./customer');
+require('./order');
+require('./earning');
+require('./remark');
+require('./product-category');
+require('./taobao-mail-create');
+require('./product-book');
+require('./product-brand');
+require('./record');
+require('./record-category');

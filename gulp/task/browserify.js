@@ -18,25 +18,26 @@ var transform = require('vinyl-transform');
 var sourcemaps = require('gulp-sourcemaps');
 var async = require('async');
 var babelify = require('babelify');
-var reactify = require('reactify');
 
 var config = require('../../package.json');
 var onlyScripts = require('../util/script-filter');
 
-//所有页面级的js  dev/js/pages , dev/js/pages/dirs/  最多支持2级目录js
-var pageScripts = onlyScripts(path.join(config.path.jsDev,'pages'));
+//所有页面级的js  dev/js/pages
+var pageScripts = fs.readdirSync(path.join(config.path.jsDev,'pages')).filter(onlyScripts);
+
 
 //dev task
 gulp.task('browserify', function () {
-    
     var b = browserify({
         cache: {},
         packageCache: {},
         fullPaths: false,
         entries: [path.resolve(config.path.jsDev,'common/main.js')],  //入口为/common/main.js
         debug: true  //开启sourcemaps
-    }).transform(reactify,{
-        "es6": true
+    }).transform(babelify,{
+        compact: false,
+        presets:['es2015'],
+        only:/\/public\/dev\/js\//
     });
 
     var w = watchify(b);
@@ -45,7 +46,7 @@ gulp.task('browserify', function () {
     //使用browserify的require() ，可以将page文件，在页面中require
     pageScripts.forEach(function(page) {
         if(page !== 'main.js') {
-            w.require(path.resolve(config.path.jsDev,'pages',page),{expose:page.replace('/','-').replace(/\.js$/,'')});
+            w.require(path.resolve(config.path.jsDev,'pages',page),{expose:page.replace(/\.js$/,'')});
         }
     });
     
@@ -74,8 +75,10 @@ gulp.task('browserify:prod', function () {
     var b = browserify({
         entries: [path.resolve(config.path.jsDev,'common/main.js'),path.resolve(config.path.jsDev,'pages/main.js')],
         debug: true
-    }).transform(reactify,{
-        "es6": true
+    }).transform(babelify,{
+        compact: false,
+        presets:['es2015'],
+        only:/\/public\/dev\/js\//
     });
 
     var bundle = function () {
@@ -83,7 +86,7 @@ gulp.task('browserify:prod', function () {
         //将pages下的js 增加require到页面
         pageScripts.forEach(function(page) {
             if(page !== 'main.js') {
-                b.require(path.resolve(config.path.jsDev,'pages',page),{expose:page.replace('/','-').replace(/\.js$/,'')});
+                b.require(path.resolve(config.path.jsDev,'pages/',page), {expose:page.replace(/\.js$/,'')});
             }
         });
         

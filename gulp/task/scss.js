@@ -4,7 +4,7 @@ var path = require('path');
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var urlAdjuster = require('gulp-css-url-adjuster');
+var size = require('gulp-size');
 var rename = require('gulp-rename');
 var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
@@ -14,7 +14,7 @@ var concat = require('gulp-concat');
 var config = require('../../package.json');
 
 //css-common ,生成 name.external.css，增加sourcemaps
-gulp.task('css-common', function () {
+gulp.task('css-common',function() {
     return gulp.src(config['css-common'])
         .pipe(sourcemaps.init())
         .pipe(concat(config.name + '.external.css'))
@@ -24,12 +24,13 @@ gulp.task('css-common', function () {
 
 
 //css-common prod，生成 name.external.css，并增加sourcemaps和minifycss的压缩
-gulp.task('css-common:prod', function () {
+gulp.task('css-common:prod',function() {
     return gulp.src(config['css-common'])
         .pipe(sourcemaps.init())
         .pipe(concat(config.name + '.external.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(sourcemaps.write('.'))
+        .pipe(size())
         .pipe(gulp.dest(config.path.cssMin));
 });
 
@@ -38,13 +39,10 @@ gulp.task('css-common:prod', function () {
 //所有页面级的css管理都有main.scss控制
 //增加autoprefixer功能
 gulp.task('css', function () {
-    return gulp.src(path.join(config.path.cssDev, 'main.scss'))
+    return gulp.src(path.join(config.path.cssDev,'main.scss'))
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoprefixer())
-        .pipe(urlAdjuster({
-            replace: ['../../images', '../images']
-        }))
         .pipe(rename(config.name + '.pages.css'))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.path.cssDist));
@@ -52,16 +50,14 @@ gulp.task('css', function () {
 
 
 //页面级css的prod，原理同上，只增加了css压缩
-gulp.task('css:prod', ['css-common:prod'], function () {
-    return gulp.src(path.join(config.path.cssDev, 'main.scss'))
+gulp.task('css:prod',['css-common:prod'], function () {
+      return gulp.src(path.join(config.path.cssDev,'main.scss'))
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoprefixer())
-        .pipe(urlAdjuster({
-            replace: ['../../images', '../images']
-        }))
         .pipe(rename(config.name + '.pages.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(sourcemaps.write('.'))
+        .pipe(size())
         .pipe(gulp.dest(config.path.cssMin));
 });
