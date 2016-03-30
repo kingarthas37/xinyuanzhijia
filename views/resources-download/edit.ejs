@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+
+<div class="am-container common-page">
+
+    <form id="form-edit-resources-download" class="am-form" action="/resources-download/edit" method="post">
+        <input type="hidden" name="resources-download-id" value="<%= resourcesDownload.get('resourcesDownloadId')%>">
+        <fieldset>
+
+            <legend>编辑-<%= resourcesDownload.get('name') %></legend>
+
+            <div class="am-form-group">
+                <textarea name="content" rows="50"><%= markdown %></textarea>
+            </div>
+
+            <hr>
+
+            <div class="am-form-group">
+                <button type="submit" class="am-btn am-btn-primary">保存</button>
+            </div>
+            
+        </fieldset>
+
+    </form>
+</div>
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+</body>
+</html>

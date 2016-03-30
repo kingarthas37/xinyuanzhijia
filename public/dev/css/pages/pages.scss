@@ -1,0 +1,111 @@
+/* index page */
+.index-page {
+    
+    #chart-earning {
+        height: 250px;
+    }
+    
+    th {
+        font-weight: normal;
+        font-size: 1.4rem;
+    }
+    
+    
+    h4 {
+        font-size: 1.4rem;
+        font-weight: normal;
+        .more {
+            float: right;
+            font-weight: normal;
+        }
+    }
+    
+    .earning-info,.am-badge {
+        font-size: 1.4rem;
+    }
+    
+}
+
+/* sign page */
+.sign-page {
+    padding: 30px 0;
+}
+
+/* customer page */
+.typeahead-content .twitter-typeahead {
+    display: block !important;
+}
+
+/* earning page */
+.earning-page {
+    .am-datepicker-date {
+        width: 400px;
+    }
+}
+
+/* taobao-mail-create-page */
+.taobao-mail-create-page {
+    .copy-title {
+        display: none;
+    }
+    .copy-info {
+        display: none;
+    }
+    .copy-info.on {
+        display: block;
+    }
+    .mail-title-box {
+        display: none;
+    }
+}
+
+/* product page */
+.product-page {
+    #content-main-image {
+        ul {
+            margin:0;
+            padding: 0;
+        }
+        li {
+            display: inline-block;
+            margin-right: 5px;
+            img {
+                border:1px solid #ddd;
+                width: 80px;
+                height: 80px;
+            }
+        }
+    }
+}
+
+/* earning page */
+.earning-page {
+    .earning-info,.am-badge {
+        font-size: 1.4rem;
+    }
+}
+
+/* order page */
+.order-page {
+    .am-form-inline {
+        .am-form-field {
+            width: 160px;
+        }
+    }
+}
+
+/* purchase page */
+.purchase-page {
+    .purchase-image {
+        border:1px solid #ddd;
+        height: 100px;
+        width: 100px;
+        text-align: center;
+        display: inline-block;
+        line-height: 100px;
+        img {
+            max-width: 90px;
+            max-height: 90px;
+        }
+    }
+}

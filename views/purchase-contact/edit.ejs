@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+
+<div class="am-container common-page purchase-contact-page">
+
+    <form id="form-edit-purchase-contact" class="am-form" method="post" action="/purchase-contact/edit">
+
+        <input type="hidden" name="purchase-contact-id" value="<%= purchaseContact.get('purchaseContactId') %>"/>
+        
+        <fieldset>
+
+            <legend>添加网站联系方式</legend>
+
+            <!-- name start -->
+            <div id="content-name" class="am-form-group">
+                <label>网站名称：<i>*</i> </label>
+                <input  id="name" required name="name" type="text" placeholder="输入网站名称" value="<%= purchaseContact.get('name') %>" />
+            </div>
+            <!-- name end -->
+
+            <hr/>
+
+            <!-- shop start -->
+            <div id="content-shop" class="am-form-group">
+                <label>网店地址：</label>
+                <input  id="shop"  name="shop" type="text" placeholder="输入网店地址" value="<%= purchaseContact.get('shop') %>" />
+            </div>
+            <!-- shop end -->
+
+            <hr/>
+
+            <!-- website start -->
+            <div id="content-website" class="am-form-group">
+                <label>官网地址：</label>
+                <input id="website" name="website" type="text" placeholder="输入官网地址" value="<%= purchaseContact.get('website') %>" />
+            </div>
+            <!-- website end -->
+
+            <hr/>
+
+            <!-- email start -->
+            <div id="content-email" class="am-form-group">
+                <label>网站联系邮箱： </label>
+                <input  id="email"  name="email" type="text" placeholder="输入联系邮箱" value="<%= purchaseContact.get('email') %>" />
+            </div>
+            <!-- email end -->
+
+            <hr/>
+
+            <!-- image-url start -->
+            <div id="content-image-url" class="am-form-group">
+                <label>展示图片url： </label>
+                <div>
+                    <iframe class="upload-title" src="/purchase-contact/upload" frameborder="0"></iframe>
+                </div>
+                <input id="image-url"  name="image-url" type="text" placeholder="输入图片地址" value="<%= purchaseContact.get('imageUrl') %>" />
+            </div>
+            <!-- image-url end -->
+
+            <hr/>
+
+            <!-- description start -->
+            <div id="content-description" class="am-form-group">
+                <label>描述：</label>
+                <textarea id="description" name="description" rows="5" placeholder="描述"><%= purchaseContact.get('description') %></textarea>
+            </div>
+            <!-- description end -->
+
+            <hr/>
+
+            <div class="am-form-group">
+                <button type="submit" class="am-btn am-btn-primary">保存</button>
+            </div>
+
+        </fieldset>
+
+    </form>
+
+</div>
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="alert-image-upload-error">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    var purchaseContact = require('purchase-contact');
+    $(function() {
+        purchaseContact.editFun();
+    });
+
+    //iframe upload callback
+    function uploadImgResponse(url) {
+        purchaseContact.uploadImgResponse(url);
+    }
+
+    //iframe upload image error
+    function  uploadImgError(error) {
+        purchaseContact.uploadImgError(error);
+    }
+</script>
+</body>
+</html>
