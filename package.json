@@ -73,12 +73,8 @@
   "browser": {
     "jquery": "./public/js/jquery.min.js",
     "amazeui": "./public/js/amazeui.min.js",
-    "jquery-jcarousel": "./public/js/jquery.jcarousel.min.js",
-    "jquery-cookie": "./public/js/jquery.cookie.js",
     "jquery-lazyload": "./public/js/jquery.lazyload.js",
-    "jquery-validate": "./public/js/jquery.validate.min.js",
     "jquery-datetimepicker": "./public/js/jquery.datetimepicker.min.js",
-    "jquery-zoom": "./public/js/jquery.zoom.js",
     "jquery-zclip": "./public/js/jquery.zclip.min.js",
     "jquery-form": "./public/js/jquery.form.min.js",
     "flash-detect": "./public/js/flash.detect.min.js",
@@ -96,8 +92,7 @@
   },
   "css-common": [
     "public/css/amazeui.min.css",
-    "public/css/admin.css",
-    "public/css/jquery.datetimepicker.css"
+    "public/css/admin.css"
   ],
   "path": {
     "base": "public/",
