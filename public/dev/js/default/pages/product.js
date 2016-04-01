@@ -1,7 +1,6 @@
 'use strict';
 
 require('jquery-validate');
-var productPreview = require('./lib/product-preview');
 
 module.exports = {
 
@@ -50,8 +49,6 @@ module.exports = {
         this.setTabs();
         this.setMainImage();
     },
-    
-    previewFun:productPreview,
     
     //使用购买说明信息
     chooseInfo:function() {

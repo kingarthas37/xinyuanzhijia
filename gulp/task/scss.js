@@ -74,7 +74,7 @@ gulp.task('css-admin:prod',['css-common:prod'], function () {
     return gulp.src(path.join(config.path.cssDev,'admin/main.scss'))
         .pipe(sass())
         .pipe(autoprefixer())
-        .pipe(rename(config.name + '.admin.css'))
+        .pipe(rename(config.name + '.pages.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(gulp.dest(config.path.cssMin));
 });
