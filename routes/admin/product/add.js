@@ -9,8 +9,8 @@ var async = require('async');
 var extend = require("xtend");
 var markdown = require("markdown").markdown;
 
-var config = require('../../lib/config');
-var utils = require('../../lib/utils');
+var config = require('../../../lib/config');
+var utils = require('../../../lib/utils');
 
 //class
 var Product = AV.Object.extend('Product');
@@ -27,11 +27,11 @@ var data = extend(config.data,{
 
 
 //添加产品页
-router.get('/', function (req, res, next) {
+router.get('/',  (req,res) => {
 
-    if(!req.AV.user) {
-        return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
-    }
+    //if(!req.AV.user) {
+    //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
+    //}
     
     data = extend(data,{
         flash:{success:req.flash('success'),error:req.flash('error')},
@@ -65,7 +65,7 @@ router.get('/', function (req, res, next) {
             });
 
         }, function () {
-            res.render('product/add', data);
+            res.render('admin/product/add', data);
         }
 
     ]);

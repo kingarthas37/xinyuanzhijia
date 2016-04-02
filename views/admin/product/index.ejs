@@ -9,12 +9,18 @@
 
 <% include ../partials/header %>
 
+<% if (flash.success != '') { %>
+<div class="am-alert am-alert-success">
+    <p><%= flash.success %></p>
+</div>
+<% } %>
+
 <div class="am-cf admin-main">
 
     <!-- sidebar start -->
     <% include ../partials/sidebar %>
     <!-- sidebar end -->
-
+    
     <!-- content start -->
     <div class="admin-content">
 
@@ -66,26 +72,16 @@
                         <td><a href="/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name') %></a></td>
                         <td><a href="/product?categoryId=<%= product[i].get('categoryId') %>"><%=
                             product[i].get('categoryName') %></a></td>
-                        <td class="t-c"><% if (product[i].get('productLink')) { %> <a target="_blank"
-                                                                                      href="<%= product[i].get('productLink') %>">链接</a><%
-                            } else { %>-<% } %>
-                        </td>
-                        <td class="t-c"><% if (product[i].get('taobaoLink')) { %> <a target="_blank"
-                                                                                     href="<%= product[i].get('taobaoLink') %>">链接</a><%
-                            } else { %>-<% } %>
-                        </td>
-                        <td class="t-c"><% if (product[i].get('shopLink')) { %> <a target="_blank"
-                                                                                   href="<%= product[i].get('productLink') %>">链接</a><%
-                            } else { %>-<% } %>
-                        </td>
+                        <td class="t-c"><% if (product[i].get('productLink')) { %> <a target="_blank" href="<%= product[i].get('productLink') %>">链接</a><%} else { %>-<% } %></td>
+                        <td class="t-c"><% if (product[i].get('taobaoLink')) { %> <a target="_blank" href="<%= product[i].get('taobaoLink') %>">链接</a><%} else { %>-<% } %></td>
+                        <td class="t-c"><% if (product[i].get('shopLink')) { %> <a target="_blank" href="<%= product[i].get('productLink') %>">链接</a><%} else { %>-<% } %></td>
                         <td class="t-c small-screen-hide">
                             <%=(product[i].createdAt.getMonth()+1)%>-<%=product[i].createdAt.getDate()%>
                         </td>
                         <td class="t-c small-screen-hide">
                             <%=(product[i].updatedAt.getMonth()+1)%>-<%=product[i].updatedAt.getDate()%>
                         </td>
-                        <td class="t-c small-screen-hide"><a href="/product/remove/<%= product[i].get('productId') %>"
-                                                             class="remove-product">删除</a></td>
+                        <td class="t-c small-screen-hide"><a href="/product/remove/<%= product[i].get('productId') %>" class="remove-product">删除</a></td>
                     </tr>
                     <% } %>
                     </tbody>
@@ -112,17 +108,11 @@
                 </div>
 
                 <div class="am-form-group">
-                    <a href="/product/add" class="am-btn am-btn-primary" role="button">添加新产品</a>
+                    <a href="/admin/product/add" class="am-btn am-btn-primary" role="button">添加新产品</a>
                 </div>
                 
             </div>
         </div>
-        
-        <% if (flash.success != '') { %>
-        <div class="am-alert am-alert-success">
-            <p><%= flash.success %></p>
-        </div>
-        <% } %>
 
     </div>
     <!-- content end -->

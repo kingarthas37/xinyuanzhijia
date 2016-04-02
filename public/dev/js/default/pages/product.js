@@ -33,20 +33,14 @@ module.exports = {
     },
 
     addFun:function() {
-
-        $('#form-add-product').validate();
         this.chooseBanner();
         this.formActionSelect();
-        this.setTabs();
         this.setMainImage();
 
     },
     editFun:function() {
-
-        $('#form-add-product').validate();
         this.chooseBanner();
         this.formActionSelect();
-        this.setTabs();
         this.setMainImage();
     },
     
@@ -86,7 +80,7 @@ module.exports = {
             currentBannerSrc = select.find('option:eq(' + count + ')').attr('data-src');
             currentBannerTitle = select.find('option:eq(' + count + ')').text();
 
-            codeBanner.html('<img src="'+ currentBannerSrc +'"/>');
+            codeBanner.html('<img width="400" src="'+ currentBannerSrc +'"/>');
             mdCodeBanner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
             
             //编辑产品
@@ -95,7 +89,7 @@ module.exports = {
             currentBannerSrc = select.find('option:selected').attr('data-src');
             currentBannerTitle = select.find('option:selected').text();
 
-            codeBanner.html('<img src="'+ currentBannerSrc +'"/>');
+            codeBanner.html('<img width="400" src="'+ currentBannerSrc +'"/>');
             mdCodeBanner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
         }
         
@@ -109,7 +103,7 @@ module.exports = {
                 currentBannerSrc = select.find('option[value='+ this.value +']').attr('data-src');
                 currentBannerTitle = select.find('option[value='+ this.value +']').text();
             }
-            codeBanner.html('<img src="'+ currentBannerSrc +'"/>');
+            codeBanner.html('<img width="400" src="'+ currentBannerSrc +'"/>');
             mdCodeBanner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
 
         });
@@ -145,29 +139,22 @@ module.exports = {
         
     },
     
-    //tab控件
-    setTabs:function() {
-        $('.am-tabs').tabs({
-            animation:false
-        });
-    },
-    
     //设置主图预览
     setMainImage:function() {
         
-        var contentImage = $('#content-main-image').find('ul');
         var mainImage = $('#main-image');
-        
+        var mainImageList = $('.main-image-list');
+
         mainImage.change(function() {
-            contentImage.empty();
+            mainImageList.empty();
             var arr = mainImage.val().split('\n');
             if($.trim(arr[0])==='') {
                 return;
             }
-            $.each(arr,function(i,n) {
-                contentImage.append('<li><a href="'+ arr[i] +'" target="_blank"><img src="' + arr[i] + '"/></a></li>');
+            $.each(arr,function(i) {
+                mainImageList.append('<li><a href="'+ arr[i] +'" target="_blank"><img src="' + arr[i] + '"/></a></li>');
             });
-        }).trigger('change');
+        });
         
     }
 

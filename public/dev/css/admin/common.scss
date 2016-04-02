@@ -105,3 +105,35 @@ footer p {
         font-weight: normal;
     }
 }
+
+.am-alert {
+    margin:0;
+}
+
+.admin-content {
+    .am-tabs-nav {
+        i {
+            color: red;
+            padding: 0 4px;
+            font-style: normal;
+        }
+        .am-active {
+            a {
+                font-weight: bold;
+            }
+        }
+    }
+    label {
+        i {
+            color: red;
+            padding: 0 4px;
+            font-style: normal;
+        }
+    }
+    label.error {
+        color: red;
+        display: block;
+        padding: 4px 0;
+        font-weight: normal;
+    }
+}

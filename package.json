@@ -75,14 +75,12 @@
     "amazeui": "./public/js/amazeui.min.js",
     "jquery-lazyload": "./public/js/jquery.lazyload.js",
     "jquery-validate":"./public/js/jquery.validate.min.js",
-    "jquery-datetimepicker": "./public/js/jquery.datetimepicker.min.js",
     "zclip": "./public/js/ZeroClipboard.min.js",
     "jquery-form": "./public/js/jquery.form.min.js",
     "flash-detect": "./public/js/flash.detect.min.js",
     "bloodhound": "./public/js/bloodhound.min.js",
     "typeahead": "./public/js/typeahead.jquery.min.js",
-    "swfobject": "./public/js/swfobject.js",
-    "jquery-cookie": "./public/js/jquery.cookie.js"
+    "swfobject": "./public/js/swfobject.js"
   },
   "browserify": {
     "transform": "browserify-shim"
