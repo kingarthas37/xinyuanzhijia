@@ -8,14 +8,14 @@ var flash = require('connect-flash');
 var async = require('async');
 var extend = require("xtend");
 
-var config = require('../../lib/config');
+var config = require('../../../lib/config');
 
 //class
 var Product = AV.Object.extend('Product');
 var ProductCategory = AV.Object.extend('ProductCategory');
 
 //lib
-var pager = require('../../lib/pager');
+var pager = require('../../../lib/component/pager');
 
 var data =  extend(config.data,{
     title: '产品分类管理-首页',
@@ -26,9 +26,9 @@ var data =  extend(config.data,{
 //首页
 router.get('/', function (req, res, next) {
 
-    if (!req.AV.user) {
-        return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
-    }
+    //if (!req.AV.user) {
+    //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
+    //}
     
     var page = req.query.page ? parseInt(req.query.page) : 1;
     var limit = req.query.limit ? parseInt(req.query.limit) : config.page.LIMIT;
@@ -88,7 +88,7 @@ router.get('/', function (req, res, next) {
                     data = extend(data, {
                         productCategory: results
                     });
-                    res.render('product-category', data);
+                    res.render('admin/product-category', data);
                 },
                 error: function (err) {
                     next(err);
