@@ -4,6 +4,13 @@ var AMUI = require('amazeui');
 
 $(function () {
     
+    //lean app header info
+    window.leanAppHeader = {
+        'x-avoscloud-application-id':window.leanApp.AppID,
+        'x-avoscloud-application-key':window.leanApp.AppKey,
+        'content-type':'application/json'
+    };
+    
     // Avoid `console` errors in browsers that lack a console.
     {
         var method;

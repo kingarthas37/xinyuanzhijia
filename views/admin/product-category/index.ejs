@@ -27,7 +27,7 @@
 
                 <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion>
                     <% for (var i=0;i<category.length;i++) { %>
-                     <dl class="am-accordion-item">
+                     <dl class="am-accordion-item" data-index="<%= category[i].get('index') %>">
                         <dt class="am-accordion-title am-cf">
                             <strong><%= category[i].get('name') %> </strong>
                             <span class="options">
@@ -76,7 +76,22 @@
         </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn" data-am-modal-cancel>取消</span>
-            <span class="am-modal-btn" id="modal-category-1-add-confirm">提交</span>
+            <span class="am-modal-btn" id="modal-category-1-confirm-add">提交</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- 模态窗 编辑一级分类 -->
+<div class="am-modal am-modal-prompt" tabindex="-1" id="modal-category-1-edit">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">添加一级分类:</div>
+        <div class="am-modal-bd">
+            <input type="text" class="am-modal-prompt-input" id="input-category-1-edit">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" id="modal-category-1-confirm-edit">提交</span>
         </div>
     </div>
 </div>
