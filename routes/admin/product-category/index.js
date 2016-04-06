@@ -1,147 +1,91 @@
 'use strict';
 
-var router = require('express').Router();
-var AV = require('leanengine');
+let router = require('express').Router();
+let AV = require('leanengine');
 
-var flash = require('connect-flash');
+let flash = require('connect-flash');
 
-var async = require('async');
-var extend = require("xtend");
+let async = require('async');
+let extend = require("xtend");
 
-var config = require('../../../lib/config');
+let config = require('../../../lib/config');
 
 //class
-var Product = AV.Object.extend('Product');
-var ProductCategory = AV.Object.extend('ProductCategory');
+let ProductCategory1 = AV.Object.extend('ProductCategory1');
+let ProductCategory2 = AV.Object.extend('ProductCategory2');
 
 //lib
-var pager = require('../../../lib/component/pager');
+let pager = require('../../../lib/component/pager');
 
-var data =  extend(config.data,{
-    title: '产品分类管理-首页',
+let data =  extend(config.data,{
+    title: '产品分类列表',
     currentPage: 'product-category'
 });
 
 
-//首页
-router.get('/', function (req, res, next) {
+//首页render
+router.get('/',(req,res) => {
 
     //if (!req.AV.user) {
     //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
     //}
     
-    var page = req.query.page ? parseInt(req.query.page) : 1;
-    var limit = req.query.limit ? parseInt(req.query.limit) : config.page.LIMIT;
-    var order = req.query.order || 'desc';
-    
-    var searchProductCategoryName = req.query['search-product-category-name'];
-
-    data = extend(data,{
-        flash: {
-            success:req.flash('success'),
-            error:req.flash('error')
-        },
-        user:req.AV.user,
-        searchProductCategoryName:searchProductCategoryName
-    });
-    
-    var query = new AV.Query(ProductCategory);
-    async.series([
-
-        function(cb) {
-            
-            if(searchProductCategoryName) {
-                query.contains('categoryName',searchProductCategoryName);
-            }
-            
-            query.count({
-                success: function(count) {
-                    data = extend(data,{
-                        productCategoryPager:pager(page,limit,count),
-                        productCategoryCount:count
-                    });
-                    cb();
-                },
-                error: function(error) {
-                    next(error);
-                }
+    {
+        let queryCategory1 = new AV.Query(ProductCategory1);
+        let queryCategory2 = new AV.Query(ProductCategory2);
+        
+        queryCategory1.find().done(items=> {
+            data = extend(data,{
+                category:items
             });
-        },
+            return queryCategory2.find();
+        }).done(items2 => {
 
-        function (cb) {
-            
-            query.skip((page - 1) * limit);
-            query.limit(limit);
-            
-            if(order === 'asc') {
-                query.ascending('categoryId');
-            } else {
-                query.descending('categoryId');
-            }
-
-            if(searchProductCategoryName) {
-                query.contains('categoryName',searchProductCategoryName);
-            }
-
-            query.find({
-                success: function (results) {
-                    data = extend(data, {
-                        productCategory: results
-                    });
-                    res.render('admin/product-category', data);
-                },
-                error: function (err) {
-                    next(err);
-                }
+            data.category.forEach(item1 => {
+                item1.contents = [];
+                items2.forEach( item2 => {
+                    if(item1.get('productCategory1Id') === item2.get('productCategory1Id')) {
+                        item1.contents.push(item2);
+                    }
+                });
             });
-            
-        }
 
-    ]);
+            return res.render('admin/product-category', data);
+        });
+        
+    }
 
 });
 
 
 
-router.get('/remove/:productCategoryId', function (req,res) {
+//remove-category-1
+router.get('/remove-category-1',(req,res) => {
 
-    if(!req.AV.user) {
-        return res.json({
-            error:1,
-            msg:config.error.NOT_SUCCESS
-        });
-    }
-
-    var categoryId = parseInt(req.params.productCategoryId);
+    let query = new AV.Query(ProductCategory1);
+    let productCategory1Id = parseInt(req.query.id);
     
+    query.equalTo('productCategory1Id',productCategory1Id);
     
-    var queryProduct = new AV.Query(Product);
-    queryProduct.equalTo('categoryId',categoryId);
-    queryProduct.first().then(function(result) {
+    query.first().done(item => {
+        console.info(item);
         
-        if(result) {
-            res.json({
-                success:0,
-                msg:'此分类已绑定产品,无法删除,请先更改产品相关分类再删除'
-            });
-            return AV.Promise.error('此分类已绑定产品,无法删除,请先更改产品相关分类再删除');
-        }
-
-        var query = new AV.Query(ProductCategory);
-        query.equalTo('categoryId',categoryId );
-        return query.first();
-        
-    }).then(function(result) {
-        result.destroy({
-            success: function () {
-                req.flash('success', '删除成功!');
-                return res.json({
-                    success:1
+        item.destroy().then(
+            ()=> {
+                res.send({
+                    success:1,
+                    message:'删除成功!'
+                });
+            },
+            ()=> {
+                res.send({
+                    success:0,
+                    message:'删除失败!'
                 });
             }
-        });
+        );
     });
- 
+    
 });
 
 

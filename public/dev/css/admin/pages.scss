@@ -21,5 +21,31 @@
 .admin-product-category-page {
     .am-accordion {
         margin:0 0 30px 0;
+
+        strong {
+            font-weight:normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        span.options {
+            float: right;
+            a {
+                margin-right: 6px;
+            }
+        }
+        
+        ul {
+            margin:0 0 5px 0;
+            padding: 0 0 10px 0;
+        }
+        li {
+            height: 36px;
+            line-height: 36px;
+            margin:0;
+            list-style: none;
+            border-bottom: 1px dashed #ddd;
+        }
     }
 }
