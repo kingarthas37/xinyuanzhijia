@@ -89,8 +89,65 @@ router.get('/remove-category-1', (req, res) => {
 
         }).done(()=>res.send({success: 1, message: '删除成功!'}));
     });
+});
+
+
+//move-category-1-up
+router.get('/move-category-1-up',(req,res) => {
+    
+    let index = parseInt(req.query.index);
+
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            let query = new AV.Query(ProductCategory1);
+            query.equalTo('index',index);
+            query.first().done(item => {
+                item.set('index',index-1);
+                return item.save();
+            }).done(()=> resolve());
+
+        }),
+        new AV.Promise(resolve => {
+            let query = new AV.Query(ProductCategory1);
+            query.equalTo('index',index-1);
+            query.first().done(item => {
+                item.set('index',index);
+                return item.save();
+            }).done(()=>resolve());
+        })
+    ).then(()=> res.send({success:1}));
+    
+});
+
+
+
+//move-category-1-down
+router.get('/move-category-1-down',(req,res) => {
+
+    let index = parseInt(req.query.index);
+
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            let query = new AV.Query(ProductCategory1);
+            query.equalTo('index',index);
+            query.first().done(item => {
+                item.set('index',index + 1);
+                return item.save();
+            }).done(()=> resolve());
+
+        }),
+        new AV.Promise(resolve => {
+            let query = new AV.Query(ProductCategory1);
+            query.equalTo('index',index + 1);
+            query.first().done(item => {
+                item.set('index',index);
+                return item.save();
+            }).done(()=>resolve());
+        })
+    ).then(()=> res.send({success:1}));
 
 });
+
 
 
 module.exports = router;

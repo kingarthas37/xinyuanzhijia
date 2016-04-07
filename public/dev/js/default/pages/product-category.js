@@ -7,14 +7,11 @@ var leanAppHeader = window.leanAppHeader;
 module.exports = {
 
     indexFun:function() {
-        
-         
         this.addCategory1();
         this.editCategory1();
         this.removeCategory1();
-        
-        
-       
+        this.moveCategory1Up();
+        this.moveCategory1Down();
     },
 
     //添加一级分类
@@ -76,7 +73,7 @@ module.exports = {
                 modal.modal({
                     relatedTarget:this
                 });
-                currentId = $(this).attr('data-id');
+                currentId = $(this).parents('.am-accordion-item').attr('data-id');
                 return false;
             });
         });
@@ -142,7 +139,7 @@ module.exports = {
                         $.get({
                             url:'/admin/product-category/remove-category-1',
                             data:{
-                                id:$(n).attr('data-id')
+                                id:$(n).parents('.am-accordion-item').attr('data-id')
                             },
                             success:function(data) {
                                 $(n).data('modal',false);
@@ -162,7 +159,96 @@ module.exports = {
 
         });
         
-    }
+    },
     
+    //分类1上移
+    moveCategory1Up:function() {
+        
+        let list = $('.am-accordion-item');
+        
+        let state = false;
+        
+        $('.moveup-category-1').each(function() {
+
+            $(this).click(function() {
+                
+                let content = $(this).parents('.am-accordion-item');
+                let target = content.prev();
+                let index = content.index();
+                
+                if(index === 0) {
+                    return false;
+                }
+                
+                if(state) {
+                    return false;
+                }
+
+                state = true;
+                $.AMUI.progress.start();
+                
+                $.get({
+                    url:'/admin/product-category/move-category-1-up',
+                    data:{index:index}
+                }).done(data => {
+                    if(data.success) {
+                        content.after(target);
+                        state = false;
+                        $.AMUI.progress.done();
+                    }
+                });
+
+                return false;
+            });
+            
+        });
+        
+        
+    },
+
+    //分类1下移
+    moveCategory1Down:function() {
+
+        let list = $('.am-accordion-item');
+
+        let state = false;
+
+        $('.movedown-category-1').each(function() {
+
+            $(this).click(function() {
+
+                let content = $(this).parents('.am-accordion-item');
+                let target = content.next();
+                let index = content.index();
+
+                if(index === list.length-1) {
+                    return false;
+                }
+
+                if(state) {
+                    return false;
+                }
+
+                state = true;
+                $.AMUI.progress.start();
+
+                $.get({
+                    url:'/admin/product-category/move-category-1-down',
+                    data:{index:index}
+                }).done(data => {
+                    if(data.success) {
+                        content.before(target);
+                        state = false;
+                        $.AMUI.progress.done();
+                    }
+                });
+
+                return false;
+            });
+
+        });
+
+
+    }
 
 };
