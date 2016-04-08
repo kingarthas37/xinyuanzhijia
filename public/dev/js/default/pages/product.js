@@ -37,6 +37,7 @@ module.exports = {
         this.setCategory();
         this.chooseBanner();
         this.setMainImage();
+        this.submitControl();
 
     },
     editFun:function() {
@@ -44,19 +45,22 @@ module.exports = {
         this.setCategory();
         this.chooseBanner();
         this.setMainImage();
+        this.submitControl();
     },
     
-    //分类选择
+    //一级,二级分类选择
     setCategory:function() {
       
         let $select1 = $('#select-category-1');
         let $select2 = $('#select-category-2');
+        let submit = $('#submit');
         
         $select1.change(function() {
-            
+            if(submit.data('state')) {
+                return false;
+            }
             let category1Id = this.value;
             $select2.find('option').detach();
-            
             $.get({
                 url:leanApp.api + 'classes/ProductCategory2',
                 headers:leanAppHeader,
@@ -68,9 +72,11 @@ module.exports = {
                 });
                 $select2.append(options);
             });
-            
             return false;
-            
+        });
+        
+        $select2.change(function() {
+            return false;
         });
         
     },
@@ -152,6 +158,19 @@ module.exports = {
             });
         });
         
+    },
+    
+    //提交时状态设置
+    submitControl:function() {
+        let submit = $('#submit');
+        $('#form-add-product').validator({
+            submit:function() {
+                if(!this.isFormValid()){
+                    return false;
+                }
+                submit.attr('disabled',true).addClass('am-disabled');
+            }
+        });
     }
 
 };
