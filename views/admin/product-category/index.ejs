@@ -39,18 +39,20 @@
                         </dt>
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
-                                <ul>
-                                    <% for (var j=0;j<category[i].contents.length;j++) { %>
-                                         <li>
+                                <ul class="category-2-list">
+                                    <% for (var j=0;j< category[i].contents.length;j++) { %>
+                                         <li data-id="<%= category[i].contents[j].get('productCategory2Id') %>">
                                             <strong><%= category[i].contents[j].get('name') %></strong>
                                             <span class="options">
-                                                <a class="category-1" href="javascript:;" data-category-id-1="<%= category[i].get('productCategory1Id') %>">编辑</a>
-                                                <a class="category-1" href="javascript:;" data-category-id-1="<%= category[i].get('productCategory1Id') %>">删除</a>
+                                                <a class="edit-category-2" href="javascript:;">编辑</a>
+                                                <a class="moveup-category-2" href="javascript:;">上移</a>
+                                                <a class="movedown-category-2" href="javascript:;">下移</a>
+                                                <a class="remove-category-2" href="javascript:;">删除</a>
                                             </span>
                                          </li>
                                     <% } %>
                                 </ul>
-                                <button class="am-btn am-btn-primary am-btn-xs">添加二级分类</button>
+                                <button class="am-btn am-btn-primary am-btn-xs btn-category-2-add">添加二级分类</button>
                             </div>
                         </dd>
                     </dl>
@@ -84,6 +86,22 @@
 </div>
 
 
+<!-- 模态窗 添加二级分类 -->
+<div class="am-modal am-modal-prompt" tabindex="-1" id="modal-category-2-add">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">添加一级分类:</div>
+        <div class="am-modal-bd">
+            <input type="text" class="am-modal-prompt-input" id="input-category-2-add">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" id="modal-category-2-confirm-add">提交</span>
+        </div>
+    </div>
+</div>
+
+
+
 <!-- 模态窗 编辑一级分类 -->
 <div class="am-modal am-modal-prompt" tabindex="-1" id="modal-category-1-edit">
     <div class="am-modal-dialog">
@@ -98,6 +116,20 @@
     </div>
 </div>
 
+<!-- 模态窗 编辑二级分类 -->
+<div class="am-modal am-modal-prompt" tabindex="-1" id="modal-category-2-edit">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">添加一级分类:</div>
+        <div class="am-modal-bd">
+            <input type="text" class="am-modal-prompt-input" id="input-category-2-edit">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" id="modal-category-2-confirm-edit">提交</span>
+        </div>
+    </div>
+</div>
+
 
 <!-- 模态窗 删除一级分类 -->
 <div class="am-modal am-modal-confirm" tabindex="-1" id="modal-category-1-remove">
@@ -105,6 +137,20 @@
         <div class="am-modal-hd">删除一级分类</div>
         <div class="am-modal-bd">
             你，确定要删除该一级分类吗？
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+
+<!-- 模态窗 删除二级分类 -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-category-2-remove">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">删除二级分类</div>
+        <div class="am-modal-bd">
+            你，确定要删除该二级分类吗？
         </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn" data-am-modal-cancel>取消</span>
@@ -137,5 +183,3 @@
 </script>
 </body>
 </html>
-
- 
