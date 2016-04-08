@@ -1,8 +1,6 @@
 'use strict';
 
-require('jquery-validate');
-
-var leanAppHeader = window.leanAppHeader;
+let leanAppHeader = window.leanAppHeader;
 
 module.exports = {
 

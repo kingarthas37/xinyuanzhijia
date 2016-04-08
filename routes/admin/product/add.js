@@ -15,7 +15,7 @@ var utils = require('../../../lib/utils');
 //class
 var Product = AV.Object.extend('Product');
 var ProductHistory = AV.Object.extend('ProductHistory');
-var Category = AV.Object.extend('ProductCategory');
+var Category1 = AV.Object.extend('ProductCategory1');
 var Banner = AV.Object.extend('ProductBanner');
 
 
@@ -42,11 +42,11 @@ router.get('/',  (req,res) => {
 
         function (cb) {
 
-            var query = new AV.Query(Category);
+            var query = new AV.Query(Category1);
             query.find({
                 success: function (results) {
                     data = extend(data, {
-                        category: results
+                        category1:results
                     });
                     cb();
                 }

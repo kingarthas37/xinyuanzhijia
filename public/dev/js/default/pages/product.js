@@ -1,6 +1,6 @@
 'use strict';
 
-require('jquery-validate');
+let leanAppHeader = window.leanAppHeader;
 
 module.exports = {
 
@@ -33,31 +33,44 @@ module.exports = {
     },
 
     addFun:function() {
+        
+        this.setCategory();
         this.chooseBanner();
-        this.formActionSelect();
         this.setMainImage();
 
     },
     editFun:function() {
+        
+        this.setCategory();
         this.chooseBanner();
-        this.formActionSelect();
         this.setMainImage();
     },
     
-    //使用购买说明信息
-    chooseInfo:function() {
-
-        var contentInfo = $('#content-info');
-        var mdCodeInfo = $('#md-code-info');
-
-        mdCodeInfo.val('![]('+ contentInfo.find('.product-title img').attr('src') +')');
-
-        contentInfo.find(':checkbox').click(function() {
-            if(this.checked) {
-                mdCodeInfo.val('![]('+ contentInfo.find('.product-title img').attr('src') +')');
-            } else {
-                mdCodeInfo.val('');
-            }
+    //分类选择
+    setCategory:function() {
+      
+        let $select1 = $('#select-category-1');
+        let $select2 = $('#select-category-2');
+        
+        $select1.change(function() {
+            
+            let category1Id = this.value;
+            $select2.find('option').detach();
+            
+            $.get({
+                url:leanApp.api + 'classes/ProductCategory2',
+                headers:leanAppHeader,
+                data:'where={"productCategory1Id":'+ category1Id +'}'
+            }).done(data => {
+                let options = ``;
+                $.each(data.results,(i,n)=>{
+                    options += `<option value="${n.productCategory2Id}">${n.name}</option>`;
+                });
+                $select2.append(options);
+            });
+            
+            return false;
+            
         });
         
     },
@@ -67,8 +80,8 @@ module.exports = {
 
         var select = $('#select-banner');
         var bannerLength = select.find('option').length - 1;
-        var codeBanner = $('.code-banner');
-        var mdCodeBanner = $('#md-code-banner');
+        var bannerView = $('.banner-view');
+        var banner = $('#banner');
         
         var currentBannerSrc,
             currentBannerTitle;
@@ -80,17 +93,16 @@ module.exports = {
             currentBannerSrc = select.find('option:eq(' + count + ')').attr('data-src');
             currentBannerTitle = select.find('option:eq(' + count + ')').text();
 
-            codeBanner.html('<img width="400" src="'+ currentBannerSrc +'"/>');
-            mdCodeBanner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
+            bannerView.html('<img width="400" src="'+ currentBannerSrc +'"/>');
+            banner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
             
-            //编辑产品
+        //编辑产品
         } else {
-            
             currentBannerSrc = select.find('option:selected').attr('data-src');
             currentBannerTitle = select.find('option:selected').text();
 
-            codeBanner.html('<img width="400" src="'+ currentBannerSrc +'"/>');
-            mdCodeBanner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
+            bannerView.html('<img width="400" src="'+ currentBannerSrc +'"/>');
+            banner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
         }
         
         select.on('change',function() {
@@ -103,42 +115,26 @@ module.exports = {
                 currentBannerSrc = select.find('option[value='+ this.value +']').attr('data-src');
                 currentBannerTitle = select.find('option[value='+ this.value +']').text();
             }
-            codeBanner.html('<img width="400" src="'+ currentBannerSrc +'"/>');
-            mdCodeBanner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
+            bannerView.html('<img width="400" src="'+ currentBannerSrc +'"/>');
+            banner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
 
         });
         
         $('.banner-enable').click(function() {
         
             if(this.checked) {
-                mdCodeBanner.val('');
-                select.addClass('hide');
-                codeBanner.addClass('hide');
-                mdCodeBanner.addClass('hide');
+                banner.val('');
+                bannerView.addClass('hide');
+                banner.addClass('hide');
             } else {
                 select.trigger('change');
-                select.removeClass('hide');
-                codeBanner.removeClass('hide');
-                mdCodeBanner.removeClass('hide');
+                bannerView.removeClass('hide');
+                banner.removeClass('hide');
             }
             
         });
         
     },
-    
-    //表单提交，是否是保存还是预览
-    formActionSelect:function() {
-
-        $('form :submit').click(function() {
-            $('form').attr({
-                'action':$(this).attr('data-action'),
-                'target':$(this).attr('data-target')
-            });
-            return true;
-        });
-        
-    },
-    
     //设置主图预览
     setMainImage:function() {
         
