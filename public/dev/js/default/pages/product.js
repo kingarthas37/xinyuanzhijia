@@ -163,7 +163,7 @@ module.exports = {
     //提交时状态设置
     submitControl:function() {
         let submit = $('#submit');
-        $('#form-add-product').validator({
+        $('.am-form').validator({
             submit:function() {
                 if(!this.isFormValid()){
                     return false;

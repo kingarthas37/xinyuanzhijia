@@ -1,28 +1,27 @@
 'use strict';
 
-var router = require('express').Router();
-var AV = require('leanengine');
+let router = require('express').Router();
+let AV = require('leanengine');
 
-var flash = require('connect-flash');
+let flash = require('connect-flash');
 
-var extend = require("xtend");
+let extend = require("xtend");
 
-var config = require('../../../lib/config');
-var utils = require('../../../lib/utils');
+let config = require('../../../lib/config');
 
 //class
-var Product = AV.Object.extend('Product');
-//var ProductHistory = AV.Object.extend('ProductHistory');
-var ProductCategory1 = AV.Object.extend('ProductCategory1');
-var ProductCategory2 = AV.Object.extend('ProductCategory2');
-var Banner = AV.Object.extend('ProductBanner');
+let Product = AV.Object.extend('Product');
+let ProductHistory = AV.Object.extend('ProductHistory');
 
+let ProductCategory1 = AV.Object.extend('ProductCategory1');
+let ProductCategory2 = AV.Object.extend('ProductCategory2');
 
-var data = extend(config.data,{
+let Banner = AV.Object.extend('ProductBanner');
+
+let data = extend(config.data,{
     title:'产品编辑-添加产品',
-    currentPage:'product'
+    currentPage:'product-add'
 });
-
 
 router.get('/',(req,res) => {
 
@@ -81,11 +80,10 @@ router.post('/',(req,res) => {
     let video = req.body['video'];
     
     let product = new Product();
-
-    console.info(req.body['select-category-2']);
-
+    let productHistory = new ProductHistory();
+    
     product.set('name',name);
-    product.set('nameEn',name);
+    product.set('nameEn',nameEn);
     product.set('mainImage',mainImage);
     product.set('category1Id',category1Id);
     product.set('category2Id',category2Id);
@@ -103,7 +101,36 @@ router.post('/',(req,res) => {
     product.set('image',image);
     product.set('video',video);
  
-    product.save().done(()=>{
+    product.save().done(item => {
+
+        let query = new AV.Query(Product);
+        return query.get(item.id);
+        
+    }).done(item => {
+
+        productHistory.set('productId',item.get('productId'));
+        productHistory.set('name',name);
+        productHistory.set('nameEn',nameEn);
+        productHistory.set('mainImage',mainImage);
+        productHistory.set('category1Id',category1Id);
+        productHistory.set('category2Id',category2Id);
+        productHistory.set('banner',banner);
+        productHistory.set('detail',detail);
+        productHistory.set('detailEn',detailEn);
+        productHistory.set('description',description);
+        productHistory.set('review',review);
+        productHistory.set('property',property);
+        productHistory.set('propertyEn',propertyEn);
+        productHistory.set('instruction',instruction);
+        productHistory.set('instructionEn',instructionEn);
+        productHistory.set('use',use);
+        productHistory.set('useEn',useEn);
+        productHistory.set('image',image);
+        productHistory.set('video',video);
+        
+        return productHistory.save();
+        
+    }).done(()=> {
         req.flash('success', '添加商品成功!');
         res.redirect('/admin/product');
     });
