@@ -58,9 +58,6 @@
                     <tr>
                         <th>产品名称</th>
                         <th>产品分类</th>
-                        <th width="80">购买链接</th>
-                        <th width="80">淘宝链接</th>
-                        <th width="80">网店链接</th>
                         <th width="80" class="t-c small-screen-hide">创建时间</th>
                         <th width="80" class="t-c small-screen-hide">更新时间</th>
                         <th width="60" class="t-c small-screen-hide">删除</th>
@@ -69,12 +66,9 @@
                     <tbody>
                     <% for(var i=0; i < product.length; i++) {%>
                     <tr>
-                        <td><a href="/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name') %></a></td>
-                        <td><a href="/product?categoryId=<%= product[i].get('categoryId') %>"><%=
+                        <td><a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name') %></a></td>
+                        <td><a href="/admin/product?categoryId=<%= product[i].get('categoryId') %>"><%=
                             product[i].get('categoryName') %></a></td>
-                        <td class="t-c"><% if (product[i].get('productLink')) { %> <a target="_blank" href="<%= product[i].get('productLink') %>">链接</a><%} else { %>-<% } %></td>
-                        <td class="t-c"><% if (product[i].get('taobaoLink')) { %> <a target="_blank" href="<%= product[i].get('taobaoLink') %>">链接</a><%} else { %>-<% } %></td>
-                        <td class="t-c"><% if (product[i].get('shopLink')) { %> <a target="_blank" href="<%= product[i].get('productLink') %>">链接</a><%} else { %>-<% } %></td>
                         <td class="t-c small-screen-hide">
                             <%=(product[i].createdAt.getMonth()+1)%>-<%=product[i].createdAt.getDate()%>
                         </td>

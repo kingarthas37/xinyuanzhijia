@@ -85,59 +85,16 @@ module.exports = {
     chooseBanner:function() {
 
         var select = $('#select-banner');
-        var bannerLength = select.find('option').length - 1;
         var bannerView = $('.banner-view');
-        var banner = $('#banner');
-        
-        var currentBannerSrc,
-            currentBannerTitle;
-        
-        //如果是新增产品，默认为0
-        if(parseInt(select.val()) === 0) {
-            
-            var count = Math.floor(Math.random(100) * bannerLength);
-            currentBannerSrc = select.find('option:eq(' + count + ')').attr('data-src');
-            currentBannerTitle = select.find('option:eq(' + count + ')').text();
-
-            bannerView.html('<img width="400" src="'+ currentBannerSrc +'"/>');
-            banner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
-            
-        //编辑产品
-        } else {
-            currentBannerSrc = select.find('option:selected').attr('data-src');
-            currentBannerTitle = select.find('option:selected').text();
-
-            bannerView.html('<img width="400" src="'+ currentBannerSrc +'"/>');
-            banner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
-        }
-        
         select.on('change',function() {
-
-            if(parseInt(this.value) === 0) {
-                var count = Math.floor(Math.random(100) * bannerLength);
-                currentBannerSrc = select.find('option:eq(' + count + ')').attr('data-src');
-                currentBannerTitle = select.find('option:eq(' + count + ')').text();
-            } else {
-                currentBannerSrc = select.find('option[value='+ this.value +']').attr('data-src');
-                currentBannerTitle = select.find('option[value='+ this.value +']').text();
-            }
-            bannerView.html('<img width="400" src="'+ currentBannerSrc +'"/>');
-            banner.val('!['+ currentBannerTitle +']('+ currentBannerSrc +')');
-
-        });
-        
-        $('.banner-enable').click(function() {
-        
-            if(this.checked) {
-                banner.val('');
-                bannerView.addClass('hide');
-                banner.addClass('hide');
-            } else {
-                select.trigger('change');
-                bannerView.removeClass('hide');
-                banner.removeClass('hide');
-            }
             
+            if(!this.value) {
+                bannerView.addClass('hide');
+                return false;
+            }
+
+            bannerView.removeClass('hide');
+            bannerView.html(`<img width="400" src="${select.find('option:selected').attr('data-src')}"/>`);
         });
         
     },

@@ -9,13 +9,6 @@
 
 <% include ../partials/header %>
 
-<% if (flash.success != '') { %>
-<div class="am-alert am-alert-success">
-    <p><%= flash.success %></p>
-</div>
-<% } %>
-
-
 <div class="am-cf admin-main">
 
     <!-- sidebar start -->
@@ -89,20 +82,18 @@
                     
                     <!-- banner start -->
                     <div class="am-form-group am-form-select">
-                        <label>选择商品匹配的 Banner：</label><label><small><input class="banner-enable" type="checkbox"/> 不选择</small></label>
+                        <label>选择商品匹配的 Banner：</label>
                         <div>
-                            <select id="select-banner" >
-                                <option value="0" selected="selected">随机选择</option>
+                            <select id="select-banner" name="select-banner">
+                                <option value="">不选择</option>
                                 <% for(var i=0;i< banner.length; i++) { %>
                                 <option value="<%= banner[i].get('bannerId') %>" data-src="<%= banner[i].get('bannerUrl') %>"><%= banner[i].get('bannerText') %></option>
                                 <% } %>
                             </select>
                         </div>
-                        <span class="am-form-caret"></span>
                     </div>
                    
                     <div class="banner-view"></div>
-                    <input type="hidden" id="banner" name="banner" readonly="readonly" />
                     <!-- banner end -->
 
                     <hr/>

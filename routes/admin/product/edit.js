@@ -10,102 +10,87 @@ var extend = require("xtend");
 var markdown = require("markdown").markdown;
 
 //class
-var Product = AV.Object.extend('Product');
-var ProductHistory = AV.Object.extend('ProductHistory');
-var Category = AV.Object.extend('ProductCategory');
-var Banner = AV.Object.extend('ProductBanner');
+let Product = AV.Object.extend('Product');
+let ProductHistory = AV.Object.extend('ProductHistory');
+
+let ProductCategory1 = AV.Object.extend('ProductCategory1');
+let ProductCategory2 = AV.Object.extend('ProductCategory2');
+
+let Banner = AV.Object.extend('ProductBanner');
 
 //lib
-var config = require('../../lib/config');
-var utils = require('../../lib/utils');
+let config = require('../../../lib/config');
 
 var data = extend(data,{
     title:'产品编辑-编辑产品',
-    currentPage:'product'
+    currentTagPage:'product',
+    currentPage:'product-edit'
 });
 
 
 //编辑产品页
 router.get('/:productId', function (req, res, next) {
 
-    if(!req.AV.user) {
-        return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
-    }
+    //if(!req.AV.user) {
+    //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
+    //}
     
     var productId = parseInt(req.params.productId);
 
     data = extend(data,{
-        id: productId,
-        flash: { success:req.flash('success'), error:req.flash('error') },
         user:req.AV.user
     });
-   
 
-    async.series([
-
-        function (cb) {
-
-            var query = new AV.Query(Product);
+    
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            let query = new AV.Query(Product);
             query.equalTo('productId', productId);
-            query.first({
-                success: function (results) {
+            query.first().done(item => {
+                data = extend(data, {
+                    product:item
+                });
+                
+                //查询category2 items
+                let category1Id = item.get('category1Id');
+                let query2 = new AV.Query(ProductCategory2);
+                query2.equalTo('productCategory1Id',category1Id);
+                query2.find().then(items => {
                     data = extend(data, {
-                        product: results
+                        category2:items
                     });
-                    cb();
-                },
-                error: function (err) {
-                    next(err);
-                }
+                    resolve();
+                });
             });
-
-        },
-
-        function (cb) {
-
-            var query = new AV.Query(Banner);
-            query.find({
-                success: function (results) {
-                    data = extend(data, {
-                        banner: results
-                    });
-                    cb();
-                }
+        }),
+        new AV.Promise(resolve => {
+            let query = new AV.Query(Banner);
+            query.find().then(items => {
+                data = extend(data, {
+                    banner:items
+                });
+                resolve();
             });
-
-        },
-
-        function (cb) {
-
-            var query = new AV.Query(Category);
-            query.find({
-                success: function (results) {
-                    data = extend(data, {
-                        category: results
-                    });
-                    cb();
-                },
-                error: function (err) {
-                    next(err);
-                }
+        }),
+        new AV.Promise(resolve => {
+            let query = new AV.Query(ProductCategory1);
+            query.find().then(items => {
+                data = extend(data, {
+                    category1:items
+                });
+                
+                resolve();
             });
-
-        },
-
-        function () {
-            res.render('product/edit', data);
-        }
-
-    ]);
-
-
+        })
+    ).then(()=> res.render('admin/product/edit',data));
+    
 });
 
 router.post('/', function (req, res, next) {
 
-    if(!req.AV.user) {
-        return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
-    }
+    //if(!req.AV.user) {
+    //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
+    //}
     
     var mdCodeBanner = req.body['md-code-banner'];
     var mdCodeVideo = req.body['md-code-video'];

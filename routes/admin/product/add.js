@@ -20,6 +20,7 @@ let Banner = AV.Object.extend('ProductBanner');
 
 let data = extend(config.data,{
     title:'产品编辑-添加产品',
+    currentTagPage:'product',
     currentPage:'product-add'
 });
 
@@ -30,7 +31,6 @@ router.get('/',(req,res) => {
     //}
     
     data = extend(data,{
-        flash:{success:req.flash('success'), error:req.flash('error')},
         user:req.AV.user
     });
 
@@ -65,7 +65,7 @@ router.post('/',(req,res) => {
     let mainImage = req.body['main-image'];
     let category1Id = parseInt(req.body['select-category-1']);
     let category2Id = parseInt(req.body['select-category-2']);
-    let banner = req.body['banner'];
+    let bannerId = parseInt(req.body['select-banner']);
     let detail = req.body['detail'];
     let detailEn = req.body['detail-en'];
     let description = req.body['description'];
@@ -87,7 +87,7 @@ router.post('/',(req,res) => {
     product.set('mainImage',mainImage);
     product.set('category1Id',category1Id);
     product.set('category2Id',category2Id);
-    product.set('banner',banner);
+    product.set('bannerId',bannerId);
     product.set('detail',detail);
     product.set('detailEn',detailEn);
     product.set('description',description);
@@ -114,7 +114,7 @@ router.post('/',(req,res) => {
         productHistory.set('mainImage',mainImage);
         productHistory.set('category1Id',category1Id);
         productHistory.set('category2Id',category2Id);
-        productHistory.set('banner',banner);
+        productHistory.set('bannerId',bannerId);
         productHistory.set('detail',detail);
         productHistory.set('detailEn',detailEn);
         productHistory.set('description',description);
