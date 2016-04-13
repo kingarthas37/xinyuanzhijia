@@ -45,7 +45,9 @@ router.get('/', (req, res) => {
         flash: {success: req.flash('success'), error: req.flash('error')},
         user: req.AV.user,
         category1Id:category1Id,
-        category2Id:category2Id
+        category2Id:category2Id,
+        category1:[],
+        category2:[]
     });
     
     AV.Promise.when(
@@ -132,7 +134,7 @@ router.get('/', (req, res) => {
 
             let query = new AV.Query(ProductCategory2);
             query.equalTo('category1Id',category1Id);
-            query.find().then(items=> {
+            query.find().then(items => {
                 data = extend(data, {
                     category2:items
                 });
@@ -144,40 +146,5 @@ router.get('/', (req, res) => {
     ).then(() => res.render('admin/product', data));
 
 });
-
-
-router.get('/remove/:productId', function (req, res, next) {
-
-    var productId = req.params.productId;
-
-    async.waterfall([
-
-        function (cb) {
-            var query = new AV.Query(Product);
-            query.equalTo('productId', parseInt(productId));
-            query.first({
-
-                success: function (object) {
-                    cb(null, object);
-                },
-
-                error: function (err) {
-                    next(err);
-                }
-
-            });
-        },
-        function (object, cb) {
-            object.destroy({
-                success: function () {
-                    req.flash('success', '删除成功!');
-                    res.redirect('/product');
-                }
-            });
-        }
-
-    ]);
-});
-
 
 module.exports = router;
