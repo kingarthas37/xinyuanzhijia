@@ -12,7 +12,7 @@ var config = require('../../package.json');
 
 
 //执行rev md5需要依赖所有的task
-gulp.task('rev',['clean:rev','image:prod','css-common:prod','css-default:prod','css-admin:prod','browserify:prod'],function() {
+gulp.task('rev',['clean:rev','image:prod','css-common:prod','css-default:prod','css-admin:prod','browserify-admin:prod','browserify-default:prod'],function() {
     
     //如果命令没有加--md5则不执行rev操作
     if(!args.md5) {

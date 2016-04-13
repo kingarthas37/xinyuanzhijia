@@ -12,7 +12,7 @@ var minifyCss = require('gulp-minify-css');
 var concat = require('gulp-concat');
 
 var config = require('../../package.json');
-
+var args = require('../util/arg-parse');
 
 /******** 生成css dev ***********/
 //css-common ,生成 name.external.css，增加sourcemaps
@@ -27,23 +27,12 @@ gulp.task('css-common',function() {
 //页面级的css: name.pages.css,执行前先执行task 'css-common',入口为public/dev/css/main.sass
 //所有页面级的css管理都有main.scss控制
 //增加autoprefixer功能
-gulp.task('css-default', function () {
-    return gulp.src(path.join(config.path.cssDev,'default/main.scss'))
+gulp.task('css', function () {
+    return gulp.src(path.join(config.path.cssDev, (args.admin ? 'admin/main.scss' : 'default/main.scss')))
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoprefixer())
-        .pipe(rename(config.name + '.pages.css'))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.path.cssDist));
-});
-
-//css admin生成
-gulp.task('css-admin', function () {
-    return gulp.src(path.join(config.path.cssDev,'admin/main.scss'))
-        .pipe(sourcemaps.init())
-        .pipe(sass())
-        .pipe(autoprefixer())
-        .pipe(rename(config.name + '.admin.css'))
+        .pipe(rename(config.name + (args.admin ? '.admin.css' : '.pages.css')))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.path.cssDist));
 });
@@ -64,7 +53,7 @@ gulp.task('css-default:prod',['css-common:prod'], function () {
       return gulp.src(path.join(config.path.cssDev,'default/main.scss'))
         .pipe(sass())
         .pipe(autoprefixer())
-        .pipe(rename(config.name + '.pages.css'))
+        .pipe(rename(config.name + '.default.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(gulp.dest(config.path.cssMin));
 });
@@ -74,8 +63,7 @@ gulp.task('css-admin:prod',['css-common:prod'], function () {
     return gulp.src(path.join(config.path.cssDev,'admin/main.scss'))
         .pipe(sass())
         .pipe(autoprefixer())
-        .pipe(rename(config.name + '.pages.css'))
+        .pipe(rename(config.name + '.admin.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(gulp.dest(config.path.cssMin));
 });
- 
