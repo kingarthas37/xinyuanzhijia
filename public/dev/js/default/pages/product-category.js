@@ -98,7 +98,7 @@ module.exports = {
             $.get({
                 url:leanApp.api + 'classes/ProductCategory1',
                 headers:leanAppHeader,
-                data:'where={"productCategory1Id":'+ currentId +'}'
+                data:'where={"category1Id":'+ currentId +'}'
             }).done(data => {
                 return $.ajax({
                     type:'PUT',
@@ -300,13 +300,13 @@ module.exports = {
 
             let index = content.find('.category-2-list li').length;
             
-            //添加二级分类,此处没用api是因为api save后再get无法获取到具体的productCategory2Id等数据,所以只能通过ajax调用
+            //添加二级分类,此处没用api是因为api save后再get无法获取到具体的category2Id等数据,所以只能通过ajax调用
             $.post({
                 url:'/admin/product-category/add-category-2',
                 data:{
                     index:index,
                     name:$.trim(input.val()) ? $.trim(input.val()) : '无标题',
-                    productCategory1Id:category1Id
+                    category1Id:category1Id
                 }
             }).done(data => {
                 
@@ -365,7 +365,7 @@ module.exports = {
             $.get({
                 url:leanApp.api + 'classes/ProductCategory2',
                 headers:leanAppHeader,
-                data:'where={"productCategory2Id":'+ category2Id +'}'
+                data:'where={"category2Id":'+ category2Id +'}'
             }).done(data => {
                 return $.ajax({
                     type:'PUT',

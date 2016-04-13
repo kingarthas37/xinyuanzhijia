@@ -6,12 +6,24 @@ module.exports = {
 
     indexFun:function() {
 
-        $('.select-category').change(function() {
+        let category1 = $('.select-category-1');
+        let category2 = $('.select-category-2');
+
+        category1.change(function() {
             if(this.value > 0 ) {
-                location.href = '/product?categoryId=' + this.value;
-            }
+                return location.href = `/admin/product?category1Id=${this.value}`;
+            } 
+            location.href = '/admin/product';
         });
 
+        category2.change(function() {
+            let category1Id = category1.val();
+            if(this.value > 0 ) {
+                return location.href = `/admin/product?category1Id=${category1Id}&category2Id=${this.value}`;
+            }
+            location.href = `/admin/product?category1Id=${category1Id}`;
+        });
+        
         $('.remove-product').click(function() {
 
             var $this = $(this);
@@ -64,11 +76,11 @@ module.exports = {
             $.get({
                 url:leanApp.api + 'classes/ProductCategory2',
                 headers:leanAppHeader,
-                data:'where={"productCategory1Id":'+ category1Id +'}'
+                data:'where={"category1Id":'+ category1Id +'}'
             }).done(data => {
                 let options = ``;
                 $.each(data.results,(i,n)=>{
-                    options += `<option value="${n.productCategory2Id}">${n.name}</option>`;
+                    options += `<option value="${n.category2Id}">${n.name}</option>`;
                 });
                 $select2.append(options);
             });

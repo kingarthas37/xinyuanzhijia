@@ -49,7 +49,7 @@ router.get('/', (req, res) => {
             data.category.forEach(item1 => {
                 item1.contents = [];
                 items2.forEach(item2 => {
-                    if (item1.get('productCategory1Id') === item2.get('productCategory1Id')) {
+                    if (item1.get('category1Id') === item2.get('category1Id')) {
                         item1.contents.push(item2);
                     }
                 });
@@ -71,18 +71,18 @@ router.post('/add-category-2',(req,res)=> {
     
     let index = parseInt(req.body.index);
     let name = req.body.name;
-    let productCategory1Id = parseInt(req.body.productCategory1Id);
+    let category1Id = parseInt(req.body.category1Id);
     
     let category2 = new ProductCategory2();
     category2.set('index',index);
     category2.set('name',name);
-    category2.set('productCategory1Id',productCategory1Id);
+    category2.set('category1Id',category1Id);
     
     category2.save().done(data => {
         let query = new AV.Query(ProductCategory2);
         query.equalTo('objectId',data.id);
         return query.first();
-    }).done(data => res.send({success:1,id:data.get('productCategory2Id'),name:name}));
+    }).done(data => res.send({success:1,id:data.get('category2Id'),name:name}));
     
 });
 
@@ -90,9 +90,9 @@ router.post('/add-category-2',(req,res)=> {
 router.get('/remove-category-1', (req, res) => {
 
     let query = new AV.Query(ProductCategory1);
-    let productCategory1Id = parseInt(req.query.id);
+    let category1Id = parseInt(req.query.id);
 
-    query.equalTo('productCategory1Id', productCategory1Id);
+    query.equalTo('category1Id', category1Id);
 
     query.first().done(item => {
 
@@ -124,14 +124,14 @@ router.get('/remove-category-2', (req, res) => {
     let category1Id = parseInt(req.query.category1Id);
     let category2Id = parseInt(req.query.category2Id);
 
-    query.equalTo('productCategory2Id', category2Id);
+    query.equalTo('category2Id', category2Id);
 
     query.first().done(item => {
 
         item.destroy().done(() => {
 
             let query = new AV.Query(ProductCategory2);
-            query.equalTo('productCategory1Id',category1Id);
+            query.equalTo('category1Id',category1Id);
             query.ascending('index');
             
             return query.find();
@@ -159,7 +159,7 @@ router.get('/move-category-1-up',(req,res) => {
     AV.Promise.when(
         new AV.Promise(resolve => {
             let query = new AV.Query(ProductCategory1);
-            query.equalTo('productCategory1Id',currentId);
+            query.equalTo('category1Id',currentId);
             query.first().done(item => {
                 console.info(111, item);
                 item.set('index',item.get('index') - 1);
@@ -169,7 +169,7 @@ router.get('/move-category-1-up',(req,res) => {
         }),
         new AV.Promise(resolve => {
             let query = new AV.Query(ProductCategory1);
-            query.equalTo('productCategory1Id',targetId);
+            query.equalTo('category1Id',targetId);
             query.first().done(item => {
                 console.info(222, item);
                 item.set('index',item.get('index') + 1);
@@ -190,7 +190,7 @@ router.get('/move-category-2-up',(req,res) => {
         new AV.Promise(resolve => {
             
             let query = new AV.Query(ProductCategory2);
-            query.equalTo('productCategory2Id',currentId);
+            query.equalTo('category2Id',currentId);
             
             query.first().done(item => {
                 item.set('index',item.get('index') - 1);
@@ -201,7 +201,7 @@ router.get('/move-category-2-up',(req,res) => {
         new AV.Promise(resolve => {
             
             let query = new AV.Query(ProductCategory2);
-            query.equalTo('productCategory2Id',targetId);
+            query.equalTo('category2Id',targetId);
 
             query.first().done(item => {
                 item.set('index',item.get('index') + 1);
@@ -221,7 +221,7 @@ router.get('/move-category-1-down',(req,res) => {
     AV.Promise.when(
         new AV.Promise(resolve => {
             let query = new AV.Query(ProductCategory1);
-            query.equalTo('productCategory1Id',currentId);
+            query.equalTo('category1Id',currentId);
             query.first().done(item => {
                 item.set('index',item.get('index') + 1);
                 return item.save();
@@ -230,7 +230,7 @@ router.get('/move-category-1-down',(req,res) => {
         }),
         new AV.Promise(resolve => {
             let query = new AV.Query(ProductCategory1);
-            query.equalTo('productCategory1Id',targetId);
+            query.equalTo('category1Id',targetId);
             query.first().done(item => {
                 item.set('index',item.get('index') - 1);
                 return item.save();
@@ -252,7 +252,7 @@ router.get('/move-category-2-down',(req,res) => {
         new AV.Promise(resolve => {
 
             let query = new AV.Query(ProductCategory2);
-            query.equalTo('productCategory2Id',currentId);
+            query.equalTo('category2Id',currentId);
 
             query.first().done(item => {
                 item.set('index',item.get('index') + 1);
@@ -263,7 +263,7 @@ router.get('/move-category-2-down',(req,res) => {
         new AV.Promise(resolve => {
 
             let query = new AV.Query(ProductCategory2);
-            query.equalTo('productCategory2Id',targetId);
+            query.equalTo('category2Id',targetId);
 
             query.first().done(item => {
                 item.set('index',item.get('index') - 1);

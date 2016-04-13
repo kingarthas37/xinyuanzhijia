@@ -29,36 +29,42 @@
         </div>
 
         <div class="am-g">
-            <form class="am-form" action="/product">
-                <div class="am-u-sm-12 am-u-md-3">
-                    <div class="am-form-group">
+            <form class="am-form" action="/admin/product">
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-form-group">
                         <div class="am-input-group am-input-group-sm">
-                            <input type="text" name="product-search" class="am-form-field" placeholder="搜索产品">
-                            <span class="am-input-group-btn"><button class="am-btn am-btn-default" type="submit">搜索</button></span>
+                            <input type="text" name="search" class="am-form-field" placeholder="搜索产品">
+                            <span class="am-input-group-btn"><button class="am-btn am-btn-primary" type="submit">搜索</button></span>
                         </div>
                  </div>
                 </div>
                 <div class="am-u-sm-12 am-u-md-3">
                     <div class="am-form-group">
-                        <select class="select-category" data-am-selected="{btnSize:'sm'}">
-                            <option value="0">请选择商品分类</option>
-                            <% for (var i=0;i < category.length; i++) { %><option value="<%= category[i].get('categoryId'); %>"> <%= category[i].get('categoryName');%></option><% } %>
+                        <select class="select-category-1">
+                            <option value="">一级分类</option>
+                            <% for (var i=0;i < category1.length; i++) { %><option <% if(category1[i].get('category1Id') === category1Id ) { %> selected="selected" <% } %> value="<%= category1[i].get('category1Id'); %>"> <%= category1[i].get('name');%></option><% } %>
                         </select>
                     </div>
                 </div>
-                <div class="am-u-sm-12 am-u-md-6"></div>
+                <div class="am-u-sm-12 am-u-md-3">
+                    <div class="am-form-group">
+                        <select class="select-category-2">
+                            <option value="">二级分类</option>
+                            <% for (var i=0;i < category2.length; i++) { %><option <% if(category2[i].get('category2Id') === category2Id ) { %> selected="selected" <% } %> value="<%= category2[i].get('category2Id') %>"> <%= category2[i].get('name');%></option><% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="am-u-sm-12 am-u-md-3"></div>
             </form>
         </div>
         
-
+        
         <div class="am-g">
             <div class="am-u-sm-12">
-                <table class="am-table am-table-striped am-table-hover table-mai">
+                <table class="am-table am-table-striped">
                     <thead>
                     <tr>
                         <th>产品名称</th>
-                        <th>产品分类</th>
-                        <th width="80" class="t-c small-screen-hide">创建时间</th>
                         <th width="80" class="t-c small-screen-hide">更新时间</th>
                         <th width="60" class="t-c small-screen-hide">删除</th>
                     </tr>
@@ -67,11 +73,6 @@
                     <% for(var i=0; i < product.length; i++) {%>
                     <tr>
                         <td><a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name') %></a></td>
-                        <td><a href="/admin/product?categoryId=<%= product[i].get('categoryId') %>"><%=
-                            product[i].get('categoryName') %></a></td>
-                        <td class="t-c small-screen-hide">
-                            <%=(product[i].createdAt.getMonth()+1)%>-<%=product[i].createdAt.getDate()%>
-                        </td>
                         <td class="t-c small-screen-hide">
                             <%=(product[i].updatedAt.getMonth()+1)%>-<%=product[i].updatedAt.getDate()%>
                         </td>
@@ -86,12 +87,12 @@
                         <ul class="am-pagination">
                             <% if (productPager.prev) { %>
                             <li>
-                                <a href="/admin/product?page=<%= productPager.prev %><% if (categoryId) {%>&categoryId=<%=categoryId%> <%}%><% if (search) {%>&product-search=<%=search%> <%}%>">上一页</a>
+                                <a href="/admin/product?page=<%= productPager.prev %><% if (category1Id) {%>&category1Id=<%=category1Id%> <%}%><% if (search) {%>&product-search=<%=search%> <%}%>">上一页</a>
                             </li>
                             <% } %>
                             <% if (productPager.next) { %>
                             <li>
-                                <a href="/admin/product?page=<%= productPager.next %><% if (categoryId) {%>&categoryId=<%=categoryId%> <%}%><% if (search) {%>&product-search=<%=search%> <%}%>">下一页</a>
+                                <a href="/admin/product?page=<%= productPager.next %><% if (category1Id) {%>&category1Id=<%=category1Id%> <%}%><% if (search) {%>&product-search=<%=search%> <%}%>">下一页</a>
                             </li>
                             <% } %>
                         </ul>

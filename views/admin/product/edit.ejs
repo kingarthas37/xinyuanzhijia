@@ -62,7 +62,7 @@
                             <select id="select-category-1" name="select-category-1" required>
                                 <option value="">请选择商品分类</option>
                                 <% for (var i=0;i < category1.length; i++) { %>
-                                <option <% if (category1[i].get('productCategory1Id') === product.get('category1Id')){ %> selected="selected" <% } %> value="<%= category1[i].get('productCategory1Id'); %>" ><%=category1[i].get('name'); %> </option>
+                                <option <% if (category1[i].get('category1Id') === product.get('category1Id')){ %> selected="selected" <% } %> value="<%= category1[i].get('category1Id'); %>" ><%=category1[i].get('name'); %> </option>
                                 <% } %>
                             </select>
                         </div>
@@ -78,7 +78,7 @@
                             <select id="select-category-2" name="select-category-2" required >
                                 <option value="">请选择商品分类</option>
                                 <% for (var i=0;i < category2.length; i++) { %>
-                                <option <% if (category2[i].get('productCategory2Id') === product.get('category2Id')){ %> selected="selected" <% } %> value="<%= category2[i].get('productCategory2Id'); %>" ><%=category2[i].get('name'); %> </option>
+                                <option <% if (category2[i].get('category2Id') === product.get('category2Id')){ %> selected="selected" <% } %> value="<%= category2[i].get('category2Id'); %>" ><%=category2[i].get('name'); %> </option>
                                 <% } %>
                             </select>
                         </div>

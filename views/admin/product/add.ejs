@@ -58,7 +58,7 @@
                             <select id="select-category-1" name="select-category-1" required  >
                                 <option value="">请选择商品分类</option>
                                 <% for (var i=0;i < category1.length; i++) { %>
-                                <option value="<%= category1[i].get('productCategory1Id'); %>"> <%= category1[i].get('name'); %> </option>
+                                <option value="<%= category1[i].get('category1Id'); %>"> <%= category1[i].get('name'); %> </option>
                                 <% } %>
                             </select>
                         </div>

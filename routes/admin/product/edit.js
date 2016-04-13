@@ -21,10 +21,10 @@ let Banner = AV.Object.extend('ProductBanner');
 //lib
 let config = require('../../../lib/config');
 
-var data = extend(data,{
-    title:'产品编辑-编辑产品',
-    currentTagPage:'product',
-    currentPage:'product-edit'
+var data = extend(data, {
+    title: '产品编辑-编辑产品',
+    currentTagPage: 'product',
+    currentPage: 'product-edit'
 });
 
 
@@ -34,30 +34,30 @@ router.get('/:productId', function (req, res, next) {
     //if(!req.AV.user) {
     //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
     //}
-    
+
     var productId = parseInt(req.params.productId);
 
-    data = extend(data,{
-        user:req.AV.user
+    data = extend(data, {
+        user: req.AV.user
     });
 
-    
+
     AV.Promise.when(
         new AV.Promise(resolve => {
             let query = new AV.Query(Product);
             query.equalTo('productId', productId);
             query.first().done(item => {
                 data = extend(data, {
-                    product:item
+                    product: item
                 });
-                
+
                 //查询category2 items
                 let category1Id = item.get('category1Id');
                 let query2 = new AV.Query(ProductCategory2);
-                query2.equalTo('productCategory1Id',category1Id);
+                query2.equalTo('category1Id', category1Id);
                 query2.find().then(items => {
                     data = extend(data, {
-                        category2:items
+                        category2: items
                     });
                     resolve();
                 });
@@ -67,7 +67,7 @@ router.get('/:productId', function (req, res, next) {
             let query = new AV.Query(Banner);
             query.find().then(items => {
                 data = extend(data, {
-                    banner:items
+                    banner: items
                 });
                 resolve();
             });
@@ -76,133 +76,101 @@ router.get('/:productId', function (req, res, next) {
             let query = new AV.Query(ProductCategory1);
             query.find().then(items => {
                 data = extend(data, {
-                    category1:items
+                    category1: items
                 });
-                
+
                 resolve();
             });
         })
-    ).then(()=> res.render('admin/product/edit',data));
-    
+    ).then(()=> res.render('admin/product/edit', data));
+
 });
 
-router.post('/', function (req, res, next) {
+router.post('/:productId', (req, res) => {
 
     //if(!req.AV.user) {
     //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
     //}
-    
-    var mdCodeBanner = req.body['md-code-banner'];
-    var mdCodeVideo = req.body['md-code-video'];
-    var mdCodeName = req.body['md-code-name'];
-    var mainImage = req.body['main-image'];
-    var mdCodeNameEn = req.body['md-code-name-en'];
-    var mdCodeReview = req.body['md-code-review'];
-    var mdCodeProperty = req.body['md-code-property'];
-    var mdCodePropertyEn = req.body['md-code-property-en'];
-    var mdCodeInstruction = req.body['md-code-instruction'];
-    var mdCodeInstructionEn = req.body['md-code-instruction-en'];
-    var mdCodeDetail = req.body['md-code-detail'];
-    var mdCodeDetailEn = req.body['md-code-detail-en'];
-    var mdCodeImage = req.body['md-code-image'];
-    var categoryId = parseInt(req.body['select-category']) || 1;
 
-    var productLink = req.body['product-link'];
-    var shopLink = req.body['shop-link'];
-    var taobaoLink = req.body['taobao-link'];
-    var comment = req.body['comment'];
+    let name = req.body['name'];
+    let nameEn = req.body['name-en'];
+    let mainImage = req.body['main-image'];
+    let category1Id = parseInt(req.body['select-category-1']);
+    let category2Id = parseInt(req.body['select-category-2']);
+    let bannerId = parseInt(req.body['banner-id']);
+    let detail = req.body['detail'];
+    let detailEn = req.body['detail-en'];
+    let description = req.body['description'];
+    let review = req.body['review'];
+    let property = req.body['property'];
+    let propertyEn = req.body['property-en'];
+    let instruction = req.body['instruction'];
+    let instructionEn = req.body['instruction-en'];
+    let use = req.body['use'];
+    let useEn = req.body['use-en'];
+    let image = req.body['image'];
+    let video = req.body['video'];
 
-    productLink = utils.urlCompleting(productLink);
-    shopLink = utils.urlCompleting(shopLink);
-    taobaoLink = utils.urlCompleting(taobaoLink);
+    let productId = parseInt(req.params.productId);
 
-    var productId = parseInt(req.body['product-id']);
+    AV.Promise.when(
+        new AV.Promise(resolve => {
 
-    data = extend(data,{
-        flash: { success:req.flash('success'), error:req.flash('error') },
-        user:req.AV.user
-    });
-    
-    var query = new AV.Query(Product);
-    query.equalTo('productId', productId);
-    
-    query.first().then(result => {
+            let query = new AV.Query(Product);
+            query.first().done(product => {
 
-        result.set('banner', mdCodeBanner);
-        result.set('video', mdCodeVideo);
-        result.set('name', mdCodeName);
-        result.set('mainImage',mainImage);
-        result.set('nameEn', mdCodeNameEn);
-        result.set('review', mdCodeReview);
-        result.set('property', mdCodeProperty);
-        result.set('propertyEn',mdCodePropertyEn);
-        result.set('instruction', mdCodeInstruction);
-        result.set('instructionEn', mdCodeInstructionEn);
-        result.set('detail', mdCodeDetail);
-        result.set('detailEn', mdCodeDetailEn);
-        result.set('image', mdCodeImage);
-        result.set('categoryId', categoryId);
-        result.set('productLink',productLink);
-        result.set('shopLink',shopLink);
-        result.set('taobaoLink',taobaoLink);
-        result.set('comment',comment);
+                product.set('name', name);
+                product.set('nameEn', nameEn);
+                product.set('mainImage', mainImage);
+                product.set('category1Id', category1Id);
+                product.set('category2Id', category2Id);
+                product.set('bannerId', bannerId);
+                product.set('detail', detail);
+                product.set('detailEn', detailEn);
+                product.set('description', description);
+                product.set('review', review);
+                product.set('property', property);
+                product.set('propertyEn', propertyEn);
+                product.set('instruction', instruction);
+                product.set('instructionEn', instructionEn);
+                product.set('use', use);
+                product.set('useEn', useEn);
+                product.set('image', image);
+                product.set('video', video);
+                product.save().done(resolve);
+            });
+        }),
 
-        return result.save();
-        
-    }).then(result => {
- 
-        data = extend(data, {
-            product: result
-        });
-       
-        let query = new AV.Query(Banner);
-       
-        return query.find();
-        
-    }).then(results => {
- 
-        data = extend(data, {
-            banner: results
-        });
+        new AV.Promise(resolve => {
 
-        let query = new AV.Query(Category);
-        return query.find();
-        
-    }).then(results => {
- 
-        data = extend(data, {
-            category: results
-        });
-        
-        var productHistory = new ProductHistory();
-        
-        productHistory.set('productId',productId);
-        productHistory.set('banner', mdCodeBanner);
-        productHistory.set('video', mdCodeVideo);
-        productHistory.set('name', mdCodeName);
-        productHistory.set('nameEn', mdCodeNameEn);
-        productHistory.set('mainImage',mainImage);
-        productHistory.set('review', mdCodeReview);
-        productHistory.set('property', mdCodeProperty);
-        productHistory.set('propertyEn',mdCodePropertyEn);
-        productHistory.set('instruction', mdCodeInstruction);
-        productHistory.set('instructionEn', mdCodeInstructionEn);
-        productHistory.set('detail', mdCodeDetail);
-        productHistory.set('detailEn', mdCodeDetailEn);
-        productHistory.set('image', mdCodeImage);
-        productHistory.set('categoryId', categoryId);
-        productHistory.set('productLink',productLink);
-        productHistory.set('shopLink',shopLink);
-        productHistory.set('taobaoLink',taobaoLink);
-        productHistory.set('comment',comment);
-
-        return productHistory.save();
-        
-    }).then(() => {
+            let productHistory = new ProductHistory();
+            productHistory.set('productId',productId);
+            productHistory.set('name', name);
+            productHistory.set('nameEn', nameEn);
+            productHistory.set('mainImage', mainImage);
+            productHistory.set('category1Id', category1Id);
+            productHistory.set('category2Id', category2Id);
+            productHistory.set('bannerId', bannerId);
+            productHistory.set('detail', detail);
+            productHistory.set('detailEn', detailEn);
+            productHistory.set('description', description);
+            productHistory.set('review', review);
+            productHistory.set('property', property);
+            productHistory.set('propertyEn', propertyEn);
+            productHistory.set('instruction', instruction);
+            productHistory.set('instructionEn', instructionEn);
+            productHistory.set('use', use);
+            productHistory.set('useEn', useEn);
+            productHistory.set('image', image);
+            productHistory.set('video', video);
+            productHistory.save().done(resolve);
+            
+        })
+    ).done(()=> {
         req.flash('success', '编辑商品成功!');
-        res.redirect('/product?categoryId='+ categoryId);
+        res.redirect('/admin/product');
     });
-    
+
 });
 
 module.exports = router;
