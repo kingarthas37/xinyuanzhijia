@@ -1,1 +1,6 @@
-<script type="text/javascript" src="/dist/js/xyzj.default.js"></script>
+<% if (env === 'development') { %>
+<script type="text/javascript" src="/<%= asset %>/js/<%= assetName%>.admin.bundle.js"></script>
+<% } else { %>
+<script type="text/javascript" src="/<%= asset %>/js/<%= assetName%>.admin.external.js"></script>
+<script type="text/javascript" src="/<%= asset %>/js/<%= assetName%>.admin.js"></script>
+<% } %>

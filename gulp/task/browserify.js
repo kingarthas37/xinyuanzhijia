@@ -56,7 +56,7 @@ gulp.task('browserify', function () {
     //dev环境只生成一个bunddle.js,并带sourcemap
     var bundle = function () {
         w.bundle()
-            .pipe(source(config.name + ( args.admin ? '.admin.js' : '.default.js' )))
+            .pipe(source(config.name + ( args.admin ? '.admin.bundle.js' : '.default.bundle.js' )))
             .pipe(gulp.dest(path.resolve(config.path.jsDist)));
         return w;
     };

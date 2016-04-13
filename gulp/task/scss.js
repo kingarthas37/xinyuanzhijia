@@ -24,7 +24,7 @@ gulp.task('css-common',function() {
         .pipe(gulp.dest(config.path.cssDist));
 });
 
-//页面级的css: name.pages.css,执行前先执行task 'css-common',入口为public/dev/css/main.sass
+//页面级的css: name.default.css,执行前先执行task 'css-common',入口为public/dev/css/main.sass
 //所有页面级的css管理都有main.scss控制
 //增加autoprefixer功能
 gulp.task('css', function () {
@@ -32,7 +32,7 @@ gulp.task('css', function () {
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoprefixer())
-        .pipe(rename(config.name + (args.admin ? '.admin.css' : '.pages.css')))
+        .pipe(rename(config.name + (args.admin ? '.admin.css' : '.default.css')))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.path.cssDist));
 });
