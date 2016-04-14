@@ -33,7 +33,7 @@ app.use(cookieParser());
 
 app.use(AV.Cloud.CookieSession({secret: 'secret-av', maxAge: 1000*60*60*24, fetchUser: true}));
 
-app.use(session({secret: 'secret'}));
+app.use(session({secret:'secret',resave:true,saveUninitialized: true}));
 app.use(require('connect-flash')());
 
 // 未处理异常捕获 middleware
