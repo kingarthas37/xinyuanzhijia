@@ -21,7 +21,7 @@ let Banner = AV.Object.extend('ProductBanner');
 //lib
 let config = require('../../../lib/config');
 
-var data = extend(data, {
+var data = extend(config.data, {
     title: '产品编辑-编辑产品',
     currentTagPage: 'product',
     currentPage: 'product-edit'
