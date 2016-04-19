@@ -19,10 +19,9 @@ module.exports = {
             file.hide();
             
             $(this).ajaxSubmit({
-                data:{
-                    fileType:fileType
-                },
+                data:{fileType:fileType},
                 success: function (result) {
+                    
                     uploadLoading.removeClass('on');
                     btn.addClass('am-btn-primary').removeClass('am-btn-default').prop('disabled',false);
                     text.text('选择要上传的文件');
@@ -32,6 +31,7 @@ module.exports = {
                     } else {
                         window.parent.uploadFileError(result.error);
                     }
+                    
                 }
             });
             
