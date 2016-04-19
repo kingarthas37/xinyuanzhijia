@@ -155,6 +155,15 @@ module.exports = {
                 submit.attr('disabled',true).addClass('am-disabled');
             }
         });
+    },
+
+    //上传图片后
+    uploadFileResponse:function(data) {
+        
+    },
+
+    uploadFileError:function(error) {
+        
     }
 
 };

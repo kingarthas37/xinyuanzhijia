@@ -96,9 +96,17 @@ footer p {
     }
 }
 
-.am-form select {
-    padding:0.35em;
+.am-form {
+    iframe.upload {
+        width: 100%;
+        height: 40px;
+        
+    }
+    select {
+        padding:0.35em;
+    }
 }
+
 
 .am-pager {
     color: #999;
@@ -144,5 +152,23 @@ footer p {
         display: block;
         padding: 4px 0;
         font-weight: normal;
+    }
+}
+
+#form-upload {
+    height: 40px;
+    width: 400px;
+    overflow: hidden;
+    .am-form-file {
+        float: left;
+    }
+    .upload-loading {
+        &.on {
+            display: block;
+        }
+        display: none;
+        padding-top: 2px;
+        float: left;
+        margin-left: 10px;
     }
 }

@@ -70,6 +70,10 @@ footer p {
   .small-screen-hide {
     display: none; } }
 
+.am-form iframe.upload {
+  width: 100%;
+  height: 40px; }
+
 .am-form select {
   padding: 0.35em; }
 
@@ -104,6 +108,20 @@ footer p {
   display: block;
   padding: 4px 0;
   font-weight: normal; }
+
+#form-upload {
+  height: 40px;
+  width: 400px;
+  overflow: hidden; }
+  #form-upload .am-form-file {
+    float: left; }
+  #form-upload .upload-loading {
+    display: none;
+    padding-top: 2px;
+    float: left;
+    margin-left: 10px; }
+    #form-upload .upload-loading.on {
+      display: block; }
 
 /* admin product page */
 .admin-product-page .main-image-list {
