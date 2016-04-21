@@ -47,10 +47,25 @@ router.get('/:productId', function (req, res, next) {
             let query = new AV.Query(Product);
             query.equalTo('productId', productId);
             query.first().done(item => {
+                
                 data = extend(data, {
                     product: item
                 });
-
+                
+                //处理main images
+                if(item.get('mainImage')) {
+                    let arr = [];
+                    let images = JSON.parse(item.get('mainImage'));
+                    
+                    for(let i in images) {
+                        arr.push({id:i, url:images[i]});
+                    }
+                    
+                    data = extend(data, {
+                        mainImage:arr
+                    });
+                }
+                
                 //查询category2 items
                 let category1Id = item.get('category1Id');
                 let query2 = new AV.Query(ProductCategory2);
@@ -61,6 +76,7 @@ router.get('/:productId', function (req, res, next) {
                     });
                     resolve();
                 });
+                
             });
         }),
         new AV.Promise(resolve => {

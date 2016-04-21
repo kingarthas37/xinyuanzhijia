@@ -44,15 +44,17 @@
                     <!-- main image start -->
                     <div class="am-form-group">
                         <label for="main-image">产品主展示图片： </label>
-                        <textarea id="main-image" name="main-image" rows="3" placeholder="输入产品主展示图片(每张图片直接用http://链接,无需使用md5,隔张图片请换行)"><%= product.get('mainImage') %></textarea>
+                        <div><iframe class="upload" src="/admin/product/upload" frameborder="0"></iframe></div>
+                        <input id="main-image" name="main-image" type="hidden" value="<%= product.get('mainImage') %>" />
                         <ul class="main-image-list">
-                            <% var images = product.get('mainImage').split('\n'); for (var i=0;i< images.length;i++) { %>
-                                <li><a target="_blank" href="<%= images[i]%>"><img src="<%= images[i]%>"></a></li>
+                            <% if (mainImage) { %>
+                                <% for (var i=0;i< mainImage.length; i++) { %>
+                                    <li data-id="<%= mainImage[i].id%>"><p><a href="<%= mainImage[i].url%>" target="_blank"><img src="<%= mainImage[i].url %>"/></a></p><p><a class="move" href="javascript:;">前移</a> <a class="remove" href="javascript:;">删除</a></p></li>
+                                <% } %>
                             <% } %>
                         </ul>
                     </div>
                     <!-- main image end -->
-
                     <hr>
 
                     <!-- select category start -->
