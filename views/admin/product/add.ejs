@@ -43,11 +43,9 @@
 
                     <!-- main image start -->
                     <div class="am-form-group">
-                        <div>
-                            <iframe class="upload" src="/admin/product/upload" frameborder="0"></iframe>
-                        </div>
                         <label for="main-image">产品主展示图片： </label>
-                        <textarea id="main-image" name="main-image" rows="3" placeholder="输入产品主展示图片(每张图片直接用http://链接,无需使用md5,隔张图片请换行)"></textarea>
+                        <div><iframe class="upload" src="/admin/product/upload" frameborder="0"></iframe></div>
+                        <input id="main-image" name="main-image" type="hidden" />
                         <ul class="main-image-list"></ul>
                     </div>
                     <!-- main image end -->
@@ -230,11 +228,6 @@
     //iframe upload callback
     function uploadFileResponse(data) {
         product.uploadFileResponse(data);
-    }
-
-    //iframe upload image error
-    function uploadFileError(error) {
-        upload.uploadFileError(error);
     }
     
 </script>

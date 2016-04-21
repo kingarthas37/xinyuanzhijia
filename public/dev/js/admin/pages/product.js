@@ -63,16 +63,16 @@ module.exports = {
         
         this.setCategory();
         this.chooseBanner();
-        this.setMainImage();
         this.submitControl();
+        this.setMainImage();
 
     },
     editFun:function() {
         
         this.setCategory();
         this.chooseBanner();
-        this.setMainImage();
         this.submitControl();
+        this.setMainImage();
     },
     
     //一级,二级分类选择
@@ -127,20 +127,49 @@ module.exports = {
     },
     //设置主图预览
     setMainImage:function() {
-        
-        var mainImage = $('#main-image');
-        var mainImageList = $('.main-image-list');
 
-        mainImage.change(function() {
-            mainImageList.empty();
-            var arr = mainImage.val().split('\n');
-            if($.trim(arr[0])==='') {
-                return;
+        let _this = this;
+        let imageView = $('.main-image-list');
+        
+        imageView.on('click','.move',function() {
+            let content = $(this).parents('li');
+            if(content.index() === 0) {
+                return false;
             }
-            $.each(arr,function(i) {
-                mainImageList.append('<li><a href="'+ arr[i] +'" target="_blank"><img src="' + arr[i] + '"/></a></li>');
-            });
+            content.after(content.prev());
+            _this.updateMainImage();
         });
+
+        imageView.on('click','.remove',function() {
+
+            let id = $(this).data('id');
+            let content = $(this).parents('li');
+
+            $.ajax({
+                type:'DELETE',
+                url:leanApp.api + 'files/' + id,
+                headers:leanAppHeader
+            }).done(() => {
+                content.detach();
+                _this.updateMainImage();
+            });
+            
+        });
+        
+    },
+    
+    //更新main-image
+    updateMainImage:function() {
+        
+        let image = $('#main-image');
+        let imageView = $('.main-image-list');
+        
+        let value = '';
+        imageView.find('img').each(function() {
+            value += this.src + ';'
+        });
+
+        image.val(value);
         
     },
     
@@ -157,12 +186,15 @@ module.exports = {
         });
     },
 
-    //上传图片后
+    //上传图片后操作
     uploadFileResponse:function(data) {
         
-    },
-
-    uploadFileError:function(error) {
+        let imageView = $('.main-image-list');
+        
+        $.each(data,(i,n)=> {
+            imageView.append(`<li><p><a href="${n.url}" target="_blank"><img src="${n.url}"/></a></p><p><a class="move" href="javascript:;">前移</a> <a data-id="${n.id}" class="remove" href="javascript:;">删除</a></p></li>`);
+        });
+        this.updateMainImage();
         
     }
 

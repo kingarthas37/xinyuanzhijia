@@ -21,15 +21,17 @@ module.exports = {
             $(this).ajaxSubmit({
                 data:{fileType:fileType},
                 success: function (result) {
-                    
+
+                    file.val('');
                     uploadLoading.removeClass('on');
                     btn.addClass('am-btn-primary').removeClass('am-btn-default').prop('disabled',false);
                     text.text('选择要上传的文件');
                     file.show();
+                    
                     if (result.success) {
                         window.parent.uploadFileResponse(result.data);
                     } else {
-                        window.parent.uploadFileError(result.error);
+                        alert(result.error);
                     }
                     
                 }

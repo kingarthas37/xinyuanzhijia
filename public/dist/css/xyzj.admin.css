@@ -135,6 +135,9 @@ footer p {
       border: 1px solid #ddd;
       width: 80px;
       height: 80px; }
+    .admin-product-page .main-image-list li p {
+      margin: 0 0 10px 0;
+      text-align: center; }
 
 .admin-product-page .banner-view.hide, .admin-product-page #select-banner.hide, .admin-product-page #banner.hide {
   display: none; }
