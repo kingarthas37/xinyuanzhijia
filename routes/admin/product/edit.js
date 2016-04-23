@@ -45,7 +45,10 @@ router.get('/:productId', function (req, res, next) {
     AV.Promise.when(
         new AV.Promise(resolve => {
             let query = new AV.Query(Product);
+            
             query.equalTo('productId', productId);
+            
+            
             query.first().done(item => {
                 
                 data = extend(data, {

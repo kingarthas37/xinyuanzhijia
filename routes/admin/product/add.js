@@ -100,36 +100,32 @@ router.post('/', (req, res) => {
     product.set('useEn', useEn);
     product.set('image', image);
     product.set('video', video);
+    
+    productHistory.set('name', name);
+    productHistory.set('nameEn', nameEn);
+    productHistory.set('mainImage', mainImage);
+    productHistory.set('category1Id', category1Id);
+    productHistory.set('category2Id', category2Id);
+    productHistory.set('bannerId', bannerId);
+    productHistory.set('detail', detail);
+    productHistory.set('detailEn', detailEn);
+    productHistory.set('description', description);
+    productHistory.set('review', review);
+    productHistory.set('property', property);
+    productHistory.set('propertyEn', propertyEn);
+    productHistory.set('instruction', instruction);
+    productHistory.set('instructionEn', instructionEn);
+    productHistory.set('use', use);
+    productHistory.set('useEn', useEn);
+    productHistory.set('image', image);
+    productHistory.set('video', video);
+    productHistory.set('product',product);
 
-    product.save().done(item => {
-        
-        productHistory.set('productId', item.get('productId'));
-        productHistory.set('name', name);
-        productHistory.set('nameEn', nameEn);
-        productHistory.set('mainImage', mainImage);
-        productHistory.set('category1Id', category1Id);
-        productHistory.set('category2Id', category2Id);
-        productHistory.set('bannerId', bannerId);
-        productHistory.set('detail', detail);
-        productHistory.set('detailEn', detailEn);
-        productHistory.set('description', description);
-        productHistory.set('review', review);
-        productHistory.set('property', property);
-        productHistory.set('propertyEn', propertyEn);
-        productHistory.set('instruction', instruction);
-        productHistory.set('instructionEn', instructionEn);
-        productHistory.set('use', use);
-        productHistory.set('useEn', useEn);
-        productHistory.set('image', image);
-        productHistory.set('video', video);
-
-        return productHistory.save();
-
-    }).done(()=> {
+    productHistory.save().done(()=> {
         req.flash('success', '添加商品成功!');
         res.redirect('/admin/product');
     });
-
+    
 });
 
 
