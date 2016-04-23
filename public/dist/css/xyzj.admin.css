@@ -131,13 +131,29 @@ footer p {
     margin-top: 15px;
     display: inline-block;
     margin-right: 10px; }
-    .admin-product-page .main-image-list li img {
-      border: 1px solid #ddd;
-      width: 80px;
-      height: 80px; }
     .admin-product-page .main-image-list li p {
-      margin: 0 0 10px 0;
+      margin: 0;
       text-align: center; }
+      .admin-product-page .main-image-list li p:first-child {
+        margin-bottom: 5px;
+        border: 1px solid #ddd;
+        width: 80px;
+        height: 80px;
+        text-align: center;
+        display: table;
+        table-layout: fixed;
+        *overflow: hidden;
+        *font-size: 80px;
+        *line-height: 1; }
+        .admin-product-page .main-image-list li p:first-child a {
+          width: 80px;
+          height: 80px;
+          display: table-cell;
+          text-align: center;
+          vertical-align: middle; }
+        .admin-product-page .main-image-list li p:first-child img {
+          max-width: 80px;
+          max-height: 80px; }
 
 .admin-product-page .banner-view.hide, .admin-product-page #select-banner.hide, .admin-product-page #banner.hide {
   display: none; }

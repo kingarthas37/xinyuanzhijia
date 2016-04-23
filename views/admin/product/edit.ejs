@@ -221,10 +221,22 @@
 <% include ../partials/js %>
 
 <script type="text/javascript">
+    var product;
+    
     $(function () {
-        var product = require('product');
+
+        var upload;
+
+        product = require('product');
+        upload = require('upload');
+
         product.editFun();
     });
+
+    //iframe upload callback
+    function uploadFileResponse(data) {
+        product.uploadFileResponse(data);
+    }
 </script>
 </body>
 </html>
