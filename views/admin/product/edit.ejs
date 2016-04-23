@@ -45,7 +45,7 @@
                     <div class="am-form-group">
                         <label for="main-image">产品主展示图片： </label>
                         <div><iframe class="upload" src="/admin/product/upload" frameborder="0"></iframe></div>
-                        <input id="main-image" name="main-image" type="hidden" value="<%= product.get('mainImage') %>" />
+                        <input id="main-image" name="main-image" type="hidden" value="<%= JSON.parse(product.get('mainImage')) %>" />
                         <ul class="main-image-list">
                             <% if (mainImage) { %>
                                 <% for (var i=0;i< mainImage.length; i++) { %>

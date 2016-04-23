@@ -62,7 +62,7 @@ router.post('/', (req, res) => {
 
     let name = req.body['name'];
     let nameEn = req.body['name-en'];
-    let mainImage = req.body['main-image'];
+    let mainImage = req.body['main-image'] ? JSON.parse(req.body['main-image']) : null;
     let category1Id = parseInt(req.body['select-category-1']);
     let category2Id = parseInt(req.body['select-category-2']);
     let bannerId = parseInt(req.body['banner-id']);
