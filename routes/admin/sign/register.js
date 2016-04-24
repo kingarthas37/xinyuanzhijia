@@ -1,17 +1,19 @@
 'use strict';
 
-var router = require('express').Router();
-var AV = require('leanengine');
+let router = require('express').Router();
+let AV = require('leanengine');
 
-var flash = require('connect-flash');
-var extend = require('xtend');
+let flash = require('connect-flash');
 
-var data = {
-    title: '注册',
-    currentPage: 'sign',
-    flash:{success:null,error:null},
-    user:null
-};
+let async = require('async');
+let extend = require("xtend");
+
+let config = require('../../../lib/config');
+
+let data = extend(config.data, {
+    title: '管理员注册',
+    currentPage: 'register'
+});
 
 router.get('/',function(req,res,next) {
 
@@ -19,10 +21,10 @@ router.get('/',function(req,res,next) {
  //   return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
     
     data = extend(data,{
-        flash:{error:req.flash('error')}
+        flash: {success: req.flash('success'), error: req.flash('error')}
     });
     
-    res.render('sign/register',data);
+    res.render('admin/sign/register',data);
 
 });
 

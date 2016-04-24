@@ -1,7 +1,7 @@
 'use strict';
 
-var router = require('express').Router();
-var AV = require('leanengine');
+let router = require('express').Router();
+let AV = require('leanengine');
 
 router.get('/', function(req, res) {
     AV.User.logOut();

@@ -1,30 +1,31 @@
 'use strict';
 
-var router = require('express').Router();
-var AV = require('leanengine');
+let router = require('express').Router();
+let AV = require('leanengine');
 
-var flash = require('connect-flash');
-var extend = require('xtend');
+let flash = require('connect-flash');
 
-var data = {
-    title: '登录',
-    currentPage: 'sign',
-    flash:{success:null,error:null},
-    user:null
-};
+let async = require('async');
+let extend = require("xtend");
 
+let config = require('../../../lib/config');
+
+let data = extend(config.data, {
+    title: '管理员登录',
+    currentPage: 'login'
+});
 
 router.get('/',function(req,res,next) {
     
-    if(req.AV.user) {
-        return res.redirect('/');
-    }
+    //if(req.AV.user) {
+    //    return res.redirect('/');
+    //}
     
     data = extend(data,{
-        flash:{error:req.flash('error')}
+        flash: {success: req.flash('success'), error: req.flash('error')}
     });
     
-    res.render('sign/login',data);
+    res.render('admin/sign/login',data);
     
 });
 
@@ -32,7 +33,7 @@ router.get('/',function(req,res,next) {
 router.post('/',function(req,res,next) {
 
     if(req.AV.user) {
-        return res.redirect('/');
+        return res.redirect('/admin/product');
     }
 
     var returnUrl = req.query.return;

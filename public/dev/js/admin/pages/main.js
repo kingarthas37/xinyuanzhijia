@@ -4,3 +4,4 @@ require('./product');
 require('./product-category');
 //require('./product-brand');
 require('./upload');
+require('./sign');

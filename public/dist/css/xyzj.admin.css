@@ -123,6 +123,10 @@ footer p {
     #form-upload .upload-loading.on {
       display: block; }
 
+/* admin sign page */
+.admin-sign-page {
+  padding: 50px 0; }
+
 /* admin product page */
 .admin-product-page .main-image-list {
   margin: 0;
