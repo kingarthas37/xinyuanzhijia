@@ -7,6 +7,7 @@
 
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
+        <% if (user) { %>
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
             <li class="am-dropdown" data-am-dropdown>
                 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
@@ -19,5 +20,11 @@
                 </ul>
             </li>
         </ul>
+        <% } else { %>
+        <div class="am-topbar-right">
+            <a class="am-btn am-btn-primary am-topbar-btn am-btn-sm" href="/admin/login"><span class="am-icon-user"></span> 登录</a>
+        </div>
+        <% } %>
+        
     </div>
 </header>

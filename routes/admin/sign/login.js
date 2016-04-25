@@ -11,18 +11,18 @@ let extend = require("xtend");
 let config = require('../../../lib/config');
 
 let data = extend(config.data, {
-    title: '管理员登录',
+    title: `${config.data.titleAdmin} - 管理员登录`,
     currentPage: 'login'
 });
 
 router.get('/',function(req,res,next) {
     
-    //if(req.AV.user) {
-    //    return res.redirect('/');
-    //}
+    if(req.AV.user) {
+        return res.redirect('/admin');
+    }
     
     data = extend(data,{
-        flash: {success: req.flash('success'), error: req.flash('error')}
+        flash: {success: req.flash('success'),error: req.flash('error')}
     });
     
     res.render('admin/sign/login',data);
@@ -30,23 +30,23 @@ router.get('/',function(req,res,next) {
 });
 
 
-router.post('/',function(req,res,next) {
+router.post('/',(req,res) => {
 
     if(req.AV.user) {
-        return res.redirect('/admin/product');
+        return res.redirect('/admin');
     }
 
-    var returnUrl = req.query.return;
-    var username = req.body.username;
-    var password = req.body.password;
+    let returnUrl = req.query.return;
+    let username = req.body.username;
+    let password = req.body.password;
     
     AV.User.logIn(username, password, {
-        success: function(user) {
-            res.redirect(returnUrl ? decodeURIComponent(returnUrl) : '/');
+        success: function() {
+            res.redirect(returnUrl ? decodeURIComponent(returnUrl) : '/admin');
         },
         error: function(user, error) {
             req.flash('error',error.message);
-            res.redirect('/login');
+            res.redirect('/admin/login');
         }
     });
 

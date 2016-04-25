@@ -5,7 +5,7 @@ let AV = require('leanengine');
 
 router.get('/', function(req, res) {
     AV.User.logOut();
-    res.redirect('/');
+    res.redirect('/admin');
 });
 
 module.exports = router;
