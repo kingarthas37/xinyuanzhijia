@@ -21,7 +21,7 @@ let Banner = AV.Object.extend('ProductBanner');
 let data = extend(config.data, {
     title: '产品编辑-添加产品',
     currentTag: 'product',
-    currentPage: 'product-add'
+    currentPage: 'product-index'
 });
 
 router.get('/', (req, res) => {
@@ -76,7 +76,7 @@ router.post('/', (req, res) => {
     let instructionEn = req.body['instruction-en'];
     let use = req.body['use'];
     let useEn = req.body['use-en'];
-    let image = req.body['image'];
+    let detailImage = req.body['detail-image'];
     let video = req.body['video'];
 
     let product = new Product();
@@ -98,7 +98,7 @@ router.post('/', (req, res) => {
     product.set('instructionEn', instructionEn);
     product.set('use', use);
     product.set('useEn', useEn);
-    product.set('image', image);
+    product.set('detailImage', detailImage);
     product.set('video', video);
     
     productHistory.set('name', name);
@@ -117,7 +117,7 @@ router.post('/', (req, res) => {
     productHistory.set('instructionEn', instructionEn);
     productHistory.set('use', use);
     productHistory.set('useEn', useEn);
-    productHistory.set('image', image);
+    productHistory.set('detailImage', detailImage);
     productHistory.set('video', video);
     productHistory.set('product',product);
 

@@ -69,6 +69,7 @@ module.exports = {
         this.chooseBanner();
         this.submitControl();
         this.setMainImage();
+        this.setDetailImage();
 
     },
     editFun:function() {
@@ -77,6 +78,7 @@ module.exports = {
         this.chooseBanner();
         this.submitControl();
         this.setMainImage();
+        this.setDetailImage();
     },
     
     //一级,二级分类选择
@@ -145,12 +147,10 @@ module.exports = {
         });
 
         imageView.on('click','.remove',function() {
-            
             let content = $(this).parents('li');
-
             $.ajax({
                 type:'DELETE',
-                url:leanApp.api + 'files/' + content,
+                url:leanApp.api + 'files/' + content.data('id'),
                 headers:leanAppHeader
             }).done(() => {
                 content.detach();
@@ -160,20 +160,31 @@ module.exports = {
         });
         
     },
+
+    setDetailImage:function() {
+        
+    },
     
     //更新main-image
     updateMainImage:function() {
-        
         let image = $('#main-image');
-        let imageView = $('.main-image-list');
-        
+        let imageView = $('#main-image-list');
         let value = {};
         imageView.find('li').each(function() {
             value[ $(this).data('id') ] = $(this).find('img').attr('src');
         });
-
         image.val(JSON.stringify(value));
-        
+    },
+
+    //更新detail-iamge
+    updateDetailImage:function() {
+        let image = $('#detail-image');
+        let imageView = $('#detail-image-list');
+        let value = {};
+        imageView.find('li').each(function() {
+            value[ $(this).data('id') ] = $(this).find('img').attr('src');
+        });
+        image.val(JSON.stringify(value));
     },
     
     //提交时状态设置
@@ -189,16 +200,22 @@ module.exports = {
         });
     },
 
-    //上传图片后操作
-    uploadFileResponse:function(data) {
-        
-        let imageView = $('.main-image-list');
-        
+    //上传主展示图片callback
+    uploadMainImageSuccess:function(data) {
+        let imageView = $('#main-image-list');
         $.each(data,(i,n)=> {
             imageView.append(`<li data-id="${n.id}"><p><a href="${n.url}" target="_blank"><img src="${n.url}"/></a></p><p><a class="move" href="javascript:;">前移</a> <a class="remove" href="javascript:;">删除</a></p></li>`);
         });
         this.updateMainImage();
-        
+    },
+
+    //上传详情图片callback
+    uploadDetailImageSuccess:function(data) {
+        let imageView = $('#detail-image-list');
+        $.each(data,(i,n)=> {
+            imageView.append(`<li data-id="${n.id}"><p><a href="${n.url}" target="_blank"><img src="${n.url}"/></a></p><p><a class="copy-url" href="javascript:;">复制图片链接</a></p></li>`);
+        });
+        this.updateDetailImage();
     }
 
 };

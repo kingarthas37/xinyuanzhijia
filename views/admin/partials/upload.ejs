@@ -26,10 +26,10 @@
 <% include js %>
 <script type="text/javascript">
     $(function() {
-
         var upload = require('upload');
         upload.uploadFile({
-            fileType:'<%= fileType %>'
+            fileType:'<%= fileType %>',
+            callbackName:'<%= callbackName %>'
         });
     });
 </script>

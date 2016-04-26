@@ -10,6 +10,7 @@ module.exports = {
         let btn = $('.am-btn');
         let text = $('.text');
         let fileType = options.fileType;
+        let callbackName = options.callbackName;
         
         formUpload.submit(function () {
             
@@ -29,7 +30,7 @@ module.exports = {
                     file.show();
                     
                     if (result.success) {
-                        window.parent.uploadFileResponse(result.data);
+                        window.parent[callbackName](result.data);
                     } else {
                         alert(result.error);
                     }

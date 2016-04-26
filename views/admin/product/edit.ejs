@@ -19,7 +19,9 @@
     <div class="admin-content admin-product-page">
 
         <div class="am-cf am-padding">
-            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"><a href="/admin/product/edit/<%= product.get('productId') %>">编辑产品</a></strong></div>
+            <div class="am-fl am-cf">
+                <strong><a href="/admin/product">产品编辑</a></strong> / <a href="/admin/product/edit/<%= product.get('productId') %>">编辑产品</a>
+            </div>
         </div>
 
         <div class="am-g">
@@ -91,7 +93,7 @@
 
                     <!-- banner start -->
                     <div class="am-form-group am-form-select">
-                        <label>选择商品匹配的 Banner：</label>
+                        <label for="select-banner">选择商品匹配的 Banner：</label>
                         <div>
                             <select id="select-banner" name="select-banner">
                                 <option value="">不选择</option>
@@ -160,7 +162,7 @@
                     </div>
 
                     <div class="am-form-group">
-                        <label for="instruction">产品说明英文 <small>(md5)</small>:</label>
+                        <label for="instruction-en">产品说明英文 <small>(md5)</small>:</label>
                         <textarea id="instruction-en" name="instruction-en" rows="3" placeholder="输入产品说明英文"><%= product.get('instructionEn') %></textarea>
                     </div>
                     <!-- instruction end -->
@@ -174,7 +176,7 @@
                     </div>
 
                     <div class="am-form-group">
-                        <label for="use">产品使用说明英文 <small>(md5)</small>:</label>
+                        <label for="use-en">产品使用说明英文 <small>(md5)</small>:</label>
                         <textarea id="use-en" name="use-en" rows="5" placeholder="输入产品使用说明英文"><%= product.get('useEn') %></textarea>
                     </div>
                     <!-- use end -->

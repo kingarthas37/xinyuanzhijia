@@ -9,15 +9,19 @@ let config = require('../../../lib/config');
 let upload = require('../../../lib/component/upload');
 
 let data = extend(config.data, {
-    title: '上传产品图片'
+    title: '上传文件'
 });
 
 
 router.get('/',(req,res)=>{
+    
+    let callbackName = req.query.callback || 'uploadFileSuccess';
+    
     data = extend(data,{
         action:'/admin/product/upload',
         fileType: ['image/gif','image/jpeg','image/png'],
-        multiple:true
+        multiple:true,
+        callbackName:callbackName
     });
     res.render('admin/partials/upload',data);
 });

@@ -19,7 +19,7 @@
     <div class="admin-content admin-product-page">
 
         <div class="am-cf am-padding">
-            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"><a href="/admin/product/add">添加新产品</a></strong></div>
+            <div class="am-fl am-cf"><strong><a href="/admin/product">产品编辑</a></strong> / <a href="/admin/product/add">添加新产品</a></div>
         </div>
         
         <div class="am-g">
@@ -44,9 +44,9 @@
                     <!-- main image start -->
                     <div class="am-form-group">
                         <label for="main-image">产品主展示图片： </label>
-                        <div><iframe class="upload" src="/admin/product/upload" frameborder="0"></iframe></div>
+                        <div><iframe class="upload" src="/admin/product/upload?callback=uploadMainImageSuccess" frameborder="0"></iframe></div>
                         <input id="main-image" name="main-image" type="hidden" />
-                        <ul class="main-image-list"></ul>
+                        <ul id="main-image-list" class="image-group"></ul>
                     </div>
                     <!-- main image end -->
 
@@ -83,7 +83,7 @@
                     
                     <!-- banner start -->
                     <div class="am-form-group am-form-select">
-                        <label>选择商品匹配的 Banner：</label>
+                        <label for="select-banner">选择商品匹配的 Banner：</label>
                         <div>
                             <select id="select-banner" name="select-banner">
                                 <option value="">不选择</option>
@@ -152,7 +152,7 @@
                     </div>
 
                     <div class="am-form-group">
-                        <label for="instruction">产品说明英文 <small>(md5)</small>:</label>
+                        <label for="instruction-en">产品说明英文 <small>(md5)</small>:</label>
                         <textarea id="instruction-en" name="instruction-en" rows="3" placeholder="输入产品说明英文"></textarea>
                     </div>
                     <!-- instruction end -->
@@ -175,8 +175,11 @@
                     
                     <!-- images start -->
                     <div class="am-form-group">
-                        <label for="image">产品图片 <small>(md5)</small> ：</label>
-                        <textarea id="image" name="image" rows="5" placeholder="输入产品图片"></textarea>
+                        <label for="detail-image">产品图片 <small>(md5)</small> ：</label>
+                        <div><iframe class="upload" src="/admin/product/upload?callback=uploadDetailImageSuccess" frameborder="0"></iframe></div>
+                        <ul id="detail-image-list" class="image-group"></ul>
+                        <hr/>
+                        <textarea id="detail-image" name="detail-image" rows="5" placeholder="输入产品图片"></textarea>
                     </div>
                     <!-- images end -->
                     
@@ -228,8 +231,12 @@
     });
     
     //iframe upload callback
-    function uploadFileResponse(data) {
-        product.uploadFileResponse(data);
+    function uploadMainImageSuccess(data) {
+        product.uploadMainImageSuccess(data);
+    }
+    
+    function uploadDetailImageSuccess(data) {
+        product.uploadDetailImageSuccess(data);
     }
     
 </script>
