@@ -19,7 +19,7 @@ let ProductCategory2 = AV.Object.extend('ProductCategory2');
 
 let data = extend(config.data, {
     title: '产品编辑-产品列表',
-    currentTagPage: 'product',
+    currentTag: 'product',
     currentPage: 'product-index'
 });
 

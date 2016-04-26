@@ -19,6 +19,7 @@ let pager = require('../../../lib/component/pager');
 
 let data = extend(config.data, {
     title: '产品分类列表',
+    currentTag:'product',
     currentPage: 'product-category'
 });
 

@@ -96,6 +96,12 @@ footer p {
     }
 }
 
+.am-topbar-brand {
+    a,small {
+        color: #fff;
+    }
+}
+
 .am-form {
     iframe.upload {
         width: 100%;
@@ -152,6 +158,15 @@ footer p {
         display: block;
         padding: 4px 0;
         font-weight: normal;
+    }
+}
+
+.admin-sidebar-list {
+    li {
+        a.current {
+            color: #0e90d2;
+            font-weight: bold;
+        }
     }
 }
 

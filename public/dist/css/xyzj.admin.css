@@ -70,6 +70,9 @@ footer p {
   .small-screen-hide {
     display: none; } }
 
+.am-topbar-brand a, .am-topbar-brand small {
+  color: #fff; }
+
 .am-form iframe.upload {
   width: 100%;
   height: 40px; }
@@ -108,6 +111,10 @@ footer p {
   display: block;
   padding: 4px 0;
   font-weight: normal; }
+
+.admin-sidebar-list li a.current {
+  color: #0e90d2;
+  font-weight: bold; }
 
 #form-upload {
   height: 40px;

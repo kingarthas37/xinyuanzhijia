@@ -20,7 +20,7 @@ let Banner = AV.Object.extend('ProductBanner');
 
 let data = extend(config.data, {
     title: '产品编辑-添加产品',
-    currentTagPage: 'product',
+    currentTag: 'product',
     currentPage: 'product-add'
 });
 

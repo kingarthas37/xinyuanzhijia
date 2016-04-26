@@ -23,7 +23,7 @@ let config = require('../../../lib/config');
 
 var data = extend(config.data, {
     title: '产品编辑-编辑产品',
-    currentTagPage: 'product',
+    currentTag: 'product',
     currentPage: 'product-edit'
 });
 
