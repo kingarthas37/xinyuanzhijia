@@ -41,17 +41,6 @@
 
                     <hr>
 
-                    <!-- main image start -->
-                    <div class="am-form-group">
-                        <label for="main-image">产品主展示图片： </label>
-                        <div><iframe class="upload" src="/admin/product/upload?callback=uploadMainImageSuccess" frameborder="0"></iframe></div>
-                        <input id="main-image" name="main-image" type="hidden" />
-                        <ul id="main-image-list" class="image-group"></ul>
-                    </div>
-                    <!-- main image end -->
-
-                    <hr>
-
                     <!-- select category start -->
                     <div class="am-form-group">
                         <label for="select-category-1">选择商品一级分类<i>*</i>:</label>
@@ -176,10 +165,11 @@
                     <!-- images start -->
                     <div class="am-form-group">
                         <label for="detail-image">产品图片 <small>(md5)</small> ：</label>
-                        <div><iframe class="upload" src="/admin/product/upload?callback=uploadDetailImageSuccess" frameborder="0"></iframe></div>
-                        <ul id="detail-image-list" class="image-group"></ul>
+                        <div class="upload-content"><iframe class="upload" src="/admin/product/upload" frameborder="0"></iframe></div>
+                        <ul class="image-list"></ul>
                         <hr/>
                         <textarea id="detail-image" name="detail-image" rows="5" placeholder="输入产品图片"></textarea>
+                        <input id="main-image" name="main-image" type="hidden" />
                     </div>
                     <!-- images end -->
                     
@@ -231,12 +221,8 @@
     });
     
     //iframe upload callback
-    function uploadMainImageSuccess(data) {
-        product.uploadMainImageSuccess(data);
-    }
-    
-    function uploadDetailImageSuccess(data) {
-        product.uploadDetailImageSuccess(data);
+    function uploadFileSuccess(data) {
+        product.uploadFileSuccess(data);
     }
     
 </script>

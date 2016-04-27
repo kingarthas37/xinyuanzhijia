@@ -1,6 +1,8 @@
 'use strict';
 
 let leanAppHeader = window.leanAppHeader;
+let swfobject = require('swfobject');
+let FlashDetect = require('flash-detect');
 
 module.exports = {
 
@@ -68,8 +70,7 @@ module.exports = {
         this.setCategory();
         this.chooseBanner();
         this.submitControl();
-        this.setMainImage();
-        this.setDetailImage();
+        this.setImageList();
 
     },
     editFun:function() {
@@ -77,8 +78,7 @@ module.exports = {
         this.setCategory();
         this.chooseBanner();
         this.submitControl();
-        this.setMainImage();
-        this.setDetailImage();
+        this.setImageList();
     },
     
     //一级,二级分类选择
@@ -132,10 +132,10 @@ module.exports = {
         
     },
     //设置主图预览
-    setMainImage:function() {
+    setImageList:function() {
 
         let _this = this;
-        let imageView = $('.main-image-list');
+        let imageView = $('.image-list');
         
         imageView.on('click','.move',function() {
             let content = $(this).parents('li');
@@ -156,36 +156,15 @@ module.exports = {
                 content.detach();
                 _this.updateMainImage();
             });
-            
+        });
+
+        imageView.on('click','input[type=checkbox]',function() {
+            _this.updateMainImage();
         });
         
     },
 
-    setDetailImage:function() {
-        
-    },
-    
-    //更新main-image
-    updateMainImage:function() {
-        let image = $('#main-image');
-        let imageView = $('#main-image-list');
-        let value = {};
-        imageView.find('li').each(function() {
-            value[ $(this).data('id') ] = $(this).find('img').attr('src');
-        });
-        image.val(JSON.stringify(value));
-    },
-
-    //更新detail-iamge
-    updateDetailImage:function() {
-        let image = $('#detail-image');
-        let imageView = $('#detail-image-list');
-        let value = {};
-        imageView.find('li').each(function() {
-            value[ $(this).data('id') ] = $(this).find('img').attr('src');
-        });
-        image.val(JSON.stringify(value));
-    },
+ 
     
     //提交时状态设置
     submitControl:function() {
@@ -201,21 +180,47 @@ module.exports = {
     },
 
     //上传主展示图片callback
-    uploadMainImageSuccess:function(data) {
-        let imageView = $('#main-image-list');
+    uploadFileSuccess:function(data) {
+        let imageView = $('.image-list');
         $.each(data,(i,n)=> {
-            imageView.append(`<li data-id="${n.id}"><p><a href="${n.url}" target="_blank"><img src="${n.url}"/></a></p><p><a class="move" href="javascript:;">前移</a> <a class="remove" href="javascript:;">删除</a></p></li>`);
+            imageView.append(`<li data-id="${n.id}" class="am-cf"><div class="am-fl"><input type="checkbox" /></div><div class="am-fr"><p><a href="${n.url}" target="_blank"><img src="${n.url}"/></a></p><p><a class="move" href="javascript:;">前移</a> | <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> | <a class="remove" href="javascript:;">删除</a></p></div></li>`);
         });
         this.updateMainImage();
     },
 
-    //上传详情图片callback
-    uploadDetailImageSuccess:function(data) {
-        let imageView = $('#detail-image-list');
-        $.each(data,(i,n)=> {
-            imageView.append(`<li data-id="${n.id}"><p><a href="${n.url}" target="_blank"><img src="${n.url}"/></a></p><p><a class="copy-url" href="javascript:;">复制图片链接</a></p></li>`);
+    //更新image list
+    updateMainImage:function() {
+        
+        let image = $('#main-image');
+        let imageView = $('.image-list');
+        let value = {};
+        imageView.find('input[type=checkbox]:checked').each(function() {
+            let content = $(this).parents('li');
+            value[ content.data('id') ] = content.find('img').attr('src');
         });
-        this.updateDetailImage();
+        image.val(JSON.stringify(value));
+        
+        if (FlashDetect.installed) {
+            
+            //删除swf绑定的dom,重设swf
+            $('.zclip').detach();
+            imageView.find('.copy-url').detach();
+            
+            imageView.find('.copy').append('<a class="copy-url" href="javascript:;">复制</a>');
+            imageView.find('.copy-url').each(function() {
+                $(this).zclip({
+                    path: '/swf/ZeroClipboard.swf',
+                    copy: function () {
+                        return $(this).parents('li').find('img').attr('src');
+                    },
+                    afterCopy: function () {
+                        imageView.find('.oncopy').removeClass('oncopy');
+                        $(this).addClass('oncopy');
+                    }
+                });
+            });
+        }
+        
     }
 
 };
