@@ -57,11 +57,12 @@ router.get('/:productId', function (req, res, next) {
                 
                 //处理main images
                 if(item.get('mainImage')) {
+                    
                     let mainImages = [];
-                    let images = JSON.parse(item.get('mainImage'));
+                    let images = item.get('mainImage');
                     
                     for(let i in images) {
-                        mainImages.push({id:i, url:images[i]});
+                        mainImages.push({id:i, url:images[i].url , isMainImage: images[i].isMainImage });
                     }
                     
                     data = extend(data, {
@@ -127,7 +128,7 @@ router.post('/:productId', (req, res) => {
     let instructionEn = req.body['instruction-en'];
     let use = req.body['use'];
     let useEn = req.body['use-en'];
-    let image = req.body['image'];
+    let detailImage = req.body['detail-image'];
     let video = req.body['video'];
 
     let productId = parseInt(req.params.productId);
@@ -155,7 +156,7 @@ router.post('/:productId', (req, res) => {
         product.set('instructionEn', instructionEn);
         product.set('use', use);
         product.set('useEn', useEn);
-        product.set('image', image);
+        product.set('detailImage', detailImage);
         product.set('video', video);
         
         
@@ -177,7 +178,7 @@ router.post('/:productId', (req, res) => {
         productHistory.set('instructionEn', instructionEn);
         productHistory.set('use', use);
         productHistory.set('useEn', useEn);
-        productHistory.set('image', image);
+        productHistory.set('detailImage', detailImage);
         productHistory.set('video', video);
         productHistory.set('product',product);
         

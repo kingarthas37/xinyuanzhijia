@@ -79,6 +79,7 @@ module.exports = {
         this.chooseBanner();
         this.submitControl();
         this.setImageList();
+        this.setZclip();
     },
     
     //一级,二级分类选择
@@ -194,18 +195,27 @@ module.exports = {
         let image = $('#main-image');
         let imageView = $('.image-list');
         let value = {};
-        imageView.find('input[type=checkbox]:checked').each(function() {
+        
+        imageView.find('input[type=checkbox]').each(function() {
             let content = $(this).parents('li');
-            value[ content.data('id') ] = content.find('img').attr('src');
+            value[ content.data('id') ] = {
+                "url":content.find('img').attr('src'),
+                "isMainImage":this.checked
+            };
         });
         image.val(JSON.stringify(value));
         
+        this.setZclip();
+        
+    },
+    
+    setZclip:function() {
         if (FlashDetect.installed) {
-            
+            let imageView = $('.image-list');
             //删除swf绑定的dom,重设swf
             $('.zclip').detach();
             imageView.find('.copy-url').detach();
-            
+
             imageView.find('.copy').append('<a class="copy-url" href="javascript:;">复制</a>');
             imageView.find('.copy-url').each(function() {
                 $(this).zclip({
@@ -220,7 +230,6 @@ module.exports = {
                 });
             });
         }
-        
     }
 
 };

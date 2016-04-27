@@ -42,23 +42,7 @@
                     <!-- name end -->
 
                     <hr>
-
-                    <!-- main image start -->
-                    <div class="am-form-group">
-                        <label for="main-image">产品主展示图片： </label>
-                        <div><iframe class="upload" src="/admin/product/upload" frameborder="0"></iframe></div>
-                        <input id="main-image" name="main-image" type="hidden" value="<%= JSON.parse(product.get('mainImage')) %>" />
-                        <ul class="main-image-list">
-                            <% if (mainImage) { %>
-                                <% for (var i=0;i< mainImage.length; i++) { %>
-                                    <li data-id="<%= mainImage[i].id%>"><p><a href="<%= mainImage[i].url%>" target="_blank"><img src="<%= mainImage[i].url %>"/></a></p><p><a class="move" href="javascript:;">前移</a> <a class="remove" href="javascript:;">删除</a></p></li>
-                                <% } %>
-                            <% } %>
-                        </ul>
-                    </div>
-                    <!-- main image end -->
-                    <hr>
-
+                    
                     <!-- select category start -->
                     <div class="am-form-group">
                         <label for="select-category-1">选择商品一级分类<i>*</i>:</label>
@@ -185,8 +169,18 @@
 
                     <!-- images start -->
                     <div class="am-form-group">
-                        <label for="image">产品图片 <small>(md5)</small> ：</label>
-                        <textarea id="image" name="image" rows="5" placeholder="输入产品图片"><%= product.get('image') %></textarea>
+                        <label for="detail-image">产品图片 <small>(md5)</small> ：</label>
+                        <div class="upload-content"><iframe class="upload" src="/admin/product/upload" frameborder="0"></iframe></div>
+                        <ul class="image-list">
+                            <% if (mainImage) { %>
+                            <% for (var i=0;i< mainImage.length; i++) { %>
+                            <li data-id="<%= mainImage[i].id%>" class="am-cf"><div class="am-fl"><input <% if(mainImage[i].isMainImage){%>checked="checked"<%}%> type="checkbox" /></div><div class="am-fr"><p><a href="<%= mainImage[i].url%>" target="_blank"><img src="<%= mainImage[i].url %>"/></a></p><p><a class="move" href="javascript:;">前移</a> <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> <a class="remove" href="javascript:;">删除</a></p></div></li>
+                            <% } %>
+                            <% } %>
+                        </ul>
+                        <hr/>
+                        <textarea id="detail-image" name="detail-image" rows="5" placeholder="输入产品图片"><%= product.get('detailImage') %></textarea>
+                        <input id="main-image" name="main-image" type="hidden" value="<%= JSON.stringify(product.get('mainImage')) %>" />
                     </div>
                     <!-- images end -->
 
