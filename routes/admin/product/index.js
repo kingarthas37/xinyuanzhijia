@@ -18,18 +18,17 @@ let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
 
 let data = extend(config.data, {
-    title: '产品编辑-产品列表',
+    title: `${config.data.titleAdmin} - 产品列表页`,
     currentTag: 'product',
     currentPage: 'product-index'
 });
 
-
 //首页
 router.get('/', (req, res) => {
 
-    //if(!req.AV.user) {
-    //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
-    //}
+    if(!req.AV.user) {
+        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
+    }
 
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.LIMIT;

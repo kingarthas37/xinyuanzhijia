@@ -19,19 +19,19 @@ let ProductCategory2 = AV.Object.extend('ProductCategory2');
 let Banner = AV.Object.extend('ProductBanner');
 
 let data = extend(config.data, {
-    title: '产品编辑-添加产品',
+    title: `${config.data.titleAdmin} - 添加产品`,
     currentTag: 'product',
     currentPage: 'product-index'
 });
 
 router.get('/', (req, res) => {
 
-    //if(!req.AV.user) {
-    //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
-    //}
+    if(!req.AV.user) {
+        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
+    }
 
     data = extend(data, {
-        user: req.AV.user
+        user:req.AV.user
     });
 
     let query1 = new AV.Query(ProductCategory1);
@@ -56,9 +56,9 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
 
-    //if(!req.AV.user) {
-    //  return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
-    //}
+    if(!req.AV.user) {
+        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
+    }
 
     let name = req.body['name'];
     let nameEn = req.body['name-en'];

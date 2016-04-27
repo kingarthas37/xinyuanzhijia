@@ -18,7 +18,7 @@ let ProductCategory2 = AV.Object.extend('ProductCategory2');
 let pager = require('../../../lib/component/pager');
 
 let data = extend(config.data, {
-    title: '产品分类列表',
+    title: `${config.data.titleAdmin} - 产品分类编辑`,
     currentTag:'product',
     currentPage: 'product-category'
 });
@@ -27,9 +27,9 @@ let data = extend(config.data, {
 //首页render
 router.get('/', (req, res) => {
 
-    //if (!req.AV.user) {
-    //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
-    //}
+    if(!req.AV.user) {
+        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
+    }
 
     {
         let query1 = new AV.Query(ProductCategory1);

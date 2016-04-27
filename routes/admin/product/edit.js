@@ -22,7 +22,7 @@ let Banner = AV.Object.extend('ProductBanner');
 let config = require('../../../lib/config');
 
 var data = extend(config.data, {
-    title: '产品编辑-编辑产品',
+    title: `${config.data.titleAdmin} - 编辑产品`,
     currentTag: 'product',
     currentPage: 'product-edit'
 });
@@ -31,17 +31,16 @@ var data = extend(config.data, {
 //编辑产品页
 router.get('/:productId', function (req, res, next) {
 
-    //if(!req.AV.user) {
-    //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
-    //}
+    if(!req.AV.user) {
+        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
+    }
 
     var productId = parseInt(req.params.productId);
 
     data = extend(data, {
         user: req.AV.user
     });
-
-
+    
     AV.Promise.when(
         new AV.Promise(resolve => {
             let query = new AV.Query(Product);
@@ -108,9 +107,9 @@ router.get('/:productId', function (req, res, next) {
 
 router.post('/:productId', (req, res) => {
 
-    //if(!req.AV.user) {
-    //    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
-    //}
+    if(!req.AV.user) {
+        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
+    }
 
     let name = req.body['name'];
     let nameEn = req.body['name-en'];
