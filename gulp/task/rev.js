@@ -26,11 +26,11 @@ gulp.task('rev',['clean:rev','image:prod','css-common:prod','css-default:prod','
                 dontRenameFile: ['images/'],
                 fileNameManifest:'asset-manifest.json'
             });
-            gulp.src([config.path.cssMin + '*.+(css|map)',config.path.jsMin + '*.+(js|map)'])
+            gulp.src([config.publicPath.cssMin + '*.+(css|map)',config.publicPath.jsMin + '*.+(js|map)'])
                 .pipe(revAll.revision())
-                .pipe(gulp.dest(config.path.min))
+                .pipe(gulp.dest(config.publicPath.min))
                 .pipe(revAll.manifestFile())
-                .pipe(gulp.dest(config.path.min));
+                .pipe(gulp.dest(config.publicPath.min));
         }
     ],
     function(err) {

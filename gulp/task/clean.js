@@ -17,6 +17,6 @@ gulp.task('clean:rev',function() {
     }
     
     return del.sync([
-        path.join(config.path.min)
+        path.join(config.publicPath.min)
     ]);
 });

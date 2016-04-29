@@ -29,13 +29,13 @@ var onlyScripts = require('../util/script-filter');
 //dev task
 gulp.task('browserify', function () {
 
-    var pageScripts = fs.readdirSync(path.join(config.path.jsDev, ( args.admin ? 'admin/pages' : 'default/pages' ) )).filter(onlyScripts);
+    var pageScripts = fs.readdirSync(path.join(config.publicPath.jsDev, ( args.admin ? 'admin/pages' : 'default/pages' ) )).filter(onlyScripts);
 
     var b = browserify({
         cache: {},
         packageCache: {},
         fullPaths: false,
-        entries: [path.resolve(config.path.jsDev, ( args.admin ? 'admin/common/main.js' : 'default/common/main.js' ) )],  //入口为/default/common/main.js
+        entries: [path.resolve(config.publicPath.jsDev, ( args.admin ? 'admin/common/main.js' : 'default/common/main.js' ) )],  //入口为/default/common/main.js
         debug: true  //开启sourcemaps
     }).transform(babelify,{
         compact: false,
@@ -49,7 +49,7 @@ gulp.task('browserify', function () {
     //使用browserify的require() ，可以将page文件，在页面中require
     pageScripts.forEach(function(page) {
         if(page !== 'main.js') {
-            w.require(path.resolve(config.path.jsDev, ( args.admin ? 'admin/pages' : 'default/pages' ) ,page),{expose:page.replace(/\.js$/,'')});
+            w.require(path.resolve(config.publicPath.jsDev, ( args.admin ? 'admin/pages' : 'default/pages' ) ,page),{expose:page.replace(/\.js$/,'')});
         }
     });
 
@@ -57,7 +57,7 @@ gulp.task('browserify', function () {
     var bundle = function () {
         w.bundle()
             .pipe(source(config.name + ( args.admin ? '.admin.bundle.js' : '.default.bundle.js' )))
-            .pipe(gulp.dest(path.resolve(config.path.jsDist)));
+            .pipe(gulp.dest(path.resolve(config.publicPath.jsDist)));
         return w;
     };
 
@@ -85,11 +85,11 @@ gulp.task('browserify-default:prod', function () {
 
 function jsProdTask(view) {
 
-    var pageScripts = fs.readdirSync(path.join(config.path.jsDev, view + '/pages')).filter(onlyScripts);
+    var pageScripts = fs.readdirSync(path.join(config.publicPath.jsDev, view + '/pages')).filter(onlyScripts);
 
     //factor-bundle增加common/main.js和pages/main.js
     var b = browserify({
-        entries: [path.resolve(config.path.jsDev,view + '/common/main.js'),path.resolve(config.path.jsDev, view + '/pages/main.js')],
+        entries: [path.resolve(config.publicPath.jsDev,view + '/common/main.js'),path.resolve(config.publicPath.jsDev, view + '/pages/main.js')],
         debug: true
     }).transform(babelify,{
         compact: false,
@@ -102,13 +102,13 @@ function jsProdTask(view) {
         //将pages下的js 增加require到页面
         pageScripts.forEach(function(page) {
             if(page !== 'main.js') {
-                b.require(path.resolve(config.path.jsDev,view + '/pages/',page), {expose:page.replace(/\.js$/,'')});
+                b.require(path.resolve(config.publicPath.jsDev,view + '/pages/',page), {expose:page.replace(/\.js$/,'')});
             }
         });
 
         //使用factor-bundle,生成3个js
         b.plugin('factor-bundle', {
-                e:[path.resolve(config.path.jsDev,view + '/common/main.js'),path.resolve(config.path.jsDev,view + '/pages/main.js')],
+                e:[path.resolve(config.publicPath.jsDev,view + '/common/main.js'),path.resolve(config.publicPath.jsDev,view + '/pages/main.js')],
                 o:[write(config.name + '.' + view + '-common.js'), write(config.name + '.' + view + '-pages.js')]})
             .bundle()
             .pipe(write(config.name + '.' + view + '.external.js'));
@@ -129,7 +129,7 @@ function jsProdTask(view) {
                     file(path.basename(filepath), content, {src: true})
                         .pipe(buffer())
                         .pipe(uglify())
-                        .pipe(gulp.dest(path.resolve(config.path.jsMin)))
+                        .pipe(gulp.dest(path.resolve(config.publicPath.jsMin)))
                         .on('end',function() {
                             cb();
                         })
@@ -138,9 +138,9 @@ function jsProdTask(view) {
                 function(cb) {
                     //如果处理的文件是name.external.js就表示最后一个js，此时合并common.js和page.js为main.js
                     if(filepath === (config.name + '.' + view + '.external.js')) {
-                        gulp.src([config.path.jsMin + config.name + '.' + view + '-common.js',config.path.jsMin + config.name + '.' + view + '-pages.js'])
+                        gulp.src([config.publicPath.jsMin + config.name + '.' + view + '-common.js',config.publicPath.jsMin + config.name + '.' + view + '-pages.js'])
                             .pipe(concat(config.name + '.' + view + '.js'))
-                            .pipe(gulp.dest(config.path.jsMin))
+                            .pipe(gulp.dest(config.publicPath.jsMin))
                             .on('end',cb);
                     }
                 },
@@ -149,7 +149,7 @@ function jsProdTask(view) {
                     //合并完之后，将common.js和pages.js删除
                     var unlinkArr = ['.' + view + '-common.js','.' + view + '-pages.js'];
                     for(var i=0;i<unlinkArr.length;i++) {
-                        fs.unlinkSync(config.path.jsMin + config.name + unlinkArr[i]);
+                        fs.unlinkSync(config.publicPath.jsMin + config.name + unlinkArr[i]);
                     }
                 }
 

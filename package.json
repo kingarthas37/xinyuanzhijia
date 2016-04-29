@@ -94,7 +94,7 @@
     "public/css/amazeui.min.css",
     "public/css/admin.css"
   ],
-  "path": {
+  "publicPath": {
     "base": "public/",
     "dist": "public/dist",
     "min": "public/min/",
