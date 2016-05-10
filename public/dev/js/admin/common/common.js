@@ -6,8 +6,8 @@ $(function () {
     
     //lean app header info
     window.leanAppHeader = {
-        'x-avoscloud-application-id':window.leanApp.AppID,
-        'x-avoscloud-application-key':window.leanApp.AppKey,
+        'X-LC-Id':window.x_lc_id,
+        'X-LC-Sign':window.x_lc_sign,
         'content-type':'application/json'
     };
     
