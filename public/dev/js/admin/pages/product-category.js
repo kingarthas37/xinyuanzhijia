@@ -20,7 +20,8 @@ module.exports = {
         this.moveCategory2Up();
         this.moveCategory2Down();
         
-        $.post({
+        $.ajax({
+            type:'post',
             url:leanApp.api + 'functions/hello',
             headers:leanAppHeader,
             success:function(data) {

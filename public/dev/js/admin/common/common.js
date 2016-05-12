@@ -4,13 +4,6 @@ var AMUI = require('amazeui');
 
 $(function () {
     
-    //lean app header info
-    window.leanAppHeader = {
-        'X-LC-Id':window.x_lc_id,
-        'X-LC-Sign':window.x_lc_sign,
-        'content-type':'application/json'
-    };
-    
     // Avoid `console` errors in browsers that lack a console.
     {
         var method;
