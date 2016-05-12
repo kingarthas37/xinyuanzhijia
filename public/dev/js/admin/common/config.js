@@ -17,7 +17,7 @@ let cloud = ()=> {
     if(env() === 'production') {
         return '//51wish.cn/1.1/functions/';
     } 
-    if (env()=== 'stage') {
+    if (env() === 'stage') {
         return '//stg-51wish.leanapp.cn/1.1/functions/'; 
     }
     return '/1.1/functions/'
