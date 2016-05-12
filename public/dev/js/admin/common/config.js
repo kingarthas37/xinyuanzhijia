@@ -24,17 +24,15 @@ let cloud = ()=> {
 };
 
 window.leanApp = {
-    AppID:'QuiPuWpJPzCahsgBK7teBOJN-gzGzoHsz',
-    AppKey:'Wwh9RRHIySPlvToe3dsIVfS7',
-    MasterKey:'mCIsLsrtOgujruzfcEGDm9Uh',
+    appdId:'QuiPuWpJPzCahsgBK7teBOJN-gzGzoHsz',
     api:'https://leancloud.cn/1.1/',
     cloud:cloud()
 };
 
 //lean app header info
 window.leanAppHeader = {
-    'X-LC-Id':window.x_lc_id,
-    'X-LC-Sign':window.x_lc_sign,
+    'x-lc-id':leanApp.appdId,
+    'X-lc-sign':x_lc_sign,
     'content-type':'application/json',
     'X-lc-prod':env() === 'production' ? 1 : 0
 };

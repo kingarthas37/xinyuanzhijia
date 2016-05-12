@@ -21,7 +21,7 @@ module.exports = {
         
         $.ajax({
             type:'post',
-            url:leanApp.cloud + 'hello',
+            url:leanApp.cloud + 'env',
             headers:leanAppHeader,
             success:function(data) {
                 console.info(data);
