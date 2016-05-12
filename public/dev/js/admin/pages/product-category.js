@@ -20,6 +20,13 @@ module.exports = {
         this.moveCategory2Up();
         this.moveCategory2Down();
         
+        $.post({
+            url:leanApp.api + 'functions/hello',
+            headers:leanAppHeader,
+            success:function(data) {
+                console.info(data);
+            }
+        });
     },
 
     //添加一级分类
