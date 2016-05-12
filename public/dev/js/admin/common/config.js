@@ -13,12 +13,22 @@ window.env = ()=> {
     return 'development';
 };
 
+let cloud = ()=> {
+    if(env() === 'production') {
+        return '//51wish.cn/1.1/functions/';
+    } 
+    if (env()=== 'stage') {
+        return '//stg-51wish.leanapp.cn/1.1/functions/'; 
+    }
+    return '/1.1/functions/'
+};
 
 window.leanApp = {
     AppID:'QuiPuWpJPzCahsgBK7teBOJN-gzGzoHsz',
     AppKey:'Wwh9RRHIySPlvToe3dsIVfS7',
     MasterKey:'mCIsLsrtOgujruzfcEGDm9Uh',
-    api:`https://${name}.leanapp.cn/1.1/`
+    api:'https://api.leancloud.cn',
+    cloud:cloud()
 };
 
 //lean app header info

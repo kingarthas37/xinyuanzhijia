@@ -1,6 +1,5 @@
 'use strict';
 
-let leanAppHeader = window.leanAppHeader;
 
 module.exports = {
 
@@ -22,7 +21,7 @@ module.exports = {
         
         $.ajax({
             type:'post',
-            url:leanApp.api + 'functions/hello',
+            url:leanApp.cloud + 'hello',
             headers:leanAppHeader,
             success:function(data) {
                 console.info(data);
