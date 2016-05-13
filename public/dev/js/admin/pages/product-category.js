@@ -18,15 +18,6 @@ module.exports = {
         this.removeCategory2();
         this.moveCategory2Up();
         this.moveCategory2Down();
-        
-        $.ajax({
-            type:'post',
-            url:leanApp.cloud + 'env',
-            headers:leanAppHeader,
-            success:function(data) {
-                console.info(data);
-            }
-        });
     },
 
     //添加一级分类
@@ -136,33 +127,49 @@ module.exports = {
         let modal = $('#modal-category-1-remove');
         let alert = $('#modal-alert');
 
+        //alert 关闭后移除暂存的实例，再次调用时重新初始化,可以解决2次调用同一代码的问题
+        alert.on('closed.modal.amui', function() {
+            $(this).removeData('amui.modal');
+        });
+        
         removeLink.each(function(i,n) {
 
             $(n).click(function() {
+                
+                let $this = $(this);
+                
                 modal.modal({
-                    relatedTarget: this,
+                    relatedTarget:this,
                     onConfirm:function() {
 
-                        if($(n).data('state')) {
+                        let item = $(this.relatedTarget);
+                        
+                        if(item.data('state')) {
                             return false;
                         }
 
-                        $(n).data('state',true);
+                        item.data('state',true);
                         $.AMUI.progress.start();
 
                         //删除一级分类需要判断该产品是否已使用该分类,所以不能使用api调用
                         $.get({
                             url:'/admin/product-category/remove-category-1',
                             data:{
-                                id:$(n).parents('.am-accordion-item').attr('data-id')
+                                id:item.parents('.am-accordion-item').attr('data-id')
                             },
-                            success:function() {
-                                $(n).data('state',false);
+                            success:function(data) {
+
+                                item.data('state',false);
                                 $.AMUI.progress.done();
                                 modal.modal('close');
-                                alert.modal({
-                                    onConfirm:()=>location.reload()
-                                }).find('.am-modal-bd').text('删除一级分类成功!');
+                                
+                                if(!data.success) {
+                                    alert.modal().find('.am-modal-bd').text(data.message);
+                                } else {
+                                    alert.modal({
+                                        onConfirm:()=> location.reload()
+                                    }).find('.am-modal-bd').text('删除一级分类成功!');
+                                }
                             }
                         });
 

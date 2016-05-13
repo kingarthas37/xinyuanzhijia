@@ -90,19 +90,30 @@ router.post('/add-category-2',(req,res)=> {
 //删除一级分类
 router.get('/remove-category-1', (req, res) => {
 
-    let query = new AV.Query(ProductCategory1);
+    let query1 = new AV.Query(ProductCategory1);
+    let query2 = new AV.Query(ProductCategory2);
     let category1Id = parseInt(req.query.id);
+    
+    //查询query2是否带有category1,否则无法删除
+    query2.equalTo('category1Id',category1Id);
+    query2.first().then(item => {
+        
+        if(item) {
+            res.send({success: 0,message:'改分类含有子分类,请先删除所有子分类再进行删除'});
+            return AV.Promise.error();
+        }
 
-    query.equalTo('category1Id', category1Id);
-
-    query.first().done(item => {
+        query1.equalTo('category1Id', category1Id);
+        return query1.first();
+        
+    }).done(item => {
 
         item.destroy().done(()=> {
-            
+
             let query = new AV.Query(ProductCategory1);
             query.ascending('index');
             return query.find();
-            
+
         }).done(items=> {
             //批量更新index
             let promises = [];
@@ -114,6 +125,7 @@ router.get('/remove-category-1', (req, res) => {
 
         }).done(()=>res.send({success: 1}));
     });
+    
 });
 
 
