@@ -18,20 +18,6 @@ module.exports = {
         this.removeCategory2();
         this.moveCategory2Up();
         this.moveCategory2Down();
-
-        $.ajax({
-            type: 'get',
-            url: 'https://leancloud.cn/1.1/classes/ProductCategory2/570b63dc8ac247004d210f00',
-            headers: {
-                "x-lc-id": "QuiPuWpJPzCahsgBK7teBOJN-gzGzoHsz",
-                "x-lc-sign": "de61a82f19a2c195d427b38fdc3e2a2b,1463370642489",
-                "x-lc-session":"u6gzmn30o9ggccphmhcek0c8l",
-                "content-type": "application/json"
-            },
-            success: function (data) {
-                console.info(12,data);
-            }
-        });
     },
 
     //添加一级分类
