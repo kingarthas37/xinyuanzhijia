@@ -13,6 +13,7 @@ let config = require('../../../lib/config');
 //class
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
+let Product = AV.Object.extend('Product');
 
 //lib
 let pager = require('../../../lib/component/pager');
@@ -30,6 +31,10 @@ router.get('/', (req, res) => {
     if(!req.AV.user) {
         return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
+
+    data = extend(data,{
+        user:req.AV.user
+    });
 
     {
         let query1 = new AV.Query(ProductCategory1);
@@ -131,22 +136,33 @@ router.get('/remove-category-1', (req, res) => {
 
 //删除二级分类
 router.get('/remove-category-2', (req, res) => {
-
-    let query = new AV.Query(ProductCategory2);
+    
+    let queryCategory2 = new AV.Query(ProductCategory2);
+    let queryProduct = new AV.Query(Product);
     
     let category1Id = parseInt(req.query.category1Id);
     let category2Id = parseInt(req.query.category2Id);
 
-    query.equalTo('category2Id', category2Id);
+    //查询product是否含有category2,否则无法删除
+    queryProduct.equalTo('category2Id',category2Id);
+    queryProduct.first().then(item => {
+        
+        if(item) {
+            res.send({success:0,message:'已有产品引用该分类,无法删除'});
+            return AV.Promise.error();
+        }
 
-    query.first().done(item => {
+        queryCategory2.equalTo('category2Id', category2Id);
+        return queryCategory2.first();
+        
+    }).done(item => {
 
         item.destroy().done(() => {
 
             let query = new AV.Query(ProductCategory2);
             query.equalTo('category1Id',category1Id);
             query.ascending('index');
-            
+
             return query.find();
 
         }).done(items => {
@@ -160,6 +176,7 @@ router.get('/remove-category-2', (req, res) => {
 
         }).done(()=>res.send({success: 1}));
     });
+    
 });
 
 
