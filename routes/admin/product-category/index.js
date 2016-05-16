@@ -32,9 +32,10 @@ router.get('/', (req, res) => {
         return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
 
-    data = extend(data,{
-        user:req.AV.user
-    });
+    res.cookie('x_lc_sign',data.x_lc_sign);
+    res.cookie('x_lc_session',req.AV.user._sessionToken);
+    
+    data = extend(data,{user:req.AV.user});
 
     {
         let query1 = new AV.Query(ProductCategory1);
@@ -64,6 +65,7 @@ router.get('/', (req, res) => {
                     return a.get('index') > b.get('index');
                 });
             });
+            
             return res.render('admin/product-category', data);
         });
 

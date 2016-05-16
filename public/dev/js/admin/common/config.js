@@ -32,7 +32,8 @@ window.leanApp = {
 //lean app header info
 window.leanAppHeader = {
     'x-lc-id':leanApp.appdId,
-    'X-lc-sign':x_lc_sign,
-    'content-type':'application/json',
-    'X-lc-prod':env() === 'production' ? 1 : 0
+    'x-lc-sign': $.cookie('x_lc_sign') || '',
+    'x-lc-session': $.cookie('x_lc_session') || '',
+    'x-lc-prod':env() === 'production' ? 1 : 0,
+    'content-type':'application/json'
 };

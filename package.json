@@ -78,6 +78,7 @@
     "jquery-validate": "./public/js/jquery.validate.min.js",
     "zclip": "./public/js/ZeroClipboard.min.js",
     "jquery-form": "./public/js/jquery.form.min.js",
+    "jquery-cookie":"./public/js/jquery.cookie.js",
     "flash-detect": "./public/js/flash.detect.min.js",
     "bloodhound": "./public/js/bloodhound.min.js",
     "typeahead": "./public/js/typeahead.jquery.min.js",
