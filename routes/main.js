@@ -16,6 +16,10 @@ module.exports = {
     '/admin/product/upload':require('./admin/product/upload'),
     //'/admin/product/preview':require('./admin/product/preview')
     
-    '/admin/product-category':require('./admin/product-category')
+    '/admin/product-category':require('./admin/product-category'),
+    
+    '/admin/product-method':require('./admin/product-method'),
+    '/admin/product-method/add':require('./admin/product-method/add'),
+    '/admin/product-method/edit':require('./admin/product-method/edit')
     
 };
