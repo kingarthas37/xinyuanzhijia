@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
     }
 
     let page = req.query.page ? parseInt(req.query.page) : 1;
-    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.LIMIT;
+    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let order = req.query.order || 'desc';
     
     let search = req.query['search'] ? req.query['search'].trim() : '';
@@ -52,8 +52,12 @@ router.get('/', (req, res) => {
 
             query.count().done(count => {
                 data = extend(data, {
-                    productMethodPager: pager(page, limit, count),
-                    productMethodCount: count
+                    pager:pager.init(page,limit,count),
+                    pagerHtml:pager.initHtml({
+                        page,limit,count,
+                        url:'/admin/product-method',
+                        serialize:{page,search,limit}
+                    })
                 });
                 resolve();
             });
@@ -64,23 +68,29 @@ router.get('/', (req, res) => {
         new AV.Promise(resolve => {
 
             let query = new AV.Query(ProductMethod);
-            query.skip((page - 1) * limit);
-            query.limit(limit);
 
-            if (order === 'asc') {
-                query.ascending('productId');
-            } else {
-                query.descending('productId');
+            //查询条件
+            {
+                query.skip((page - 1) * limit);
+                query.limit(limit);
+                query[order === 'asc' ? 'ascending' : 'descending']('productMethodId');
+                
+                if (search) {
+                    query.contains('name', search);
+                }
             }
-
-            if (search) {
-                query.contains('name', search);
-            }
-
+            
             query.find().then(items => {
+                
+                items.forEach( n => {
+                    n.createdDate = `${n.updatedAt.getFullYear()}/${n.createdAt.getMonth() + 1}/${n.createdAt.getDate()}`;
+                    n.updatedDate = `${n.updatedAt.getFullYear()}/${n.updatedAt.getMonth() + 1}/${n.updatedAt.getDate()}`;
+                });
+                
                 data = extend(data, {
                     productMethod:items
                 });
+                
                 resolve();
             });
 

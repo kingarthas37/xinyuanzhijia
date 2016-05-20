@@ -59,12 +59,8 @@
                     <tr>
                         <td><a href="/admin/product-method/edit/<%= productMethod[i].get('productMethodId') %>"><%= productMethod[i].get('name') %></a></td>
                         <td><%= productMethod[i].get('label') %></td>
-                        <td class="t-c small-screen-hide">
-                            <%=(productMethod[i].updatedAt.getMonth()+1)%>-<%=productMethod[i].updatedAt.getDate()%>
-                        </td>
-                        <td class="t-c small-screen-hide">
-                            <a href="javascript:;" data-id="<%= productMethod[i].get('productMethodId') %>" class="remove-product-method">删除</a>
-                        </td>
+                        <td class="t-c small-screen-hide"><%=productMethod[i].updatedDate%></td>
+                        <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= productMethod[i].get('productMethodId') %>" class="remove-product-method">删除</a></td>
                     </tr>
                     <% } %>
                     </tbody>
@@ -73,19 +69,10 @@
                 <div class="am-pager am-cf">
                     <div class="am-fl">
                         <ul class="am-pagination">
-                            <% if (productMethodPager.prev) { %>
-                            <li>
-                                <a href="/admin/product?page=<%= productMethodPager.prev %><% if (category1Id) {%>&category1Id=<%=category1Id%> <%}%><% if (search) {%>&product-search=<%=search%> <%}%>">上一页</a>
-                            </li>
-                            <% } %>
-                            <% if (productMethodPager.next) { %>
-                            <li>
-                                <a href="/admin/product?page=<%= productMethodPager.next %><% if (category1Id) {%>&category1Id=<%=category1Id%> <%}%><% if (search) {%>&product-search=<%=search%> <%}%>">下一页</a>
-                            </li>
-                            <% } %>
+                            <%- pagerHtml %>
                         </ul>
                     </div>
-                    <div class="am-fr">第<%=productMethodPager.page%>页 共<%=productMethodCount%>条</div>
+                    <div class="am-fr">第<%=pager.page%>页 共<%=pager.count%>条</div>
                 </div>
 
                 <div class="am-form-group">
