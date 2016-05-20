@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let order = req.query.order || 'desc';
     
-    let search = req.query['search'] ? req.query['search'].trim() : '';
+    let search = req.query.search ? req.query.search.trim() : '';
 
     data = extend(data,{
         search: search,
@@ -45,11 +45,11 @@ router.get('/', (req, res) => {
         new AV.Promise(resolve => {
 
             let query = new AV.Query(ProductMethod);
-
-            if (search) {
+            
+            if (search.length) {
                 query.contains('name', search);
             }
-
+            
             query.count().done(count => {
                 data = extend(data, {
                     pager:pager.init(page,limit,count),
@@ -75,7 +75,7 @@ router.get('/', (req, res) => {
                 query.limit(limit);
                 query[order === 'asc' ? 'ascending' : 'descending']('productMethodId');
                 
-                if (search) {
+                if (search.length) {
                     query.contains('name', search);
                 }
             }
