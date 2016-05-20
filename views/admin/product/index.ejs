@@ -74,7 +74,7 @@
                     <tr>
                         <td><a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name') %></a></td>
                         <td class="t-c small-screen-hide">
-                            <%=(product[i].updatedAt.getMonth()+1)%>-<%=product[i].updatedAt.getDate()%>
+                            <%= product[i].updatedDate %>
                         </td>
                         <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= product[i].get('productId') %>" class="remove-product">删除</a></td>
                     </tr>
@@ -85,20 +85,11 @@
                 <div class="am-pager am-cf">
                     <div class="am-fl">
                         <ul class="am-pagination">
-                            <% if (productPager.prev) { %>
-                            <li>
-                                <a href="/admin/product?page=<%= productPager.prev %><% if (category1Id) {%>&category1Id=<%=category1Id%> <%}%><% if (search) {%>&product-search=<%=search%> <%}%>">上一页</a>
-                            </li>
-                            <% } %>
-                            <% if (productPager.next) { %>
-                            <li>
-                                <a href="/admin/product?page=<%= productPager.next %><% if (category1Id) {%>&category1Id=<%=category1Id%> <%}%><% if (search) {%>&product-search=<%=search%> <%}%>">下一页</a>
-                            </li>
-                            <% } %>
+                            <%- pagerHtml %>
                         </ul>
                     </div>
                     <div class="am-fr">
-                        第<%=productPager.page%>页 共<%=productCount%>条
+                        第<%=pager.page%>页 共<%=pager.count%>条
                     </div>
                 </div>
 

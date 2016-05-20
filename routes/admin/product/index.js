@@ -31,20 +31,20 @@ router.get('/', (req, res) => {
     }
 
     let page = req.query.page ? parseInt(req.query.page) : 1;
-    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.LIMIT;
+    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let order = req.query.order || 'desc';
 
     let category1Id = req.query.category1Id ? parseInt(req.query.category1Id) : '';
     let category2Id = req.query.category2Id ? parseInt(req.query.category2Id) : '';
 
-    let search = req.query['search'] ? req.query['search'].trim() : '';
+    let search = req.query.search ? req.query.search.trim() : '';
 
     data = extend(data,{
-        search: search,
+        search,
         flash: {success: req.flash('success'), error: req.flash('error')},
         user: req.AV.user,
-        category1Id:category1Id,
-        category2Id:category2Id,
+        category1Id,
+        category2Id,
         category1:[],
         category2:[]
     });
@@ -57,18 +57,24 @@ router.get('/', (req, res) => {
 
             if (category2Id) {
                 query.equalTo('category2Id', category2Id);
-            } else if (category1Id) {
+            }
+            
+            if (category1Id) {
                 query.equalTo('category1Id', category1Id);
             }
             
-            if (search) {
+            if (search.length) {
                 query.contains('name', search);
             }
             
             query.count().done(count => {
                 data = extend(data, {
-                    productPager: pager(page, limit, count),
-                    productCount: count
+                    pager:pager.init(page,limit,count),
+                    pagerHtml:pager.initHtml({
+                        page,limit,count,
+                        url:'/admin/product',
+                        serialize:{page,search}
+                    })
                 });
                 resolve();
             });
@@ -99,6 +105,12 @@ router.get('/', (req, res) => {
             }
             
             query.find().then(items => {
+
+                items.forEach( n => {
+                    n.createdDate = `${n.updatedAt.getFullYear()}/${n.createdAt.getMonth() + 1}/${n.createdAt.getDate()}`;
+                    n.updatedDate = `${n.updatedAt.getFullYear()}/${n.updatedAt.getMonth() + 1}/${n.updatedAt.getDate()}`;
+                });
+
                 data = extend(data, {
                     product: items
                 });
