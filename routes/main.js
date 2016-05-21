@@ -14,7 +14,7 @@ module.exports = {
     '/admin/product/add':require('./admin/product/add'),
     '/admin/product/edit':require('./admin/product/edit'),
     '/admin/product/upload':require('./admin/product/upload'),
-    //'/admin/product/preview':require('./admin/product/preview')
+    '/admin/product/preview':require('./admin/product/preview'),
     
     '/admin/product-category':require('./admin/product-category'),
     

@@ -169,7 +169,17 @@ module.exports = {
     
     //提交时状态设置
     submitControl:function() {
+        
         let submit = $('#submit');
+
+        $('form :submit').click(function() {
+            $('form').attr({
+                'action':$(this).data('action'),
+                'target':$(this).data('target')
+            });
+            return true;
+        });
+        
         $('.am-form').validator({
             submit:function() {
                 if(!this.isFormValid()){
