@@ -10,21 +10,30 @@ module.exports = {
 
         let category1 = $('.select-category-1');
         let category2 = $('.select-category-2');
+        let productMethod = $('.select-product-method');
+        
         let alert = $('#modal-alert');
 
         category1.change(function() {
-            if(this.value > 0 ) {
-                return location.href = `/admin/product?category1Id=${this.value}`;
+            if(this.value) {
+                return location.href = `/admin/product?category1-id=${this.value}`;
             } 
             location.href = '/admin/product';
         });
 
         category2.change(function() {
             let category1Id = category1.val();
-            if(this.value > 0 ) {
-                return location.href = `/admin/product?category1Id=${category1Id}&category2Id=${this.value}`;
+            if(this.value) {
+                return location.href = `/admin/product?category1-id=${category1Id}&category2-id=${this.value}`;
             }
-            location.href = `/admin/product?category1Id=${category1Id}`;
+            location.href = `/admin/product?category1-id=${category1Id}`;
+        });
+
+        productMethod.change(function() {
+            if(this.value) {
+                return location.href = `/admin/product?product-method-id=${this.value}`;
+            }
+            location.href = '/admin/product';
         });
         
         $('.remove-product').click(function() {
