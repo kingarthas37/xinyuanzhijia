@@ -46,8 +46,9 @@
                         <label for="select-product-method">请选择产品类型<i>*</i>:</label>
                         <div>
                             <select id="select-product-method" name="select-product-method" required>
+                                <option value="">请选择产品类型</option>
                                 <% for (var i=0;i < productMethod.length; i++) { %>
-                                <option value="<%= productMethod[i].get('productMethodId'); %>"> <%= productMethod[i].get('name'); %> </option>
+                                <option value="<%= productMethod[i].get('productMethodId'); %>"><%= productMethod[i].get('name'); %></option>
                                 <% } %>
                             </select>
                         </div>
@@ -59,10 +60,7 @@
                         <label for="select-category-1">选择商品一级分类<i>*</i>:</label>
                         <div>
                             <select id="select-category-1" name="select-category-1" required>
-                                <option value="">请选择商品分类</option>
-                                <% for (var i=0;i < category1.length; i++) { %>
-                                <option value="<%= category1[i].get('category1Id'); %>"> <%= category1[i].get('name'); %> </option>
-                                <% } %>
+                                <option value="">请选择商品一级分类</option>
                             </select>
                         </div>
                     </div>
@@ -73,7 +71,7 @@
                         <label for="select-category-2">选择商品二级分类<i>*</i>:</label>
                         <div>
                             <select id="select-category-2" name="select-category-2" required >
-                                <option value="">请选择商品分类</option>
+                                <option value="">请选择商品二级分类</option>
                             </select>
                         </div>
                     </div>

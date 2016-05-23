@@ -35,16 +35,7 @@ router.get('/', (req, res) => {
         user:req.AV.user
     });
     
-    
     AV.Promise.when(
-
-        new AV.Promise(resolve => {
-            let query = new AV.Query(ProductCategory1);
-            query.find().then(category1 => {
-                data = extend(data, {category1});
-                resolve();
-            });
-        }),
 
         new AV.Promise(resolve => {
             let query = new AV.Query(Banner);
@@ -63,7 +54,6 @@ router.get('/', (req, res) => {
         })
         
     ).then(() => res.render('admin/product/add', data));
-    
 
 });
 

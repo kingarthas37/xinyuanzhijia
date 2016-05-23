@@ -94,16 +94,36 @@ module.exports = {
     //一级,二级分类选择
     setCategory:function() {
       
-        let $select1 = $('#select-category-1');
-        let $select2 = $('#select-category-2');
-        let submit = $('#submit');
+        let $selectProductMethod = $('#select-product-method');
+        let $selectCategory1 = $('#select-category-1');
+        let $selectCategory2 = $('#select-category-2');
+
+        $selectProductMethod.change(function() {
+           
+            let productMethodId = parseInt(this.value);
+            $selectCategory1.find('option:not(:first)').detach();
+            $selectCategory2.find('option:not(:first)').detach();
+
+            $.get({
+                url:`${leanApp.api}classes/ProductCategory1`,
+                headers:leanAppHeader,
+                data:`where={"productMethodId":${productMethodId}}`
+            }).done(data => {
+                let options = ``;
+                $.each(data.results,(i,n)=>{
+                    options += `<option value="${n.category1Id}">${n.name}</option>`;
+                });
+                $selectCategory1.append(options);
+            });
+            return false;
+            
+        });
         
-        $select1.change(function() {
-            if(submit.data('state')) {
-                return false;
-            }
-            let category1Id = this.value;
-            $select2.find('option').detach();
+        $selectCategory1.change(function() {
+            
+            let category1Id = parseInt(this.value);
+            $selectCategory2.find('option:not(:first)').detach();
+            
             $.get({
                 url:leanApp.api + 'classes/ProductCategory2',
                 headers:leanAppHeader,
@@ -113,12 +133,12 @@ module.exports = {
                 $.each(data.results,(i,n)=>{
                     options += `<option value="${n.category2Id}">${n.name}</option>`;
                 });
-                $select2.append(options);
+                $selectCategory2.append(options);
             });
             return false;
         });
         
-        $select2.change(function() {
+        $selectCategory2.change(function() {
             return false;
         });
         
