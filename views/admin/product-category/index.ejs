@@ -23,6 +23,22 @@
         </div>
 
         <div class="am-g">
+            <form class="am-form">
+                <div class="am-u-sm-12 am-u-md-3">
+                    <div class="am-form-group">
+                        <select class="select-product-method">
+                            <option value="">请选择产品类型</option>
+                            <% for (var i=0;i < productMethod.length; i++) { %>
+                            <option <% if(productMethod[i].get('productMethodId') === productMethodId ) { %> selected="selected" <% } %>
+                            value="<%= productMethod[i].get('productMethodId'); %>"><%= productMethod[i].get('name');%></option><%
+                            } %>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="am-g">
             <div class="am-u-sm-12">
 
                 <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion>
@@ -59,7 +75,9 @@
                     <%}%>
                 </section>
 
+                <% if(category.length) { %>
                 <p><button type="button" class="am-btn am-btn-primary btn-category-1-add">添加一级分类</button></p>
+                <% } %>
                 
             </div>
         </div>

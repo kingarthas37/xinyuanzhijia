@@ -7,6 +7,8 @@ module.exports = {
 
         this.container = $('.am-accordion');
 
+        this.selectProductMethod();
+        
         this.addCategory1();
         this.editCategory1();
         this.removeCategory1();
@@ -18,6 +20,13 @@ module.exports = {
         this.removeCategory2();
         this.moveCategory2Up();
         this.moveCategory2Down();
+    },
+    
+    //选择产品类型
+    selectProductMethod() {
+        $('.select-product-method').change(function() {
+            location.href = `/admin/product-category?product-method-id=${this.value}`;
+        });
     },
 
     //添加一级分类

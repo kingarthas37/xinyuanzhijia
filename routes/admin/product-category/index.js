@@ -13,6 +13,7 @@ let config = require('../../../lib/config');
 //class
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
+let ProductMethod = AV.Object.extend('ProductMethod');
 let Product = AV.Object.extend('Product');
 
 //lib
@@ -34,42 +35,69 @@ router.get('/', (req, res) => {
 
     res.cookie('x_lc_sign',data.x_lc_sign);
     res.cookie('x_lc_session',req.AV.user._sessionToken);
+
+    let productMethodId = req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 0;
     
-    data = extend(data,{user:req.AV.user});
+    data = extend(data,{
+        user:req.AV.user,
+        productMethodId
+    });
 
-    {
-        let query1 = new AV.Query(ProductCategory1);
-        let query2 = new AV.Query(ProductCategory2);
-
-        //按index排序
-        query1.ascending('index');
-        query1.find().done(items=> {
-
-            data = extend(data, {
-                category: items
+    AV.Promise.when(
+        
+        //product method
+        new AV.Promise(resolve => {
+            let query = new AV.Query(ProductMethod);
+            query.find().done(productMethod => {
+                data = extend(data, {productMethod});
+                resolve();
             });
+        }),
+        
+        //category1,2
+        new AV.Promise(resolve => {
 
-            return query2.find();
+            let query1 = new AV.Query(ProductCategory1);
+            let query2 = new AV.Query(ProductCategory2);
+
+            {
+                //按index排序
+                query1.ascending('index');
+                
+                //productMethod
+                query1.equalTo('productMethodId',productMethodId);
+            }
             
-        }).done(items2 => {
+            query1.find().done(items=> {
 
-            data.category.forEach(item1 => {
-                item1.contents = [];
-                items2.forEach(item2 => {
-                    if (item1.get('category1Id') === item2.get('category1Id')) {
-                        item1.contents.push(item2);
-                    }
+                data = extend(data, {
+                    category: items
                 });
-                //对二级分类进行index排序
-                item1.contents.sort((a,b)=> {
-                    return a.get('index') > b.get('index');
+
+                return query2.find();
+
+            }).done(items2 => {
+
+                data.category.forEach(item1 => {
+                    item1.contents = [];
+                    items2.forEach(item2 => {
+                        if (item1.get('category1Id') === item2.get('category1Id')) {
+                            item1.contents.push(item2);
+                        }
+                    });
+                    //对二级分类进行index排序
+                    item1.contents.sort((a,b)=> {
+                        return a.get('index') > b.get('index');
+                    });
                 });
+                
+                resolve();
+
             });
             
-            return res.render('admin/product-category', data);
-        });
-
-    }
+        })
+        
+    ).then(() => res.render('admin/product-category', data));
 
 });
 
