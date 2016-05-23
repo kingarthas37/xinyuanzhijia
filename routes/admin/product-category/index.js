@@ -134,7 +134,7 @@ router.get('/remove-category-1', (req, res) => {
     query2.first().then(item => {
         
         if(item) {
-            res.send({success: 0,message:'改分类含有子分类,请先删除所有子分类再进行删除'});
+            res.send({success: 0,message:'该分类含有子分类,请先删除所有子分类再进行删除'});
             return AV.Promise.error();
         }
 

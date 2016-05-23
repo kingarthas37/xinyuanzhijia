@@ -24,7 +24,11 @@ module.exports = {
     
     //选择产品类型
     selectProductMethod() {
-        $('.select-product-method').change(function() {
+        let select = $('.select-product-method');
+        
+        this.productMethodId = select.val() ? parseInt(select.val()) : 0;
+        
+        select.change(function() {
             location.href = `/admin/product-category?product-method-id=${this.value}`;
         });
     },
@@ -35,7 +39,8 @@ module.exports = {
         let modal = $('#modal-category-1-add');
         let input = $('#input-category-1-add');
         let confirm = $('#modal-category-1-confirm-add');
-
+        let productMethodId = this.productMethodId;
+        
         $('.btn-category-1-add').click(function () {
             input.val('');
             modal.modal({
@@ -57,7 +62,8 @@ module.exports = {
                 headers: leanAppHeader,
                 data: JSON.stringify({
                     index: $('.am-accordion-item').length,
-                    name: $.trim(input.val()) ? $.trim(input.val()) : '无分类名'
+                    name: $.trim(input.val()) ? $.trim(input.val()) : '无分类名',
+                    productMethodId
                 }),
                 success: function () {
                     $.AMUI.progress.done();
@@ -79,6 +85,7 @@ module.exports = {
         let confirm = $('#modal-category-1-confirm-edit');
         let alert = $('#modal-alert');
 
+        let productMethodId = this.productMethodId;
         let currentId = null;
 
         $('.edit-category-1').each(function () {
@@ -109,10 +116,11 @@ module.exports = {
             }).done(data => {
                 return $.ajax({
                     type: 'PUT',
-                    url: leanApp.api + 'classes/ProductCategory1/' + data.results[0].objectId,
+                    url: `${leanApp.api}classes/ProductCategory1/${data.results[0].objectId}`,
                     headers: leanAppHeader,
                     data: JSON.stringify({
-                        name: $.trim(input.val())
+                        name: $.trim(input.val()),
+                        productMethodId
                     })
                 });
             }).done(() => {

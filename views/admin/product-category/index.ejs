@@ -29,9 +29,7 @@
                         <select class="select-product-method">
                             <option value="">请选择产品类型</option>
                             <% for (var i=0;i < productMethod.length; i++) { %>
-                            <option <% if(productMethod[i].get('productMethodId') === productMethodId ) { %> selected="selected" <% } %>
-                            value="<%= productMethod[i].get('productMethodId'); %>"><%= productMethod[i].get('name');%></option><%
-                            } %>
+                            <option <% if(productMethod[i].get('productMethodId') === productMethodId ) { %> selected="selected" <% } %> value="<%= productMethod[i].get('productMethodId'); %>"><%= productMethod[i].get('name');%></option><% } %>
                         </select>
                     </div>
                 </div>

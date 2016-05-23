@@ -12,6 +12,7 @@ let config = require('../../../lib/config');
 let pager = require('../../../lib/component/pager');
 
 //class
+let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductMethod = AV.Object.extend('ProductMethod');
 
 let data = extend(config.data, {
@@ -73,7 +74,7 @@ router.get('/', (req, res) => {
             {
                 query.skip((page - 1) * limit);
                 query.limit(limit);
-                query[order === 'asc' ? 'ascending' : 'descending']('productMethodId');
+                query.ascending('productMethodId');
                 
                 if (search.length) {
                     query.contains('name', search);
@@ -98,6 +99,31 @@ router.get('/', (req, res) => {
 
     ).then(() => res.render('admin/product-method', data));
 
+});
+
+
+router.post('/remove/:productMethodId',(req,res)=> {
+    
+    let productMethodId = parseInt(req.params.productMethodId);
+    
+    let query = new AV.Query(ProductCategory1);
+    query.equalTo('productMethodId',productMethodId);
+    
+    query.first().then(item => {
+        
+        if(item) {
+            res.send({success: 0,message:'该产品类型含有分类,请先删除所有子分类后再进行删除'});
+            return AV.Promise.error();
+        }
+        
+        let query = new AV.Query(ProductMethod);
+        query.equalTo('productMethodId',productMethodId);
+        return query.first();
+        
+    }).then(item => {
+        return item.destroy();
+    }).then(() => res.send({success: 1}));
+    
 });
 
 module.exports = router;
