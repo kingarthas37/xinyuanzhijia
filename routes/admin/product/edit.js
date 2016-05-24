@@ -13,6 +13,7 @@ var markdown = require("markdown").markdown;
 let Product = AV.Object.extend('Product');
 let ProductHistory = AV.Object.extend('ProductHistory');
 
+let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
 
@@ -97,9 +98,15 @@ router.get('/:productId', function (req, res, next) {
                 data = extend(data, {
                     category1: items
                 });
-
                 resolve();
             });
+        }),
+        new AV.Promise(resolve => {
+            let query = new AV.Query(ProductMethod);
+            query.find().then(productMethod => {
+                data = extend(data,{productMethod});
+            });
+            resolve();
         })
     ).then(()=> res.render('admin/product/edit', data));
 
@@ -114,6 +121,7 @@ router.post('/:productId', (req, res) => {
     let name = req.body['name'];
     let nameEn = req.body['name-en'];
     let mainImage = req.body['main-image'] ? JSON.parse(req.body['main-image']) : null;
+    let productMethodId = parseInt(req.body['select-product-method']);
     let category1Id = parseInt(req.body['select-category-1']);
     let category2Id = parseInt(req.body['select-category-2']);
     let bannerId = parseInt(req.body['banner-id']);
@@ -142,6 +150,7 @@ router.post('/:productId', (req, res) => {
         product.set('name', name);
         product.set('nameEn', nameEn);
         product.set('mainImage', mainImage);
+        product.set('productMethodId',productMethodId);
         product.set('category1Id', category1Id);
         product.set('category2Id', category2Id);
         product.set('bannerId', bannerId);
@@ -158,12 +167,12 @@ router.post('/:productId', (req, res) => {
         product.set('detailImage', detailImage);
         product.set('video', video);
         
-        
         let productHistory = new ProductHistory();
         productHistory.set('productId',productId);
         productHistory.set('name', name);
         productHistory.set('nameEn', nameEn);
         productHistory.set('mainImage', mainImage);
+        productHistory.set('productMethodId',productMethodId);
         productHistory.set('category1Id', category1Id);
         productHistory.set('category2Id', category2Id);
         productHistory.set('bannerId', bannerId);
@@ -179,6 +188,7 @@ router.post('/:productId', (req, res) => {
         productHistory.set('useEn', useEn);
         productHistory.set('detailImage', detailImage);
         productHistory.set('video', video);
+       
         productHistory.set('product',product);
         
         return productHistory.save();

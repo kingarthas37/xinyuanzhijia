@@ -42,12 +42,26 @@
                     <!-- name end -->
 
                     <hr>
+
+                    <!-- select productMethod start -->
+                    <div class="am-form-group">
+                        <label for="select-product-method">请选择产品类型<i>*</i>:</label>
+                        <div>
+                            <select id="select-product-method" name="select-product-method" required data-am-selected>
+                                <option value="">请选择产品类型</option>
+                                <% for (var i=0;i < productMethod.length; i++) { %>
+                                <option <% if (productMethod[i].get('productMethodId') === product.get('productMethodId')){ %> selected="selected" <% } %> value="<%= productMethod[i].get('productMethodId'); %>"><%= productMethod[i].get('name'); %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- select productMethod end -->
                     
-                    <!-- select category start -->
+                    <!-- select category1 start -->
                     <div class="am-form-group">
                         <label for="select-category-1">选择商品一级分类<i>*</i>:</label>
                         <div>
-                            <select id="select-category-1" name="select-category-1" required>
+                            <select id="select-category-1" name="select-category-1" required data-am-selected>
                                 <option value="">请选择商品分类</option>
                                 <% for (var i=0;i < category1.length; i++) { %>
                                 <option <% if (category1[i].get('category1Id') === product.get('category1Id')){ %> selected="selected" <% } %> value="<%= category1[i].get('category1Id'); %>" ><%=category1[i].get('name'); %> </option>
@@ -55,15 +69,13 @@
                             </select>
                         </div>
                     </div>
-                    <!-- select category end -->
-
-                    <hr/>
-
-                    <!-- select category start -->
+                    <!-- select category1 end -->
+                    
+                    <!-- select category2 start -->
                     <div class="am-form-group">
                         <label for="select-category-2">选择商品二级分类<i>*</i>:</label>
                         <div>
-                            <select id="select-category-2" name="select-category-2" required >
+                            <select id="select-category-2" name="select-category-2" required data-am-selected>
                                 <option value="">请选择商品分类</option>
                                 <% for (var i=0;i < category2.length; i++) { %>
                                 <option <% if (category2[i].get('category2Id') === product.get('category2Id')){ %> selected="selected" <% } %> value="<%= category2[i].get('category2Id'); %>" ><%=category2[i].get('name'); %> </option>
@@ -71,7 +83,7 @@
                             </select>
                         </div>
                     </div>
-                    <!-- select category end -->
+                    <!-- select category2 end -->
 
                     <hr/>
 
