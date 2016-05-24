@@ -83,7 +83,7 @@
                     <div class="am-form-group am-form-select">
                         <label for="select-banner">选择商品匹配的 Banner：</label>
                         <div>
-                            <select id="select-banner" name="select-banner">
+                            <select id="select-banner" name="select-banner" data-am-selected>
                                 <option value="">不选择</option>
                                 <% for(var i=0;i< banner.length; i++) { %>
                                 <option value="<%= banner[i].get('bannerId') %>" data-src="<%= banner[i].get('bannerUrl') %>"><%= banner[i].get('bannerText') %></option>

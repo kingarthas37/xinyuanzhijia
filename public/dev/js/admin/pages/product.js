@@ -100,6 +100,7 @@ module.exports = {
 
         $selectProductMethod.change(function() {
 
+            alert('1 change');
             $selectCategory1.find('option:not(:first)').detach();
             $selectCategory2.find('option:not(:first)').detach();
             
@@ -119,6 +120,9 @@ module.exports = {
                     options += `<option value="${n.category1Id}">${n.name}</option>`;
                 });
                 $selectCategory1.append(options);
+                if (!$.AMUI.support.mutationobserver) {
+                    $selectCategory1.trigger('changed.selected.amui');
+                }
             });
             return false;
             
