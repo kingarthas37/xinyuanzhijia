@@ -73,6 +73,10 @@ footer p {
 .am-topbar-brand a, .am-topbar-brand small {
   color: #fff; }
 
+@media only screen and (max-width: 640px) {
+  .am-topbar-brand a, .am-topbar-brand small {
+    color: #666; } }
+
 .am-form iframe.upload {
   width: 100%;
   height: 32px; }
