@@ -99,10 +99,15 @@ module.exports = {
         let $selectCategory2 = $('#select-category-2');
 
         $selectProductMethod.change(function() {
-           
-            let productMethodId = parseInt(this.value);
+
             $selectCategory1.find('option:not(:first)').detach();
             $selectCategory2.find('option:not(:first)').detach();
+            
+            if(!this.value) {
+                return false;
+            }
+            
+            let productMethodId = parseInt(this.value);
 
             $.get({
                 url:`${leanApp.api}classes/ProductCategory1`,
@@ -120,9 +125,14 @@ module.exports = {
         });
         
         $selectCategory1.change(function() {
+
+            $selectCategory2.find('option:not(:first)').detach();
+
+            if(!this.value){
+                return false;
+            }
             
             let category1Id = parseInt(this.value);
-            $selectCategory2.find('option:not(:first)').detach();
             
             $.get({
                 url:leanApp.api + 'classes/ProductCategory2',
