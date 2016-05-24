@@ -14,26 +14,28 @@ module.exports = {
         
         let alert = $('#modal-alert');
 
-        category1.change(function() {
-            if(this.value) {
-                return location.href = `/admin/product?category1-id=${this.value}`;
-            } 
-            location.href = '/admin/product';
-        });
-
-        category2.change(function() {
-            let category1Id = category1.val();
-            if(this.value) {
-                return location.href = `/admin/product?category1-id=${category1Id}&category2-id=${this.value}`;
-            }
-            location.href = `/admin/product?category1-id=${category1Id}`;
-        });
-
         productMethod.change(function() {
             if(this.value) {
                 return location.href = `/admin/product?product-method-id=${this.value}`;
             }
             location.href = '/admin/product';
+        });
+
+        category1.change(function() {
+            let productMethodId = productMethod.val();
+            if(this.value) {
+                return location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${this.value}`;
+            } 
+            location.href = `/admin/product?product-method-id=${productMethodId}`;
+        });
+
+        category2.change(function() {
+            let productMethodId = productMethod.val();
+            let category1Id = category1.val();
+            if(this.value) {
+                return location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${category1Id}&category2-id=${this.value}`;
+            }
+            location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${category1Id}`;
         });
         
         $('.remove-product').click(function() {

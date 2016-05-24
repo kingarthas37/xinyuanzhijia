@@ -58,12 +58,12 @@ router.get('/', (req, res) => {
 
             let query = new AV.Query(Product);
 
-            if (category2Id) {
+            if(category2Id) {
                 query.equalTo('category2Id', category2Id);
-            }
-
-            if (category1Id) {
+            } else if(category1Id) {
                 query.equalTo('category1Id', category1Id);
+            } else if(productMethodId) {
+                query.equalTo('productMethodId',productMethodId);
             }
 
             if (search.length) {
@@ -98,16 +98,12 @@ router.get('/', (req, res) => {
 
             query[order === 'asc' ? 'ascending' : 'descending']('productId');
 
-            if (productMethodId) {
-                query.equalTo('productMethodId', productMethodId);
-            }
-
-            if (category1Id) {
-                query.equalTo('category1Id', category1Id);
-            }
-
-            if (category2Id) {
+            if(category2Id) {
                 query.equalTo('category2Id', category2Id);
+            } else if(category1Id) {
+                query.equalTo('category1Id', category1Id);
+            } else if(productMethodId) {
+                query.equalTo('productMethodId',productMethodId);
             }
 
             if (search.length) {
@@ -129,17 +125,30 @@ router.get('/', (req, res) => {
 
         }),
 
+        //查询productMethod
+        new AV.Promise(resolve => {
+
+            let query = new AV.Query(ProductMethod);
+            query.find().then(productMethod => {
+                data = extend(data, {productMethod});
+                resolve();
+            });
+
+        }),
+        
         //查询category1
         new AV.Promise(resolve => {
 
+            if(!productMethodId) {
+                return resolve();
+            }
+            
             let query = new AV.Query(ProductCategory1);
-            query.ascending('index');
-
+            query.equalTo('productMethodId', productMethodId);
             query.find().then(category1 => {
                 data = extend(data, {category1});
                 resolve();
             });
-
         }),
 
         //查询categoty2
@@ -152,19 +161,7 @@ router.get('/', (req, res) => {
             let query = new AV.Query(ProductCategory2);
             query.equalTo('category1Id', category1Id);
             query.find().then(category2 => {
-                console.info(category2);
                 data = extend(data, {category2});
-                resolve();
-            });
-
-        }),
-
-        //查询productMethod
-        new AV.Promise(resolve => {
-
-            let query = new AV.Query(ProductMethod);
-            query.find().then(productMethod => {
-                data = extend(data, {productMethod});
                 resolve();
             });
 
