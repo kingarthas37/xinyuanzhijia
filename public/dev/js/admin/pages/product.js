@@ -97,10 +97,8 @@ module.exports = {
         let $selectProductMethod = $('#select-product-method');
         let $selectCategory1 = $('#select-category-1');
         let $selectCategory2 = $('#select-category-2');
-
         $selectProductMethod.change(function() {
 
-            alert('1 change');
             $selectCategory1.find('option:not(:first)').detach();
             $selectCategory2.find('option:not(:first)').detach();
             
@@ -120,11 +118,7 @@ module.exports = {
                     options += `<option value="${n.category1Id}">${n.name}</option>`;
                 });
                 $selectCategory1.append(options);
-                if (!$.AMUI.support.mutationobserver) {
-                    $selectCategory1.trigger('changed.selected.amui');
-                }
             });
-            return false;
             
         });
         
@@ -149,11 +143,10 @@ module.exports = {
                 });
                 $selectCategory2.append(options);
             });
-            return false;
         });
         
         $selectCategory2.change(function() {
-            return false;
+            
         });
         
     },
