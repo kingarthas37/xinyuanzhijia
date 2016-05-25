@@ -120,7 +120,9 @@ router.get('/', (req, res) => {
                 data = extend(data, {
                     product: items
                 });
+                
                 resolve();
+                
             });
 
         }),

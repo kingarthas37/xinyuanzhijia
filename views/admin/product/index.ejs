@@ -96,14 +96,11 @@
                     <tbody>
                     <% for(var i=0; i < product.length; i++) {%>
                     <tr>
-                        <td><a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')
-                            %></a></td>
+                        <td><a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a></td>
                         <td class="t-c small-screen-hide">
                             <%= product[i].updatedDate %>
                         </td>
-                        <td class="t-c small-screen-hide"><a href="javascript:;"
-                                                             data-id="<%= product[i].get('productId') %>"
-                                                             class="remove-product">删除</a></td>
+                        <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= product[i].get('productId') %>" class="remove-product">删除</a></td>
                     </tr>
                     <% } %>
                     </tbody>
