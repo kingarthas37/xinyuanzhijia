@@ -96,18 +96,22 @@ module.exports = {
     //一级,二级分类选择
     setCategory:function() {
       
-        let $selectProductMethod = $('#select-product-method');
-        let $selectCategory1 = $('#select-category-1');
-        let $selectCategory2 = $('#select-category-2');
-        $selectProductMethod.change(function() {
+        let categoryGroup = $('.category-group');
+        let $btnAddCategory = $('.btn-add-category');
 
+        categoryGroup.on('change','.select-product-method',function() {
+            
+            let group = $(this).parents('.group');
+            let $selectCategory1 = group.find('.select-category-1');
+            let $selectCategory2 = group.find('.select-category-2');
+            
             $selectCategory1.find('option:not(:first)').detach();
             $selectCategory2.find('option:not(:first)').detach();
-            
+
             if(!this.value) {
                 return false;
             }
-            
+
             let productMethodId = parseInt(this.value);
 
             $.get({
@@ -123,9 +127,14 @@ module.exports = {
             });
             
         });
-        
-        $selectCategory1.change(function() {
 
+
+
+        categoryGroup.on('change','.select-category-1',function() {
+
+            let group = $(this).parents('.group');
+            let $selectCategory2 = group.find('.select-category-2');
+            
             $selectCategory2.find('option:not(:first)').detach();
 
             if(!this.value){
@@ -147,8 +156,17 @@ module.exports = {
             });
         });
         
-        $selectCategory2.change(function() {
-            
+        //添加新category group并初始化
+        $btnAddCategory.click(function() {
+            let group = $(this).parents('.group');
+            let newGroup = group.clone();
+            newGroup.find('.am-selected').detach();
+            newGroup.find('select').removeAttr('data-am-selected').removeAttr('required');
+            newGroup.appendTo(categoryGroup);
+            newGroup.find('.select-category-1 option:not(:first)').detach();
+            newGroup.find('.select-category-2 option:not(:first)').detach();
+            newGroup.find('.btn-add-category').detach();
+            newGroup.find('select').amuiSelected();
         });
         
     },
@@ -159,12 +177,10 @@ module.exports = {
         var select = $('#select-banner');
         var bannerView = $('.banner-view');
         select.on('change',function() {
-            
             if(!this.value) {
                 bannerView.addClass('hide');
                 return false;
             }
-
             bannerView.removeClass('hide');
             bannerView.html(`<img width="400" src="${select.find('option:selected').attr('data-src')}"/>`);
         });
