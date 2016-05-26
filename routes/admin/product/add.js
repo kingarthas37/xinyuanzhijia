@@ -63,13 +63,19 @@ router.post('/', (req, res) => {
     if(!req.AV.user) {
         return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
-
+    
     let name = req.body['name'];
     let nameEn = req.body['name-en'];
     let mainImage = req.body['main-image'] ? JSON.parse(req.body['main-image']) : null;
-    let productMethodId = parseInt(req.body['select-product-method']);
-    let category1Id = parseInt(req.body['select-category-1']);
-    let category2Id = parseInt(req.body['select-category-2']);
+    
+    let produceMethod = getQueryData(req.body['select-product-method']);
+    let category1 = getQueryData(req.body['select-category-1']);
+    let category2 = getQueryData(req.body['select-category-2']);
+
+    updateQueryData(produceMethod,category1,category2);
+    
+    console.info(produceMethod, category1, category2);
+    
     let bannerId = parseInt(req.body['banner-id']);
     let detail = req.body['detail'];
     let detailEn = req.body['detail-en'];
@@ -134,6 +140,35 @@ router.post('/', (req, res) => {
     });
     
 });
+
+//对array或字符串数据处理,返回array
+function getQueryData(value) {
+    if(Object.prototype.toString.call(value) === '[object Array]') {
+        value = value.map(function(item) {
+            return parseInt(item);
+        });
+        return value;
+    }
+    return [parseInt(value)];
+}
+
+//筛选空的分类
+function updateQueryData(...items) {
+    let itemNan = [];
+    items.forEach((item,i)=> {
+        item.forEach((_item,_i)=> {
+            if(!_item) {
+                itemNan.push(_i);
+            }
+        });
+    });
+    itemNan = Array.from(new Set(itemNan)); //es6数组去重
+    items.forEach(item => {
+        itemNan.forEach((_item) => {
+            item.splice(_item,1);
+        });
+    });
+}
 
 
 module.exports = router;

@@ -95,13 +95,14 @@ module.exports = {
     
     //一级,二级分类选择
     setCategory:function() {
-      
+        
         let categoryGroup = $('.category-group');
         let $btnAddCategory = $('.btn-add-category');
 
         categoryGroup.on('change','.select-product-method',function() {
-            
-            let group = $(this).parents('.group');
+          
+            let $this = $(this);
+            let group = $this.parents('.group');
             let $selectCategory1 = group.find('.select-category-1');
             let $selectCategory2 = group.find('.select-category-2');
             
@@ -111,7 +112,12 @@ module.exports = {
             if(!this.value) {
                 return false;
             }
-
+            
+            if($this.data('state')) {
+                return false;
+            }
+            $this.data('state',true);
+            
             let productMethodId = parseInt(this.value);
 
             $.get({
@@ -119,6 +125,7 @@ module.exports = {
                 headers:leanAppHeader,
                 data:`where={"productMethodId":${productMethodId}}`
             }).done(data => {
+                $this.data('state',false);
                 let options = ``;
                 $.each(data.results,(i,n)=>{
                     options += `<option value="${n.category1Id}">${n.name}</option>`;
@@ -128,10 +135,9 @@ module.exports = {
             
         });
 
-
-
         categoryGroup.on('change','.select-category-1',function() {
 
+            let $this = $(this);
             let group = $(this).parents('.group');
             let $selectCategory2 = group.find('.select-category-2');
             
@@ -140,6 +146,11 @@ module.exports = {
             if(!this.value){
                 return false;
             }
+
+            if($this.data('state')) {
+                return false;
+            }
+            $this.data('state',true);
             
             let category1Id = parseInt(this.value);
             
@@ -148,12 +159,17 @@ module.exports = {
                 headers:leanAppHeader,
                 data:'where={"category1Id":'+ category1Id +'}'
             }).done(data => {
+                $this.data('state',false);
                 let options = ``;
                 $.each(data.results,(i,n)=>{
                     options += `<option value="${n.category2Id}">${n.name}</option>`;
                 });
                 $selectCategory2.append(options);
             });
+        });
+
+        categoryGroup.on('click','.btn-remove-category',function() {
+            $(this).parents('.group').detach();
         });
         
         //添加新category group并初始化
@@ -165,7 +181,8 @@ module.exports = {
             newGroup.appendTo(categoryGroup);
             newGroup.find('.select-category-1 option:not(:first)').detach();
             newGroup.find('.select-category-2 option:not(:first)').detach();
-            newGroup.find('.btn-add-category').detach();
+            newGroup.find('.btn-add-category').removeClass('btn-add-category').addClass('btn-remove-category').text('删除');
+            newGroup.find('label').detach();
             newGroup.find('select').amuiSelected();
         });
         
