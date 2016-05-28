@@ -67,13 +67,12 @@ router.post('/', (req, res) => {
     let name = req.body['name'];
     let nameEn = req.body['name-en'];
     let mainImage = req.body['main-image'] ? JSON.parse(req.body['main-image']) : null;
-    
     let produceMethod = getQueryData(req.body['select-product-method']);
     let category1 = getQueryData(req.body['select-category-1']);
     let category2 = getQueryData(req.body['select-category-2']);
     updateQueryData(produceMethod,category1,category2);
     
-    let bannerId = parseInt(req.body['banner-id']);
+    let bannerId = parseInt(req.body['select-banner']);
     let detail = req.body['detail'];
     let detailEn = req.body['detail-en'];
     let description = req.body['description'];
@@ -93,9 +92,9 @@ router.post('/', (req, res) => {
     product.set('name', name);
     product.set('nameEn', nameEn);
     product.set('mainImage', mainImage);
-    produceMethod.forEach(item => product.add('productMethod',item));
-    category1.forEach(item => product.add('category1',item));
-    category2.forEach(item => product.add('category2',item));
+    product.set('productMethod',produceMethod);
+    product.set('category1',category1);
+    product.set('category2',category2);
     product.set('bannerId', bannerId);
     product.set('detail', detail);
     product.set('detailEn', detailEn);
@@ -113,9 +112,9 @@ router.post('/', (req, res) => {
     productHistory.set('name', name);
     productHistory.set('nameEn', nameEn);
     productHistory.set('mainImage', mainImage);
-    produceMethod.forEach(item => productHistory.add('productMethod',item));
-    category1.forEach(item => productHistory.add('category1',item));
-    category2.forEach(item => productHistory.add('category2',item));
+    productHistory.set('productMethod',produceMethod);
+    productHistory.set('category1',category1);
+    productHistory.set('category2',category2);
     productHistory.set('bannerId', bannerId);
     productHistory.set('detail', detail);
     productHistory.set('detailEn', detailEn);

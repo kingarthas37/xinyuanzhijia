@@ -88,8 +88,9 @@ router.get('/:productId', function (req, res, next) {
         }],
         
         getCategory1:['getProduct',function(resolve) {
+            
             let category1 = [];
-            async.forEach(data.product.get('productMethod'), function(productMethodId,cb) {
+            async.forEachSeries(data.product.get('productMethod'), function(productMethodId,cb) {
                 let query = new AV.Query(ProductCategory1);
                 query.equalTo('productMethodId',productMethodId);
                 query.find().then(results => {
@@ -104,7 +105,7 @@ router.get('/:productId', function (req, res, next) {
 
         getCategory2:['getProduct',function(resolve) {
             let category2 = [];
-            async.forEach(data.product.get('category1'), function(category1Id,cb) {
+            async.forEachSeries(data.product.get('category1'), function(category1Id,cb) {
                 let query = new AV.Query(ProductCategory2);
                 query.equalTo('category1Id',category1Id);
                 query.find().then(results => {
@@ -132,10 +133,15 @@ router.post('/:productId', (req, res) => {
     let name = req.body['name'];
     let nameEn = req.body['name-en'];
     let mainImage = req.body['main-image'] ? JSON.parse(req.body['main-image']) : null;
-    let productMethodId = parseInt(req.body['select-product-method']);
-    let category1Id = parseInt(req.body['select-category-1']);
-    let category2Id = parseInt(req.body['select-category-2']);
-    let bannerId = parseInt(req.body['banner-id']);
+
+    console.info(req.body);
+    
+    let produceMethod = getQueryData(req.body['select-product-method']);
+    let category1 = getQueryData(req.body['select-category-1']);
+    let category2 = getQueryData(req.body['select-category-2']);
+    updateQueryData(produceMethod,category1,category2);
+    
+    let bannerId = parseInt(req.body['select-banner']);
     let detail = req.body['detail'];
     let detailEn = req.body['detail-en'];
     let description = req.body['description'];
@@ -161,9 +167,9 @@ router.post('/:productId', (req, res) => {
         product.set('name', name);
         product.set('nameEn', nameEn);
         product.set('mainImage', mainImage);
-        product.set('productMethodId',productMethodId);
-        product.set('category1Id', category1Id);
-        product.set('category2Id', category2Id);
+        product.set('productMethod',produceMethod);
+        product.set('category1',category1);
+        product.set('category2',category2);
         product.set('bannerId', bannerId);
         product.set('detail', detail);
         product.set('detailEn', detailEn);
@@ -183,9 +189,9 @@ router.post('/:productId', (req, res) => {
         productHistory.set('name', name);
         productHistory.set('nameEn', nameEn);
         productHistory.set('mainImage', mainImage);
-        productHistory.set('productMethodId',productMethodId);
-        productHistory.set('category1Id', category1Id);
-        productHistory.set('category2Id', category2Id);
+        productHistory.set('productMethod',produceMethod);
+        productHistory.set('category1',category1);
+        productHistory.set('category2',category2);
         productHistory.set('bannerId', bannerId);
         productHistory.set('detail', detail);
         productHistory.set('detailEn', detailEn);
@@ -210,5 +216,34 @@ router.post('/:productId', (req, res) => {
     });
 
 });
+
+//对array或字符串数据处理,返回array
+function getQueryData(value) {
+    if(Object.prototype.toString.call(value) === '[object Array]') {
+        value = value.map(function(item) {
+            return parseInt(item);
+        });
+        return value;
+    }
+    return [parseInt(value)];
+}
+
+//筛选空的分类
+function updateQueryData(...items) {
+    let itemNan = [];
+    items.forEach((item,i)=> {
+        item.forEach((_item,_i)=> {
+            if(!_item) {
+                itemNan.push(_i);
+            }
+        });
+    });
+    itemNan = Array.from(new Set(itemNan)); //es6数组去重
+    items.forEach(item => {
+        itemNan.forEach((_item) => {
+            item.splice(_item,1);
+        });
+    });
+}
 
 module.exports = router;

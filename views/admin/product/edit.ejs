@@ -26,7 +26,7 @@
         <div class="am-g">
             <div class="am-u-sm-12">
 
-                <form id="form-edit-product" class="am-form" action="/admin/product/edit/<%= product.get('productId') %>" method="post">
+                <form id="form-edit-product" class="am-form" method="post">
 
                     <!-- name start -->
                     <div class="am-form-group">
@@ -54,7 +54,7 @@
                                         <select class="select-product-method" name="select-product-method" <%if(i===0){%>required<%}%> data-am-selected>
                                             <option value="">请选择产品类型</option>
                                             <% for (var j=0;j < productMethod.length; j++) { %>
-                                            <option <% if(product.get('productMethod')[i] === productMethod[j].get('productMethodId')){ %>selected="selected"<%}%> value="<%= productMethod[j].get('productMethodId'); %>"><%= productMethod[j].get('name'); %></option>
+                                            <option <% if(product.get('productMethod')[i] === productMethod[j].get('productMethodId')){ %>selected<%}%> value="<%= productMethod[j].get('productMethodId'); %>"><%= productMethod[j].get('name'); %></option>
                                             <% } %>
                                         </select>
                                     </div>
@@ -69,7 +69,7 @@
                                         <select class="select-category-1" name="select-category-1" <%if(i===0){%>required<%}%> data-am-selected>
                                             <option value="">请选择商品一级分类</option>
                                             <% for (var j=0;j < category1[i].length; j++) { %>
-                                            <option <% if(product.get('category1')[i] === category1[i][j].get('category1Id')){ %>selected="selected"<%}%> value="<%= category1[i][j].get('category1Id') %>"><%= category1[i][j].get('name') %></option>
+                                            <option <% if(product.get('category1')[i] === category1[i][j].get('category1Id')){ %>selected<%}%> value="<%= category1[i][j].get('category1Id') %>"><%= category1[i][j].get('name') %></option>
                                             <% } %>
                                         </select>
                                     </div>
@@ -83,7 +83,7 @@
                                     <select class="select-category-2" name="select-category-2" <%if(i===0){%>required<%}%> data-am-selected>
                                     <option value="">请选择商品二级分类</option>
                                     <% for (var j=0;j < category2[i].length; j++) { %>
-                                    <option <% if(product.get('category2')[i] === category2[i][j].get('category2Id')){ %>selected="selected"<%}%> value="<%= category2[i][j].get('category2Id') %>"><%= category2[i][j].get('name') %></option>
+                                    <option <% if(product.get('category2')[i] === category2[i][j].get('category2Id')){ %>selected<%}%> value="<%= category2[i][j].get('category2Id') %>"><%= category2[i][j].get('name') %></option>
                                     <% } %>
                                     </select>
                                 </div>
@@ -261,8 +261,8 @@
     });
 
     //iframe upload callback
-    function uploadFileResponse(data) {
-        product.uploadFileResponse(data);
+    function uploadFileSuccess(data) {
+        product.uploadFileSuccess(data);
     }
 </script>
 </body>

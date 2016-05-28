@@ -82,6 +82,7 @@ module.exports = {
         this.chooseBanner();
         this.submitControl();
         this.setImageList();
+        this.setZclip();
 
     },
     editFun:function() {
@@ -100,15 +101,12 @@ module.exports = {
         let $btnAddCategory = $('.btn-add-category');
 
         categoryGroup.on('change','.select-product-method',function() {
-          
+
             let $this = $(this);
             let group = $this.parents('.group');
             let $selectCategory1 = group.find('.select-category-1');
             let $selectCategory2 = group.find('.select-category-2');
             
-            $selectCategory1.find('option:not(:first)').detach();
-            $selectCategory2.find('option:not(:first)').detach();
-
             if(!this.value) {
                 return false;
             }
@@ -125,6 +123,8 @@ module.exports = {
                 headers:leanAppHeader,
                 data:`where={"productMethodId":${productMethodId}}`
             }).done(data => {
+                $selectCategory1.find('option:not(:first)').detach();
+                $selectCategory2.find('option:not(:first)').detach();
                 $this.data('state',false);
                 let options = ``;
                 $.each(data.results,(i,n)=>{
@@ -136,12 +136,9 @@ module.exports = {
         });
 
         categoryGroup.on('change','.select-category-1',function() {
-
             let $this = $(this);
             let group = $(this).parents('.group');
             let $selectCategory2 = group.find('.select-category-2');
-            
-            $selectCategory2.find('option:not(:first)').detach();
 
             if(!this.value){
                 return false;
@@ -159,6 +156,7 @@ module.exports = {
                 headers:leanAppHeader,
                 data:'where={"category1Id":'+ category1Id +'}'
             }).done(data => {
+                $selectCategory2.find('option:not(:first)').detach();
                 $this.data('state',false);
                 let options = ``;
                 $.each(data.results,(i,n)=>{
