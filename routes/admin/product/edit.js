@@ -42,48 +42,17 @@ router.get('/:productId', function (req, res, next) {
         user: req.AV.user
     });
     
-    AV.Promise.when(
-        new AV.Promise(resolve => {
+    async.auto({
+        
+        getProduct(resolve) {
             let query = new AV.Query(Product);
-            
             query.equalTo('productId', productId);
-            
-            query.first().done(item => {
-                
-                data = extend(data, {
-                    product: item,
-                    mainImage:[]
-                });
-                
-                //处理main images
-                if(item.get('mainImage')) {
-                    
-                    let mainImages = [];
-                    let images = item.get('mainImage');
-                    
-                    for(let i in images) {
-                        mainImages.push({id:i, url:images[i].url , isMainImage: images[i].isMainImage });
-                    }
-                    
-                    data = extend(data, {
-                        mainImage:mainImages
-                    });
-                }
-                
-                //查询category2 items
-                let category1Id = item.get('category1Id');
-                let query2 = new AV.Query(ProductCategory2);
-                query2.equalTo('category1Id', category1Id);
-                query2.find().then(items => {
-                    data = extend(data, {
-                        category2: items
-                    });
-                    resolve();
-                });
-                
+            query.first().done(product => {
+                data = extend(data, {product});
+                resolve();
             });
-        }),
-        new AV.Promise(resolve => {
+        },
+        getBanner(resolve) {
             let query = new AV.Query(Banner);
             query.find().then(items => {
                 data = extend(data, {
@@ -91,24 +60,64 @@ router.get('/:productId', function (req, res, next) {
                 });
                 resolve();
             });
-        }),
-        new AV.Promise(resolve => {
-            let query = new AV.Query(ProductCategory1);
-            query.find().then(items => {
-                data = extend(data, {
-                    category1: items
-                });
-                resolve();
-            });
-        }),
-        new AV.Promise(resolve => {
+        },
+        getMethod(resolve) {
             let query = new AV.Query(ProductMethod);
             query.find().then(productMethod => {
                 data = extend(data,{productMethod});
             });
             resolve();
-        })
-    ).then(()=> res.render('admin/product/edit', data));
+        },
+        
+        //处理main images
+        getMainImage:['getProduct',function(resolve) {
+            
+            if(data.product.get('mainImage')) {
+                let mainImages = [];
+                let images = data.product.get('mainImage');
+                for(let i in images) {
+                    mainImages.push({id:i, url:images[i].url , isMainImage: images[i].isMainImage });
+                }
+                data = extend(data, {
+                    mainImage:mainImages
+                });
+            } else {
+                data = extend(data, {mainImage:[]});
+            }
+            resolve();
+        }],
+        
+        getCategory1:['getProduct',function(resolve) {
+            
+            let category1 = [];
+            let promise = AV.Promise.as();
+            
+            data.product.get('productMethod').forEach((productMethodId,i) => {
+
+                 promise.then(function() {
+                    
+                    let query = new AV.Query(ProductCategory1);
+                    query.equalTo('productMethodId',productMethodId);
+                    
+                    return query.find().then(results => {
+                        category1.push(results);
+                        if(i === data.product.get('productMethod').length - 1) {
+                          //  console.info(category1[0][0].get('productMethodId'));
+                            data = extend(data,{category1});
+                            resolve();
+                        }
+                    });
+                    
+                });
+                
+            });
+            return promise;
+            
+        }]
+        
+    },(err,results) => res.render('admin/product/edit', data));
+    
+   
 
 });
 
