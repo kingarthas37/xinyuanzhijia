@@ -88,31 +88,33 @@ router.get('/:productId', function (req, res, next) {
         }],
         
         getCategory1:['getProduct',function(resolve) {
-            
             let category1 = [];
-            let promise = AV.Promise.as();
-            
-            data.product.get('productMethod').forEach((productMethodId,i) => {
-
-                 promise.then(function() {
-                    
-                    let query = new AV.Query(ProductCategory1);
-                    query.equalTo('productMethodId',productMethodId);
-                    
-                    return query.find().then(results => {
-                        category1.push(results);
-                        if(i === data.product.get('productMethod').length - 1) {
-                          //  console.info(category1[0][0].get('productMethodId'));
-                            data = extend(data,{category1});
-                            resolve();
-                        }
-                    });
-                    
+            async.forEach(data.product.get('productMethod'), function(productMethodId,cb) {
+                let query = new AV.Query(ProductCategory1);
+                query.equalTo('productMethodId',productMethodId);
+                query.find().then(results => {
+                    category1.push(results);
+                    cb();
                 });
-                
+            },err => {
+                data = extend(data,{category1});
+                resolve();
             });
-            return promise;
-            
+        }],
+
+        getCategory2:['getProduct',function(resolve) {
+            let category2 = [];
+            async.forEach(data.product.get('category1'), function(category1Id,cb) {
+                let query = new AV.Query(ProductCategory2);
+                query.equalTo('category1Id',category1Id);
+                query.find().then(results => {
+                    category2.push(results);
+                    cb();
+                });
+            },err => {
+                data = extend(data,{category2});
+                resolve();
+            });
         }]
         
     },(err,results) => res.render('admin/product/edit', data));

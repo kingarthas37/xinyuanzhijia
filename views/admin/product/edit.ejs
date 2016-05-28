@@ -78,14 +78,25 @@
                             </div>
                             <div class="am-u-sm-12 am-u-md-3">
                                 <!-- select category2 start -->
-                               
+                                <%if(i===0){%><label>选择商品二级分类<i>*</i>:</label><%}%>
+                                <div>
+                                    <select class="select-category-2" name="select-category-2" <%if(i===0){%>required<%}%> data-am-selected>
+                                    <option value="">请选择商品二级分类</option>
+                                    <% for (var j=0;j < category2[i].length; j++) { %>
+                                    <option <% if(product.get('category2')[i] === category2[i][j].get('category2Id')){ %>selected="selected"<%}%> value="<%= category2[i][j].get('category2Id') %>"><%= category2[i][j].get('name') %></option>
+                                    <% } %>
+                                    </select>
+                                </div>
                                 <!-- select category2 end -->
-
                             </div>
                             <div class="am-u-sm-12 am-u-md-3">
                                 <div class="am-form-group">
                                     <%if(i===0){%><label>&nbsp;</label><%}%>
+                                    <%if(i===0){%>
                                     <div><button type="button" class="btn-add-category am-btn am-btn-primary">添加新分类</button></div>
+                                    <% } else { %>
+                                    <div><button type="button" class="btn-remove-category am-btn am-btn-primary">删除分类</button></div>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
