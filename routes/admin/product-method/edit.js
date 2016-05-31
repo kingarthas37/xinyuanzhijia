@@ -6,7 +6,7 @@ var AV = require('leanengine');
 var flash = require('connect-flash');
 
 var async = require('async');
-var extend = require("xtend");
+var extend = require('xtend');
 var markdown = require("markdown").markdown;
 
 //class

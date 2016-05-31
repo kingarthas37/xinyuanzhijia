@@ -241,7 +241,7 @@
                                 data-action="/admin/product/add">保存
                         </button>
                         <button id="preview" type="submit" class="am-btn am-btn-success" data-target="_blank"
-                                data-action="/admin/product/preview">预览
+                                data-action="/admin/product/preview-taobao">预览
                         </button>
                         <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
                     </div>
@@ -263,15 +263,9 @@
 <script type="text/javascript">
 
     var product;
-
-
     $(function () {
-
-        var upload;
-
+        require('upload');
         product = require('product');
-        upload = require('upload');
-
         product.addFun();
     });
 

@@ -5,7 +5,7 @@ var AV = require('leanengine');
 
 var flash = require('connect-flash');
 
-var extend = require("xtend");
+var extend = require('xtend');
 
 var config = require('../../lib/config');
 

@@ -8,7 +8,7 @@ var config = require('../../lib/config');
 var flash = require('connect-flash');
 
 var async = require('async');
-var extend = require("xtend");
+var extend = require('xtend');
 
 //class
 var ProductBrand = AV.Object.extend('ProductBrand');

@@ -207,4 +207,24 @@ footer p {
     .admin-product-category-page .am-accordion li:hover {
       background: #f5f5f5; }
 
+/* product preview page */
+.product-preview-page {
+  width: 750px;
+  margin: 30px auto; }
+  @media only screen and (max-width: 640px) {
+    .product-preview-page {
+      width: 100%;
+      padding-left: 15px;
+      padding-right: 15px; } }
+  .product-preview-page .preview-content {
+    font-size: 24px;
+    line-height: 30px; }
+    .product-preview-page .preview-content div {
+      margin-bottom: 20px; }
+    .product-preview-page .preview-content img {
+      width: 100%; }
+    .product-preview-page .preview-content p {
+      margin: 0;
+      padding: 0 15px 20px 15px; }
+
 /*# sourceMappingURL=51wish.admin.css.map */

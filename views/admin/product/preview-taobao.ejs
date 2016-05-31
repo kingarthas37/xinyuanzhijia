@@ -9,7 +9,7 @@
 
     <% include ../partials/header %>
 
-    <div class="common-product-view-page">
+    <div class="product-preview-page">
 
         <p class="small-screen-hide">
             <button type="button" class="am-btn am-btn-primary btn-copy">复制代码</button>
@@ -18,7 +18,7 @@
 
         <hr class="small-screen-hide"/>
         
-        <h4><%- mdCodeName %></h4>
+        <h4><%- name %></h4>
 
         <hr/>
         
@@ -26,41 +26,41 @@
            
             <div>
                 
-                <div><%- mdCodeBanner.replace(/\<p\>(.+)\<\/p\>/,'$1') %></div>
+                <div><%if(banner) { %><img src="<%=banner%>"/><%}%></div>
 
-                <% if (mdCodeVideo) { %>
-                <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB289OrhFXXXXXgXXXXXXXXXXXX_!!42879206.png"/> </div>
-                <%- mdCodeVideo %>
-                <% } %>
-
-                <% if (mdCodeName) { %>
+                <% if (name) { %>
                 <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2ehN0hFXXXXaIXpXXXXXXXXXX_!!42879206.png"></div>
-                <%- mdCodeName %>
+                <%- name %>
                 <% } %>
 
-                <% if (mdCodeReview) { %>
+                <% if (review) { %>
                 <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2XdJYhFXXXXbhXpXXXXXXXXXX_!!42879206.png"></div>
-                <%- mdCodeReview %>
+                <%- review %>
                 <% } %>
 
-                <% if (mdCodeProperty) { %>
+                <% if (property) { %>
                 <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB23rh5hFXXXXXBXpXXXXXXXXXX_!!42879206.png"></div>
-                <%- mdCodeProperty %>
+                <%- property %>
                 <% } %>
 
-                <% if (mdCodeInstruction) { %>
+                <% if (instruction) { %>
                 <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2w3VZhFXXXXaCXpXXXXXXXXXX_!!42879206.png"/> </div>
-                <%- mdCodeInstruction %>
+                <%- instruction %>
                 <% } %>
 
-                <% if (mdCodeDetail) { %>
+                <% if (detail) { %>
                 <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2LWd4hFXXXXXqXpXXXXXXXXXX_!!42879206.png"/> </div>
-                <%- mdCodeDetail %>
+                <%- detail %>
                 <% } %>
 
-                <% if (mdCodeImage) { %>
+                <% if (use) { %>
+                <div><img src="https://img.alicdn.com/imgextra/i1/42879206/TB2bUxTpVXXXXanXpXXXXXXXXXX_!!42879206.png"/> </div>
+                <%- use %>
+                <% } %>
+
+                <% if (detailImage) { %>
                 <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2DOWrhFXXXXXiXXXXXXXXXXXX_!!42879206.png"/> </div>
-                <%- mdCodeImage %>
+                <%- detailImage %>
                 <% } %>
 
             </div>
@@ -68,8 +68,7 @@
         </div>
 
     </div>
-
-
+    
     <div class="am-modal am-modal-alert" tabindex="-1" id="modal-shot-success">
         <div class="am-modal-dialog">
             <div class="am-modal-hd">生成成功!</div>

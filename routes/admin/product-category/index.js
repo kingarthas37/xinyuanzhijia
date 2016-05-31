@@ -6,7 +6,7 @@ let AV = require('leanengine');
 let flash = require('connect-flash');
 
 let async = require('async');
-let extend = require("xtend");
+let extend = require('xtend');
 
 let config = require('../../../lib/config');
 

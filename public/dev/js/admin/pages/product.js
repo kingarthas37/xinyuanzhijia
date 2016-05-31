@@ -189,15 +189,15 @@ module.exports = {
     //选择banner
     chooseBanner:function() {
 
-        var select = $('#select-banner');
-        var bannerView = $('.banner-view');
+        let select = $('#select-banner');
+        let bannerView = $('.banner-view');
+        let banner = $('#banner');
+        
         select.on('change',function() {
-            if(!this.value) {
-                bannerView.addClass('hide');
-                return false;
-            }
+            let src = select.find('option:selected').attr('data-src');
             bannerView.removeClass('hide');
-            bannerView.html(`<img width="400" src="${select.find('option:selected').attr('data-src')}"/>`);
+            bannerView.html(`<img width="400" src="${src}"/>`);
+            banner.val(src);
         });
         
     },

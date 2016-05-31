@@ -120,6 +120,7 @@
                     </div>
                     
                     <div class="banner-view <% if(!product.get('bannerId')) { %>hide<% } %>"><% for(var i=0;i<banner.length;i++){ %><% if(banner[i].get('bannerId') === product.get('bannerId')) { %><img src="<%= banner[i].get('bannerUrl') %>" width="400" /><% }%><% } %></div>
+                    <input type="hidden" id="banner" name="banner" value="<% for(var i=0;i<banner.length;i++){ %><% if(banner[i].get('bannerId') === product.get('bannerId')) { %><%= banner[i].get('bannerUrl') %><% }%><% } %>">
                     <!-- banner end -->
 
                     <hr/>
@@ -228,8 +229,11 @@
 
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
-                        <a href="/admin/product/preview-taobao" target="_blank" class="am-btn am-btn-success">预览淘宝页</a>
-                        <a href="/admin/product/preview-web" target="_blank" class="am-btn am-btn-success">预览网页</a>
+
+                        <button id="preview-taobao" type="submit" class="am-btn am-btn-success" data-target="_blank" data-action="/admin/product/preview/preview-taobao">预览淘宝页</button>
+                        
+                        <button id="preview-web" type="submit" class="am-btn am-btn-success" data-target="_blank" data-action="/admin/product/preview/preview-web">预览网页</button>
+                        
                         <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
                     </div>
 

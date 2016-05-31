@@ -4,7 +4,7 @@ let router = require('express').Router();
 let AV = require('leanengine');
 
 let async = require('async');
-let extend = require("xtend");
+let extend = require('xtend');
 
 let config = require('../../../lib/config');
 

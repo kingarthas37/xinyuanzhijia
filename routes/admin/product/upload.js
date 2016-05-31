@@ -3,7 +3,7 @@
 let router = require('express').Router();
 let AV = require('leanengine');
 
-let extend = require("xtend");
+let extend = require('xtend');
 let config = require('../../../lib/config');
 
 let upload = require('../../../lib/component/upload');

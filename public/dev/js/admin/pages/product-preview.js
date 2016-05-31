@@ -3,11 +3,11 @@
 //产品预览 function
 module.exports = function() {
 
-    var previewContent = $('.preview-content');
+    let previewContent = $('.preview-content');
 
-    var html = $.trim(previewContent.html());
+    let html = $.trim(previewContent.html());
     
-    var btnCopy = $('.btn-copy');
+    let btnCopy = $('.btn-copy');
     btnCopy.zclip({
         path: '/swf/ZeroClipboard.swf',
         copy: function () {
@@ -20,9 +20,9 @@ module.exports = function() {
         }
     });
 
-    var btnShot = $('.btn-shot');
+    let btnShot = $('.btn-shot');
     btnShot.button('loading');
-    var progress = $.AMUI.progress;
+    let progress = $.AMUI.progress;
 
     window.onload = function() {
 
@@ -32,14 +32,14 @@ module.exports = function() {
             progress.start();
             btnShot.button('loading').text('图片生成中...');
             $.ajax({
-                url:'/product/preview/shot',
+                url:'/admin/product/preview/shot',
                 type:'post',
                 data:{
                     html:html,
                     htmlHeight:previewContent.height(),
                     name:$('h4').text()
                 },
-                success:function(data) {
+                success:function() {
                     progress.done();
                     $('#modal-shot-success').modal();
                     btnShot.button('reset').text('生成淘宝详情图片');

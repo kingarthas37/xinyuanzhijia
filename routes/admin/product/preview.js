@@ -6,10 +6,12 @@ let AV = require('leanengine');
 let flash = require('connect-flash');
 
 let async = require('async');
-let extend = require("xtend");
+let extend = require('xtend');
+let markdown = require('markdown').markdown;
 
 let config = require('../../../lib/config');
 let pager = require('../../../lib/component/pager');
+var shot = require('../../../lib/component/shot');
 
 //class
 let Product = AV.Object.extend('Product');
@@ -23,58 +25,68 @@ let data = extend(config.data, {
 
 
 //预览产品页
-router.post('/', function (req, res, next) {
-
+router.post('/preview-taobao', function (req, res) {
+    
     if(!req.AV.user) {
         return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
-    
-    var mdCodeInfo = req.body['md-code-info'] || '';
-    var mdCodeBanner = req.body['md-code-banner'] || '';
-    var mdCodeVideo = req.body['md-code-video'] || '';
-    var mdCodeName = req.body['md-code-name'] || '';
-    var mdCodeReview = req.body['md-code-review'] || '';
-    var mdCodeProperty = req.body['md-code-property'] || '';
-    var mdCodeInstruction = req.body['md-code-instruction'] || '';
-    var mdCodeDetail = req.body['md-code-detail'] || '';
-    var mdCodeImage = req.body['md-code-image'] || '';
 
-    data = extend(data,{
-        mdCodeInfo: markdown.toHTML(mdCodeInfo),
-        mdCodeBanner: markdown.toHTML(mdCodeBanner),
-        mdCodeVideo: markdown.toHTML(mdCodeVideo),
-        mdCodeName: markdown.toHTML(mdCodeName),
-        mdCodeReview: markdown.toHTML(mdCodeReview),
-        mdCodeProperty: markdown.toHTML(mdCodeProperty),
-        mdCodeInstruction: markdown.toHTML(mdCodeInstruction),
-        mdCodeDetail: markdown.toHTML(mdCodeDetail),
-        mdCodeImage: markdown.toHTML(mdCodeImage)
+    data = extend(data, {
+        user: req.AV.user
     });
     
-    res.render('product/preview', data);
+    let name = req.body['name'];
+    let nameEn = req.body['name-en'];
+    let banner = req.body['banner'];
+    let detail = req.body['detail'];
+    let detailEn = req.body['detail-en'];
+    let review = req.body['review'];
+    let property = req.body['property'];
+    let propertyEn = req.body['property-en'];
+    let instruction = req.body['instruction'];
+    let instructionEn = req.body['instruction-en'];
+    let use = req.body['use'];
+    let useEn = req.body['use-en'];
+    let detailImage = req.body['detail-image'];
+
+    data = extend(data,{
+        name:name,
+        nameEn:nameEn,
+        banner:banner,
+        detail: markdown.toHTML(detail),
+        detailEn: markdown.toHTML(detailEn),
+        review: markdown.toHTML(review),
+        property: markdown.toHTML(property),
+        propertyEn: markdown.toHTML(propertyEn),
+        instruction: markdown.toHTML(instruction),
+        instructionEn: markdown.toHTML(instructionEn),
+        use: markdown.toHTML(use),
+        useEn: markdown.toHTML(useEn),
+        detailImage: markdown.toHTML(detailImage)
+    });
+
+    res.render('admin/product/preview-taobao', data);
 
 });
 
 
 //shot
-router.post('/shot', function (req, res, next) {
+router.post('/shot', (req, res) => {
 
     if(!req.AV.user) {
-        return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
+        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
     
-    var name = req.body.name.substr(0, 20);
-    var html = req.body.html;
-    var htmlHeight = parseInt(req.body.htmlHeight);
+    let name = req.body.name.substr(0, 20);
+    let html = req.body.html;
+    let htmlHeight = parseInt(req.body.htmlHeight);
 
     shot({
         name:name,
         html:html,
         htmlHeight:htmlHeight
     }).then(function() {
-        res.json({
-            "success": 1
-        });
+        res.json({success:1});
     },function(err) {
         res.send(err);
     });
