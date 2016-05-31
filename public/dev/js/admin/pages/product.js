@@ -14,7 +14,7 @@ module.exports = {
         
         let alert = $('#modal-alert');
 
-        productMethod.change(function() {
+        productMethod.change(function(){
             if(this.value) {
                 return location.href = `/admin/product?product-method-id=${this.value}`;
             }
@@ -99,7 +99,8 @@ module.exports = {
         
         let categoryGroup = $('.category-group');
         let $btnAddCategory = $('.btn-add-category');
-
+        let _this = this;
+        
         categoryGroup.on('change','.select-product-method',function() {
 
             let $this = $(this);
@@ -111,10 +112,9 @@ module.exports = {
                 return false;
             }
             
-            if($this.data('state')) {
+            if(_this.isSubmitBtn) {
                 return false;
             }
-            $this.data('state',true);
             
             let productMethodId = parseInt(this.value);
 
@@ -125,7 +125,6 @@ module.exports = {
             }).done(data => {
                 $selectCategory1.find('option:not(:first)').detach();
                 $selectCategory2.find('option:not(:first)').detach();
-                $this.data('state',false);
                 let options = ``;
                 $.each(data.results,(i,n)=>{
                     options += `<option value="${n.category1Id}">${n.name}</option>`;
@@ -136,7 +135,7 @@ module.exports = {
         });
 
         categoryGroup.on('change','.select-category-1',function() {
-            let $this = $(this);
+            
             let group = $(this).parents('.group');
             let $selectCategory2 = group.find('.select-category-2');
 
@@ -144,10 +143,10 @@ module.exports = {
                 return false;
             }
 
-            if($this.data('state')) {
+
+            if(_this.isSubmitBtn) {
                 return false;
             }
-            $this.data('state',true);
             
             let category1Id = parseInt(this.value);
             
@@ -157,7 +156,6 @@ module.exports = {
                 data:'where={"category1Id":'+ category1Id +'}'
             }).done(data => {
                 $selectCategory2.find('option:not(:first)').detach();
-                $this.data('state',false);
                 let options = ``;
                 $.each(data.results,(i,n)=>{
                     options += `<option value="${n.category2Id}">${n.name}</option>`;
@@ -240,21 +238,43 @@ module.exports = {
     submitControl:function() {
         
         let submit = $('#submit');
-
+        let _this = this;
+        _this.isSubmitBtn =false;
+        
         $('form :submit').click(function() {
+            
+            let $this = $(this);
+            _this.isSubmitBtn = true;
+            
             $('form').attr({
-                'action':$(this).data('action'),
-                'target':$(this).data('target')
+                'action':$this.data('action'),
+                'target':$this.data('target')
             });
+
+            if(this.id === 'submit') {
+                $this.data('state',$this[0].id);
+            }
+            
+            //由于submit时amazeui的select会触发一次onchange,导致category1和category2会重置,数据丢失
+            //还原isSubmitBtn,让select enable
+            setTimeout(function() {
+                _this.isSubmitBtn = false;
+                if(this.id === 'submit') {
+                    $this.data('state',false);
+                }
+            }.bind(this),1000);
             return true;
         });
+        
         
         $('.am-form').validator({
             submit:function() {
                 if(!this.isFormValid()){
                     return false;
                 }
-                submit.attr('disabled',true).addClass('am-disabled');
+                if(submit.data('state') === 'submit') {
+                    submit.attr('disabled',true).addClass('am-disabled');
+                }
             }
         });
     },

@@ -36,6 +36,9 @@ router.get('/:productId', function (req, res, next) {
         return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
 
+    res.cookie('x_lc_sign',data.x_lc_sign);
+    res.cookie('x_lc_session',req.AV.user._sessionToken);
+
     var productId = parseInt(req.params.productId);
 
     data = extend(data, {
