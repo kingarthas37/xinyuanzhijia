@@ -59,10 +59,7 @@
                         <select class="select-category-1">
                             <option value="">商品一级分类</option>
                             <% for (var i=0;i < category1.length; i++) { %>
-                            <option
-                            <% if(category1[i].get('category1Id') === category1Id ) { %> selected="selected" <% } %>
-                            value="<%= category1[i].get('category1Id') %>"> <%= category1[i].get('name');%></option><% }
-                            %>
+                            <option <% if(category1[i].get('category1Id') === category1Id ) { %> selected="selected" <% } %>value="<%= category1[i].get('category1Id') %>"> <%= category1[i].get('name');%></option><% }%>
                         </select>
                     </div>
                 </div>

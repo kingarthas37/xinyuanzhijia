@@ -59,11 +59,11 @@ router.get('/', (req, res) => {
             let query = new AV.Query(Product);
 
             if(category2Id) {
-                query.equalTo('category2Id', category2Id);
+                query.equalTo('category2', category2Id);
             } else if(category1Id) {
-                query.equalTo('category1Id', category1Id);
+                query.equalTo('category1', category1Id);
             } else if(productMethodId) {
-                query.equalTo('productMethodId',productMethodId);
+                query.equalTo('productMethod',productMethodId);
             }
 
             if (search.length) {
@@ -99,11 +99,11 @@ router.get('/', (req, res) => {
             query[order === 'asc' ? 'ascending' : 'descending']('productId');
 
             if(category2Id) {
-                query.equalTo('category2Id', category2Id);
+                query.equalTo('category2', category2Id);
             } else if(category1Id) {
-                query.equalTo('category1Id', category1Id);
+                query.equalTo('category1', category1Id);
             } else if(productMethodId) {
-                query.equalTo('productMethodId',productMethodId);
+                query.equalTo('productMethod',productMethodId);
             }
 
             if (search.length) {
