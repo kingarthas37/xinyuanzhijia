@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+<div class="am-cf admin-main">
+
+    <!-- sidebar start -->
+    <% include ../partials/sidebar %>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content admin-product-property-page">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong><a href="/admin/product-method">产品属性编辑</a></strong> / <a href="/admin/product-property/<%= productProperty.get('productId') %>">编辑产品属性</a></div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                
+                <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion>
+                    
+                    <dl id="accordion-purchase-link" class="am-accordion-item">
+                        <dt class="am-accordion-title am-cf">
+                            1.产品购买链接编辑
+                        </dt>
+                        <dd class="am-accordion-bd am-collapse">
+                            <div class="am-accordion-content">
+                                <form class="am-form" action="/admin/product-property/purchase-link/<%= productProperty.get('productId') %>" method="post">
+                                    <label>产品购买链接:</label>
+                                    <div class="am-form-group">
+                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[0] %><%}%>" placeholder="输入网站购买链接1"/>
+                                    </div>
+                                    <div class="am-form-group">
+                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[1] %><%}%>" placeholder="输入网站购买链接2" />
+                                    </div>
+                                    <div class="am-form-group">
+                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[2] %><%}%>" placeholder="输入网站购买链接3" />
+                                    </div>
+                                    <label>链接说明:</label>
+                                    <div class="am-form-group">
+                                        <textarea name="purchase-link-comment" rows="2"><%= productProperty.get('purchaseLinkComment') %></textarea>
+                                    </div>
+                                    <div>
+                                        <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </dd>
+                    </dl>
+
+                    <dl id="accordion-aaa" class="am-accordion-item">
+                        <dt class="am-accordion-title am-cf">
+                            2.产品属性编辑
+                        </dt>
+                        <dd class="am-accordion-bd am-collapse">
+                            <div class="am-accordion-content">
+                                产品属性编辑
+                            </div>
+                        </dd>
+                    </dl>
+                    
+                </section>
+                
+                
+                
+
+            </div>
+        </div>
+
+    </div>
+    <!-- content end -->
+
+</div>
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    $(function () {
+        var productProperty = require('product-property');
+        productProperty.init();
+    });
+</script>
+</body>
+</html>

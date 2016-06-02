@@ -20,6 +20,8 @@ module.exports = {
     
     '/admin/product-method':require('./admin/product-method'),
     '/admin/product-method/add':require('./admin/product-method/add'),
-    '/admin/product-method/edit':require('./admin/product-method/edit')
+    '/admin/product-method/edit':require('./admin/product-method/edit'),
+    
+    '/admin/product-property':require('./admin/product-property')
     
 };
