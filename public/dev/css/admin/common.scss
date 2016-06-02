@@ -18,6 +18,14 @@ footer p {
     background: #2d3e50;
 }
 
+.loading-elem {
+    &.on {
+        background: url('../images/admin/common/loading.gif') no-repeat center;
+        padding: 0 8px;
+        background-size:contain;
+    }
+}
+
 //autocomplete typeahead
 .twitter-typeahead {
     .typeahead {
@@ -97,14 +105,14 @@ footer p {
 }
 
 .am-topbar-brand {
-    a,small {
+    a, small {
         color: #fff;
     }
 }
 
 @include breakpoint(small-only) {
     .am-topbar-brand {
-        a,small {
+        a, small {
             color: #666;
         }
     }
@@ -119,10 +127,9 @@ footer p {
         height: 32px;
     }
     select {
-        padding:0.35em;
+        padding: 0.35em;
     }
 }
-
 
 .am-pager {
     color: #999;
@@ -130,7 +137,7 @@ footer p {
 }
 
 .am-pagination {
-    margin:0;
+    margin: 0;
 }
 
 .am-table {
@@ -140,7 +147,7 @@ footer p {
 }
 
 .am-alert {
-    margin:0;
+    margin: 0;
 }
 
 .admin-content {

@@ -17,6 +17,7 @@ let Product = AV.Object.extend('Product');
 let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
+let ProductProperty = AV.Object.extend('ProductProperty');
 
 
 let data = extend(config.data, {
@@ -169,6 +170,36 @@ router.get('/', (req, res) => {
 
         })
     ).then(() => res.render('admin/product', data));
+
+});
+
+
+//产品列表首页获取数据
+router.get('/list-data',(req,res) => {
+
+    let productListId = req.query.productListId;
+    
+   /* async.forEachLimit(listId,function(productId,resolve) {
+        
+        
+        
+    },function(err) {
+        
+    });*/
+    productListId = productListId.map(item => parseInt(item));
+    
+    let query = new AV.Query(ProductProperty);
+    query.containedIn('productId',productListId);
+    query.select('productId','purchaseLink');
+    
+    query.find().then(products => {
+        res.send({
+            success:1,
+            products
+        });
+    });
+    
+    
 
 });
 

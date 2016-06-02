@@ -86,6 +86,7 @@
                     <thead>
                     <tr>
                         <th>产品名称</th>
+                        <th width="200" class="t-c">查看链接</th>
                         <th width="80" class="t-c">编辑链接</th>
                         <th width="80" class="t-c small-screen-hide">更新时间</th>
                         <th width="60" class="t-c small-screen-hide">删除</th>
@@ -93,8 +94,9 @@
                     </thead>
                     <tbody>
                     <% for(var i=0; i < product.length; i++) {%>
-                    <tr>
+                    <tr data-product-id="<%= product[i].get('productId') %>">
                         <td><a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a></td>
+                        <td class="t-c"><span class="purchase-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span> </td>
                         <td class="t-c"><a href="/admin/product-property/<%= product[i].get('productId') %>#purchase-link">编辑</a></td>
                         <td class="t-c small-screen-hide"><%= product[i].updatedDate %></td>
                         <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= product[i].get('productId') %>" class="remove-product">删除</a></td>

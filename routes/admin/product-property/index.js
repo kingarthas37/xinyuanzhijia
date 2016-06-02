@@ -9,6 +9,7 @@ var async = require('async');
 var extend = require('xtend');
 
 //class
+let Product = AV.Object.extend('Product');
 let ProductProperty = AV.Object.extend('ProductProperty');
 
 //lib
@@ -32,31 +33,57 @@ router.get('/:productId',(req,res) => {
     });
 
     let productId = parseInt(req.params.productId);
-    let query = new AV.Query(ProductProperty);
-    query.equalTo('productId',productId);
     
-    query.first().then( item => {
+    
+    AV.Promise.when(
         
-        //如果存在,编辑,否则直接创建productproperty实例
-        if(item) {
-            data = extend(data,{
-                productProperty:item
+        new AV.Promise(resolve => {
+            
+            let query = new AV.Query(Product);
+            query.equalTo('productId',productId);
+            query.select('name','productId');
+            
+            query.first().then( product => {
+                data = extend(data,{product});
+                resolve();
             });
-            return res.render('admin/product-property',data);
-        }
+        }),
         
-        //创建实例
-        let productProperty = new ProductProperty();
-        productProperty.set({
-            productId
-        }).save().then(item => {
-            data = extend(data,{
-                productProperty:item
+        new AV.Promise(resolve => {
+
+            let query = new AV.Query(ProductProperty);
+            query.equalTo('productId',productId);
+
+            query.first().then(item => {
+
+                
+                //如果存在,编辑,否则直接创建productproperty实例
+                if(item) {
+                    data = extend(data,{
+                        productProperty:item
+                    });
+                    return resolve();
+                }
+                
+                //创建实例
+                let productProperty = new ProductProperty();
+                productProperty.set({
+                    productId
+                }).save().then(item => {
+                    data = extend(data,{
+                        productProperty:item
+                    });
+                    resolve();
+                });
+
             });
-            res.render('admin/product-property',data);
-        });
+            
+        })
         
-    });
+    ).then(() => res.render('admin/product-property', data));
+    
+    
+    
 
 });
 

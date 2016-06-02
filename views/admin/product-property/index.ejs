@@ -19,7 +19,8 @@
     <div class="admin-content admin-product-property-page">
 
         <div class="am-cf am-padding">
-            <div class="am-fl am-cf"><strong><a href="/admin/product-method">产品属性编辑</a></strong> / <a href="/admin/product-property/<%= productProperty.get('productId') %>">编辑产品属性</a></div>
+            <div class="am-fl am-cf"><a href="/admin/product">产品编辑</a> / <a href="/admin/product-property/<%= productProperty.get('productId') %>">编辑产品属性</a> /
+                <a href="/admin/product/edit/<%=product.get('productId')%>"><%=product.get('name')%></a></div>
         </div>
 
         <div class="am-g">

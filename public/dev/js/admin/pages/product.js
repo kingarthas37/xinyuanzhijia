@@ -4,6 +4,8 @@ let leanAppHeader = window.leanAppHeader;
 let swfobject = require('swfobject');
 let FlashDetect = require('flash-detect');
 
+let listDataRequest = require('./product/list-data-request');
+
 module.exports = {
 
     indexFun:function() {
@@ -73,6 +75,9 @@ module.exports = {
             return false;
             
         });
+
+        //列表首页ajax加载product-property数据
+        listDataRequest.init();
 
     },
 
