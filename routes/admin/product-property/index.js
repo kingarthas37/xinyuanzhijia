@@ -13,6 +13,7 @@ let Product = AV.Object.extend('Product');
 let ProductProperty = AV.Object.extend('ProductProperty');
 
 //lib
+let utils = require('../../../lib/utils');
 let config = require('../../../lib/config');
 
 var data = extend(config.data, {
@@ -22,68 +23,45 @@ var data = extend(config.data, {
 });
 
 
-router.get('/:productId',(req,res) => {
+router.get('/:productId', (req, res) => {
 
-    if(!req.AV.user) {
+    if (!req.AV.user) {
         return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
-    
+
     data = extend(data, {
         user: req.AV.user
     });
 
     let productId = parseInt(req.params.productId);
-    
-    
     AV.Promise.when(
-        
         new AV.Promise(resolve => {
-            
+
             let query = new AV.Query(Product);
-            query.equalTo('productId',productId);
-            query.select('name','productId');
-            
-            query.first().then( product => {
-                data = extend(data,{product});
+            query.equalTo('productId', productId);
+            query.select('name', 'productId');
+
+            query.first().then(product => {
+                data = extend(data, {product});
                 resolve();
             });
         }),
-        
+
         new AV.Promise(resolve => {
 
             let query = new AV.Query(ProductProperty);
-            query.equalTo('productId',productId);
+            query.equalTo('productId', productId);
 
             query.first().then(item => {
-
-                
-                //如果存在,编辑,否则直接创建productproperty实例
-                if(item) {
-                    data = extend(data,{
-                        productProperty:item
-                    });
-                    return resolve();
-                }
-                
-                //创建实例
-                let productProperty = new ProductProperty();
-                productProperty.set({
-                    productId
-                }).save().then(item => {
-                    data = extend(data,{
-                        productProperty:item
-                    });
-                    resolve();
+                data = extend(data, {
+                    productProperty: item
                 });
-
+                resolve();
             });
-            
+
         })
-        
     ).then(() => res.render('admin/product-property', data));
-    
-    
-    
+
 
 });
 
@@ -91,23 +69,25 @@ router.get('/:productId',(req,res) => {
 //保存产品购买链接
 router.post('/purchase-link/:productId', (req, res) => {
 
-    if(!req.AV.user) {
+    if (!req.AV.user) {
         return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
 
     let productId = parseInt(req.params.productId);
     let purchaseLink = req.body['purchase-link'];
     let purchaseLinkComment = req.body['purchase-link-comment'];
-    
+
+    purchaseLink = purchaseLink.map(item => utils.urlCompleting(item));
+
     let query = new AV.Query(ProductProperty);
-    query.equalTo('productId',productId);
+    query.equalTo('productId', productId);
     query.first().then(item => {
-        
+
         return item.save({
             purchaseLink,
             purchaseLinkComment
         });
-        
+
     }).then(() => {
         req.flash('success', '编辑产品购买链接成功!');
         res.redirect('/admin/product');

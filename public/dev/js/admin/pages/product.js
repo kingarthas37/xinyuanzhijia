@@ -41,7 +41,6 @@ module.exports = {
         });
         
         $('.remove-product').click(function() {
-            
             $('#confirm-remove-product').modal({
                 relatedTarget: this,
                 onConfirm: function() {
@@ -49,17 +48,10 @@ module.exports = {
                     let target = $(this.relatedTarget);
                     let productId = target.attr('data-id');
                     
-                    $.get({
-                        url:leanApp.api + 'classes/Product',
-                        headers:leanAppHeader,
-                        data:`where={"productId":${productId}}`
-                    }).done(data => {
-                        return $.get({
-                            type:'delete',
-                            url: leanApp.api + 'classes/Product/' + data.results[0].objectId,
-                            headers: leanAppHeader
-                        });
-                    }).done(() => {
+                    $.ajax({
+                        type:'post',
+                        url:`/admin/product/remove/${productId}`
+                    }).then(()=> {
                         alert.modal({
                             relatedTarget: this,
                             onConfirm:()=> {

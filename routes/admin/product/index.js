@@ -174,18 +174,50 @@ router.get('/', (req, res) => {
 });
 
 
+//删除product
+router.post('/remove/:productId',(req,res)=> {
+    
+    if (!req.AV.user) {
+        return res.send({success:0,error:config.errors.UNAUTHORIZED});
+    }
+    
+    let productId = parseInt(req.params.productId);
+    
+    AV.Promise.when(
+       
+        new AV.Promise(resolve => {
+            
+            let query = new AV.Query(Product);
+            query.equalTo('productId',productId);
+            query.first().then(product => {
+                return product.destroy();
+            }).then(resolve);
+            
+        }),
+
+        new AV.Promise(resolve => {
+
+            let query = new AV.Query(ProductProperty);
+            query.equalTo('productId',productId);
+            query.first().then(product => {
+                return product.destroy();
+            }).then(resolve);
+            
+        })
+        
+    ).then(()=> {
+        res.send({
+            success:1
+        });
+    });
+    
+});
+
+
 //产品列表首页获取数据
 router.get('/list-data',(req,res) => {
 
     let productListId = req.query.productListId;
-    
-   /* async.forEachLimit(listId,function(productId,resolve) {
-        
-        
-        
-    },function(err) {
-        
-    });*/
     productListId = productListId.map(item => parseInt(item));
     
     let query = new AV.Query(ProductProperty);
@@ -198,8 +230,6 @@ router.get('/list-data',(req,res) => {
             products
         });
     });
-    
-    
 
 });
 

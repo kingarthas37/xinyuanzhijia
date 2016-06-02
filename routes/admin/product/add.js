@@ -16,6 +16,7 @@ let ProductHistory = AV.Object.extend('ProductHistory');
 let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
+let ProductProperty = AV.Object.extend('ProductProperty');
 
 let Banner = AV.Object.extend('ProductBanner');
 
@@ -90,8 +91,6 @@ router.post('/', (req, res) => {
     let video = req.body['video'];
 
     let product = new Product();
-    let productHistory = new ProductHistory();
-
     product.set('name', name);
     product.set('nameEn', nameEn);
     product.set('mainImage', mainImage);
@@ -111,7 +110,8 @@ router.post('/', (req, res) => {
     product.set('useEn', useEn);
     product.set('detailImage', detailImage);
     product.set('video', video);
-    
+
+    let productHistory = new ProductHistory();
     productHistory.set('name', name);
     productHistory.set('nameEn', nameEn);
     productHistory.set('mainImage', mainImage);
@@ -133,10 +133,19 @@ router.post('/', (req, res) => {
     productHistory.set('video', video);
     productHistory.set('product',product);
 
-    productHistory.save().done(()=> {
+    productHistory.save().then(result => {
+        //获取product的objectId,生成productProperty
+        let query = new AV.Query(Product);
+        query.equalTo('objectId',result.get('product').id);
+        return query.first();
+    }).then(result => {
+        let productProperty = new ProductProperty();
+        productProperty.set('productId',result.get('productId'));
+        return productProperty.save();
+    }).then(()=> {
         req.flash('success', '添加商品成功!');
         res.redirect('/admin/product');
-    });
+    },err => console.info(err));
     
 });
 
