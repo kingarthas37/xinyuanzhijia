@@ -142,6 +142,33 @@ footer p {
     #form-upload .upload-loading.on {
       display: block; }
 
+.image-upload-list {
+  display: none;
+  margin: 0;
+  padding: 0; }
+  .image-upload-list.on {
+    display: block; }
+  .image-upload-list li {
+    margin-top: 15px;
+    margin-right: 10px;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    display: table;
+    table-layout: fixed;
+    *overflow: hidden;
+    *font-size: 120px;
+    *line-height: 1; }
+    .image-upload-list li a {
+      width: 120px;
+      height: 120px;
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle; }
+    .image-upload-list li img {
+      max-width: 120px;
+      max-height: 120px; }
+
 /* admin sign page */
 .admin-sign-page {
   padding: 50px 0; }

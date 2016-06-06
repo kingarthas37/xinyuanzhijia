@@ -25,6 +25,7 @@ module.exports = {
     '/admin/product-brand':require('./admin/product-brand'),
     '/admin/product-brand/add':require('./admin/product-brand/add'),
     '/admin/product-brand/edit':require('./admin/product-brand/edit'),
+    '/admin/product-brand/upload':require('./admin/product-brand/upload'),
     
     '/admin/product-property':require('./admin/product-property')
     

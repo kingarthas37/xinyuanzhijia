@@ -59,6 +59,19 @@
                     
                     <hr/>
 
+                    <!-- brand logo image start -->
+                    <div class="am-form-group">
+                        <label for="brand-logo-image">品牌Logo：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/product-brand/upload?callback=brandLogoUploadSuccess" frameborder="0"></iframe>
+                        </div>
+                        <ul id="brand-logo-image-view" class="image-upload-list"></ul>
+                        <input id="brand-logo-image" name="brand-logo-image" type="hidden"/>
+                    </div>
+                    <!-- brand logo image end -->
+
+                    <hr/>
+
                     <!-- brand start -->
                     <div class="am-form-group">
                         <label for="brand-detail">品牌介绍(md5):</label>
@@ -68,24 +81,59 @@
 
                     <hr/>
 
-                    <!-- brand name start -->
+                    <!-- author name start -->
                     <div class="am-form-group">
                         <label for="author-name">创始人姓名:</label>
                         <input id="author-name" name="author-name" type="text" placeholder="输入品牌名称" />
                     </div>
-                    <!-- brand name end -->
+                    <!-- author name end -->
 
                     <hr/>
 
-                    <!-- brand start -->
+                    <!-- author image start -->
+                    <div class="am-form-group">
+                        <label for="author-image">作者照片：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/product-brand/upload?callback=authorUploadSuccess" frameborder="0"></iframe>
+                        </div>
+                        <ul id="author-image-view" class="image-upload-list"></ul>
+                        <input id="author-image" name="author-image" type="hidden"/>
+                    </div>
+                    <!-- author image end -->
+
+                    <hr/>
+
+                    <!-- author detail start -->
                     <div class="am-form-group">
                         <label for="author-detail">创始人介绍(md5):</label>
                         <textarea name="author-detail" id="author-detail" rows="10"></textarea>
                     </div>
-                    <!-- brand end -->
+                    <!-- author detail end -->
 
                     <hr/>
 
+                    <!-- url start -->
+                    <label for="author-name">介绍链接:</label>
+                    <div class="am-form-group">
+                        <input name="url" type="text" placeholder="输入链接" />
+                    </div>
+                    <div class="am-form-group">
+                        <input name="url" type="text" placeholder="输入链接" />
+                    </div>
+                    <div class="am-form-group">
+                        <input name="url" type="text" placeholder="输入链接" />
+                    </div>
+                    <!-- url end -->
+
+                    <hr/>
+
+                    <!-- comment start -->
+                    <div class="am-form-group">
+                        <label for="author-detail">备注:</label>
+                        <textarea name="comment" id="comment" rows="3"></textarea>
+                    </div>
+                    <!-- comment end -->
+                    
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
                         <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
@@ -106,10 +154,20 @@
 <% include ../partials/js %>
 
 <script type="text/javascript">
+    var productBrand;
     $(function () {
         productBrand = require('product-brand');
         productBrand.addFun();
     });
+    
+    function brandLogoUploadSuccess(data) {
+        productBrand.brandLogoUploadSuccess(data);
+    }
+
+    function authorUploadSuccess(data) {
+        productBrand.authorUploadSuccess(data);
+    }
+    
 </script>
 </body>
 </html>

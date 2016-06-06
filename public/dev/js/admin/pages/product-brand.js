@@ -7,8 +7,8 @@ module.exports = {
     indexFun: function () {
 
         //删除productMethod
-        let removeLink = $('.remove-product-method');
-        let modal = $('#confirm-remove-product-method');
+        let removeLink = $('.remove-product-brand');
+        let modal = $('#confirm-remove-product-brand');
         let alert = $('#modal-alert');
 
         //alert 关闭后移除暂存的实例，再次调用时重新初始化,可以解决2次调用同一代码的问题
@@ -34,7 +34,7 @@ module.exports = {
 
                     $.ajax({
                         type:'post',
-                        url:`/admin/product-method/remove/${productMethodId}`,
+                        url:`/admin/product-brand/remove/${productMethodId}`,
                         success: function (data) {
                             
                             item.data('state', false);
@@ -75,5 +75,13 @@ module.exports = {
                 submit.attr('disabled', true).addClass('am-disabled');
             }
         });
+    },
+    brandLogoUploadSuccess(data) {
+        $('#brand-logo-image-view').empty().addClass('on').append(`<li><a href="${data[0].url}"><img src="${data[0].url}"/></a></li>`);
+        $('#brand-logo-image').val(data[0].url);
+    },
+    authorUploadSuccess(data) {
+        $('#author-image-view').empty().addClass('on').append(`<li><a href="${data[0].url}"><img src="${data[0].url}"/></a></li>`);
+        $('#author-image').val(data[0].url);
     }
 };

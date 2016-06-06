@@ -204,3 +204,17 @@ footer p {
         margin-left: 10px;
     }
 }
+
+.image-upload-list {
+    display: none;
+    &.on {
+        display: block;
+    }
+    margin:0;
+    padding:0;
+    li {
+        margin-top: 15px;
+        margin-right: 10px;
+        @include align-img(120px,120px);
+    }
+}
