@@ -21,10 +21,6 @@ module.exports = {
     '/admin/product-method':require('./admin/product-method'),
     '/admin/product-method/add':require('./admin/product-method/add'),
     '/admin/product-method/edit':require('./admin/product-method/edit'),
-
-    '/admin/product-brand':require('./admin/product-brand'),
-    '/admin/product-brand/add':require('./admin/product-brand/add'),
-    '/admin/product-brand/edit':require('./admin/product-brand/edit'),
     
     '/admin/product-property':require('./admin/product-property')
     

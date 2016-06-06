@@ -315,7 +315,7 @@ module.exports = {
             imageView.find('.copy').append('<a class="copy-url" href="javascript:;">复制</a>');
             imageView.find('.copy-url').each(function() {
                 $(this).zclip({
-                    path: '/swf/ZeroClipboard.swf',
+                    path: '/assets/swf/ZeroClipboard.swf',
                     copy: function () {
                         return $(this).parents('li').find('img').attr('src');
                     },
