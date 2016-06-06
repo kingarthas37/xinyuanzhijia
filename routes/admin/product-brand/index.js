@@ -12,13 +12,12 @@ let config = require('../../../lib/config');
 let pager = require('../../../lib/component/pager');
 
 //class
-let ProductCategory1 = AV.Object.extend('ProductCategory1');
-let ProductMethod = AV.Object.extend('ProductMethod');
+let ProductBrand = AV.Object.extend('ProductBrand');
 
 let data = extend(config.data, {
-    title: `${config.data.titleAdmin} - 产品类型列表页`,
+    title: `${config.data.titleAdmin} - 品牌介绍页`,
     currentTag: 'product',
-    currentPage: 'product-method'
+    currentPage: 'product-brand'
 });
 
 //首页
@@ -45,7 +44,7 @@ router.get('/', (req, res) => {
         //获取count
         new AV.Promise(resolve => {
 
-            let query = new AV.Query(ProductMethod);
+            let query = new AV.Query(ProductBrand);
             
             if (search.length) {
                 query.contains('name', search);
@@ -56,7 +55,7 @@ router.get('/', (req, res) => {
                     pager:pager.init(page,limit,count),
                     pagerHtml:pager.initHtml({
                         page,limit,count,
-                        url:'/admin/product-method',
+                        url:'/admin/product-brand',
                         serialize:{page,search,limit}
                     })
                 });
@@ -68,13 +67,13 @@ router.get('/', (req, res) => {
         //查询当前页所有数据
         new AV.Promise(resolve => {
 
-            let query = new AV.Query(ProductMethod);
+            let query = new AV.Query(ProductBrand);
 
             //查询条件
             {
                 query.skip((page - 1) * limit);
                 query.limit(limit);
-                query.ascending('productMethodId');
+                query.ascending('productBrandId');
                 
                 if (search.length) {
                     query.contains('name', search);
@@ -89,7 +88,7 @@ router.get('/', (req, res) => {
                 });
                 
                 data = extend(data, {
-                    productMethod:items
+                    productBrand:items
                 });
                 
                 resolve();
@@ -97,17 +96,17 @@ router.get('/', (req, res) => {
 
         })
 
-    ).then(() => res.render('admin/product-method', data));
+    ).then(() => res.render('admin/product-brand', data));
 
 });
 
 
-router.post('/remove/:productMethodId',(req,res)=> {
+router.post('/remove/:productBrandId',(req,res)=> {
     
-    let productMethodId = parseInt(req.params.productMethodId);
+    let productBrandId = parseInt(req.params.productBrandId);
     
-    let query = new AV.Query(ProductCategory1);
-    query.equalTo('productMethodId',productMethodId);
+    let query = new AV.Query(ProductBrand);
+    query.equalTo('productBrandId',productBrandId);
     
     query.first().then(item => {
         
@@ -116,8 +115,8 @@ router.post('/remove/:productMethodId',(req,res)=> {
             return AV.Promise.error();
         }
         
-        let query = new AV.Query(ProductMethod);
-        query.equalTo('productMethodId',productMethodId);
+        let query = new AV.Query(ProductBrand);
+        query.equalTo('productBrandId',productBrandId);
         return query.first();
         
     }).then(item => {

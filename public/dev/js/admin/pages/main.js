@@ -5,5 +5,6 @@ require('./product-category');
 require('./product-method');
 require('./product-preview');
 require('./product-property');
+require('./product-brand');
 require('./upload');
 require('./sign');

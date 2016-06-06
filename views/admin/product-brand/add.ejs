@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+<div class="am-cf admin-main">
+
+    <!-- sidebar start -->
+    <% include ../partials/sidebar %>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content admin-product-brand-page">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong><a href="/admin/product-brand">品牌编辑</a></strong> / <a href="/admin/product-brand/add">添加新品牌</a></div>
+        </div>
+        
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                
+                <form id="form-add-product" class="am-form" brand="post">
+                    
+                    <!-- name start -->
+                    <div class="am-form-group">
+                        <label for="name">品牌名称描述<i>*</i>:</label>
+                        <input id="name" required name="name" type="text" placeholder="输入品牌名称描述[必填]" />
+                    </div>
+                    <!-- name end -->
+
+                    <hr/>
+
+                    <!-- name start -->
+                    <div class="am-form-group">
+                        <label for="type">类型:</label>
+                        <div>
+                            <select name="type" id="type" data-am-selected>
+                                <option value="person" selected>个人</option>
+                                <option value="brand">品牌</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- name end -->
+
+                    <hr/>
+                    
+                    <!-- brand name start -->
+                    <div class="am-form-group">
+                        <label for="brand-name">品牌名称:</label>
+                        <input id="brand-name" name="brand-name" type="text" placeholder="输入品牌名称" />
+                    </div>
+                    <!-- brand name end -->
+                    
+                    <hr/>
+
+                    <!-- brand start -->
+                    <div class="am-form-group">
+                        <label for="brand-detail">品牌介绍(md5):</label>
+                        <textarea name="brand-detail" id="brand-detail" rows="10"></textarea>
+                    </div>
+                    <!-- brand end -->
+
+                    <hr/>
+
+                    <!-- brand name start -->
+                    <div class="am-form-group">
+                        <label for="author-name">创始人姓名:</label>
+                        <input id="author-name" name="author-name" type="text" placeholder="输入品牌名称" />
+                    </div>
+                    <!-- brand name end -->
+
+                    <hr/>
+
+                    <!-- brand start -->
+                    <div class="am-form-group">
+                        <label for="author-detail">创始人介绍(md5):</label>
+                        <textarea name="author-detail" id="author-detail" rows="10"></textarea>
+                    </div>
+                    <!-- brand end -->
+
+                    <hr/>
+
+                    <div class="am-form-group">
+                        <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
+                        <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
+                    </div>
+
+                </form>
+                
+            </div>
+        </div>
+
+    </div>
+    <!-- content end -->
+
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    $(function () {
+        productBrand = require('product-brand');
+        productBrand.addFun();
+    });
+</script>
+</body>
+</html>
