@@ -1,109 +1,129 @@
 'use strict';
 
-var router = require('express').Router();
-var AV = require('leanengine');
+let router = require('express').Router();
+let AV = require('leanengine');
 
-var flash = require('connect-flash');
+let flash = require('connect-flash');
 
-var extend = require('xtend');
+let async = require('async');
+let extend = require('xtend');
 
-var config = require('../../lib/config');
+let config = require('../../../lib/config');
+let pager = require('../../../lib/component/pager');
 
 //class
-var Product = AV.Object.extend('Product');
-var ProductBrand = AV.Object.extend('ProductBrand');
+let ProductCategory1 = AV.Object.extend('ProductCategory1');
+let ProductMethod = AV.Object.extend('ProductMethod');
 
-//lib
-var pager = require('../../lib/pager');
-
-var data =  extend(config.data,{
-    title: '品牌管理-首页',
-    currentPage: 'product-brand'
+let data = extend(config.data, {
+    title: `${config.data.titleAdmin} - 产品类型列表页`,
+    currentTag: 'product',
+    currentPage: 'product-method'
 });
-
 
 //首页
-router.get('/', function (req, res, next) {
-    
-    if (!req.AV.user) {
-        return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
-    }
-    
-    var page = req.query.page ? parseInt(req.query.page) : 1;
-    var limit = req.query.limit ? parseInt(req.query.limit) : config.page.LIMIT;
-    var order = req.query.order || 'desc';
-    
-    var searchName = req.query['search-name'];
-
-    data = extend(data,{
-        flash: {
-            success:req.flash('success'),
-            error:req.flash('error')
-        },
-        user:req.AV.user,
-        searchName:searchName
-    });
-    
-    var query = new AV.Query(ProductBrand);
-    if(searchName) {
-        query.contains('name',searchName);
-    }
-    
-    query.count().then((count)=> {
-        
-        data = extend(data,{
-            productBrandPager:pager(page,limit,count),
-            productBrandCount:count
-        });
-
-        query.skip((page - 1) * limit);
-        query.limit(limit);
-
-        if(order === 'asc') {
-            query.ascending('productBrandId');
-        } else {
-            query.descending('productBrandId');
-        }
-
-        if(searchName) {
-            query.contains('name',searchName);
-        }
-        
-        return query.find();
-        
-    }).then((results) => {
-
-        data = extend(data, {
-            productBrand: results
-        });
-        res.render('product-brand', data);
-        
-    });
-    
-     
-});
-
-
-
-router.get('/remove/:productBrandId', function (req,res) {
+router.get('/', (req, res) => {
 
     if(!req.AV.user) {
-        return res.json({
-            error:1,
-            msg:config.error.NOT_SUCCESS
-        });
+        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
-    let productBrandId = parseInt(req.params.productBrandId);
-    let query = new AV.Query(ProductBrand);
-    query.equalTo('productBrandId',productBrandId);
-    query.first().then((result) => {
-        return result.destroy();
-    }).then(() => {
-        req.flash('success', '删除成功!');
-        return res.redirect('/product-brand');
+
+    let page = req.query.page ? parseInt(req.query.page) : 1;
+    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
+    let order = req.query.order || 'desc';
+    
+    let search = req.query.search ? req.query.search.trim() : '';
+
+    data = extend(data,{
+        search: search,
+        flash: {success: req.flash('success'), error: req.flash('error')},
+        user: req.AV.user
     });
- 
+
+    AV.Promise.when(
+        
+        //获取count
+        new AV.Promise(resolve => {
+
+            let query = new AV.Query(ProductMethod);
+            
+            if (search.length) {
+                query.contains('name', search);
+            }
+            
+            query.count().done(count => {
+                data = extend(data, {
+                    pager:pager.init(page,limit,count),
+                    pagerHtml:pager.initHtml({
+                        page,limit,count,
+                        url:'/admin/product-method',
+                        serialize:{page,search,limit}
+                    })
+                });
+                resolve();
+            });
+
+        }),
+
+        //查询当前页所有数据
+        new AV.Promise(resolve => {
+
+            let query = new AV.Query(ProductMethod);
+
+            //查询条件
+            {
+                query.skip((page - 1) * limit);
+                query.limit(limit);
+                query.ascending('productMethodId');
+                
+                if (search.length) {
+                    query.contains('name', search);
+                }
+            }
+            
+            query.find().then(items => {
+                
+                items.forEach( n => {
+                    n.createdDate = `${n.updatedAt.getFullYear()}/${n.createdAt.getMonth() + 1}/${n.createdAt.getDate()}`;
+                    n.updatedDate = `${n.updatedAt.getFullYear()}/${n.updatedAt.getMonth() + 1}/${n.updatedAt.getDate()}`;
+                });
+                
+                data = extend(data, {
+                    productMethod:items
+                });
+                
+                resolve();
+            });
+
+        })
+
+    ).then(() => res.render('admin/product-method', data));
+
 });
 
+
+router.post('/remove/:productMethodId',(req,res)=> {
+    
+    let productMethodId = parseInt(req.params.productMethodId);
+    
+    let query = new AV.Query(ProductCategory1);
+    query.equalTo('productMethodId',productMethodId);
+    
+    query.first().then(item => {
+        
+        if(item) {
+            res.send({success: 0,message:'该产品类型含有分类,请先删除所有子分类后再进行删除'});
+            return AV.Promise.error();
+        }
+        
+        let query = new AV.Query(ProductMethod);
+        query.equalTo('productMethodId',productMethodId);
+        return query.first();
+        
+    }).then(item => {
+        return item.destroy();
+    }).then(() => res.send({success: 1}));
+    
+});
 
 module.exports = router;
