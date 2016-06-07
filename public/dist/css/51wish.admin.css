@@ -77,6 +77,8 @@ footer p {
 
 .am-topbar-brand a, .am-topbar-brand small {
   color: #fff; }
+  .am-topbar-brand a:hover, .am-topbar-brand small:hover {
+    color: #fff; }
 
 @media only screen and (max-width: 640px) {
   .am-topbar-brand a, .am-topbar-brand small {

@@ -107,6 +107,9 @@ footer p {
 .am-topbar-brand {
     a, small {
         color: #fff;
+        &:hover {
+            color: #fff;
+        }
     }
 }
 
