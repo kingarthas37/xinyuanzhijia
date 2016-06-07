@@ -10,66 +10,76 @@ var extend = require('xtend');
 var markdown = require("markdown").markdown;
 
 //class
-let ProductMethod = AV.Object.extend('ProductMethod');
+let ProductBrand = AV.Object.extend('ProductBrand');
 
 
 //lib
+let utils = require('../../../lib/utils');
 let config = require('../../../lib/config');
 
 var data = extend(config.data, {
-    title: `${config.data.titleAdmin} - 编辑产品类型`,
+    title: `${config.data.titleAdmin} - 编辑品牌`,
     currentTag: 'product',
-    currentPage: 'product-method'
+    currentPage: 'product-brand'
 });
 
-router.get('/:productMethodId', (req, res, next) => {
+router.get('/:productBrandId', (req, res, next) => {
 
     if(!req.AV.user) {
         return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
 
-    var productMethodId = parseInt(req.params.productMethodId);
+    var productBrandId = parseInt(req.params.productBrandId);
 
     data = extend(data, {
         user: req.AV.user
     });
     
-    let query = new AV.Query(ProductMethod);
-    query.equalTo('productMethodId',productMethodId);
+    let query = new AV.Query(ProductBrand);
+    query.equalTo('productBrandId',productBrandId);
     query.first().then( item => {
         data = extend(data,{
-            productMethod:item
+            productBrand:item
         });
-        res.render('admin/product-method/edit',data);
+        res.render('admin/product-brand/edit',data);
     });
 
 });
 
-router.post('/:productMethodId', (req, res) => {
+router.post('/:productBrandId', (req, res) => {
 
     if(!req.AV.user) {
         return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
 
+    let productBrandId = parseInt(req.params.productBrandId);
     let name = req.body['name'];
-    let label = req.body['label'];
+    let type = req.body['type'];
+    let brandName = req.body['brand-name'];
+    let brandLogoImage = req.body['brand-logo-image'];
+    let brandDetail = req.body['brand-detail'];
+    let authorName = req.body['author-name'];
+    let authorImage = req.body['author-image'];
+    let authorDetail = req.body['author-detail'];
+    let url = req.body['url'];
+    let comment = req.body['comment'];
 
-    let productMethodId = parseInt(req.params.productMethodId);
+    url = url.map(item => utils.urlCompleting(item));
 
-    let query = new AV.Query(ProductMethod);
-    query.equalTo('productMethodId',productMethodId);
+
+    let query = new AV.Query(ProductBrand);
+    query.equalTo('productBrandId',productBrandId);
     query.first().then(item => {
         
         return item.save({
-            name:name,
-            label:label
+            name,type,brandName,brandLogoImage,brandDetail,authorName,authorImage,authorDetail,url,comment
         });
         
     }).then(() => {
-        req.flash('success', '编辑商品类型成功!');
-        res.redirect('/admin/product-method');
+        req.flash('success', '编辑品牌成功!');
+        res.redirect('/admin/product-brand');
     });
-
+    
 });
 
 module.exports = router;

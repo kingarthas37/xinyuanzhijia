@@ -16,32 +16,127 @@
     <!-- sidebar end -->
 
     <!-- content start -->
-    <div class="admin-content admin-product-method-page">
+    <div class="admin-content admin-product-brand-page">
 
         <div class="am-cf am-padding">
-            <div class="am-fl am-cf"><strong><a href="/admin/product-method">产品类型编辑</a></strong> / <a href="/admin/product-method/edit/<%= productMethod.get('productMethodId') %>">编辑产品类型</a></div>
+            <div class="am-fl am-cf"><strong><a href="/admin/product-brand">品牌编辑</a></strong> / <a href="/admin/product-brand/edit/<%=productBrand.get('productBrandId')%>">编辑产品品牌</a></div>
         </div>
 
         <div class="am-g">
             <div class="am-u-sm-12">
 
-                <form id="form-add-product" class="am-form" action="/admin/product-method/edit/<%= productMethod.get('productMethodId') %>" method="post">
+                <form id="form-add-product" class="am-form" method="post" >
 
                     <!-- name start -->
                     <div class="am-form-group">
-                        <label for="name">产品类型名称<i>*</i>:</label>
-                        <input id="name" required name="name" type="text" value="<%= productMethod.get('name') %>" placeholder="输入产品类型名称[必填]" />
+                        <label for="name">品牌名称描述<i>*</i>:</label>
+                        <input id="name" required name="name" type="text" value="<%=productBrand.get('name')%>" placeholder="输入品牌名称描述[必填]" />
                     </div>
                     <!-- name end -->
 
-                    <!-- label start -->
+                    <hr/>
+
+                    <!-- name start -->
                     <div class="am-form-group">
-                        <label for="label">产品类型标签(英文)<i>*</i>:</label>
-                        <input id="label" required name="label" type="text" value="<%= productMethod.get('label') %>" placeholder="输入产品类型标签[必填]" />
+                        <label for="type">类型:</label>
+                        <div>
+                            <select name="type" id="type" data-am-selected>
+                                <option value="person" <%if(productBrand.get('type')==='person'){%>selected<%}%>>个人</option>
+                                <option value="brand" <%if(productBrand.get('type')==='brand'){%>selected<%}%>>品牌</option>
+                            </select>
+                        </div>
                     </div>
-                    <!-- label end -->
+                    <!-- name end -->
 
                     <hr/>
+
+                    <!-- brand name start -->
+                    <div class="am-form-group">
+                        <label for="brand-name">品牌名称:</label>
+                        <input id="brand-name" name="brand-name" type="text" placeholder="输入品牌名称" value="<%=productBrand.get('brandName')%>" />
+                    </div>
+                    <!-- brand name end -->
+
+                    <hr/>
+
+                    <!-- brand logo image start -->
+                    <div class="am-form-group">
+                        <label for="brand-logo-image">品牌Logo：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/product-brand/upload?callback=brandLogoUploadSuccess" frameborder="0"></iframe>
+                        </div>
+                        <ul id="brand-logo-image-view" class="image-upload-list <%if(productBrand.get('brandLogoImage')){%>on<%}%>">
+                            <%if(productBrand.get('brandLogoImage')){%><li><a href="<%= productBrand.get('brandLogoImage') %>"><img src="<%=productBrand.get('brandLogoImage')%>"/></a></li><%}%>
+                        </ul>
+                        <input id="brand-logo-image" name="brand-logo-image" type="hidden" value="<%=productBrand.get('brandLogoImage')%>"/>
+                    </div>
+                    <!-- brand logo image end -->
+
+                    <hr/>
+
+                    <!-- brand start -->
+                    <div class="am-form-group">
+                        <label for="brand-detail">品牌介绍(md5):</label>
+                        <textarea name="brand-detail" id="brand-detail" rows="10"><%=productBrand.get('brandDetail')%></textarea>
+                    </div>
+                    <!-- brand end -->
+
+                    <hr/>
+
+                    <!-- author name start -->
+                    <div class="am-form-group">
+                        <label for="author-name">创始人姓名:</label>
+                        <input id="author-name" name="author-name" type="text" placeholder="输入品牌名称" value="<%=productBrand.get('authorName')%>" />
+                    </div>
+                    <!-- author name end -->
+
+                    <hr/>
+
+                    <!-- author image start -->
+                    <div class="am-form-group">
+                        <label for="author-image">创始人照片：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/product-brand/upload?callback=authorUploadSuccess" frameborder="0"></iframe>
+                        </div>
+                        <ul id="author-image-view" class="image-upload-list <%if(productBrand.get('authorImage')){%>on<%}%>">
+                            <%if(productBrand.get('authorImage')){%><li><a href="<%= productBrand.get('authorImage') %>"><img src="<%=productBrand.get('authorImage')%>"/></a></li><%}%>
+                        </ul>
+                        <input id="author-image" name="author-image" type="hidden" value="<%=productBrand.get('authorImage')%>"/>
+                    </div>
+                    <!-- author image end -->
+
+                    <hr/>
+
+                    <!-- author detail start -->
+                    <div class="am-form-group">
+                        <label for="author-detail">创始人介绍(md5):</label>
+                        <textarea name="author-detail" id="author-detail" rows="10"><%=productBrand.get('authorDetail')%></textarea>
+                    </div>
+                    <!-- author detail end -->
+
+                    <hr/>
+
+                    <!-- url start -->
+                    <label for="author-name">介绍链接:</label>
+                    <div class="am-form-group">
+                        <input name="url" type="text" placeholder="输入链接" value="<%=productBrand.get('url')[0]%>" />
+                    </div>
+                    <div class="am-form-group">
+                        <input name="url" type="text" placeholder="输入链接" value="<%=productBrand.get('url')[1]%>" />
+                    </div>
+                    <div class="am-form-group">
+                        <input name="url" type="text" placeholder="输入链接" value="<%=productBrand.get('url')[2]%>" />
+                    </div>
+                    <!-- url end -->
+
+                    <hr/>
+
+                    <!-- comment start -->
+                    <div class="am-form-group">
+                        <label for="author-detail">备注:</label>
+                        <textarea name="comment" id="comment" rows="3"><%=productBrand.get('comment')%></textarea>
+                    </div>
+                    <!-- comment end -->
 
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
@@ -62,10 +157,20 @@
 <% include ../partials/js %>
 
 <script type="text/javascript">
+    var productBrand;
+    
     $(function () {
-        productMethod = require('product-method');
-        productMethod.editFun();
+        productBrand = require('product-brand');
+        productBrand.editFun();
     });
+
+    function brandLogoUploadSuccess(data) {
+        productBrand.brandLogoUploadSuccess(data);
+    }
+
+    function authorUploadSuccess(data) {
+        productBrand.authorUploadSuccess(data);
+    }
 </script>
 </body>
 </html>

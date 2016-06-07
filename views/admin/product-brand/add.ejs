@@ -25,7 +25,7 @@
         <div class="am-g">
             <div class="am-u-sm-12">
                 
-                <form id="form-add-product" class="am-form" brand="post">
+                <form id="form-add-product" class="am-form" method="post" >
                     
                     <!-- name start -->
                     <div class="am-form-group">
@@ -92,7 +92,7 @@
 
                     <!-- author image start -->
                     <div class="am-form-group">
-                        <label for="author-image">作者照片：</label>
+                        <label for="author-image">创始人照片：</label>
                         <div class="upload-content">
                             <iframe class="upload" src="/admin/product-brand/upload?callback=authorUploadSuccess" frameborder="0"></iframe>
                         </div>
@@ -155,6 +155,7 @@
 
 <script type="text/javascript">
     var productBrand;
+    
     $(function () {
         productBrand = require('product-brand');
         productBrand.addFun();
