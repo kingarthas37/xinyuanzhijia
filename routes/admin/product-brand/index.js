@@ -31,10 +31,12 @@ router.get('/', (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let order = req.query.order || 'desc';
     
-    let search = req.query.search ? req.query.search.trim() : '';
+    let searchName = req.query['search-name'] ? req.query['search-name'].trim() : '';
+    let searchType = req.query['search-type'] ? req.query['search-type'].trim() : '';
 
     data = extend(data,{
-        search: search,
+        searchName,
+        searchType,
         flash: {success: req.flash('success'), error: req.flash('error')},
         user: req.AV.user
     });
@@ -46,8 +48,12 @@ router.get('/', (req, res) => {
 
             let query = new AV.Query(ProductBrand);
             
-            if (search.length) {
-                query.contains('name', search);
+            if (searchName.length) {
+                query.contains('name',searchName);
+            }
+            
+            if(searchType) {
+                query.equalTo('type',searchType);
             }
             
             query.count().done(count => {
@@ -56,7 +62,7 @@ router.get('/', (req, res) => {
                     pagerHtml:pager.initHtml({
                         page,limit,count,
                         url:'/admin/product-brand',
-                        serialize:{page,search,limit}
+                        serialize:{page,searchName,searchType,limit}
                     })
                 });
                 resolve();
@@ -74,9 +80,13 @@ router.get('/', (req, res) => {
                 query.skip((page - 1) * limit);
                 query.limit(limit);
                 query.ascending('productBrandId');
-                
-                if (search.length) {
-                    query.contains('name', search);
+
+                if (searchName.length) {
+                    query.contains('name',searchName);
+                }
+
+                if(searchType) {
+                    query.equalTo('type',searchType);
                 }
             }
             
@@ -107,19 +117,7 @@ router.post('/remove/:productBrandId',(req,res)=> {
     
     let query = new AV.Query(ProductBrand);
     query.equalTo('productBrandId',productBrandId);
-    
-    query.first().then(item => {
-        
-        if(item) {
-            res.send({success: 0,message:'该产品类型含有分类,请先删除所有子分类后再进行删除'});
-            return AV.Promise.error();
-        }
-        
-        let query = new AV.Query(ProductBrand);
-        query.equalTo('productBrandId',productBrandId);
-        return query.first();
-        
-    }).then(item => {
+    query.first().then(item=> {
         return item.destroy();
     }).then(() => res.send({success: 1}));
     

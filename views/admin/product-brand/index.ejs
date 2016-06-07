@@ -27,18 +27,23 @@
         </div>
 
         <div class="am-g">
-            <form class="am-form">
-                <div class="am-u-sm-12 am-u-md-3">
+            <div class="am-u-sm-12">
+                <form class="am-form-inline" role="form">
                     <div class="am-form-group">
-                        <div class="am-input-group am-input-group-sm">
-                            <input type="text" name="search" class="am-form-field" placeholder="搜索品牌名">
-                            <span class="am-input-group-btn">
-                                <button class="am-btn am-btn-primary" type="submit">搜索</button>
-                            </span>
-                        </div>
+                        <input type="text" name="search-name" class="am-form-field" placeholder="搜索品牌名">
                     </div>
-                </div>
-            </form>
+
+                    <div class="am-form-group">
+                        <select data-am-selected name="search-type">
+                            <option value=""></option>
+                            <option value="person" <%if(searchType==='person'){%>selected<%}%> >个人</option>
+                            <option value="brand"  <%if(searchType==='brand'){%>selected<%}%>>品牌</option>
+                        </select>
+                    </div>
+
+                    <button class="am-btn am-btn-primary" type="submit">搜索</button>
+                </form>
+            </div>
         </div>
 
 
@@ -48,14 +53,23 @@
                 <table class="am-table am-table-striped">
                     <thead>
                     <tr>
-                        <th>产品类型名称</th>
-                        <th>产品类型标签</th>
+                        <th>名称</th>
+                        <th>品牌名称</th>
+                        <th>作者名称</th>
                         <th width="80" class="t-c small-screen-hide">更新时间</th>
                         <th width="60" class="t-c small-screen-hide">删除</th>
                     </tr>
                     </thead>
                     <tbody>
-                   
+                    <% for(var i=0; i < productBrand.length; i++) {%>
+                    <tr>
+                        <td><a href="/admin/product-brand/edit/<%= productBrand[i].get('productBrandId')%>"><%= productBrand[i].get('name') %></a></td>
+                        <td><%= productBrand[i].get('brandName') %></td>
+                        <td><%= productBrand[i].get('authorName') %></td>
+                        <td class="t-c"><%= productBrand[i].updatedDate %></td>
+                        <td class="t-c"><a class="remove-product-brand" data-id="<%= productBrand[i].get('productBrandId') %>" href="javascript:;">删除</a></td>
+                    </tr>
+                    <% }%>
                     </tbody>
                 </table>
 
