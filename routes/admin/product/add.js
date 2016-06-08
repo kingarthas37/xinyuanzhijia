@@ -71,10 +71,10 @@ router.post('/', (req, res) => {
     let name = req.body['name'];
     let nameEn = req.body['name-en'];
     let mainImage = req.body['main-image'] ? JSON.parse(req.body['main-image']) : null;
-    let produceMethod = getQueryData(req.body['select-product-method']);
+    let productMethod = getQueryData(req.body['select-product-method']);
     let category1 = getQueryData(req.body['select-category-1']);
     let category2 = getQueryData(req.body['select-category-2']);
-    updateQueryData(produceMethod,category1,category2);
+    updateQueryData(productMethod,category1,category2);
     
     let bannerId = parseInt(req.body['select-banner']);
     let detail = req.body['detail'];
@@ -89,65 +89,38 @@ router.post('/', (req, res) => {
     let useEn = req.body['use-en'];
     let detailImage = req.body['detail-image'];
     let video = req.body['video'];
-
+    
     let product = new Product();
-    product.set('name', name);
-    product.set('nameEn', nameEn);
-    product.set('mainImage', mainImage);
-    product.set('productMethod',produceMethod);
-    product.set('category1',category1);
-    product.set('category2',category2);
-    product.set('bannerId', bannerId);
-    product.set('detail', detail);
-    product.set('detailEn', detailEn);
-    product.set('description', description);
-    product.set('review', review);
-    product.set('property', property);
-    product.set('propertyEn', propertyEn);
-    product.set('instruction', instruction);
-    product.set('instructionEn', instructionEn);
-    product.set('use', use);
-    product.set('useEn', useEn);
-    product.set('detailImage', detailImage);
-    product.set('video', video);
-
     let productHistory = new ProductHistory();
-    productHistory.set('name', name);
-    productHistory.set('nameEn', nameEn);
-    productHistory.set('mainImage', mainImage);
-    productHistory.set('productMethod',produceMethod);
-    productHistory.set('category1',category1);
-    productHistory.set('category2',category2);
-    productHistory.set('bannerId', bannerId);
-    productHistory.set('detail', detail);
-    productHistory.set('detailEn', detailEn);
-    productHistory.set('description', description);
-    productHistory.set('review', review);
-    productHistory.set('property', property);
-    productHistory.set('propertyEn', propertyEn);
-    productHistory.set('instruction', instruction);
-    productHistory.set('instructionEn', instructionEn);
-    productHistory.set('use', use);
-    productHistory.set('useEn', useEn);
-    productHistory.set('detailImage', detailImage);
-    productHistory.set('video', video);
-    productHistory.set('product',product);
-
-    productHistory.save().then(result => {
-        //获取product的objectId,生成productProperty
+    
+    let productData = {name,nameEn,mainImage,productMethod,category1,category2,bannerId,detail,detailEn,description,review,property,propertyEn,instruction,instructionEn,use,useEn,detailImage,video};
+    
+    product.save(productData).then(result => {
         let query = new AV.Query(Product);
-        query.equalTo('objectId',result.get('product').id);
+        query.equalTo('objectId',result.id);
         return query.first();
     }).then(result => {
+
+        let productId = result.get('productId');
+        productData = extend(productData, {productId});
+        return productHistory.save(productData);
+        
+    }).then(()=> {
+        
         let productProperty = new ProductProperty();
-        productProperty.set('productId',result.get('productId'));
-        return productProperty.save();
+        return productProperty.save({
+            productId:productData.productId
+        });
+        
     }).then(()=> {
         req.flash('success', '添加商品成功!');
         res.redirect('/admin/product');
     },err => console.info(err));
     
 });
+
+
+
 
 //对array或字符串数据处理,返回array
 function getQueryData(value) {

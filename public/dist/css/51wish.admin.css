@@ -252,11 +252,12 @@ footer p {
       padding-right: 15px; } }
   .product-preview-page .preview-content {
     font-size: 24px;
-    line-height: 30px; }
+    line-height: 36px; }
     .product-preview-page .preview-content div {
       margin-bottom: 20px; }
     .product-preview-page .preview-content img {
-      width: 100%; }
+      width: 100%;
+      margin: 10px 0; }
     .product-preview-page .preview-content p {
       margin: 0;
       padding: 0 15px 20px 15px; }

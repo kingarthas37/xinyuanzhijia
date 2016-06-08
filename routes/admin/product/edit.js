@@ -136,13 +136,11 @@ router.post('/:productId', (req, res) => {
     let name = req.body['name'];
     let nameEn = req.body['name-en'];
     let mainImage = req.body['main-image'] ? JSON.parse(req.body['main-image']) : null;
-
-    console.info(req.body);
     
-    let produceMethod = getQueryData(req.body['select-product-method']);
+    let productMethod = getQueryData(req.body['select-product-method']);
     let category1 = getQueryData(req.body['select-category-1']);
     let category2 = getQueryData(req.body['select-category-2']);
-    updateQueryData(produceMethod,category1,category2);
+    updateQueryData(productMethod,category1,category2);
     
     let bannerId = parseInt(req.body['select-banner']);
     let detail = req.body['detail'];
@@ -162,61 +160,23 @@ router.post('/:productId', (req, res) => {
 
     let query = new AV.Query(Product);
     query.equalTo('productId',productId);
-    query.first().then(item => {
 
-        let product = new Product();
-        product.id = item.id;
-
-        product.set('name', name);
-        product.set('nameEn', nameEn);
-        product.set('mainImage', mainImage);
-        product.set('productMethod',produceMethod);
-        product.set('category1',category1);
-        product.set('category2',category2);
-        product.set('bannerId', bannerId);
-        product.set('detail', detail);
-        product.set('detailEn', detailEn);
-        product.set('description', description);
-        product.set('review', review);
-        product.set('property', property);
-        product.set('propertyEn', propertyEn);
-        product.set('instruction', instruction);
-        product.set('instructionEn', instructionEn);
-        product.set('use', use);
-        product.set('useEn', useEn);
-        product.set('detailImage', detailImage);
-        product.set('video', video);
+    let productData = {name,nameEn,mainImage,productMethod,category1,category2,bannerId,detail,detailEn,description,review,property,propertyEn,instruction,instructionEn,use,useEn,detailImage,video};
+    
+    query.first().then(product => {
         
+        return product.save(productData);
+        
+    }).then(() =>{
+
+        productData = extend(productData, {productId});
         let productHistory = new ProductHistory();
-        productHistory.set('productId',productId);
-        productHistory.set('name', name);
-        productHistory.set('nameEn', nameEn);
-        productHistory.set('mainImage', mainImage);
-        productHistory.set('productMethod',produceMethod);
-        productHistory.set('category1',category1);
-        productHistory.set('category2',category2);
-        productHistory.set('bannerId', bannerId);
-        productHistory.set('detail', detail);
-        productHistory.set('detailEn', detailEn);
-        productHistory.set('description', description);
-        productHistory.set('review', review);
-        productHistory.set('property', property);
-        productHistory.set('propertyEn', propertyEn);
-        productHistory.set('instruction', instruction);
-        productHistory.set('instructionEn', instructionEn);
-        productHistory.set('use', use);
-        productHistory.set('useEn', useEn);
-        productHistory.set('detailImage', detailImage);
-        productHistory.set('video', video);
-       
-        productHistory.set('product',product);
+        return productHistory.save(productData);
         
-        return productHistory.save();
-        
-    }).then(()=>{
+    }).then(() => {
         req.flash('success', '编辑商品成功!');
         res.redirect('/admin/product');
-    });
+    },err => console.info(err));
 
 });
 
