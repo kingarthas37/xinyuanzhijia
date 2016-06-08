@@ -13,6 +13,7 @@ module.exports = {
     '/admin/product':require('./admin/product'),
     '/admin/product/add':require('./admin/product/add'),
     '/admin/product/edit':require('./admin/product/edit'),
+    '/admin/product/copy':require('./admin/product/copy'),
     '/admin/product/upload':require('./admin/product/upload'),
     '/admin/product/preview':require('./admin/product/preview'),
     
