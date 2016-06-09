@@ -96,7 +96,7 @@
                     <tbody>
                     <% for(var i=0; i < product.length; i++) {%>
                     <tr data-product-id="<%= product[i].get('productId') %>">
-                        <td><a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a></td>
+                        <td><a target="_blank" href="<%= product[i].mainImage%>"><img width="30" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/30" alt=""></a> <a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a></td>
                         <td class="t-c"><span class="purchase-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span> </td>
                         <td class="t-c"><a href="/admin/product-property/<%= product[i].get('productId') %>#purchase-link"><i class="am-icon-edit"></i></a></td>
                         <td class="t-c"><a href="/admin/product/copy/<%= product[i].get('productId') %>"><i class="am-icon-copy"></i></a></td>

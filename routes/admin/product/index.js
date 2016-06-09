@@ -50,7 +50,8 @@ router.get('/', (req, res) => {
         category1Id,
         category2Id,
         category1: [],
-        category2: []
+        category2: [],
+        mainImage:[]
     });
 
     AV.Promise.when(
@@ -116,6 +117,15 @@ router.get('/', (req, res) => {
                 items.forEach(n => {
                     n.createdDate = `${n.updatedAt.getFullYear().toString().substring(2)}/${n.createdAt.getMonth() + 1}/${n.createdAt.getDate()}`;
                     n.updatedDate = `${n.updatedAt.getFullYear().toString().substring(2)}/${n.updatedAt.getMonth() + 1}/${n.updatedAt.getDate()}`;
+                    
+                    let mainImage = n.get('mainImage');
+                    if(mainImage) {
+                        for(let i in mainImage) {
+                            if(!n.mainImage) {
+                                n.mainImage = mainImage[i].url;
+                            }
+                        }
+                    }
                 });
 
                 data = extend(data, {
