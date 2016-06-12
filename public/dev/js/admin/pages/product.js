@@ -280,7 +280,7 @@ module.exports = {
     uploadFileSuccess:function(data) {
         let imageView = $('.image-list');
         $.each(data,(i,n)=> {
-            imageView.append(`<li data-id="${n.id}" class="am-cf"><div class="am-fl"><input type="checkbox" /></div><div class="am-fr"><p><a href="${n.url}" target="_blank"><img src="${n.url}?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a> | <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> | <a class="remove" href="javascript:;">删除</a></p></div></li>`);
+            imageView.append(`<li data-id="${n.id}" class="am-cf"><div class="am-fl"><input type="checkbox" /></div><div class="am-fr"><p><a class="img-link" href="${n.url}" target="_blank"><img src="${n.url}?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a> | <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> | <a class="remove" href="javascript:;">删除</a></p></div></li>`);
         });
         this.updateMainImage();
     },
@@ -294,8 +294,8 @@ module.exports = {
         
         imageView.find('input[type=checkbox]').each(function() {
             let content = $(this).parents('li');
-            value[ content.data('id') ] = {
-                "url":content.find('img').attr('src'),
+            value[content.data('id')] = {
+                "url":content.find('.img-link').attr('href'),
                 "isMainImage":this.checked
             };
         });
@@ -317,7 +317,7 @@ module.exports = {
                 $(this).zclip({
                     path: '/assets/swf/ZeroClipboard.swf',
                     copy: function () {
-                        return $(this).parents('li').find('img').attr('src');
+                        return `![](${$(this).parents('li').find('.img-link').attr('href')})`;
                     },
                     afterCopy: function () {
                         imageView.find('.oncopy').removeClass('oncopy');
