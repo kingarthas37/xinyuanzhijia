@@ -216,6 +216,10 @@ footer p {
 .admin-product-page .banner-view.hide, .admin-product-page #select-banner.hide, .admin-product-page #banner.hide {
   display: none; }
 
+/* admin product page */
+.admin-product-page td img {
+  border-radius: 2px; }
+
 /* admin product category page */
 .admin-product-category-page .am-accordion {
   margin: 0 0 30px 0; }
