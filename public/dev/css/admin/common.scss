@@ -10,6 +10,14 @@
     text-align: right;
 }
 
+span.split {
+    padding: 0 5px;
+    &:after {
+        content: "|";
+        color: #ddd;
+    }
+}
+
 footer p {
     color: #7f8c8d;
     margin: 0;

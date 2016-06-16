@@ -116,6 +116,7 @@
                                 <option <% if(banner[i].get('bannerId') === product.get('bannerId')) {%> selected="selected" <%} %> value="<%= banner[i].get('bannerId') %>" data-src="<%= banner[i].get('bannerUrl') %>"><%= banner[i].get('bannerText') %></option>
                                 <% } %>
                             </select>
+                            <span class="split"></span><a class="select-banner-random" href="javascript:;">随机选择</a>
                         </div>
                     </div>
                     

@@ -195,6 +195,13 @@ module.exports = {
             banner.val(src);
         });
         
+        
+        $('.select-banner-random').click(function() {
+            let bannerRange = Math.floor(Math.random() * ( select.find('option').length-1 )) + 1;
+            console.info(bannerRange);
+            select.find('option').eq(bannerRange).attr('selected',true);
+        });
+        
     },
     //设置主图预览
     setImageList:function() {
