@@ -38,7 +38,7 @@ router.get('/:productId', function (req, res, next) {
     query.first().then(result => {
         
         let productData = {
-            name:result.get('name') + ` (新建产品)`,
+            name:'(新建产品)' + result.get('name'),
             nameEn:result.get('nameEn'),
             mainImage:result.get('mainImage'),
             productMethod:result.get('productMethod'),

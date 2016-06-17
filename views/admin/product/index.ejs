@@ -86,8 +86,7 @@
                     <thead>
                     <tr>
                         <th>产品名称</th>
-                        <th class="t-c">查看链接</th>
-                        <th class="t-c">编辑链接</th>
+                        <th class="t-c">链接</th>
                         <th class="t-c">复制</th>
                         <th class="t-c small-screen-hide">更新时间</th>
                         <th class="t-c small-screen-hide">删除</th>
@@ -97,8 +96,11 @@
                     <% for(var i=0; i < product.length; i++) {%>
                     <tr data-product-id="<%= product[i].get('productId') %>">
                         <td><a target="_blank" href="<%= product[i].mainImage%>"><%if(product[i].mainImage) {%><img width="30" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/30" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/30" width="30"/><%}%> <a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a></td>
-                        <td class="t-c"><span class="purchase-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span> </td>
-                        <td class="t-c"><a href="/admin/product-property/<%= product[i].get('productId') %>#purchase-link"><i class="am-icon-edit"></i></a></td>
+                        <td class="t-c">
+                            <span class="purchase-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span>
+                            <span class="split"></span>
+                            <a href="/admin/product-property/<%= product[i].get('productId') %>#purchase-link"><i class="am-icon-edit"></i></a>
+                        </td>
                         <td class="t-c"><a href="/admin/product/copy/<%= product[i].get('productId') %>"><i class="am-icon-copy"></i></a></td>
                         <td class="t-c small-screen-hide"><%= product[i].updatedDate %></td>
                         <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= product[i].get('productId') %>" class="remove-product"><i class="am-icon-remove"></i></a></td>
