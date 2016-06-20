@@ -97,8 +97,6 @@
                     <tr data-product-id="<%= product[i].get('productId') %>">
                         <td><a target="_blank" href="<%= product[i].mainImage%>"><%if(product[i].mainImage) {%><img width="30" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/30" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/30" width="30"/><%}%> <a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a>
                             <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>"><i class="am-icon-tag"></i></a> <%}%>
-                            
-                           
                         </td>
                         <td class="t-c">
                             <span class="purchase-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span>
