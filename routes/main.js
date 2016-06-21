@@ -4,6 +4,9 @@ require('express').Router();
 
 module.exports = {
     
+    //website
+    '/':require('./default/index'),
+    
     //admin
     '/admin/login':require('./admin/sign/login'),
     '/admin/register':require('./admin/sign/register'),
