@@ -45,9 +45,14 @@
 
 /* admin product page */
 .admin-product-page {
+    .am-table {
+        td {
+            vertical-align: middle;
+        }
+    }
     td {
         img {
-            border-radius: 2px;
+            border-radius: 4px;
         }
     }
 }

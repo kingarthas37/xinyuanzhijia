@@ -223,8 +223,11 @@ footer p {
   display: none; }
 
 /* admin product page */
+.admin-product-page .am-table td {
+  vertical-align: middle; }
+
 .admin-product-page td img {
-  border-radius: 2px; }
+  border-radius: 4px; }
 
 /* admin product category page */
 .admin-product-category-page .am-accordion {
