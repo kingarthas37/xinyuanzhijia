@@ -105,16 +105,16 @@ router.post('/', (req, res) => {
         productData = extend(productData, {productId});
         return productHistory.save(productData);
         
-    }).then(()=> {
+    }).then(() => {
         
         let productProperty = new ProductProperty();
         return productProperty.save({
             productId:productData.productId
         });
         
-    }).then(()=> {
+    }).then(() => {
         req.flash('success', '添加商品成功!');
-        res.redirect('/admin/product');
+        res.redirect(`/admin/product?product-method-id=${product.get('productMethod')[0]}&category1-id=${product.get('category1')[0]}&category2-id=${product.get('category2')[0]}`);
     },err => console.info(err));
     
 });

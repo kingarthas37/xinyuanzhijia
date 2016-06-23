@@ -229,6 +229,9 @@ footer p {
 .admin-product-page td img {
   border-radius: 4px; }
 
+.admin-product-page .am-icon-link.on {
+  color: #4b9452; }
+
 /* admin product category page */
 .admin-product-category-page .am-accordion {
   margin: 0 0 30px 0; }

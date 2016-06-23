@@ -70,7 +70,10 @@ module.exports = {
 
         //列表首页ajax加载product-property数据
         listDataRequest.init();
-
+        
+        $('.am-table').on('click','.am-icon-link',function() {
+            $(this).addClass('on');
+        });
     },
 
     addFun:function() {

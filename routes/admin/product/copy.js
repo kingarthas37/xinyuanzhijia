@@ -75,8 +75,10 @@ router.get('/:productId', function (req, res, next) {
         });
         
     }).then(() => {
+        
         req.flash('success', '复制产品成功!');
         res.redirect('/admin/product');
+        
     },err => console.info(err));
 
 });
