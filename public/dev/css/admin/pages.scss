@@ -115,18 +115,26 @@
     margin: 30px auto;
 
     .preview-content {
-        font-size: 24px;
-        line-height: 36px;
+        font-size: 22px;
+        line-height: 38px;
+        section {
+            padding:0;
+            margin:0 0 20px 0;
+        }
         div {
+            padding:0 15px;
             margin-bottom: 20px;
+        }
+        ul {
+            margin:0 0 15px 0;
+            padding: 0 0 0 20px;
         }
         img {
             width: 100%;
-            margin:10px 0;
         }
         p {
-            margin: 0;
-            padding: 0 15px 20px 15px;
+            margin:0 0 15px 0;
+            padding: 0;
         }
     }
 

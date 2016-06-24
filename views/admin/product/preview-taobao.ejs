@@ -24,46 +24,43 @@
         
         <div class="preview-content">
            
-            <div>
-                
-                <div><%if(banner) { %><img src="<%=banner%>"/><%}%></div>
+
+                <%if(banner) { %><section><img src="<%=banner%>"/></section><%}%>
 
                 <% if (name) { %>
-                <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2ehN0hFXXXXaIXpXXXXXXXXXX_!!42879206.png"></div>
-                <%- name %>
+                <section><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2ehN0hFXXXXaIXpXXXXXXXXXX_!!42879206.png"></section>
+                <div><%- name %></div>
                 <% } %>
 
                 <% if (review) { %>
-                <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2XdJYhFXXXXbhXpXXXXXXXXXX_!!42879206.png"></div>
-                <%- review %>
+                <section><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2XdJYhFXXXXbhXpXXXXXXXXXX_!!42879206.png"></section>
+                <div><%- review %></div>
                 <% } %>
 
                 <% if (property) { %>
-                <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB23rh5hFXXXXXBXpXXXXXXXXXX_!!42879206.png"></div>
-                <%- property %>
+                <section><img src="https://img.alicdn.com/imgextra/i3/42879206/TB23rh5hFXXXXXBXpXXXXXXXXXX_!!42879206.png"></section>
+                <div><%- property %></div>
                 <% } %>
 
                 <% if (instruction) { %>
-                <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2w3VZhFXXXXaCXpXXXXXXXXXX_!!42879206.png"/> </div>
-                <%- instruction %>
+                <section><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2w3VZhFXXXXaCXpXXXXXXXXXX_!!42879206.png"/></section>
+                <div><%- instruction %></div>
                 <% } %>
 
                 <% if (detail) { %>
-                <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2LWd4hFXXXXXqXpXXXXXXXXXX_!!42879206.png"/> </div>
-                <%- detail %>
+                <section><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2LWd4hFXXXXXqXpXXXXXXXXXX_!!42879206.png"/></section>
+                <div><%- detail %></div>
                 <% } %>
 
                 <% if (use) { %>
-                <div><img src="https://img.alicdn.com/imgextra/i1/42879206/TB2bUxTpVXXXXanXpXXXXXXXXXX_!!42879206.png"/> </div>
-                <%- use %>
+                <section><img src="https://img.alicdn.com/imgextra/i1/42879206/TB2bUxTpVXXXXanXpXXXXXXXXXX_!!42879206.png"/></section>
+                <div><%- use %></div>
                 <% } %>
 
                 <% if (detailImage) { %>
-                <div><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2DOWrhFXXXXXiXXXXXXXXXXXX_!!42879206.png"/> </div>
-                <%- detailImage %>
+                <section><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2DOWrhFXXXXXiXXXXXXXXXXXX_!!42879206.png"/></section>
+                <section><%- detailImage %></section>
                 <% } %>
-
-            </div>
             
         </div>
 

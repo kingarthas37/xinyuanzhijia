@@ -267,16 +267,22 @@ footer p {
       padding-left: 15px;
       padding-right: 15px; } }
   .product-preview-page .preview-content {
-    font-size: 24px;
-    line-height: 36px; }
+    font-size: 22px;
+    line-height: 38px; }
+    .product-preview-page .preview-content section {
+      padding: 0;
+      margin: 0 0 20px 0; }
     .product-preview-page .preview-content div {
+      padding: 0 15px;
       margin-bottom: 20px; }
+    .product-preview-page .preview-content ul {
+      margin: 0 0 15px 0;
+      padding: 0 0 0 20px; }
     .product-preview-page .preview-content img {
-      width: 100%;
-      margin: 10px 0; }
+      width: 100%; }
     .product-preview-page .preview-content p {
-      margin: 0;
-      padding: 0 15px 20px 15px; }
+      margin: 0 0 15px 0;
+      padding: 0; }
 
 .admin-product-property-page .am-accordion {
   margin: 0 0 30px 0; }
