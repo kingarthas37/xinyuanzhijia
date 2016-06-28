@@ -279,7 +279,8 @@ footer p {
       margin: 0 0 15px 0;
       padding: 0 0 0 20px; }
     .product-preview-page .preview-content img {
-      width: 100%; }
+      width: 100%;
+      margin-bottom: 20px; }
     .product-preview-page .preview-content p {
       margin: 0 0 15px 0;
       padding: 0; }
