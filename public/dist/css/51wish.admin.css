@@ -100,6 +100,10 @@ footer p {
 .am-form select {
   padding: 0.35em; }
 
+.am-form .am-form-group .am-panel-hd {
+  padding: 0;
+  margin-bottom: 5px; }
+
 .am-pager {
   color: #999;
   margin-bottom: 20px; }

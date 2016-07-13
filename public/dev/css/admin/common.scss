@@ -140,6 +140,12 @@ footer p {
     select {
         padding: 0.35em;
     }
+    .am-form-group {
+        .am-panel-hd {
+            padding: 0;
+            margin-bottom: 5px;
+        }
+    }
 }
 
 .am-pager {
@@ -179,6 +185,7 @@ footer p {
             color: red;
             padding: 0 4px;
             font-style: normal;
+            
         }
     }
     label.error {
