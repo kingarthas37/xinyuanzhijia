@@ -290,6 +290,8 @@ footer p {
     .product-preview-page .preview-content p {
       margin: 0 0 15px 0;
       padding: 0; }
+    .product-preview-page .preview-content .no-wrap p {
+      display: inline; }
 
 .admin-product-property-page .am-accordion {
   margin: 0 0 30px 0; }
