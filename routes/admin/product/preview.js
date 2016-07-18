@@ -42,6 +42,7 @@ router.get('/:productId',(req,res)=> {
 
         data = extend(data,{
             name:markdown.toHTML(product.get('name')),
+            nameEn:markdown.toHTML(product.get('nameEn')),
             detail: markdown.toHTML(product.get('detail')),
             review: markdown.toHTML(product.get('review')),
             property: markdown.toHTML(product.get('property')),
