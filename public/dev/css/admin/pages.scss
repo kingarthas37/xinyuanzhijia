@@ -48,6 +48,13 @@
     .am-table {
         td {
             vertical-align: middle;
+            &.product-title {
+                a {
+                    i {
+                        margin:0 2px;
+                    }
+                }
+            }
         }
     }
     td {

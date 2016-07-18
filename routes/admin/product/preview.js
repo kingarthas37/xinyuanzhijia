@@ -15,7 +15,10 @@ var shot = require('../../../lib/component/shot');
 
 //class
 let Product = AV.Object.extend('Product');
-
+let Banner = AV.Object.extend('ProductBanner');
+let ProductMethod = AV.Object.extend('ProductMethod');
+let ProductCategory1 = AV.Object.extend('ProductCategory1');
+let ProductCategory2 = AV.Object.extend('ProductCategory2');
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 产品预览`,
@@ -25,6 +28,36 @@ let data = extend(config.data, {
 
 
 //预览产品页
+router.get('/:productId',(req,res)=> {
+
+    var productId = parseInt(req.params.productId);
+
+    data = extend(data, {
+        user: req.AV.user
+    });
+    
+    let query = new AV.Query(Product);
+    query.equalTo('productId', productId);
+    query.first().done(product => {
+
+        data = extend(data,{
+            name:markdown.toHTML(product.get('name')),
+            detail: markdown.toHTML(product.get('detail')),
+            review: markdown.toHTML(product.get('review')),
+            property: markdown.toHTML(product.get('property')),
+            instruction: markdown.toHTML(product.get('instruction')),
+            use: markdown.toHTML(product.get('use')),
+            detailImage: markdown.toHTML(product.get('detailImage'))
+        });
+
+        res.render('admin/product/preview-web', data);
+        
+    });
+    
+});
+
+
+//编辑时预览产品页
 router.post('/preview-taobao', function (req, res) {
     
     if(!req.AV.user) {
