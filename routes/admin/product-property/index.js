@@ -95,4 +95,36 @@ router.post('/purchase-link/:productId', (req, res) => {
 
 });
 
+
+//保存淘宝链接
+router.post('/shop-link/:productId', (req, res) => {
+
+    if (!req.AV.user) {
+        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
+    }
+
+    let productId = parseInt(req.params.productId);
+    let shopLink = req.body['shop-link'];
+    let shopLinkComment = req.body['shop-link-comment'];
+
+    shopLink = shopLink.map(item => utils.urlCompleting(item));
+
+    let query = new AV.Query(ProductProperty);
+    query.equalTo('productId', productId);
+    query.first().then(item => {
+
+        return item.save({
+            shopLink,
+            shopLinkComment
+        });
+
+    }).then(() => {
+        req.flash('success', '编辑产品网店链接成功!');
+        res.redirect('/admin/product');
+    });
+
+});
+
+
+
 module.exports = router;

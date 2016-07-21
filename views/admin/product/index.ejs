@@ -86,7 +86,8 @@
                     <thead>
                     <tr>
                         <th>产品名称</th>
-                        <th class="t-c">链接</th>
+                        <th class="t-c">产品链接</th>
+                        <th class="t-c">网店链接</th>
                         <th class="t-c">复制</th>
                         <th class="t-c small-screen-hide">删除</th>
                     </tr>
@@ -100,8 +101,11 @@
                         </td>
                         <td class="t-c">
                             <span class="purchase-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span>
-                            <span class="split"></span>
                             <a href="/admin/product-property/<%= product[i].get('productId') %>#purchase-link"><i class="am-icon-edit"></i></a>
+                        </td>
+                        <td class="t-c">
+                            <span class="shop-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span>
+                            <a href="/admin/product-property/<%= product[i].get('productId') %>#shop-link"><i class="am-icon-edit"></i></a>
                         </td>
                         <td class="t-c"><a href="/admin/product/copy/<%= product[i].get('productId') %>"><i class="am-icon-copy"></i></a></td>
                         <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= product[i].get('productId') %>" class="remove-product"><i class="am-icon-remove"></i></a></td>

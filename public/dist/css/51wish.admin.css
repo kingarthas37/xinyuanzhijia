@@ -229,8 +229,8 @@ footer p {
 /* admin product page */
 .admin-product-page .am-table td {
   vertical-align: middle; }
-  .admin-product-page .am-table td.product-title a i {
-    margin: 0 2px; }
+  .admin-product-page .am-table td a i {
+    margin: 0 4px; }
 
 .admin-product-page td img {
   border-radius: 4px; }

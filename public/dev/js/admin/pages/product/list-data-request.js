@@ -9,34 +9,56 @@ module.exports = {
             productListId.push($(n).data('product-id'));
         });
 
-        if($('.purchase-link[data-product-id]').length) {
-            $.ajax({
-                url: '/admin/product/list-data',
-                data: {productListId}
-            }).then(data => {
+        if(!$('span[data-product-id]').length) {
+            return;
+        }
+        
+        $.ajax({
+            url: '/admin/product/list-data',
+            data: {productListId}
+        }).then(data => {
 
-                if (!data.success) {
-                    return false;
-                }
+            if (!data.success) {
+                return false;
+            }
 
-                if (data.products.length) {
-                    $.each(data.products, function (i, n) {
-                        let el = $(`.purchase-link[data-product-id=${n.productId}]`);
-                        let links = '';
-                        $.each(n.purchaseLink, function (i, n) {
-                            if (n) {
-                                links += `<a href=${n} target="_blank"><i class="am-icon-link"></i></a> `;
-                            }
-                        });
-                        if(links) {
-                            el.html(links);
-                        } else {
-                            el.html(`<a href="/admin/product-property/${n.productId}#purchase-link">-</a>`);
+            if (data.products.length) {
+                $.each(data.products, function (i, n) {
+                    let purchaseLink = $(`.purchase-link[data-product-id=${n.productId}]`);
+                    let shopLink =  $(`.shop-link[data-product-id=${n.productId}]`);
+                    
+                    let purchaseLinks = '';
+                    let shopLinks = '';
+                    
+                    $.each(n.purchaseLink, function (i, n) {
+                        if (n) {
+                            purchaseLinks += `<a href=${n} target="_blank"><i class="am-icon-link"></i></a> `;
                         }
                     });
-                }
-            });
-        }
+
+                    if(purchaseLinks) {
+                        purchaseLink.html(purchaseLinks);
+                    } else {
+                        purchaseLink.html(`<a href="/admin/product-property/${n.productId}#purchase-link">-</a>`);
+                    }
+
+                    
+                    $.each(n.shopLink, function (i, n) {
+                        if (n) {
+                            shopLinks += `<a href=${n} target="_blank"><i class="am-icon-link"></i></a> `;
+                        }
+                    });
+
+                    if(shopLinks) {
+                        shopLink.html(shopLinks);
+                    } else {
+                        shopLink.html(`<a href="/admin/product-property/${n.productId}#shop-link">-</a>`);
+                    }
+                    
+                    
+                });
+            }
+        });
 
     }
 

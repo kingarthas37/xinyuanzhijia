@@ -50,20 +50,36 @@
                                         <textarea name="purchase-link-comment" rows="2"><%= productProperty.get('purchaseLinkComment') %></textarea>
                                     </div>
                                     <div>
-                                        <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
+                                        <button type="submit" class="am-btn am-btn-primary">保存</button>
                                     </div>
                                 </form>
                             </div>
                         </dd>
                     </dl>
 
-                    <dl id="accordion-aaa" class="am-accordion-item">
+                    <dl id="accordion-shop-link" class="am-accordion-item">
                         <dt class="am-accordion-title am-cf">
-                            2.产品属性编辑
+                            2.网店链接编辑
                         </dt>
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
-                                产品属性编辑
+                                <form class="am-form" action="/admin/product-property/shop-link/<%= productProperty.get('productId') %>" method="post">
+                                    <label>淘宝店铺链接:</label>
+                                    <div class="am-form-group">
+                                        <input name="shop-link" type="text" value="<%if(productProperty.get('shopLink')){ %><%= productProperty.get('shopLink')[0] %><%}%>" placeholder="输入淘宝店铺链接"/>
+                                    </div>
+                                    <label>微店链接:</label>
+                                    <div class="am-form-group">
+                                        <input name="shop-link" type="text" value="<%if(productProperty.get('shopLink')){ %><%= productProperty.get('shopLink')[1] %><%}%>" placeholder="输入微店链接" />
+                                    </div>
+                                    <label>链接说明:</label>
+                                    <div class="am-form-group">
+                                        <textarea name="shop-link-comment" rows="2"><%= productProperty.get('shopLinkComment') %></textarea>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="am-btn am-btn-primary">保存</button>
+                                    </div>
+                                </form>
                             </div>
                         </dd>
                     </dl>
