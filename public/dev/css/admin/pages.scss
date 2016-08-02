@@ -40,6 +40,19 @@
             display: none;
         }
     }
+    
+    .am-table .am-dropdown .am-btn {
+        background: none;
+        color: #666;
+        border: none;
+        &:active {
+            box-shadow: none;
+        }
+        &:focus {
+            outline: none;
+            border: none;
+        }
+    }
 
 }
 

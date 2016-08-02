@@ -29,7 +29,7 @@ module.exports = {
                     
                     let purchaseLinks = '';
                     let shopLinks = '';
-                    
+                                                                                   
                     $.each(n.purchaseLink, function (i, n) {
                         if (n) {
                             purchaseLinks += `<a href=${n} target="_blank"><i class="am-icon-link"></i></a> `;

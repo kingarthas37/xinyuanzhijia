@@ -226,6 +226,16 @@ footer p {
 .admin-product-page .banner-view.hide, .admin-product-page #select-banner.hide, .admin-product-page #banner.hide {
   display: none; }
 
+.admin-product-page .am-table .am-dropdown .am-btn {
+  background: none;
+  color: #666;
+  border: none; }
+  .admin-product-page .am-table .am-dropdown .am-btn:active {
+    box-shadow: none; }
+  .admin-product-page .am-table .am-dropdown .am-btn:focus {
+    outline: none;
+    border: none; }
+
 /* admin product page */
 .admin-product-page .am-table td {
   vertical-align: middle; }

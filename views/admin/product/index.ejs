@@ -88,15 +88,16 @@
                         <th>产品名称</th>
                         <th class="t-c">产品链接</th>
                         <th class="t-c">网店链接</th>
-                        <th class="t-c">复制</th>
-                        <th class="t-c small-screen-hide">删除</th>
+                        <th class="t-c">选项</th>
                     </tr>
                     </thead>
                     <tbody>
                     <% for(var i=0; i < product.length; i++) {%>
                     <tr data-product-id="<%= product[i].get('productId') %>">
-                        <td class="product-title"><a target="_blank" href="<%= product[i].mainImage%>"><%if(product[i].mainImage) {%><img width="32" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/32" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32" width="32"/><%}%> <a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a>
+                        <td class="product-title">
+                            <a target="_blank" href="<%= product[i].mainImage%>"><%if(product[i].mainImage) {%><img width="32" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/32" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32" width="32"/><%}%> <a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a>
                             <a target="_blank" href="/admin/product/preview/<%= product[i].get('productId') %>"><i class="am-icon-external-link"></i></a>
+                            <a target="_blank" href="/admin/product-property/<%= product[i].get('productId') %>#settings"><i class="am-icon-gear"></i></a>
                             <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>" target=""><i class="am-icon-tag"></i></a> <%}%>
                         </td>
                         <td class="t-c">
@@ -107,8 +108,15 @@
                             <span class="shop-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span>
                             <a href="/admin/product-property/<%= product[i].get('productId') %>#shop-link"><i class="am-icon-edit"></i></a>
                         </td>
-                        <td class="t-c"><a href="/admin/product/copy/<%= product[i].get('productId') %>"><i class="am-icon-copy"></i></a></td>
-                        <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= product[i].get('productId') %>" class="remove-product"><i class="am-icon-remove"></i></a></td>
+                        <td class="t-c">
+                            <div class="am-dropdown" data-am-dropdown>
+                                <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>选项 <span class="am-icon-caret-down"></span></button>
+                                <ul class="am-dropdown-content">
+                                    <li><a href="/admin/product/copy/<%= product[i].get('productId') %>">复制</a></li>
+                                    <li><a href="javascript:;" data-id="<%= product[i].get('productId') %>" class="remove-product">删除</a></li>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                     <% } %>
                     </tbody>
