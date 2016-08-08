@@ -306,4 +306,8 @@ footer p {
 .admin-product-property-page .am-accordion {
   margin: 0 0 30px 0; }
 
+.admin-product-property-page .product-tag-content label {
+  font-weight: normal;
+  margin-right: 10px; }
+
 /*# sourceMappingURL=51wish.admin.css.map */
