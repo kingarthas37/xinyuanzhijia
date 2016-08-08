@@ -5,7 +5,7 @@
     <title><%= title %></title>
     <% include ../partials/css %>
 </head>
-<body>
+<body class="<%=viewport%>">
 
 <% include ../partials/header %>
 
@@ -18,7 +18,7 @@
     <!-- content start -->
     <div class="admin-content admin-product-property-page">
 
-        <div class="am-cf am-padding">
+        <div class="product-crumb am-cf am-padding">
             <div class="am-fl am-cf"><a href="/admin/product">产品编辑</a> / <a href="/admin/product-property/<%= productProperty.get('productId') %>">编辑产品属性</a> /
                 <a href="/admin/product/edit/<%=product.get('productId')%>"><%=product.get('name')%></a></div>
         </div>
@@ -26,11 +26,9 @@
         <div class="am-g">
             <div class="am-u-sm-12">
                 
-                <p></p>
-                
                 <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion>
                     
-                    <dl id="accordion-purchase-link" class="am-accordion-item">
+                    <dl id="purchase-link" class="am-accordion-item">
                         <dt class="am-accordion-title am-cf">
                             1.产品购买链接编辑
                         </dt>
@@ -59,7 +57,7 @@
                         </dd>
                     </dl>
 
-                    <dl id="accordion-shop-link" class="am-accordion-item">
+                    <dl id="shop-link" class="am-accordion-item">
                         <dt class="am-accordion-title am-cf">
                             2.网店链接编辑
                         </dt>
@@ -86,60 +84,65 @@
                         </dd>
                     </dl>
 
-                    <dl id="accordion-settings" class="am-accordion-item">
+                    <dl id="settings" class="am-accordion-item">
                         <dt class="am-accordion-title am-cf">
                             3.产品属性设置
                         </dt>
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
-                                <form class="am-form" action="" method="post">
+                                <form class="am-form" action="/admin/product-property/settings/<%= productProperty.get('productId') %>" method="post">
 
                                     <label>库存:</label>
                                     <div class="am-form-group">
                                         <select name="stock">
-                                            <option value="">请选择</option>
                                             <% for(var i=0;i<31;i++) { %>
-                                            <option value="<%=i%>"><%=i%></option>
+                                            <option <% if(productProperty.get('stock') == i) { %>selected="selected"<%}%> value="<%=i%>"><%=i%></option>
                                             <% }%>
                                         </select>
                                     </div>
                                     
-                                    <label>价格:</label>
+                                    <label>价格(RMB):</label>
                                     <div class="am-form-group">
-                                        <input name="price" type="text" value="" placeholder="输入价格" />
+                                        <input name="price" type="text" value="<%= productProperty.get('price') %>" placeholder="输入价格" />
                                     </div>
                                     
                                     <label>产地/国家:</label>
                                     <div class="am-form-group">
                                         <select name="country">
                                             <option value="">请选择</option>
-                                            <option value="us">美国</option>
-                                            <option value="in">印度</option>
-                                            <option value="tw">台湾</option>
-                                            <option value="eu">欧洲</option>
-                                            <option value="uk">英国</option>
-                                            <option value="au">澳洲</option>
-                                            <option value="fr">法国</option>
-                                            <option value="de">德国</option>
-                                            <option value="ca">加拿大</option>
-                                            <option value="cn">中国</option>
-                                            <option value="other">其他</option>
+                                            <option <% if(productProperty.get('country') == 'us') { %>selected="selected"<%}%> value="us">美国</option>
+                                            <option <% if(productProperty.get('country') == 'in') { %>selected="selected"<%}%> value="in">印度</option>
+                                            <option <% if(productProperty.get('country') == 'tw') { %>selected="selected"<%}%> value="tw">台湾</option>
+                                            <option <% if(productProperty.get('country') == 'eu') { %>selected="selected"<%}%> value="eu">欧洲</option>
+                                            <option <% if(productProperty.get('country') == 'ul') { %>selected="selected"<%}%> value="uk">英国</option>
+                                            <option <% if(productProperty.get('country') == 'au') { %>selected="selected"<%}%> value="au">澳洲</option>
+                                            <option <% if(productProperty.get('country') == 'fr') { %>selected="selected"<%}%> value="fr">法国</option>
+                                            <option <% if(productProperty.get('country') == 'de') { %>selected="selected"<%}%> value="de">德国</option>
+                                            <option <% if(productProperty.get('country') == 'ca') { %>selected="selected"<%}%> value="ca">加拿大</option>
+                                            <option <% if(productProperty.get('country') == 'cn') { %>selected="selected"<%}%> value="cn">中国</option>
+                                            <option <% if(productProperty.get('country') == 'other') { %>selected="selected"<%}%> value="other">其他</option>
                                         </select>
                                         <span class="am-form-caret"></span>
                                     </div>
                                     
                                     <div class="am-form-group">
-                                        <label>手工制作  <input type="checkbox" name="is-handmade"></label>
+                                        <label>手工制作  <input type="checkbox" name="is-handmade" <% if(productProperty.get('isHandmade')) { %>checked="checked"<%}%> ></label>
                                         <span class="split"></span>
-                                        <label>附说明书/中文翻译  <input type="checkbox" name="is-document"></label>
+                                        <label>附说明书/中文翻译  <input type="checkbox" name="is-document" <% if(productProperty.get('isDocument')) { %>checked="checked"<%}%>></label>
                                         <span class="split"></span>
-                                        <label>是否唯一 <input type="checkbox" name="is-only"></label>
+                                        <label>是否唯一 <input type="checkbox" name="is-only" <% if(productProperty.get('isOnly')) { %>checked="checked"<%}%>></label>
+                                    </div>
+
+                                    <label>下架该产品:</label>
+                                    <div class="am-form-group">
+                                        <label>下架该产品 <input type="checkbox" name="is-off-shelf" <% if(productProperty.get('isOffShelf')) { %>checked="checked"<%}%>></label>
                                     </div>
                                     
                                     <label>备注:</label>
                                     <div class="am-form-group">
-                                        <textarea name="settings-comment" rows="2"><%= productProperty.get('shopLinkComment') %></textarea>
+                                        <textarea name="settings-comment" rows="2"><%= productProperty.get('settingsComment') %></textarea>
                                     </div>
+                                    
                                     <div>
                                         <button type="submit" class="am-btn am-btn-primary">保存</button>
                                     </div>
@@ -148,9 +151,9 @@
                         </dd>
                     </dl>
 
-                    <dl id="accordion-tags" class="am-accordion-item">
+                    <dl id="tags" class="am-accordion-item">
                         <dt class="am-accordion-title am-cf">
-                            3.标签管理
+                            4.标签管理
                         </dt>
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">

@@ -97,23 +97,23 @@
                         <td class="product-title">
                             <a target="_blank" href="<%= product[i].mainImage%>"><%if(product[i].mainImage) {%><img width="32" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/32" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32" width="32"/><%}%> <a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a>
                             <a target="_blank" href="/admin/product/preview/<%= product[i].get('productId') %>"><i class="am-icon-external-link"></i></a>
-                            <a target="_blank" href="/admin/product-property/<%= product[i].get('productId') %>#settings"><i class="am-icon-gear"></i></a>
-                            <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>" target=""><i class="am-icon-tag"></i></a> <%}%>
+                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#settings"><i class="am-icon-gear"></i></a>
+                            <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>"><i class="am-icon-tag"></i></a> <%}%>
                         </td>
                         <td class="t-c">
                             <span class="purchase-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span>
-                            <a href="/admin/product-property/<%= product[i].get('productId') %>#purchase-link"><i class="am-icon-edit"></i></a>
+                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#purchase-link"><i class="am-icon-edit"></i></a>
                         </td>
                         <td class="t-c">
                             <span class="shop-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span>
-                            <a href="/admin/product-property/<%= product[i].get('productId') %>#shop-link"><i class="am-icon-edit"></i></a>
+                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#shop-link"><i class="am-icon-edit"></i></a>
                         </td>
                         <td class="t-c">
                             <div class="am-dropdown" data-am-dropdown>
                                 <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>选项 <span class="am-icon-caret-down"></span></button>
                                 <ul class="am-dropdown-content">
                                     <li><a href="/admin/product/copy/<%= product[i].get('productId') %>">复制</a></li>
-                                    <li><a href="/admin/product-property/<%= product[i].get('productId') %>#tags">标签管理</a></li>
+                                    <li><a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#tags">标签管理</a></li>
                                     <li><a href="javascript:;" data-id="<%= product[i].get('productId') %>" class="remove-product">删除</a></li>
                                 </ul>
                             </div>
@@ -174,15 +174,32 @@
 </div>
 <!-- modal alert -->
 
+<!-- modal viewport iframe -->
+<div class="am-modal am-modal-prompt" tabindex="-1" id="modal-viewport">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd"><a href="javascript:;" class="am-close am-close-spin" data-am-modal-close="">×</a></div>
+        <div class="am-modal-bd"></div>
+    </div>
+</div>
+<!-- modal viewport iframe -->
+
+
 
 <% include ../partials/footer %>
 <% include ../partials/js %>
 
 <script type="text/javascript">
+    
     $(function () {
         var product = require('product');
         product.indexFun();
     });
+    
+    //iframe window关闭
+    function closeViewportModal() {
+        $('#modal-viewport').modal('close');
+    }
+    
 </script>
 </body>
 </html>

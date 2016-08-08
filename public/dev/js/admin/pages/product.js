@@ -10,70 +10,102 @@ module.exports = {
 
     indexFun:function() {
 
-        let category1 = $('.select-category-1');
-        let category2 = $('.select-category-2');
-        let productMethod = $('.select-product-method');
-        
-        let alert = $('#modal-alert');
+        //选择
+        {
+            let category1 = $('.select-category-1');
+            let category2 = $('.select-category-2');
+            let productMethod = $('.select-product-method');
 
-        productMethod.change(function(){
-            if(this.value) {
-                return location.href = `/admin/product?product-method-id=${this.value}`;
-            }
-            location.href = '/admin/product';
-        });
+            let alert = $('#modal-alert');
 
-        category1.change(function() {
-            let productMethodId = productMethod.val();
-            if(this.value) {
-                return location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${this.value}`;
-            } 
-            location.href = `/admin/product?product-method-id=${productMethodId}`;
-        });
-
-        category2.change(function() {
-            let productMethodId = productMethod.val();
-            let category1Id = category1.val();
-            if(this.value) {
-                return location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${category1Id}&category2-id=${this.value}`;
-            }
-            location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${category1Id}`;
-        });
-        
-        $('.remove-product').click(function() {
-            $('#confirm-remove-product').modal({
-                relatedTarget: this,
-                onConfirm: function() {
-                    
-                    let target = $(this.relatedTarget);
-                    let productId = target.attr('data-id');
-                    
-                    $.ajax({
-                        type:'post',
-                        url:`/admin/product/remove/${productId}`
-                    }).then(()=> {
-                        alert.modal({
-                            relatedTarget: this,
-                            onConfirm:()=> {
-                                let target = $(this.relatedTarget);
-                                target.parents('tr').detach()
-                            }
-                        }).find('.am-modal-bd').text('删除产品成功!');
-                    });
-                },
-                onCancel:()=> { return false; }
+            productMethod.change(function(){
+                if(this.value) {
+                    return location.href = `/admin/product?product-method-id=${this.value}`;
+                }
+                location.href = '/admin/product';
             });
-            
-            return false;
-            
-        });
+
+            category1.change(function() {
+                let productMethodId = productMethod.val();
+                if(this.value) {
+                    return location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${this.value}`;
+                }
+                location.href = `/admin/product?product-method-id=${productMethodId}`;
+            });
+
+            category2.change(function() {
+                let productMethodId = productMethod.val();
+                let category1Id = category1.val();
+                if(this.value) {
+                    return location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${category1Id}&category2-id=${this.value}`;
+                }
+                location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${category1Id}`;
+            });
+        }
+        
+        //删除product
+        {
+            $('.remove-product').click(function() {
+                $('#confirm-remove-product').modal({
+                    relatedTarget: this,
+                    onConfirm: function() {
+
+                        let target = $(this.relatedTarget);
+                        let productId = target.attr('data-id');
+
+                        $.ajax({
+                            type:'post',
+                            url:`/admin/product/remove/${productId}`
+                        }).then(()=> {
+                            alert.modal({
+                                relatedTarget: this,
+                                onConfirm:()=> {
+                                    let target = $(this.relatedTarget);
+                                    target.parents('tr').detach()
+                                }
+                            }).find('.am-modal-bd').text('删除产品成功!');
+                        });
+                    },
+                    onCancel:()=> { return false; }
+                });
+
+                return false;
+
+            });
+        }
 
         //列表首页ajax加载product-property数据
-        listDataRequest.init();
+        {
+            listDataRequest.init();
+            $('.am-table').on('click','.am-icon-link',function() {
+                $(this).addClass('on');
+            });
+        }
         
-        $('.am-table').on('click','.am-icon-link',function() {
-            $(this).addClass('on');
-        });
+        
+        //modal viewport iframe
+        {
+            let modalViewport = $('#modal-viewport');
+            let modalViewportContent = modalViewport.find('.am-modal-bd');
+            
+            $('.link-modal-viewport').click(function() {
+                modalViewportContent.append('<iframe class="iframe-viewport" src="" frameborder="0"></iframe>');
+                let iframe = modalViewport.find('iframe');
+                let src = $(this).attr('href');
+                iframe.attr('src',src);
+                modalViewport.modal({
+                    width:800,
+                    height:520
+                });
+                return false;
+            });
+
+            modalViewport.on('close.modal.amui', function(){
+                modalViewportContent.empty();
+            });
+        }
+        
+        
     },
 
     addFun:function() {

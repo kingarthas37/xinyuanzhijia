@@ -39,7 +39,7 @@ module.exports = {
                     if(purchaseLinks) {
                         purchaseLink.html(purchaseLinks);
                     } else {
-                        purchaseLink.html(`<a href="/admin/product-property/${n.productId}#purchase-link">-</a>`);
+                        purchaseLink.html('-');
                     }
 
                     
@@ -52,9 +52,8 @@ module.exports = {
                     if(shopLinks) {
                         shopLink.html(shopLinks);
                     } else {
-                        shopLink.html(`<a href="/admin/product-property/${n.productId}#shop-link">-</a>`);
+                        shopLink.html('-');
                     }
-                    
                     
                 });
             }

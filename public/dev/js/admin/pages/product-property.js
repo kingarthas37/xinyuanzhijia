@@ -5,6 +5,13 @@ let leanAppHeader = window.leanAppHeader;
 module.exports = {
     init() {
         
+        //如果是iframe modal,则执行parent window关闭
+        //如果返回的product-proerty的Location有viewport=window且没有类似#settings,则说明是返回关闭iframe
+        if(location.search.indexOf('viewport=window') > -1 && !location.hash) {
+            window.parent.closeViewportModal();
+            return;
+        }
+        
         this.setContentDisplay(); //设置区块打开时显示
         
         //单独区域设置
@@ -15,7 +22,7 @@ module.exports = {
 
     setContentDisplay() {
         if(location.hash) {
-            let content = $(`#accordion-${location.hash.substring(1)}`);
+            let content = $(`#${location.hash.substring(1)}`);
             if(content.length) {
                 content.addClass('am-active');
                 content.find('.am-collapse').addClass('am-in');

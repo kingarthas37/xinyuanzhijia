@@ -29,11 +29,14 @@ router.get('/:productId', (req, res) => {
         return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
 
-    data = extend(data, {
-        user: req.AV.user
-    });
-
     let productId = parseInt(req.params.productId);
+    let viewport = req.query.viewport;
+
+    data = extend(data, {
+        user: req.AV.user,
+        viewport: viewport ? `viewport-${viewport}` : ''
+    });
+    
     AV.Promise.when(
         new AV.Promise(resolve => {
 
@@ -90,7 +93,7 @@ router.post('/purchase-link/:productId', (req, res) => {
 
     }).then(() => {
         req.flash('success', '编辑产品购买链接成功!');
-        res.redirect('/admin/product');
+        res.redirect(`/admin/product-property/${productId}?viewport=window`);
     });
 
 });
@@ -120,11 +123,51 @@ router.post('/shop-link/:productId', (req, res) => {
 
     }).then(() => {
         req.flash('success', '编辑产品网店链接成功!');
-        res.redirect('/admin/product');
+        res.redirect(`/admin/product-property/${productId}?viewport=window`);
     });
 
 });
 
+
+//保存设置
+router.post('/settings/:productId', (req, res) => {
+
+    if (!req.AV.user) {
+        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
+    }
+
+    let productId = parseInt(req.params.productId);
+    let stock = parseInt(req.body.stock);
+    let price = parseInt(req.body.price);
+    let country = req.body.country;
+    let settingsComment = req.body['settings-comment'];
+    let isHandmade = req.body['is-handmade'] ? true : false;
+    let isDocument = req.body['is-document'] ? true : false;
+    let isOnly = req.body['is-only'] ? true :false;
+    let isOffShelf = req.body['is-off-shelf'] ? true :false;
+    
+    
+    let query = new AV.Query(ProductProperty);
+    query.equalTo('productId', productId);
+    query.first().then(item => {
+
+        return item.save({
+            stock,
+            price,
+            country,
+            settingsComment,
+            isHandmade,
+            isDocument,
+            isOnly,
+            isOffShelf
+        });
+
+    }).then(() => {
+        req.flash('success', '产品属性设置成功!');
+        res.redirect(`/admin/product-property/${productId}?viewport=window`);
+    });
+
+});
 
 
 module.exports = router;
