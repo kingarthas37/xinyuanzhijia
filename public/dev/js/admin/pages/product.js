@@ -16,8 +16,6 @@ module.exports = {
             let category2 = $('.select-category-2');
             let productMethod = $('.select-product-method');
 
-            let alert = $('#modal-alert');
-
             productMethod.change(function(){
                 if(this.value) {
                     return location.href = `/admin/product?product-method-id=${this.value}`;
@@ -45,6 +43,7 @@ module.exports = {
         
         //删除product
         {
+            let alert = $('#modal-alert');
             $('.remove-product').click(function() {
                 $('#confirm-remove-product').modal({
                     relatedTarget: this,
@@ -61,7 +60,7 @@ module.exports = {
                                 relatedTarget: this,
                                 onConfirm:()=> {
                                     let target = $(this.relatedTarget);
-                                    target.parents('tr').detach()
+                                    target.parents('tr').detach();
                                 }
                             }).find('.am-modal-bd').text('删除产品成功!');
                         });
