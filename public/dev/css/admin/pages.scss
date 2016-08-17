@@ -176,4 +176,22 @@
     .am-accordion-gapped .am-accordion-item {
         margin:0 0 15px 0;
     }
+    .am-accordion-content {
+        .am-form-inline {
+            margin-bottom: 10px;
+            select {
+                width: 100px;
+            }
+        }
+        .am-form {
+            label {
+                em {
+                    font-style: normal;
+                    font-size: 12px;
+                    font-weight: normal;
+                    color: #999;
+                }
+            }
+        }
+    }
 }

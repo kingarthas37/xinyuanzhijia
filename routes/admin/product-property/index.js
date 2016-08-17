@@ -128,6 +128,31 @@ router.post('/shop-link/:productId', (req, res) => {
 
 });
 
+//保存库存
+router.post('/stock/:productId', (req, res) => {
+
+    if (!req.AV.user) {
+        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
+    }
+
+    let productId = parseInt(req.params.productId);
+    let stock = parseInt(req.body.stock);
+    let sales = parseInt(req.body.sales);
+    
+    let query = new AV.Query(ProductProperty);
+    query.equalTo('productId', productId);
+    query.first().then(item => {
+        
+        return item.save({
+            stock,sales
+        });
+
+    }).then(() => {
+        req.flash('success', '库存设置成功!');
+        res.redirect(`/admin/product-property/${productId}?viewport=window`);
+    });
+
+});
 
 //保存设置
 router.post('/settings/:productId', (req, res) => {
@@ -137,29 +162,28 @@ router.post('/settings/:productId', (req, res) => {
     }
 
     let productId = parseInt(req.params.productId);
-    let stock = parseInt(req.body.stock);
     let price = parseInt(req.body.price);
     let country = req.body.country;
     let settingsComment = req.body['settings-comment'];
     let isHandmade = req.body['is-handmade'] ? true : false;
     let isDocument = req.body['is-document'] ? true : false;
     let isOnly = req.body['is-only'] ? true :false;
-    let isOffShelf = req.body['is-off-shelf'] ? true :false;
-    
+    let isInstock = req.body['is-instock'] ? true :false;
+    let isHot = req.body['is-hot'] ? true :false;
     
     let query = new AV.Query(ProductProperty);
     query.equalTo('productId', productId);
     query.first().then(item => {
 
         return item.save({
-            stock,
             price,
             country,
             settingsComment,
             isHandmade,
             isDocument,
             isOnly,
-            isOffShelf
+            isInstock,
+            isHot
         });
 
     }).then(() => {

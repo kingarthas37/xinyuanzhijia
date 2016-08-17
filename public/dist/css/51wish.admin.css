@@ -336,5 +336,14 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
     margin-right: 10px; }
   .admin-product-property-page .am-accordion-gapped .am-accordion-item {
     margin: 0 0 15px 0; }
+  .admin-product-property-page .am-accordion-content .am-form-inline {
+    margin-bottom: 10px; }
+    .admin-product-property-page .am-accordion-content .am-form-inline select {
+      width: 100px; }
+  .admin-product-property-page .am-accordion-content .am-form label em {
+    font-style: normal;
+    font-size: 12px;
+    font-weight: normal;
+    color: #999; }
 
 /*# sourceMappingURL=51wish.admin.css.map */

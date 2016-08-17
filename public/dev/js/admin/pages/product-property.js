@@ -17,6 +17,8 @@ module.exports = {
         //单独区域设置
         this.setPurchaseLinkContent();
         this.setShopLinkContent();
+        this.setStockContent();
+        this.setSettingsContent();
         
     },
 
@@ -41,6 +43,43 @@ module.exports = {
     setShopLinkContent() {
         if(location.hash === '#shop-link') {
             setTimeout(()=> $('input[name=shop-link]').get(0).focus(),0);
+        }
+    },
+    
+    //库存
+    setStockContent() {
+        let content = $('#stock');
+        let stock = content.find('select[name=stock]');
+        let sales = content.find('select[name=sales]');
+        let stockMinus = content.find('.stock-minus');
+        let stockPlus = content.find('.stock-plus');
+        let reset = $('.stock-reset');
+        
+        stockMinus.click(function() {
+            let stockValue = parseInt(stock.val());
+            let salesValue = parseInt(sales.val());
+            if(stockValue > 0) {
+                stock.find(`option[value=${stockValue - 1}]`)[0].selected = true;
+                sales.find(`option[value=${salesValue + 1}]`)[0].selected = true;
+            }
+        });
+
+        stockPlus.click(function() {
+            let stockValue = parseInt(stock.val());
+            stock.find(`option[value=${stockValue + 1}]`)[0].selected = true;
+        });
+        
+        reset.click(function() {
+            stock.find(`option[value=${stock.data('stock')}]`)[0].selected = true;
+            sales.find(`option[value=${sales.data('sales')}]`)[0].selected = true;
+        });
+        
+    },
+
+    //设置
+    setSettingsContent() {
+        if(location.hash === '#settings') {
+            setTimeout(()=> $('input[name=price]').get(0).focus(),0);
         }
     }
 };
