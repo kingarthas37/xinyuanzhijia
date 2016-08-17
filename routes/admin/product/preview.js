@@ -15,7 +15,6 @@ var shot = require('../../../lib/component/shot');
 
 //class
 let Product = AV.Object.extend('Product');
-let Banner = AV.Object.extend('ProductBanner');
 let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
@@ -23,7 +22,8 @@ let ProductCategory2 = AV.Object.extend('ProductCategory2');
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 产品预览`,
     currentTag: 'product',
-    currentPage: 'product-preview'
+    currentPage: 'product-preview',
+    watermark:config.watermark
 });
 
 

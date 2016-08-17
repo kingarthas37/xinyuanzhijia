@@ -7,6 +7,23 @@
 .t-r {
   text-align: right; }
 
+.l {
+  float: left; }
+
+.r {
+  float: right; }
+
+.cf:before, .cf:after {
+  content: "";
+  display: table; }
+
+.cf:after {
+  clear: both; }
+
+label {
+  font-weight: normal;
+  font-size: 14px; }
+
 span.split {
   padding: 0 5px; }
   span.split:after {

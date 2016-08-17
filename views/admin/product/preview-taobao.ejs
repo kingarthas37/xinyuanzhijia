@@ -11,10 +11,19 @@
 
     <div class="product-preview-page">
 
-        <p class="small-screen-hide">
-            <button type="button" class="am-btn am-btn-primary btn-copy">复制代码</button>
-            <button type="button" class="am-btn am-btn-success btn-shot" disabled="disabled">生成淘宝详情图片</button>
-        </p>
+        <div class="cf">
+            
+            <div class="l">
+                <span class="small-screen-hide">
+                <button type="button" class="am-btn am-btn-primary btn-copy">复制代码</button>
+                <button type="button" class="am-btn am-btn-success btn-shot" disabled="disabled">生成淘宝详情图片</button>
+                </span>
+            </div>
+            
+            <div class="r">
+                <label><input class="disable-watermark" type="checkbox"> 不显示水印</label>
+            </div>
+        </div>
 
         <hr class="small-screen-hide"/>
         
@@ -23,7 +32,6 @@
         <hr/>
         
         <div class="preview-content">
-           
 
                 <%if(banner) { %><section><img src="<%=banner%>"/></section><%}%>
 
@@ -84,7 +92,9 @@
     <script type="text/javascript">
         $(function() {
             var productPreview = require('product-preview');
-            productPreview();
+            productPreview.init({
+                watermark:'<%= watermark.main %>'
+            });
         });
     </script>
 
