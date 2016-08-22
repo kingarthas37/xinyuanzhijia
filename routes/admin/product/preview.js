@@ -82,6 +82,10 @@ router.post('/preview-taobao', function (req, res) {
     let use = req.body['use'];
     let useEn = req.body['use-en'];
     let detailImage = req.body['detail-image'];
+    
+    let productMethodId = parseInt(req.body['select-product-method']);
+    let category1Id = parseInt(req.body['select-category-1']);
+    let category2Id = parseInt(req.body['select-category-2']);
 
     data = extend(data,{
         name:name,
@@ -99,8 +103,39 @@ router.post('/preview-taobao', function (req, res) {
         detailImage: markdown.toHTML(detailImage)
     });
 
-    res.render('admin/product/preview-taobao', data);
-
+    async.parallel([
+        cb => {
+            let query = new AV.Query(ProductMethod);
+            query.equalTo('productMethodId',productMethodId);
+            query.first().then(item => {
+                data = extend(data,{
+                    productMethodName:item.get('name')
+                });
+                cb();
+            });
+        },
+        cb => {
+            let query = new AV.Query(ProductCategory1);
+            query.equalTo('category1Id',category1Id);
+            query.first().then(item => {
+                data = extend(data,{
+                    category1Name:item.get('name')
+                });
+                cb();
+            });
+        },
+        cb => {
+            let query = new AV.Query(ProductCategory2);
+            query.equalTo('category2Id',category2Id);
+            query.first().then(item => {
+                data = extend(data,{
+                    category2Name:item.get('name')
+                });
+                cb();
+            });
+        }
+    ], () => res.render('admin/product/preview-taobao', data));
+    
 });
 
 

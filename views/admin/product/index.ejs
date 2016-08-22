@@ -102,7 +102,7 @@
                             <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>"><i class="am-icon-tag"></i></a> <%}%>
                         </td>
                         <td class="t-c">
-                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock"><i class="am-icon-edit"></i></a>
+                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock"><i class="am-icon-inbox"></i></a>
                         </td>
                         <td class="t-c">
                             <span class="purchase-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span>
