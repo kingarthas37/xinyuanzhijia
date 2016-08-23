@@ -86,7 +86,7 @@
                     <thead>
                     <tr>
                         <th>产品名称</th>
-                        <th class="t-c">库存/销量</th>
+                        <th class="t-c">预览</th>
                         <th class="t-c">产品链接</th>
                         <th class="t-c">网店链接</th>
                         <th class="t-c">选项</th>
@@ -97,12 +97,14 @@
                     <tr data-product-id="<%= product[i].get('productId') %>">
                         <td class="product-title">
                             <a target="_blank" href="<%= product[i].mainImage%>"><%if(product[i].mainImage) {%><img width="32" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/32" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32" width="32"/><%}%> <a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a>
-                            <a target="_blank" href="/admin/product/preview/<%= product[i].get('productId') %>"><i class="am-icon-external-link"></i></a>
+
+                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock"><i class="am-icon-inbox"><em class="stock-num" data-product-id="<%= product[i].get('productId') %>"></em></i></a>
+                            
                             <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#settings"><i class="am-icon-gear"></i></a>
                             <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>"><i class="am-icon-tag"></i></a> <%}%>
                         </td>
                         <td class="t-c">
-                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock"><i class="am-icon-inbox"></i></a>
+                            <a target="_blank" href="/admin/product/preview/<%= product[i].get('productId') %>"><i class="am-icon-external-link"></i></a>
                         </td>
                         <td class="t-c">
                             <span class="purchase-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span>

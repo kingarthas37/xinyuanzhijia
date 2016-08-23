@@ -232,7 +232,7 @@ router.get('/list-data',(req,res) => {
     
     let query = new AV.Query(ProductProperty);
     query.containedIn('productId',productListId);
-    query.select('productId','purchaseLink','shopLink');
+    query.select('productId','purchaseLink','shopLink','stock');
     
     query.find().then(products => {
         res.send({
