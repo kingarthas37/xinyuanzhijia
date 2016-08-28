@@ -64,6 +64,7 @@ module.exports = {
                         let stock = $(`.stock-num[data-product-id=${n.productId}]`);
                         if(n.stock) {
                             stock.text(n.stock);
+                            stock.parent().addClass('instock');
                         }
                     }
                     

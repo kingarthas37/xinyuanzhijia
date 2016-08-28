@@ -55,12 +55,15 @@
     }
     
     .am-icon-inbox {
+        &.instock {
+            color: #5eb95e;
+        }
         position: relative;
         .stock-num {
             position: absolute;
-            right:-8px;
-            top:-4px;
-            font-size: 11px;
+            left:13px;
+            top:-6px;
+            font-size: 12px;
             font-weight: bold;
             color: #5eb95e;
             font-style: normal;

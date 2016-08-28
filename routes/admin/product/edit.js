@@ -25,7 +25,8 @@ let config = require('../../../lib/config');
 var data = extend(config.data, {
     title: `${config.data.titleAdmin} - 编辑产品`,
     currentTag: 'product',
-    currentPage: 'product-edit'
+    currentPage: 'product-edit',
+    watermark:config.watermark
 });
 
 

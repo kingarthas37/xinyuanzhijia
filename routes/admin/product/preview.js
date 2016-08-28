@@ -91,16 +91,16 @@ router.post('/preview-taobao', function (req, res) {
         name:name,
         nameEn:nameEn,
         banner:banner,
-        detail: markdown.toHTML(detail),
-        detailEn: markdown.toHTML(detailEn),
+        detail: imageSet(markdown.toHTML(detail)),
+        detailEn: imageSet(markdown.toHTML(detailEn)),
         review: markdown.toHTML(review),
-        property: markdown.toHTML(property),
-        propertyEn: markdown.toHTML(propertyEn),
-        instruction: markdown.toHTML(instruction),
-        instructionEn: markdown.toHTML(instructionEn),
-        use: markdown.toHTML(use),
-        useEn: markdown.toHTML(useEn),
-        detailImage: markdown.toHTML(detailImage)
+        property: imageSet(markdown.toHTML(property)),
+        propertyEn: imageSet(markdown.toHTML(propertyEn)),
+        instruction: imageSet(markdown.toHTML(instruction)),
+        instructionEn: imageSet(markdown.toHTML(instructionEn)),
+        use: imageSet(markdown.toHTML(use)),
+        useEn: imageSet(markdown.toHTML(useEn)),
+        detailImage: imageSet(markdown.toHTML(detailImage))
     });
 
     async.parallel([
@@ -138,6 +138,9 @@ router.post('/preview-taobao', function (req, res) {
     
 });
 
+function imageSet(html) {
+    return html.replace(/\.(jpg|jpeg|png)/gi,`.$1${data.watermark.main}`);
+}
 
 //shot
 router.post('/shot', (req, res) => {

@@ -26,15 +26,12 @@ module.exports = {
     },
     waterMark() {
         
-        let _this = this;
         let images = $('.preview-content').find('div img');
         
         images.each(function() {
             let src = this.src;
-            $(this).data('src-source',src);
-            src += _this.settings.watermark;
+            $(this).data('src-source',src.replace(/\?.+/,''));
             $(this).data('src-target',src);
-            $(this).attr('src',src);
         });
         
         $('.disable-watermark').click(function() {

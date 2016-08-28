@@ -23,7 +23,8 @@ let ProductProperty = AV.Object.extend('ProductProperty');
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 产品列表页`,
     currentTag: 'product',
-    currentPage: 'product-index'
+    currentPage: 'product-index',
+    watermark:config.watermark
 });
 
 //首页
