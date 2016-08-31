@@ -283,7 +283,7 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
     color: #5eb95e; }
   .admin-product-page .am-icon-inbox .stock-num {
     position: absolute;
-    left: 13px;
+    left: 12px;
     top: -6px;
     font-size: 12px;
     font-weight: bold;

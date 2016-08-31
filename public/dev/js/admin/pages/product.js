@@ -6,40 +6,79 @@ let FlashDetect = require('flash-detect');
 
 let listDataRequest = require('./product/list-data-request');
 
+let utils = require('../common/utils');
+
 module.exports = {
 
     indexFun:function() {
 
-        //选择
+        //选择产品分类
         {
             let category1 = $('.select-category-1');
             let category2 = $('.select-category-2');
             let productMethod = $('.select-product-method');
+            let onsale = $('.select-onsale');
+            
+            let category1Val = category1.val();
+            let category2Val = category2.val();
+            let productMethodVal = productMethod.val();
+            let onsaleVal = onsale.val();
 
             productMethod.change(function(){
                 if(this.value) {
-                    return location.href = `/admin/product?product-method-id=${this.value}`;
+                    return location.href = utils.urlParamsComponent('/admin/product',{
+                        'product-method-id':this.value,
+                        'onsale':onsaleVal
+                    });
                 }
-                location.href = '/admin/product';
+                location.href = utils.urlParamsComponent('/admin/product',{
+                    'onsale':onsaleVal
+                });
             });
 
             category1.change(function() {
-                let productMethodId = productMethod.val();
                 if(this.value) {
-                    return location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${this.value}`;
+                    return location.href = utils.urlParamsComponent('/admin/product',{
+                        'product-method-id':productMethodVal,
+                        'category1-id':this.value,
+                        'onsale':onsaleVal
+                    });
                 }
-                location.href = `/admin/product?product-method-id=${productMethodId}`;
+                location.href = utils.urlParamsComponent('/admin/product',{
+                    'product-method-id':productMethodVal,
+                    'onsale':onsaleVal
+                });
             });
 
             category2.change(function() {
-                let productMethodId = productMethod.val();
-                let category1Id = category1.val();
                 if(this.value) {
-                    return location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${category1Id}&category2-id=${this.value}`;
+                    return location.href = utils.urlParamsComponent('/admin/product',{
+                        'product-method-id':productMethodVal,
+                        'category1-id':category1Val,
+                        'category2-id':this.value,
+                        'onsale':onsaleVal
+                    });
                 }
-                location.href = `/admin/product?product-method-id=${productMethodId}&category1-id=${category1Id}`;
+                location.href = utils.urlParamsComponent('/admin/product',{
+                    'product-method-id':productMethodVal,
+                    'category1-id':category1Val,
+                    'onsale':onsaleVal
+                });
             });
+
+
+            onsale.change(function() {
+                location.href = utils.urlParamsComponent('/admin/product',{
+                    'product-method-id':productMethodVal,
+                    'category1-id':category1Val,
+                    'category2-id':category2Val,
+                    'onsale':this.value
+                });
+            });
+            
         }
+        
+       
         
         //删除product
         {

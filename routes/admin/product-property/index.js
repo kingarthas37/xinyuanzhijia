@@ -92,7 +92,6 @@ router.post('/purchase-link/:productId', (req, res) => {
         });
 
     }).then(() => {
-        req.flash('success', '编辑产品购买链接成功!');
         res.redirect(`/admin/product-property/${productId}?viewport=window`);
     });
 
@@ -122,7 +121,6 @@ router.post('/shop-link/:productId', (req, res) => {
         });
 
     }).then(() => {
-        req.flash('success', '编辑产品网店链接成功!');
         res.redirect(`/admin/product-property/${productId}?viewport=window`);
     });
 
@@ -148,7 +146,6 @@ router.post('/stock/:productId', (req, res) => {
         });
 
     }).then(() => {
-        req.flash('success', '库存设置成功!');
         res.redirect(`/admin/product-property/${productId}?viewport=window`);
     });
 
@@ -168,7 +165,7 @@ router.post('/settings/:productId', (req, res) => {
     let isHandmade = req.body['is-handmade'] ? true : false;
     let isDocument = req.body['is-document'] ? true : false;
     let isOnly = req.body['is-only'] ? true :false;
-    let isInstock = req.body['is-instock'] ? true :false;
+    let isOnsale = req.body['is-onsale'] ? true :false;
     let isHot = req.body['is-hot'] ? true :false;
     
     let query = new AV.Query(ProductProperty);
@@ -182,12 +179,11 @@ router.post('/settings/:productId', (req, res) => {
             isHandmade,
             isDocument,
             isOnly,
-            isInstock,
+            isOnsale,
             isHot
         });
 
     }).then(() => {
-        req.flash('success', '产品属性设置成功!');
         res.redirect(`/admin/product-property/${productId}?viewport=window`);
     });
 
