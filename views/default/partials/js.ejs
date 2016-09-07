@@ -1,0 +1,6 @@
+<% if (env === 'production') { %>
+<script src="/<%= asset %>/js/<%= assetName%>.admin.external.js"></script>
+<script src="/<%= asset %>/js/<%= assetName%>.admin.js"></script>
+<% } else { %>
+<script src="/<%= asset %>/js/<%= assetName%>.admin.bundle.js"></script>
+<% } %>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title><%= title %></title>
+    <% include css %>
+</head>
+<body>
+
+<div class="purchase-contact-page">
+    <form id="form-upload" enctype="multipart/form-data" method="post" action="<%= action %>">
+        <div class="am-cf">
+            <div class="am-form-group am-form-file">
+                <button type="button" class="am-btn am-btn-primary am-btn-sm">
+                <i class="am-icon-cloud-upload"></i> <span class="text">选择要上传的文件</span></button>
+                <input type="file" id="file" name="file" <% if(multiple) { %>multiple="multiple"<% } %>>
+            </div>
+            <div class="upload-loading">
+                <i class="am-icon-spinner am-icon-spin"></i>
+            </div>
+        </div>
+    </form>
+</div>
+
+<% include js %>
+<script type="text/javascript">
+    $(function() {
+        var upload = require('upload');
+        upload.uploadFile({
+            fileType:'<%= fileType %>',
+            callbackName:'<%= callbackName %>'
+        });
+    });
+</script>
+</body>
+</html>
