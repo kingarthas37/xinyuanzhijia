@@ -59,4 +59,13 @@ $(function () {
         $('[data-am-selected]').amuiSelected();
     }
 
+    //提示flash隐藏
+    {
+        if($('.am-alert.am-alert-success').length) {
+            setTimeout(()=> {
+                $('.am-alert.am-alert-success').hide();
+            },3000);
+        }
+    }
+
 });

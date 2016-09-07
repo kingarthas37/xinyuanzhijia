@@ -340,13 +340,16 @@ module.exports = {
                     category1Id: category1Id
                 }
             }).done(data => {
-
                 $.AMUI.progress.done();
                 confirm.data('state', false);
                 modal.modal('close');
+                
+                let productMethodId = $('.select-product-method').val();
+                let category1Id = content.data('id');
+                
                 content.find('.category-2-list').append(`
                         <li data-id="${data.id}">
-                            <strong>${data.name}</strong>
+                            <strong><a href="/admin/product?product-method-id=${productMethodId}&category1-id=${category1Id}&category2-id=${data.id}" target="_blank">${data.name}</a></strong>
                             <span class="options">
                                 <a class="edit-category-2" href="javascript:;">编辑</a>
                                 <a class="moveup-category-2" href="javascript:;">上移</a>
@@ -412,7 +415,7 @@ module.exports = {
                 $.AMUI.progress.done();
                 modal.modal('close');
                 alert.modal({
-                    onConfirm: () => content.find('strong').text(input.val())
+                    onConfirm: () => content.find('strong a').text(input.val())
                 }).find('.am-modal-bd').text('编辑二级分类成功!');
             });
 
