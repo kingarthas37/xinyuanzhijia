@@ -159,6 +159,7 @@ router.get('/', (req, res) => {
             
             let query = new AV.Query(ProductCategory1);
             query.equalTo('productMethodId', productMethodId);
+            query.ascending('index');
             query.find().then(category1 => {
                 data = extend(data, {category1});
                 resolve();
@@ -174,6 +175,7 @@ router.get('/', (req, res) => {
 
             let query = new AV.Query(ProductCategory2);
             query.equalTo('category1Id', category1Id);
+            query.ascending('index');
             query.find().then(category2 => {
                 data = extend(data, {category2});
                 resolve();
