@@ -113,7 +113,7 @@
                     <% for(var i=0; i < product.length; i++) {%>
                     <tr data-product-id="<%= product[i].get('productId') %>">
                         <td class="product-title">
-                            <%if(product[i].mainImage) {%><a target="_blank" href="<%= product[i].mainImage%><%= watermark.main %>"><img width="32" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/32" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32" width="32"/><%}%> <a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a>
+                            <%if(product[i].mainImage) {%><a target="_blank" href="<%= product[i].mainImage%>"><img width="32" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/32" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32" width="32"/><%}%> <a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a>
 
                             <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock"><i class="am-icon-inbox"><em class="stock-num" data-product-id="<%= product[i].get('productId') %>"></em></i></a>
                             
