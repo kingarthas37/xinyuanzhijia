@@ -37,13 +37,13 @@
                                 <form class="am-form" action="/admin/product-property/purchase-link/<%= productProperty.get('productId') %>" method="post">
                                     <label>产品购买链接:</label>
                                     <div class="am-form-group">
-                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[0] %><%}%>" placeholder="输入网站购买链接1"/>
+                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[0] %><%}%>" autocomplete="off" placeholder="输入网站购买链接1"/>
                                     </div>
                                     <div class="am-form-group">
-                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[1] %><%}%>" placeholder="输入网站购买链接2" />
+                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[1] %><%}%>" autocomplete="off" placeholder="输入网站购买链接2" />
                                     </div>
                                     <div class="am-form-group">
-                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[2] %><%}%>" placeholder="输入网站购买链接3" />
+                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[2] %><%}%>" autocomplete="off" placeholder="输入网站购买链接3" />
                                     </div>
                                     <label>链接说明:</label>
                                     <div class="am-form-group">
@@ -66,11 +66,11 @@
                                 <form class="am-form" action="/admin/product-property/shop-link/<%= productProperty.get('productId') %>" method="post">
                                     <label>淘宝店铺链接:</label>
                                     <div class="am-form-group">
-                                        <input name="shop-link" type="text" value="<%if(productProperty.get('shopLink')){ %><%= productProperty.get('shopLink')[0] %><%}%>" placeholder="输入淘宝店铺链接"/>
+                                        <input name="shop-link" type="text" value="<%if(productProperty.get('shopLink')){ %><%= productProperty.get('shopLink')[0] %><%}%>" autocomplete="off" placeholder="输入淘宝店铺链接"/>
                                     </div>
                                     <label>微店链接:</label>
                                     <div class="am-form-group">
-                                        <input name="shop-link" type="text" value="<%if(productProperty.get('shopLink')){ %><%= productProperty.get('shopLink')[1] %><%}%>" placeholder="输入微店链接" />
+                                        <input name="shop-link" type="text" value="<%if(productProperty.get('shopLink')){ %><%= productProperty.get('shopLink')[1] %><%}%>" autocomplete="off" placeholder="输入微店链接" />
                                     </div>
                                     <label>链接说明:</label>
                                     <div class="am-form-group">
@@ -138,7 +138,7 @@
                                     
                                     <label>价格(RMB):</label>
                                     <div class="am-form-group">
-                                        <input name="price" type="text" value="<%= productProperty.get('price') %>" placeholder="输入价格" />
+                                        <input name="price" type="text" value="<%= productProperty.get('price') %>" autocomplete="off" placeholder="输入价格" />
                                     </div>
                                     
                                     <label>产地/国家:</label>
