@@ -40,8 +40,11 @@ router.get('/:productId',(req,res)=> {
     query.equalTo('productId', productId);
     query.first().done(product => {
 
+        let name = product.get('name');
+        name = toUpperCase(name);
+        
         data = extend(data,{
-            name:markdown.toHTML(product.get('name')),
+            name:markdown.toHTML(name),
             nameEn:markdown.toHTML(product.get('nameEn')),
             detail: markdown.toHTML(product.get('detail')),
             review: markdown.toHTML(product.get('review')),
@@ -58,6 +61,8 @@ router.get('/:productId',(req,res)=> {
 });
 
 
+
+
 //编辑时预览产品页
 router.post('/preview-taobao', function (req, res) {
     
@@ -70,6 +75,8 @@ router.post('/preview-taobao', function (req, res) {
     });
     
     let name = req.body['name'];
+    name = toUpperCase(name);
+
     let nameEn = req.body['name-en'];
     let banner = req.body['banner'];
     let detail = req.body['detail'];
@@ -164,5 +171,21 @@ router.post('/shot', (req, res) => {
     });
 
 });
+
+//匹配name大小写,转换
+function toUpperCase(name) {
+    let reg = /\[([^\]]*)\]/;
+    if(reg.test(name)) {
+        let str1 = reg.exec(name)[1];
+        let str2 = str1.replace(/(?:\s|\b)(\w)/gi,a =>{
+            return a.toUpperCase();
+        });
+        str2 = `[${str2}]`;
+        name = name.replace(reg,a=> {
+            return str2;
+        });
+    }
+    return name;
+}
 
 module.exports = router;
