@@ -293,14 +293,8 @@ module.exports = {
 
         imageView.on('click','.remove',function() {
             let content = $(this).parents('li');
-            $.ajax({
-                type:'DELETE',
-                url:leanApp.api + 'files/' + content.data('id'),
-                headers:leanAppHeader
-            }).done(() => {
-                content.detach();
-                _this.updateMainImage();
-            });
+            content.detach();
+            _this.updateMainImage();
         });
 
         imageView.on('click','input[type=checkbox]',function() {
