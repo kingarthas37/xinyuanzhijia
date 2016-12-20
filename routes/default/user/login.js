@@ -33,9 +33,12 @@ router.post('/postLogin', (req, res) => {
 router.get('/getSmsCode/:mobile', (req, res) => {
     
     let mobile = req.params.mobile;
-    user.requestSmsCode(mobile);
+    user.requestSmsCode(mobile).then(data=> {
+        res.send(data);
+    });
     
-    res.send('');
+    
 });
+
 
 module.exports = router;
