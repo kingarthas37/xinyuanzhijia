@@ -16,17 +16,16 @@ router.get('/', (req, res) => {
 
 });
 
-router.post('/postLogin', (req, res) => {
-    if(req.AV.user) {
-        return res.redirect('/');
-    }
-
-    let returnUrl = req.query.return;
-    let mobile = req.body.mobile;
-    let smsCode = req.body.smsCode;
-    
-    console.log(user.singIn(mobile, smsCode));
-    res.send(returnUrl);
+router.get('/toLogin/:mobile/:smsCode', (req, res) => {
+    let mobile = req.params.mobile;
+    let smsCode = req.params.smsCode;
+    user.singIn(mobile, smsCode).then(data => {
+        let result = {code:200};
+        if(("code" in data)) {
+            result = data;
+        }
+        res.send(result);
+    });
 
 });
 
@@ -36,8 +35,6 @@ router.get('/getSmsCode/:mobile', (req, res) => {
     user.requestSmsCode(mobile).then(data=> {
         res.send(data);
     });
-    
-    
 });
 
 
