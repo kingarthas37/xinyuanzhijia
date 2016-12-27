@@ -55,16 +55,14 @@ router.get('/wechatLogin', (req, res) => {
                 return;
             }
             console.log(body);
-            console.log(body.openid);
             if (typeof(body.openid) == 'undefined' || typeof(body.access_token) == 'undefined') {
                 res.send(body);
                 return;
-            }
-            res.send('111');
-            /*user.singInWithWechat(body.openid, body.access_token).then(data=>{
+            }user.singInWithWechat(body.openid, body.access_token).then(data=>{
+                console.log(data);
                 res.send(data);
                 return;
-            });*/
+            });
         })
     }
 });
