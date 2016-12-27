@@ -7,7 +7,8 @@ let router = user.getRouter();
 
 router.get('/', (req, res) => {
     let wechatLoginUrl = config.wechatApi.authorize;
-    wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', config.website.domain).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
+    let redirectUrl = config.website.domain + '/login/wechatLogin';
+    wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
     res.render('default/user/login', {wechatLoginUrl:wechatLoginUrl});
 
 });
