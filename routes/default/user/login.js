@@ -58,7 +58,8 @@ router.get('/wechatLogin', (req, res) => {
             if (typeof(body.openid) == 'undefined' || typeof(body.access_token) == 'undefined') {
                 res.send(body);
                 return;
-            }user.singInWithWechat(body.openid, body.access_token).then(data=>{
+            }
+            user.singInWithWechat(body.openid, body.access_token).then(data=>{
                 console.log(data);
                 res.send(data);
                 return;
