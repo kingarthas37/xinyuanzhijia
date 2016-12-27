@@ -41,11 +41,12 @@ router.get('/wechatLogin', (req, res) => {
         let url = config.wechatApi.authorizeAccessToken;
         url = url.replace('{appid}', config.wechatConfig.appId).replace('{secret}', config.wechatConfig.appSecret).replace('{code}', code);
         request(url, function (error, response, body) {
+            res.send(body);
             if (response.code != 200 || error) {
-                res.redirect('/');
+                res.send(body);
             }
             if (typeof(body.openid) == 'undefined' || typeof(body.access_token) == 'undefined') {
-                res.redirect('/');
+                res.send(body);
             }
             user.singInWithWechat(body.openid, body.access_token).then(data=>{
                 res.send(data);
