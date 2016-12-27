@@ -59,6 +59,7 @@
     "multiparty": "^4.1.2",
     "node-array": "0.0.7",
     "q": "~1.4.0",
+    "request": "^2.79.0",
     "through2": "^2.0.0",
     "underscore": "~1.8.0",
     "urlsafe-base64": "^1.0.0",
