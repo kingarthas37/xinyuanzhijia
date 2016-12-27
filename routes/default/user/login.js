@@ -41,7 +41,6 @@ router.get('/wechatLogin', (req, res) => {
     } else {
         let url = config.wechatApi.authorizeAccessToken;
         url = url.replace('{appid}', config.wechatConfig.appId).replace('{secret}', config.wechatConfig.appSecret).replace('{code}', code);
-        console.log(url);
         let option = {
             url: url,
             json: true,
@@ -56,10 +55,9 @@ router.get('/wechatLogin', (req, res) => {
                 return;
             }
             console.log(body);
-            let result = JSON.parse(body);
-            console.log(result.openid);
-            if (typeof(result.openid) == 'undefined' || typeof(result.access_token) == 'undefined') {
-                res.send(result);
+            console.log(body.openid);
+            if (typeof(body.openid) == 'undefined' || typeof(body.access_token) == 'undefined') {
+                res.send(body);
                 return;
             }
             res.send('111');
