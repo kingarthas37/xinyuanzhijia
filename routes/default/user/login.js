@@ -42,20 +42,31 @@ router.get('/wechatLogin', (req, res) => {
         let url = config.wechatApi.authorizeAccessToken;
         url = url.replace('{appid}', config.wechatConfig.appId).replace('{secret}', config.wechatConfig.appSecret).replace('{code}', code);
         console.log(url);
-        request(url, function (error, response, body) {
+        let option = {
+            url: url,
+            json: true,
+            method: 'GET',
+            headers: {
+                "content-type": "application/json"
+            }
+        };
+        request(option, function (error, response, body) {
+            if (response.statusCode != 200 || error) {
+                res.redirect('/');
+                return;
+            }
             console.log(body);
-            if (response.code != 200 || error) {
-                res.send(body);
+            let result = JSON.parse(body);
+            console.log(result.openid);
+            if (typeof(result.openid) == 'undefined' || typeof(result.access_token) == 'undefined') {
+                res.send(result);
                 return;
             }
-            if (typeof(body.openid) == 'undefined' || typeof(body.access_token) == 'undefined') {
-                res.send(body);
-                return;
-            }
-            user.singInWithWechat(body.openid, body.access_token).then(data=>{
+            res.send('111');
+            /*user.singInWithWechat(body.openid, body.access_token).then(data=>{
                 res.send(data);
                 return;
-            });
+            });*/
         })
     }
 });
