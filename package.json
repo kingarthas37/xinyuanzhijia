@@ -4,7 +4,8 @@
   "description": "xyzj",
   "main": "server.js",
   "scripts": {
-    "start": "node --harmony server.js"
+    "start": "node --harmony server.js",
+    "dev": "./node_modules/.bin/nodemon server.js"
   },
   "keywords": [
     "node",
@@ -58,6 +59,7 @@
     "minimist": "~1.2.0",
     "multiparty": "^4.1.2",
     "node-array": "0.0.7",
+    "nodemon": "^1.11.0",
     "q": "~1.4.0",
     "request": "^2.79.0",
     "through2": "^2.0.0",
