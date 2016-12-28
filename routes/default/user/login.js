@@ -54,6 +54,7 @@ router.get('/wechatLogin', (req, res) => {
                 res.redirect('/');
                 return;
             }
+            console.log('BODY======>');
             console.log(body);
             if (typeof(body.openid) == 'undefined' || typeof(body.access_token) == 'undefined') {
                 res.send(body);
