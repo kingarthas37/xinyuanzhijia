@@ -18,10 +18,10 @@ let AV = base.getAV();
 //首页
 router.get('/', (req, res) => {
 
-    base.isUserLogin(res, req.originalUrl);  //判断是否登录
+    base.isUserLogin(req, req.originalUrl);  //判断是否登录
     
     data = extend(data,{
-        user:AV.User.current()
+        user:req.currentUser
     });
     
     res.render('admin/index', data);
