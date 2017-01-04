@@ -17,7 +17,7 @@ let data = extend(config.data, {
 
 router.get('/',function(req,res,next) {
     
-    if(req.AV.user) {
+    if(req.currentUser) {
         return res.redirect('/admin');
     }
     

@@ -30,6 +30,9 @@ router.get('/',function(req,res,next) {
 
 
 router.post('/',function(req,res,next) {
+
+    //注册不开放，跳转到登录
+    return res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
     
     var username = req.body.username;
     var password = req.body.password;
