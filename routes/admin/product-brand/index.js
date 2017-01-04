@@ -10,6 +10,7 @@ let extend = require('xtend');
 
 let config = require('../../../lib/config');
 let pager = require('../../../lib/component/pager');
+let base = require('../../../lib/models/base');
 
 //class
 let ProductBrand = AV.Object.extend('ProductBrand');
@@ -23,9 +24,7 @@ let data = extend(config.data, {
 //首页
 router.get('/', (req, res) => {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;

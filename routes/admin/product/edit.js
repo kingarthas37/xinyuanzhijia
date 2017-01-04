@@ -18,6 +18,7 @@ let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
 
 let Banner = AV.Object.extend('ProductBanner');
+let base = require('../../../lib/models/base');
 
 //lib
 let config = require('../../../lib/config');
@@ -33,9 +34,7 @@ var data = extend(config.data, {
 //编辑产品页
 router.get('/:productId', function (req, res, next) {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     res.cookie('x_lc_sign',data.x_lc_sign);
     res.cookie('x_lc_session',req.AV.user._sessionToken);
@@ -130,9 +129,7 @@ router.get('/:productId', function (req, res, next) {
 
 router.post('/:productId', (req, res) => {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     let name = req.body['name'];
     let nameEn = req.body['name-en'];

@@ -15,6 +15,7 @@ let ProductProperty = AV.Object.extend('ProductProperty');
 
 //lib
 let config = require('../../../lib/config');
+let base = require('../../../lib/models/base');
 
 var data = extend(config.data, {
     title: `${config.data.titleAdmin} - 复制产品`,
@@ -26,9 +27,7 @@ var data = extend(config.data, {
 //编辑产品页
 router.get('/:productId', function (req, res, next) {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     let productId = parseInt(req.params.productId);
     let product = new Product();
