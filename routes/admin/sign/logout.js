@@ -5,11 +5,12 @@ let AV = require('leanengine');
 
 router.get('/', function(req, res) {
 
-    if(!req.AV.user) {
+    if(!req.currentUser) {
         return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
     }
     
     AV.User.logOut();
+    res.clearCurrentUser();
     res.redirect('/admin');
 });
 

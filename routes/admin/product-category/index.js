@@ -15,6 +15,7 @@ let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
 let ProductMethod = AV.Object.extend('ProductMethod');
 let Product = AV.Object.extend('Product');
+let base = require('../../../lib/models/base');
 
 //lib
 let pager = require('../../../lib/component/pager');
@@ -29,9 +30,7 @@ let data = extend(config.data, {
 //首页render
 router.get('/', (req, res) => {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     res.cookie('x_lc_sign',data.x_lc_sign);
     res.cookie('x_lc_session',req.AV.user._sessionToken);

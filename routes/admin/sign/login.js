@@ -17,10 +17,6 @@ let data = extend(config.data, {
 
 router.get('/',function(req,res,next) {
     
-    if(req.AV.user) {
-        return res.redirect('/admin');
-    }
-    
     data = extend(data,{
         flash: {success: req.flash('success'),error: req.flash('error')}
     });
@@ -32,7 +28,7 @@ router.get('/',function(req,res,next) {
 
 router.post('/',(req,res) => {
 
-    if(req.AV.user) {
+    if(req.currentUser) {
         return res.redirect('/admin');
     }
 
@@ -41,7 +37,8 @@ router.post('/',(req,res) => {
     let password = req.body.password;
     
     AV.User.logIn(username, password, {
-        success: function() {
+        success: function(user) {
+            res.saveCurrentUser(user);
             res.redirect(returnUrl ? decodeURIComponent(returnUrl) : '/admin');
         },
         error: function(user, error) {

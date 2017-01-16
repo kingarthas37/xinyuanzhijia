@@ -11,6 +11,7 @@ let config = require('../../../lib/config');
 
 //class
 let ProductMethod = AV.Object.extend('ProductMethod');
+let base = require('../../../lib/models/base');
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 添加产品类型`,
@@ -20,9 +21,7 @@ let data = extend(config.data, {
 
 router.get('/', (req, res) => {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     data = extend(data, {
         user:req.AV.user
@@ -35,9 +34,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     let name = req.body['name'];
     let label = req.body['label'];

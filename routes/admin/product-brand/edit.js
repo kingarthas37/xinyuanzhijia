@@ -11,7 +11,7 @@ var markdown = require("markdown").markdown;
 
 //class
 let ProductBrand = AV.Object.extend('ProductBrand');
-
+let base = require('../../../lib/models/base');
 
 //lib
 let utils = require('../../../lib/utils');
@@ -25,9 +25,7 @@ var data = extend(config.data, {
 
 router.get('/:productBrandId', (req, res, next) => {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     var productBrandId = parseInt(req.params.productBrandId);
 
@@ -48,9 +46,7 @@ router.get('/:productBrandId', (req, res, next) => {
 
 router.post('/:productBrandId', (req, res) => {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     let productBrandId = parseInt(req.params.productBrandId);
     let name = req.body['name'];

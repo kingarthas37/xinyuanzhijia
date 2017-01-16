@@ -14,6 +14,7 @@ let pager = require('../../../lib/component/pager');
 //class
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductMethod = AV.Object.extend('ProductMethod');
+let base = require('../../../lib/models/base');
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 产品类型列表页`,
@@ -24,9 +25,7 @@ let data = extend(config.data, {
 //首页
 router.get('/', (req, res) => {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;

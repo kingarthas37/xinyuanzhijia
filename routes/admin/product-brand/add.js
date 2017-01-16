@@ -9,6 +9,7 @@ let extend = require('xtend');
 
 let utils = require('../../../lib/utils');
 let config = require('../../../lib/config');
+let base = require('../../../lib/models/base');
 
 //class
 let ProductBrand = AV.Object.extend('ProductBrand');
@@ -21,9 +22,7 @@ let data = extend(config.data, {
 
 router.get('/', (req, res) => {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     data = extend(data, {
         user:req.AV.user
@@ -36,9 +35,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
 
     let name = req.body['name'];
     let type = req.body['type'];

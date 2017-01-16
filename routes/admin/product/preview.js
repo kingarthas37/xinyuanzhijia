@@ -12,6 +12,7 @@ let markdown = require('markdown').markdown;
 let config = require('../../../lib/config');
 let pager = require('../../../lib/component/pager');
 var shot = require('../../../lib/component/shot');
+let base = require('../../../lib/models/base');
 
 //class
 let Product = AV.Object.extend('Product');
@@ -65,10 +66,8 @@ router.get('/:productId',(req,res)=> {
 
 //编辑时预览产品页
 router.post('/preview-taobao', function (req, res) {
-    
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+
+    base.isUserLogin(req, res);  //判断是否登录
 
     data = extend(data, {
         user: req.AV.user
@@ -152,9 +151,7 @@ function imageSet(html) {
 //shot
 router.post('/shot', (req, res) => {
 
-    if(!req.AV.user) {
-        return res.redirect(`/admin/login?return=${encodeURIComponent(req.originalUrl)}`);
-    }
+    base.isUserLogin(req, res);  //判断是否登录
     
     let name = req.body.name.substr(0, 20);
     let html = req.body.html;
