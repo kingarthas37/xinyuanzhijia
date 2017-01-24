@@ -80,24 +80,19 @@
     "amazeui": "./public/js/amazeui.min.js",
     "jquery-lazyload": "./public/js/jquery.lazyload.js",
     "jquery-validate": "./public/js/jquery.validate.min.js",
-    "zclip": "./public/js/ZeroClipboard.min.js",
     "jquery-form": "./public/js/jquery.form.min.js",
-    "jquery-cookie": "./public/js/jquery.cookie.js",
-    "flash-detect": "./public/js/flash.detect.min.js",
-    "bloodhound": "./public/js/bloodhound.min.js",
-    "typeahead": "./public/js/typeahead.jquery.min.js",
-    "swfobject": "./public/js/swfobject.js"
+    "zclip": "./public/js/ZeroClipboard.min.js",
+    "jquery-cookie": "./public/js/jquery.cookie.js"
   },
   "browserify": {
     "transform": "browserify-shim"
   },
   "browserify-shim": {
-    "jquery": "$",
-    "swfobject": "swfobject",
-    "flash-detect": "FlashDetect"
+    "jquery": "$"
   },
   "css-common": [
     "public/css/amazeui.min.css",
+    "public/css/color.min.css",
     "public/css/admin.css"
   ],
   "publicPath": {

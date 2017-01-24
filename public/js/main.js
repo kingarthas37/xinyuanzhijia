@@ -4,7 +4,4 @@ require('jquery-validate');
 require('jquery-lazyload');
 require('jquery-cookie');
 require('jquery-form');
-require('typeahead');
 require('zclip');
-require('flash-detect');
-require('swfobject');

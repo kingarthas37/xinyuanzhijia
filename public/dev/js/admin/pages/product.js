@@ -1,8 +1,6 @@
 'use strict';
 
 let leanAppHeader = window.leanAppHeader;
-let swfobject = require('swfobject');
-let FlashDetect = require('flash-detect');
 
 let listDataRequest = require('./product/list-data-request');
 
@@ -11,7 +9,6 @@ let utils = require('../common/utils');
 module.exports = {
 
     indexFun:function() {
-
         //选择产品分类
         {
             let category1 = $('.select-category-1');
