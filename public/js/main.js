@@ -4,4 +4,4 @@ require('jquery-validate');
 require('jquery-lazyload');
 require('jquery-cookie');
 require('jquery-form');
-require('zclip');
+require('clipboard');

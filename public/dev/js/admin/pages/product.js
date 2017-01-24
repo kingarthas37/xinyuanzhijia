@@ -278,6 +278,7 @@ module.exports = {
 
         let _this = this;
         let imageView = $('.image-list');
+        let detailImage = $('#detail-image');
         
         imageView.on('click','.move',function() {
             let content = $(this).parents('li');
@@ -290,8 +291,17 @@ module.exports = {
 
         imageView.on('click','.remove',function() {
             let content = $(this).parents('li');
+            
+            //自动删除文本框中图片链接
+            let imageSrc = content.find('img').attr('src');
+            imageSrc = imageSrc.replace('?imageMogr2/thumbnail/100','');
+            imageSrc = `![](${imageSrc})`;
+            let val = detailImage.val().replace(imageSrc,'');
+            detailImage.val(val);
+            
             content.detach();
             _this.updateMainImage();
+           
         });
 
         imageView.on('click','input[type=checkbox]',function() {
@@ -377,7 +387,6 @@ module.exports = {
     },
     
     setZclip:function() {
-        if (FlashDetect.installed) {
             let imageView = $('.image-list');
             //删除swf绑定的dom,重设swf
             $('.zclip').detach();
@@ -385,18 +394,17 @@ module.exports = {
 
             imageView.find('.copy').append('<a class="copy-url" href="javascript:;">复制</a>');
             imageView.find('.copy-url').each(function() {
-                $(this).zclip({
-                    path: '/assets/swf/ZeroClipboard.swf',
-                    copy: function () {
-                        return `![](${$(this).parents('li').find('.img-link').attr('href')})`;
-                    },
-                    afterCopy: function () {
-                        imageView.find('.oncopy').removeClass('oncopy');
-                        $(this).addClass('oncopy');
+                let $this = $(this);
+                let clipboard = new Clipboard(this, {
+                    text: function() {
+                        return `![](${$this.parents('li').find('.img-link').attr('href')})`;
                     }
+                });
+                clipboard.on('success',() => {
+                    imageView.find('.oncopy').removeClass('oncopy');
+                    $(this).addClass('oncopy');
                 });
             });
         }
-    }
 
 };

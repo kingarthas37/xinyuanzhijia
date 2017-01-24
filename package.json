@@ -81,14 +81,15 @@
     "jquery-lazyload": "./public/js/jquery.lazyload.js",
     "jquery-validate": "./public/js/jquery.validate.min.js",
     "jquery-form": "./public/js/jquery.form.min.js",
-    "zclip": "./public/js/ZeroClipboard.min.js",
+    "clipboard": "./public/js/clipboard.min.js",
     "jquery-cookie": "./public/js/jquery.cookie.js"
   },
   "browserify": {
     "transform": "browserify-shim"
   },
   "browserify-shim": {
-    "jquery": "$"
+    "jquery": "$",
+    "clipboard": "clipboard"
   },
   "css-common": [
     "public/css/amazeui.min.css",
