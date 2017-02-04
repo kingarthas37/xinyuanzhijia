@@ -297,7 +297,7 @@ module.exports = {
             imageSrc = imageSrc.replace('?imageMogr2/thumbnail/100','');
             imageSrc = `![](${imageSrc})`;
             let val = detailImage.val().replace(imageSrc,'');
-            detailImage.val(val);
+            detailImage.val($.trim(val));
             
             content.detach();
             _this.updateMainImage();
@@ -388,7 +388,6 @@ module.exports = {
     
     setZclip:function() {
             let imageView = $('.image-list');
-            //删除swf绑定的dom,重设swf
             $('.zclip').detach();
             imageView.find('.copy-url').detach();
 
