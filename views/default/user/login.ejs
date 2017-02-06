@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="/assets/i/app-icon72x72@2x.png">
-    <meta name="apple-mobile-web-app-title" content="51wish.cn" />
-    <title>欢迎访问心愿之家 51wish.cn</title>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <meta name="keywords" content="" >
+    <meta name="description" content="" >
+    <% include ../partials/css %>
     <% include ../partials/tongji %>
 </head>
 <body>
+
+<% include ../partials/header %>
+
+<div class="color-form-group color-form-line">
+    <span class="color-form-control-ico">
+        <i class="am-icon-envelope"></i>
+    </span>
+    <input class="color-form-control color-form-control-ico-input-left" type="text">
+    <label class="color-form-control-label">左边图标 输入框</label>
+    <span class="color-form-control-help">这里是帮助文本...</span>
+</div>
 
 <form id="form-login" method="post" action="/login/getSmsCode" class="am-form">
       <label for="mobile">请输入手机号:</label>
@@ -25,5 +33,8 @@
       </div>
 </form>
 <a href="<%= wechatLoginUrl; %>">微信登陆</a>
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
 </body>
 </html>

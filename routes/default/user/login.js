@@ -5,12 +5,24 @@ let request = user.getRequest();
 let config = user.getConfig();
 let router = user.getRouter();
 
+let async = require('async');
+let extend = require('xtend');
+
+let data = extend(config.data, {
+    title:`${config.data.title}首页`,
+    currentPage: 'login'
+});
+
 router.get('/', (req, res) => {
     let wechatLoginUrl = config.wechatApi.authorize;
     let redirectUrl = config.website.domain + '/login/wechatLogin';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
-    res.render('default/user/login', {wechatLoginUrl:wechatLoginUrl});
-
+    
+    data = extend(data,{
+        wechatLoginUrl:wechatLoginUrl
+    });
+    
+    res.render('default/user/login',data);
 });
 
 router.get('/toLogin/:mobile/:smsCode', (req, res) => {
