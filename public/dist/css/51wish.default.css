@@ -1,13 +1,6 @@
 fieldset {
   margin-top: 30px; }
 
-footer p {
-  color: #7f8c8d;
-  margin: 0;
-  padding: 15px 0;
-  text-align: center;
-  background: #2d3e50; }
-
 .t-c {
   text-align: center; }
 
@@ -226,6 +219,100 @@ iframe.upload-title {
 @media only screen and (max-width: 640px) {
   .small-screen-hide {
     display: none; } }
+
+body {
+  background: #ededed; }
+
+header {
+  background: #fff;
+  height: 50px;
+  position: relative; }
+  header .menu {
+    position: absolute;
+    right: 5px;
+    top: 5px; }
+    header .menu a {
+      display: block;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px; }
+    header .menu i {
+      font-size: 20px;
+      color: #666; }
+  header.main .logo {
+    position: absolute;
+    left: 10px;
+    top: 10px; }
+    header.main .logo a {
+      display: block;
+      width: 80px;
+      height: 30px;
+      background: url("../images/default/logo.png") no-repeat;
+      background-size: 80px 30px; }
+  header.main .search {
+    margin: 0 50px 0 100px;
+    padding-top: 10px; }
+    header.main .search .panel-search {
+      display: block;
+      background: #f0f0f0;
+      height: 30px;
+      width: 100%;
+      border-radius: 4px;
+      position: relative; }
+      header.main .search .panel-search span {
+        position: absolute;
+        height: 20px;
+        display: block;
+        line-height: 20px;
+        left: 5px;
+        top: 5px;
+        font-size: 12px;
+        color: #666; }
+      header.main .search .panel-search i {
+        position: absolute;
+        height: 20px;
+        display: block;
+        line-height: 20px;
+        right: 5px;
+        top: 5px;
+        font-size: 14px;
+        color: #ddd; }
+  header.sub .back {
+    position: absolute;
+    left: 5px;
+    top: 5px; }
+    header.sub .back a {
+      display: block;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px; }
+    header.sub .back i {
+      font-size: 20px;
+      color: #666; }
+  header.sub .title {
+    font-size: 18px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin: 0 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #666;
+    font-weight: normal; }
+
+footer {
+  padding: 15px 0;
+  text-align: center;
+  color: #bababa; }
+  footer p {
+    margin: 0;
+    font-size: 11px; }
+    footer p strong {
+      font-size: 12px;
+      color: #999; }
 
 /* index page */
 .index-page #chart-earning {

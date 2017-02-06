@@ -1,0 +1,121 @@
+body {
+    background: #ededed;
+}
+
+header {
+    background: #fff;
+    height: 50px;
+    position: relative;
+
+    .menu {
+        position: absolute;
+        right:5px;
+        top:5px;
+        a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+        }
+        i {
+            font-size: 20px;
+            color: #666;
+        }
+    }
+    
+    &.main {
+        .logo {
+            position: absolute;
+            left:10px;
+            top:10px;
+            a {
+                display: block;
+                width: 80px;
+                height: 30px;
+                background: url("../images/default/logo.png") no-repeat;
+                background-size:80px 30px;   
+            }
+        }
+        .search {
+            margin:0 50px 0 100px;
+            padding-top: 10px;
+            .panel-search {
+                display: block;
+                background: #f0f0f0;
+                height: 30px;
+                width: 100%;
+                border-radius: 4px;
+                position: relative;
+                span {
+                    position: absolute;
+                    height: 20px;
+                    display: block;
+                    line-height: 20px;
+                    left:5px;
+                    top:5px;
+                    font-size: 12px;
+                    color: #666;
+                }
+                i {
+                    position: absolute;
+                    height: 20px;
+                    display: block;
+                    line-height: 20px;
+                    right:5px;
+                    top:5px;
+                    font-size: 14px;
+                    color: #ddd;
+                }
+            }
+        }
+    }
+    
+    &.sub {
+        .back {
+            position: absolute;
+            left:5px;
+            top:5px;
+            a {
+                display: block;
+                width: 40px;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+            }
+            i {
+                font-size: 20px;
+                color: #666;
+            }
+        }
+        .title {
+            font-size: 18px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            margin: 0 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #666;
+            font-weight: normal;
+        }
+    }
+    
+   
+}
+
+
+footer {
+    padding: 15px 0;
+    text-align: center;
+    color: #bababa;
+    p {
+        strong {
+            font-size: 12px;
+            color: #999;
+        }
+        margin:0;
+        font-size: 11px;
+    }
+}
