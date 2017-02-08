@@ -1,111 +1,55 @@
-/* index page */
-.index-page {
-    
-    #chart-earning {
-        height: 250px;
+/* login page */
+.login-page {
+    .am-form {
+        padding-top: 30px;
+        width: 90%;
+        margin:auto;
     }
-    
-    th {
-        font-weight: normal;
-        font-size: 1.4rem;
-    }
-    
-    
-    h4 {
-        font-size: 1.4rem;
-        font-weight: normal;
-        .more {
-            float: right;
-            font-weight: normal;
-        }
-    }
-    
-    .earning-info,.am-badge {
-        font-size: 1.4rem;
-    }
-    
-}
-
-/* sign page */
-.sign-page {
-    padding: 30px 0;
-}
-
-/* customer page */
-.typeahead-content .twitter-typeahead {
-    display: block !important;
-}
-
-/* earning page */
-.earning-page {
-    .am-datepicker-date {
-        width: 400px;
-    }
-}
-
-/* taobao-mail-create-page */
-.taobao-mail-create-page {
-    .copy-title {
-        display: none;
-    }
-    .copy-info {
-        display: none;
-    }
-    .copy-info.on {
+    .get-smscode {
+        position: absolute;
+        right:0.5em;
+        top: 50%;
         display: block;
+        margin-top: -.5em;
+        line-height: 1;
+        z-index: 2;
     }
-    .mail-title-box {
-        display: none;
+    .am-btn {
+        display: block;
+        width:100%;
+        color: #fff;
     }
-}
-
-/* product page */
-.product-page {
-    #content-main-image {
-        ul {
-            margin:0;
-            padding: 0;
-        }
-        li {
-            display: inline-block;
-            margin-right: 5px;
-            img {
-                border:1px solid #ddd;
-                width: 80px;
-                height: 80px;
-            }
-        }
-    }
-}
-
-/* earning page */
-.earning-page {
-    .earning-info,.am-badge {
-        font-size: 1.4rem;
-    }
-}
-
-/* order page */
-.order-page {
-    .am-form-inline {
-        .am-form-field {
-            width: 160px;
-        }
-    }
-}
-
-/* purchase page */
-.purchase-page {
-    .purchase-image {
-        border:1px solid #ddd;
-        height: 100px;
-        width: 100px;
-        text-align: center;
+    .wechat {
         display: inline-block;
-        line-height: 100px;
-        img {
-            max-width: 90px;
-            max-height: 90px;
+        width: 36px;
+        height: 36px;
+        border-radius: 36px;
+        background: #2ed441;
+        text-align: center;
+        line-height: 36px;
+        i {
+            font-size: 20px;
+            color: #fff;
+        }
+    }
+    .line {
+        border-top:1px solid #ddd;
+        margin:40px auto 0 auto;
+        width:80%;
+        height: 30px;
+        position: relative;
+        span {
+            display: block;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            padding: 0 10px;
+            background: #fff;
+            position: absolute;
+            top:-15px;
+            left:50%;
+            line-height: 30px;
+            margin-left:-50px;
         }
     }
 }

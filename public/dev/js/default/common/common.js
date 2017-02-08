@@ -58,12 +58,5 @@ $(function () {
             min: jQuery.validator.format("请输入一个最小为{0} 的值")
         });
     }
-    
-    
-    //am selected与jquery.form冲突解决:
-    {
-        AMUI.plugin('amuiSelected', AMUI.selected);
-        $('[data-am-selected]').amuiSelected();
-    }
 
 });

@@ -1,3 +1,10 @@
+a {
+    color: $colorMain;
+    &:visited {
+        color: $colorMain;
+    }
+}
+
 fieldset {
     margin-top: 30px;
 }
@@ -320,5 +327,11 @@ iframe.upload-title {
 @include breakpoint(small-only) {
     .small-screen-hide {
         display: none;
+    }
+}
+
+.am-form {
+    input[type=text]:focus {
+        border-color:$colorMain;
     }
 }

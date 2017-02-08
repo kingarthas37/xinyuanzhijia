@@ -10,6 +10,7 @@ let extend = require('xtend');
 
 let data = extend(config.data, {
     title:`${config.data.title}首页`,
+    headerTitle:'用户登录',
     currentPage: 'login'
 });
 

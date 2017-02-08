@@ -92,7 +92,7 @@
     "clipboard": "clipboard"
   },
   "css-common": [
-    "public/css/amazeui.min.css",
+    "public/css/amazeui.css",
     "public/css/color.min.css",
     "public/css/admin.css"
   ],

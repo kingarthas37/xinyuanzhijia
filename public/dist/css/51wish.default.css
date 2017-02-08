@@ -1,3 +1,8 @@
+a {
+  color: #6071d5; }
+  a:visited {
+    color: #6071d5; }
+
 fieldset {
   margin-top: 30px; }
 
@@ -220,8 +225,8 @@ iframe.upload-title {
   .small-screen-hide {
     display: none; } }
 
-body {
-  background: #ededed; }
+.am-form input[type=text]:focus {
+  border-color: #6071d5; }
 
 header {
   background: #fff;
@@ -235,11 +240,8 @@ header {
       display: block;
       width: 40px;
       height: 40px;
-      text-align: center;
-      line-height: 40px; }
-    header .menu i {
-      font-size: 20px;
-      color: #666; }
+      background: url("../images/default/icon-user.png") no-repeat center;
+      background-size: 24px 24px; }
   header.main .logo {
     position: absolute;
     left: 10px;
@@ -289,8 +291,10 @@ header {
       text-align: center;
       line-height: 40px; }
     header.sub .back i {
-      font-size: 20px;
-      color: #666; }
+      font-size: 24px;
+      color: #666;
+      font-family: simsun;
+      font-style: normal; }
   header.sub .title {
     font-size: 18px;
     height: 50px;
@@ -314,80 +318,58 @@ footer {
       font-size: 12px;
       color: #999; }
 
-/* index page */
-.index-page #chart-earning {
-  height: 250px; }
+.am-form .am-form-icon i {
+  color: #6071d5; }
 
-.index-page th {
-  font-weight: normal;
-  font-size: 1.4rem; }
+/* login page */
+.login-page .am-form {
+  padding-top: 30px;
+  width: 90%;
+  margin: auto; }
 
-.index-page h4 {
-  font-size: 1.4rem;
-  font-weight: normal; }
-  .index-page h4 .more {
-    float: right;
-    font-weight: normal; }
+.login-page .get-smscode {
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+  display: block;
+  margin-top: -.5em;
+  line-height: 1;
+  z-index: 2; }
 
-.index-page .earning-info, .index-page .am-badge {
-  font-size: 1.4rem; }
+.login-page .am-btn {
+  display: block;
+  width: 100%;
+  color: #fff; }
 
-/* sign page */
-.sign-page {
-  padding: 30px 0; }
-
-/* customer page */
-.typeahead-content .twitter-typeahead {
-  display: block !important; }
-
-/* earning page */
-.earning-page .am-datepicker-date {
-  width: 400px; }
-
-/* taobao-mail-create-page */
-.taobao-mail-create-page .copy-title {
-  display: none; }
-
-.taobao-mail-create-page .copy-info {
-  display: none; }
-
-.taobao-mail-create-page .copy-info.on {
-  display: block; }
-
-.taobao-mail-create-page .mail-title-box {
-  display: none; }
-
-/* product page */
-.product-page #content-main-image ul {
-  margin: 0;
-  padding: 0; }
-
-.product-page #content-main-image li {
+.login-page .wechat {
   display: inline-block;
-  margin-right: 5px; }
-  .product-page #content-main-image li img {
-    border: 1px solid #ddd;
-    width: 80px;
-    height: 80px; }
-
-/* earning page */
-.earning-page .earning-info, .earning-page .am-badge {
-  font-size: 1.4rem; }
-
-/* order page */
-.order-page .am-form-inline .am-form-field {
-  width: 160px; }
-
-/* purchase page */
-.purchase-page .purchase-image {
-  border: 1px solid #ddd;
-  height: 100px;
-  width: 100px;
+  width: 36px;
+  height: 36px;
+  border-radius: 36px;
+  background: #2ed441;
   text-align: center;
-  display: inline-block;
-  line-height: 100px; }
-  .purchase-page .purchase-image img {
-    max-width: 90px;
-    max-height: 90px; }
+  line-height: 36px; }
+  .login-page .wechat i {
+    font-size: 20px;
+    color: #fff; }
+
+.login-page .line {
+  border-top: 1px solid #ddd;
+  margin: 40px auto 0 auto;
+  width: 80%;
+  height: 30px;
+  position: relative; }
+  .login-page .line span {
+    display: block;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    padding: 0 10px;
+    background: #fff;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    line-height: 30px;
+    margin-left: -50px; }
 
 /*# sourceMappingURL=51wish.default.css.map */
