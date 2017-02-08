@@ -15,25 +15,30 @@
 
 <div class="am-container">
     
-        <form id="form-login" method="post" action="/login/getSmsCode" class="am-form">
+        <form id="form" method="post" action="/login/getSmsCode" class="am-form">
+
+            <div class="message t-r"><a class="link-sign register color-orange" href="javascript:;"><span>新用户注册</span></a></div>
 
             <div class="am-form-group am-form-icon">
                 <i class="am-icon-mobile"></i>
-                <input id="mobile" name="mobile" type="text" class="am-form-field" placeholder="请输入您的手机号">
+                <input id="mobile" name="mobile" maxlength="11" type="text" class="am-form-field" placeholder="请输入您的手机号">
                 <a href="javascript:;" class="get-smscode">获取验证码</a>
             </div>
 
             <div class="am-form-group am-form-icon">
                 <i class="am-icon-lock"></i>
-                <input type="text" id="smsCode" name="smsCode" class="am-form-field" placeholder="请输入您的手机验证码">
+                <input type="text" id="code" name="code" class="am-form-field" placeholder="请输入您的手机验证码">
             </div>
             
-            <button type="submit" class="am-btn am-btn-default">下一步</button>
+            <div class="message error-info"></div>
             
-            <div class="line"><span>微信登录</span></div>
+            <button id="submit" type="submit" class="am-btn am-btn-default">登录</button>
             
-            <div class="t-c">
-                <a href="<%= wechatLoginUrl%>" class="wechat"><i class="am-icon-weixin"></i></a>
+            <div>
+                <div class="line"><span>微信登录</span></div>
+                <div class="t-c">
+                    <a href="<%= wechatLoginUrl%>" class="wechat"><i class="am-icon-weixin"></i></a>
+                </div>
             </div>
             
         </form>

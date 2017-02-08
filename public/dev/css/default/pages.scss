@@ -19,6 +19,15 @@
         width:100%;
         color: #fff;
     }
+    .message {
+        height: 20px;
+        line-height: 20px;
+        margin-bottom: 10px;
+        .error {
+            color: #f40;
+            font-weight: normal;
+        }
+    }
     .wechat {
         display: inline-block;
         width: 36px;
