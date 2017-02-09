@@ -10,7 +10,7 @@ let extend = require('xtend');
 
 let data = extend(config.data, {
     title:`${config.data.title}首页`,
-    headerTitle:'用户登录',
+    headerTitle:'用户登录/注册',
     currentPage: 'login'
 });
 
@@ -40,9 +40,10 @@ router.get('/toLogin/:mobile/:smsCode', (req, res) => {
 });
 
 router.get('/getSmsCode/:mobile', (req, res) => {
-    
-    let mobile = req.params.mobile;
-    user.requestSmsCode(mobile).then(data=> {
+    let mobile = parseInt(req.params.mobile);
+    console.info(mobile);
+    user.requestSmsCode(mobile).then(data => {
+        console.info(data);
         res.send(data);
     });
 });
@@ -67,14 +68,11 @@ router.get('/wechatLogin', (req, res) => {
                 res.redirect('/');
                 return;
             }
-            console.log('BODY======>');
-            console.log(body);
             if (typeof(body.openid) == 'undefined' || typeof(body.access_token) == 'undefined') {
                 res.send(body);
                 return;
             }
             user.singInWithWechat(body.openid, body.access_token).then(data=>{
-                console.log(data);
                 res.send(data);
                 return;
             });
