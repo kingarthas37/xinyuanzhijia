@@ -26,7 +26,7 @@ var data = extend(config.data, {
 
 router.get('/:productId', (req, res) => {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     let productId = parseInt(req.params.productId);
     let viewport = req.query.viewport;
@@ -71,7 +71,7 @@ router.get('/:productId', (req, res) => {
 //保存产品购买链接
 router.post('/purchase-link/:productId', (req, res) => {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     let productId = parseInt(req.params.productId);
     let purchaseLink = req.body['purchase-link'];
@@ -98,7 +98,7 @@ router.post('/purchase-link/:productId', (req, res) => {
 //保存淘宝链接
 router.post('/shop-link/:productId', (req, res) => {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     let productId = parseInt(req.params.productId);
     let shopLink = req.body['shop-link'];
@@ -124,7 +124,7 @@ router.post('/shop-link/:productId', (req, res) => {
 //保存库存
 router.post('/stock/:productId', (req, res) => {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     let productId = parseInt(req.params.productId);
     let stock = parseInt(req.body.stock);
@@ -147,7 +147,7 @@ router.post('/stock/:productId', (req, res) => {
 //保存设置
 router.post('/settings/:productId', (req, res) => {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     let productId = parseInt(req.params.productId);
     let price = parseInt(req.body.price);

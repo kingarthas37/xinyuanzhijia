@@ -25,7 +25,7 @@ var data = extend(config.data, {
 
 router.get('/:productMethodId', (req, res, next) => {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     var productMethodId = parseInt(req.params.productMethodId);
 
@@ -46,7 +46,7 @@ router.get('/:productMethodId', (req, res, next) => {
 
 router.post('/:productMethodId', (req, res) => {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     let name = req.body['name'];
     let label = req.body['label'];

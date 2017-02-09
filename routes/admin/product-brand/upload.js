@@ -16,7 +16,7 @@ let data = extend(config.data, {
 
 router.get('/',(req,res)=>{
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
     
     let callbackName = req.query.callback || 'uploadFileSuccess';
     
@@ -32,7 +32,7 @@ router.get('/',(req,res)=>{
 
 
 router.post('/',(req,res)=>{
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
     upload(req,result => res.send(result));
 });
 

@@ -25,7 +25,7 @@ let data = extend(config.data, {
 //首页
 router.get('/', (req, res) => {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;

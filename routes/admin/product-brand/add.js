@@ -22,7 +22,7 @@ let data = extend(config.data, {
 
 router.get('/', (req, res) => {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     data = extend(data, {
         user:req.AV.user
@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     let name = req.body['name'];
     let type = req.body['type'];

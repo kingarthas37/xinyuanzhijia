@@ -27,7 +27,7 @@ var data = extend(config.data, {
 //编辑产品页
 router.get('/:productId', function (req, res, next) {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     let productId = parseInt(req.params.productId);
     let product = new Product();

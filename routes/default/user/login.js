@@ -1,6 +1,7 @@
 'use strict';
 
 let user = require('../../../lib/models/user').createNew();
+let base = require('../../../lib/models/base');
 let request = user.getRequest();
 let config = user.getConfig();
 let router = user.getRouter();
@@ -14,7 +15,13 @@ let data = extend(config.data, {
     currentPage: 'login'
 });
 
-router.get('/', (req, res) => {
+
+router.get('/', (req,res) => {
+
+    if(req.currentUser) {
+        res.redirect('/');
+    }
+    
     let wechatLoginUrl = config.wechatApi.authorize;
     let redirectUrl = config.website.domain + '/login/wechatLogin';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
@@ -26,7 +33,7 @@ router.get('/', (req, res) => {
     res.render('default/user/login',data);
 });
 
-router.post('/to-login/:mobile/:code', (req, res) => {
+router.post('/login/to-login/:mobile/:code', (req, res) => {
     let mobile = req.params.mobile;
     let code = req.params.code;
     user.singIn(mobile,code).then(data => {
@@ -46,7 +53,7 @@ router.post('/to-login/:mobile/:code', (req, res) => {
     });
 });
 
-router.get('/get-smscode/:mobile', (req, res) => {
+router.get('/login/get-smscode/:mobile', (req, res) => {
     let mobile = req.params.mobile;
     user.requestSmsCode(mobile).then(data => {
         res.send(data);
@@ -85,5 +92,22 @@ router.get('/wechatLogin', (req, res) => {
     }
 });
 
+
+router.get('/logout', (req, res) => {
+
+    base.isWebUserLogin(req,res);
+
+    AV.User.logOut();
+    
+    let wechatLoginUrl = config.wechatApi.authorize;
+    let redirectUrl = config.website.domain + '/login/wechatLogin';
+    wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
+
+    data = extend(data,{
+        wechatLoginUrl:wechatLoginUrl
+    });
+
+    res.render('default/user/login',data);
+});
 
 module.exports = router;

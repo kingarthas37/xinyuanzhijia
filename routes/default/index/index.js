@@ -1,7 +1,6 @@
 'use strict';
 
 let user = require('../../../lib/models/user').createNew();
-let request = user.getRequest();
 let config = user.getConfig();
 let router = user.getRouter();
 
@@ -15,8 +14,11 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
+
+    console.info(req.currentUser);
     
     res.render('default/index',data);
+    
 
 });
 

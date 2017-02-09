@@ -67,7 +67,7 @@ router.get('/:productId',(req,res)=> {
 //编辑时预览产品页
 router.post('/preview-taobao', function (req, res) {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
 
     data = extend(data, {
         user: req.AV.user
@@ -151,7 +151,7 @@ function imageSet(html) {
 //shot
 router.post('/shot', (req, res) => {
 
-    base.isUserLogin(req, res);  //判断是否登录
+    base.isAdminUserLogin(req, res);  //判断是否登录
     
     let name = req.body.name.substr(0, 20);
     let html = req.body.html;
