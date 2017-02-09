@@ -1,6 +1,9 @@
 a {
   color: #6071d5; }
 
+a:hover, .a:focus {
+  color: #6071d5; }
+
 body {
   color: #666; }
 
@@ -15,6 +18,10 @@ fieldset {
 
 .color-orange {
   color: #ff7c08; }
+
+.am-btn-primary, .am-btn-primary:hover, .am-btn-primary:focus, .am-btn-primary[disabled], .am-btn-primary[disabled]:hover {
+  background: #6071d5;
+  border-color: #6071d5; }
 
 .t-c {
   text-align: center; }
@@ -224,6 +231,15 @@ footer {
   margin-top: -.5em;
   line-height: 1;
   z-index: 2; }
+  .login-page .get-smscode em {
+    display: none;
+    font-style: normal; }
+    .login-page .get-smscode em b {
+      font-weight: normal; }
+  .login-page .get-smscode.on a {
+    display: none; }
+  .login-page .get-smscode.on em {
+    display: inline; }
 
 .login-page .am-btn {
   display: block;
@@ -231,6 +247,7 @@ footer {
   color: #fff; }
 
 .login-page .message {
+  color: #f40;
   height: 20px;
   line-height: 20px;
   margin-bottom: 8px; }

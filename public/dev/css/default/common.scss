@@ -2,6 +2,10 @@ a {
     color: $colorMain;
 }
 
+a:hover,.a:focus {
+    color:$colorMain;
+}
+
 body {
     color: #666;
 }
@@ -20,6 +24,11 @@ fieldset {
 
 .color-orange {
     color:$colorOrange;
+}
+
+.am-btn-primary,.am-btn-primary:hover,.am-btn-primary:focus,.am-btn-primary[disabled],.am-btn-primary[disabled]:hover {
+    background: $colorMain;
+    border-color: $colorMain;
 }
 
 .t-c {

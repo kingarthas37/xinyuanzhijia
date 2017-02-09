@@ -26,24 +26,29 @@ router.get('/', (req, res) => {
     res.render('default/user/login',data);
 });
 
-router.get('/toLogin/:mobile/:smsCode', (req, res) => {
+router.post('/to-login/:mobile/:code', (req, res) => {
     let mobile = req.params.mobile;
-    let smsCode = req.params.smsCode;
-    user.singIn(mobile, smsCode).then(data => {
-        let result = {code:200};
-        if(("code" in data)) {
-            result = data;
+    let code = req.params.code;
+    user.singIn(mobile,code).then(data => {
+        if(data.id) {
+            res.send({
+                success:1,
+                username:data.attributes.username
+            });
+        } else {
+            res.send({
+                success:0
+            });
         }
-        res.send(result);
+    },
+    data => {
+        console.info(data);
     });
-
 });
 
-router.get('/getSmsCode/:mobile', (req, res) => {
-    let mobile = parseInt(req.params.mobile);
-    console.info(mobile);
+router.get('/get-smscode/:mobile', (req, res) => {
+    let mobile = req.params.mobile;
     user.requestSmsCode(mobile).then(data => {
-        console.info(data);
         res.send(data);
     });
 });
