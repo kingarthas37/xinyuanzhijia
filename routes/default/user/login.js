@@ -11,7 +11,7 @@ let async = require('async');
 let extend = require('xtend');
 
 let data = extend(config.data, {
-    title:`${config.data.title}首页`,
+    title:`${config.data.name}首页`,
     headerTitle:'用户登录/注册',
     currentPage: 'login'
 });
@@ -42,7 +42,8 @@ router.post('/to-login/:mobile/:code', (req, res) => {
             res.saveCurrentUser(data);
             res.send({
                 success:1,
-                username:data.attributes.username
+                username:data.attributes.username,
+                isMobileLogin:data.attributes.mobilePhoneVerified
             });
         } else {
             res.send({

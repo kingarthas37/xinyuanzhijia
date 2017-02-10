@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <meta name="keywords" content="" >
+    <meta name="description" content="" >
+    <% include ../partials/css %>
+    <% include ../partials/tongji %>
+</head>
+<body class="login-page">
+
+<% include ../partials/header-sub %>
+
+
+<div class="am-container">
+        userinfo
+        <form id="form" method="post" action="/login/getSmsCode" class="am-form">
+
+            <p class="color-gray"><i class="am-icon-info-circle color-main"></i> 新用户可直接手机验证后注册即登录哦</p>
+
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-mobile"></i>
+                <input id="mobile" name="mobile" maxlength="11" type="text" class="am-form-field" placeholder="请输入您的手机号">
+                <span class="get-smscode">
+                    <a href="javascript:;">获取验证码</a>
+                    <em><b></b>秒后可重试</em>
+                </span>
+            </div>
+
+            <div class="message error-mobile"></div>
+            
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-lock"></i>
+                <input type="text" id="code" name="code" autocomplete="off" class="am-form-field" placeholder="请输入您的手机验证码">
+            </div>
+
+            <div class="message error-code"></div>
+
+            <button id="submit" type="submit" disabled="disabled" class="am-btn am-btn-primary">登录</button>
+            
+             
+            
+        </form>
+    
+</div>
+
+
+
+
+<% include ../partials/js %>
+<script>
+    $(function() {
+        var user = require('user');
+        user.loginFun();
+    });
+</script>
+
+</body>
+</html>

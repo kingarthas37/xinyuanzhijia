@@ -55,7 +55,11 @@ module.exports = {
                     if (data.success) {
                         submit.text('登录成功!');
                         setTimeout(()=> {
-                            location.href = '/';
+                            if(data.isMobileLogin) {
+                                location.href = '/';
+                            } else {
+                                location.href = '/user/userinfo';
+                            }
                         }, 1000);
                     } else {
                         submit.prop('disabled', false).text('登录');
