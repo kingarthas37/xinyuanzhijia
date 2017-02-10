@@ -38,6 +38,7 @@ router.post('/login/to-login/:mobile/:code', (req, res) => {
     let code = req.params.code;
     user.singIn(mobile,code).then(data => {
         if(data.id) {
+            res.saveCurrentUser(data);
             res.send({
                 success:1,
                 username:data.attributes.username
@@ -85,6 +86,7 @@ router.get('/wechatLogin', (req, res) => {
                 return;
             }
             user.singInWithWechat(body.openid, body.access_token).then(data=>{
+                res.saveCurrentUser(data);
                 res.send(data);
                 return;
             });
