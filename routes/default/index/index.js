@@ -15,7 +15,9 @@ let data = extend(config.data, {
 //首页
 router.get('/', (req, res) => {
 
-    console.info(req.currentUser);
+    data = extend(data,{
+        username:req.currentUser.attributes.username
+    });
     
     res.render('default/index',data);
     

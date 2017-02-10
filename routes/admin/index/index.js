@@ -13,7 +13,6 @@ let data = extend(config.data, {
 });
 let base = require('../../../lib/models/base');
 
-let AV = base.getAV();
 
 //首页
 router.get('/', (req, res) => {

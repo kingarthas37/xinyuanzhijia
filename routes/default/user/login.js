@@ -5,6 +5,7 @@ let base = require('../../../lib/models/base');
 let request = user.getRequest();
 let config = user.getConfig();
 let router = user.getRouter();
+let AV = base.getAV();
 
 let async = require('async');
 let extend = require('xtend');
@@ -33,7 +34,7 @@ router.get('/', (req,res) => {
     res.render('default/user/login',data);
 });
 
-router.post('/login/to-login/:mobile/:code', (req, res) => {
+router.post('/to-login/:mobile/:code', (req, res) => {
     let mobile = req.params.mobile;
     let code = req.params.code;
     user.singIn(mobile,code).then(data => {
@@ -54,7 +55,7 @@ router.post('/login/to-login/:mobile/:code', (req, res) => {
     });
 });
 
-router.get('/login/get-smscode/:mobile', (req, res) => {
+router.get('/get-smscode/:mobile', (req, res) => {
     let mobile = req.params.mobile;
     user.requestSmsCode(mobile).then(data => {
         res.send(data);
@@ -85,12 +86,14 @@ router.get('/wechatLogin', (req, res) => {
                 res.send(body);
                 return;
             }
-            user.singInWithWechat(body.openid, body.access_token).then(data=>{
-                res.saveCurrentUser(data);
-                res.send(data);
-                return;
+            user.singInWithWechat(body.openid, body.access_token).then(result => {
+                res.saveCurrentUser(result);
+                data = extend(data,result);
+                console.info('kingarthas');
+                console.info(data);
+                res.render('default/user/login',data);
             });
-        })
+        });
     }
 });
 

@@ -6,7 +6,7 @@ module.exports = {
     
     //website
     '/':require('./default/index'),
-    '/user':require('./default/user/login'),
+    '/user/login':require('./default/user/login'),
     
     //admin
     '/admin/login':require('./admin/sign/login'),
