@@ -16,7 +16,7 @@ let data = extend(config.data, {
 router.get('/', (req, res) => {
 
     data = extend(data,{
-        username:req.currentUser.attributes.username
+       // username:req.currentUser.attributes.username
     });
     
     res.render('default/index',data);
