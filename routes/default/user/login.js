@@ -23,7 +23,7 @@ router.get('/', (req,res) => {
     }
     
     let wechatLoginUrl = config.wechatApi.authorize;
-    let redirectUrl = config.website.domain + '/login/wechatLogin';
+    let redirectUrl = config.website.domain + '/login/wechat-login';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
     
     data = extend(data,{
@@ -62,7 +62,7 @@ router.get('/get-smscode/:mobile', (req, res) => {
     });
 });
 
-router.get('/wechatLogin', (req, res) => {
+router.get('/wechat-login', (req, res) => {
     let code = req.query.code;
     if (typeof(code) == 'undefined') {
         res.send('error');
@@ -89,7 +89,8 @@ router.get('/wechatLogin', (req, res) => {
             user.singInWithWechat(body.openid, body.access_token).then(result => {
                 res.saveCurrentUser(result);
                 data = extend(data,result);
-                res.render('default/user/login',data);
+                res.redirect('/');
+                //res.render('default/user/login',data);
             });
         });
     }
