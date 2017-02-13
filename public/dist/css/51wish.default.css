@@ -216,14 +216,15 @@ footer {
 
 /* login page */
 .login-page .am-form {
-  padding-top: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   width: 90%;
   margin: auto; }
 
 .login-page .am-form-group {
   margin-bottom: 5px; }
 
-.login-page .get-smscode {
+.login-page .get-smscode, .login-page .infos {
   position: absolute;
   right: 0.5em;
   top: 50%;
@@ -231,14 +232,14 @@ footer {
   margin-top: -.5em;
   line-height: 1;
   z-index: 2; }
-  .login-page .get-smscode em {
+  .login-page .get-smscode em, .login-page .infos em {
     display: none;
     font-style: normal; }
-    .login-page .get-smscode em b {
+    .login-page .get-smscode em b, .login-page .infos em b {
       font-weight: normal; }
-  .login-page .get-smscode.on a {
+  .login-page .get-smscode.on a, .login-page .infos.on a {
     display: none; }
-  .login-page .get-smscode.on em {
+  .login-page .get-smscode.on em, .login-page .infos.on em {
     display: inline; }
 
 .login-page .am-btn {
@@ -287,5 +288,8 @@ footer {
     left: 50%;
     line-height: 30px;
     margin-left: -50px; }
+
+.login-page .form-userinfo .am-form-group {
+  margin-bottom: 15px; }
 
 /*# sourceMappingURL=51wish.default.css.map */

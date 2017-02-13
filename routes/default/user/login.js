@@ -18,7 +18,6 @@ let data = extend(config.data, {
 
 
 router.get('/', (req,res) => {
-
     if(req.currentUser) {
         res.redirect('/');
     }
@@ -90,8 +89,6 @@ router.get('/wechatLogin', (req, res) => {
             user.singInWithWechat(body.openid, body.access_token).then(result => {
                 res.saveCurrentUser(result);
                 data = extend(data,result);
-                console.info('kingarthas');
-                console.info(data);
                 res.render('default/user/login',data);
             });
         });
@@ -102,18 +99,10 @@ router.get('/wechatLogin', (req, res) => {
 router.get('/logout', (req, res) => {
 
     base.isWebUserLogin(req,res);
-
-    AV.User.logOut();
     
-    let wechatLoginUrl = config.wechatApi.authorize;
-    let redirectUrl = config.website.domain + '/login/wechatLogin';
-    wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
-
-    data = extend(data,{
-        wechatLoginUrl:wechatLoginUrl
-    });
-
-    res.render('default/user/login',data);
+    AV.User.logOut();
+    res.clearCurrentUser();
+    res.redirect('/');
 });
 
 module.exports = router;

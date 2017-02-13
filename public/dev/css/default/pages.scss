@@ -1,14 +1,15 @@
 /* login page */
 .login-page {
     .am-form {
-        padding-top: 30px;
+        padding-top: 20px;
+        padding-bottom: 20px;
         width: 90%;
         margin:auto;
     }
     .am-form-group {
         margin-bottom: 5px;
     }
-    .get-smscode {
+    .get-smscode,.infos {
         position: absolute;
         right:0.5em;
         top: 50%;
@@ -83,4 +84,12 @@
             margin-left:-50px;
         }
     }
+    
+    .form-userinfo {
+        .am-form-group {
+            margin-bottom: 15px;
+        }
+    }
+    
 }
+

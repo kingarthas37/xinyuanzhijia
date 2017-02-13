@@ -14,32 +14,59 @@
 
 
 <div class="am-container">
-        userinfo
-        <form id="form" method="post" action="/login/getSmsCode" class="am-form">
+    
+        <form id="form" method="post" action="/login/userinfo" class="am-form form-userinfo">
 
-            <p class="color-gray"><i class="am-icon-info-circle color-main"></i> 新用户可直接手机验证后注册即登录哦</p>
+            <p class="color-gray"><i class="am-icon-info-circle color-main"></i> 完善个人信息有助于我们可以更快速的联系您并与您保持互动哦! (手机号为必填项,其他均可选填)</p>
 
+            <label>手机号码:</label>
             <div class="am-form-group am-form-icon">
                 <i class="am-icon-mobile"></i>
                 <input id="mobile" name="mobile" maxlength="11" type="text" class="am-form-field" placeholder="请输入您的手机号">
-                <span class="get-smscode">
-                    <a href="javascript:;">获取验证码</a>
-                    <em><b></b>秒后可重试</em>
+                <span class="infos">
+                    <a href="javascript:;" class="color-orange">必填</a>
                 </span>
             </div>
 
-            <div class="message error-mobile"></div>
-            
+            <label>用户名/昵称:</label>
             <div class="am-form-group am-form-icon">
-                <i class="am-icon-lock"></i>
-                <input type="text" id="code" name="code" autocomplete="off" class="am-form-field" placeholder="请输入您的手机验证码">
+                <i class="am-icon-user"></i>
+                <input id="username" name="username" type="text" class="am-form-field" placeholder="请输入您的用户名/昵称">
+                <span class="infos">
+                    <a href="javascript:;" class="color-gray">选填</a>
+                </span>
             </div>
 
-            <div class="message error-code"></div>
+            <label>性别:</label>
+            <div class="am-form-group">
+                <select name="sex" id="sex">
+                    <option value="">请选择性别</option>
+                    <option value="female">女</option>
+                    <option value="male">男</option>
+                </select>
+            </div>
 
-            <button id="submit" type="submit" disabled="disabled" class="am-btn am-btn-primary">登录</button>
+            <label>生日:</label>
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-birthday-cake"></i>
+                <input id="birthday" name="birthday" type="text" class="am-form-field" placeholder="格式示例: 1990/12/31">
+                <span class="infos">
+                    <a href="javascript:;" class="color-gray">选填</a>
+                </span>
+            </div>
+
+            <label>微信号:</label>
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-weixin"></i>
+                <input id="wechat" name="wechat" type="text" class="am-form-field" placeholder="请输入您的微信号">
+                <span class="infos">
+                    <a href="javascript:;" class="color-gray">选填</a>
+                </span>
+            </div>
             
-             
+            <div class="message"></div>
+
+            <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
             
         </form>
     
@@ -52,7 +79,7 @@
 <script>
     $(function() {
         var user = require('user');
-        user.loginFun();
+        user.userInfoFun();
     });
 </script>
 

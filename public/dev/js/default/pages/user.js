@@ -116,6 +116,30 @@ module.exports = {
             }
         });
 
+    },
+    
+    userInfoFun() {
+
+        $('form').validate({
+            rules: {
+                mobile: {
+                    required: true,
+                    minlength: 11,
+                    isMobile: true
+                }
+            },
+            messages: {
+                mobile: {
+                    required: '请输入您的手机号码',
+                    minlength: '请输入正确的手机号码',
+                    isMobile: '请输入正确的手机号码'
+                }
+            },
+            errorPlacement: function (error) {
+                $('.message').html(error);
+            }
+        });
+        
     }
 
 };
