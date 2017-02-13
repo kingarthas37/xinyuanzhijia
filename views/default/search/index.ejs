@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="51wish.cn" />
+    <title><%= title %></title>
+    <% include ../partials/tongji %>
+</head>
+<body>
+<form action="/search" method="get">
+    <input type="text" value="<%= keywords %>" name="keywords" /><input type="submit" value="搜索" />
+</form>
+<a href="/search?keywords=<%= keywords %>&order=sales">销量</a>
+<a href="/search?keywords=<%= keywords %>&order=price">价格</a>
+<a href="/search?keywords=<%= keywords %>&order=pageViews">人气</a>
+<div>
+<input type="checkbox" name="inventory" value="1" <% if(inventory) { %> checked <% } %> />现货
+<input type="checkbox" name="isHandiwork" value="1"  <% if(isHandiwork) { %> checked <% } %> />手工
+</div>
+<% if (count > 0) { %>
+<table>
+    <% for(var i=0; i < items.length; i++) {%>
+    <tr>
+        <td><a href="/detail?id=<%=items[i].attributes.productAllId %>"><%= items[i].attributes.name %></a></td>
+        <td><img width="132" src="<%= items[i].attributes.coverImage %>" /></td>
+        <td><%= items[i].attributes.salePrice %></td>
+    </tr>
+    <% } %>
+</table>
+<% } %>
+</body>
+</html>

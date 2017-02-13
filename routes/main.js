@@ -8,6 +8,8 @@ module.exports = {
     '/':require('./default/index'),
     '/user/login':require('./default/user/login'),
     '/user/userinfo':require('./default/user/userinfo'),
+    '/search':require('./default/search/index'),
+    '/detail':require('./default/search/detail'),
     
     //admin
     '/admin/login':require('./admin/sign/login'),
