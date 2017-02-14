@@ -25,6 +25,9 @@ router.get('/', (req,res) => {
     res.render('default/user/userinfo',data);
 });
 
- 
+router.post('/edit', (req, res) => {
+    base.isWebUserLogin(req, res);  //判断是否登录
+    user.updateUserInfo(req);
+}); 
 
 module.exports = router;
