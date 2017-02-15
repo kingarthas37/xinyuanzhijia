@@ -92,7 +92,10 @@ router.get('/wechat-login', (req, res) => {
             user.singInWithWechat(body.openid, body.access_token).then(result => {
                 res.saveCurrentUser(result);
                 data = extend(data,result);
-                res.redirect('/');
+                console.info(222);
+                console.info(data);
+                res.send(data);
+                //res.redirect('/');
             });
         });
     }
