@@ -10,6 +10,8 @@ let AV = base.getAV();
 let async = require('async');
 let extend = require('xtend');
 
+require('../../../lib/utils');
+
 let data = extend(config.data, {
     title:`${config.data.name}用户信息`,
     headerTitle:'用户信息',
@@ -19,15 +21,17 @@ let data = extend(config.data, {
 
 router.get('/', (req,res) => {
     base.isWebUserLogin(req,res);
+    let user = req.currentUser.attributes;
+    user.birthday = user.birthday.format('yyyy/M/d');
     data = extend(data,{
-        
+        user:req.currentUser.attributes
     });
     res.render('default/user/userinfo',data);
 });
 
 router.post('/edit', (req, res) => {
-    base.isWebUserLogin(req, res);  //判断是否登录
-    user.updateUserInfo(req);
-}); 
+    base.isWebUserLogin(req,res,data);  //判断是否登录
+    user.updateUserInfo(req,res);
+});
 
 module.exports = router;

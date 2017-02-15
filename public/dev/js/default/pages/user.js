@@ -78,8 +78,20 @@ module.exports = {
             let times = time.find('b');
 
             getLink.click(function () {
-                form.trigger('submit');
+
                 let mobileValue = $.trim(mobile.val());
+
+                if(!mobileValue) {
+                    mobile[0].focus();
+                    return false;
+                }
+                
+                if(!/^1[0-9]{10}$/.test(mobileValue)) {
+                    $('.error-mobile').text('请输入正确的手机号码');
+                    mobile[0].focus();
+                    return false;
+                }
+                
                 if (mobile.hasClass('valid')) {
                     $.ajax({
                         type: 'get',
@@ -120,23 +132,51 @@ module.exports = {
     
     userInfoFun() {
 
-        $('form').validate({
+        let form = $('#form');
+        let submit = $('#submit');
+        let modal = $('#modal-confirm');
+        
+        form.validate({
             rules: {
-                mobile: {
-                    required: true,
-                    minlength: 11,
-                    isMobile: true
+                nickname: {
+                    required: true
+                },
+                birthday: {
+                    dateISO:true
                 }
             },
             messages: {
-                mobile: {
-                    required: '请输入您的手机号码',
-                    minlength: '请输入正确的手机号码',
-                    isMobile: '请输入正确的手机号码'
+                nickname: {
+                    required: '请输入您的用户名/昵称'
+                },
+                birthday: {
+                    dateISO:'请输入有效的日期 (1990/12/31)'
                 }
             },
-            errorPlacement: function (error) {
+            errorPlacement:error => {
                 $('.message').html(error);
+            },
+            submitHandler() {
+                submit.prop('disabled',true);
+                $.ajax({
+                    type:'post',
+                    url:'/user/userinfo/edit',
+                    data:form.serialize()
+                }).then(data => {
+                    submit.prop('disabled',false);
+                    if(data.success) {
+                        modal.modal({
+                            closeViaDimmer:0
+                        });
+                        setTimeout(()=> {
+                            location.href = '/';
+                        },3000);
+                    }
+                },error => {
+                    submit.prop('disabled',false);
+                    alert(error);
+                });
+                
             }
         });
         

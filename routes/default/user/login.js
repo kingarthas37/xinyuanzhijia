@@ -21,7 +21,6 @@ router.get('/', (req,res) => {
     if(req.currentUser) {
         res.redirect('/');
     }
-    
     let wechatLoginUrl = config.wechatApi.authorize;
     let redirectUrl = config.website.domain + '/user/login/wechat-login';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
@@ -50,13 +49,17 @@ router.post('/to-login/:mobile/:code', (req, res) => {
             });
         }
     },
-    data => {
-        console.info(data);
+    error => {
+        res.send({
+            success:0,error
+        });
     });
 });
 
 router.get('/get-smscode/:mobile', (req, res) => {
     let mobile = req.params.mobile;
+    //res.send({success:1});
+    //return;
     user.requestSmsCode(mobile).then(data => {
         res.send(data);
     });
@@ -90,7 +93,6 @@ router.get('/wechat-login', (req, res) => {
                 res.saveCurrentUser(result);
                 data = extend(data,result);
                 res.redirect('/');
-                //res.render('default/user/login',data);
             });
         });
     }
@@ -98,9 +100,6 @@ router.get('/wechat-login', (req, res) => {
 
 
 router.get('/logout', (req, res) => {
-
-    base.isWebUserLogin(req,res);
-    
     AV.User.logOut();
     res.clearCurrentUser();
     res.redirect('/');
