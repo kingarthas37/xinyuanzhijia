@@ -18,6 +18,7 @@ let data = extend(config.data, {
 
 
 router.get('/', (req,res) => {
+    console.log(req.currentUser);
     if(req.currentUser) {
         res.redirect('/');
     }
