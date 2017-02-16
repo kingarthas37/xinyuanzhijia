@@ -18,6 +18,7 @@ let data = extend(config.data, {
 
 
 router.get('/', (req,res) => {
+    console.log(req.currentUser);
     if(req.currentUser) {
         res.redirect('/');
     }
@@ -37,6 +38,7 @@ router.post('/to-login/:mobile/:code', (req, res) => {
     let code = req.params.code;
     user.singIn(mobile,code).then(data => {
         if(data.id) {
+            console.log(data);
             res.saveCurrentUser(data);
             res.send({
                 success:1,
@@ -91,11 +93,11 @@ router.get('/wechat-login', (req, res) => {
             }
             user.singInWithWechat(body.openid, body.access_token).then(result => {
                 res.saveCurrentUser(result);
-                data = extend(data,result);
-                console.info(222);
-                console.info(data);
-                res.send(data);
-                //res.redirect('/');
+                console.log("req===>");
+                console.log(req.currentUser);
+                console.log(result.id);
+                //data = extend(data,result);
+                res.redirect('/');
             });
         });
     }
