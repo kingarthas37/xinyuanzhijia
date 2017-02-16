@@ -14,6 +14,14 @@ fieldset {
     margin-top: 30px;
 }
 
+ul {
+    margin:0;
+    padding: 0;
+    li {
+        list-style: none;
+    }
+}
+
 .color-main {
     color: $colorMain;
 }
@@ -30,6 +38,7 @@ fieldset {
     background: $colorMain;
     border-color: $colorMain;
 }
+
 
 .t-c {
     text-align: center;
