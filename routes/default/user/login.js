@@ -1,6 +1,6 @@
 'use strict';
 
-let user = require('../../../lib/models/user').createNew();
+let user = require('../../../lib/models/common-member').createNew();
 let base = require('../../../lib/models/base');
 let request = user.getRequest();
 let config = user.getConfig();
@@ -18,8 +18,8 @@ let data = extend(config.data, {
 
 
 router.get('/', (req,res) => {
-    console.log(req.currentUser);
-    if(req.currentUser) {
+    console.log(req.session.member);
+    if(req.session.member) {
         res.redirect('/');
     }
     let wechatLoginUrl = config.wechatApi.authorize;
@@ -36,10 +36,12 @@ router.get('/', (req,res) => {
 router.post('/to-login/:mobile/:code', (req, res) => {
     let mobile = req.params.mobile;
     let code = req.params.code;
+    
     user.singIn(mobile,code).then(data => {
-        if(data.id) {
-            console.log(data);
-            res.saveCurrentUser(data);
+        console.log(data.length);
+        if(data.length > 0) {
+            data = data[0];
+            req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
             res.send({
                 success:1,
                 username:data.attributes.username,
@@ -60,8 +62,6 @@ router.post('/to-login/:mobile/:code', (req, res) => {
 
 router.get('/get-smscode/:mobile', (req, res) => {
     let mobile = req.params.mobile;
-    //res.send({success:1});
-    //return;
     user.requestSmsCode(mobile).then(data => {
         res.send(data);
     });
@@ -92,12 +92,16 @@ router.get('/wechat-login', (req, res) => {
                 return;
             }
             user.singInWithWechat(body.openid, body.access_token).then(result => {
-                res.saveCurrentUser(result);
-                console.log("req===>");
-                console.log(req.currentUser);
-                console.log(result.id);
-                //data = extend(data,result);
-                res.redirect('/');
+                if (result.length > 0) {
+                    data = result[0];
+                    req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
+            
+                    /*res.saveCurrentUser(result);
+                    console.log("req===>");
+                    console.log(req.currentUser);
+                    console.log(result.id);*/
+                    res.redirect('/');
+                }
             });
         });
     }
@@ -105,8 +109,7 @@ router.get('/wechat-login', (req, res) => {
 
 
 router.get('/logout', (req, res) => {
-    AV.User.logOut();
-    res.clearCurrentUser();
+    req.session.member = false;
     res.redirect('/');
 });
 
