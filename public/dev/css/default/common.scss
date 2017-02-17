@@ -8,6 +8,7 @@ a:hover,.a:focus {
 
 body {
     color: #666;
+    max-width: 480px;
 }
 
 fieldset {
@@ -64,7 +65,7 @@ label.normal {
     font-weight: normal;
 }
 
-.clearfix {
+.clearfix,.cf {
     &:before,
     &:after {
         content: "";

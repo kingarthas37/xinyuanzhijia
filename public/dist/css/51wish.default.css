@@ -1,3 +1,4 @@
+@charset "UTF-8";
 a {
   color: #6071d5; }
 
@@ -5,7 +6,8 @@ a:hover, .a:focus {
   color: #6071d5; }
 
 body {
-  color: #666; }
+  color: #666;
+  max-width: 480px; }
 
 fieldset {
   margin-top: 30px; }
@@ -47,12 +49,12 @@ ul {
 label.normal {
   font-weight: normal; }
 
-.clearfix {
+.clearfix, .cf {
   *zoom: 1; }
-  .clearfix:before, .clearfix:after {
+  .clearfix:before, .clearfix:after, .cf:before, .cf:after {
     content: "";
     display: table; }
-  .clearfix:after {
+  .clearfix:after, .cf:after {
     clear: both; }
 
 .inline-block {
@@ -422,5 +424,37 @@ footer {
 
 .login-page .form-userinfo .am-form-group {
   margin-bottom: 15px; }
+
+/* index page */
+.index-page {
+  /* 图片轮播css已完成 amazeui */ }
+  .index-page .am-slider {
+    box-shadow: none;
+    overflow: hidden; }
+    .index-page .am-slider .am-control-nav {
+      bottom: 0;
+      vertical-align: middle;
+      height: 30px;
+      line-height: 30px; }
+      .index-page .am-slider .am-control-nav li {
+        vertical-align: middle; }
+        .index-page .am-slider .am-control-nav li a {
+          box-shadow: none;
+          background: #fff; }
+          .index-page .am-slider .am-control-nav li a.am-active {
+            background: #6071d5; }
+  .index-page .nav li {
+    width: 25%;
+    float: left;
+    margin-bottom: 10px; }
+    .index-page .nav li a {
+      font-size: 13px;
+      color: #999;
+      display: block;
+      text-align: center; }
+      .index-page .nav li a img {
+        display: block;
+        margin: 0 auto 5px auto;
+        width: 50%; }
 
 /*# sourceMappingURL=51wish.default.css.map */

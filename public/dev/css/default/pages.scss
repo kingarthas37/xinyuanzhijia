@@ -93,3 +93,48 @@
     
 }
 
+/* index page */
+.index-page {
+    
+    /* 图片轮播css已完成 amazeui */
+    .am-slider {
+        box-shadow: none;
+        overflow: hidden;
+        .am-control-nav {
+            bottom:0;
+            vertical-align: middle;
+            height: 30px;
+            line-height: 30px;
+            li {
+                vertical-align: middle;
+                a {
+                    box-shadow: none;
+                    background: #fff;
+                    &.am-active {
+                        background: $colorMain;
+                    }
+                }
+            }
+        }
+    }
+    
+    .nav {
+        li {
+            width:25%;
+            float: left;
+            margin-bottom: 10px;
+            a {
+                font-size: 13px;
+                color: #999;
+                display: block;
+                text-align: center;
+                img {
+                    display: block;
+                    margin:0 auto 5px auto;
+                    width: 50%;
+                }
+            }
+        }
+    }
+    
+}

@@ -8,7 +8,7 @@ let extend = require('xtend');
 let config = require('../../../lib/config');
 
 let data = extend(config.data, {
-    title: `${config.data.titleAdmin} - 首页`,
+    title: `${config.data.name} - 首页`,
     currentPage: 'index'
 });
 let base = require('../../../lib/models/base');
