@@ -14,10 +14,10 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
-    console.log(req.session.member);
-    /*data = extend(data,{
+    //console.log(req.session.member);
+    data = extend(data,{
        // username:req.currentUser.attributes.username
-    });*/
+    });
     
     res.render('default/index/index',data);
     

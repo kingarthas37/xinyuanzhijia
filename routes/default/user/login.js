@@ -18,10 +18,10 @@ let data = extend(config.data, {
 
 
 router.get('/', (req,res) => {
-    console.log(req.session.member);
+    /*console.log(req.session.member);
     if(req.session.member) {
         res.redirect('/');
-    }
+    }*/
     let wechatLoginUrl = config.wechatApi.authorize;
     let redirectUrl = config.website.domain + '/user/login/wechat-login';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
