@@ -40,7 +40,7 @@ router.post('/to-login/:mobile/:code', (req, res) => {
         console.log(data.length);
         if(data.length > 0) {
             data = data[0];
-            req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
+            //req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
             res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
             res.send({
                 success:1,
@@ -94,7 +94,7 @@ router.get('/wechat-login', (req, res) => {
             user.singInWithWechat(body.openid, body.access_token).then(result => {
                 if (result.length > 0) {
                     data = result[0];
-                    req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
+                    //req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
                     res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
                     res.redirect('/');
                 }
@@ -105,7 +105,7 @@ router.get('/wechat-login', (req, res) => {
 
 
 router.get('/logout', (req, res) => {
-    req.session.member = false;
+    //req.session.member = false;
     res.cookie('sessionId', false, {maxAge: 1000});
     res.redirect('/');
 });
@@ -140,7 +140,7 @@ router.get('/wechat-base-login', (req, res) => {
                 console.log(result);
                 if (result.length > 0) {
                     data = result[0];
-                    req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
+                    //req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
                     res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
                     res.redirect('/');
                 }

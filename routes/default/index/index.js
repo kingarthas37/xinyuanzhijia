@@ -15,11 +15,8 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
-    if (!req.session.member || typeof(req.session.member) == "undefined") {
-        user.getMemberByObjectId(req,res);
-    }
-    data = extend(data,{
-       // username:req.currentUser.attributes.username
+    user.getMemberByObjectId(req,res).then(result => {
+        data = extend(data, result);
     });
     
     res.render('default/index/index',data);
