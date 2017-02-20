@@ -15,10 +15,11 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
-    user.getMemberByObjectId(req,res).then(result => {
-        data = extend(data, result);
-    });
-    
+    if (!req.session.member) {
+        user.getMemberByObjectId(req,res).then(result => {
+            data = extend(data, result);
+        });
+    }
     res.render('default/index/index',data);
     
 
