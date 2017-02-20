@@ -7,16 +7,27 @@ header {
         position: absolute;
         right: 5px;
         top: 5px;
-        a {
+        .am-dropdown-toggle {
             display: block;
             width: 40px;
             height: 40px;
             text-align: center;
             line-height: 40px;
             font-size: 20px;
-            //background: url("../images/default/icon-user.png") no-repeat center;
-            // background-size: 24px 24px;
         }
+
+        ul.am-dropdown-content {
+            min-width: 100px;
+        }
+
+        ul.am-dropdown-content > li > a {
+            padding: 0 0 0 5px;
+            font-size: 14px;
+            height: 30px;
+            line-height: 30px;
+            color: #666;
+        }
+        
     }
 
     &.main {

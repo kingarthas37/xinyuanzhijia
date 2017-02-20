@@ -2,12 +2,19 @@
 
 $(function() {
 
+    
     //返回首页按钮
     {
         $('.go-back').click(function() {
             history.go(-1);
         });
     }
+    
+    //header menu 下拉
+    {
+        $('header').find('.am-dropdown').dropdown();
+    }
+    
     
     //搜索面板
     {
