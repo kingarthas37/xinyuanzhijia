@@ -1,7 +1,6 @@
 'use strict';
 
 let user = require('../../../lib/models/common-member').createNew();
-let wechat = require('../../../lib/models/wechat').createNew();;
 let config = user.getConfig();
 let router = user.getRouter();
 
@@ -17,9 +16,7 @@ let data = extend(config.data, {
 router.get('/', (req, res) => {
     console.log(req.session.member);
     if (!req.session.member) {
-        user.getMemberByObjectId(req,res).then(result => {
-            data = extend(data, result);
-        });
+        user.getMemberByObjectId(req,res);
     }
     res.render('default/index/index',data);
     
