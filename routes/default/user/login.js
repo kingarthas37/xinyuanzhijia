@@ -18,7 +18,7 @@ let data = extend(config.data, {
 
 
 router.get('/', (req,res) => {
-    if(req.session.member) {
+    if(req.session.member || req.cookies.sessionId) {
         res.redirect('/');
     }
     let wechatLoginUrl = config.wechatApi.authorize;
@@ -41,6 +41,7 @@ router.post('/to-login/:mobile/:code', (req, res) => {
         if(data.length > 0) {
             data = data[0];
             req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
+            res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
             res.send({
                 success:1,
                 username:data.attributes.username,
@@ -94,11 +95,7 @@ router.get('/wechat-login', (req, res) => {
                 if (result.length > 0) {
                     data = result[0];
                     req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
-            
-                    /*res.saveCurrentUser(result);
-                    console.log("req===>");
-                    console.log(req.currentUser);
-                    console.log(result.id);*/
+                    res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
                     res.redirect('/');
                 }
             });
@@ -109,7 +106,47 @@ router.get('/wechat-login', (req, res) => {
 
 router.get('/logout', (req, res) => {
     req.session.member = false;
+    res.cookie('sessionId', false, {maxAge: 1000});
     res.redirect('/');
+});
+
+router.get('/wechat-base-login', (req, res) => {
+    console.log("Code ======> " + req.query.code);
+    let code = req.query.code;
+    if (typeof(code) == 'undefined') {
+        res.send('error');
+    } else {
+        let url = config.wechatApi.authorizeAccessToken;
+        url = url.replace('{appid}', config.wechatConfig.appId).replace('{secret}', config.wechatConfig.appSecret).replace('{code}', code);
+        let option = {
+            url: url,
+            json: true,
+            method: 'GET',
+            headers: {
+                "content-type": "application/json"
+            }
+        };
+        request(option, function (error, response, body) {
+            if (response.statusCode != 200 || error) {
+                res.redirect('/');
+                return;
+            }
+            if (typeof(body.openid) == 'undefined' || typeof(body.access_token) == 'undefined') {
+                res.send(body);
+                return;
+            }
+            user.getMemberByOpenId(body.openid).then(result => {
+                console.log('Wechat ======> ');
+                console.log(result);
+                if (result.length > 0) {
+                    data = result[0];
+                    req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
+                    res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
+                    res.redirect('/');
+                }
+            });
+        });
+    }
 });
 
 module.exports = router;

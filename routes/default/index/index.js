@@ -1,6 +1,7 @@
 'use strict';
 
-let user = require('../../../lib/models/user').createNew();
+let user = require('../../../lib/models/common-member').createNew();
+let wechat = require('../../../lib/models/wechat').createNew();;
 let config = user.getConfig();
 let router = user.getRouter();
 
@@ -14,7 +15,9 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
-    //console.log(req.session.member);
+    if (!req.session.member || typeof(req.session.member) == "undefined") {
+        user.getMemberByObjectId(req,res);
+    }
     data = extend(data,{
        // username:req.currentUser.attributes.username
     });
