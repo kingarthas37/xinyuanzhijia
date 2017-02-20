@@ -18,7 +18,7 @@ let data = extend(config.data, {
 
 
 router.get('/', (req,res) => {
-    if(req.session.member || req.cookies.sessionId) {
+    if(req.cookies.sessionId) {
         res.redirect('/');
     }
     let wechatLoginUrl = config.wechatApi.authorize;
