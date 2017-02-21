@@ -18,9 +18,10 @@ let data = extend(config.data, {
 
 
 router.get('/', (req,res) => {
-    if(req.cookies.sessionId) {
+    console.log(req.cookies.sessionId);
+    /*if(req.cookies.sessionId) {
         res.redirect('/');
-    }
+    }*/
     let wechatLoginUrl = config.wechatApi.authorize;
     let redirectUrl = config.website.domain + '/user/login/wechat-login';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
@@ -82,6 +83,9 @@ router.get('/wechat-login', (req, res) => {
             }
         };
         request(option, function (error, response, body) {
+            console.log('Wechat:');
+            console.log(response.statusCode);
+            console.log(body);
             if (response.statusCode != 200 || error) {
                 res.redirect('/');
                 return;

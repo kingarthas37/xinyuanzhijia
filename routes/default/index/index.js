@@ -14,7 +14,7 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
-    console.log(req.session.member);
+    console.log(req.cookies.sessionId);
     if (!req.session.member) {
         user.getMemberByObjectId(req,res);
     }

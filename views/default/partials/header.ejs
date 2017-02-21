@@ -32,8 +32,8 @@
             </div>
 
             <div class="search">
-                <form action="/">
-                    <input type="text" id="search-input" class="search-input" placeholder="搜索产品">
+                <form action="/search" method="get">
+                    <input type="text" id="search-input" name="keywords" class="search-input" placeholder="搜索产品">
                     <button class="submit" type="submit"><i class="am-icon-search"></i>
                     </button>
                 </form>
@@ -48,10 +48,10 @@
         <div class="search-history">
             <h3>我的搜索历史</h3>
             <ul>
-                <li><a href="#">金钱</a></li>
-                <li><a href="#">爱情</a></li>
-                <li><a href="#">招财桃花</a></li>
-                <li><a href="#">学习好运</a></li>
+                <li><a href="/search?keywords=金钱">金钱</a></li>
+                <li><a href="/search?keywords=爱情">爱情</a></li>
+                <li><a href="/search?keywords=招财桃花">招财桃花</a></li>
+                <li><a href="/search?keywords=学习好运">学习好运</a></li>
             </ul>
             <a class="clear-history" href="javascript:;">清空历史记录</a>
         </div>
