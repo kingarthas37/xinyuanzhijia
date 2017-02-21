@@ -21,6 +21,7 @@ let data = extend(config.data, {
 
 router.get('/', (req,res) => {
     base.isWebUserLogin(req,res);
+    console.info(req.currentUser);
     let user = req.currentUser.attributes;
     user.birthday = user.birthday.format('yyyy/M/d');
     data = extend(data,{
