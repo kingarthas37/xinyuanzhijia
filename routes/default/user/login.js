@@ -26,11 +26,11 @@ router.get('/', (req,res) => {
     let redirectUrl = config.website.domain + '/user/login/wechat-login';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
 
-    var data = extend(data,{
+    var datas = extend(data,{
         wechatLoginUrl:wechatLoginUrl
     });
-    console.log(data);
-    res.render('default/user/login',data);
+    console.log(datas);
+    res.render('default/user/login',datas);
 });
 
 router.post('/to-login/:mobile/:code', (req, res) => {
