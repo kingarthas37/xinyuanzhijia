@@ -1,11 +1,10 @@
 'use strict';
 
 let user = require('../../../lib/models/common-member').createNew();
-let base = require('../../../lib/models/base');
 let request = user.getRequest();
 let config = user.getConfig();
 let router = user.getRouter();
-let AV = base.getAV();
+let AV = user.getAV();
 
 let async = require('async');
 let extend = require('xtend');
@@ -99,8 +98,7 @@ router.get('/wechat-login', (req, res) => {
                     _req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
                     _res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
                     console.log('Wechat =====> ');
-                    console.log(_req.cookies.sessionId);
-                    console.log(_req.session.member);
+                    console.log(_req.cookies);
                     _res.redirect('/');
                 }
             });
@@ -131,23 +129,23 @@ router.get('/wechat-base-login', (req, res) => {
                 "content-type": "application/json"
             }
         };
+        let _req = req;
+        let _res = res;
         request(option, function (error, response, body) {
             if (response.statusCode != 200 || error) {
-                res.redirect('/');
+                _res.redirect('/');
                 return;
             }
             if (typeof(body.openid) == 'undefined' || typeof(body.access_token) == 'undefined') {
-                res.send(body);
+                _res.send(body);
                 return;
             }
             user.getMemberByOpenId(body.openid).then(result => {
-                console.log('Wechat ======> ');
-                console.log(result);
                 if (result.length > 0) {
                     var data = result[0];
-                    req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
-                    res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
-                    res.redirect('/');
+                    _req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
+                    _res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
+                    _res.redirect('/');
                 }
             });
         });
