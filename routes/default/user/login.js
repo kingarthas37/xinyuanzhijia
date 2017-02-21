@@ -22,7 +22,6 @@ router.get('/', (req,res) => {
     /*if(req.cookies.sessionId) {
         res.redirect('/');
     }*/
-    console.log(config);
     let wechatLoginUrl = config.wechatApi.authorize;
     let redirectUrl = config.website.domain + '/user/login/wechat-login';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
@@ -83,6 +82,8 @@ router.get('/wechat-login', (req, res) => {
                 "content-type": "application/json"
             }
         };
+        let _req = req;
+        let _res = res;
         request(option, function (error, response, body) {
             console.log('Wechat:');
             console.log(response.statusCode);
@@ -100,11 +101,11 @@ router.get('/wechat-login', (req, res) => {
                     data = result[0];
                     console.log('Wechat Result');
                     console.log(data);
-                    req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
-                    res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
-                    console.log(req.cookies.sessionId);
-                    console.log(req.session.member);
-                    res.redirect('/');
+                    _req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
+                    _res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
+                    console.log(_req.cookies.sessionId);
+                    console.log(_req.session.member);
+                    _res.redirect('/');
                 }
             });
         });
