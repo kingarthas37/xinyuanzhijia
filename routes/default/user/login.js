@@ -19,14 +19,14 @@ let data = extend(config.data, {
 
 router.get('/', (req,res) => {
     console.log(req.cookies.sessionId);
-    /*if(req.cookies.sessionId) {
+    if(req.cookies.sessionId) {
         res.redirect('/');
-    }*/
+    }
     let wechatLoginUrl = config.wechatApi.authorize;
     let redirectUrl = config.website.domain + '/user/login/wechat-login';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
 
-    data = extend(data,{
+    var data = extend(data,{
         wechatLoginUrl:wechatLoginUrl
     });
     console.log(data);
@@ -85,24 +85,20 @@ router.get('/wechat-login', (req, res) => {
         let _req = req;
         let _res = res;
         request(option, function (error, response, body) {
-            console.log('Wechat:');
-            console.log(response.statusCode);
-            console.log(body);
             if (response.statusCode != 200 || error) {
-                res.redirect('/');
+                _res.redirect('/');
                 return;
             }
             if (typeof(body.openid) == 'undefined' || typeof(body.access_token) == 'undefined') {
-                res.send(body);
+                _res.send(body);
                 return;
             }
             user.singInWithWechat(body.openid, body.access_token).then(result => {
                 if (result.length > 0) {
-                    data = result[0];
-                    console.log('Wechat Result');
-                    console.log(data);
+                    var data = result[0];
                     _req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
                     _res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
+                    console.log('Wechat =====> ');
                     console.log(_req.cookies.sessionId);
                     console.log(_req.session.member);
                     _res.redirect('/');
@@ -148,7 +144,7 @@ router.get('/wechat-base-login', (req, res) => {
                 console.log('Wechat ======> ');
                 console.log(result);
                 if (result.length > 0) {
-                    data = result[0];
+                    var data = result[0];
                     req.session.member = {'username': data.attributes.username, 'id' : data.attributes.commonMemberId, 'objectId' : data.id, 'nickname' : data.attributes.nickname};
                     res.cookie('sessionId', data.id, {maxAge: 60*1000*60*24*365});
                     res.redirect('/');
