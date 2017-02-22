@@ -4,7 +4,6 @@ let user = require('../../../lib/models/common-member').createNew();
 let request = user.getRequest();
 let config = user.getConfig();
 let router = user.getRouter();
-let AV = user.getAV();
 
 let async = require('async');
 let extend = require('xtend');

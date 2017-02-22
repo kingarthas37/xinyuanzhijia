@@ -22,7 +22,6 @@ router.get('/', (req,res) => {
     user.isWebUserLogin(req,res);
     let member = user.getDecodeByBase64(sessionData);
     user.getMemberByMemberId(parseInt(member.id)).then(result => {
-        console.log();
         result.attributes.birthday = result.attributes.birthday ? result.attributes.birthday.format('yyyy/M/d') : null;
         data = extend(data,{
             user:result.attributes
@@ -33,9 +32,11 @@ router.get('/', (req,res) => {
 
 });
 
+//保存userinfo
 router.post('/edit', (req, res) => {
     user.isWebUserLogin(req,res,data);  //判断是否登录
     user.updateUserInfo(req,res);
 });
+
 
 module.exports = router;

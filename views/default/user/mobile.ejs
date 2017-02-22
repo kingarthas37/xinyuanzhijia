@@ -12,12 +12,11 @@
 
 <% include ../partials/header-sub %>
 
-
 <div class="am-container">
     
-        <form id="form" method="post" class="am-form">
+        <form id="form" method="post" class="am-form form-mobile">
 
-            <p class="color-gray"><i class="am-icon-info-circle color-main"></i> 新用户可直接手机验证后注册即登录哦</p>
+            <p class="color-gray"><i class="am-icon-info-circle color-main"></i> 完善您的手机号可便于接收,查询或跟踪您的物流包裹信息, 以及其他相关通知(心愿之家会严格保守您的手机信息以免泄漏,请放心保存)</p>
 
             <div class="am-form-group am-form-icon">
                 <i class="am-icon-mobile"></i>
@@ -29,35 +28,33 @@
             </div>
 
             <div class="message error-mobile"></div>
-            
+
             <div class="am-form-group am-form-icon">
                 <i class="am-icon-lock"></i>
-                <input type="text" id="code" name="code" maxlength="6" autocomplete="off" class="am-form-field" placeholder="请输入您的手机验证码">
+                <input type="text" id="code" maxlength="6" name="code" autocomplete="off" class="am-form-field" placeholder="请输入您的手机验证码">
             </div>
 
             <div class="message error-code"></div>
 
-            <p><button id="submit" type="submit" disabled="disabled" class="am-btn am-btn-primary">登录</button></p>
-            
-            <div>
-                <div class="line"><span>微信快速登录/海外用户登录</span></div>
-                <div class="t-c">
-                    <a href="<%= wechatLoginUrl %>" class="wechat"><i class="am-icon-weixin"></i></a>
-                </div>
-            </div>
+            <p><button id="submit" type="submit" disabled="disabled" class="am-btn am-btn-primary">更新/绑定手机号</button></p>
             
         </form>
     
 </div>
 
-
-
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="modal-confirm">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            <i class="am-icon-btn am-success am-icon-check"></i> 保存成功!正在跳转...
+        </div>
+    </div>
+</div>
 
 <% include ../partials/js %>
 <script>
     $(function() {
         var user = require('user');
-        user.loginFun();
+        user.mobileFun();
     });
 </script>
 
