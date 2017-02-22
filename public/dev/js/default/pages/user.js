@@ -56,7 +56,7 @@ module.exports = {
                         submit.text('登录成功!');
                         setTimeout(()=> {
                             location.href = '/';
-                        }, 1000);
+                        }, 2000);
                     } else {
                         submit.prop('disabled', false).text('登录');
                         $form.data('state', false);
@@ -141,6 +141,7 @@ module.exports = {
         let mobile = $('#mobile');
         let code = $('#code');
         let submit = $('#submit');
+        let modal = $('#modal-confirm');
 
         this.getSmsCode(mobile);
 
@@ -188,10 +189,12 @@ module.exports = {
                     url:`/user/mobile/update/${$.trim(mobile.val())}/${$.trim(code.val())}`,
                 }).done(data => {
                     if (data.success) {
-                        submit.text('绑定成功!');
+                        modal.modal({
+                            closeViaDimmer:0
+                        });
                         setTimeout(()=> {
                             location.href = '/';
-                        }, 1000);
+                        },3000);
                     } else {
                         submit.prop('disabled', false).text('更新/绑定手机号');
                         $form.data('state', false);
