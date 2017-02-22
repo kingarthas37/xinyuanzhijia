@@ -1,11 +1,9 @@
 'use strict';
 
-let user = require('../../../lib/models/user').createNew();
-let base = require('../../../lib/models/base');
-let request = user.getRequest();
+let user = require('../../../lib/models/common-member').createNew();
 let config = user.getConfig();
 let router = user.getRouter();
-let AV = base.getAV();
+let AV = user.getAV();
 
 let async = require('async');
 let extend = require('xtend');
@@ -20,18 +18,19 @@ let data = extend(config.data, {
 
 
 router.get('/', (req,res) => {
-    base.isWebUserLogin(req,res);
-    console.info(req.currentUser);
-    let user = req.currentUser.attributes;
-    user.birthday = user.birthday.format('yyyy/M/d');
+    let sessionData = req.cookies.login;
+    user.isWebUserLogin(req,res);
+    let member = user.getDecodeByBase64(sessionData);
+    member.birthday = member.birthday ? member.birthday.format('yyyy/M/d') : member.birthday;
     data = extend(data,{
-        user:req.currentUser.attributes
+        user:member
     });
     res.render('default/user/userinfo',data);
+
 });
 
 router.post('/edit', (req, res) => {
-    base.isWebUserLogin(req,res,data);  //判断是否登录
+    user.isWebUserLogin(req,res,data);  //判断是否登录
     user.updateUserInfo(req,res);
 });
 

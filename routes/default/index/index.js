@@ -14,13 +14,11 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
-    console.log(req.cookies.sessionId);
-    console.log(req.session.member);
-    if (!req.session.member) {
-        user.getMemberByObjectId(req,res);
+    if (req.cookies.login) {
+        let member = user.getDecodeByBase64(req.cookies.login);
+        data = extend(data, member);
     }
     res.render('default/index/index',data);
-    
 
 });
 
