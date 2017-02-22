@@ -7,7 +7,7 @@ a:hover, .a:focus {
 
 body {
   color: #666;
-  max-width: 480px; }
+  max-width: 375px; }
 
 fieldset {
   margin-top: 30px; }
@@ -49,26 +49,16 @@ ul {
 label.normal {
   font-weight: normal; }
 
-.clearfix, .cf {
-  *zoom: 1; }
-  .clearfix:before, .clearfix:after, .cf:before, .cf:after {
-    content: "";
-    display: table; }
-  .clearfix:after, .cf:after {
-    clear: both; }
+.clearfix:before, .clearfix:after, .cf:before, .cf:after {
+  content: "";
+  display: table; }
 
-.inline-block {
-  display: inline-block;
-  zoom: 1;
-  *display: inline; }
+.clearfix:after, .cf:after {
+  clear: both; }
 
 p.normal {
   margin: 0;
   padding: 6px 0; }
-
-.icon-arrow {
-  font-family: simsun;
-  font-style: normal; }
 
 .twitter-typeahead .typeahead {
   background-color: #fff; }
@@ -412,23 +402,26 @@ footer {
     color: #fff; }
 
 .login-page .line {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #ccc;
   margin: 40px auto 0 auto;
-  width: 80%;
+  width: 90%;
   height: 30px;
   position: relative; }
   .login-page .line span {
     display: block;
-    width: 100px;
+    width: 240px;
     height: 30px;
     text-align: center;
-    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     background: #fff;
     position: absolute;
     top: -15px;
     left: 50%;
     line-height: 30px;
-    margin-left: -50px; }
+    margin-left: -120px;
+    font-size: 15px; }
 
 .login-page .form-userinfo .am-form-group {
   margin-bottom: 15px; }

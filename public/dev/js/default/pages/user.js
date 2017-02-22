@@ -98,7 +98,7 @@ module.exports = {
                         url: `/user/login/get-smscode/${mobileValue}`
                     }).done(data => {
                         if (data.success) {
-                            let count = 60;
+                            let count = 59;
                             times.text(count);
                             getSmsCode.addClass('on');
                             let interval = setInterval(()=> {
