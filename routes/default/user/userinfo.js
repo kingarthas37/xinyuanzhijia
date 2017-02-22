@@ -21,11 +21,15 @@ router.get('/', (req,res) => {
     let sessionData = req.cookies.login;
     user.isWebUserLogin(req,res);
     let member = user.getDecodeByBase64(sessionData);
-    member.birthday = member.birthday ? member.birthday.format('yyyy/M/d') : member.birthday;
-    data = extend(data,{
-        user:member
+    user.getMemberByMemberId(parseInt(member.id)).then(result => {
+        console.log();
+        result.attributes.birthday = result.attributes.birthday ? result.attributes.birthday.format('yyyy/M/d') : null;
+        data = extend(data,{
+            user:result.attributes
+        });
+        res.render('default/user/userinfo',data);
     });
-    res.render('default/user/userinfo',data);
+
 
 });
 
