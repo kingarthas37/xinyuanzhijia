@@ -142,7 +142,7 @@ module.exports = {
         let code = $('#code');
         let submit = $('#submit');
         let modal = $('#modal-confirm');
-
+        let id = $('#member-id');
         this.getSmsCode(mobile);
 
         //表单验证
@@ -186,7 +186,7 @@ module.exports = {
 
                 $.ajax({
                     type: 'post',
-                    url:`/user/mobile/update/${$.trim(mobile.val())}/${$.trim(code.val())}`,
+                    url:`/user/mobile/update/${$.trim(mobile.val())}/${$.trim(code.val())}/${id.val()}`
                 }).done(data => {
                     if (data.success) {
                         modal.modal({

@@ -16,18 +16,29 @@ let data = extend(config.data, {
 });
 
 
-router.get('/', (req,res) => {
+router.get('/:id', (req,res) => {
+    let sessionData = req.cookies.login;
     user.isWebUserLogin(req,res);
-    res.render('default/user/mobile',data);
+    let member = user.getDecodeByBase64(sessionData);
+    if (member.id == req.params.id) {
+        data = extend(data,{
+            memberId:req.params.id
+        });
+        res.render('default/user/mobile',data);
+    } else {
+        res.redirect("/");
+    }
 });
 
 
-router.post('/update/:mobile/:code',(req,res)=> {
-    setTimeout(function() {
-        res.send({
-            success:1
-        });
-    },2000);
+router.post('/update/:mobile/:code/:id',(req,res)=> {
+
+    let mobile = req.params.mobile;
+    let smsCode = req.params.code;
+    let memberId= req.params.id;
+    user.updateUserMobile(mobile, smsCode, memberId).then(result => {
+        res.send(result);
+    });
 });
 
 module.exports = router;

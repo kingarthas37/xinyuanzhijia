@@ -35,7 +35,7 @@
                 <i class="am-icon-mobile"></i>
                 <input value="<%= user.mobile %>" disabled="disabled" type="text" class="am-form-field" placeholder="请输入您的手机号">
                 <span class="infos">
-                    <a href="/user/mobile" class="color-main"><%if(user.mobile) {%>修改<%}else{%>绑定<%}%>手机号</a>
+                    <a href="/user/mobile/<%= user.commonMemberId %>" class="color-main"><%if(user.mobile) {%>修改<%}else{%>绑定<%}%>手机号</a>
                 </span>
             </div>
 
