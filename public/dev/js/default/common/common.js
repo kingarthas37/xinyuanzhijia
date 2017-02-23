@@ -4,6 +4,9 @@ var AMUI = require('amazeui');
 
 $(function () {
     
+    window.WIN_WIDTH = $(window).width();
+    window.WIN_HEIGHT = $(window).height();
+    
     //lean app header info
     window.leanAppHeader = {
         'x-avoscloud-application-id':window.leanApp.AppID,

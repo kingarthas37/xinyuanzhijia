@@ -5,3 +5,5 @@ require('jquery-lazyload');
 require('jquery-cookie');
 require('jquery-form');
 require('clipboard');
+require('typeahead');
+require('bloodhound');

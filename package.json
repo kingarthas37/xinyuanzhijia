@@ -82,7 +82,9 @@
     "jquery-validate": "./public/js/jquery.validate.min.js",
     "jquery-form": "./public/js/jquery.form.min.js",
     "clipboard": "./public/js/clipboard.min.js",
-    "jquery-cookie": "./public/js/jquery.cookie.js"
+    "jquery-cookie": "./public/js/jquery.cookie.js",
+    "bloodhound": "./public/js/bloodhound.min.js",
+    "typeahead": "./public/js/typeahead.jquery.min.js"
   },
   "browserify": {
     "transform": "browserify-shim"

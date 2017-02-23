@@ -1,5 +1,7 @@
 'use strict';
 
+let Bloodhound = require('bloodhound');
+
 $(function() {
 
     
@@ -42,6 +44,7 @@ $(function() {
     }
     
     //搜索面板选择搜索主题 
+    /*
     {
         let searchInput = $('#search-input');
         let searchSelect = $('.search-select');
@@ -61,5 +64,46 @@ $(function() {
             searchInput[0].focus();
         });
     }
+    */
+    
+    //header搜索typeahead
+    {
+        let searchBox = $('#search-box');
+        let search = searchBox.find('.search');
+        let searchInput = searchBox.find('#search-input');
+ 
+        
+        searchInput.typeahead(null, {
+            display: function (item) {
+                return item.value;
+            },
+            highlight: true,
+            templates: {
+                suggestion: function (item) {
+                    return `<div><a href="/">${item.value}</a></div>`;
+                }
+            },
+            source: new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/user/userinfo/typeahead',
+                    prepare: function (query, settings) {
+                        settings.data = {
+                            name:$.trim(searchInput.val())
+                        };
+                        return settings;
+                    }
+                }
+            })
+        });
+
+        searchBox.find('.tt-menu').css({
+            width:WIN_WIDTH
+        });
+        
+    }
+    
+    
     
 });
