@@ -352,19 +352,24 @@ footer {
     padding: 0;
     margin: 0 10px;
     font-size: 14px;
-    height: 36px;
-    line-height: 36px;
     border-bottom: 1px solid #eee;
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; }
+    #search-box .twitter-typeahead .tt-suggestion.tt-cursor {
+      background: none;
+      font-weight: bold; }
   #search-box .twitter-typeahead .tt-menu {
     left: -10px !important;
     border-radius: 0;
     border: none;
     margin: 7px 0 0 0;
     padding: 0 0 10px 0; }
+    #search-box .twitter-typeahead .tt-menu a {
+      display: block;
+      height: 36px;
+      line-height: 36px; }
 
 /* login page */
 .login-page .am-form {
