@@ -2,7 +2,7 @@
 
 let product = require('../../../lib/models/product-all').createNew();
 let productSearchKeywordsHistory = require('../../../lib/models/product-search-history').createNew();
-let commonMemberSearchHistory = require('../../../lib/models/common-member-search-history').createNew();;
+let commonMemberSearchHistory = require('../../../lib/models/common-member-search-history').createNew();
 let request = product.getRequest();
 let config = product.getConfig();
 let router = product.getRouter();
@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
             }
         });
     }
-    product.getProducts(page, limit, order, keywords, categoryId, isHandiwork, inventory, place).then(result => {
+    product.getProducts({page, limit, order, keywords, categoryId, isHandiwork, inventory, place}).then(result => {
         data = extend(data, result);
         res.render('default/search', data);
     });

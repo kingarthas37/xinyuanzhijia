@@ -87,7 +87,7 @@ $(function() {
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
                 remote: {
-                    url: '/user/userinfo/typeahead',
+                    url: '/suggest',
                     prepare: function (query, settings) {
                         settings.data = {
                             name:$.trim(searchInput.val())
