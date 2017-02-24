@@ -1,6 +1,7 @@
 'use strict';
 
 let product = require('../../../lib/models/product-all').createNew();
+let productClick = require('../../../lib/models/product-click').createNew();
 let request = product.getRequest();
 let config = product.getConfig();
 let router = product.getRouter();
@@ -20,6 +21,7 @@ router.get('/', (req, res) => {
         if(result) {
             product.updateProductPageViews(result);
             let memberId = member ? member.id : null;
+            productClick.setProductClick(memberId, config.productType.all,result.attributes.productAllId);
             data = extend(data, result);
             res.render('default/search/detail', data);
         } else {

@@ -100,6 +100,7 @@ router.get('/wechat-login', (req, res) => {
 
 router.get('/logout', (req, res) => {
     res.cookie('login', false, {maxAge: -1000});
+    res.cookie('login', false, {maxAge: -1000, domain: config.website.cookieDomain});
     res.redirect('/');
 });
 
