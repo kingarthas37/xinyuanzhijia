@@ -13,6 +13,8 @@ module.exports = {
     '/search':require('./default/search/index'),
     '/detail':require('./default/search/detail'),
     '/suggest':require('./default/search/suggest'),
+
+    '/error':require('./default/index/error'),
     
     //admin
     '/admin/login':require('./admin/sign/login'),
