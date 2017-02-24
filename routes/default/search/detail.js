@@ -15,9 +15,16 @@ let data = extend(config.data, {
 
 router.get('/', (req, res) => {
     let id = req.query.id ? parseInt(req.query.id) : null;
+    let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
     product.getProductById(id).then(result => {
-        data = extend(data, result);
-        res.render('default/search/detail', data);
+        if(result) {
+            product.updateProductPageViews(result);
+            let memberId = member ? member.id : null;
+            data = extend(data, result);
+            res.render('default/search/detail', data);
+        } else {
+            res.redirect('/error/404');
+        }
     });
 });
 
