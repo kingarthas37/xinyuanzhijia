@@ -483,4 +483,20 @@ footer {
         margin: 0 auto 5px auto;
         width: 50%; }
 
+/* error page */
+.error-page .img {
+  margin: 20px auto;
+  width: 40%; }
+  .error-page .img img {
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+    background: #efefef; }
+
+.error-page p {
+  padding: 0 20px;
+  line-height: 30px;
+  font-size: 14px;
+  text-align: center; }
+
 /*# sourceMappingURL=51wish.default.css.map */

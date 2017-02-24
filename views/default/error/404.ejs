@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <% include ../partials/css %>
+    <% include ../partials/tongji %>
+</head>
+
+<body class="error-page">
+
+<% include ../partials/header %>
+
+ <div class="img">
+     <% var errImage = ['http://ac-JoaBcRTt.clouddn.com/54320d1574301039ae75.png','http://ac-JoaBcRTt.clouddn.com/89fc5afeb31a2a348b9e.png','http://ac-JoaBcRTt.clouddn.com/4c709c910155fb99f21b.png','http://ac-JoaBcRTt.clouddn.com/d6db6a08fa8c0d53b098.png']; %>
+     <img src="<%= errImage[Math.floor(Math.random()*4)] %>"/>
+ </div>
+<p>抱歉,这个页面不存在,请<a href="/">返回首页</a>后重新访问!</p>
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+</body>
+</html>

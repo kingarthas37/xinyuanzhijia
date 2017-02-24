@@ -8,8 +8,8 @@ let async = require('async');
 let extend = require('xtend');
 
 let data = extend(config.data, {
-    title:`${config.data.title}首页`,
-    currentPage: 'index'
+    title:`${config.data.title}出错了`,
+    currentPage: 'error'
 });
 
 //首页
