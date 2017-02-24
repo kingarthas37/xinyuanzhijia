@@ -14,7 +14,7 @@ $(function() {
     
     //header menu 下拉
     {
-        $('header').find('.am-dropdown').dropdown();
+        //$('header').find('.am-dropdown').dropdown();
     }
     
     
