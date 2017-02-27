@@ -14,6 +14,8 @@ module.exports = {
     '/detail':require('./default/search/detail'),
     '/suggest':require('./default/search/suggest'),
 
+    '/order/express': require('./default/order/express'),
+
     '/error':require('./default/error'),
     
     //admin
