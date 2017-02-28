@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
     data = extend(data, {'mobile': member.mobile});
     let mobile = req.query.mobile;
     if (mobile) {
-        //let mobile = '13682245668';//member.mobile;
+        data.mobile = mobile;
         orderTrack.getOrderByMobile(mobile).then(result => {
             console.log(result);
             if (result) {
