@@ -16,9 +16,10 @@ router.get('/', (req, res) => {
     orderTrack.isWebUserLogin(req,res);
     data = extend(data, {'items': null});
     let member = orderTrack.getDecodeByBase64(req.cookies.login);
-    console.log(member);
-    if (member && member.mobile) {
-        let mobile = '13682245668';//member.mobile;
+    data = extend(data, {'mobile': member.mobile});
+    let mobile = req.query.mobile;
+    if (mobile) {
+        //let mobile = '13682245668';//member.mobile;
         orderTrack.getOrderByMobile(mobile).then(result => {
             console.log(result);
             if (result) {

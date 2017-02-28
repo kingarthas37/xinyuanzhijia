@@ -12,7 +12,10 @@
     <% include ../partials/tongji %>
 </head>
 <body>
-
+<form action="/order/express" method="get">
+    手机号<input type="text" name="mobile" value="<%= mobile %>" />
+    <input type="submit" value="查询"/>
+</form>
 <% if (items) { %>
 <table>
     <% for(var i=0; i < items.length; i++) {%>
