@@ -22,12 +22,27 @@ router.get('/', (req, res) => {
             product.updateProductPageViews(result);
             let memberId = member ? member.id : null;
             productClick.setProductClick(memberId, config.productType.all,result.attributes.productAllId);
-            data = extend(data, result);
+            data = extend(data, {'item': result.attributes});
             res.render('default/search/detail', data);
         } else {
             res.redirect('/error/404');
         }
     });
+});
+
+router.get('/groups/:id', (req, res) => {
+    let id = req.params.id ? parseInt(req.params.id) : null;
+    let ret = {'data': null};
+    if (id) {
+        product.getProductById(id).then(result => {
+            if(result) {
+                ret.data = result.attributes;
+                res.send(ret);
+            }
+        });
+    } else {
+        res.send(ret);
+    }
 });
 
 module.exports = router;
