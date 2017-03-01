@@ -13,64 +13,101 @@
 <div class="am-container">
 
     <form id="form" class="am-form" action="/order/express" method="get">
-        <p class="color-gray"><i class="am-icon-info-circle color-main"></i> 请输入您的订单收货信息所使用的手机号码</p>
+        <p><i class="am-icon-map-marker color-main"></i> 输入您的收货信息所使用的手机号码</p>
         <div class="am-form-group am-form-icon">
             <i class="am-icon-mobile"></i>
             <input id="mobile" name="mobile" maxlength="11" value="<%= mobile %>" autocomplete="off" type="text" class="am-form-field" placeholder="请输入您的手机号">
         </div>
         <p><button id="submit" type="submit" class="am-btn am-btn-primary">查询</button></p>
     </form>
-
-
-
-
-
+     
     <div class="order-list">
 
         <% if (items){ %>
-
-
-        <% for(var i=0;i< items.length;i++) {%>
-
-        <a href="/order/express/query/<%= items[i].attributes.trackingNumber %>/<%= items[i].attributes.shippingCompany %>"><%= items[i].attributes.customerName %></a>
-
-        <% } %>
-
+        
+            <p class="color-gray">
+                <i class="am-icon-info-circle color-main"></i> 共<%=items.length%>条记录(可查询最近10条订单信息) <br/>
+                <i class="am-icon-info-circle color-main"></i> 发货产品列表仅供参考,请以实际收到货物为准
+            </p>
+            
+            <div class="color-steps color-steps-vertical">
+                <% for(var i=0;i< items.length;i++) {%>
+                <div class="color-steps-item color-steps-status-finish">
+                    
+                    <%if(i < items.length -1) {%><div class="color-steps-tail"><i></i></div><%}%>
+                    
+                    <div class="color-steps-step">
+                        <div class="color-steps-head">
+                            <div class="color-steps-head-inner"><span class="color-steps-icon coloricon am-icon-send"></span></div>
+                        </div>
+                        <div class="color-steps-main">
+                            <div class="color-steps-title">
+                                
+                                <% if(items[i].attributes.client) {%>
+                                    <%= items[i].attributes.client %>(客户)
+                                <%}else{%>
+                                    <%= items[i].attributes.customerName.replace(/_\d+/,'') %>
+                                <%}%>
+                                <%= items[i].updatedAt.getFullYear() %>/<%= items[i].updatedAt.getMonth()+1 %>/<%= items[i].updatedAt.getDate() %>
+       
+                                <% var express = ''; var expressName = ''; %>
+                                
+                                <% if(items[i].attributes.shippingCompany == 'tiantian') {
+                                    express = 'TTKDEX';
+                                    expressName = '天天快递';
+                                } %>
+                                
+                                <% if(items[i].attributes.shippingCompany == 'shunfeng') {
+                                express = 'SFEXPRESS';
+                                expressName = '顺丰快递';
+                                } %>
+                                
+                                <a class="search-tracking" data-tracking="<%= items[i].attributes.trackingNumber %>" data-express="<%=express%>" href="javascript:;">查询[<%=expressName%>]</a>
+                                
+                            </div>
+                            <div class="color-steps-description address"><%= items[i].attributes.shippingAddress.replace(/1\d{10}/,'').replace('，',' ').replace(',',' ') %></div>
+                            
+                                <% for(var j=0;j< items[i].attributes.name.length;j++) { %>
+                                <div class="color-steps-description list"><i class="am-icon-angle-right"></i> <%= items[i].attributes.name[j].replace(/\{id\:\d+\}/,'') %></div>
+                                <%}%>
+                            
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        
         <% } else { %>
-        没有数据
+            暂无
         <% } %>
-
-        <div class="color-steps color-steps-vertical">
-            <div class="color-steps-item color-steps-status-finish">
-                <div class="color-steps-tail"><i></i></div>
-                <div class="color-steps-step">
-                    <div class="color-steps-head">
-                        <div class="color-steps-head-inner"><span class="color-steps-icon coloricon am-icon-send"></span></div>
-                    </div>
-                    <div class="color-steps-main">
-                        <div class="color-steps-title">注册用户</div>
-                        <div class="color-steps-description">仅限手机注册</div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="color-steps-item color-steps-item-last color-steps-status-wait">
-                <div class="color-steps-step">
-                    <div class="color-steps-head">
-                        <div class="color-steps-head-inner"><span class="color-steps-icon">3</span></div>
-                    </div>
-                    <div class="color-steps-main">
-                        <div class="color-steps-title">登录用户</div>
-                        <div class="color-steps-description">使用新账号登录</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+           
     </div>
 
+</div>
 
+
+<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="modal-search">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">正在查询...</div>
+        <div class="am-modal-bd">
+            <span class="am-icon-spinner am-icon-spin"></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="modal-result">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">
+            <span>快递查询</span>
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <p>快递公司:天天快递</p>
+            <p>快递单号:1234585858</p>
+            <ul></ul>
+        </div>
+    </div>
 </div>
 
 <% include ../partials/js %>

@@ -502,9 +502,10 @@ footer {
 /* order page */
 .order-page .am-form {
   padding-top: 20px;
-  padding-bottom: 20px;
   width: 90%;
   margin: auto; }
+  .order-page .am-form p {
+    margin-bottom: 20px; }
 
 .order-page .am-form-group {
   margin-bottom: 5px; }
@@ -525,8 +526,33 @@ footer {
   .order-page .message.t-r {
     margin-bottom: 15px; }
 
-.order-page .order-list {
-  width: 90%;
-  margin: auto; }
+.order-page .order-list p {
+  margin-bottom: 10px;
+  font-size: 14px; }
+
+.order-page .color-steps-item .color-steps-description {
+  padding-bottom: 5px; }
+  .order-page .color-steps-item .color-steps-description.address {
+    color: #666;
+    font-size: 13px; }
+  .order-page .color-steps-item .color-steps-description.list {
+    color: #6071d5; }
+
+.order-page .color-steps-item .color-steps-title span {
+  color: #999; }
+
+.order-page .color-steps-item .color-steps-title a {
+  color: #6071d5 !important;
+  text-decoration: underline; }
+
+.order-page #modal-result p {
+  text-align: center;
+  margin: 0 0 5px 0; }
+
+.order-page #modal-result ul {
+  padding-top: 10px; }
+
+.order-page #modal-result .color-timeline-item-content {
+  text-align: left; }
 
 /*# sourceMappingURL=51wish.default.css.map */
