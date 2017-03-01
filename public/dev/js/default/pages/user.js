@@ -8,6 +8,7 @@ module.exports = {
         let mobile = $('#mobile');
         let code = $('#code');
         let submit = $('#submit');
+        let referer = $('#referer');
 
         //表单验证
         form.validate({
@@ -55,7 +56,7 @@ module.exports = {
                     if (data.success) {
                         submit.text('登录成功!');
                         setTimeout(()=> {
-                            location.href = '/';
+                            location.href = referer.val();
                         }, 2000);
                     } else {
                         submit.prop('disabled', false).text('登录');

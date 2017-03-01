@@ -19,6 +19,7 @@ router.get('/', (req,res) => {
     if(req.cookies.login) {
         res.redirect('/');
     }
+    let referer = req.query.return ? req.query.return : '/';
     let wechatLoginUrl = config.wechatApi.authorize;
     let redirectUrl = config.website.domain + '/user/login/wechat-login';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
@@ -26,6 +27,7 @@ router.get('/', (req,res) => {
     var datas = extend(data,{
         wechatLoginUrl:wechatLoginUrl
     });
+    datas.referer = referer;
     res.render('default/user/login',datas);
 });
 
