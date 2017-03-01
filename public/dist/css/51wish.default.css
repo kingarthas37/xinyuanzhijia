@@ -499,4 +499,34 @@ footer {
   font-size: 14px;
   text-align: center; }
 
+/* order page */
+.order-page .am-form {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 90%;
+  margin: auto; }
+
+.order-page .am-form-group {
+  margin-bottom: 5px; }
+
+.order-page .am-btn {
+  display: block;
+  width: 100%;
+  color: #fff; }
+
+.order-page .message {
+  color: #f40;
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 8px; }
+  .order-page .message .error {
+    color: #f40;
+    font-weight: normal; }
+  .order-page .message.t-r {
+    margin-bottom: 15px; }
+
+.order-page .order-list {
+  width: 90%;
+  margin: auto; }
+
 /*# sourceMappingURL=51wish.default.css.map */

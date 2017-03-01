@@ -95,7 +95,8 @@
   },
   "css-common": [
     "public/css/amazeui.css",
-    "public/css/admin.css"
+    "public/css/admin.css",
+    "public/css/color.min.css"
   ],
   "publicPath": {
     "base": "public/",
