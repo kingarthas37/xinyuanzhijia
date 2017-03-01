@@ -632,6 +632,7 @@ module.exports = {
         var mobile = $('#mobile');
         var code = $('#code');
         var submit = $('#submit');
+        var referer = $('#referer');
 
         //表单验证
         form.validate({
@@ -679,7 +680,7 @@ module.exports = {
                     if (data.success) {
                         submit.text('登录成功!');
                         setTimeout(function () {
-                            location.href = '/';
+                            location.href = referer.val();
                         }, 2000);
                     } else {
                         submit.prop('disabled', false).text('登录');

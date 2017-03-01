@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
     let mobile = req.query.mobile;
     if (mobile) {
         data.mobile = mobile;
-        orderTrack.getOrderByMobile(mobile).then(result => {
+        orderTrack.getOrderByMobile(mobile, 10, 'createdAt').then(result => {
             console.log(result);
             if (result) {
                 data.items = result;
