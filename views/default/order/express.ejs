@@ -26,8 +26,8 @@
         <% if (items){ %>
         
             <p class="color-gray">
-                <i class="am-icon-info-circle color-main"></i> 共<%=items.length%>条记录(可查询最近10条订单信息) <br/>
-                <i class="am-icon-info-circle color-main"></i> 发货产品列表仅供参考,请以实际收到货物为准
+                <i class="am-icon-info-circle color-green"></i> 共<%=items.length%>条记录(可查询最近10条订单信息) <br/>
+                <i class="am-icon-info-circle color-green"></i> 发货产品列表仅供参考,请以实际收到货物为准
             </p>
             
             <div class="color-steps color-steps-vertical">
@@ -80,7 +80,7 @@
             </div>
         
         <% } else { %>
-            <%= msg %>
+            <p><i class="am-icon-warning color-orange"></i> <%= msg %></p>
         <% } %>
            
     </div>

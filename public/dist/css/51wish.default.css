@@ -27,6 +27,9 @@ ul {
 .color-orange {
   color: #ff7c08; }
 
+.color-green {
+  color: #5eb95e; }
+
 .am-btn-primary, .am-btn-primary:hover, .am-btn-primary:focus, .am-btn-primary[disabled], .am-btn-primary[disabled]:hover {
   background: #6071d5;
   border-color: #6071d5; }
@@ -527,8 +530,10 @@ footer {
     margin-bottom: 15px; }
 
 .order-page .order-list p {
-  margin-bottom: 10px;
-  font-size: 14px; }
+  width: 90%;
+  margin: 0 auto 10px auto;
+  font-size: 14px;
+  color: #666; }
 
 .order-page .color-steps-item .color-steps-description {
   padding-bottom: 5px; }

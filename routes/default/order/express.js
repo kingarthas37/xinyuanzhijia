@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
                 if (result.length > 0) {
                     data.items = result;
                 } else {
-                    data.msg = '暂无快递数据';
+                    data.msg = '您的订单可能尚未入库或发货,我们会尽快进行处理,请于晚些时候或明日再进行查询,谢谢!';
                 }
                 res.render('default/order/express', data);
             });

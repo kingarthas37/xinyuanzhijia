@@ -33,7 +33,7 @@ module.exports = {
                     }
                 } else {
                     template = `
-                        <li class="color-timeline-item">
+                        <li class="color-timeline-item color-timeline-item-last">
                             <div class="color-timeline-item-tail"></div>
                             <div class="color-timeline-item-head color-timeline-item-head-red"></div>
                             <div class="color-timeline-item-content">${data.msg}</div>
