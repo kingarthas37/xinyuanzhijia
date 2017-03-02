@@ -532,25 +532,19 @@ footer {
 
 .order-page .color-steps-item .color-steps-description {
   padding-bottom: 5px; }
-  .order-page .color-steps-item .color-steps-description.address {
-    color: #666;
-    font-size: 13px; }
   .order-page .color-steps-item .color-steps-description.list {
     color: #6071d5; }
 
-.order-page .color-steps-item .color-steps-title span {
-  color: #999; }
-
-.order-page .color-steps-item .color-steps-title a {
-  color: #6071d5 !important;
-  text-decoration: underline; }
-
-.order-page #modal-result p {
-  text-align: center;
-  margin: 0 0 5px 0; }
+.order-page .color-steps-item .color-steps-title {
+  color: #666 !important; }
+  .order-page .color-steps-item .color-steps-title a {
+    color: #6071d5 !important;
+    text-decoration: underline; }
 
 .order-page #modal-result ul {
-  padding-top: 10px; }
+  padding-top: 15px;
+  max-height: 300px;
+  overflow: auto; }
 
 .order-page #modal-result .color-timeline-item-content {
   text-align: left; }

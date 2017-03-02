@@ -206,18 +206,12 @@
     .color-steps-item {
         .color-steps-description {
             padding-bottom: 5px;
-            &.address {
-                color: #666;
-                font-size: 13px;
-            }
             &.list {
                 color: $colorMain;
             }
         }
         .color-steps-title {
-            span {
-                color: #999;
-            }
+            color: #666 !important;
             a {
                 color: $colorMain !important;
                 text-decoration: underline;
@@ -227,12 +221,10 @@
     }
 
     #modal-result {
-        p {
-            text-align: center;
-            margin:0 0 5px 0;
-        }
         ul {
-            padding-top: 10px;
+            padding-top: 15px;
+            max-height: 300px;
+            overflow: auto;
         }
         .color-timeline-item-content {
             text-align: left;
