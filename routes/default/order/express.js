@@ -26,12 +26,12 @@ router.get('/', (req, res) => {
                 if (result.length > 0) {
                     data.items = result;
                 } else {
-                    data.msg = '您的订单可能尚未入库或发货,我们会尽快进行处理,请于晚些时候或明日再进行查询,谢谢!';
+                    data.msg = '<i class="am-icon-warning color-orange"></i> 您的订单可能尚未入库或发货,我们会尽快进行处理,请于晚些时候或明日再进行查询,谢谢!';
                 }
                 res.render('default/order/express', data);
             });
         } else {
-            data.msg = '请输入正确的手机号';
+            data.msg = '<i class="am-icon-warning color-orange"></i> 请输入正确的手机号';
             res.render('default/order/express', data);
         }
     } else {
@@ -44,7 +44,7 @@ router.get('/query/:number/:type', (req, res) => {
     let number = req.params.number;
     let com = req.params.type;
     if (!number || !com) {
-        res.send({'list' : null, 'msg' : '系统繁忙请稍后查询'});
+        res.send({'list':null, 'msg':'系统繁忙请稍后查询'});
     } else {
         aliExpress.getExpressInfo(number, com).then(result => {
             res.send(result);

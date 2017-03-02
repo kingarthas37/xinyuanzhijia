@@ -49,6 +49,12 @@ ul {
 .r {
   float: right; }
 
+span.split {
+  padding: 0 3px; }
+  span.split:after {
+    content: '|';
+    color: #ccc; }
+
 label.normal {
   font-weight: normal; }
 
@@ -542,6 +548,8 @@ footer {
 
 .order-page .color-steps-item .color-steps-title {
   color: #666 !important; }
+  .order-page .color-steps-item .color-steps-title span {
+    color: #999 !important; }
   .order-page .color-steps-item .color-steps-title a {
     color: #6071d5 !important;
     text-decoration: underline; }

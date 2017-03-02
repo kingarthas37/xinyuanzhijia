@@ -214,6 +214,9 @@
         }
         .color-steps-title {
             color: #666 !important;
+            span {
+                color: #999 !important;
+            }
             a {
                 color: $colorMain !important;
                 text-decoration: underline;

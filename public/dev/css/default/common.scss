@@ -65,6 +65,14 @@ ul {
     float: right;
 }
 
+span.split {
+    padding: 0 3px;
+    &:after {
+        content:'|';
+        color: #ccc;
+    }
+}
+
 label.normal {
     font-weight: normal;
 }

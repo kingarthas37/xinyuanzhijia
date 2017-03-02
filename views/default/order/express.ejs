@@ -62,12 +62,24 @@
                                 expressName = '顺丰快递';
                                 } %>
                                 
-                                <a class="search-tracking" data-tracking="<%= items[i].attributes.trackingNumber %>" data-express="<%=express%>" href="javascript:;">查询[<%=expressName%>]</a>
+                                <span class="split"></span>
+                                
+                                <% if(items[i].attributes.trackingNumber) { %> 
+                                    <a class="search-tracking" data-tracking="<%= items[i].attributes.trackingNumber %>" data-express="<%=express%>" href="javascript:;">查询[<%=expressName%>]</a>
+                                <%} else {%>
+                                    <span>[查询快递]</span>
+                                <%}%>
                                 
                             </div>
                             
                             <div class="color-steps-description"><%= items[i].attributes.shippingAddress.replace(/1\d{10}/,'').replace('，',' ').replace(',',' ') %></div>
-                            <div class="color-steps-description">快递公司:<%=expressName%> <%= items[i].attributes.trackingNumber %></div>
+
+                            <% if(items[i].attributes.trackingNumber) { %>
+                                <div class="color-steps-description">快递公司:<%=expressName%> <%= items[i].attributes.trackingNumber %></div>
+                            <%} else {%>
+                                <div class="color-steps-description"><i class="am-icon-warning color-orange"></i> 您的订单暂未发货,我们正在及时处理,请稍进行后查询</div>
+                            <%}%>
+                            
                             
                                 <% for(var j=0;j< items[i].attributes.name.length;j++) { %>
                                 <div class="color-steps-description list"><i class="am-icon-angle-right"></i> <%= items[i].attributes.name[j].replace(/\{id\:\d+\}/,'') %></div>
@@ -80,7 +92,7 @@
             </div>
         
         <% } else { %>
-            <p><i class="am-icon-warning color-orange"></i> <%= msg %></p>
+            <p><%- msg %></p>
         <% } %>
            
     </div>
