@@ -14,6 +14,7 @@ let pager = require('../../../lib/component/pager');
 //class
 let Product = AV.Object.extend('Product');
 let base = require('../../../lib/models/base');
+let pro = require('../../../lib/models/product').createNew();
 
 let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
@@ -36,6 +37,7 @@ router.get('/', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let order = req.query.order || 'desc';
+    let onsale = req.query.onsale ? parseInt(req.query.onsale) : 0;
 
     let productMethodId = req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 0;
     let category1Id = req.query['category1-id'] ? parseInt(req.query['category1-id']) : 0;
@@ -51,28 +53,15 @@ router.get('/', (req, res) => {
         category2Id,
         category1: [],
         category2: [],
-        mainImage:[]
+        mainImage:[],
+        onsale
     });
+
 
     AV.Promise.when(
         //获取count
         new AV.Promise(resolve => {
-
-            let query = new AV.Query(Product);
-
-            if(category2Id) {
-                query.equalTo('category2', category2Id);
-            } else if(category1Id) {
-                query.equalTo('category1', category1Id);
-            } else if(productMethodId) {
-                query.equalTo('productMethod',productMethodId);
-            }
-
-            if (search.length) {
-                query.contains('name', search);
-            }
-
-            query.count().done(count => {
+            pro.getProducts({search, page, limit, onsale, productMethodId, category1Id, category2Id}, true).then(count => {
                 data = extend(data, {
                     pager: pager.init(page, limit, count),
                     pagerHtml: pager.initHtml({
@@ -88,36 +77,15 @@ router.get('/', (req, res) => {
                 });
                 resolve();
             });
-
         }),
 
         //查询当前页所有数据
         new AV.Promise(resolve => {
-
-            let query = new AV.Query(Product);
-            query.skip((page - 1) * limit);
-            query.limit(limit);
-
-            query[order === 'asc' ? 'ascending' : 'descending']('productId');
-
-            if(category2Id) {
-                query.equalTo('category2', category2Id);
-            } else if(category1Id) {
-                query.equalTo('category1', category1Id);
-            } else if(productMethodId) {
-                query.equalTo('productMethod',productMethodId);
-            }
-
-            if (search.length) {
-                query.contains('name', search);
-            }
-
-            query.find().then(items => {
-
+            pro.getProducts({search, page, limit, onsale, productMethodId, category1Id, category2Id}, false).then(items => {
                 items.forEach(n => {
                     n.createdDate = `${n.updatedAt.getFullYear().toString().substring(2)}/${n.createdAt.getMonth() + 1}/${n.createdAt.getDate()}`;
                     n.updatedDate = `${n.updatedAt.getFullYear().toString().substring(2)}/${n.updatedAt.getMonth() + 1}/${n.updatedAt.getDate()}`;
-                    
+
                     let mainImage = n.get('mainImage');
                     if(mainImage) {
                         for(let i in mainImage) {
@@ -127,15 +95,9 @@ router.get('/', (req, res) => {
                         }
                     }
                 });
-
-                data = extend(data, {
-                    product: items
-                });
-                
+                data = extend(data, {product: items});
                 resolve();
-                
             });
-
         }),
 
         //查询productMethod
@@ -151,7 +113,6 @@ router.get('/', (req, res) => {
         
         //查询category1
         new AV.Promise(resolve => {
-
             if(!productMethodId) {
                 return resolve();
             }
