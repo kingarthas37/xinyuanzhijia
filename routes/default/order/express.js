@@ -14,22 +14,24 @@ let data = extend(config.data, {
 //首页
 router.get('/', (req, res) => {
     orderTrack.isWebUserLogin(req,res);
-    data = extend(data, {'items': null});
+    data = extend(data, {'items': null, 'msg': ''});
     let member = orderTrack.getDecodeByBase64(req.cookies.login);
     data = extend(data, {'mobile': member.mobile});
     let mobile = req.query.mobile;
+    let re = /^1\d{10}$/;
     if (mobile) {
         data.mobile = mobile;
-        orderTrack.getOrderByMobile(mobile, 10, 'createdAt').then(result => {
-            console.log(result);
-            if (result) {
-                data.items = result;
-            }
-            res.render('default/order/express', data);
-        });
-    } else {
-        res.render('default/order/express', data);
+        if (re.test(mobile)) {
+            orderTrack.getOrderByMobile(mobile, 10, 'createdAt').then(result => {
+                if (result) {
+                    data.items = result;
+                }
+            });
+        } else {
+            data.msg = '请输入正确的手机号';
+        }
     }
+    res.render('default/order/express', data);
 });
 
 router.get('/query/:number/:type', (req, res) => {
