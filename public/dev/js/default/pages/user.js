@@ -259,7 +259,7 @@ module.exports = {
                         }, 1000);
 
                     } else {
-                        code.parents('.am-form-group').next().html('请求超时,请稍后再试!');
+                        getSmsCode.parents('.am-form-group').next().html('请求超时,请稍后再试!');
                     }
                 });
             }

@@ -34,6 +34,13 @@ ul {
   background: #6071d5;
   border-color: #6071d5; }
 
+.am-btn-primary:hover, .am-btn-primary:focus, .am-btn-primary:active, .am-btn-primary.am-active, .am-dropdown.am-active .am-btn-primary.am-dropdown-toggle {
+  background: none;
+  color: #666;
+  outline: none;
+  box-shadow: none;
+  border: none; }
+
 .t-c {
   text-align: center; }
 
@@ -144,7 +151,15 @@ header {
       line-height: 40px;
       font-size: 20px; }
     header .menu ul.am-dropdown-content {
+      left: auto;
+      right: 0;
       min-width: 100px; }
+      header .menu ul.am-dropdown-content:before {
+        left: auto;
+        right: 10px; }
+      header .menu ul.am-dropdown-content:after {
+        left: auto;
+        right: 10px; }
     header .menu ul.am-dropdown-content > li > a {
       padding: 0 0 0 5px;
       font-size: 14px;
@@ -189,31 +204,47 @@ header {
         top: 5px;
         font-size: 14px;
         color: #ddd; }
-  header.sub .back {
-    position: absolute;
-    left: 5px;
-    top: 5px; }
-    header.sub .back a {
-      display: block;
-      width: 40px;
-      height: 40px;
+  header.sub {
+    background: #6071d5; }
+    header.sub .back {
+      position: absolute;
+      left: 5px;
+      top: 5px; }
+      header.sub .back a {
+        display: block;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px; }
+      header.sub .back i {
+        font-size: 24px;
+        font-weight: normal;
+        color: #fff; }
+    header.sub .title {
+      color: #fff;
+      font-size: 18px;
+      height: 50px;
+      line-height: 50px;
       text-align: center;
-      line-height: 40px; }
-    header.sub .back i {
-      font-size: 24px;
-      font-weight: normal;
-      color: #6071d5; }
-  header.sub .title {
-    font-size: 18px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    margin: 0 50px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: #666;
-    font-weight: normal; }
+      margin: 0 50px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: normal; }
+    header.sub .menu {
+      position: absolute;
+      right: 5px;
+      top: 5px; }
+      header.sub .menu a {
+        display: block;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px; }
+      header.sub .menu i {
+        font-size: 24px;
+        font-weight: normal;
+        color: #fff; }
 
 footer {
   padding: 15px 0;
@@ -380,12 +411,22 @@ footer {
       height: 36px;
       line-height: 36px; }
 
+.main-tab .am-dropdown {
+  display: block; }
+  .main-tab .am-dropdown .am-btn {
+    background: none;
+    border: none;
+    display: block;
+    color: #666; }
+
 /* login page */
 .login-page .am-form {
   padding-top: 20px;
   padding-bottom: 20px;
   width: 90%;
   margin: auto; }
+  .login-page .am-form p {
+    margin: 0 0 20px 0; }
 
 .login-page .am-form-group {
   margin-bottom: 5px; }

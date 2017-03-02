@@ -12,6 +12,7 @@ let AV = product.getAV();
 
 let data = extend(config.data, {
     title: `${config.data.name} - 搜索`,
+    headerTitle:'搜索',
     currentPage: 'search-index'
 });
 

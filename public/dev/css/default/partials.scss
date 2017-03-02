@@ -17,7 +17,17 @@ header {
         }
 
         ul.am-dropdown-content {
+            left:auto;
+            right:0;
             min-width: 100px;
+            &:before {
+                left:auto;
+                right:10px;
+            }
+            &:after {
+                left:auto;
+                right:10px;
+            }
         }
 
         ul.am-dropdown-content > li > a {
@@ -78,6 +88,7 @@ header {
     }
 
     &.sub {
+        background: $colorMain;
         .back {
             position: absolute;
             left: 5px;
@@ -92,10 +103,11 @@ header {
             i {
                 font-size: 24px;
                 font-weight: normal;
-                color: $colorMain;
+                color: #fff;
             }
         }
         .title {
+            color: #fff;
             font-size: 18px;
             height: 50px;
             line-height: 50px;
@@ -104,8 +116,24 @@ header {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            color: #666;
             font-weight: normal;
+        }
+        .menu {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            a {
+                display: block;
+                width: 40px;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+            }
+            i {
+                font-size: 24px;
+                font-weight: normal;
+                color: #fff;
+            }
         }
     }
 
@@ -324,4 +352,14 @@ footer {
     
 }
 
-
+.main-tab {
+    .am-dropdown {
+        display: block;
+        .am-btn {
+            background: none;
+            border:none;
+            display: block;
+            color: #666;
+        }
+    }
+}
