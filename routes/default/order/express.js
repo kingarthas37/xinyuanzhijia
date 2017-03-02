@@ -23,15 +23,21 @@ router.get('/', (req, res) => {
         data.mobile = mobile;
         if (re.test(mobile)) {
             orderTrack.getOrderByMobile(mobile, 10, 'createdAt').then(result => {
-                if (result) {
+                if (result.length > 0) {
                     data.items = result;
+                } else {
+                    data.msg = '暂无快递数据';
                 }
+                res.render('default/order/express', data);
             });
         } else {
             data.msg = '请输入正确的手机号';
+            res.render('default/order/express', data);
         }
+    } else {
+        res.render('default/order/express', data);
     }
-    res.render('default/order/express', data);
+
 });
 
 router.get('/query/:number/:type', (req, res) => {
