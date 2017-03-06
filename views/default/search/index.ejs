@@ -14,28 +14,43 @@
 <% include ../partials/header-sub %>
 
 
-<div class="main-tab am-g am-g-fixed">
+<div class="main-tab">
+    <a href="/" class="current"><span>产品分类</span></a>
+    <a href="/"><span>功能选择</span></a>
+    <a href="/"><span>地区选择</span></a>
+</div>
+<div class="main-menu am-g am-g-fixed">
     <div class="am-u-sm-4">
         <div class="am-dropdown" data-am-dropdown>
-            <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>下拉列表 <span class="am-icon-caret-down"></span></button>
+            <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span>产品分类一级</span> <span class="am-icon-caret-down"></span></button>
+            <ul class="am-dropdown-content">
+                <li><a href="/">快乐的方式不只一种</a></li>
+                <li><a href="/">快乐的方式不只一种</a></li>
+                <li><a href="/">快乐的方式不只一种</a></li>
+                <li><a href="/">快乐的方式不只一种</a></li>
+                <li><a href="/">快乐的方式不只一种</a></li>
+                <li><a href="/">快乐的方式不只一种</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="am-u-sm-4">
+        <div class="am-dropdown" data-am-dropdown>
+            <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span>产品分类二级</span> <span class="am-icon-caret-down"></span></button>
             <ul class="am-dropdown-content">
                 <li class="am-dropdown-header">标题</li>
             </ul>
         </div>
     </div>
     <div class="am-u-sm-4">
-        <div class="am-dropdown" data-am-dropdown>
-            <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>下拉列表 <span class="am-icon-caret-down"></span></button>
+        <div class="am-dropdown sort" data-am-dropdown>
+            <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span>智能排序</span> <span class="am-icon-caret-down"></span></button>
             <ul class="am-dropdown-content">
-                <li class="am-dropdown-header">标题</li>
-            </ul>
-        </div>
-    </div>
-    <div class="am-u-sm-4">
-        <div class="am-dropdown" data-am-dropdown>
-            <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>下拉列表 <span class="am-icon-caret-down"></span></button>
-            <ul class="am-dropdown-content">
-                <li class="am-dropdown-header">标题</li>
+                <li><a href="/">热门</a> <i class="am-icon-star"></i></li>
+                <li><a href="/">销量</a> <i class="am-icon-line-chart"></i></li>
+                <li><a href="/">价格低-高</a> <i class="am-icon-sort-amount-desc"></i></li>
+                <li><a href="/">价格高-低</a> <i class="am-icon-sort-amount-asc"></i></li>
+                <li><a href="/">现货</a> <i class="am-icon-plane"></i></li>
+                <li><a href="/">上架时间</a> <i class="am-icon-calendar-check-o"></i></li>
             </ul>
         </div>
     </div>

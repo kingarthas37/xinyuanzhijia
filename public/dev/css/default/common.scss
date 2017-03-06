@@ -8,7 +8,7 @@ a:hover,.a:focus {
 
 body {
     color: #666;
-    max-width: 375px;
+    max-width: 640px;
 }
 
 fieldset {
@@ -86,9 +86,8 @@ label.normal {
 }
 
 .clearfix,.cf {
-    &:before,
-    &:after {
-        content: "";
+    &:before,&:after {
+        content: '';
         display: table;
     }
     &:after {
