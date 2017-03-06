@@ -353,33 +353,29 @@ footer {
 }
 
 .main-tab {
-    @extend %clearfix;
+    overflow:auto;
+    white-space: nowrap;
     position: relative;
-    &:after {
-        content:'';
-        border-bottom: 1px solid #ddd;
-        position: absolute;
-        top:37px;
-        left:0;
-        width: 100%;
-    }
+    border-bottom: 1px solid #eee;
+   
     a {
-        position: relative;
+        width: 50%;
         z-index: 1;
-        display: block;
-        float: left;
-        width: 33%;
+        position: relative;
+        display: inline-block;
         text-align: center;
         span {
+            padding: 0 15px;
             color: #666;
             display: inline-block;
             margin:auto;
             height: 38px;
             line-height: 38px;
-            
+            font-size: 14px;
         }
         &.current {
             span {
+                font-weight: bold;
                 color: $colorMain;
                 border-bottom:2px solid $colorMain;
             }
@@ -388,7 +384,8 @@ footer {
 }
 
 .main-menu {
-    border-bottom: 1px solid #ddd;
+    background: #f9f9f9;
+    border-bottom: 1px solid #eee;
     .am-u-sm-4 {
         padding: 0;
         &:last-child {
@@ -412,13 +409,13 @@ footer {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            font-size: 14px;
+            font-size: 13px;
             background: none;
             border: none;
             display: block;
             color: #666;
-            height: 40px;
-            line-height: 40px;
+            height: 36px;
+            line-height: 36px;
             padding: 0;
             margin: 0 auto;
         }

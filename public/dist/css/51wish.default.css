@@ -1,9 +1,9 @@
 @charset "UTF-8";
-.main-tab:before, .main-menu .am-dropdown .am-dropdown-content li:before, .main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after {
-  content: '';
+.main-menu .am-dropdown .am-dropdown-content li:before, .main-menu .am-dropdown .am-dropdown-content li:after {
+  content: ' ';
   display: table; }
 
-.main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after {
+.main-menu .am-dropdown .am-dropdown-content li:after {
   clear: both; }
 
 .main-menu .am-dropdown .am-dropdown-content li a {
@@ -424,33 +424,32 @@ footer {
       line-height: 36px; }
 
 .main-tab {
-  position: relative; }
-  .main-tab:after {
-    content: '';
-    border-bottom: 1px solid #ddd;
-    position: absolute;
-    top: 37px;
-    left: 0;
-    width: 100%; }
+  overflow: auto;
+  white-space: nowrap;
+  position: relative;
+  border-bottom: 1px solid #eee; }
   .main-tab a {
-    position: relative;
+    width: 50%;
     z-index: 1;
-    display: block;
-    float: left;
-    width: 33%;
+    position: relative;
+    display: inline-block;
     text-align: center; }
     .main-tab a span {
+      padding: 0 15px;
       color: #666;
       display: inline-block;
       margin: auto;
       height: 38px;
-      line-height: 38px; }
+      line-height: 38px;
+      font-size: 14px; }
     .main-tab a.current span {
+      font-weight: bold;
       color: #6071d5;
       border-bottom: 2px solid #6071d5; }
 
 .main-menu {
-  border-bottom: 1px solid #ddd; }
+  background: #f9f9f9;
+  border-bottom: 1px solid #eee; }
   .main-menu .am-u-sm-4 {
     padding: 0; }
     .main-menu .am-u-sm-4:last-child:after {
@@ -469,13 +468,13 @@ footer {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-size: 14px;
+      font-size: 13px;
       background: none;
       border: none;
       display: block;
       color: #666;
-      height: 40px;
-      line-height: 40px;
+      height: 36px;
+      line-height: 36px;
       padding: 0;
       margin: 0 auto; }
     .main-menu .am-dropdown .am-icon-caret-down {
