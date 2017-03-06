@@ -42,6 +42,8 @@ module.exports = {
     '/admin/product-brand/edit':require('./admin/product-brand/edit'),
     '/admin/product-brand/upload':require('./admin/product-brand/upload'),
     
-    '/admin/product-property':require('./admin/product-property')
+    '/admin/product-property':require('./admin/product-property'),
+
+    '/admin/product-tag':require('./admin/product-tag')
     
 };
