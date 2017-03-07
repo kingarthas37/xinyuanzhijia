@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+<div class="am-cf admin-main">
+
+    <!-- sidebar start -->
+    <% include ../partials/sidebar %>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content admin-product-method-page">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong><a href="/admin/product-tag">产品标签编辑</a></strong> / <a href="/admin/product-tag/edit/<%= productTag.get('productTagId') %>">编辑标签</a></div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+
+                <form id="form-add-product" class="am-form" action="/admin/product-tag/edit/<%= productTag.get('productTagId') %>" method="post">
+
+                    <!-- name start -->
+                    <div class="am-form-group">
+                        <label for="name">产品标签<i>*</i>:</label>
+                        <input id="tagName" required name="tagName" type="text" placeholder="输入产品标签[必填]" value="<%= productTag.get('tagName') %>" />
+                    </div>
+                    <!-- name end -->
+
+                    <hr/>
+
+                    <div class="am-form-group">
+                        <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
+                        <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- content end -->
+
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    $(function () {
+        var productTag = require('product-tag');
+        productTag.editFun();
+    });
+</script>
+</body>
+</html>

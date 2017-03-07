@@ -44,6 +44,8 @@ module.exports = {
     
     '/admin/product-property':require('./admin/product-property'),
 
-    '/admin/product-tag':require('./admin/product-tag')
+    '/admin/product-tag':require('./admin/product-tag'),
+    '/admin/product-tag/add':require('./admin/product-tag/add'),
+    '/admin/product-tag/edit':require('./admin/product-tag/edit')
     
 };
