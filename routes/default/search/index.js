@@ -1,6 +1,6 @@
 'use strict';
 
-let product = require('../../../lib/models/product-all').createNew();
+let product = require('../../../lib/models/product').createNew();
 let productSearchKeywordsHistory = require('../../../lib/models/product-search-history').createNew();
 let commonMemberSearchHistory = require('../../../lib/models/common-member-search-history').createNew();
 let request = product.getRequest();
@@ -9,6 +9,8 @@ let router = product.getRouter();
 let extend = product.getExtend();
 let async = product.getAsync();
 let AV = product.getAV();
+let productCategory1 = require('../../../lib/models/product-category1').createNew();
+let productCategory2 = require('../../../lib/models/product-category2').createNew();
 
 let data = extend(config.data, {
     title: `${config.data.name} - 搜索`,
@@ -20,13 +22,28 @@ let data = extend(config.data, {
 router.get('/', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
-    let order = req.query.order || 'sales';
-    let categoryId = req.query.catid ? parseInt(req.query.catid) : null;
     let keywords = req.query.keywords || null;
-    let isHandiwork = req.query.isHandiwork ? parseInt(req.query.isHandiwork) : null;
-    let inventory = req.query.inventory ? parseInt(req.query.inventory) :  null;
-    let place = req.query.place ? parseInt(req.query.place) : null;
-    data = extend(data, {'keywords': keywords, 'catid': categoryId, 'isHandiwork': isHandiwork, 'inventory': inventory});
+    let stock = req.query.stock || null;
+    let sales = req.query.sales || null;
+    let order = req.query.order || 'createdAt';
+    let category1Id = req.query.cat1 || null;
+    let category2Id = req.query.cat2 || null;
+    let productMethodId = req.query.method || null;
+    let price = req.query.price || null;
+    let onsale = 1;
+    data = extend(data,
+        {'keywords': keywords,
+            'sales': sales,
+            'order': order,
+            'stock': stock,
+            'category1': category1Id,
+            'category2': category2Id,
+            'count':0,
+            'items':null,
+            'cat1':category1Id,
+            'cat2':category2Id,
+            'price':price
+        });
     if (keywords) {
         let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
         let memberId = member ? member.id : null;
@@ -36,10 +53,42 @@ router.get('/', (req, res) => {
             }
         });
     }
-    product.getProducts({page, limit, order, keywords, categoryId, isHandiwork, inventory, place}).then(result => {
-        data = extend(data, result);
+    let options = {onsale, page, limit, 'search':keywords, category1Id, category2Id, productMethodId, stock, sales, order, price};
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            productCategory1.getProductCategorys({productMethodId}).then(result => {
+                data = extend(data, {'category1' : result});
+                resolve();
+            });
+        }),
+        new AV.Promise(resolve => {
+            if (category1Id) {
+                productCategory2.getProductCategorys({category1Id}).then(result => {
+                    data = extend(data, {'category2': result});
+                    resolve();
+                });
+            } else {
+                resolve();
+            }
+        }),
+        new AV.Promise(resolve => {
+            product.getProducts(options).then(result => {
+                data = extend(data, {items: result});
+                resolve();
+            });
+        }),
+        new AV.Promise(resolve => {
+            product.getProducts(options, true).then(result => {
+                data = extend(data, {count: result});
+                resolve();
+            });
+        })
+    ).then(() => {
+        console.log(data.items);
         res.render('default/search', data);
     });
+
+
 
 });
 

@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
 
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
-    let order = req.query.order || 'desc';
+    let order = req.query.order || 'createdAt';
     let onsale = req.query.onsale ? parseInt(req.query.onsale) : 0;
 
     let productMethodId = req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 0;
@@ -57,11 +57,11 @@ router.get('/', (req, res) => {
         onsale
     });
 
-
+    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order};
     AV.Promise.when(
         //获取count
         new AV.Promise(resolve => {
-            pro.getProducts({search, page, limit, onsale, productMethodId, category1Id, category2Id}, true).then(count => {
+            pro.getProducts(options, true).then(count => {
                 data = extend(data, {
                     pager: pager.init(page, limit, count),
                     pagerHtml: pager.initHtml({
@@ -81,7 +81,7 @@ router.get('/', (req, res) => {
 
         //查询当前页所有数据
         new AV.Promise(resolve => {
-            pro.getProducts({search, page, limit, onsale, productMethodId, category1Id, category2Id}, false).then(items => {
+            pro.getProducts(options, false).then(items => {
                 items.forEach(n => {
                     n.createdDate = `${n.updatedAt.getFullYear().toString().substring(2)}/${n.createdAt.getMonth() + 1}/${n.createdAt.getDate()}`;
                     n.updatedDate = `${n.updatedAt.getFullYear().toString().substring(2)}/${n.updatedAt.getMonth() + 1}/${n.updatedAt.getDate()}`;
