@@ -24,7 +24,6 @@ router.get('/', (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let keywords = req.query.keywords || null;
     let stock = req.query.stock || null;
-    let sales = req.query.sales || null;
     let order = req.query.order || 'createdAt';
     let category1Id = req.query.cat1 || null;
     let category2Id = req.query.cat2 || null;
@@ -33,7 +32,6 @@ router.get('/', (req, res) => {
     let onsale = 1;
     data = extend(data,
         {'keywords': keywords,
-            'sales': sales,
             'order': order,
             'stock': stock,
             'category1': category1Id,
@@ -53,7 +51,7 @@ router.get('/', (req, res) => {
             }
         });
     }
-    let options = {onsale, page, limit, 'search':keywords, category1Id, category2Id, productMethodId, stock, sales, order, price};
+    let options = {onsale, page, limit, 'search':keywords, category1Id, category2Id, productMethodId, stock, order, price};
     AV.Promise.when(
         new AV.Promise(resolve => {
             productCategory1.getProductCategorys({productMethodId}).then(result => {
