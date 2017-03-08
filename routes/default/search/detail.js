@@ -1,6 +1,6 @@
 'use strict';
 
-let product = require('../../../lib/models/product-all').createNew();
+let product = require('../../../lib/models/product').createNew();
 let productClick = require('../../../lib/models/product-click').createNew();
 let request = product.getRequest();
 let config = product.getConfig();
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
         if(result) {
             product.updateProductPageViews(result);
             let memberId = member ? member.id : null;
-            productClick.setProductClick(memberId, config.productType.all,result.attributes.productAllId);
+            productClick.setProductClick(memberId, config.productType.all,result.get('productId'));
             data = extend(data, {'item': result.attributes});
             res.render('default/search/detail', data);
         } else {
