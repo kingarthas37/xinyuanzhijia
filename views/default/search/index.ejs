@@ -24,9 +24,12 @@
         <div class="am-dropdown" data-am-dropdown>
             <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span>产品分类一级</span> <span class="am-icon-caret-down"></span></button>
             <ul class="am-dropdown-content">
-                <% for(var i=0; i<category1.length; i++) { %>
-                <li data-id="<%= category1[i].get('category1Id')%>" class="am-dropdown-header"><%= category1[i].get('name')%></li>
-                <% } %>
+                <li><a href="/">快乐的方式不只一种</a></li>
+                <li><a href="/">快乐的方式不只一种</a></li>
+                <li><a href="/">快乐的方式不只一种</a></li>
+                <li><a href="/">快乐的方式不只一种</a></li>
+                <li><a href="/">快乐的方式不只一种</a></li>
+                <li><a href="/">快乐的方式不只一种</a></li>
             </ul>
         </div>
     </div>
@@ -34,11 +37,7 @@
         <div class="am-dropdown" data-am-dropdown>
             <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span>产品分类二级</span> <span class="am-icon-caret-down"></span></button>
             <ul class="am-dropdown-content">
-                <% if(category2) { %>
-                    <% for(var i=0; i<category2.length; i++) { %>
-                    <li data-id="<%= category2[i].get('category1Id')%>" class="am-dropdown-header"><%= category2[i].get('name')%></li>
-                    <% } %>
-                <% } %>
+                <li class="am-dropdown-header">标题</li>
             </ul>
         </div>
     </div>
@@ -46,39 +45,48 @@
         <div class="am-dropdown sort" data-am-dropdown>
             <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span>智能排序</span> <span class="am-icon-caret-down"></span></button>
             <ul class="am-dropdown-content">
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&order=pageViews">热门</a> <i class="am-icon-star"></i></li>
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&order=sales">销量</a> <i class="am-icon-line-chart"></i></li>
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&price=asc">价格低-高</a> <i class="am-icon-sort-amount-desc"></i></li>
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&price=desc">价格高-低</a> <i class="am-icon-sort-amount-asc"></i></li>
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&stock=1">现货</a> <i class="am-icon-plane"></i></li>
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>">上架时间</a> <i class="am-icon-calendar-check-o"></i></li>
+                <li><a href="/">热门</a> <i class="am-icon-star"></i></li>
+                <li><a href="/">销量</a> <i class="am-icon-line-chart"></i></li>
+                <li><a href="/">价格低-高</a> <i class="am-icon-sort-amount-desc"></i></li>
+                <li><a href="/">价格高-低</a> <i class="am-icon-sort-amount-asc"></i></li>
+                <li><a href="/">现货</a> <i class="am-icon-plane"></i></li>
+                <li><a href="/">上架时间</a> <i class="am-icon-calendar-check-o"></i></li>
             </ul>
         </div>
     </div>
 </div>
 
-<form action="/search" method="get">
-    <input type="text" value="<%= keywords %>" name="keywords" /><input type="submit" value="搜索" />
-</form>
+ 
 
 <% if (count > 0) { %>
-<table>
-    <% for(var i=0; i < items.length; i++) {%>
-    <tr>
-        <td><a href="/detail?id=<%=items[i].get('productId') %>"><%= items[i].get('name') %></a></td>
-        <td><% for(var n in items[i].get('mainImage')) { %>
-            <% if(items[i].attributes.mainImage[n].isMainImage) { %>
-                <img width="132" src="<%= items[i].attributes.mainImage[n].url %>" />
-            <%
-                    break;
-                }
-            }%>
-        </td>
-        <td><%= items[i].get('price') %></td>
-    </tr>
+    <ul class="main-list">
+    <% for(var i=0; i< items.length;i++) {%>
+
+        <li>
+            <div class="img">
+                <a href="/detail?id=<%=items[i].get('productId') %>"><img src="/<%= asset %>/images/default/lazy.png" class="lazy" width="100" height="100" data-original="<% for(var n in items[i].get('mainImage')) { %><% if(items[i].attributes.mainImage[n].isMainImage) { %><%= items[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
+            </div>
+            <div class="detail">
+                <h3><a href="/detail?id=<%=items[i].get('productId') %>"><%= items[i].get('name') %></a></h3>
+                <p>
+                    <span class="price">¥<strong> <%= items[i].get('price') %>.00</strong></span>
+                    <span>1290次浏览</span>
+                </p>
+                <p>
+                    <span class="active"><i class="am-icon-check"></i>现货</span>
+                    <span class="active"><i class="am-icon-history"></i>7天退款</span>
+                    <span><i class="am-icon-modx"></i>纯手工</span>
+                    <span> <i class="am-icon-gavel"></i>只此一件 </span>
+                    <span> <i class="am-icon-gavel"></i>只此一件 </span>
+                </p>
+            </div>
+        </li>
+        
     <% } %>
-</table>
-<% } %>
+    </ul>
+<% } else {%>
+
+<%}%>
 
 
 <% include ../partials/footer %>

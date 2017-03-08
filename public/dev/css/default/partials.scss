@@ -353,22 +353,21 @@ footer {
 }
 
 .main-tab {
-    overflow:auto;
-    white-space: nowrap;
-    position: relative;
     border-bottom: 1px solid #eee;
-   
+    overflow: hidden;
+    @extend %clearfix;
     a {
+        float: left;
         width: 50%;
         z-index: 1;
         position: relative;
-        display: inline-block;
+        display: block;
         text-align: center;
         span {
             padding: 0 15px;
             color: #666;
             display: inline-block;
-            margin:auto;
+            margin: auto;
             height: 38px;
             line-height: 38px;
             font-size: 14px;
@@ -377,7 +376,7 @@ footer {
             span {
                 font-weight: bold;
                 color: $colorMain;
-                border-bottom:2px solid $colorMain;
+                border-bottom: 2px solid $colorMain;
             }
         }
     }
@@ -429,7 +428,7 @@ footer {
             padding: 5px 0;
             margin: 0;
             width: 180px;
-            min-width:180px;
+            min-width: 180px;
             &:before {
                 display: none;
             }
@@ -468,7 +467,7 @@ footer {
                     color: $colorMain;
                 }
             }
-            
+
         }
         &.am-active {
             .am-btn {
@@ -480,10 +479,76 @@ footer {
                 li {
                     a {
                         width: 130px;
-                        
+
                     }
                 }
             }
         }
     }
+}
+
+.main-list {
+    li {
+        
+        margin:0 10px;
+        padding:10px 0;
+        border-bottom: 1px dashed #ddd;
+        display: flex;
+        flex-direction: row;
+        .img {
+            border: none;
+            width: 100px;
+            a {
+                display: block;
+            }
+            img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        .detail {
+            margin-left:10px;
+            flex: 1;
+            h3 {
+                height: 40px;
+                line-height: 20px;
+                overflow: hidden;
+                font-size: 14px;
+                font-weight: bold;
+                margin:0 0 5px 0;
+            }
+
+            p {
+                color: #999;
+                padding: 0;
+                margin:0 0 5px 0;
+                line-height: 20px;
+                font-size: 12px;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                
+                span {
+                    white-space: nowrap;
+                    padding-right: 6px;
+                    i {
+                        margin-right:2px;
+                    }
+                }
+                .price {
+                    strong {
+                        font-size: 16px;
+                    }
+                    color: $colorOrange;
+                }
+                .active {
+                    color: $colorGreen;
+                }
+            }
+            
+             
+        }
+    }
+
 }

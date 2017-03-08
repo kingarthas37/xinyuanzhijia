@@ -17,6 +17,10 @@ $(function() {
         //$('header').find('.am-dropdown').dropdown();
     }
     
+    //图片懒加载
+    {
+        $('img.lazy').lazyload();
+    }
     
     //搜索面板
     {
