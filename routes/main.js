@@ -46,6 +46,8 @@ module.exports = {
 
     '/admin/product-tag':require('./admin/product-tag'),
     '/admin/product-tag/add':require('./admin/product-tag/add'),
-    '/admin/product-tag/edit':require('./admin/product-tag/edit')
+    '/admin/product-tag/edit':require('./admin/product-tag/edit'),
+
+    '/admin/sync':require('./admin/sync')
     
 };
