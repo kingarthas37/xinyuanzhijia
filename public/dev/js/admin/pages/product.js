@@ -1,9 +1,6 @@
 'use strict';
 
 let leanAppHeader = window.leanAppHeader;
-
-let listDataRequest = require('./product/list-data-request');
-
 let utils = require('../common/utils');
 
 module.exports = {
@@ -109,9 +106,7 @@ module.exports = {
             });
         }
 
-        //列表首页ajax加载product-property数据
         {
-            listDataRequest.init();
             $('.am-table').on('click','.am-icon-link',function() {
                 $(this).addClass('on');
             });

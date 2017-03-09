@@ -19,7 +19,7 @@ let pro = require('../../../lib/models/product').createNew();
 let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
-let ProductProperty = AV.Object.extend('ProductProperty');
+//let ProductProperty = AV.Object.extend('ProductProperty');
 
 
 let data = extend(config.data, {
@@ -153,35 +153,16 @@ router.post('/remove/:productId',(req,res)=> {
     base.isAdminUserLogin(req, res);  //判断是否登录
     
     let productId = parseInt(req.params.productId);
-    
-    AV.Promise.when(
-       
-        new AV.Promise(resolve => {
-            
-            let query = new AV.Query(Product);
-            query.equalTo('productId',productId);
-            query.first().then(product => {
-                return product.destroy();
-            }).then(resolve);
-            
-        }),
 
-        new AV.Promise(resolve => {
-
-            let query = new AV.Query(ProductProperty);
-            query.equalTo('productId',productId);
-            query.first().then(product => {
-                return product.destroy();
-            }).then(resolve);
-            
-        })
-        
-    ).then(()=> {
+    let query = new AV.Query(Product);
+    query.equalTo('productId',productId);
+    query.first().then(product => {
+        return product.destroy();
+    }).then(()=> {
         res.send({
             success:1
         });
     });
-    
 });
 
 
@@ -191,7 +172,7 @@ router.get('/list-data',(req,res) => {
     let productListId = req.query.productListId;
     productListId = productListId.map(item => parseInt(item));
     
-    let query = new AV.Query(ProductProperty);
+    let query = new AV.Query(Product);
     query.containedIn('productId',productListId);
     query.select('productId','purchaseLink','shopLink','stock');
     

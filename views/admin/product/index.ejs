@@ -115,7 +115,7 @@
                         <td class="product-title">
                             <%if(product[i].mainImage) {%><a target="_blank" href="<%= product[i].mainImage%>"><img width="32" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/32" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32" width="32"/><%}%> <a href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%></a>
 
-                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock"><i class="am-icon-inbox"><em class="stock-num" data-product-id="<%= product[i].get('productId') %>"></em></i></a>
+                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock"><i class="am-icon-inbox <%if(product[i].get('stock')){%> instock<%}%>"><%if(product[i].get('stock')){%><em class="stock-num"><%= product[i].get('stock') %></em><%}%></i></a>
                             
                             <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#settings"><i class="am-icon-gear"></i></a>
                             <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>"><i class="am-icon-tag"></i></a> <%}%>
@@ -124,11 +124,31 @@
                             <a target="_blank" href="/admin/product/preview/<%= product[i].get('productId') %>"><i class="am-icon-external-link"></i></a>
                         </td>
                         <td class="t-c">
-                            <span class="purchase-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span>
+                            <span class="purchase-link" data-product-id="<%= product[i].get('productId') %>">
+                                <%if(product[i].get('purchaseLink').length) {%>
+                                    <%for(var j=0;j < product[i].get('purchaseLink').length;j++) { %>
+                                        <%if(product[i].get('purchaseLink')[j]) { %>
+                                            <a href="<%= product[i].get('purchaseLink')[j] %>" target="_blank"><i class="am-icon-link"></i></a>
+                                        <%}%>
+                                    <%}%>
+                                <%}else{%>
+                                    -
+                                <%}%>
+                            </span>
                             <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#purchase-link"><i class="am-icon-edit"></i></a>
                         </td>
                         <td class="t-c">
-                            <span class="shop-link" data-product-id="<%= product[i].get('productId') %>"><em class="loading-elem on"></em></span>
+                            <span class="shop-link" data-product-id="<%= product[i].get('productId') %>">
+                                <%if(product[i].get('shopLink').length) {%>
+                                    <%for(var j=0;j < product[i].get('shopLink').length;j++) { %>
+                                        <%if(product[i].get('shopLink')[j]) { %>
+                                            <a href="<%= product[i].get('shopLink')[j] %>" target="_blank"><i class="am-icon-link"></i></a>
+                                        <%}%>
+                                    <%}%>
+                                <%}else{%>
+                                    -
+                                <%}%>
+                            </span>
                             <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#shop-link"><i class="am-icon-edit"></i></a>
                         </td>
                         <td class="t-c">

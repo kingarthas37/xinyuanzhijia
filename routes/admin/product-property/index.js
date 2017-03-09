@@ -10,7 +10,6 @@ var extend = require('xtend');
 
 //class
 let Product = AV.Object.extend('Product');
-let ProductProperty = AV.Object.extend('ProductProperty');
 
 //lib
 let utils = require('../../../lib/utils');
@@ -51,12 +50,12 @@ router.get('/:productId', (req, res) => {
 
         new AV.Promise(resolve => {
 
-            let query = new AV.Query(ProductProperty);
+            let query = new AV.Query(Product);
             query.equalTo('productId', productId);
 
             query.first().then(item => {
                 data = extend(data, {
-                    productProperty: item
+                    product: item
                 });
                 resolve();
             });
@@ -79,7 +78,7 @@ router.post('/purchase-link/:productId', (req, res) => {
 
     purchaseLink = purchaseLink.map(item => utils.urlCompleting(item));
 
-    let query = new AV.Query(ProductProperty);
+    let query = new AV.Query(Product);
     query.equalTo('productId', productId);
     query.first().then(item => {
 
@@ -106,7 +105,7 @@ router.post('/shop-link/:productId', (req, res) => {
 
     shopLink = shopLink.map(item => utils.urlCompleting(item));
 
-    let query = new AV.Query(ProductProperty);
+    let query = new AV.Query(Product);
     query.equalTo('productId', productId);
     query.first().then(item => {
 
@@ -130,7 +129,7 @@ router.post('/stock/:productId', (req, res) => {
     let stock = parseInt(req.body.stock);
     let sales = parseInt(req.body.sales);
     
-    let query = new AV.Query(ProductProperty);
+    let query = new AV.Query(Product);
     query.equalTo('productId', productId);
     query.first().then(item => {
         
@@ -159,7 +158,7 @@ router.post('/settings/:productId', (req, res) => {
     let isOnsale = req.body['is-onsale'] ? true :false;
     let isHot = req.body['is-hot'] ? true :false;
     
-    let query = new AV.Query(ProductProperty);
+    let query = new AV.Query(Product);
     query.equalTo('productId', productId);
     query.first().then(item => {
 

@@ -19,7 +19,7 @@
     <div class="admin-content admin-product-property-page">
 
         <div class="product-crumb am-cf am-padding">
-            <div class="am-fl am-cf"><a href="/admin/product">产品编辑</a> / <a href="/admin/product-property/<%= productProperty.get('productId') %>">编辑产品属性</a> /
+            <div class="am-fl am-cf"><a href="/admin/product">产品编辑</a> / <a href="/admin/product-property/<%= product.get('productId') %>">编辑产品属性</a> /
                 <a href="/admin/product/edit/<%=product.get('productId')%>"><%=product.get('name')%></a></div>
         </div>
 
@@ -34,20 +34,20 @@
                         </dt>
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
-                                <form class="am-form" action="/admin/product-property/purchase-link/<%= productProperty.get('productId') %>" method="post">
+                                <form class="am-form" action="/admin/product-property/purchase-link/<%= product.get('productId') %>" method="post">
                                     <label>产品购买链接:</label>
                                     <div class="am-form-group">
-                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[0] %><%}%>" autocomplete="off" placeholder="输入网站购买链接1"/>
+                                        <input name="purchase-link" type="text" value="<%if(product.get('purchaseLink')){ %><%= product.get('purchaseLink')[0] %><%}%>" autocomplete="off" placeholder="输入网站购买链接1"/>
                                     </div>
                                     <div class="am-form-group">
-                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[1] %><%}%>" autocomplete="off" placeholder="输入网站购买链接2" />
+                                        <input name="purchase-link" type="text" value="<%if(product.get('purchaseLink')){ %><%= product.get('purchaseLink')[1] %><%}%>" autocomplete="off" placeholder="输入网站购买链接2" />
                                     </div>
                                     <div class="am-form-group">
-                                        <input name="purchase-link" type="text" value="<%if(productProperty.get('purchaseLink')){ %><%= productProperty.get('purchaseLink')[2] %><%}%>" autocomplete="off" placeholder="输入网站购买链接3" />
+                                        <input name="purchase-link" type="text" value="<%if(product.get('purchaseLink')){ %><%= product.get('purchaseLink')[2] %><%}%>" autocomplete="off" placeholder="输入网站购买链接3" />
                                     </div>
                                     <label>链接说明:</label>
                                     <div class="am-form-group">
-                                        <textarea name="purchase-link-comment" rows="2"><%= productProperty.get('purchaseLinkComment') %></textarea>
+                                        <textarea name="purchase-link-comment" rows="2"><%= product.get('purchaseLinkComment') %></textarea>
                                     </div>
                                     <div>
                                         <button type="submit" class="am-btn am-btn-primary">保存</button>
@@ -63,18 +63,18 @@
                         </dt>
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
-                                <form class="am-form" action="/admin/product-property/shop-link/<%= productProperty.get('productId') %>" method="post">
+                                <form class="am-form" action="/admin/product-property/shop-link/<%= product.get('productId') %>" method="post">
                                     <label>淘宝店铺链接:</label>
                                     <div class="am-form-group">
-                                        <input name="shop-link" type="text" value="<%if(productProperty.get('shopLink')){ %><%= productProperty.get('shopLink')[0] %><%}%>" autocomplete="off" placeholder="输入淘宝店铺链接"/>
+                                        <input name="shop-link" type="text" value="<%if(product.get('shopLink')){ %><%= product.get('shopLink')[0] %><%}%>" autocomplete="off" placeholder="输入淘宝店铺链接"/>
                                     </div>
                                     <label>微店链接:</label>
                                     <div class="am-form-group">
-                                        <input name="shop-link" type="text" value="<%if(productProperty.get('shopLink')){ %><%= productProperty.get('shopLink')[1] %><%}%>" autocomplete="off" placeholder="输入微店链接" />
+                                        <input name="shop-link" type="text" value="<%if(product.get('shopLink')){ %><%= product.get('shopLink')[1] %><%}%>" autocomplete="off" placeholder="输入微店链接" />
                                     </div>
                                     <label>链接说明:</label>
                                     <div class="am-form-group">
-                                        <textarea name="shop-link-comment" rows="2"><%= productProperty.get('shopLinkComment') %></textarea>
+                                        <textarea name="shop-link-comment" rows="2"><%= product.get('shopLinkComment') %></textarea>
                                     </div>
                                     <div>
                                         <button type="submit" class="am-btn am-btn-primary">保存</button>
@@ -90,14 +90,14 @@
                         </dt>
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
-                                <form class="am-form" action="/admin/product-property/stock/<%= productProperty.get('productId') %>" method="post">
+                                <form class="am-form" action="/admin/product-property/stock/<%= product.get('productId') %>" method="post">
 
                                     <label>库存:</label>
                                     <div class="am-form-inline">
                                         <div class="am-form-group">
-                                            <select name="stock" data-stock="<% if(productProperty.get('stock')) {%><%=productProperty.get('stock')%><%}else{%>0<%}%>">
+                                            <select name="stock" data-stock="<% if(product.get('stock')) {%><%=product.get('stock')%><%}else{%>0<%}%>">
                                                 <% for(var i=0;i<100;i++) { %>
-                                                <option <% if(productProperty.get('stock') == i) { %>selected="selected"<%}%> value="<%=i%>"><%=i%></option>
+                                                <option <% if(product.get('stock') == i) { %>selected="selected"<%}%> value="<%=i%>"><%=i%></option>
                                                 <% }%>
                                             </select>
                                         </div>
@@ -111,9 +111,9 @@
                                     <label>总销量:</label>
                                     <div class="am-form-inline">
                                         <div class="am-form-group">
-                                            <select name="sales" data-sales="<% if(productProperty.get('sales')) {%><%=productProperty.get('sales')%><%}else{%>0<%}%>">
+                                            <select name="sales" data-sales="<% if(product.get('sales')) {%><%=product.get('sales')%><%}else{%>0<%}%>">
                                                 <% for(var i=0;i<100;i++) { %>
-                                                <option <% if(productProperty.get('sales') == i) { %>selected="selected"<%}%> value="<%=i%>"><%=i%></option>
+                                                <option <% if(product.get('sales') == i) { %>selected="selected"<%}%> value="<%=i%>"><%=i%></option>
                                                 <% }%>
                                             </select>
                                         </div>
@@ -134,50 +134,50 @@
                         </dt>
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
-                                <form class="am-form" action="/admin/product-property/settings/<%= productProperty.get('productId') %>" method="post">
+                                <form class="am-form" action="/admin/product-property/settings/<%= product.get('productId') %>" method="post">
                                     
                                     <label>价格(RMB):</label>
                                     <div class="am-form-group">
-                                        <input name="price" type="text" value="<%= productProperty.get('price') %>" autocomplete="off" placeholder="输入价格" />
+                                        <input name="price" type="text" value="<%= product.get('price') %>" autocomplete="off" placeholder="输入价格" />
                                     </div>
                                     
                                     <label>产地/国家:</label>
                                     <div class="am-form-group">
                                         <select name="country">
                                             <option value="">请选择</option>
-                                            <option <% if(productProperty.get('country') == 'us') { %>selected="selected"<%}%> value="us">美国</option>
-                                            <option <% if(productProperty.get('country') == 'in') { %>selected="selected"<%}%> value="in">印度</option>
-                                            <option <% if(productProperty.get('country') == 'tw') { %>selected="selected"<%}%> value="tw">台湾</option>
-                                            <option <% if(productProperty.get('country') == 'eu') { %>selected="selected"<%}%> value="eu">欧洲</option>
-                                            <option <% if(productProperty.get('country') == 'ul') { %>selected="selected"<%}%> value="uk">英国</option>
-                                            <option <% if(productProperty.get('country') == 'au') { %>selected="selected"<%}%> value="au">澳洲</option>
-                                            <option <% if(productProperty.get('country') == 'fr') { %>selected="selected"<%}%> value="fr">法国</option>
-                                            <option <% if(productProperty.get('country') == 'de') { %>selected="selected"<%}%> value="de">德国</option>
-                                            <option <% if(productProperty.get('country') == 'ca') { %>selected="selected"<%}%> value="ca">加拿大</option>
-                                            <option <% if(productProperty.get('country') == 'cn') { %>selected="selected"<%}%> value="cn">中国</option>
-                                            <option <% if(productProperty.get('country') == 'other') { %>selected="selected"<%}%> value="other">其他</option>
+                                            <option <% if(product.get('country') == 'us') { %>selected="selected"<%}%> value="us">美国</option>
+                                            <option <% if(product.get('country') == 'in') { %>selected="selected"<%}%> value="in">印度</option>
+                                            <option <% if(product.get('country') == 'tw') { %>selected="selected"<%}%> value="tw">台湾</option>
+                                            <option <% if(product.get('country') == 'eu') { %>selected="selected"<%}%> value="eu">欧洲</option>
+                                            <option <% if(product.get('country') == 'ul') { %>selected="selected"<%}%> value="uk">英国</option>
+                                            <option <% if(product.get('country') == 'au') { %>selected="selected"<%}%> value="au">澳洲</option>
+                                            <option <% if(product.get('country') == 'fr') { %>selected="selected"<%}%> value="fr">法国</option>
+                                            <option <% if(product.get('country') == 'de') { %>selected="selected"<%}%> value="de">德国</option>
+                                            <option <% if(product.get('country') == 'ca') { %>selected="selected"<%}%> value="ca">加拿大</option>
+                                            <option <% if(product.get('country') == 'cn') { %>selected="selected"<%}%> value="cn">中国</option>
+                                            <option <% if(product.get('country') == 'other') { %>selected="selected"<%}%> value="other">其他</option>
                                         </select>
                                         <span class="am-form-caret"></span>
                                     </div>
                                     
                                     <div class="am-form-group">
-                                        <label><input type="checkbox" name="is-hot" <% if(productProperty.get('isHot')) { %>checked="checked"<%}%> > 热门产品</label>
+                                        <label><input type="checkbox" name="is-hot" <% if(product.get('isHot')) { %>checked="checked"<%}%> > 热门产品</label>
                                         <span class="split"></span>
-                                        <label><input type="checkbox" name="is-handmade" <% if(productProperty.get('isHandmade')) { %>checked="checked"<%}%> > 手工制作</label>
+                                        <label><input type="checkbox" name="is-handmade" <% if(product.get('isHandmade')) { %>checked="checked"<%}%> > 手工制作</label>
                                         <span class="split"></span>
-                                        <label><input type="checkbox" name="is-only" <% if(productProperty.get('isOnly')) { %>checked="checked"<%}%>> 唯一</label>
+                                        <label><input type="checkbox" name="is-only" <% if(product.get('isOnly')) { %>checked="checked"<%}%>> 唯一</label>
                                         <span class="split"></span>
-                                        <label><input type="checkbox" name="is-document" <% if(productProperty.get('isDocument')) { %>checked="checked"<%}%>> 附件</label>
+                                        <label><input type="checkbox" name="is-document" <% if(product.get('isDocument')) { %>checked="checked"<%}%>> 附件</label>
                                     </div>
 
                                     <label>上架产品: <em>上架后才能在前台展示</em></label>
                                     <div class="am-form-group">
-                                        <label><input type="checkbox" name="is-onsale" <% if(productProperty.get('isOnsale')) { %>checked="checked"<%}%>> 上架产品</label>
+                                        <label><input type="checkbox" name="is-onsale" <% if(product.get('isOnsale')) { %>checked="checked"<%}%>> 上架产品</label>
                                     </div>
                                     
                                     <label>备注:</label>
                                     <div class="am-form-group">
-                                        <textarea name="settings-comment" rows="2"><%= productProperty.get('settingsComment') %></textarea>
+                                        <textarea name="settings-comment" rows="2"><%= product.get('settingsComment') %></textarea>
                                     </div>
                                     
                                     <div>
@@ -223,8 +223,8 @@
 <script type="text/javascript">
     $(function () {
         
-        var productProperty = require('product-property');
-        productProperty.init();
+        var product = require('product-property');
+        product.init();
     });
 </script>
 </body>

@@ -27,6 +27,7 @@ module.exports = {
                     
                     //purchase links
                     {
+                        return;
                         let purchaseLink = $(`.purchase-link[data-product-id=${n.productId}]`);
                         let purchaseLinks = '';
                         $.each(n.purchaseLink, function (i, n) {
@@ -44,6 +45,7 @@ module.exports = {
                     
                     //shop links
                     {
+                        return;
                         let shopLink =  $(`.shop-link[data-product-id=${n.productId}]`);
                         let shopLinks = '';
                         $.each(n.shopLink, function (i, n) {
@@ -61,6 +63,7 @@ module.exports = {
                     
                     //stocks
                     {
+                        return;
                         let stock = $(`.stock-num[data-product-id=${n.productId}]`);
                         if(n.stock) {
                             stock.text(n.stock);
