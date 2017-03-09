@@ -14,8 +14,8 @@ let data = extend(config.data, {
     currentPage: 'detail'
 });
 
-router.get('/', (req, res) => {
-    let id = req.query.id ? parseInt(req.query.id) : null;
+router.get('/:id', (req, res) => {
+    let id = req.params.id ? parseInt(req.params.id) : null;
     let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
     product.getProductById(id).then(result => {
         if(result) {

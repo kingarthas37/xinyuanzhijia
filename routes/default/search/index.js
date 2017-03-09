@@ -85,7 +85,31 @@ router.get('/', (req, res) => {
         res.render('default/search', data);
     });
 
+});
 
+router.get('/ajax', (req, res) => {
+    let page = req.query.page ? parseInt(req.query.page) : 1;
+    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
+    let keywords = req.query.keywords || null;
+    let stock = req.query.stock || null;
+    let order = req.query.order || 'createdAt';
+    let category1Id = req.query.cat1 || null;
+    let category2Id = req.query.cat2 || null;
+    let productMethodId = req.query.method || null;
+    let price = req.query.price || null;
+    let onsale = 1;
+    let options = {onsale, page, limit, 'search':keywords, category1Id, category2Id, productMethodId, stock, order, price};
+    let datas = {'items': null};
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            product.getProducts(options).then(result => {
+                datas.items = result;
+                resolve();
+            });
+        })
+    ).then(() => {
+        res.send(datas);
+    });
 
 });
 
