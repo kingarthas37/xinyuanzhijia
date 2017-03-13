@@ -30,6 +30,20 @@ router.get('/', (req, res) => {
     let productMethodId = req.query.method || null;
     let price = req.query.price || null;
     let onsale = 1;
+    let sortTitle = '智能排序';
+    if (stock) {
+        sortTitle = '现货';
+    } else if (order == 'pageViews') {
+        sortTitle = '热门';
+    } else if (order == 'sales') {
+        sortTitle = '销量';
+    } else if (price == 'asc') {
+        sortTitle = '价格低-高';
+    } else if (price == 'desc') {
+        sortTitle = '价格高-低';
+    } else {
+        sortTitle = '上架时间';
+    }
     data = extend(data,
         {'keywords': keywords,
             'order': order,
@@ -40,7 +54,8 @@ router.get('/', (req, res) => {
             'items':null,
             'cat1':category1Id,
             'cat2':category2Id,
-            'price':price
+            'price':price,
+            'sortTitle' : sortTitle
         });
     if (keywords) {
         let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
