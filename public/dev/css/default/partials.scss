@@ -430,8 +430,8 @@ footer {
             box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
             padding: 5px 0;
             margin: 0;
-            width: 180px;
-            min-width: 180px;
+            width: 190px;
+            min-width: 190px;
             &:before {
                 display: none;
             }
@@ -440,11 +440,13 @@ footer {
             }
             li {
                 margin: 0 10px;
+                padding: 0;
                 border-bottom: 1px dashed #efefef;
                 @extend %clearfix;
                 a {
+                    width: 100%;
                     display: block;
-                    padding: 0;
+                    padding: 0 2px;
                     float: left;
                     font-size: 14px;
                     @extend %text-overflow;
@@ -475,16 +477,6 @@ footer {
         &.am-active {
             .am-btn {
                 color: $colorMain;
-            }
-        }
-        &.sort {
-            .am-dropdown-content {
-                li {
-                    a {
-                        width: 130px;
-
-                    }
-                }
             }
         }
     }
@@ -554,4 +546,23 @@ footer {
         }
     }
 
+}
+
+.am-alert {
+    position: fixed;
+    width: 180px;
+    border:none;
+    opacity: 0.8;
+    bottom:100px;
+    left:50%;
+    margin:0 0 0 -90px;
+    background:#000;
+    color: #fff;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 10px;
+    z-index: 1;
+    padding: 0;
+    display: none;
 }

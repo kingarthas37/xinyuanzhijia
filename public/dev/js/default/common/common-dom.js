@@ -47,6 +47,15 @@ $(function() {
          
     }
     
+    //am-alert
+    {
+        let amAlert= $('.am-alert');
+        if(amAlert.length) {
+            amAlert.fadeIn();
+            setTimeout(()=> amAlert.fadeOut(),2000);
+        }
+    }
+    
     //搜索面板选择搜索主题 
     /*
     {

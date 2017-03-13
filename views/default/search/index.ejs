@@ -9,7 +9,7 @@
     <% include ../partials/tongji %>
 </head>
 
-<body class="index-page">
+<body class="search-page">
 
 <% include ../partials/header-sub %>
 
@@ -50,23 +50,22 @@
         <div class="am-dropdown sort" data-am-dropdown>
             <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span><%= sortTitle%></span> <span class="am-icon-caret-down"></span></button>
             <ul class="am-dropdown-content">
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&order=pageViews">热门</a> <i class="am-icon-star"></i></li>
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&order=sales">销量</a> <i class="am-icon-line-chart"></i></li>
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&price=asc">价格低-高</a> <i class="am-icon-sort-amount-desc"></i></li>
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&price=desc">价格高-低</a> <i class="am-icon-sort-amount-asc"></i></li>
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&stock=1">现货</a> <i class="am-icon-plane"></i></li>
-                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>">上架时间</a> <i class="am-icon-calendar-check-o"></i></li>
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&order=pageViews">热门 <i class="am-icon-star"></i></a></li>
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&order=sales">销量 <i class="am-icon-line-chart"></i></a></li>
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&price=asc">价格低-高 <i class="am-icon-sort-amount-desc"></i></a></li>
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&price=desc">价格高-低 <i class="am-icon-sort-amount-asc"></i></a></li>
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&stock=1">现货 <i class="am-icon-plane"></i></a></li>
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>">上架时间 <i class="am-icon-calendar-check-o"></i></a></li>
             </ul>
         </div>
     </div>
 </div>
 
- 
+<div class="am-alert alert-search-info">共有<span>0</span>件产品</div>
 
 <% if (count > 0) { %>
     <ul class="main-list">
     <% for(var i=0; i< items.length;i++) {%>
-
         <li>
             <div class="img">
                 <a href="/detail/<%=items[i].get('productId') %>"><img src="/<%= asset %>/images/default/lazy.png" class="lazy" width="100" height="100" data-original="<% for(var n in items[i].get('mainImage')) { %><% if(items[i].attributes.mainImage[n].isMainImage) { %><%= items[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
@@ -82,7 +81,6 @@
                     <span class="active"><i class="am-icon-history"></i>7天退款</span>
                     <span><i class="am-icon-modx"></i>纯手工</span>
                     <span> <i class="am-icon-gavel"></i>只此一件 </span>
-                    <span> <i class="am-icon-gavel"></i>只此一件 </span>
                 </p>
             </div>
         </li>
@@ -92,6 +90,7 @@
 <% } else {%>
     
 <%}%>
+
 <input type="hidden" value="<%= {keywords,order,stock,cat1,cat2,price} %>" />
 
 <% include ../partials/footer %>
