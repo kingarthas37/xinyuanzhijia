@@ -290,16 +290,15 @@ footer {
   background: #6071d5; }
 
 #search-box .search-select {
-  display: none;
   z-index: 1;
   position: absolute;
   top: 0;
   left: 0; }
   #search-box .search-select .am-btn {
-    font-size: 14px;
+    font-size: 13px;
     display: block;
     height: 40px;
-    width: 80px;
+    width: 90px;
     margin: 0;
     padding: 0;
     background: none;
@@ -316,7 +315,8 @@ footer {
     min-width: 120px;
     font-size: 12px; }
     #search-box .search-select ul.am-dropdown-content .am-active a {
-      background: #6071d5 !important; }
+      color: #333;
+      background: #f5f5f5 !important; }
 
 #search-box .search-close {
   z-index: 1;
@@ -330,10 +330,10 @@ footer {
     line-height: 40px;
     text-align: center;
     height: 40px;
-    width: 80px; }
+    width: 90px; }
 
 #search-box .search {
-  margin: 0 80px 0 10px;
+  margin: 0 90px 0 90px;
   height: 40px;
   line-height: 40px;
   text-align: center;

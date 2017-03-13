@@ -4,6 +4,7 @@ require('jquery-validate');
 require('jquery-lazyload');
 require('jquery-cookie');
 require('jquery-form');
+require('jquery-infinitescroll');
 require('clipboard');
 require('typeahead');
 require('bloodhound');

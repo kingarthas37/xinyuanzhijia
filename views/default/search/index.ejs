@@ -42,7 +42,7 @@
                     <li data-id="<%= category2[i].get('category1Id')%>" class="am-dropdown-header"><a href="/search?cat1=<%= cat1 %>&cat2=<%=category2[i].get('category2Id')%>"><%= category2[i].get('name')%></a></li>
                     <% } %>
                 <% } else { %>
-                <li data-id="" class="am-dropdown-header">请选择一级分类</li>
+                <li data-id="" class="am-dropdown-header"><a href="javascript:;">请选择一级分类</a></li>
                 <% } %>
             </ul>
             <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span><%= category2Name%></span> <span class="am-icon-caret-down"></span></button>
