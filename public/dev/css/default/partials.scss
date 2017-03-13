@@ -133,6 +133,9 @@ header {
                 font-size: 24px;
                 font-weight: normal;
                 color: #fff;
+                &.am-icon-search {
+                    font-size: 16px;
+                }
             }
         }
     }

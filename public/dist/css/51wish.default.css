@@ -260,6 +260,8 @@ header {
         font-size: 24px;
         font-weight: normal;
         color: #fff; }
+        header.sub .menu i.am-icon-search {
+          font-size: 16px; }
 
 footer {
   padding: 15px 0;
