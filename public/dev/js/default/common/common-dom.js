@@ -57,7 +57,6 @@ $(function() {
     }
     
     //搜索面板选择搜索主题 
-    /*
     {
         let searchInput = $('#search-input');
         let searchSelect = $('.search-select');
@@ -77,7 +76,6 @@ $(function() {
             searchInput[0].focus();
         });
     }
-    */
     
     //header搜索typeahead
     {
@@ -117,6 +115,84 @@ $(function() {
         
     }
     
-    
+    //列表页infinitescroll
+    {
+        let mainList = $('.main-list');
+        mainList.infinitescroll({
+            debug: false,
+            loading: {
+                img:'//51wish.cn/min/images/admin/common/loading.gif',
+                msgText:'加载中...'
+            },
+            animate: false,
+            itemSelector:'li',
+            navSelector:'.navigation',
+            nextSelector:'.navigation a',
+            dataType: 'json',
+            appendCallback: false,
+            pathParse: function (path,page) {
+                return ['/search/ajax?page=',location.search.replace('?','&')];
+            }
+        },  function(data,opts) {
+
+            if(!data.items.length) {
+                $('#infscr-loading').detach();
+                mainList.infinitescroll('unbind');
+                let msg = $('<div id="infscr-loading" style="display: none;">当前选择下已加载全部内容</div>');
+                mainList.append(msg);
+                msg.fadeIn();
+                setTimeout(()=> {
+                    msg.fadeOut();
+                },2000);
+                return false;
+            }
+
+            let content = '';
+            $.each(data.items,function(i,item) {
+                
+                let price = item.price > 0 ? parseFloat(item.price) : 0.00;
+                let image = (()=> {
+                    let img = '';
+                    for(let n in item.mainImage) {
+                        if (item.mainImage[n].isMainImage) {
+                            img = item.mainImage[n].url;
+                            break;
+                        }
+                    }
+                    return img;
+                })();
+                
+                let stock = item.stock > 0 ? '<span class="active"><i class="am-icon-check"></i>现货</span>' :'';
+                let isRefund = item.isRefund ? '<span class="active"><i class="am-icon-history"></i>7天退款</span>' : '';
+                let isHandmade = item.isHandmade ? '<span class="active"><i class="am-icon-modx"></i>纯手工</span>' : '';
+                let isOnly = item.isOnly ? '<span class="active"><i class="am-icon-gavel"></i>只此一件 </span>' : '';
+                
+                content += `
+                    <li>
+                        <div class="img">
+                            <a href="/detail/${item.productId}"><img src="/min/images/default/common/lazy.png" class="lazy" width="100" height="100" data-original="${image}?imageMogr2/thumbnail/200"></a>
+                        </div>
+                        <div class="detail">
+                            <h3><a href="/detail/${item.productId}">${item.name}</a></h3>
+                            <p>
+                            <span class="price">¥ <strong>${price}</strong></span>
+                            <span>${item.pageViews}次浏览</span>
+                            </p>
+                            <p>
+                                ${stock} ${isRefund} ${isHandmade} ${isOnly}
+                            </p>
+                        </div>
+                    </li>
+                `;
+                
+            });
+            
+            let html = $(content);
+            html.find('img.lazy').lazyload();
+            mainList.append(html);
+        });
+        
+        
+    }
     
 });

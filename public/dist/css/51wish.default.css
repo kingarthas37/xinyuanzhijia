@@ -189,7 +189,7 @@ header {
       display: block;
       width: 80px;
       height: 30px;
-      background: url("../images/default/logo.png") no-repeat;
+      background: url("../images/default/common/logo.png") no-repeat;
       background-size: 80px 30px; }
   header.main .search-go {
     margin: 0 50px 0 100px;
@@ -573,6 +573,21 @@ footer {
           font-size: 16px; }
       .main-list li .detail p .active {
         color: #289a32; }
+
+.main-list #infscr-loading {
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+  font-size: 16px; }
+  .main-list #infscr-loading div {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0 4px; }
+  .main-list #infscr-loading img {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px; }
 
 .am-alert {
   position: fixed;

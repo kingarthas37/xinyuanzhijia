@@ -49,7 +49,7 @@ header {
                 display: block;
                 width: 80px;
                 height: 30px;
-                background: url("../images/default/logo.png") no-repeat;
+                background: url("../images/default/common/logo.png") no-repeat;
                 background-size: 80px 30px;
             }
         }
@@ -544,7 +544,24 @@ footer {
              
         }
     }
-
+    
+    #infscr-loading {
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        vertical-align: middle;
+        font-size: 16px;
+        div {
+            vertical-align: middle;
+            display: inline-block;
+            padding: 0 4px;
+        }
+        img {
+            vertical-align: middle;
+            width: 20px;
+            height: 20px;
+        }
+    }
 }
 
 .am-alert {
