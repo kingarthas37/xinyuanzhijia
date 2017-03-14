@@ -22,11 +22,10 @@
 <div class="main-menu am-g am-g-fixed">
     <div class="am-u-sm-4">
         <div class="am-dropdown" data-am-dropdown>
-            <% let category1Name = '产品分类一级';%>
             <ul class="am-dropdown-content">
                 <% for(var i=0; i<category1.length; i++) { %>
                 <% if (cat1 == category1[i].get('category1Id')) { category1Name = category1[i].get('name'); } %>
-                <li data-id="<%= category1[i].get('category1Id')%>" class="am-dropdown-header"><a href="/search?&cat1=<%=category1[i].get('category1Id')%>"><%= category1[i].get('name')%></a></li>
+                <li data-id="<%= category1[i].get('category1Id')%>" class="am-dropdown-header"><a href="/search?cat1=<%=category1[i].get('category1Id')%>"><%= category1[i].get('name')%></a></li>
                 <% } %>
             </ul>
             <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span><%= category1Name%></span> <span class="am-icon-caret-down"></span></button>
@@ -34,7 +33,6 @@
     </div>
     <div class="am-u-sm-4">
         <div class="am-dropdown" data-am-dropdown>
-            <% let category2Name = '产品分类二级';%>
             <ul class="am-dropdown-content">
                 <% if(category2) { %>
                     <% for(var i=0; i<category2.length; i++) { %>
