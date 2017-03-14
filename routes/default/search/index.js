@@ -20,6 +20,7 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
+    console.log(123);
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let keywords = req.query.keywords || null;
@@ -67,6 +68,7 @@ router.get('/', (req, res) => {
         });
     }
     let options = {onsale, page, limit, 'search':keywords, category1Id, category2Id, productMethodId, stock, order, price};
+    console.log(options);
     AV.Promise.when(
         new AV.Promise(resolve => {
             productCategory1.getProductCategorys({productMethodId}).then(result => {
