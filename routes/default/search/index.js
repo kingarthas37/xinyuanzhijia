@@ -20,7 +20,6 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
-    console.log(123);
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let keywords = req.query.keywords || null;
@@ -68,12 +67,10 @@ router.get('/', (req, res) => {
         });
     }
     let options = {onsale, page, limit, 'search':keywords, category1Id, category2Id, productMethodId, stock, order, price};
-    console.log(options);
     AV.Promise.when(
         new AV.Promise(resolve => {
             productCategory1.getProductCategorys({productMethodId}).then(result => {
                 data = extend(data, {'category1' : result});
-                console.log(data.category1);
                 resolve();
             });
         }),
@@ -81,7 +78,6 @@ router.get('/', (req, res) => {
             if (category1Id) {
                 productCategory2.getProductCategorys({category1Id}).then(result => {
                     data = extend(data, {'category2': result});
-                    console.log(data.category2);
                     resolve();
                 });
             } else {
@@ -91,7 +87,6 @@ router.get('/', (req, res) => {
         new AV.Promise(resolve => {
             product.getProducts(options).then(result => {
                 data = extend(data, {items: result});
-                console.log(data.items.length);
                 resolve();
             });
         }),
@@ -104,6 +99,7 @@ router.get('/', (req, res) => {
         })
     ).then(() => {
         console.log(333);
+        console.log(data.count);
         res.render('default/search', data);
     });
 
