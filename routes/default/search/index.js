@@ -3,6 +3,7 @@
 let product = require('../../../lib/models/product').createNew();
 let productSearchKeywordsHistory = require('../../../lib/models/product-search-history').createNew();
 let commonMemberSearchHistory = require('../../../lib/models/common-member-search-history').createNew();
+let productMethod = require('../../../lib/models/product-method').createNew();
 let request = product.getRequest();
 let config = product.getConfig();
 let router = product.getRouter();
@@ -128,6 +129,13 @@ router.get('/ajax', (req, res) => {
         res.send(datas);
     });
 
+});
+
+router.get('/method', (req, res) => {
+    productMethod.getProductMethods().then(result => {
+        console.log(result);
+        res.send(result);
+    });
 });
 
 module.exports = router;
