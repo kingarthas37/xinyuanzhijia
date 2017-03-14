@@ -124,6 +124,13 @@
         }
     }
     
+    section {
+        height: 240px;
+        margin-bottom: 20px;
+        background:#000 url("../images/default/pages/index-bg.jpg") no-repeat center;
+        background-size:cover;
+    }
+    
     .nav {
         li {
             width:25%;

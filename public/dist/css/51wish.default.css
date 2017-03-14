@@ -399,7 +399,7 @@ footer {
     padding: 0 10px;
     height: 30px;
     line-height: 30px;
-    border: 1px solid #ddd;
+    border: 1px solid #e9f1ff;
     border-radius: 3px;
     font-size: 14px; }
 
@@ -526,7 +526,7 @@ footer {
 .main-list li {
   margin: 0 10px;
   padding: 10px 0;
-  border-bottom: 1px dashed #ddd;
+  border-bottom: 1px dashed #e9f1ff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -572,39 +572,48 @@ footer {
         .main-list li .detail p .price strong {
           font-size: 16px; }
       .main-list li .detail p .active {
-        color: #289a32; }
+        margin-right: 4px;
+        padding: 4px 6px;
+        border-radius: 2px;
+        color: #6071d5;
+        background-color: #eaf2ff; }
+
+.main-list .loading {
+  height: 32px; }
 
 .main-list #infscr-loading {
   text-align: center;
-  height: 40px;
-  line-height: 40px;
+  width: 100% !important;
+  height: 32px !important;
+  line-height: 32px;
   vertical-align: middle;
-  font-size: 16px; }
+  font-size: 13px; }
   .main-list #infscr-loading div {
     vertical-align: middle;
     display: inline-block;
-    padding: 0 4px; }
+    padding: 0 6px; }
   .main-list #infscr-loading img {
     vertical-align: middle;
-    width: 20px;
-    height: 20px; }
+    width: 18px;
+    height: 18px; }
 
 .am-alert {
   position: fixed;
-  width: 180px;
+  width: 140px;
   border: none;
   opacity: 0.8;
   bottom: 100px;
   left: 50%;
-  margin: 0 0 0 -90px;
+  margin: 0 0 0 -70px;
   background: #000;
   color: #fff;
   text-align: center;
-  height: 50px;
-  line-height: 50px;
+  height: 36px;
+  line-height: 36px;
   border-radius: 10px;
   z-index: 1;
   padding: 0;
+  font-size: 14px;
   display: none; }
 
 /* login page */
@@ -708,6 +717,11 @@ footer {
           background: #fff; }
           .index-page .am-slider .am-control-nav li a.am-active {
             background: #6071d5; }
+  .index-page section {
+    height: 240px;
+    margin-bottom: 20px;
+    background: #000 url("../images/default/pages/index-bg.jpg") no-repeat center;
+    background-size: cover; }
   .index-page .nav li {
     width: 25%;
     float: left;

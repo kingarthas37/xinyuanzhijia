@@ -122,7 +122,8 @@ $(function() {
             debug: false,
             loading: {
                 img:'//51wish.cn/min/images/admin/common/loading.gif',
-                msgText:'加载中...'
+                msgText:'加载中...',
+                speed: 500
             },
             animate: false,
             itemSelector:'li',
@@ -138,12 +139,13 @@ $(function() {
             if(!data.items.length) {
                 $('#infscr-loading').detach();
                 mainList.infinitescroll('unbind');
+                mainList.append('<div class="loading"></div>');
                 let msg = $('<div id="infscr-loading" style="display: none;">当前选择下已加载全部内容</div>');
-                mainList.append(msg);
+                mainList.find('.loading').append(msg);
                 msg.fadeIn();
                 setTimeout(()=> {
                     msg.fadeOut();
-                },2000);
+                },3000);
                 return false;
             }
 

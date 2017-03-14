@@ -63,7 +63,7 @@
     </div>
 </div>
 
-<div class="am-alert alert-search-info">共有<span><%= count %></span>件产品</div>
+<div class="am-alert alert-search-info">共有<span><%= count %></span>条记录</div>
 
 <% if (count > 0) { %>
     <ul class="main-list">
@@ -93,7 +93,9 @@
         <a href="/search/ajax?page=1"></a>
     </div>
 <% } else {%>
-
+    <ul class="main-list">
+        <li><span class="color-gray">没有搜索到相关产品,请重新进行查询哦.</span> </li>
+    </ul>
 <%}%>
 
 <input type="hidden" id="ajax-search" value="<%= JSON.stringify({keywords,order,stock,cat1,cat2,price}) %>" />
