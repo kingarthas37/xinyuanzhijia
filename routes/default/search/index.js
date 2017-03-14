@@ -73,6 +73,7 @@ router.get('/', (req, res) => {
         new AV.Promise(resolve => {
             productCategory1.getProductCategorys({productMethodId}).then(result => {
                 data = extend(data, {'category1' : result});
+                console.log(data.category1);
                 resolve();
             });
         }),
@@ -80,6 +81,7 @@ router.get('/', (req, res) => {
             if (category1Id) {
                 productCategory2.getProductCategorys({category1Id}).then(result => {
                     data = extend(data, {'category2': result});
+                    console.log(data.category2);
                     resolve();
                 });
             } else {
@@ -89,16 +91,19 @@ router.get('/', (req, res) => {
         new AV.Promise(resolve => {
             product.getProducts(options).then(result => {
                 data = extend(data, {items: result});
+                console.log(data.items.length);
                 resolve();
             });
         }),
         new AV.Promise(resolve => {
             product.getProducts(options, true).then(result => {
                 data = extend(data, {count: result});
+                console.log(data.count);
                 resolve();
             });
         })
     ).then(() => {
+        console.log(333);
         res.render('default/search', data);
     });
 
