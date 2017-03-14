@@ -20,7 +20,45 @@
 </div>
 
 <div class="main-menu am-g am-g-fixed">
-
+    <div class="am-u-sm-4">
+        <div class="am-dropdown" data-am-dropdown>
+            <ul class="am-dropdown-content">
+                <% for(var i=0; i<category1.length; i++) { %>
+                <% if (cat1 == category1[i].get('category1Id')) { category1Name = category1[i].get('name'); } %>
+                <li data-id="<%= category1[i].get('category1Id')%>" class="am-dropdown-header"><a href="/search?cat1=<%=category1[i].get('category1Id')%>"><%= category1[i].get('name')%></a></li>
+                <% } %>
+            </ul>
+            <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span><%= category1Name%></span> <span class="am-icon-caret-down"></span></button>
+        </div>
+    </div>
+    <div class="am-u-sm-4">
+        <div class="am-dropdown" data-am-dropdown>
+            <ul class="am-dropdown-content">
+                <% if(category2) { %>
+                    <% for(var i=0; i<category2.length; i++) { %>
+                    <% if (cat2 == category2[i].get('category2Id')) { category2Name = category2[i].get('name'); } %>
+                    <li data-id="<%= category2[i].get('category1Id')%>" class="am-dropdown-header"><a href="/search?cat1=<%= cat1 %>&cat2=<%=category2[i].get('category2Id')%>"><%= category2[i].get('name')%></a></li>
+                    <% } %>
+                <% } else { %>
+                <li data-id="" class="am-dropdown-header"><a href="javascript:;">请选择一级分类</a></li>
+                <% } %>
+            </ul>
+            <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span><%= category2Name%></span> <span class="am-icon-caret-down"></span></button>
+        </div>
+    </div>
+    <div class="am-u-sm-4">
+        <div class="am-dropdown sort" data-am-dropdown>
+            <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span><%= sortTitle%></span> <span class="am-icon-caret-down"></span></button>
+            <ul class="am-dropdown-content">
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&order=pageViews">热门 <i class="am-icon-star"></i></a></li>
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&order=sales">销量 <i class="am-icon-line-chart"></i></a></li>
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&price=asc">价格低-高 <i class="am-icon-sort-amount-desc"></i></a></li>
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&price=desc">价格高-低 <i class="am-icon-sort-amount-asc"></i></a></li>
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&stock=1">现货 <i class="am-icon-plane"></i></a></li>
+                <li><a href="/search?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>">上架时间 <i class="am-icon-calendar-check-o"></i></a></li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <div class="am-alert alert-search-info">共有<span><%= count %></span>件产品</div>

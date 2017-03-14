@@ -55,7 +55,9 @@ router.get('/', (req, res) => {
             'cat1':category1Id,
             'cat2':category2Id,
             'price':price,
-            'sortTitle' : sortTitle
+            'sortTitle' : sortTitle,
+            'category1Name': '产品分类一级',
+            'category2Name': '产品分类二级'
         });
     if (keywords) {
         let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
@@ -93,13 +95,10 @@ router.get('/', (req, res) => {
         new AV.Promise(resolve => {
             product.getProducts(options, true).then(result => {
                 data = extend(data, {count: result});
-                console.log(data.count);
                 resolve();
             });
         })
     ).then(() => {
-        console.log(333);
-        console.log(data.count);
         res.render('default/search', data);
     });
 
