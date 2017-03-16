@@ -75,7 +75,7 @@
         position: relative;
         span {
             display: block;
-            width: 240px;
+            width: 200px;
             height: 30px;
             text-align: center;
             overflow: hidden;
@@ -101,6 +101,107 @@
 
 /* index page */
 .index-page {
+
+    section {
+        
+        height: 200px;
+        margin-bottom: 20px;
+        background:#000 url("../images/default/pages/index-bg.jpg") no-repeat center;
+        background-size:cover;
+        position: relative;
+        
+        h1 {
+            width: 90%;
+            margin:0 0 0 5%;
+            color: #fff;
+            font-size: 22px;
+            font-weight: normal;
+            text-align: center;
+            position: absolute;
+            bottom:60px;
+        }
+        
+        .slogan {
+            background:url("../images/default/pages/slogan.png") no-repeat center;
+            background-size: contain;
+            position: absolute;
+            height: 50px;
+            bottom:60px;
+            width: 90%;
+            margin-left:5%;
+        }
+        
+        .logo {
+            opacity: 0.8;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            a {
+                display: block;
+                width: 80px;
+                height: 30px;
+                background: url("../images/default/pages/logo.png") no-repeat;
+                background-size: 80px 30px;
+            }
+        }
+        
+        .menu {
+            opacity: 0.8;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            a {
+                display: block;
+                width: 40px;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+            }
+            i {
+                font-size: 24px;
+                font-weight: normal;
+                color: #fff;
+                &.am-icon-search {
+                    font-size: 16px;
+                }
+            }
+        }
+        
+        .search-go {
+            position: absolute;
+            width: 80%;
+            margin-left:10%;
+            bottom:20px;
+            .search-go-panel {
+                display: block;
+                background: #f0f0f0;
+                height: 30px;
+                width: 100%;
+                border-radius: 4px;
+                position: relative;
+                span {
+                    position: absolute;
+                    height: 20px;
+                    display: block;
+                    line-height: 20px;
+                    left: 5px;
+                    top: 5px;
+                    font-size: 12px;
+                    color: #666;
+                }
+                i {
+                    position: absolute;
+                    height: 20px;
+                    display: block;
+                    line-height: 20px;
+                    right: 5px;
+                    top: 5px;
+                    font-size: 14px;
+                    color: $colorMain;
+                }
+            }
+        }
+    }
     
     /* 图片轮播css已完成 amazeui */
     .am-slider {
@@ -123,13 +224,7 @@
             }
         }
     }
-    
-    section {
-        height: 240px;
-        margin-bottom: 20px;
-        background:#000 url("../images/default/pages/index-bg.jpg") no-repeat center;
-        background-size:cover;
-    }
+     
     
     .nav {
         li {

@@ -1,4 +1,5 @@
 header {
+    
     background: #fff;
     height: 50px;
     position: relative;
@@ -39,54 +40,7 @@ header {
         }
 
     }
-
-    &.main {
-        .logo {
-            position: absolute;
-            left: 10px;
-            top: 10px;
-            a {
-                display: block;
-                width: 80px;
-                height: 30px;
-                background: url("../images/default/common/logo.png") no-repeat;
-                background-size: 80px 30px;
-            }
-        }
-        .search-go {
-            margin: 0 50px 0 100px;
-            padding-top: 10px;
-            .search-go-panel {
-                display: block;
-                background: #f0f0f0;
-                height: 30px;
-                width: 100%;
-                border-radius: 4px;
-                position: relative;
-                span {
-                    position: absolute;
-                    height: 20px;
-                    display: block;
-                    line-height: 20px;
-                    left: 5px;
-                    top: 5px;
-                    font-size: 12px;
-                    color: #666;
-                }
-                i {
-                    position: absolute;
-                    height: 20px;
-                    display: block;
-                    line-height: 20px;
-                    right: 5px;
-                    top: 5px;
-                    font-size: 14px;
-                    color: #ddd;
-                }
-            }
-        }
-    }
-
+    
     &.sub {
         background: $colorMain;
         .back {

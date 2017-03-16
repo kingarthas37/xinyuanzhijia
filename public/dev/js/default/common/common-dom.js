@@ -28,6 +28,10 @@ $(function() {
         let searchBox = $('#search-box');
         let searchClose = $('.search-close').find('a');
         let searchInput = $('#search-input');
+        let searchSelect = $('.search-select');
+        let searchProductMethod = $('#search-product-method');
+    
+        searchSelect.dropdown();
         
         searchGoPanel.click(function() {
             searchBox.offCanvas('open');
@@ -41,10 +45,10 @@ $(function() {
             searchInput[0].focus();
         });
 
-        searchBox.on('close.offcanvas.amui', function() {
-
+        searchSelect.find('.am-dropdown-content a').click(function() {
+            searchProductMethod.val($(this).data('product-method-id'));
         });
-         
+        
     }
     
     //am-alert
@@ -82,7 +86,6 @@ $(function() {
         let searchBox = $('#search-box');
         let search = searchBox.find('.search');
         let searchInput = searchBox.find('#search-input');
- 
         
         searchInput.typeahead(null, {
             display: function (item) {
