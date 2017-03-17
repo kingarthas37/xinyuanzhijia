@@ -2,6 +2,36 @@
 
 var AMUI = require('amazeui');
 
+
+{
+    Array.prototype.unique = function(){
+        var res = [];
+        var json = {};
+        for(var i = 0; i < this.length; i++){
+            if(!json[this[i]]){
+                res.push(this[i]);
+                json[this[i]] = 1;
+            }
+        }
+        return res;
+    };
+
+    Array.prototype.remove = function(obj){
+        for(var i =0;i <this.length;i++){
+            var temp = this[i];
+            if(!isNaN(obj)){
+                temp=i;
+            }
+            if(temp == obj){
+                for(var j = i;j <this.length;j++){
+                    this[j]=this[j+1];
+                }
+                this.length = this.length-1;
+            }
+        }
+    };
+}
+
 $(function () {
     
     window.WIN_WIDTH = $(window).width();

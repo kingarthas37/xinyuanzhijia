@@ -4,7 +4,7 @@
         <div class="search-title">
 
             <div class="search-select am-dropdown">
-                <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><em>产品专区</em><span class="am-icon-caret-down"></span></button>
+                <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><em>产品专区</em> <span class="am-icon-caret-down"></span></button>
                 <ul class="am-dropdown-content">
                     <li class="am-active"><a href="javascript:;" data-product-method-id="3">产品专区</a></li>
                     <li><a href="javascript:;" data-product-method-id="5">资源专区</a></li>
@@ -12,7 +12,7 @@
             </div>
 
             <div class="search">
-                <form action="/search" method="get">
+                <form action="/search" method="get" class="search-form">
                     <input type="hidden" id="search-product-method" name="method" value="3">
                     <input type="text" id="search-input" name="keywords" class="search-input" placeholder="搜索产品">
                     <button class="submit" type="submit"><i class="am-icon-search"></i>
@@ -28,16 +28,12 @@
 
         <div class="search-history">
             <h3>我的搜索历史</h3>
-            <ul>
-                <li><a href="/search?keywords=金钱">金钱</a></li>
-                <li><a href="/search?keywords=爱情">爱情</a></li>
-                <li><a href="/search?keywords=招财桃花">招财桃花</a></li>
-                <li><a href="/search?keywords=学习好运">学习好运</a></li>
-            </ul>
+            <ul></ul>
             <a class="clear-history" href="javascript:;">清空历史记录</a>
         </div>
 
-        <div class="search-hot">
+        
+        <!--<div class="search-hot">
             <h3>大家都在搜</h3>
             <div>
                 <a href="#">金钱</a>
@@ -53,7 +49,7 @@
                 <a href="#">金钱魔法</a>
                 <a href="#">招财爱情仪式</a>
             </div>
-        </div>
+        </div>-->
 
     </div>
 </div>

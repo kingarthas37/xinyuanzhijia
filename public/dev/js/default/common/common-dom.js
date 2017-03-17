@@ -86,15 +86,17 @@ $(function() {
         let searchBox = $('#search-box');
         let search = searchBox.find('.search');
         let searchInput = searchBox.find('#search-input');
+        let searchProductMethod = $('#search-product-method');
         
         searchInput.typeahead(null, {
+            limit:10,
             display: function (item) {
                 return item.value;
             },
             highlight: true,
             templates: {
                 suggestion: function (item) {
-                    return `<div><a href="/">${item.value}</a></div>`;
+                    return `<div><a href="/search?key=${item.value}">${item.value}</a></div>`;
                 }
             },
             source: new Bloodhound({
@@ -114,6 +116,44 @@ $(function() {
 
         searchBox.find('.tt-menu').css({
             width:WIN_WIDTH
+        });
+        
+    }
+    
+    //搜索历史记录
+    {
+        //$.cookie('new-homepage-guide-clicked', true, { expires:new Date(new Date().getTime() + 1000*60*60*24*30), path: '/' });
+        let cookie = $.cookie('search-result');
+        let searchInput = $('#search-input');
+        let searchHistoryList = $('.search-history ul');
+        let searchForm = $('.search-form');
+        let array = [];
+        
+        if(cookie) {
+            array = cookie.split(',');
+            $.each(array,function(i,n) {
+                searchHistoryList.append(`<li><a href="/search?keyword=${n}">${n}</a></li>`);
+            });
+        } else {
+            searchHistoryList.append('<li><a class="color-gray" href="javascript:;">无搜索记录</a></li>');
+        }
+        
+        searchForm.submit(function() {
+            let value = $.trim(searchInput.val());
+            array.unshift(value);
+            array = array.unique();
+            if(array.length> 5) {
+                array.length = 5;
+            }
+            $.cookie('search-result',array.join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:'/'});
+        });
+        
+        $('.clear-history').click(function() {
+            if(!searchHistoryList.find('li').length) {
+                return false;
+            }
+            searchHistoryList.find('li').detach();
+            $.cookie('search-result','',{expires:new Date(new Date().getTime()),path:'/'});
         });
         
     }
