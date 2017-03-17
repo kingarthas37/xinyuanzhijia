@@ -104,6 +104,16 @@
 
     section {
         
+        &:after {
+            content:"";
+            height:2px;
+            position: absolute;
+            bottom:0;
+            display: block;
+            width: 100%;
+            background: linear-gradient(to right, $colorGradient1 0%, $colorGradient2 100%);
+        }
+        
         height: 200px;
         margin-bottom: 20px;
         background:#000 url("../images/default/pages/index-bg.jpg") no-repeat center;
@@ -174,7 +184,7 @@
             bottom:20px;
             .search-go-panel {
                 display: block;
-                background: #f0f0f0;
+                background: #fff;
                 height: 30px;
                 width: 100%;
                 border-radius: 4px;

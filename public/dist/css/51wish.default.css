@@ -670,6 +670,15 @@ footer {
     background: #000 url("../images/default/pages/index-bg.jpg") no-repeat center;
     background-size: cover;
     position: relative; }
+    .index-page section:after {
+      content: "";
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      display: block;
+      width: 100%;
+      background: -webkit-linear-gradient(left, #6397f5 0%, #f67bbb 100%);
+      background: linear-gradient(to right, #6397f5 0%, #f67bbb 100%); }
     .index-page section h1 {
       width: 90%;
       margin: 0 0 0 5%;
@@ -722,7 +731,7 @@ footer {
       bottom: 20px; }
       .index-page section .search-go .search-go-panel {
         display: block;
-        background: #f0f0f0;
+        background: #fff;
         height: 30px;
         width: 100%;
         border-radius: 4px;
