@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     let keywords = req.query.name;
     let data = [];
     let productMethodId = req.query.method || null;
-    let order = 'pageViews';
+    let order = 'sales';
     let options = {limit, 'search':keywords, productMethodId, order};
     AV.Promise.when(
         new AV.Promise(resolve => {
