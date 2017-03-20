@@ -1,20 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="/assets/i/app-icon72x72@2x.png">
-    <meta name="apple-mobile-web-app-title" content="51wish.cn" />
+    <% include ../partials/meta %>
     <title><%= title %></title>
+    <meta name="keywords" content="" >
+    <meta name="description" content="" >
+    <% include ../partials/css %>
     <% include ../partials/tongji %>
 </head>
-<body>
+
+<body class="detail-page">
+
+<header class="sub fixed">
+    <div class="back">
+        <a href="javascript:;" class="go-back">
+            <i class="am-icon-angle-left"></i>
+        </a>
+    </div>
+</header>
+
+<div class="am-slider am-slider-default">
+    <ul class="am-slides">
+        <% for(var i in item.mainImage){%>
+            <% if(item.mainImage[i].isMainImage) {%>
+                <li><img src="<%= item.mainImage[i].url; %>" /></li>
+            <%}%>
+        <%}%>
+    </ul>
+</div>
+ 
+
 <%= item.name %>
 <%= item.description %>
 <%= item.salePrice %>
 <%= item.detail %>
+
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+<script>
+    $(function() {
+        var product = require('product');
+        product.detailFun();
+    });
+</script>
 </body>
 </html>
+
+

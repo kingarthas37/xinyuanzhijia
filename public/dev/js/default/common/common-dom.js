@@ -96,7 +96,7 @@ $(function() {
             highlight: true,
             templates: {
                 suggestion: function (item) {
-                    return `<div><a href="/search?key=${item.value}">${item.value}</a></div>`;
+                    return `<div><a href="/detail/${item.productId}">${item.value}</a></div>`;
                 }
             },
             source: new Bloodhound({

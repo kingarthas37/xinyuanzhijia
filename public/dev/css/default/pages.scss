@@ -115,7 +115,6 @@
         }
         
         height: 200px;
-        margin-bottom: 20px;
         background:#000 url("../images/default/pages/index-bg.jpg") no-repeat center;
         background-size:cover;
         position: relative;
@@ -212,43 +211,30 @@
             }
         }
     }
-    
-    /* 图片轮播css已完成 amazeui */
-    .am-slider {
-        box-shadow: none;
-        overflow: hidden;
-        .am-control-nav {
-            bottom:0;
-            vertical-align: middle;
-            height: 30px;
-            line-height: 30px;
-            li {
-                vertical-align: middle;
-                a {
-                    box-shadow: none;
-                    background: #fff;
-                    &.am-active {
-                        background: $colorMain;
-                    }
-                }
-            }
-        }
-    }
      
     
     .nav {
+        border-bottom:5px solid #eee;
         li {
+            
             width:25%;
             float: left;
-            margin-bottom: 10px;
+            
             a {
                 font-size: 13px;
                 display: block;
                 text-align: center;
+                padding: 15px 0;
+                border-right:1px solid #f5f5f5;
+                border-bottom:1px solid #f5f5f5;
+
+                &:nth-child(4n) {
+                    border-right: none;
+                }
                 img {
                     display: block;
                     margin:0 auto 5px auto;
-                    width: 50%;
+                    width: 30%;
                 }
             }
         }
@@ -353,7 +339,33 @@
     
 }
 
-/* search page */
-.search-page {
-   
+
+/* detail page */
+.detail-page {
+    /* 图片轮播css已完成 amazeui */
+    .am-slider {
+        box-shadow: none;
+        overflow: hidden;
+        .am-control-nav {
+            bottom:10px;
+            vertical-align: middle;
+            height: 30px;
+            line-height: 30px;
+            li {
+                vertical-align: middle;
+                a {
+                    box-shadow: none;
+                    background: #eee;
+                    &.am-active {
+                        background: $colorMain;
+                    }
+                }
+            }
+        }
+    }
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+    }
 }

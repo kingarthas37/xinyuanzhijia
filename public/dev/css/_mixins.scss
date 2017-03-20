@@ -107,9 +107,6 @@
   text-align: center;
   display:table;
   table-layout:fixed;
-  *overflow: hidden;
-  *font-size:$height;
-  *line-height: 1;
   a {
     width: $width;
     height: $height;
