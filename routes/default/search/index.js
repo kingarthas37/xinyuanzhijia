@@ -58,7 +58,8 @@ router.get('/', (req, res) => {
             'price':price,
             'sortTitle' : sortTitle,
             'category1Name': '产品分类一级',
-            'category2Name': '产品分类二级'
+            'category2Name': '产品分类二级',
+            'method': productMethodId
         });
     if (keywords) {
         let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
