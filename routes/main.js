@@ -12,7 +12,7 @@ module.exports = {
     
     '/search':require('./default/search/index'),
     '/detail':require('./default/product/detail'),
-    '/list':require('./default/product/index'),
+    //'/list':require('./default/product/index'),
     '/suggest':require('./default/search/suggest'),
 
     '/order/express': require('./default/order/express'),
