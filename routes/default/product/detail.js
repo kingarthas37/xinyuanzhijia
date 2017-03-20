@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
             let memberId = member ? member.id : null;
             productClick.setProductClick(memberId, config.productType.all,result.get('productId'));
             data = extend(data, {'item': result.attributes});
-            res.render('default/search/detail', data);
+            res.render('default/product/detail', data);
         } else {
             res.redirect('/error/404');
         }

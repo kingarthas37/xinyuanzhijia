@@ -11,7 +11,8 @@ module.exports = {
     '/user/mobile':require('./default/user/mobile'),
     
     '/search':require('./default/search/index'),
-    '/detail':require('./default/search/detail'),
+    '/detail':require('./default/product/detail'),
+    '/list':require('./default/product/index'),
     '/suggest':require('./default/search/suggest'),
 
     '/order/express': require('./default/order/express'),
