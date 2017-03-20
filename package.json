@@ -44,7 +44,7 @@
     "vinyl-source-stream": "~1.1.0",
     "vinyl-transform": "^1.0.0",
     "webshot": "^0.18.0",
-    "xtend": "~4.0.0"
+    "xtend": "~4.0.0",
     "factor-bundle": "~2.5.0",
     "watchify": "~3.6.0",
     "browser-sync": "~2.9.0",
