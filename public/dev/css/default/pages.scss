@@ -388,8 +388,8 @@
             flex: 1;
             height: 80px;
             .price {
-                height: 30px;
-                line-height: 30px;
+                height: 44px;
+                line-height: 44px;
                 font-size: 22px;
                 color: #ff7d00;
                 border-right: 1px dashed #ddd;
@@ -397,15 +397,15 @@
             }
             div {
                 font-size: 14px;
-                height: 30px;
-                line-height: 30px;
+                height: 16px;
+                line-height: 16px;
                 border-right: 1px dashed #ddd;
                 color: #999;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 span {
-                    margin-right: 10px;
+                    margin-right: 6px;
                 }
             }
         }
@@ -417,13 +417,13 @@
             span {
                 color: #999;
                 position: absolute;
-                bottom:5px;
+                bottom:6px;
                 left:0;
                 width: 80px;
                 height: 20px;
                 line-height: 20px;
                 text-align: center;
-                font-size: 13px;
+                font-size: 12px;
                 z-index: 1;
                 overflow: hidden;
                 text-overflow: ellipsis;
