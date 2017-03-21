@@ -376,6 +376,7 @@
         margin:0;
         padding: 10px 10px 5px 10px;
         font-size: 16px;
+        color: $colorMain;
     }
     
     section {
@@ -395,22 +396,93 @@
                 display: block;
             }
             div {
+                font-size: 14px;
                 height: 30px;
                 line-height: 30px;
                 border-right: 1px dashed #ddd;
-                color: #888;
+                color: #999;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                span {
+                    margin-right: 10px;
+                }
             }
         }
         .favorite-box {
+            margin-left:10px;
             height: 80px;
             width: 80px;
+            position: relative;
+            span {
+                color: #999;
+                position: absolute;
+                bottom:5px;
+                left:0;
+                width: 80px;
+                height: 20px;
+                line-height: 20px;
+                text-align: center;
+                font-size: 13px;
+                z-index: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                &.active {
+                    color: #e2264d;
+                }
+            }
         }
     }
     
-    .detail {
-        padding:10px;
+    .am-tabs {
+        .am-nav-tabs {
+            border-color:#eee;
+        }
+        .am-tabs-bd {
+            border: none;
+        }
+        .am-tabs-nav {
+            li {
+                width: 50%;
+                text-align: center;
+                border:none;
+                a {
+                    padding: 0 20px;
+                    height: 45px;
+                    line-height: 45px;
+                    margin:0;
+                    display: inline-block;
+                    color: #666;
+                    border: none !important;
+                    border-bottom: 1px solid #eee !important;
+                }
+                &.am-active {
+                    a {
+                        font-weight: bold;
+                        border-bottom: 2px solid $colorMain !important;
+                        color: $colorMain;
+                    }
+                }
+            }  
+        }
+        .am-tab-panel {
+            padding: 20px 10px;
+            line-height: 26px;
+            
+        }
+        
     }
     
-   
+    .detail {
+        h3 {
+            height: 16px;
+            line-height: 16px;
+            margin:0 0 10px 0;
+            border-left: 2px solid $colorMain;
+            padding-left: 6px;
+            color: $colorMain;
+        }
+    }
     
 }
