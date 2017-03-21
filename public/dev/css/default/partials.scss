@@ -50,10 +50,11 @@ header {
             left:0;
             z-index: 1;
             background: none;
+            
             .go-back {
                 border-radius: 100%;
-                background: #f5f5f5;
-                opacity: 0.8;
+                background-color:rgba(0,0,0,0.5);
+                
             }
         }
         

@@ -344,8 +344,11 @@
 .detail-page {
     /* 图片轮播css已完成 amazeui */
     .am-slider {
+        background: #f5f5f5;
         box-shadow: none;
         overflow: hidden;
+        margin:0;
+        
         .am-control-nav {
             bottom:10px;
             vertical-align: middle;
@@ -368,4 +371,46 @@
         max-height: 100%;
         display: block;
     }
+    
+    h1 {
+        margin:0;
+        padding: 10px 10px 5px 10px;
+        font-size: 16px;
+    }
+    
+    section {
+        display: flex;
+        padding: 0 10px;
+        border-bottom: 5px solid #eee;
+        .info {
+            padding: 10px 0;
+            flex: 1;
+            height: 80px;
+            .price {
+                height: 30px;
+                line-height: 30px;
+                font-size: 22px;
+                color: #ff7d00;
+                border-right: 1px dashed #ddd;
+                display: block;
+            }
+            div {
+                height: 30px;
+                line-height: 30px;
+                border-right: 1px dashed #ddd;
+                color: #888;
+            }
+        }
+        .favorite-box {
+            height: 80px;
+            width: 80px;
+        }
+    }
+    
+    .detail {
+        padding:10px;
+    }
+    
+   
+    
 }

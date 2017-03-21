@@ -23,19 +23,32 @@
     <ul class="am-slides">
         <% for(var i in item.mainImage){%>
             <% if(item.mainImage[i].isMainImage) {%>
-                <li><img src="<%= item.mainImage[i].url; %>" /></li>
+                <li><a href="<%= item.mainImage[i].url; %>"><img src="<%= item.mainImage[i].url; %>" /></a></li>
             <%}%>
         <%}%>
     </ul>
 </div>
- 
 
-<%= item.name %>
-<%= item.description %>
-<%= item.salePrice %>
-<%= item.detail %>
+<h1><%= item.name %></h1>
 
+<section>
+    <div class="info">
+        <strong class="price">¥ <%= item.price || 0 %>.00</strong>
+        <div>
+            <span>浏览量:2000</span>
+            <span class="split"></span>
+            <span>总销量:10</span>
+        </div>
+    </div>
+    <div class="favorite-box">
+        <input id="favorite" type="checkbox"/>
+        <label for="favorite" aria-label="like"><i class="am-icon-heart"></i></label>
+    </div>
+</section>
 
+<div class="detail">
+    <%= item.detail %>
+</div>
 
 <% include ../partials/footer %>
 <% include ../partials/js %>
@@ -47,5 +60,3 @@
 </script>
 </body>
 </html>
-
-
