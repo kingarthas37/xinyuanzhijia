@@ -17,6 +17,20 @@ let data = extend(config.data, {
     currentPage: 'userinfo'
 });
 
+router.get('/', (req,res) => {
+    let sessionData = req.cookies.login;
+    user.isWebUserLogin(req,res);
+    let member = user.getDecodeByBase64(sessionData);
+    let page = req.query.page ? parseInt(req.query.page) : 1;
+    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
+    let order = 'createdAt';
+    productWish.getWishByCommonMemberId({'commonMemberId':member.id, page, limit, order}).then(result => {
+        data = extend(data, result);
+        res.render('default/user/wish', data);
+    });
+
+});
+
 
 router.get('/add/:productId', (req,res) => {
     let sessionData = req.cookies.login;
@@ -24,9 +38,8 @@ router.get('/add/:productId', (req,res) => {
     let member = user.getDecodeByBase64(sessionData);
     let productId = req.params.productId ? req.params.productId : null;
     if (productId && member.id) {
-        productWish.add({'productId':productId,'commonMemberId':member.id}).then(()=>{
-            res.send({success:1});
-        });
+        productWish.add({'productId':productId,'commonMemberId':member.id})
+        res.send({success:1});
     } else {
         res.send({success:0});
     }
