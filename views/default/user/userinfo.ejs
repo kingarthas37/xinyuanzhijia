@@ -33,7 +33,7 @@
             <label>手机号码:</label>
             <div class="am-form-group am-form-icon">
                 <i class="am-icon-mobile"></i>
-                <input value="<%= user.mobile %>" disabled="disabled" type="text" class="am-form-field" placeholder="请输入您的手机号">
+                <input value="<%= user.mobile %>" disabled="disabled" type="tel" class="am-form-field" placeholder="请输入您的手机号">
                 <span class="infos">
                     <a href="/user/mobile/<%= user.commonMemberId %>" class="color-main"><%if(user.mobile) {%>修改<%}else{%>绑定<%}%>手机号</a>
                 </span>
