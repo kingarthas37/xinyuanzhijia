@@ -68,10 +68,10 @@
     <% for(var i=0; i< items.length;i++) {%>
         <li>
             <div class="img">
-                <a href="/detail/<%=items[i].get('productId') %>"><img src="/<%= asset %>/images/default/common/lazy.png" class="lazy" width="100" height="100" data-original="<% for(var n in items[i].get('mainImage')) { %><% if(items[i].attributes.mainImage[n].isMainImage) { %><%= items[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
+                <a href="/product/detail/<%=items[i].get('productId') %>"><img src="/<%= asset %>/images/default/common/lazy.png" class="lazy" width="100" height="100" data-original="<% for(var n in items[i].get('mainImage')) { %><% if(items[i].attributes.mainImage[n].isMainImage) { %><%= items[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
             </div>
             <div class="detail">
-                <h3><a href="/detail/<%=items[i].get('productId') %>"><%= items[i].get('name') %></a></h3>
+                <h3><a href="/product/detail/<%=items[i].get('productId') %>"><%= items[i].get('name') %></a></h3>
                 <p>
                     <span class="price">¥<strong> <%= (items[i].get('price') > 0 ? parseFloat(items[i].get('price')) : 0.00) %></strong></span>
                     <span><%=items[i].get('pageViews') %>次浏览</span>

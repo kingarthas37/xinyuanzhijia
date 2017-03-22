@@ -2,6 +2,7 @@
 
 let product = require('../../../lib/models/product').createNew();
 let productClick = require('../../../lib/models/product-click').createNew();
+let productWish = require('../../../lib/models/product-wish').createNew();
 let request = product.getRequest();
 let config = product.getConfig();
 let router = product.getRouter();
@@ -17,16 +18,35 @@ let data = extend(config.data, {
 router.get('/:id', (req, res) => {
     let id = req.params.id ? parseInt(req.params.id) : null;
     let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
-    product.getProductById(id).then(result => {
-        if(result) {
-            product.updateProductPageViews(result);
-            let memberId = member ? member.id : null;
-            productClick.setProductClick(memberId, config.productType.all,result.get('productId'));
-            data = extend(data, {'item': result.attributes});
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            product.getProductById(id).then(result => {
+                product.updateProductPageViews(result);
+                let memberId = member ? member.id : null;
+                productClick.setProductClick(memberId, config.productType.all,result.get('productId'));
+                data = extend(data, {'item': result.attributes});
+                resolve();
+            });
+        }),
+        new AV.Promise(resolve => {
+            productWish.getWishByCommonMemberIdAndProductId(member.id, id).then(result => {
+                data = extend(data, result);
+                resolve();
+            });
+        }),
+        new AV.Promise(resolve => {
+            productWish.getWishCountByProductId(id).then(result => {
+                data = extend(data, {'wishCount': result.count});
+                resolve();
+            });
+        })
+    ).then(() => {
+        if(data.item) {
             res.render('default/product/detail', data);
         } else {
             res.redirect('/error/404');
         }
+
     });
 });
 

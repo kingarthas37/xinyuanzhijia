@@ -34,29 +34,35 @@ router.get('/', (req,res) => {
 
 router.get('/add/:productId', (req,res) => {
     let sessionData = req.cookies.login;
-    user.isWebUserLogin(req,res);
-    let member = user.getDecodeByBase64(sessionData);
-    let productId = req.params.productId ? req.params.productId : null;
-    if (productId && member.id) {
-        productWish.add({'productId':productId,'commonMemberId':member.id})
-        res.send({success:1});
+    if(!req.cookies.login) {
+        res.send({success: -1});
     } else {
-        res.send({success:0});
+        let member = user.getDecodeByBase64(sessionData);
+        let productId = req.params.productId ? req.params.productId : null;
+        if (productId && member.id) {
+            productWish.add({'productId':productId,'commonMemberId':member.id})
+            res.send({success:1});
+        } else {
+            res.send({success:0});
+        }
     }
 });
 
 //保存userinfo
 router.post('/edit/:productId', (req, res) => {
     let sessionData = req.cookies.login;
-    user.isWebUserLogin(req,res);
-    let member = user.getDecodeByBase64(sessionData);
-    let productId = req.params.productId ? req.params.productId : null;
-    if (productId && member.id) {
-        productWish.edit({'productId':productId,'commonMemberId':member.id,'status':false}).then(()=>{
-            res.send({success:1});
-        });
+    if(!req.cookies.login) {
+        res.send({success: -1});
     } else {
-        res.send({success:0});
+        let member = user.getDecodeByBase64(sessionData);
+        let productId = req.params.productId ? req.params.productId : null;
+        if (productId && member.id) {
+            productWish.edit({'productId':productId,'commonMemberId':member.id,'status':false}).then(()=>{
+                res.send({success:1});
+            });
+        } else {
+            res.send({success:0});
+        }
     }
 });
 
