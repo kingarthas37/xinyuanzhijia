@@ -49,7 +49,7 @@ router.get('/add/:productId', (req,res) => {
 });
 
 //保存userinfo
-router.post('/edit/:productId', (req, res) => {
+router.get('/edit/:productId', (req, res) => {
     let sessionData = req.cookies.login;
     if(!req.cookies.login) {
         res.send({success: -1});
