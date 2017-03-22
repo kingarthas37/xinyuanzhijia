@@ -63,6 +63,7 @@
     left: 50%;
     border-radius: 50%;
     content: '';
+    opacity: 0;
 }
 [for='favorite']:before {
     box-sizing: border-box;
@@ -72,6 +73,7 @@
     height: 4.5rem;
     -webkit-transform: scale(0);
     transform: scale(0);
+    opacity: 1;
 }
 [for='favorite']:after {
     margin: -0.1875rem;
