@@ -96,7 +96,7 @@ $(function() {
             highlight: true,
             templates: {
                 suggestion: function (item) {
-                    return `<div><a href="/detail/${item.productId}">${item.value}</a></div>`;
+                    return `<div><a href="/product/detail/${item.productId}">${item.value}</a></div>`;
                 }
             },
             source: new Bloodhound({
@@ -127,12 +127,13 @@ $(function() {
         let searchInput = $('#search-input');
         let searchHistoryList = $('.search-history ul');
         let searchForm = $('.search-form');
+        let searchProductMethod = $('#search-product-method');
         let array = [];
         
         if(cookie) {
             array = cookie.split(',');
             $.each(array,function(i,n) {
-                searchHistoryList.append(`<li><a href="/search?keyword=${n}">${n}</a></li>`);
+                searchHistoryList.append(`<li><a href="/search?method=${searchProductMethod.val()}&keywords=${n}">${n}</a></li>`);
             });
         } else {
             searchHistoryList.append('<li><a class="color-gray" href="javascript:;">无搜索记录</a></li>');

@@ -41,12 +41,11 @@
         </div>
     </div>
     <div class="favorite-box">
-        <input id="favorite" type="checkbox"/>
+        <input id="favorite" type="checkbox" data-product-id="<%=item.productId%>" <%if(wish){%>checked="checked"<%}%> />
         <label for="favorite" aria-label="like"><i class="am-icon-heart"></i></label>
-        <span class="active">已收藏(<%= wishCount %>)</span>
+        <span <%if(wish){%>class="active"<%}%> ><i class="favorite-text"><%if(wish){%>已收藏<%}else{%>收藏<%}%></i>(<i class="favorite-count"><%= wishCount %></i>)</span>
     </div>
 </section>
-
 
 <div class="am-tabs" data-am-tabs>
     <ul class="am-tabs-nav am-nav am-nav-tabs">
@@ -59,7 +58,7 @@
             <%= item.detail %>
         </div>
         <div class="am-tab-panel" id="tab-product-param">
-            走在忠孝东路<br>徘徊在茫然中<br>在我的人生旅途<br>选择了多少错误<br>我在睡梦中惊醒<br>感叹悔言无尽<br>恨我不能说服自己<br>接受一切教训<br>让生命去等候<br>等候下一个漂流<br>让生命去等候<br>等候下一个伤口
+            
         </div>
     </div>
 </div>

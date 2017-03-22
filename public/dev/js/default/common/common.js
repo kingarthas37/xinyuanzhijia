@@ -44,6 +44,9 @@ $(function () {
         'content-type':'application/json'
     };
     
+    //login
+    window.isLogin = !!$.cookie('login');
+    
     // Avoid `console` errors in browsers that lack a console.
     {
         var method;
