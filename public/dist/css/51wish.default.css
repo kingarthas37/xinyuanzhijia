@@ -6,6 +6,9 @@
 .main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after {
   clear: both; }
 
+#search-box .twitter-typeahead .tt-menu a {
+  display: inline-block; }
+
 .main-menu .am-dropdown .am-dropdown-content li a {
   overflow: hidden;
   white-space: nowrap;
@@ -403,11 +406,15 @@ footer {
     border-radius: 0;
     border: none;
     margin: 7px 0 0 0;
-    padding: 0 0 10px 0; }
+    padding: 0 0 5px 0; }
     #search-box .twitter-typeahead .tt-menu a {
       display: block;
       height: 36px;
-      line-height: 36px; }
+      line-height: 36px;
+      padding: 0 5px; }
+      #search-box .twitter-typeahead .tt-menu a:active, #search-box .twitter-typeahead .tt-menu a:hover, #search-box .twitter-typeahead .tt-menu a:focus {
+        box-shadow: none;
+        background: #f5f5f5; }
 
 .main-tab {
   border-bottom: 1px solid #eee;
