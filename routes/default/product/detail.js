@@ -29,10 +29,16 @@ router.get('/:id', (req, res) => {
             });
         }),
         new AV.Promise(resolve => {
-            productWish.getWishByCommonMemberIdAndProductId(member.id, id).then(result => {
-                data = extend(data, result);
+            if (member) {
+                productWish.getWishByCommonMemberIdAndProductId(member.id, id).then(result => {
+                    data = extend(data, result);
+                    resolve();
+                });
+            } else {
+                data = extend(data, {wish:false});
                 resolve();
-            });
+            }
+
         }),
         new AV.Promise(resolve => {
             productWish.getWishCountByProductId(id).then(result => {
