@@ -10,7 +10,7 @@ $(function() {
         $('.go-back').click(function() {
             history.go(-1);
         });
-    }
+    } 
     
     //header menu 下拉
     {
