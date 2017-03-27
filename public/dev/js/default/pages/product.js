@@ -11,7 +11,8 @@ module.exports = {
         this.favoriteProduct();
 
         $('.am-slider').flexslider({
-            directionNav: false
+            directionNav: false,
+            slideshow:false
         });
 
         //图片预览
