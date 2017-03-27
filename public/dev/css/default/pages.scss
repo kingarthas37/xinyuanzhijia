@@ -379,7 +379,7 @@
         color: $colorMain;
     }
     
-    section {
+    .info-content {
         display: flex;
         padding: 0 10px;
         border-bottom: 5px solid #eee;
@@ -396,11 +396,10 @@
                 display: block;
             }
             div {
-                font-size: 14px;
+                font-size: 12px;
                 height: 16px;
                 line-height: 16px;
                 border-right: 1px dashed #ddd;
-                color: #999;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
@@ -467,21 +466,32 @@
             }  
         }
         .am-tab-panel {
-            padding: 20px 10px;
+            padding: 20px 15px;
             line-height: 26px;
-            
         }
         
     }
     
     .detail {
         h3 {
-            height: 16px;
-            line-height: 16px;
+            font-size: 14px;
+            height: 14px;
+            line-height: 14px;
             margin:0 0 10px 0;
             border-left: 2px solid $colorMain;
             padding-left: 6px;
             color: $colorMain;
+        }
+        .content {
+            margin-bottom:15px;
+            font-size: 13px;
+            p {
+                margin:0;
+            }
+            img {
+                margin:20px 0;
+                width: 100%;
+            }
         }
     }
     

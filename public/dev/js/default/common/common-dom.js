@@ -133,6 +133,7 @@ $(function() {
         if(cookie) {
             array = cookie.split(',');
             $.each(array,function(i,n) {
+                n = decodeURIComponent(n);
                 searchHistoryList.append(`<li><a href="/search?method=${searchProductMethod.val()}&keywords=${n}">${n}</a></li>`);
             });
         } else {

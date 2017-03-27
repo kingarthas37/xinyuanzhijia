@@ -8,3 +8,5 @@ require('jquery-infinitescroll');
 require('clipboard');
 require('typeahead');
 require('bloodhound');
+require('photoswipe');
+require('photoswipe-ui');

@@ -9,6 +9,7 @@ let router = product.getRouter();
 let extend = product.getExtend();
 let async = product.getAsync();
 let AV = product.getAV();
+let markdown = require('markdown').markdown;
 
 let data = extend(config.data, {
     title: `${config.data.name} - 搜索`,
@@ -48,6 +49,13 @@ router.get('/:id', (req, res) => {
         })
     ).then(() => {
         if(data.item) {
+            
+            data.item.detail = markdown.toHTML(data.item.detail);
+            data.item.property = markdown.toHTML(data.item.property);
+            data.item.instruction = markdown.toHTML(data.item.instruction);
+            data.item.use = markdown.toHTML(data.item.use);
+            data.item.detailImage = markdown.toHTML(data.item.detailImage);
+            
             res.render('default/product/detail', data);
         } else {
             res.redirect('/error/404');

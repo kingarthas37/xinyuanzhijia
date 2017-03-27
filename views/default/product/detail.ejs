@@ -29,9 +29,9 @@
     </ul>
 </div>
 
-<h1><%= item.name %></h1>
+<h1><%- item.name %></h1>
 
-<section>
+<div class="info-content">
     <div class="info">
         <strong class="price">¥ <%= item.price || 0 %>.00</strong>
         <div>
@@ -45,7 +45,7 @@
         <label for="favorite" aria-label="like"><i class="am-icon-heart"></i></label>
         <span <%if(wish){%>class="active"<%}%> ><i class="favorite-text"><%if(wish){%>已收藏<%}else{%>收藏<%}%></i>(<i class="favorite-count"><%= wishCount %></i>)</span>
     </div>
-</section>
+</div>
 
 <div class="am-tabs" data-am-tabs>
     <ul class="am-tabs-nav am-nav am-nav-tabs">
@@ -54,14 +54,65 @@
     </ul>
     <div class="am-tabs-bd am-tabs-bd-ofv">
         <div class="am-tab-panel am-active detail" id="tab-product-detail">
-            <h3>详情介绍</h3>
-            <%= item.detail %>
+            
+            <%if(item.instruction){%>
+                <h3>产品说明:</h3>
+                <div class="content"><%- item.instruction%></div>
+            <%}%>
+            
+            <%if(item.detail){%>
+                <h3>详情介绍:</h3>
+                <div class="content"><%- item.detail %></div>
+            <%}%>
+            
+            <%if(item.use){%>
+                <h3>使用说明:</h3>
+                <div class="content"><%- item.use %></div>
+            <%}%>
+            
+            <%if(item.detailImage){%>
+            <h3>产品图片:</h3>
+            <div class="detail-image content">
+                <%- item.detailImage%>
+            </div>
+            <%}%>
+            
         </div>
         <div class="am-tab-panel" id="tab-product-param">
-            
+            sdf
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
         </div>
     </div>
 </div>
+
 
 <% include ../partials/footer %>
 <% include ../partials/js %>
