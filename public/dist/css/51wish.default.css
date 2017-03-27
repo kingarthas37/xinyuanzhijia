@@ -1,9 +1,9 @@
 @charset "UTF-8";
-.main-tab:before, .main-menu .am-dropdown .am-dropdown-content li:before, .main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after {
+.main-tab:before, .main-menu .am-dropdown .am-dropdown-content li:before, .detail-page .slider-recommend .am-slides:before, .main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after, .detail-page .slider-recommend .am-slides:after {
   content: ' ';
   display: table; }
 
-.main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after {
+.main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after, .detail-page .slider-recommend .am-slides:after {
   clear: both; }
 
 #search-box .twitter-typeahead .tt-menu a {
@@ -29,6 +29,14 @@ fieldset {
 
 i, em {
   font-style: normal; }
+
+dl {
+  margin: 0;
+  padding: 5px 0; }
+
+dt + dd {
+  padding: 0;
+  margin: 0; }
 
 ul {
   margin: 0;
@@ -946,30 +954,32 @@ footer {
         white-space: nowrap; }
         .detail-page .info-content .favorite-box span.active {
           color: #e2264d; }
-  .detail-page .am-tabs .am-nav-tabs {
-    border-color: #eee; }
-  .detail-page .am-tabs .am-tabs-bd {
-    border: none; }
-  .detail-page .am-tabs .am-tabs-nav li {
-    width: 50%;
-    text-align: center;
-    border: none; }
-    .detail-page .am-tabs .am-tabs-nav li a {
-      padding: 0 20px;
-      height: 45px;
-      line-height: 45px;
-      margin: 0;
-      display: inline-block;
-      color: #666;
-      border: none !important;
-      border-bottom: 1px solid #eee !important; }
-    .detail-page .am-tabs .am-tabs-nav li.am-active a {
-      font-weight: bold;
-      border-bottom: 2px solid #6071d5 !important;
-      color: #6071d5; }
-  .detail-page .am-tabs .am-tab-panel {
-    padding: 20px 15px;
-    line-height: 26px; }
+  .detail-page .am-tabs {
+    border-bottom: 5px solid #eee; }
+    .detail-page .am-tabs .am-nav-tabs {
+      border-color: #eee; }
+    .detail-page .am-tabs .am-tabs-bd {
+      border: none; }
+    .detail-page .am-tabs .am-tabs-nav li {
+      width: 50%;
+      text-align: center;
+      border: none; }
+      .detail-page .am-tabs .am-tabs-nav li a {
+        padding: 0 20px;
+        height: 45px;
+        line-height: 45px;
+        margin: 0;
+        display: inline-block;
+        color: #666;
+        border: none !important;
+        border-bottom: 1px solid #eee !important; }
+      .detail-page .am-tabs .am-tabs-nav li.am-active a {
+        font-weight: bold;
+        border-bottom: 2px solid #6071d5 !important;
+        color: #6071d5; }
+    .detail-page .am-tabs .am-tab-panel {
+      padding: 20px 15px;
+      line-height: 26px; }
   .detail-page .detail h3 {
     font-size: 14px;
     height: 14px;
@@ -986,6 +996,62 @@ footer {
     .detail-page .detail .content img {
       margin: 20px 0;
       width: 100%; }
+  .detail-page .property dl {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 14px;
+    border-bottom: 1px dashed #efefef; }
+  .detail-page .property dt {
+    height: 20px;
+    line-height: 20px;
+    width: 80px;
+    padding: 0;
+    text-align: right;
+    font-weight: bold; }
+  .detail-page .property dd {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    padding-left: 10px;
+    line-height: 20px; }
+  .detail-page .buy-button {
+    z-index: 999;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0; }
+    .detail-page .buy-button .am-btn {
+      border: none;
+      color: #fff;
+      background: #6071d5;
+      height: 45px;
+      display: block;
+      width: 100%; }
+  .detail-page .recommend {
+    border-bottom: 5px solid #eee; }
+    .detail-page .recommend h3 {
+      margin: 0;
+      font-size: 14px;
+      color: #6071d5;
+      padding: 0 0 10px 10px;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 1px solid #eee; }
+  .detail-page .slider-recommend {
+    background: #fff; }
+    .detail-page .slider-recommend .am-slides dl {
+      width: 33%;
+      float: left;
+      padding: 10px 10px 0 10px; }
+    .detail-page .slider-recommend .am-slides dt img {
+      width: 100%; }
+    .detail-page .slider-recommend .am-control-nav {
+      position: static;
+      height: 20px;
+      line-height: 10px; }
+  .detail-page footer {
+    padding-bottom: 60px; }
 
 .favorite-box {
   display: -webkit-box;

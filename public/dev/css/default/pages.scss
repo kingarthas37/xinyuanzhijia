@@ -435,6 +435,7 @@
     }
     
     .am-tabs {
+        border-bottom: 5px solid #eee;
         .am-nav-tabs {
             border-color:#eee;
         }
@@ -495,4 +496,82 @@
         }
     }
     
+    .property {
+        dl {
+            display: flex;
+            font-size: 14px;
+            border-bottom: 1px dashed #efefef;
+        }
+        dt {
+            height: 20px;
+            line-height: 20px;
+            width: 80px;
+            padding: 0;
+            text-align: right;
+            font-weight: bold;
+        }
+        dd {
+            flex:1;
+            padding-left: 10px;
+            line-height: 20px;
+        }
+    }
+    
+    .buy-button {
+        z-index: 999;
+        position: fixed;
+        width: 100%;
+        bottom:0;
+        left:0;
+        .am-btn {
+            border:none;
+            color: #fff;
+            background: $colorMain;
+            height: 45px;
+            display: block;
+            width: 100%;
+        }
+    }
+    
+    .recommend {
+        border-bottom: 5px solid #eee;
+        h3 {
+            margin:0;
+            font-size: 14px;
+            color: $colorMain;
+            padding:0 0 10px 10px;
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #eee;
+        }
+    }
+    
+    .slider-recommend {
+        
+        background: #fff;
+         
+        .am-slides {
+            @extend %clearfix;
+            dl {
+                width: 33%;
+                float:left;
+                padding: 10px 10px 0 10px;
+            }
+            dt {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .am-control-nav {
+           position: static;
+            height: 20px;
+            line-height: 10px;
+        }
+    }
+    
+    footer {
+        padding-bottom: 60px;
+    }
 }

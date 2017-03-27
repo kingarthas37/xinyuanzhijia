@@ -19,6 +19,16 @@ i,em {
     font-style: normal;
 }
 
+dl {
+    margin: 0;
+    padding: 5px 0;
+}
+
+dt+dd {
+    padding: 0;
+    margin: 0;
+}
+
 ul {
     margin:0;
     padding: 0;

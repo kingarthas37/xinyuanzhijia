@@ -19,7 +19,7 @@
     </div>
 </header>
 
-<div class="am-slider am-slider-default">
+<div class="am-slider am-slider-default slider-image-view">
     <ul class="am-slides">
         <% for(var i in item.mainImage){%>
             <% if(item.mainImage[i].isMainImage) {%>
@@ -52,38 +52,182 @@
         <li class="am-active"><a href="#tab-product-detail">产品详情</a></li>
         <li><a href="#tab-product-param">产品属性</a></li>
     </ul>
-    <div class="am-tabs-bd am-tabs-bd-ofv">
+    <div class="am-tabs-bd ">
         <div class="am-tab-panel am-active detail" id="tab-product-detail">
+
+            <%if(item.detail){%>
+            <h3>详情介绍:</h3>
+            <div class="content"><%- item.detail %></div>
+            <%}%>
             
             <%if(item.instruction){%>
                 <h3>产品说明:</h3>
                 <div class="content"><%- item.instruction%></div>
             <%}%>
             
-            <%if(item.detail){%>
-                <h3>详情介绍:</h3>
-                <div class="content"><%- item.detail %></div>
-            <%}%>
-            
             <%if(item.use){%>
                 <h3>使用说明:</h3>
                 <div class="content"><%- item.use %></div>
             <%}%>
+            
             <%if(item.detailImage){%>
-            <h3>产品图片:</h3>
-            <div class="detail-image content">
-                <%- item.detailImage%>
-            </div>
+                <h3>产品图片:</h3>
+                <div class="detail-image content">
+                    <%- item.detailImage%>
+                </div>
             <%}%>
             
         </div>
-        <div class="am-tab-panel" id="tab-product-param">
-            sdf
+        
+        <div class="am-tab-panel property" id="tab-product-param">
+            
+            <dl>
+                <dt>产地:</dt><dd>美国</dd>
+            </dl>
+            
+            <dl>
+                <dt>尺寸:</dt><dd></dd>
+            </dl>
+
+            <dl>
+                <dt>产地:</dt><dd>美国</dd>
+            </dl>
+
+            <dl>
+                <dt>尺寸:</dt><dd></dd>
+            </dl>
+
+            <dl>
+                <dt>产地:</dt><dd>美国</dd>
+            </dl>
+
+            <dl>
+                <dt>尺寸:</dt><dd></dd>
+            </dl>
+
+            <dl>
+                <dt>产地:</dt><dd>美国</dd>
+            </dl>
+
+            <dl>
+                <dt>尺寸:</dt><dd></dd>
+            </dl>
+
+            <dl>
+                <dt>产地:</dt><dd>美国</dd>
+            </dl>
+
+            <dl>
+                <dt>尺寸:</dt><dd></dd>
+            </dl>
+
+            <dl>
+                <dt>产地:</dt><dd>美国</dd>
+            </dl>
+
+            <dl>
+                <dt>尺寸:</dt><dd></dd>
+            </dl>
+            
         </div>
     </div>
     
 </div>
 
+
+<div class="recommend">
+    <h3>为您搭配:</h3>
+    <div class="am-slider am-slider-default slider-recommend">
+        <ul class="am-slides">
+            <li>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                    <dd></dd>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                    <dd></dd>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                    <dd></dd>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="recommend">
+    <h3>喜欢此产品的用户还喜欢:</h3>
+    <div class="am-slider am-slider-default slider-recommend">
+        <ul class="am-slides">
+            <li>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                    <dd></dd>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                    <dd></dd>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                    <dd></dd>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+                <dl>
+                    <td><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></td>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="buy-button">
+    <button type="button" id="buy" class="am-btn am-btn-default">暂不支持直接购买</button>
+</div>
 
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="pswp__bg"></div>
@@ -111,7 +255,6 @@
         </div>
     </div>
 </div>
-
 
 <% include ../partials/footer %>
 <% include ../partials/js %>
