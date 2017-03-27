@@ -15,6 +15,7 @@ let data = extend(config.data, {
 //首页
 router.get('/:code', (req, res) => {
     let code = req.params.code;
+    console.log(code);
     res.render('default/error/'+code, data);
 
 });
