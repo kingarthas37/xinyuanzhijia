@@ -20,10 +20,6 @@ $(function() {
     //图片懒加载
     {
         $('img.lazy').lazyload();
-        
-        $('img.lazy-container').lazyload({
-            container: $('.lazy-container-view')
-        });
     }
     
     //搜索面板

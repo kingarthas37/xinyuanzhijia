@@ -6,16 +6,18 @@ let PhotoSwipeUI_Default = require('photoswipe-ui');
 module.exports = {
 
     detailFun() {
-
-        //设置主预览图高度
-        //$('.slider-image-view').find('ul').height(WIN_WIDTH);
-        
+ 
         //收藏
         this.favoriteProduct();
 
         $('.am-slider').flexslider({
             directionNav: false,
             slideshow:false
+        });
+        
+        //主图预览图懒加载
+        $('img.lazy-container').lazyload({
+            container: $('.lazy-container-view')
         });
 
         //图片预览
@@ -113,7 +115,7 @@ module.exports = {
         let items = [];
         imageView.find('img').each(function (i, n) {
             items.push({
-                src: $(n).attr('src'),
+                src: $(n).attr('data-original'),
                 w: $(n).attr('swipe-width'),
                 h: $(n).attr('swipe-height')
             });
