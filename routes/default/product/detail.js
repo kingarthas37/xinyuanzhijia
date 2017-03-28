@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
             product.getProductById(id).then(result => {
                 product.updateProductPageViews(result);
                 let memberId = member ? member.id : null;
-                productClick.setProductClick(memberId, config.productType.all,result.get('productId'));
+                productClick.setProductClick(memberId, config.productType.normal,result.get('productId'));
                 data = extend(data, {'item': result.attributes});
                 resolve();
             });
