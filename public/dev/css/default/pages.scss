@@ -344,6 +344,19 @@
         box-shadow: none;
         overflow: hidden;
         margin: 0;
+        
+        
+        &.slider-image-view {
+            &:after {
+                content: "";
+                height: 2px;
+                position: absolute;
+                bottom: 0;
+                display: block;
+                width: 100%;
+                background: linear-gradient(to right, $colorGradient1 0%, $colorGradient2 100%);
+            }
+        }
 
         .am-control-nav {
             bottom: 10px;
@@ -488,7 +501,7 @@
                 margin: 0;
             }
             img {
-                margin: 20px 0;
+                margin: 10px 0;
                 width: 100%;
             }
         }
@@ -530,7 +543,7 @@
             padding: 0 0 10px 10px;
             height: 36px;
             line-height: 36px;
-            border-bottom: 1px dashed #eee;
+            border-bottom: 1px dashed #ddd;
         }
     }
 
