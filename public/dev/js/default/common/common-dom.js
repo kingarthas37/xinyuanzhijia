@@ -20,6 +20,10 @@ $(function() {
     //图片懒加载
     {
         $('img.lazy').lazyload();
+        
+        $('img.lazy-container').lazyload({
+            container: $('.lazy-container-view')
+        });
     }
     
     //搜索面板
@@ -166,7 +170,7 @@ $(function() {
         mainList.infinitescroll({
             debug: false,
             loading: {
-                img:'//51wish.cn/min/images/admin/common/loading.gif',
+                img:'//ac-JoaBcRTt.clouddn.com/8ded071cdd14788c50fa.gif', //loading.gif
                 msgText:'加载中...',
                 speed: 500
             },
@@ -217,7 +221,7 @@ $(function() {
                 content += `
                     <li>
                         <div class="img">
-                            <a href="/detail/${item.productId}"><img src="/min/images/default/common/lazy.png" class="lazy" width="100" height="100" data-original="${image}?imageMogr2/thumbnail/200"></a>
+                            <a href="/detail/${item.productId}"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="${image}?imageMogr2/thumbnail/200"></a>
                         </div>
                         <div class="detail">
                             <h3><a href="/detail/${item.productId}">${item.name}</a></h3>

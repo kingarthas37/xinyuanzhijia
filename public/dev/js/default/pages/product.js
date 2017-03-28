@@ -7,6 +7,9 @@ module.exports = {
 
     detailFun() {
 
+        //设置主预览图高度
+        //$('.slider-image-view').find('ul').height(WIN_WIDTH);
+        
         //收藏
         this.favoriteProduct();
 

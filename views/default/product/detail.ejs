@@ -20,12 +20,21 @@
 </header>
 
 <div class="am-slider am-slider-default slider-image-view">
-    <ul class="am-slides">
-        <% for(var i in item.mainImage){%>
-            <% if(item.mainImage[i].isMainImage) {%>
-                <li><a href="<%= item.mainImage[i].url; %>"><img src="<%= item.mainImage[i].url; %>" /></a></li>
-            <%}%>
-        <%}%>
+    <ul class="am-slides lazy-container-view">
+        <% var imageViewArray = []; 
+           for(var i in item.mainImage){ 
+             if(item.mainImage[i].isMainImage) { 
+                imageViewArray.push(item.mainImage[i].url) 
+             }
+           }
+        %>
+        <% for(var j = 0;j < imageViewArray.length; j++) { %>
+            <% if(j===0) { %>
+              <li><img src="<%= imageViewArray[j]; %>" /></li>
+            <% }else{ %>
+              <li><img class="lazy-container" src="//ac-JoaBcRTt.clouddn.com/182b4902f18265f1f5ff.png" data-original="<%= imageViewArray[j]; %>" /></li>
+            <% } %>
+        <% } %>
     </ul>
 </div>
 
@@ -73,7 +82,7 @@
             <%if(item.detailImage){%>
                 <h3>产品图片:</h3>
                 <div class="detail-image content">
-                    <%- item.detailImage%>
+                    <%- item.detailImage.replace(/src\=/gi,'class="lazy" src="//ac-JoaBcRTt.clouddn.com/182b4902f18265f1f5ff.png" data-original='); %>
                 </div>
             <%}%>
             
@@ -233,7 +242,7 @@
 
 
 <div class="buy-button">
-    <button type="button" id="buy" class="am-btn am-btn-default">暂不支持直接购买</button>
+    <button type="button" id="buy" class="am-btn am-btn-default">购买</button>
 </div>
 
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -262,7 +271,7 @@
         </div>
     </div>
 </div>
-
+<%= env %>
 <% include ../partials/footer %>
 <% include ../partials/js %>
 <script>
