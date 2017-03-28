@@ -80,56 +80,13 @@
         </div>
         
         <div class="am-tab-panel property" id="tab-product-param">
-            
-            <dl>
-                <dt>产地:</dt><dd>美国</dd>
-            </dl>
-            
-            <dl>
-                <dt>尺寸:</dt><dd></dd>
-            </dl>
-
-            <dl>
-                <dt>产地:</dt><dd>美国</dd>
-            </dl>
-
-            <dl>
-                <dt>尺寸:</dt><dd></dd>
-            </dl>
-
-            <dl>
-                <dt>产地:</dt><dd>美国</dd>
-            </dl>
-
-            <dl>
-                <dt>尺寸:</dt><dd></dd>
-            </dl>
-
-            <dl>
-                <dt>产地:</dt><dd>美国</dd>
-            </dl>
-
-            <dl>
-                <dt>尺寸:</dt><dd></dd>
-            </dl>
-
-            <dl>
-                <dt>产地:</dt><dd>美国</dd>
-            </dl>
-
-            <dl>
-                <dt>尺寸:</dt><dd></dd>
-            </dl>
-
-            <dl>
-                <dt>产地:</dt><dd>美国</dd>
-            </dl>
-
-            <dl>
-                <dt>尺寸:</dt><dd></dd>
-            </dl>
-            
+            <%if(item.property) { %>
+                <%- item.property %>
+            <%}else{%>
+                <ul><li>-</li></ul>
+            <%}%>
         </div>
+        
     </div>
     
 </div>
@@ -141,7 +98,10 @@
         <ul class="am-slides">
             <li>
                 <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                    <dt>
+                        <img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt="">
+                        <em>¥188</em>
+                    </dt>
                     <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
                 </dl>
                 <dl>
@@ -183,6 +143,49 @@
     </div>
 </div>
 
+<div class="recommend">
+    <h3>其他推荐:</h3>
+    <div class="am-slider am-slider-default slider-recommend">
+        <ul class="am-slides">
+            <li>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                    <dd></dd>
+                </dl>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                </dl>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                    <dd></dd>
+                </dl>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                </dl>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                    <dd></dd>
+                </dl>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                </dl>
+                <dl>
+                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
 
 <div class="recommend">
     <h3>喜欢此产品的用户还喜欢:</h3>

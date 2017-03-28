@@ -493,23 +493,12 @@
     }
 
     .property {
-        dl {
+        li {
             display: flex;
-            font-size: 14px;
+            font-size: 13px;
             border-bottom: 1px dashed #efefef;
-        }
-        dt {
-            height: 20px;
             line-height: 20px;
-            width: 80px;
-            padding: 0;
-            text-align: right;
-            font-weight: bold;
-        }
-        dd {
-            flex: 1;
-            padding-left: 10px;
-            line-height: 20px;
+            padding: 5px 0;
         }
     }
 
@@ -554,11 +543,25 @@
                 padding: 10px 10px 5px 10px;
             }
             dt {
+                position: relative;
                 img {
                     width: 100%;
                 }
+                em {
+                    position: absolute;
+                    left: auto;
+                    bottom:0;
+                    background:rgba(255, 125, 0, 0.8);
+                    color: #fff;
+                    font-size: 11px;
+                    height: 16px;
+                    line-height: 16px;
+                    padding: 0 5px;
+                    font-weight: normal;
+                }
             }
             dd {
+                padding-top: 4px;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;

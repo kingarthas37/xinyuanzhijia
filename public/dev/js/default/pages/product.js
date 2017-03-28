@@ -24,9 +24,12 @@ module.exports = {
             detailImage.find('img').each(function (i, n) {
                 n.onload = function () {
                     index++;
+                    
+                    let scale = $(n).width() / WIN_WIDTH;
+                    
                     $(n).attr({
-                        width: $(n).width(),
-                        height: $(n).height()
+                        'swipe-width': WIN_WIDTH,
+                        'swipe-height': $(n).height() / scale
                     });
                     if (index === detailImageLen) {
                         detailImage.find('img').each(function (i, n) {
@@ -40,7 +43,16 @@ module.exports = {
 
         }
         
-      
+        
+        //自动设置property日期
+        {
+            $('#tab-product-param').find('em').each(function() {
+                if($(this).text()=='date') {
+                    let month = (new Date().getMonth() + 1) <= 2 ? 1 : 0;  //如果当前月份小于3月份则显示去年
+                    $(this).text(new Date().getFullYear() - month + '年');
+                }
+            });
+        }
         
 
     },
@@ -99,8 +111,8 @@ module.exports = {
         imageView.find('img').each(function (i, n) {
             items.push({
                 src: $(n).attr('src'),
-                w: $(n).attr('width'),
-                h: $(n).attr('height')
+                w: $(n).attr('swipe-width'),
+                h: $(n).attr('swipe-height')
             });
         });
         
