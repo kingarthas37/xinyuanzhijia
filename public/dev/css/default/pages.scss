@@ -401,6 +401,7 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 span {
+                    color: $colorGreen;
                     margin-right: 6px;
                 }
             }
@@ -516,6 +517,7 @@
             height: 50px;
             display: block;
             width: 100%;
+            font-size: 20px;
         }
     }
 
