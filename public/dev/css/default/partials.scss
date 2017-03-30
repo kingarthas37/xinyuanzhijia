@@ -1,5 +1,5 @@
 header {
-    
+
     background: #fff;
     height: 50px;
     position: relative;
@@ -40,24 +40,24 @@ header {
         }
 
     }
-    
+
     &.sub {
         background: $colorMain;
-        
+
         &.fixed {
             position: absolute;
-            top:0;
-            left:0;
+            top: 0;
+            left: 0;
             z-index: 1;
             background: none;
-            
+
             .go-back {
                 border-radius: 100%;
-                background-color:rgba(0,0,0,0.5);
-                
+                background-color: rgba(0, 0, 0, 0.5);
+
             }
         }
-        
+
         .back {
             position: absolute;
             left: 5px;
@@ -319,7 +319,7 @@ footer {
                 line-height: 36px;
                 padding: 0 5px;
                 @extend %inline-block;
-                &:active,&:hover,&:focus {
+                &:active, &:hover, &:focus {
                     box-shadow: none;
                     background: #f5f5f5;
                 }
@@ -458,8 +458,8 @@ footer {
 
 .main-list {
     li {
-        margin:0 10px;
-        padding:10px 0;
+        margin: 0 10px;
+        padding: 10px 0;
         border-bottom: 1px dashed $colorBorderMain;
         display: flex;
         flex-direction: row;
@@ -474,31 +474,9 @@ footer {
                 width: 100px;
                 height: 100px;
             }
-            span {
-                position: absolute;
-                top:0;
-                left: 0;
-                background:rgba(235,8,40,0.85);
-                &:after {
-                    content:"NEW";
-                    color: #fff;
-                    height: 14px;
-                    line-height: 14px;
-                    padding: 0 1px;
-                    display: block;
-                    font-size: 12px;
-                    transform:scale(0.75);
-                }
-                &.hot {
-                    background:rgba(255,125,0,0.9);
-                    &:after {
-                        content:"HOT"
-                    }
-                }
-            }
         }
         .detail {
-            margin-left:10px;
+            margin-left: 10px;
             flex: 1;
             h3 {
                 height: 40px;
@@ -506,25 +484,25 @@ footer {
                 overflow: hidden;
                 font-size: 14px;
                 font-weight: bold;
-                margin:0 0 5px 0;
+                margin: 0 0 5px 0;
             }
 
             p {
                 color: #999;
                 padding: 0;
-                margin:0 0 5px 0;
+                margin: 0 0 5px 0;
                 line-height: 20px;
                 font-size: 12px;
-                
+
                 &:last-child {
                     margin-bottom: 0;
                 }
-                
+
                 span {
                     white-space: nowrap;
                     padding-right: 6px;
                     i {
-                        margin-right:2px;
+                        margin-right: 2px;
                     }
                 }
                 .price {
@@ -534,22 +512,21 @@ footer {
                     color: $colorOrange;
                 }
                 .active {
-                    margin-right:4px;
+                    margin-right: 4px;
                     padding: 4px 6px;
                     border-radius: 2px;
-                    color:$colorMain;
+                    color: $colorMain;
                     background-color: #eaf2ff;
                 }
             }
-            
-             
+
         }
     }
-    
+
     .loading {
         height: 32px;
     }
-    
+
     #infscr-loading {
         text-align: center;
         width: 100% !important;
@@ -573,12 +550,12 @@ footer {
 .am-alert {
     position: fixed;
     width: 140px;
-    border:none;
+    border: none;
     opacity: 0.8;
-    bottom:100px;
-    left:50%;
-    margin:0 0 0 -70px;
-    background:#000;
+    bottom: 100px;
+    left: 50%;
+    margin: 0 0 0 -70px;
+    background: #000;
     color: #fff;
     text-align: center;
     height: 36px;
@@ -588,4 +565,28 @@ footer {
     padding: 0;
     font-size: 14px;
     display: none;
+}
+
+span.new, span.hot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(235, 8, 40, 0.85);
+    &:after {
+        content: "NEW";
+        color: #fff;
+        height: 14px;
+        line-height: 14px;
+        padding: 0 1px;
+        display: block;
+        font-size: 12px;
+        transform: scale(0.75);
+    }
+}
+
+span.hot {
+    background: rgba(255, 125, 0, 0.9);
+    &:after {
+        content: "HOT"
+    }
 }
