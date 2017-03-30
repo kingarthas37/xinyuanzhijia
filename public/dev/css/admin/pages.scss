@@ -70,10 +70,6 @@
         }
     }
 
-}
-
-/* admin product page */
-.admin-product-page {
     .am-table {
         td {
             vertical-align: middle;
@@ -93,7 +89,14 @@
     .am-icon-link.on {
         color: #4b9452;
     }
+    
+    #select-banner {
+        width: 200px;
+        display: inline-block;
+    }
+
 }
+
 
 /* admin product category page */
 .admin-product-category-page {

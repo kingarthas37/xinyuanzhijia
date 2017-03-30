@@ -1,0 +1,72 @@
+.order-page {
+    .am-form {
+        padding-top: 20px;
+        width: 90%;
+        margin: auto;
+        p {
+            margin-bottom: 20px;
+        }
+    }
+    .am-form-group {
+        margin-bottom: 5px;
+    }
+    .am-btn {
+        display: block;
+        width: 100%;
+        color: #fff;
+    }
+    .message {
+        color: #f40;
+        height: 20px;
+        line-height: 20px;
+        margin-bottom: 8px;
+        .error {
+            color: #f40;
+            font-weight: normal;
+        }
+        &.t-r {
+            margin-bottom: 15px;
+        }
+    }
+
+    .order-list {
+        p {
+            width: 90%;
+            margin: 0 auto 10px auto;
+            font-size: 14px;
+            color: #666;
+        }
+    }
+
+    .color-steps-item {
+        .color-steps-description {
+            padding-bottom: 5px;
+            &.list {
+                color: $colorMain;
+            }
+        }
+        .color-steps-title {
+            color: #666 !important;
+            span {
+                color: #999 !important;
+            }
+            a {
+                color: $colorMain !important;
+                text-decoration: underline;
+            }
+
+        }
+    }
+
+    #modal-result {
+        ul {
+            padding-top: 15px;
+            max-height: 300px;
+            overflow: auto;
+        }
+        .color-timeline-item-content {
+            text-align: left;
+        }
+    }
+
+}

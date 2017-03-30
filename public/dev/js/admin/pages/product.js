@@ -141,7 +141,7 @@ module.exports = {
     addFun:function() {
         
         this.setCategory();
-        this.chooseBanner();
+        this.chooseBanner('add');
         this.submitControl();
         this.setImageList();
         this.setZclip();
@@ -235,37 +235,42 @@ module.exports = {
             let group = $(this).parents('.group');
             let newGroup = group.clone();
             newGroup.find('.am-selected').detach();
-            newGroup.find('select').removeAttr('data-am-selected').removeAttr('required');
+            newGroup.find('select').removeAttr('required');
             newGroup.appendTo(categoryGroup);
             newGroup.find('.select-category-1 option:not(:first)').detach();
             newGroup.find('.select-category-2 option:not(:first)').detach();
             newGroup.find('.btn-add-category').removeClass('btn-add-category').addClass('btn-remove-category').text('删除');
             newGroup.find('label').detach();
-            newGroup.find('select').amuiSelected();
         });
         
     },
     
     //选择banner
-    chooseBanner:function() {
+    chooseBanner:function(page) {
 
         let select = $('#select-banner');
         let bannerView = $('.banner-view');
         let banner = $('#banner');
+        let selectBannerRandom = $('.select-banner-random');
         
         select.on('change',function() {
             let src = select.find('option:selected').attr('data-src');
             bannerView.removeClass('hide');
-            bannerView.html(`<img width="400" src="${src}"/>`);
+            bannerView.html(`<img width="300" src="${src}"/>`);
             banner.val(src);
         });
-        
-        
-        $('.select-banner-random').click(function() {
-            let bannerRange = Math.floor(Math.random() * ( select.find('option').length-1 )) + 1;
-            console.info(bannerRange);
-            select.find('option').eq(bannerRange).attr('selected',true);
+
+        selectBannerRandom.click(function() {
+            let bannerRange = Math.floor(Math.random() * ( select.find('option').length -1 ));
+            select.find('option').get(bannerRange).selected = true;
+            select.trigger('change');
         });
+        
+        if(page==='add') {
+            setTimeout(()=> {
+                selectBannerRandom.click();
+            },1000);
+        }
         
     },
     //设置主图预览

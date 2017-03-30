@@ -51,8 +51,7 @@
                                 <div class="am-form-group">
                                     <label>请选择产品类型<i>*</i>:</label>
                                     <div>
-                                        <select class="select-product-method" name="select-product-method" required
-                                                data-am-selected>
+                                        <select class="select-product-method" name="select-product-method" required>
                                             <option value="">请选择产品类型</option>
                                             <% for (var i=0;i < productMethod.length; i++) { %>
                                             <option value="<%= productMethod[i].get('productMethodId'); %>"><%=
@@ -69,8 +68,7 @@
                                 <div class="am-form-group">
                                     <label>选择商品一级分类<i>*</i>:</label>
                                     <div>
-                                        <select class="select-category-1" name="select-category-1" required
-                                                data-am-selected>
+                                        <select class="select-category-1" name="select-category-1" required>
                                             <option value="">请选择商品一级分类</option>
                                         </select>
                                     </div>
@@ -82,8 +80,7 @@
                                 <div class="am-form-group">
                                     <label>选择商品二级分类<i>*</i>:</label>
                                     <div>
-                                        <select class="select-category-2" name="select-category-2" required
-                                                data-am-selected>
+                                        <select class="select-category-2" name="select-category-2" required>
                                             <option value="">请选择商品二级分类</option>
                                         </select>
                                     </div>
@@ -108,10 +105,9 @@
 
                     <!-- banner start -->
                     <div class="am-form-group am-form-select">
-                        <label for="select-banner">选择商品匹配的 Banner：</label>
+                        <label for="select-banner">选择商品匹配的Banner (淘宝店铺使用)：</label>
                         <div>
-                            <select id="select-banner" name="select-banner" data-am-selected>
-                                <option value="">不选择</option>
+                            <select id="select-banner" name="select-banner">
                                 <% for(var i=0;i< banner.length; i++) { %>
                                 <option value="<%= banner[i].get('bannerId') %>"
                                         data-src="<%= banner[i].get('bannerUrl') %>"><%= banner[i].get('bannerText') %>

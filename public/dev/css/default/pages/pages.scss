@@ -1,0 +1,21 @@
+
+/* error page */
+.error-page {
+    .img {
+        margin: 20px auto;
+        width: 40%;
+        img {
+            display: block;
+            width: 100%;
+            border-radius: 50%;
+            background: #efefef;
+        }
+    }
+    p {
+        padding: 0 20px;
+        line-height: 30px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+}

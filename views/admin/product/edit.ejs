@@ -51,7 +51,7 @@
                                 <div class="am-form-group">
                                     <%if(i===0){%><label>请选择产品类型<i>*</i>:</label><%}%>
                                     <div>
-                                        <select class="select-product-method" name="select-product-method" <%if(i===0){%>required<%}%> data-am-selected>
+                                        <select class="select-product-method" name="select-product-method" <%if(i===0){%>required<%}%> >
                                             <option value="">请选择产品类型</option>
                                             <% for (var j=0;j < productMethod.length; j++) { %>
                                             <option <% if(product.get('productMethod')[i] === productMethod[j].get('productMethodId')){ %>selected<%}%> value="<%= productMethod[j].get('productMethodId'); %>"><%= productMethod[j].get('name'); %></option>
@@ -66,7 +66,7 @@
                                 <div class="am-form-group">
                                     <%if(i===0){%><label>选择商品一级分类<i>*</i>:</label><%}%>
                                     <div>
-                                        <select class="select-category-1" name="select-category-1" <%if(i===0){%>required<%}%> data-am-selected>
+                                        <select class="select-category-1" name="select-category-1" <%if(i===0){%>required<%}%> >
                                             <option value="">请选择商品一级分类</option>
                                             <% for (var j=0;j < category1[i].length; j++) { %>
                                             <option <% if(product.get('category1')[i] === category1[i][j].get('category1Id')){ %>selected<%}%> value="<%= category1[i][j].get('category1Id') %>"><%= category1[i][j].get('name') %></option>
@@ -80,7 +80,7 @@
                                 <!-- select category2 start -->
                                 <%if(i===0){%><label>选择商品二级分类<i>*</i>:</label><%}%>
                                 <div>
-                                    <select class="select-category-2" name="select-category-2" <%if(i===0){%>required<%}%> data-am-selected>
+                                    <select class="select-category-2" name="select-category-2" <%if(i===0){%>required<%}%> >
                                     <option value="">请选择商品二级分类</option>
                                     <% for (var j=0;j < category2[i].length; j++) { %>
                                     <option <% if(product.get('category2')[i] === category2[i][j].get('category2Id')){ %>selected<%}%> value="<%= category2[i][j].get('category2Id') %>"><%= category2[i][j].get('name') %></option>
@@ -108,10 +108,9 @@
 
                     <!-- banner start -->
                     <div class="am-form-group am-form-select">
-                        <label for="select-banner">选择商品匹配的 Banner：</label>
+                        <label for="select-banner">选择商品匹配的Banner (淘宝店铺使用)：</label>
                         <div>
-                            <select id="select-banner" name="select-banner" data-am-selected>
-                                <option value="">不选择</option>
+                            <select id="select-banner" name="select-banner" >
                                 <% for(var i=0;i< banner.length; i++) { %>
                                 <option <% if(banner[i].get('bannerId') === product.get('bannerId')) {%> selected="selected" <%} %> value="<%= banner[i].get('bannerId') %>" data-src="<%= banner[i].get('bannerUrl') %>"><%= banner[i].get('bannerText') %></option>
                                 <% } %>
@@ -120,7 +119,7 @@
                         </div>
                     </div>
                     
-                    <div class="banner-view <% if(!product.get('bannerId')) { %>hide<% } %>"><% for(var i=0;i<banner.length;i++){ %><% if(banner[i].get('bannerId') === product.get('bannerId')) { %><img src="<%= banner[i].get('bannerUrl') %>" width="400" /><% }%><% } %></div>
+                    <div class="banner-view <% if(!product.get('bannerId')) { %>hide<% } %>"><% for(var i=0;i<banner.length;i++){ %><% if(banner[i].get('bannerId') === product.get('bannerId')) { %><img src="<%= banner[i].get('bannerUrl') %>" width="300" /><% }%><% } %></div>
                     <input type="hidden" id="banner" name="banner" value="<% for(var i=0;i<banner.length;i++){ %><% if(banner[i].get('bannerId') === product.get('bannerId')) { %><%= banner[i].get('bannerUrl') %><% }%><% } %>">
                     <!-- banner end -->
 

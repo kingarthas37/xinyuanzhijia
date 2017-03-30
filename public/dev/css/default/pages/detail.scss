@@ -1,0 +1,267 @@
+.detail-page {
+    /* 图片轮播css已完成 amazeui */
+    .am-slider {
+        background: #f5f5f5;
+        box-shadow: none;
+        overflow: hidden;
+        margin: 0;
+
+
+        &.slider-image-view {
+            &:after {
+                content: "";
+                height: 2px;
+                position: absolute;
+                bottom: 0;
+                display: block;
+                width: 100%;
+                background: linear-gradient(to right, $colorGradient1 0%, $colorGradient2 100%);
+            }
+        }
+
+        .am-control-nav {
+            bottom: 10px;
+            vertical-align: middle;
+            height: 30px;
+            line-height: 30px;
+            li {
+                vertical-align: middle;
+                a {
+                    box-shadow: none;
+                    background: #eee;
+                    &.am-active {
+                        background: $colorMain;
+                    }
+                }
+            }
+        }
+
+        img {
+            display: block;
+            width:100%;
+        }
+
+    }
+
+    h1 {
+        margin: 0;
+        padding: 10px 10px 5px 10px;
+        font-size: 16px;
+        color: $colorMain;
+    }
+
+    .info-content {
+        display: flex;
+        padding: 0 10px;
+        border-bottom: 5px solid #eee;
+        .info {
+            padding: 10px 0;
+            flex: 1;
+            height: 80px;
+            .price {
+                height: 44px;
+                line-height: 44px;
+                font-size: 22px;
+                color: #ff7d00;
+                border-right: 1px dashed #ddd;
+                display: block;
+            }
+            div {
+                font-size: 12px;
+                height: 16px;
+                line-height: 16px;
+                border-right: 1px dashed #ddd;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                span {
+                    color: $colorGreen;
+                    margin-right: 6px;
+                }
+            }
+        }
+        .favorite-box {
+            margin-left: 10px;
+            height: 80px;
+            width: 80px;
+            position: relative;
+            span {
+                color: #999;
+                position: absolute;
+                bottom: 6px;
+                left: 0;
+                width: 80px;
+                height: 20px;
+                line-height: 20px;
+                text-align: center;
+                font-size: 12px;
+                z-index: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                &.active {
+                    color: #e2264d;
+                }
+            }
+        }
+    }
+
+    .am-tabs {
+        border-bottom: 5px solid #eee;
+        .am-nav-tabs {
+            border-color: #eee;
+        }
+        .am-tabs-bd {
+            border: none;
+        }
+        .am-tabs-nav {
+            li {
+                width: 50%;
+                text-align: center;
+                border: none;
+                a {
+                    padding: 0 20px;
+                    height: 45px;
+                    line-height: 45px;
+                    margin: 0;
+                    display: inline-block;
+                    color: #666;
+                    border: none !important;
+                    border-bottom: 1px solid #eee !important;
+                }
+                &.am-active {
+                    a {
+                        font-weight: bold;
+                        border-bottom: 2px solid $colorMain !important;
+                        color: $colorMain;
+                    }
+                }
+            }
+        }
+        .am-tab-panel {
+            padding: 20px 15px;
+            line-height: 26px;
+        }
+
+    }
+
+    .detail {
+        h3 {
+            font-size: 14px;
+            height: 14px;
+            line-height: 14px;
+            margin: 0 0 10px 0;
+            border-left: 2px solid $colorMain;
+            padding-left: 6px;
+            color: $colorMain;
+        }
+        .content {
+            margin-bottom: 15px;
+            font-size: 13px;
+            p {
+                margin: 0;
+            }
+            img {
+                margin: 10px 0;
+                width: 100%;
+            }
+        }
+    }
+
+    .property {
+        li {
+            display: flex;
+            font-size: 13px;
+            border-bottom: 1px dashed #efefef;
+            line-height: 20px;
+            padding: 5px 0;
+        }
+    }
+
+    .buy-button {
+        z-index: 999;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        padding: 5px 15px;
+        background: #fff;
+        .am-btn {
+            border: none;
+            color: #fff;
+            background: linear-gradient(to right, $colorGradient1 0%, $colorGradient2 100%);
+            height: 45px;
+            display: block;
+            width: 100%;
+            margin:auto;
+            font-size: 20px;
+            border-radius: 5px;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+        }
+    }
+
+    .recommend {
+        border-bottom: 5px solid #eee;
+        h3 {
+            margin: 0;
+            font-size: 13px;
+            color: $colorMain;
+            padding: 0 0 10px 10px;
+            height: 36px;
+            line-height: 36px;
+            border-bottom: 1px dashed #ddd;
+        }
+    }
+
+    .slider-recommend {
+
+        background: #fff;
+
+        .am-slides {
+            @extend %clearfix;
+            dl {
+                width: 33%;
+                float: left;
+                padding: 10px 10px 5px 10px;
+            }
+            dt {
+                position: relative;
+                img {
+                    width: 100%;
+                }
+                em {
+                    position: absolute;
+                    left: auto;
+                    bottom:0;
+                    background:rgba(255, 125, 0, 0.8);
+                    color: #fff;
+                    font-size: 11px;
+                    height: 16px;
+                    line-height: 16px;
+                    padding: 0 5px;
+                    font-weight: normal;
+                }
+            }
+            dd {
+                padding-top: 4px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                font-size: 12px;
+                height: 32px;
+                line-height: 16px;
+            }
+        }
+
+        .am-control-nav {
+            position: static;
+            height: 20px;
+            line-height: 10px;
+        }
+    }
+
+    footer {
+        padding-bottom: 70px;
+    }
+}

@@ -1,0 +1,99 @@
+.login-page {
+    .am-form {
+        p {
+            margin: 0 0 20px 0;
+        }
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 90%;
+        margin: auto;
+    }
+    .am-form-group {
+        margin-bottom: 5px;
+    }
+    .get-smscode, .infos {
+        position: absolute;
+        right: 0.5em;
+        top: 50%;
+        display: block;
+        margin-top: -.5em;
+        line-height: 1;
+        z-index: 2;
+        em {
+            display: none;
+            font-style: normal;
+            b {
+                font-weight: normal;
+            }
+        }
+        &.on {
+            a {
+                display: none;
+            }
+            em {
+                display: inline;
+            }
+        }
+    }
+    .am-btn {
+        display: block;
+        width: 100%;
+        color: #fff;
+    }
+    .message {
+        color: #f40;
+        height: 20px;
+        line-height: 20px;
+        margin-bottom: 8px;
+        .error {
+            color: #f40;
+            font-weight: normal;
+        }
+        &.t-r {
+            margin-bottom: 15px;
+        }
+    }
+    .wechat {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        border-radius: 36px;
+        background: #2ed441;
+        text-align: center;
+        line-height: 36px;
+        i {
+            font-size: 20px;
+            color: #fff;
+        }
+    }
+    .line {
+        border-top: 1px solid #ccc;
+        margin: 40px auto 0 auto;
+        width: 90%;
+        height: 30px;
+        position: relative;
+        span {
+            display: block;
+            width: 200px;
+            height: 30px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            background: #fff;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            line-height: 30px;
+            margin-left: -120px;
+            font-size: 15px;
+        }
+    }
+
+    .form-userinfo {
+        .am-form-group {
+            margin-bottom: 15px;
+        }
+    }
+
+}

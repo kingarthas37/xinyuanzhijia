@@ -4,6 +4,11 @@
 //common
 @import "common";
 @import "partials";
-@import "pages";
 @import "plugins/like";
 @import "plugins/photoswipe";
+
+@import "pages/pages";
+@import "pages/index";
+@import "pages/login";
+@import "pages/order";
+@import "pages/detail";
