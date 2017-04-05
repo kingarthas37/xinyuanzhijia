@@ -36,26 +36,26 @@
 
                     <hr/>
 
-                    <!-- name start -->
-                    <div class="am-form-group">
-                        <label for="type">类型:</label>
-                        <div>
-                            <select name="type" id="type" data-am-selected>
-                                <option value="person" <%if(productBrand.get('type')==='person'){%>selected<%}%>>个人</option>
-                                <option value="brand" <%if(productBrand.get('type')==='brand'){%>selected<%}%>>品牌</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- name end -->
-
-                    <hr/>
-
                     <!-- brand name start -->
                     <div class="am-form-group">
                         <label for="brand-name">品牌名称:</label>
                         <input id="brand-name" name="brand-name" type="text" placeholder="输入品牌名称" value="<%=productBrand.get('brandName')%>" />
                     </div>
                     <!-- brand name end -->
+
+                    <hr/>
+
+                    <!-- name start -->
+                    <div class="am-form-group">
+                        <label for="type">类型:</label>
+                        <div>
+                            <select name="type" id="type">
+                                <option value="person" <%if(productBrand.get('type')==='person'){%>selected<%}%>>个人</option>
+                                <option value="brand" <%if(productBrand.get('type')==='brand'){%>selected<%}%>>品牌</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- name end -->
 
                     <hr/>
 
@@ -80,6 +80,17 @@
                         <textarea name="brand-detail" id="brand-detail" rows="10"><%=productBrand.get('brandDetail')%></textarea>
                     </div>
                     <!-- brand end -->
+
+                    <hr/>
+
+                    <!-- image upload start -->
+                    <div class="am-form-group">
+                        <label for="author-image">上传文件：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/product-brand/upload?callback=imageUploadSuccess" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                    <!-- image upload end -->
 
                     <hr/>
 
@@ -117,15 +128,9 @@
                     <hr/>
 
                     <!-- url start -->
-                    <label for="author-name">介绍链接:</label>
+                    <label for="author-name">相关链接(多个链接用回车隔开):</label>
                     <div class="am-form-group">
-                        <input name="url" type="text" placeholder="输入链接" value="<%=productBrand.get('url')[0]%>" />
-                    </div>
-                    <div class="am-form-group">
-                        <input name="url" type="text" placeholder="输入链接" value="<%=productBrand.get('url')[1]%>" />
-                    </div>
-                    <div class="am-form-group">
-                        <input name="url" type="text" placeholder="输入链接" value="<%=productBrand.get('url')[2]%>" />
+                        <textarea name="url" rows="3"><%=productBrand.get('url')%></textarea>
                     </div>
                     <!-- url end -->
 
@@ -134,7 +139,7 @@
                     <!-- comment start -->
                     <div class="am-form-group">
                         <label for="author-detail">备注:</label>
-                        <textarea name="comment" id="comment" rows="3"><%=productBrand.get('comment')%></textarea>
+                        <textarea name="comment" id="comment" rows="2"><%=productBrand.get('comment')%></textarea>
                     </div>
                     <!-- comment end -->
 
@@ -170,6 +175,10 @@
 
     function authorUploadSuccess(data) {
         productBrand.authorUploadSuccess(data);
+    }
+
+    function imageUploadSuccess(data) {
+        productBrand.imageUploadSuccess(data);
     }
 </script>
 </body>

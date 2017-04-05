@@ -39,7 +39,7 @@ router.post('/',(req,res) => {
     AV.User.logIn(username, password, {
         success: function(user) {
             res.saveCurrentUser(user);
-            res.redirect(returnUrl ? decodeURIComponent(returnUrl) : '/admin');
+            res.redirect(returnUrl || '/admin');
         },
         error: function(user, error) {
             req.flash('error',error.message);

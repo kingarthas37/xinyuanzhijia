@@ -28,7 +28,7 @@ module.exports = {
                     if (item.data('state')) {
                         return false;
                     }
-
+ 
                     item.data('state', true);
                     $.AMUI.progress.start();
 
@@ -83,5 +83,11 @@ module.exports = {
     authorUploadSuccess(data) {
         $('#author-image-view').empty().addClass('on').append(`<li><a href="${data[0].url}"><img src="${data[0].url}"/></a></li>`);
         $('#author-image').val(data[0].url);
+    },
+    imageUploadSuccess(data) {
+        let detailText = $('#brand-detail');
+        let text = detailText.val();
+        text += `\n\n${data[0].url}`;
+        detailText.val(text);
     }
 };
