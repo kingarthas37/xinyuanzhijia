@@ -106,6 +106,7 @@
                         <th class="t-c">预览</th>
                         <th class="t-c">产品链接</th>
                         <th class="t-c">网店链接</th>
+                        <th class="t-c">内容管理</th>
                         <th class="t-c">选项</th>
                     </tr>
                     </thead>
@@ -149,7 +150,10 @@
                                     -
                                 <%}%>
                             </span>
-                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#shop-link"><i class="am-icon-edit"></i></a>
+                            <a class="link-modal-viewport" title="编辑" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#shop-link"><i class="am-icon-edit"></i></a>
+                        </td>
+                        <td class="t-c">
+                            <a class="link-modal-viewport" title="内容管理" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#content-manage"><i class="am-icon-book"></i></a>
                         </td>
                         <td class="t-c">
                             <div class="am-dropdown" data-am-dropdown>

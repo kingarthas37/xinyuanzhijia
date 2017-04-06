@@ -111,11 +111,7 @@
                                     <label>总销量:</label>
                                     <div class="am-form-inline">
                                         <div class="am-form-group">
-                                            <select name="sales" data-sales="<% if(product.get('sales')) {%><%=product.get('sales')%><%}else{%>0<%}%>">
-                                                <% for(var i=0;i<100;i++) { %>
-                                                <option <% if(product.get('sales') == i) { %>selected="selected"<%}%> value="<%=i%>"><%=i%></option>
-                                                <% }%>
-                                            </select>
+                                            <input type="text" autocomplete="off" name="sales" data-sales="<% if(product.get('sales')) {%><%=product.get('sales')%><%}else{%>0<%}%>" value="<% if(product.get('sales')) {%><%=product.get('sales')%><%}else{%>0<%}%>">
                                         </div>
                                     </div>
 
@@ -203,6 +199,32 @@
                                     <label><input type="checkbox"> 疗愈</label>
                                     <label><input type="checkbox"> 七脉轮</label>
                                 </div>
+                            </div>
+                        </dd>
+                    </dl>
+
+                    <dl id="content-manage" class="am-accordion-item">
+                        <dt class="am-accordion-title am-cf">
+                            6.内容管理
+                        </dt>
+                        <dd class="am-accordion-bd am-collapse">
+                            <div class="am-accordion-content">
+                                <form class="am-form" action="/admin/product-property/content-manage/<%= product.get('productId') %>" method="post">
+
+                                    <label>品牌介绍(自动更新):</label>
+                                    <div class="am-form-group">
+                                        <input id="brand-id" name="brand-id" type="text" value="" autocomplete="off" placeholder="输入品牌介绍"/>
+                                    </div>
+                                    
+                                    <label>视频连接(多个视频用回车分开):</label>
+                                    <div class="am-form-group">
+                                        <textarea name="video" id="video" rows="2"><%= product.get('video') %></textarea>
+                                    </div>
+                                    
+                                    <div>
+                                        <button type="submit" class="am-btn am-btn-primary">保存</button>
+                                    </div>
+                                </form>
                             </div>
                         </dd>
                     </dl>

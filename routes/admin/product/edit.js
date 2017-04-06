@@ -152,14 +152,13 @@ router.post('/:productId', (req, res) => {
     let use = req.body['use'];
     let useEn = req.body['use-en'];
     let detailImage = req.body['detail-image'];
-    let video = req.body['video'];
 
     let productId = parseInt(req.params.productId);
 
     let query = new AV.Query(Product);
     query.equalTo('productId',productId);
 
-    let productData = {name,nameEn,mainImage,productMethod,category1,category2,bannerId,detail,detailEn,description,review,property,propertyEn,instruction,instructionEn,use,useEn,detailImage,video};
+    let productData = {name,nameEn,mainImage,productMethod,category1,category2,bannerId,detail,detailEn,description,review,property,propertyEn,instruction,instructionEn,use,useEn,detailImage};
     
     query.first().then(product => {
         

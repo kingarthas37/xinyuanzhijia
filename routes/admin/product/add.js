@@ -85,12 +85,11 @@ router.post('/', (req, res) => {
     let use = req.body['use'];
     let useEn = req.body['use-en'];
     let detailImage = req.body['detail-image'];
-    let video = req.body['video'];
     
     let product = new Product();
     let productHistory = new ProductHistory();
     
-    let productData = {name,nameEn,mainImage,productMethod,category1,category2,bannerId,detail,detailEn,description,review,property,propertyEn,instruction,instructionEn,use,useEn,detailImage,video};
+    let productData = {name,nameEn,mainImage,productMethod,category1,category2,bannerId,detail,detailEn,description,review,property,propertyEn,instruction,instructionEn,use,useEn,detailImage};
     
     product.save(productData).then(result => {
         let query = new AV.Query(Product);

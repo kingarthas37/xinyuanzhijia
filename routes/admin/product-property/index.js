@@ -34,35 +34,16 @@ router.get('/:productId', (req, res) => {
         user: req.AV.user,
         viewport: viewport ? `viewport-${viewport}` : ''
     });
-    
-    AV.Promise.when(
-        new AV.Promise(resolve => {
 
-            let query = new AV.Query(Product);
-            query.equalTo('productId', productId);
-            query.select('name', 'productId');
+    let query = new AV.Query(Product);
+    query.equalTo('productId', productId);
 
-            query.first().then(product => {
-                data = extend(data, {product});
-                resolve();
-            });
-        }),
-
-        new AV.Promise(resolve => {
-
-            let query = new AV.Query(Product);
-            query.equalTo('productId', productId);
-
-            query.first().then(item => {
-                data = extend(data, {
-                    product: item
-                });
-                resolve();
-            });
-
-        })
-    ).then(() => res.render('admin/product-property', data));
-
+    query.first().then(item => {
+        data = extend(data, {
+            product: item
+        });
+        res.render('admin/product-property', data);
+    });
 
 });
 
