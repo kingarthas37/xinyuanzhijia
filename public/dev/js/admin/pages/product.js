@@ -387,6 +387,7 @@ module.exports = {
     },
     
     setZclip:function() {
+            let detailImage = $('#detail-image');
             let imageView = $('.image-list');
             $('.zclip').detach();
             imageView.find('.copy-url').detach();
@@ -399,9 +400,15 @@ module.exports = {
                         return `![](${$this.parents('li').find('.img-link').attr('href')})`;
                     }
                 });
-                clipboard.on('success',() => {
+                clipboard.on('success',data => {
                     imageView.find('.oncopy').removeClass('oncopy');
                     $(this).addClass('oncopy');
+                    let detailText = detailImage.val();
+                    if(!$.trim(detailText)) {
+                        detailImage.val(detailText + data.text);
+                    } else {
+                        detailImage.val(detailText + '\n' + data.text);
+                    }
                 });
             });
         }
