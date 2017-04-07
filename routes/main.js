@@ -13,7 +13,8 @@ module.exports = {
     
     '/search':require('./default/search/index'),
     '/product/detail':require('./default/product/detail'),
-    //'/list':require('./default/product/index'),
+    '/product/recommend':require('./default/product/recommend'),
+    //'/product/list':require('./default/product/index'),
     '/suggest':require('./default/search/suggest'),
 
     '/order/express': require('./default/order/express'),

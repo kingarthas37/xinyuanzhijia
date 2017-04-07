@@ -44,9 +44,9 @@
     <div class="info">
         <strong class="price">¥ <%= item.price || 0 %>.00</strong>
         <div>
-            <span>浏览量: <strong>2000</strong></span>
-            <span>总销量: <strong>10</strong></span>
-            <span>月均销量: <strong>2</strong></span>
+            <span>浏览量: <strong><%= item.pageViews %></strong></span>
+            <span>总销量: <strong><%= item.sales %></strong></span>
+            <span>月均销量: <strong><%= item.monthSales%></strong></span>
         </div>
     </div>
     <div class="favorite-box">

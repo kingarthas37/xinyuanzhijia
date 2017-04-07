@@ -26,6 +26,7 @@ router.get('/:id', (req, res) => {
                 let memberId = member ? member.id : null;
                 productClick.setProductClick(memberId, config.productType.normal,result.get('productId'));
                 data = extend(data, {'item': result.attributes});
+                data.item.createdAt = result.createdAt;
                 resolve();
             });
         }),
@@ -49,13 +50,19 @@ router.get('/:id', (req, res) => {
         })
     ).then(() => {
         if(data.item) {
-            
             data.item.detail = markdown.toHTML(data.item.detail);
             data.item.property = markdown.toHTML(data.item.property);
             data.item.instruction = markdown.toHTML(data.item.instruction);
             data.item.use = markdown.toHTML(data.item.use);
             data.item.detailImage = markdown.toHTML(data.item.detailImage);
-            
+            var date = new Date();
+            var seperator = "-";
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            var currentDate = year + seperator + month + seperator + strDate;
+            var monthNum = product.getMct(product.formartDate(data.item.createdAt), currentDate, seperator);
+            data.item.monthSales = Math.ceil(data.item.sales / monthNum);
             res.render('default/product/detail', data);
         } else {
             res.redirect('/error/404');
