@@ -161,4 +161,29 @@ router.post('/settings/:productId', (req, res) => {
 });
 
 
+//保存内容管理
+router.post('/content-manage/:productId', (req, res) => {
+
+    base.isAdminUserLogin(req, res);  //判断是否登录
+
+    let productId = parseInt(req.params.productId);
+    let productBrandId = parseInt(req.body['brand-id']);
+    let video = req.body['video'];
+    
+    let query = new AV.Query(Product);
+    query.equalTo('productId', productId);
+    query.first().then(item => {
+
+        return item.save({
+            productBrandId,
+            video
+        });
+        
+    }).then(() => {
+        res.redirect(`/admin/product-property/${productId}?viewport=window`);
+    });
+
+});
+
+
 module.exports = router;

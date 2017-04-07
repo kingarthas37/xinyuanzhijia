@@ -1,6 +1,7 @@
 'use strict';
 
 let leanAppHeader = window.leanAppHeader;
+let Bloodhound = require('bloodhound');
 
 module.exports = {
     init() {
@@ -19,6 +20,7 @@ module.exports = {
         this.setShopLinkContent();
         this.setStockContent();
         this.setSettingsContent();
+        this.setContentManage();
         
     },
 
@@ -81,5 +83,39 @@ module.exports = {
         if(location.hash === '#settings') {
             setTimeout(()=> $('input[name=price]').get(0).focus(),0);
         }
+    },
+    
+    //内容管理
+    setContentManage() {
+        
+        //品牌名称查询
+        var brandInput = $('#brand-id');
+        brandInput.typeahead(null, {
+            limit:10,
+            display: function (item) {
+                return item.value;
+            },
+            templates: {
+                suggestion: function (item) {
+                    return `<div>${item.value}</div>`;
+                }
+            },
+            highlight: true,
+            source: new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/admin/product-brand/ajax/search',
+                    prepare: function (query, settings) {
+                        settings.data = {
+                            name: brandInput.val()
+                        };
+                        return settings;
+                    }
+                }
+            })
+        });
+        
     }
+    
 };

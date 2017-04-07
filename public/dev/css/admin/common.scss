@@ -65,6 +65,11 @@ footer p {
     }
 }
 
+
+.typeahead-content .twitter-typeahead {
+    display: block !important;
+}
+
 //autocomplete typeahead
 .twitter-typeahead {
     .typeahead {
@@ -80,7 +85,7 @@ footer p {
     }
 
     .tt-menu {
-        width: 422px;
+        width: 100%;
         margin: 12px 0;
         padding: 8px 0;
         background-color: #fff;

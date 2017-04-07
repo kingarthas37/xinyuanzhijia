@@ -122,4 +122,22 @@ router.post('/remove/:productBrandId',(req,res)=> {
     
 });
 
+router.get('/ajax/search',(req,res)=> {
+    
+    let name = req.query.name;
+    let query = new AV.Query(ProductBrand);
+    query.contains('brandName', name);
+    query.select('brandName','name','productBrandId');
+    query.find().then(results => {
+        let data = [];
+        for(let i = 0;i<results.length; i++) {
+            data.push({
+                value:results[i].get('name') + ` [${results[i].get('brandName')}] ` + `{id:${results[i].get('productBrandId')}}`
+            });
+        }
+        res.send(data);
+    });
+    
+});
+
 module.exports = router;
