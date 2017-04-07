@@ -50,29 +50,27 @@ router.post('/:productBrandId', (req, res) => {
 
     let productBrandId = parseInt(req.params.productBrandId);
     let name = req.body['name'];
-    let type = req.body['type'];
     let brandName = req.body['brand-name'];
+    let brandInfo = req.body['brand-info'];
     let brandLogoImage = req.body['brand-logo-image'];
     let brandDetail = req.body['brand-detail'];
     let authorName = req.body['author-name'];
+    let authorInfo = req.body['author-info'];
     let authorImage = req.body['author-image'];
     let authorDetail = req.body['author-detail'];
     let url = req.body['url'];
     let comment = req.body['comment'];
-
-    url = url.map(item => utils.urlCompleting(item));
-
-
+    
     let query = new AV.Query(ProductBrand);
     query.equalTo('productBrandId',productBrandId);
     query.first().then(item => {
         
         return item.save({
-            name,type,brandName,brandLogoImage,brandDetail,authorName,authorImage,authorDetail,url,comment
+            name,brandName,brandInfo,brandLogoImage,brandDetail,authorName,authorInfo,authorImage,authorDetail,url,comment
         });
         
     }).then(() => {
-        req.flash('success', '编辑品牌成功!');
+        req.flash('success','编辑品牌成功!');
         res.redirect('/admin/product-brand');
     });
     

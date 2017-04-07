@@ -90,6 +90,7 @@ module.exports = {
         
         //品牌名称查询
         var brandInput = $('#brand-id');
+        let brandHiddenInput = $('[name=brand-id]');
         brandInput.typeahead(null, {
             limit:10,
             display: function (item) {
@@ -114,6 +115,13 @@ module.exports = {
                     }
                 }
             })
+        });
+ 
+        brandInput.on({
+            'typeahead:select':function(event,item) {
+                let value = /\{id\:(\d+)\}/.exec(item.value)[1];
+                brandHiddenInput.val(value);
+            }
         });
         
     }

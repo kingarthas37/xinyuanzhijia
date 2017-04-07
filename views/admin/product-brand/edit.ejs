@@ -27,35 +27,30 @@
 
                 <form id="form-add-product" class="am-form" method="post" >
 
-                    <!-- name start -->
+                    <!--  name start -->
                     <div class="am-form-group">
-                        <label for="name">品牌名称描述<i>*</i>:</label>
-                        <input id="name" required name="name" type="text" value="<%=productBrand.get('name')%>" placeholder="输入品牌名称描述[必填]" />
+                        <label for="name">品牌标识(查询使用)<i>*</i></label>
+                        <input id="name" required name="name" type="text" placeholder="输入品牌标识" value="<%=productBrand.get('name')%>" />
                     </div>
-                    <!-- name end -->
+                    <!--  name end -->
 
                     <hr/>
-
+                    
                     <!-- brand name start -->
                     <div class="am-form-group">
-                        <label for="brand-name">品牌标识(查询使用)</label>
-                        <input id="brand-name" name="brand-name" type="text" placeholder="输入品牌名称" value="<%=productBrand.get('brandName')%>" />
+                        <label for="brand-name">品牌名称:</label>
+                        <input id="brand-name" name="brand-name" type="text" value="<%=productBrand.get('brandName')%>" placeholder="输入品牌名称" />
                     </div>
                     <!-- brand name end -->
 
                     <hr/>
 
-                    <!-- name start -->
+                    <!-- brand info start -->
                     <div class="am-form-group">
-                        <label for="type">类型:</label>
-                        <div>
-                            <select name="type" id="type">
-                                <option value="person" <%if(productBrand.get('type')==='person'){%>selected<%}%>>个人</option>
-                                <option value="brand" <%if(productBrand.get('type')==='brand'){%>selected<%}%>>品牌</option>
-                            </select>
-                        </div>
+                        <label for="brand-info">品牌简述:</label>
+                        <input id="brand-info" name="brand-info" type="text" value="<%=productBrand.get('brandInfo')%>" placeholder="输入品牌简述" />
                     </div>
-                    <!-- name end -->
+                    <!-- brand info end -->
 
                     <hr/>
 
@@ -74,12 +69,12 @@
 
                     <hr/>
 
-                    <!-- brand start -->
+                    <!-- brand detail start -->
                     <div class="am-form-group">
                         <label for="brand-detail">品牌介绍(md5):</label>
                         <textarea name="brand-detail" id="brand-detail" rows="10"><%=productBrand.get('brandDetail')%></textarea>
                     </div>
-                    <!-- brand end -->
+                    <!-- brand detail end -->
 
                     <hr/>
 
@@ -102,6 +97,15 @@
                     <!-- author name end -->
 
                     <hr/>
+
+                    <!-- author name start -->
+                    <div class="am-form-group">
+                        <label for="author-info">创始人简述:</label>
+                        <input id="author-info" name="author-info" type="text" placeholder="输入创始人简述" value="<%=productBrand.get('authorInfo')%>" />
+                    </div>
+                    <!-- author name end -->
+
+                    <hr>
 
                     <!-- author image start -->
                     <div class="am-form-group">
@@ -142,6 +146,8 @@
                         <textarea name="comment" id="comment" rows="2"><%=productBrand.get('comment')%></textarea>
                     </div>
                     <!-- comment end -->
+
+                    <hr/>
 
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>

@@ -191,6 +191,38 @@
             padding: 5px 0;
         }
     }
+    
+    .brand {
+        dl {
+            margin:0 0 10px 0;
+            display: flex;
+            dt {
+                width: 80px;
+                img {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    margin:0;
+                }
+            }
+            dd {
+                flex:1;
+                h4 {
+                    margin:0;
+                    font-size: 14px;
+                    height: 20px;
+                    line-height: 20px;
+                }
+                p {
+                    margin:0;
+                    font-size: 13px;
+                    line-height: 20px;
+                    height: 40px;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
 
     .buy-button {
         z-index: 999;

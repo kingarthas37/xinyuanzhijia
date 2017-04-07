@@ -212,8 +212,9 @@
                                 <form class="am-form" action="/admin/product-property/content-manage/<%= product.get('productId') %>" method="post">
 
                                     <label>品牌介绍(自动更新):</label>
+                                    <input type="hidden" name="brand-id" value="<%= product.get('productBrandId') %>">
                                     <div class="am-form-group typeahead-content">
-                                        <input id="brand-id" name="brand-id" type="text" value="" autocomplete="off" placeholder="输入品牌介绍"/>
+                                        <input id="brand-id" type="text" value="<%= product.get('productBrandId') %>" autocomplete="off" placeholder="输入品牌介绍"/>
                                     </div>
                                     
                                     <label>视频连接(多个视频用回车分开):</label>

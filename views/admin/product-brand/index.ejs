@@ -32,31 +32,22 @@
                     <div class="am-form-group">
                         <input type="text" name="search-name" class="am-form-field" placeholder="搜索品牌名">
                     </div>
-
-                    <div class="am-form-group">
-                        <select data-am-selected name="search-type">
-                            <option value=""></option>
-                            <option value="person" <%if(searchType==='person'){%>selected<%}%> >个人</option>
-                            <option value="brand"  <%if(searchType==='brand'){%>selected<%}%> >品牌</option>
-                        </select>
-                    </div>
-
                     <button class="am-btn am-btn-primary" type="submit">搜索</button>
                 </form>
+                <hr/>
             </div>
         </div>
 
 
         <div class="am-g">
             <div class="am-u-sm-12">
-              
+                
                 <table class="am-table am-table-striped">
                     <thead>
                     <tr>
                         <th>名称</th>
                         <th>品牌名称</th>
                         <th>作者名称</th>
-                        <th class="t-c">品牌类型</th>
                         <th width="80" class="t-c small-screen-hide">更新时间</th>
                         <th width="60" class="t-c small-screen-hide">删除</th>
                     </tr>
@@ -67,7 +58,6 @@
                         <td><a href="/admin/product-brand/edit/<%= productBrand[i].get('productBrandId')%>"><%= productBrand[i].get('name') %></a></td>
                         <td><%= productBrand[i].get('brandName') %></td>
                         <td><%= productBrand[i].get('authorName') %></td>
-                        <td class="t-c"><%if(productBrand[i].get('type')==='person'){%>个人<%}else{%>品牌<%}%></td>
                         <td class="t-c"><%= productBrand[i].updatedDate %></td>
                         <td class="t-c"><a class="remove-product-brand" data-id="<%= productBrand[i].get('productBrandId') %>" href="javascript:;">删除</a></td>
                     </tr>

@@ -31,11 +31,9 @@ router.get('/', (req, res) => {
     let order = req.query.order || 'desc';
     
     let searchName = req.query['search-name'] ? req.query['search-name'].trim() : '';
-    let searchType = req.query['search-type'] ? req.query['search-type'].trim() : '';
 
     data = extend(data,{
         searchName,
-        searchType,
         flash: {success: req.flash('success'), error: req.flash('error')},
         user: req.AV.user
     });
@@ -51,17 +49,13 @@ router.get('/', (req, res) => {
                 query.contains('name',searchName);
             }
             
-            if(searchType) {
-                query.equalTo('type',searchType);
-            }
-            
             query.count().done(count => {
                 data = extend(data, {
                     pager:pager.init(page,limit,count),
                     pagerHtml:pager.initHtml({
                         page,limit,count,
                         url:'/admin/product-brand',
-                        serialize:{page,searchName,searchType,limit}
+                        serialize:{page,searchName,limit}
                     })
                 });
                 resolve();
@@ -83,10 +77,7 @@ router.get('/', (req, res) => {
                 if (searchName.length) {
                     query.contains('name',searchName);
                 }
-
-                if(searchType) {
-                    query.equalTo('type',searchType);
-                }
+                
             }
             
             query.find().then(items => {
