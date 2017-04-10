@@ -40,6 +40,14 @@
 
 <h1><%- item.name %></h1>
 
+<div class="guarantee-content">
+    <span><i class="am-icon-leaf"></i> 正品保障</span>
+    <span><i class="am-icon-history"></i> 7天无理由退款</span>
+    <span><i class="am-icon-check"></i> 现货</span>
+    <span><i class="am-icon-modx"></i> 纯手工</span>
+    <span><i class="am-icon-book"></i> 附送产品说明书</span>
+</div>
+
 <div class="info-content">
     <div class="info">
         <strong class="price">¥ <%= item.price || 0 %>.00</strong>
@@ -54,6 +62,14 @@
         <label for="favorite" aria-label="like"><i class="am-icon-heart"></i></label>
         <span <%if(wish){%>class="active"<%}%> ><i class="favorite-text"><%if(wish){%>已收藏<%}else{%>收藏<%}%></i>(<i class="favorite-count"><%= wishCount %></i>)</span>
     </div>
+</div>
+
+<div class="attachment-content">
+    <a class="show" href="javascript:;">该产品包含附件/说明,点击查看 <i class="am-icon-angle-down"></i></a>
+    <ul>
+        <li>Indio产品说明书 <a href="#">[查看]</a></li>
+        <li>Indio产品使用说明书 <a href="#">[查看]</a></li>
+    </ul>
 </div>
 
 <div class="am-tabs <%if(item.productBrandId){%>row-3<%}%>" data-am-tabs>

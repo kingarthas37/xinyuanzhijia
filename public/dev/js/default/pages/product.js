@@ -59,6 +59,22 @@ module.exports = {
             });
         }
         
+        //显示附件
+        {
+            let attachmentContent = $('.attachment-content');
+            if(attachmentContent.length) {
+                attachmentContent.find('.show').click(function() {
+                    if(attachmentContent.hasClass('on')) {
+                        attachmentContent.removeClass('on');
+                        attachmentContent.find('.am-icon-angle-up').removeClass('am-icon-angle-up').addClass('am-icon-angle-down');
+                    } else {
+                        attachmentContent.addClass('on');
+                        attachmentContent.find('.am-icon-angle-down').removeClass('am-icon-angle-down').addClass('am-icon-angle-up');
+                    }
+                });
+            }
+        }
+        
 
     },
 

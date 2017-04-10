@@ -106,6 +106,50 @@
             }
         }
     }
+    
+    .guarantee-content {
+        padding: 0 10px;
+        line-height: 26px;
+        span {
+            white-space: nowrap;
+            font-size: 12px;
+            margin-right: 4px;
+            padding: 4px 6px;
+            border-radius: 2px;
+            color: #7988e0;
+            background-color: #eff5ff;
+        }
+    }
+    
+    .attachment-content {
+        border-bottom: 5px solid #eee;
+        &.on {
+            .show {
+                font-weight: bold;
+            }
+            ul {
+                display: block;
+            }
+        }
+        .show {
+            display: block;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            font-size: 13px;
+        }
+        ul {
+            display: none;
+            padding: 0 15px;
+            font-size: 13px;
+            li {
+                height: 30px;
+                line-height: 30px;
+                border-bottom: 1px dashed #eee;
+            }
+            margin-bottom: 15px;
+        }
+    }
 
     .am-tabs {
         border-bottom: 5px solid #eee;

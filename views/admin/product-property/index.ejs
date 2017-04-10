@@ -229,6 +229,30 @@
                             </div>
                         </dd>
                     </dl>
+
+
+                    <dl id="attachment-manage" class="am-accordion-item">
+                        <dt class="am-accordion-title am-cf">
+                            7.附件
+                        </dt>
+                        <dd class="am-accordion-bd am-collapse">
+                            <div class="am-accordion-content">
+                                <form class="am-form" action="/admin/product-property/attachment-manage/<%= product.get('productId') %>" method="post">
+
+                                    <label>附件内容(格式:附件名):</label>
+                                    <input type="hidden" name="brand-id" value="<%= product.get('productBrandId') %>">
+                                    <div class="am-form-group typeahead-content">
+                                        <input id="" type="text" value="<%= product.get('productBrandId') %>" autocomplete="off" placeholder="输入品牌介绍"/>
+                                    </div>
+                                    
+                                    <div>
+                                        <button type="submit" class="am-btn am-btn-primary">保存</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </dd>
+                    </dl>
+                    
                     
                 </section>
                 
