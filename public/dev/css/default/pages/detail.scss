@@ -59,15 +59,36 @@
             padding: 10px 0;
             flex: 1;
             height: 80px;
+            div {
+                @extend %clearfix;
+                border-right: 1px dashed #ddd;
+            }
             .price {
+                float: left;
+                font-weight: bold;
                 height: 44px;
                 line-height: 44px;
                 font-size: 22px;
                 color: #ff7d00;
-                border-right: 1px dashed #ddd;
                 display: block;
             }
-            div {
+            .stock {
+                float: right;
+                padding-right:15px;
+                height: 44px;
+                line-height: 44px;
+                font-size: 14px;
+                a {
+                    color: $colorGreen;
+                }
+                i {
+                    font-weight: normal;
+                }
+            }
+            p {
+                display: flex;
+                margin:0;
+                padding: 0 15px 0 0;
                 font-size: 12px;
                 height: 16px;
                 line-height: 16px;
@@ -76,8 +97,15 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 span {
-                    color: $colorGreen;
-                    margin-right: 6px;
+                    flex: 1;
+                    display: block;
+                    color: #888;
+                    &:nth-child(2) {
+                        text-align: center;
+                    }
+                    &:nth-child(3) {
+                        text-align: right;
+                    }
                 }
             }
         }

@@ -157,18 +157,20 @@
                                     </div>
                                     
                                     <div class="am-form-group">
+                                        <label><input type="checkbox" name="is-refund" <% if(product.get('isRefund')) { %>checked="checked"<%}%> > 7天退货</label>
+                                        <span class="split"></span>
                                         <label><input type="checkbox" name="is-hot" <% if(product.get('isHot')) { %>checked="checked"<%}%> > 热门产品</label>
                                         <span class="split"></span>
-                                        <label><input type="checkbox" name="is-handmade" <% if(product.get('isHandmade')) { %>checked="checked"<%}%> > 手工制作</label>
+                                        <label><input type="checkbox" name="is-handmade" <% if(product.get('isHandmade')) { %>checked="checked"<%}%> > 纯手工</label>
+                                        <span class="split"></span>
+                                        <label><input type="checkbox" name="is-document" <% if(product.get('isDocument')) { %>checked="checked"<%}%>> 附送说明书</label>
                                         <span class="split"></span>
                                         <label><input type="checkbox" name="is-only" <% if(product.get('isOnly')) { %>checked="checked"<%}%>> 唯一</label>
-                                        <span class="split"></span>
-                                        <label><input type="checkbox" name="is-document" <% if(product.get('isDocument')) { %>checked="checked"<%}%>> 附件</label>
                                     </div>
 
                                     <label>上架产品: <em>上架后才能在前台展示</em></label>
                                     <div class="am-form-group">
-                                        <label><input type="checkbox" name="is-onsale" <% if(product.get('isOnsale')) { %>checked="checked"<%}%>> 上架产品</label>
+                                        <label><input type="checkbox" name="is-onsale" <% if(product.get('isOnsale')) { %>checked="checked"<%}%>> <strong>上架产品</strong></label>
                                     </div>
                                     
                                     <label>备注:</label>

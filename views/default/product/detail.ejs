@@ -43,19 +43,23 @@
 <div class="guarantee-content">
     <span><i class="am-icon-leaf"></i> 正品保障</span>
     <span><i class="am-icon-history"></i> 7天无理由退款</span>
-    <span><i class="am-icon-check"></i> 现货</span>
     <span><i class="am-icon-modx"></i> 纯手工</span>
     <span><i class="am-icon-book"></i> 附送产品说明书</span>
 </div>
 
 <div class="info-content">
     <div class="info">
-        <strong class="price">¥ <%= item.price || 0 %>.00</strong>
         <div>
+            <span class="price">¥ <%= item.price || 0 %>.00</span>
+            <span class="stock">
+                <a href="javascript:;">现货 <i class="am-icon-info-circle"></i></a>
+            </span>
+        </div>
+        <p>
             <span>浏览量: <strong><%= item.pageViews %></strong></span>
             <span>总销量: <strong><%= item.sales %></strong></span>
             <span>月均销量: <strong><%= item.monthSales%></strong></span>
-        </div>
+        </p>
     </div>
     <div class="favorite-box">
         <input id="favorite" type="checkbox" data-product-id="<%=item.productId%>" <%if(wish){%>checked="checked"<%}%> />
