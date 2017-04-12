@@ -45,10 +45,6 @@
                                     <div class="am-form-group">
                                         <input name="purchase-link" type="text" value="<%if(product.get('purchaseLink')){ %><%= product.get('purchaseLink')[2] %><%}%>" autocomplete="off" placeholder="输入网站购买链接3" />
                                     </div>
-                                    <label>链接说明:</label>
-                                    <div class="am-form-group">
-                                        <textarea name="purchase-link-comment" rows="2"><%= product.get('purchaseLinkComment') %></textarea>
-                                    </div>
                                     <div>
                                         <button type="submit" class="am-btn am-btn-primary">保存</button>
                                     </div>
@@ -71,10 +67,6 @@
                                     <label>微店链接:</label>
                                     <div class="am-form-group">
                                         <input name="shop-link" type="text" value="<%if(product.get('shopLink')){ %><%= product.get('shopLink')[1] %><%}%>" autocomplete="off" placeholder="输入微店链接" />
-                                    </div>
-                                    <label>链接说明:</label>
-                                    <div class="am-form-group">
-                                        <textarea name="shop-link-comment" rows="2"><%= product.get('shopLinkComment') %></textarea>
                                     </div>
                                     <div>
                                         <button type="submit" class="am-btn am-btn-primary">保存</button>
@@ -170,14 +162,8 @@
 
                                     <label>上架产品: <em>上架后才能在前台展示</em></label>
                                     <div class="am-form-group">
-                                        <label><input type="checkbox" name="is-onsale" <% if(product.get('isOnsale')) { %>checked="checked"<%}%>> <strong>上架产品</strong></label>
+                                        <label class="color-orange"><input type="checkbox" name="is-onsale" <% if(product.get('isOnsale')) { %>checked="checked"<%}%>> <strong>上架产品</strong></label>
                                     </div>
-                                    
-                                    <label>备注:</label>
-                                    <div class="am-form-group">
-                                        <textarea name="settings-comment" rows="2"><%= product.get('settingsComment') %></textarea>
-                                    </div>
-                                    
                                     <div>
                                         <button type="submit" class="am-btn am-btn-primary">保存</button>
                                     </div>
@@ -235,18 +221,40 @@
 
                     <dl id="attachment-manage" class="am-accordion-item">
                         <dt class="am-accordion-title am-cf">
-                            7.附件
+                            7.附件管理
                         </dt>
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
                                 <form class="am-form" action="/admin/product-property/attachment-manage/<%= product.get('productId') %>" method="post">
-
-                                    <label>附件内容(格式:附件名):</label>
-                                    <input type="hidden" name="brand-id" value="<%= product.get('productBrandId') %>">
-                                    <div class="am-form-group typeahead-content">
-                                        <input id="" type="text" value="<%= product.get('productBrandId') %>" autocomplete="off" placeholder="输入品牌介绍"/>
+                                    <label>附件内容(格式:'name url',多个使用换行隔开):</label>
+                                    <div class="am-form-group">
+                                        <textarea id="attachment" name="attachment" placeholder="官方说明:http://51wish.cn/attachment.pdf" rows="3"><%= product.get('attachment') %></textarea>
                                     </div>
-                                    
+                                    <div>
+                                        <iframe class="upload" src="/admin/upload?callback=attachmentUploadSuccess" frameborder="0"></iframe>
+                                    </div>
+                                    <hr/>
+                                    <div>
+                                        <button type="submit" class="am-btn am-btn-primary">保存</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </dd>
+                    </dl>
+
+                    <dl id="set-comment" class="am-accordion-item">
+                        <dt class="am-accordion-title am-cf">
+                            8.备注
+                        </dt>
+                        <dd class="am-accordion-bd am-collapse">
+                            <div class="am-accordion-content">
+                                <form class="am-form" action="/admin/product-property/set-comment/<%= product.get('productId') %>" method="post">
+
+                                    <label>添加备注:</label>
+                                    <div class="am-form-group">
+                                        <textarea name="comment" placeholder="备注"><%= product.get('comment') %></textarea>
+                                    </div>
+
                                     <div>
                                         <button type="submit" class="am-btn am-btn-primary">保存</button>
                                     </div>
@@ -275,6 +283,12 @@
         var product = require('product-property');
         product.init();
     });
+    
+    function attachmentUploadSuccess(data) {
+        var attachment = $('#attachment');
+        var val = attachment.val();
+        attachment.val(val + '\n' + data[0].url);
+    }
 </script>
 </body>
 </html>

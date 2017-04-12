@@ -55,8 +55,7 @@ router.post('/purchase-link/:productId', (req, res) => {
 
     let productId = parseInt(req.params.productId);
     let purchaseLink = req.body['purchase-link'];
-    let purchaseLinkComment = req.body['purchase-link-comment'];
-
+    
     purchaseLink = purchaseLink.map(item => utils.urlCompleting(item));
 
     let query = new AV.Query(Product);
@@ -64,8 +63,7 @@ router.post('/purchase-link/:productId', (req, res) => {
     query.first().then(item => {
 
         return item.save({
-            purchaseLink,
-            purchaseLinkComment
+            purchaseLink
         });
 
     }).then(() => {
@@ -82,7 +80,6 @@ router.post('/shop-link/:productId', (req, res) => {
 
     let productId = parseInt(req.params.productId);
     let shopLink = req.body['shop-link'];
-    let shopLinkComment = req.body['shop-link-comment'];
 
     shopLink = shopLink.map(item => utils.urlCompleting(item));
 
@@ -91,8 +88,7 @@ router.post('/shop-link/:productId', (req, res) => {
     query.first().then(item => {
 
         return item.save({
-            shopLink,
-            shopLinkComment
+            shopLink
         });
 
     }).then(() => {
@@ -132,7 +128,6 @@ router.post('/settings/:productId', (req, res) => {
     let productId = parseInt(req.params.productId);
     let price = parseInt(req.body.price);
     let country = req.body.country;
-    let settingsComment = req.body['settings-comment'];
     let isHandmade = req.body['is-handmade'] ? true : false;
     let isDocument = req.body['is-document'] ? true : false;
     let isOnly = req.body['is-only'] ? true :false;
@@ -146,7 +141,6 @@ router.post('/settings/:productId', (req, res) => {
         return item.save({
             price,
             country,
-            settingsComment,
             isHandmade,
             isDocument,
             isOnly,
@@ -185,5 +179,51 @@ router.post('/content-manage/:productId', (req, res) => {
 
 });
 
+//附件管理
+router.post('/attachment-manage/:productId', (req, res) => {
+
+    base.isAdminUserLogin(req, res);  //判断是否登录
+
+    let productId = parseInt(req.params.productId);
+    let attachment = req.body['attachment'];
+
+    let query = new AV.Query(Product);
+    query.equalTo('productId', productId);
+    query.first().then(item => {
+
+        return item.save({
+            attachment
+        });
+
+    }).then(() => {
+        res.redirect(`/admin/product-property/${productId}?viewport=window`);
+    });
+
+});
+
+
+//保存备注
+router.post('/set-comment/:productId', (req, res) => {
+
+    base.isAdminUserLogin(req, res);  //判断是否登录
+
+    let productId = parseInt(req.params.productId);
+    let comment = req.body['comment'];
+
+
+    let query = new AV.Query(Product);
+    query.equalTo('productId', productId);
+    
+    query.first().then(item => {
+
+        return item.save({
+            comment
+        });
+
+    }).then(() => {
+        res.redirect(`/admin/product-property/${productId}?viewport=window`);
+    });
+
+});
 
 module.exports = router;

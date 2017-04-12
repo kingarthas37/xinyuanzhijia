@@ -21,8 +21,8 @@ router.get('/',(req,res)=>{
     let callbackName = req.query.callback || 'uploadFileSuccess';
     
     data = extend(data,{
-        action:'/admin/product-brand/upload',
-        fileType: ['image/gif','image/jpeg','image/png'],
+        action:'/admin/upload',
+        fileType: ['image/gif','image/jpeg','image/png','application/pdf','application/doc','application/docx'],
         multiple:false,
         callbackName:callbackName
     });

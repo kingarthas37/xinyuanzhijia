@@ -68,13 +68,19 @@
     </div>
 </div>
 
+<% if(item.attachment){
+ item.attachment = item.attachment.trim();
+ var attachments = item.attachment.split('\n');
+%>
 <div class="attachment-content">
     <a class="show" href="javascript:;">该产品包含附件/说明,点击查看 <i class="am-icon-angle-down"></i></a>
     <ul>
-        <li>Indio产品说明书 <a href="#">[查看]</a></li>
-        <li>Indio产品使用说明书 <a href="#">[查看]</a></li>
+        <%for(var i=0;i<attachments.length;i++){%>
+            <li><%= attachments[i].split(' ')[0] %> <a href="<%=attachments[i].split(':')[1]%>">[查看]</a></li>
+        <%}%>
     </ul>
 </div>
+<%}%>
 
 <div class="am-tabs <%if(item.productBrandId){%>row-3<%}%>" data-am-tabs>
     <ul class="am-tabs-nav am-nav am-nav-tabs">

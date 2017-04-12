@@ -151,10 +151,8 @@
     
     .attachment-content {
         border-bottom: 5px solid #eee;
+        font-weight: bold;
         &.on {
-            .show {
-                font-weight: bold;
-            }
             ul {
                 display: block;
             }

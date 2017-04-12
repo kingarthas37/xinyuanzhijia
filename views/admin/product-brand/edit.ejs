@@ -58,7 +58,7 @@
                     <div class="am-form-group">
                         <label for="brand-logo-image">品牌Logo：</label>
                         <div class="upload-content">
-                            <iframe class="upload" src="/admin/product-brand/upload?callback=brandLogoUploadSuccess" frameborder="0"></iframe>
+                            <iframe class="upload" src="/admin/product/upload?callback=brandLogoUploadSuccess" frameborder="0"></iframe>
                         </div>
                         <ul id="brand-logo-image-view" class="image-upload-list <%if(productBrand.get('brandLogoImage')){%>on<%}%>">
                             <%if(productBrand.get('brandLogoImage')){%><li><a href="<%= productBrand.get('brandLogoImage') %>"><img src="<%=productBrand.get('brandLogoImage')%>"/></a></li><%}%>
