@@ -590,3 +590,21 @@ span.hot {
         content: "HOT"
     }
 }
+
+sup.hot {
+    position: relative;
+    &:after {
+        background: $colorOrange;
+        top:0;
+        left:0;
+        position: absolute;
+        content: "HOT";
+        color: #fff;
+        height: 14px;
+        line-height: 14px;
+        padding: 0 4px;
+        display: block;
+        font-size: 12px;
+        transform: scale(0.75);
+    }
+}

@@ -58,7 +58,7 @@
                     <div class="am-form-group">
                         <label for="brand-logo-image">品牌Logo：</label>
                         <div class="upload-content">
-                            <iframe class="upload" src="/admin/product/upload?callback=brandLogoUploadSuccess" frameborder="0"></iframe>
+                            <iframe class="upload" src="/admin/upload?callback=brandLogoUploadSuccess" frameborder="0"></iframe>
                         </div>
                         <ul id="brand-logo-image-view" class="image-upload-list <%if(productBrand.get('brandLogoImage')){%>on<%}%>">
                             <%if(productBrand.get('brandLogoImage')){%><li><a href="<%= productBrand.get('brandLogoImage') %>"><img src="<%=productBrand.get('brandLogoImage')%>"/></a></li><%}%>
@@ -82,7 +82,7 @@
                     <div class="am-form-group">
                         <label for="author-image">上传文件：</label>
                         <div class="upload-content">
-                            <iframe class="upload" src="/admin/product-brand/upload?callback=imageUploadSuccess" frameborder="0"></iframe>
+                            <iframe class="upload" src="/admin/upload?callback=imageUploadSuccess" frameborder="0"></iframe>
                         </div>
                     </div>
                     <!-- image upload end -->
@@ -111,7 +111,7 @@
                     <div class="am-form-group">
                         <label for="author-image">创始人照片：</label>
                         <div class="upload-content">
-                            <iframe class="upload" src="/admin/product-brand/upload?callback=authorUploadSuccess" frameborder="0"></iframe>
+                            <iframe class="upload" src="/admin/upload?callback=authorUploadSuccess" frameborder="0"></iframe>
                         </div>
                         <ul id="author-image-view" class="image-upload-list <%if(productBrand.get('authorImage')){%>on<%}%>">
                             <%if(productBrand.get('authorImage')){%><li><a href="<%= productBrand.get('authorImage') %>"><img src="<%=productBrand.get('authorImage')%>"/></a></li><%}%>

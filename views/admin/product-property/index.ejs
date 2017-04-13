@@ -135,9 +135,9 @@
                                             <option value="">请选择</option>
                                             <option <% if(product.get('country') == 'us') { %>selected="selected"<%}%> value="us">美国</option>
                                             <option <% if(product.get('country') == 'in') { %>selected="selected"<%}%> value="in">印度</option>
-                                            <option <% if(product.get('country') == 'tw') { %>selected="selected"<%}%> value="tw">台湾</option>
+                                            <option <% if(product.get('country') == 'tw') { %>selected="selected"<%}%> value="tw">中国台湾</option>
                                             <option <% if(product.get('country') == 'eu') { %>selected="selected"<%}%> value="eu">欧洲</option>
-                                            <option <% if(product.get('country') == 'ul') { %>selected="selected"<%}%> value="uk">英国</option>
+                                            <option <% if(product.get('country') == 'uk') { %>selected="selected"<%}%> value="uk">英国</option>
                                             <option <% if(product.get('country') == 'au') { %>selected="selected"<%}%> value="au">澳洲</option>
                                             <option <% if(product.get('country') == 'fr') { %>selected="selected"<%}%> value="fr">法国</option>
                                             <option <% if(product.get('country') == 'de') { %>selected="selected"<%}%> value="de">德国</option>
@@ -149,7 +149,7 @@
                                     </div>
                                     
                                     <div class="am-form-group">
-                                        <label><input type="checkbox" name="is-refund" <% if(product.get('isRefund')) { %>checked="checked"<%}%> > 7天退货</label>
+                                        <label><input type="checkbox" name="is-refund" <% if(product.get('isRefund')) { %>checked="checked"<%}%> > 支持7天退货</label>
                                         <span class="split"></span>
                                         <label><input type="checkbox" name="is-hot" <% if(product.get('isHot')) { %>checked="checked"<%}%> > 热门产品</label>
                                         <span class="split"></span>
@@ -158,11 +158,24 @@
                                         <label><input type="checkbox" name="is-document" <% if(product.get('isDocument')) { %>checked="checked"<%}%>> 附送说明书</label>
                                         <span class="split"></span>
                                         <label><input type="checkbox" name="is-only" <% if(product.get('isOnly')) { %>checked="checked"<%}%>> 唯一</label>
+                                        <span class="split"></span>
+                                        <label class="color-orange"><input type="checkbox" name="is-short-stock" <% if(product.get('isShortStock')) { %>checked="checked"<%}%> > 缺货/断货</label>
                                     </div>
 
-                                    <label>上架产品: <em>上架后才能在前台展示</em></label>
+                                    <label>到货速度:</label>
                                     <div class="am-form-group">
-                                        <label class="color-orange"><input type="checkbox" name="is-onsale" <% if(product.get('isOnsale')) { %>checked="checked"<%}%>> <strong>上架产品</strong></label>
+                                        <select name="arrived-time">
+                                            <option value="1" <%if(product.get('arrivedTime') ==1){%>selected="selected"<%}%> >非常快(1-2周)</option>
+                                            <option value="2" <%if(product.get('arrivedTime') ==2){%>selected="selected"<%}%> >较快(2-3周)</option>
+                                            <option value="3" <%if(product.get('arrivedTime') ==3){%>selected="selected"<%}%> >一般(3-4周)</option>
+                                            <option value="4" <%if(product.get('arrivedTime') ==4){%>selected="selected"<%}%> >较慢(1个月以上)</option>
+                                            <option value="5" <%if(product.get('arrivedTime') ==5){%>selected="selected"<%}%> >非常慢(2个月以上)</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <label>上架产品: <em>(上架后才能在前台展示)</em></label>
+                                    <div class="am-form-group">
+                                        <label class="color-green"><input type="checkbox" name="is-onsale" <% if(product.get('isOnsale')) { %>checked="checked"<%}%>> <strong>上架产品</strong></label>
                                     </div>
                                     <div>
                                         <button type="submit" class="am-btn am-btn-primary">保存</button>

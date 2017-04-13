@@ -46,7 +46,7 @@
 
     h1 {
         margin: 0;
-        padding: 10px 10px 5px 10px;
+        padding: 10px;
         font-size: 16px;
         color: $colorMain;
     }
@@ -69,7 +69,7 @@
                 height: 44px;
                 line-height: 44px;
                 font-size: 22px;
-                color: #ff7d00;
+                color:#f40;
                 display: block;
             }
             .stock {
@@ -79,13 +79,24 @@
                 line-height: 44px;
                 font-size: 14px;
                 a {
+                    font-weight: bold;
+                    i {
+                        font-weight: normal;
+                    }
+                }
+                .in-stock {
                     color: $colorGreen;
                 }
-                i {
-                    font-weight: normal;
+                .out-stock {
+                    color: $colorOrange;
                 }
+                .short-stock {
+                    color: $colorRed;
+                }
+                
             }
             p {
+                color: $colorMain;
                 display: flex;
                 margin:0;
                 padding: 0 15px 0 0;
@@ -99,7 +110,6 @@
                 span {
                     flex: 1;
                     display: block;
-                    color: #888;
                     &:nth-child(2) {
                         text-align: center;
                     }
@@ -151,13 +161,13 @@
     
     .attachment-content {
         border-bottom: 5px solid #eee;
-        font-weight: bold;
         &.on {
             ul {
                 display: block;
             }
         }
         .show {
+            font-weight: bold;
             display: block;
             height: 36px;
             line-height: 36px;
@@ -259,6 +269,9 @@
             border-bottom: 1px dashed #efefef;
             line-height: 20px;
             padding: 5px 0;
+            span {
+                padding-left: 4px;
+            }
         }
     }
     
@@ -301,7 +314,7 @@
         bottom: 0;
         left: 0;
         padding: 5px 15px;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.5);
         .am-btn {
             border: none;
             color: #fff;
@@ -380,4 +393,19 @@
     footer {
         padding-bottom: 70px;
     }
+
+    .am-popover {
+        max-width: 220px;   
+    }
+    
+    .am-popover-inner {
+        color: #fff;
+        border:none;
+        box-shadow: none;
+        background: #000;
+    }
+    .am-popover-caret {
+        border-bottom-color: #000;
+    }
+    
 }

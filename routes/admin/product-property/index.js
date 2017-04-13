@@ -130,9 +130,12 @@ router.post('/settings/:productId', (req, res) => {
     let country = req.body.country;
     let isHandmade = req.body['is-handmade'] ? true : false;
     let isDocument = req.body['is-document'] ? true : false;
+    let isRefund = req.body['is-refund'] ? true : false;
     let isOnly = req.body['is-only'] ? true :false;
     let isOnsale = req.body['is-onsale'] ? true :false;
     let isHot = req.body['is-hot'] ? true :false;
+    let isShortStock = req.body['is-short-stock'] ? true : false;
+    let arrivedTime = parseInt(req.body['arrived-time']);
     
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
@@ -143,9 +146,12 @@ router.post('/settings/:productId', (req, res) => {
             country,
             isHandmade,
             isDocument,
+            isRefund,
             isOnly,
             isOnsale,
-            isHot
+            isHot,
+            isShortStock,
+            arrivedTime
         });
 
     }).then(() => {

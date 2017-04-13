@@ -38,13 +38,14 @@
     </ul>
 </div>
 
-<h1><%- item.name %></h1>
+<h1><%- item.name %> <%if(item.isHot){%><sup class="hot"></sup><%}%></h1>
 
 <div class="guarantee-content">
     <span><i class="am-icon-leaf"></i> 正品保障</span>
-    <span><i class="am-icon-history"></i> 7天无理由退款</span>
-    <span><i class="am-icon-modx"></i> 纯手工</span>
-    <span><i class="am-icon-book"></i> 附送产品说明书</span>
+    <%if(item.isRefund){%><span><i class="am-icon-history"></i> 7天退货</span><%}%>
+    <%if(item.isDocument){%><span><i class="am-icon-book"></i> 产品说明书</span><%}%>
+    <%if(item.isHandmade){%><span><i class="am-icon-modx"></i> 纯手工</span><%}%>
+    <%if(item.isOnly){%><span><i class="am-icon-legal"></i> 唯一产品</span><%}%>
 </div>
 
 <div class="info-content">
@@ -52,7 +53,15 @@
         <div>
             <span class="price">¥ <%= item.price || 0 %>.00</span>
             <span class="stock">
-                <a href="javascript:;">现货 <i class="am-icon-info-circle"></i></a>
+                <% if(item.isShortStock && item.isOnly){%>
+                <a class="short-stock" href="javascript:;" data-am-popover="{content:'该产品只有一件并已售完,请继续关注上架新品.'}"> 已售完 <i class="am-icon-question-circle-o"></i></a>
+                <%} else if(item.isShortStock){%>
+                <a class="short-stock" href="javascript:;" data-am-popover="{content:'该产品暂时缺货或断货,其原因可能为海外卖家材料,配件等供应不足造成,您可咨询我们了解该产品的最新供货进程.'}"> 缺货/断货 <i class="am-icon-question-circle-o"></i></a>
+                <%} else if(item.stock){%>
+                <a class="in-stock" href="javascript:;" data-am-popover="{content:'通常情况下该产品有现货,但不排除特殊情况,比如其只有少量现货时,同一时间段内同时被其他客户拍下导致无货,您可以拍下之前咨询我们库存情况.'}"> 现货 <i class="am-icon-info-circle"></i></a>
+                <%} else { %>
+                <a class="out-stock" href="javascript:;" data-am-popover="{content:'该件产品暂时没有库存,您可咨询我们了解新品物流状态,并可点击产品属性查看该产品大致到货时间.'}"> 暂无现货 <i class="am-icon-question-circle-o"></i></a>
+                <%}%>
             </span>
         </div>
         <p>
@@ -118,11 +127,28 @@
         </div>
         
         <div class="am-tab-panel param" id="tab-product-param">
-            <%if(item.property) { %>
-                <%- item.property %>
-            <%}else{%>
-                <ul><li>-</li></ul>
-            <%}%>
+            <ul>
+                <% if(item.country == 'us') { %><li>产地/国家: 美国</li> 
+                <% } else if(item.country == 'in') { %><li>产地/国家: 印度</li>
+                <% } else if(item.country == 'tw') { %><li>产地/国家: 中国台湾</li>  
+                <% } else if(item.country == 'eu') { %><li>产地/国家: 欧洲</li>  
+                <% } else if(item.country == 'uk') { %><li>产地/国家: 英国</li>  
+                <% } else if(item.country == 'au') { %><li>产地/国家: 澳洲</li>  
+                <% } else if(item.country == 'fr') { %><li>产地/国家: 法国</li>  
+                <% } else if(item.country == 'de') { %><li>产地/国家: 德国</li>  
+                <% } else if(item.country == 'ca') { %><li>产地/国家: 加拿大</li>  
+                <% } else if(item.country == 'cn') { %><li>产地/国家: 中国</li>  
+                <% } else if(item.country == 'other') { %><li>产地/国家: 其他</li><%}%>
+                
+                <% if(item.arrivedTime == 1) { %><li>到货时间: <span class="color-green"><strong>非常快 (约1-2周)</strong></span></li>
+                <% } else if(item.arrivedTime == 2) { %><li>到货时间: <span class="color-green"><strong>较快 (约2-3周)</strong></span></li>
+                <% } else if(item.arrivedTime == 3) { %><li>到货时间: <span class="color-orange">一般 (约3-4周)</span></li>
+                <% } else if(item.arrivedTime == 4) { %><li>到货时间: <span class="color-orange">较慢 (1个月以上)</span></li>
+                <% } else if(item.arrivedTime == 5) { %><li>到货时间: <span class="color-orange">非常慢 (2个月以上)</span></li>
+                <%}%>
+                
+                <%- item.property.replace('<ul>','').replace('</ul>',''); %>
+            </ul>
         </div>
 
         <%if(item.productBrandId){%>
