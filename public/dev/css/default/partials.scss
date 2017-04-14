@@ -608,3 +608,15 @@ sup.hot {
         transform: scale(0.75);
     }
 }
+
+.share-bg {
+    position: fixed;
+    background: #000 url("../images/default/common/share-bg.png") no-repeat right top;
+    background-size: 50%;
+    opacity: 0.8;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index: 999;
+}

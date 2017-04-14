@@ -188,7 +188,6 @@
     }
 
     .am-tabs {
-        border-bottom: 5px solid #eee;
         .am-nav-tabs {
             border-color: #eee;
         }
@@ -326,6 +325,36 @@
             font-size: 20px;
             border-radius: 5px;
             text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+        }
+    }
+    
+    .events {
+        padding: 10px 0;
+        border-bottom: 5px solid #eee;
+        text-align: center;
+        a {
+            width: 120px;
+            display: inline-block;
+            i {
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 16px;
+                background: $colorGradient1;
+                color: #fff;
+                border-radius: 50%;
+            }
+            span {
+                display: block;
+                color: $colorGray;
+                font-size: 12px;
+                line-height: 30px;
+            }
+            &.active {
+                i {
+                    background: $colorGradient2;
+                }
+            }
         }
     }
 

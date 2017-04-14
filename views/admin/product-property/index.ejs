@@ -147,6 +147,11 @@
                                         </select>
                                         <span class="am-form-caret"></span>
                                     </div>
+
+                                    <label>上架时间: <em>(参考系统录入时间:<%= new Date(product.createdAt).getFullYear() %>年<%= new Date(product.createdAt).getMonth()+1 %>月<%= new Date(product.createdAt).getDate() %>日)</em></label>
+                                    <div class="am-form-group">
+                                        <input type="text" name="onsale-date" id="onsale-date" data-am-datepicker="{format:'yyyy-mm-dd', viewMode: 'months'}" required placeholder="上架日期" value="<%if(product.get('onsaleDate')) { %><%= product.get('onsaleDate').getFullYear() %>-<%= product.get('onsaleDate').getMonth()+1%>-<%= product.get('onsaleDate').getDate() %><%}else{%><%= new Date(product.createdAt).getFullYear() %>-<%= new Date(product.createdAt).getMonth()+1 %>-<%= new Date(product.createdAt).getDate() %><%}%>" />
+                                    </div>
                                     
                                     <div class="am-form-group">
                                         <label><input type="checkbox" name="is-refund" <% if(product.get('isRefund')) { %>checked="checked"<%}%> > 支持7天退货</label>

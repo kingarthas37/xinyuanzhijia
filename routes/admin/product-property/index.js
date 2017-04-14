@@ -136,6 +136,7 @@ router.post('/settings/:productId', (req, res) => {
     let isHot = req.body['is-hot'] ? true :false;
     let isShortStock = req.body['is-short-stock'] ? true : false;
     let arrivedTime = parseInt(req.body['arrived-time']);
+    let onsaleDate = new Date(req.body['onsale-date']);
     
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
@@ -151,7 +152,8 @@ router.post('/settings/:productId', (req, res) => {
             isOnsale,
             isHot,
             isShortStock,
-            arrivedTime
+            arrivedTime,
+            onsaleDate
         });
 
     }).then(() => {
