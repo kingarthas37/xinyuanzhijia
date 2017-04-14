@@ -6,8 +6,7 @@
         box-shadow: none;
         overflow: hidden;
         margin: 0;
-
-
+        
         &.slider-image-view {
             &:after {
                 content: "";
@@ -333,7 +332,7 @@
         border-bottom: 5px solid #eee;
         text-align: center;
         a {
-            width: 120px;
+            width: 100px;
             display: inline-block;
             i {
                 width: 30px;
