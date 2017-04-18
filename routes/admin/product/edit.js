@@ -133,6 +133,8 @@ router.post('/:productId', (req, res) => {
 
     let name = req.body['name'];
     let nameEn = req.body['name-en'];
+    let sampleName = req.body['sample-name'];
+    let shopName = req.body['shop-name'];
     let mainImage = req.body['main-image'] ? JSON.parse(req.body['main-image']) : null;
     
     let productMethod = getQueryData(req.body['select-product-method']);
@@ -142,15 +144,11 @@ router.post('/:productId', (req, res) => {
     
     let bannerId = parseInt(req.body['select-banner']);
     let detail = req.body['detail'];
-    let detailEn = req.body['detail-en'];
     let description = req.body['description'];
     let review = req.body['review'];
     let property = req.body['property'];
-    let propertyEn = req.body['property-en'];
     let instruction = req.body['instruction'];
-    let instructionEn = req.body['instruction-en'];
     let use = req.body['use'];
-    let useEn = req.body['use-en'];
     let detailImage = req.body['detail-image'];
 
     let productId = parseInt(req.params.productId);
@@ -158,7 +156,7 @@ router.post('/:productId', (req, res) => {
     let query = new AV.Query(Product);
     query.equalTo('productId',productId);
 
-    let productData = {name,nameEn,mainImage,productMethod,category1,category2,bannerId,detail,detailEn,description,review,property,propertyEn,instruction,instructionEn,use,useEn,detailImage};
+    let productData = {name,nameEn,sampleName,shopName,mainImage,productMethod,category1,category2,bannerId,detail,description,review,property,instruction,use,detailImage};
     
     query.first().then(product => {
         

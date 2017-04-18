@@ -220,7 +220,6 @@ router.get('/move-category-1-up',(req,res) => {
             let query = new AV.Query(ProductCategory1);
             query.equalTo('category1Id',currentId);
             query.first().done(item => {
-                console.info(111, item);
                 item.set('index',item.get('index') - 1);
                 return item.save();
             }).done(resolve);
@@ -230,7 +229,6 @@ router.get('/move-category-1-up',(req,res) => {
             let query = new AV.Query(ProductCategory1);
             query.equalTo('category1Id',targetId);
             query.first().done(item => {
-                console.info(222, item);
                 item.set('index',item.get('index') + 1);
                 return item.save();
             }).done(resolve);

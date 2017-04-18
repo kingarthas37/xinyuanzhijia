@@ -38,6 +38,16 @@
                         <label for="name-en">产品名称英文:</label>
                         <input id="name-en" name="name-en" type="text" placeholder="输入产品名称英文" autocomplete="off" value="<%= product.get('nameEn') %>" />
                     </div>
+
+                    <div class="am-form-group">
+                        <label for="sample-name">产品标准名称:</label>
+                        <input id="sample-name" name="sample-name" type="text" placeholder="输入产品标准名称" autocomplete="off" value="<%= product.get('sampleName') %>" />
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="shop-name">产品网店名称:</label>
+                        <input id="shop-name" name="shop-name" type="text" placeholder="输入产品网店名称" autocomplete="off" value="<%= product.get('shopName') %>" />
+                    </div>
                     <!-- name end -->
 
                     <hr>
@@ -148,20 +158,6 @@
                         <label for="detail">输入产品详情<small>(md5)</small>:</label>
                         <textarea id="detail" name="detail" rows="5" placeholder="输入产品详情[必填]"><%= product.get('detail') %></textarea>
                     </div>
-
-                    <div class="am-form-group">
-                        <div class="am-panel">
-                            <div class="am-panel-hd">
-                                <label class="am-panel-title" data-am-collapse="{target:'#detail-en-panel'}"
-                                       for="detail-en"><em class="am-icon-angle-right"></em> 输入产品详情英文
-                                    <small> (md5)</small>
-                                    :</label>
-                            </div>
-                            <div id="detail-en-panel" class="am-panel-collapse am-collapse <% if(product.get('detailEn')) { %>am-in<%}%>">
-                                <textarea id="detail-en" name="detail-en" rows="5" placeholder="输入产品详情(英文)"><%= product.get('detailEn') %></textarea>
-                            </div>
-                        </div>
-                    </div>
                     <!-- detail end -->
 
                     <hr/>
@@ -170,20 +166,6 @@
                     <div class="am-form-group">
                         <label for="property">产品属性 <small>(md5)</small>:</label>
                         <textarea id="property" name="property" rows="3" placeholder="输入产品属性"><%= product.get('property') %></textarea>
-                    </div>
-
-                    <div class="am-form-group">
-                        <div class="am-panel">
-                            <div class="am-panel-hd">
-                                <label class="am-panel-title" data-am-collapse="{target:'#property-en-panel'}"
-                                       for="property-en"><em class="am-icon-angle-right"></em> 输入产品属性英文
-                                    <small> (md5)</small>
-                                    :</label>
-                            </div>
-                            <div id="property-en-panel" class="am-panel-collapse am-collapse <% if(product.get('propertyEn')) { %>am-in<%}%>">
-                                <textarea id="property-en" name="property-en" rows="3" placeholder="输入产品属性英文"><%= product.get('propertyEn') %></textarea>
-                            </div>
-                        </div>
                     </div>
                     <!-- property end -->
 
@@ -194,20 +176,6 @@
                         <label for="instruction">产品说明 <small>(md5)</small>:</label>
                         <textarea id="instruction" name="instruction" rows="3" placeholder="输入产品说明"><%= product.get('instruction') %></textarea>
                     </div>
-
-                    <div class="am-form-group">
-                        <div class="am-panel">
-                            <div class="am-panel-hd">
-                                <label class="am-panel-title" data-am-collapse="{target:'#instruction-en-panel'}"
-                                       for="instruction-en"><em class="am-icon-angle-right"></em> 输入产品说明英文
-                                    <small> (md5)</small>
-                                    :</label>
-                            </div>
-                            <div id="instruction-en-panel" class="am-panel-collapse am-collapse <% if(product.get('instructionEn')) { %>am-in<%}%>">
-                                <textarea id="instruction-en" name="instruction-en" rows="3" placeholder="输入产品说明英文"><%= product.get('instructionEn') %></textarea>
-                            </div>
-                        </div>
-                    </div>
                     <!-- instruction end -->
 
                     <hr/>
@@ -216,20 +184,6 @@
                     <div class="am-form-group">
                         <label for="use">产品使用说明 <small>(md5)</small>:</label>
                         <textarea id="use" name="use" rows="5" placeholder="输入产品使用说明"><%= product.get('use') %></textarea>
-                    </div>
-
-                    <div class="am-form-group">
-                        <div class="am-panel">
-                            <div class="am-panel-hd">
-                                <label class="am-panel-title" data-am-collapse="{target:'#use-en-panel'}"
-                                       for="use-en"><em class="am-icon-angle-right"></em> 输入产品使用说明英文
-                                    <small> (md5)</small>
-                                    :</label>
-                            </div>
-                            <div id="use-en-panel" class="am-panel-collapse am-collapse <% if(product.get('useEn')) { %>am-in<%}%>">
-                                <textarea id="use-en" name="use-en" rows="3" placeholder="输入产品使用说明英文"><%= product.get('useEn') %></textarea>
-                            </div>
-                        </div>
                     </div>
                     <!-- use end -->
 

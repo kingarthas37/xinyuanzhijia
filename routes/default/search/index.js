@@ -134,7 +134,6 @@ router.get('/ajax', (req, res) => {
 
 router.get('/method', (req, res) => {
     productMethod.getProductMethods().then(result => {
-        console.log(result);
         res.send(result);
     });
 });
