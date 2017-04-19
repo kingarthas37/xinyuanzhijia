@@ -12,17 +12,19 @@ module.exports = {
         let previewContent = $('.preview-content');
         let html = $.trim(previewContent.html());
         let btnCopy = $('.btn-copy');
-        btnCopy.zclip({
-            path: '/assets/swf/ZeroClipboard.swf',
-            copy: function () {
+        
+        let clipboard = new Clipboard(btnCopy[0], {
+            text: function() {
                 return html;
-            },
-            afterCopy: function () {
-                btnCopy.popover({
-                    content: '复制成功!'
-                });
             }
         });
+        
+        clipboard.on('success',data => {
+            btnCopy.popover({
+                content: '复制成功!'
+            });
+        });
+        
     },
     waterMark() {
         
@@ -51,6 +53,7 @@ module.exports = {
         
         let previewContent = $('.preview-content');
         let html = $.trim(previewContent.html());
+        
         let btnShot = $('.btn-shot');
         btnShot.button('loading');
         let progress = $.AMUI.progress;
@@ -68,7 +71,7 @@ module.exports = {
                     data:{
                         html:html,
                         htmlHeight:previewContent.height(),
-                        name:$('h4').text()
+                        name:$('h4').text().replace(/\//g,'')
                     },
                     success:function() {
                         progress.done();

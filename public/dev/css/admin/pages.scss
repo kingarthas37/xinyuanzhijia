@@ -149,8 +149,9 @@
     margin: 30px auto;
 
     .preview-content {
-        font-size: 22px;
-        line-height: 38px;
+        position: relative;
+        font-size: 20px;
+        line-height: 32px;
         section {
             padding: 0;
             margin: 0 0 20px 0;
@@ -158,6 +159,18 @@
         div {
             padding: 0 15px;
             margin-bottom: 20px;
+            &.content {
+                text-shadow: 1px 1px 0 #fff, 1px 1px 0 #fff;
+                background: url('../images/admin/common/logo-mark-content.png') no-repeat right top 20px;
+                background-size: 80px 80px;
+            }
+        }
+        article {
+            padding: 0 15px;
+            margin-bottom: 20px;
+            p {
+                text-indent: 0;
+            }
         }
         ul {
             margin: 0 0 15px 0;
@@ -168,6 +181,7 @@
             margin-bottom: 20px;
         }
         p {
+            text-indent: 20px;
             margin: 0 0 15px 0;
             padding: 0;
         }

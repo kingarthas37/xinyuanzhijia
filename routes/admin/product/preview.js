@@ -79,14 +79,10 @@ router.post('/preview-taobao', function (req, res) {
     let nameEn = req.body['name-en'];
     let banner = req.body['banner'];
     let detail = req.body['detail'];
-    let detailEn = req.body['detail-en'];
     let review = req.body['review'];
     let property = req.body['property'];
-    let propertyEn = req.body['property-en'];
     let instruction = req.body['instruction'];
-    let instructionEn = req.body['instruction-en'];
     let use = req.body['use'];
-    let useEn = req.body['use-en'];
     let detailImage = req.body['detail-image'];
     
     let productMethodId = parseInt(req.body['select-product-method']);
@@ -98,14 +94,10 @@ router.post('/preview-taobao', function (req, res) {
         nameEn:nameEn,
         banner:banner,
         detail: imageSet(markdown.toHTML(detail)),
-        detailEn: imageSet(markdown.toHTML(detailEn)),
         review: markdown.toHTML(review),
         property: imageSet(markdown.toHTML(property)),
-        propertyEn: imageSet(markdown.toHTML(propertyEn)),
         instruction: imageSet(markdown.toHTML(instruction)),
-        instructionEn: imageSet(markdown.toHTML(instructionEn)),
         use: imageSet(markdown.toHTML(use)),
-        useEn: imageSet(markdown.toHTML(useEn)),
         detailImage: imageSet(markdown.toHTML(detailImage))
     });
 
