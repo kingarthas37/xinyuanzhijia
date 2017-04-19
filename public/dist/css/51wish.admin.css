@@ -379,10 +379,6 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
     .product-preview-page .preview-content div {
       padding: 0 15px;
       margin-bottom: 20px; }
-      .product-preview-page .preview-content div.content {
-        text-shadow: 1px 1px 0 #fff, 1px 1px 0 #fff;
-        background: url("../images/admin/common/logo-mark-content.png") no-repeat right top 20px;
-        background-size: 80px 80px; }
     .product-preview-page .preview-content article {
       padding: 0 15px;
       margin-bottom: 20px; }
