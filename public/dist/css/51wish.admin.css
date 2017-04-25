@@ -416,4 +416,21 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
     font-weight: normal;
     color: #999; }
 
+/* admin product groups page */
+.product-groups-page .am-form-group {
+  margin-bottom: 10px; }
+
+.product-groups-page .list-group-field .am-form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .product-groups-page .list-group-field .am-form-group .input {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1; }
+  .product-groups-page .list-group-field .am-form-group .del {
+    width: 100px;
+    text-align: center;
+    padding-top: 5px; }
+
 /*# sourceMappingURL=51wish.admin.css.map */

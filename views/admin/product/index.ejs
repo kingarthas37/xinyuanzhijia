@@ -120,6 +120,9 @@
                             <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock"><i class="am-icon-inbox <%if(product[i].get('stock')){%> instock<%}%>"><%if(product[i].get('stock')){%><em class="stock-num"><%= product[i].get('stock') %></em><%}%></i></a>
                             
                             <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#settings"><i class="am-icon-gear"></i></a>
+
+                            <a href="/admin/product/groups/<%= product[i].get('productId') %>?product-method-id=<%=product[i].get('productMethod')[0]%>&category1-id=<%=product[i].get('category1')[0]%>&category2-id=<%=product[i].get('category2')[0]%>"><i class="am-icon-sitemap"></i></a>
+
                             <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>"><i class="am-icon-tag"></i></a> <%}%>
                         </td>
                         <td class="t-c">

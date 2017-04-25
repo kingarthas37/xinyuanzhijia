@@ -36,6 +36,7 @@ module.exports = {
     '/admin/product/copy':require('./admin/product/copy'),
     '/admin/product/upload':require('./admin/product/upload'),
     '/admin/product/preview':require('./admin/product/preview'),
+    '/admin/product/groups':require('./admin/product/groups'),
     
     '/admin/product-category':require('./admin/product-category'),
     

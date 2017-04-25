@@ -185,4 +185,55 @@ router.get('/list-data',(req,res) => {
 
 });
 
+
+//typeahead查询产品名称,用于order add/edit页面
+router.get('/get-product', (req, res) => {
+
+    let name = req.query['name'];
+    let query = new AV.Query(Product);
+    query.contains('name', name);
+    query.select('name', 'productId', 'mainImage');
+
+    query.find().then(results => {
+
+        let jsonData = [];
+
+        for (let i = 0; i < results.length; i++) {
+            let imageArr = [];
+            for (let key in results[i].get('mainImage')) {
+                imageArr.push(results[i].get('mainImage')[key].url);
+            }
+            let obj = {
+                'value': `${results[i].get('name')} {id:${results[i].get('productId')}}`,
+                'productId': results[i].get('productId'),
+                'image': imageArr[0] || 'http://ac-JoaBcRTt.clouddn.com/b7f0d580ef9a4ae8e19b.png'
+            };
+            jsonData.push(obj);
+        }
+        return res.json(jsonData);
+
+    }, ()=> res.json({success: 0}));
+
+});
+
+//通过productId查询product name
+router.get('/get-id/:productId', (req, res) => {
+
+    let productId = parseInt(req.params['productId']);
+    let query = new AV.Query(Product);
+    
+    query.equalTo('productId',productId);
+    query.select('name');
+
+    query.first().then(result => {
+
+        res.send({
+            success:1,
+            result
+        });
+
+    },()=>res.json({success: 0}));
+
+});
+
 module.exports = router;

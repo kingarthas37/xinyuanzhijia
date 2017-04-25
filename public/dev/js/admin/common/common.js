@@ -67,5 +67,11 @@ $(function () {
             },3000);
         }
     }
+    
+    {
+        $('.btn-back').click(function() {
+            history.back(-1);
+        });
+    }
 
 });

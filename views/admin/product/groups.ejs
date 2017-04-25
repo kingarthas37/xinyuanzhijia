@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body class="product-groups-page">
+
+<% include ../partials/header %>
+<div class="am-cf admin-main">
+
+    <!-- sidebar start -->
+    <% include ../partials/sidebar %>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content admin-product-page">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf">
+                <a href="/admin/product/groups/<%= product.get('productId') %>">编辑产品组合</a> / <a href="/admin/product/groups/<%= product.get('productId') %>"><%= product.get('name') %></a>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+
+                <form id="form-edit-groups" class="am-form" method="post">
+
+                    <input type="hidden" id="product-id" value="<%= product.get('productId') %>">
+                    <input type="hidden" id="product-method-id" value="<%=productMethodId%>">
+                    <input type="hidden" id="category1-id" value="<%=category1Id%>">
+                    <input type="hidden" id="category2-id" value="<%=category2Id%>">
+                    
+                    <%for (var i=0;i<groups.length;i++) {%>
+                    <div class="product-group am-form-group typeahead-content" data-group-id="<%= groups[i].get('productGroupId') %>">
+                        <label><strong><%= groups[i].get('productGroupName') %>:</strong></label>
+
+                        <div class="list-group-field">
+                            
+                            <%if(product.get('groups').length){%>
+
+                                <%for (var j=0;j< product.get('groups').length;j++) {%>
+                                    
+                                    <% if(product.get('groups')[j].productGroupId == groups[i].get('productGroupId')) {%>
+
+                                        <%for (var k = 0;k < product.get('groups')[j].products.length; k++) {%>
+                                           
+                                            <div class="am-form-group">
+                                                <div class="input"><input class="product-name" type="text" placeholder="输入产品名称(自动填充)" autocomplete="off" value="<%= product.get('groups')[j].products[k] %>"></div>
+                                                <div class="del"><a href="javascript:;">- 删除</a></div>
+                                            </div>
+                            
+                                        <%}%>
+                            
+                                    <%}%>
+                            
+                                <%}%>
+                                                         
+                            <%}%>
+                            
+                        </div>
+                        
+                        <div><a class="product-group-add" href="javascript:;">+ 添加新产品组合</a></div>
+                        
+                    </div>
+                    <hr/>
+                    <%}%>
+                    
+                    <div class="am-form-group">
+                        <button id="submit" type="button" class="am-btn am-btn-primary">保存</button>
+                        <button type="button" class="am-btn am-btn-primary btn-back">返回</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- content end -->
+
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    $(function () {
+        var productGroups = require('product-groups');
+        productGroups.indexFun();
+    });
+</script>
+</body>
+</html>

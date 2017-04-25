@@ -223,3 +223,23 @@
         }
     }
 }
+
+/* admin product groups page */
+.product-groups-page {
+    .am-form-group {
+        margin-bottom: 10px;
+    }
+    .list-group-field {
+        .am-form-group {
+            display: flex;
+            .input {
+                flex:1;
+            }
+            .del {
+                width: 100px;
+                text-align: center;
+                padding-top: 5px;
+            }
+        }
+    }
+}
