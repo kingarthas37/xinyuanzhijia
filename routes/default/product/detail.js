@@ -61,8 +61,14 @@ router.get('/:id', (req, res) => {
             var month = date.getMonth() + 1;
             var strDate = date.getDate();
             var currentDate = year + seperator + month + seperator + strDate;
-            var monthNum = product.getMct(product.formartDate(data.item.createdAt), currentDate, seperator);
-            data.item.monthSales = Math.ceil(data.item.sales / monthNum);
+            var onsalDate = data.item.onsaleDate ? data.item.onsaleDate : data.item.createdAt;
+            var monthNum = product.getMct(product.formartDate(onsalDate), currentDate, seperator);
+            var monthSales = (data.item.sales / monthNum);
+            if (monthSales < 1) {
+                data.item.monthSales = "少于1";
+            } else {
+                data.item.monthSales = math.ceil(monthSales);
+            }
             res.render('default/product/detail', data);
         } else {
             res.redirect('/error/404');

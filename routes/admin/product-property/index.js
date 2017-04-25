@@ -234,4 +234,28 @@ router.post('/set-comment/:productId', (req, res) => {
 
 });
 
+//保存商品组合
+router.post('/set-group/:productId', (req, res) => {
+
+    base.isAdminUserLogin(req, res);  //判断是否登录
+
+    let productId = parseInt(req.params.productId);
+    let groups = req.body['groups'];
+
+
+    let query = new AV.Query(Product);
+    query.equalTo('productId', productId);
+
+    query.first().then(item => {
+
+        return item.save({
+            groups
+        });
+
+    }).then(() => {
+        res.redirect(`/admin/product-property/${productId}?viewport=window`);
+    });
+
+});
+
 module.exports = router;
