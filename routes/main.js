@@ -55,6 +55,8 @@ module.exports = {
     '/admin/product-tag/edit':require('./admin/product-tag/edit'),
 
     '/admin/product-group':require('./admin/product-group'),
+    '/admin/product-group/add':require('./admin/product-group/add'),
+    '/admin/product-group/edit':require('./admin/product-group/edit'),
 
     '/admin/sync':require('./admin/sync')
     

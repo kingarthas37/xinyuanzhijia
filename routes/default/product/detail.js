@@ -67,7 +67,7 @@ router.get('/:id', (req, res) => {
             if (monthSales < 1) {
                 data.item.monthSales = "少于1";
             } else {
-                data.item.monthSales = math.ceil(monthSales);
+                data.item.monthSales = Math.ceil(monthSales);
             }
             res.render('default/product/detail', data);
         } else {
