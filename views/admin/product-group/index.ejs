@@ -42,7 +42,7 @@
                         <tr>
                             <td><a href="/admin/product-group/edit/<%= items[i].get('productGroupId') %>"><%= items[i].get('productGroupName') %></a></td>
                             <td class="t-c small-screen-hide"><%= items[i].get('updatedAt').getFullYear().toString() %>/<%= items[i].get('updatedAt').getMonth() + 1 %>/<%= items[i].get('updatedAt').getDate() %></td>
-                            <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= items[i].get('productGroupId') %>" class="remove-product-method">删除</a></td>
+                            <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= items[i].get('productGroupId') %>" class="remove-product-group">删除</a></td>
                         </tr>
                     <% } %>
                     </tbody>
@@ -71,7 +71,7 @@
 
 
 <!-- modal 删除产品 -->
-<div class="am-modal am-modal-confirm" tabindex="-1" id="confirm-remove-product-method">
+<div class="am-modal am-modal-confirm" tabindex="-1" id="confirm-remove-product-group">
     <div class="am-modal-dialog">
         <div class="am-modal-bd">
             确定要删除这条记录吗？
@@ -103,8 +103,8 @@
 
 <script type="text/javascript">
     $(function () {
-        var productMethod = require('product-method');
-        productMethod.indexFun();
+        var productGroup = require('product-gp');
+        productGroup.indexFun();
     });
 </script>
 </body>

@@ -50,8 +50,10 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/add', (req, res) => {
-
+router.get('/remove/:productGroupId', (req, res) => {
+    let productGroupId = parseInt(req.params.productGroupId);
+    productGroup.delete(productGroupId);
+    res.send({success: 1})
 });
 
 module.exports = router;

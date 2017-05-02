@@ -30,10 +30,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     productGroup.isAdminUserLogin(req, res);  //判断是否登录
     let name = req.body['name'];
-    productGroup.add({'productGroupName': name}).then(() => {
-        req.flash('success', '添加产品组合类型成功!');
-        res.redirect('/admin/product-group');
-    });
+    productGroup.add({'productGroupName': name});
+    req.flash('success', '添加产品组合类型成功!');
+    res.redirect('/admin/product-group');
 });
 
 
