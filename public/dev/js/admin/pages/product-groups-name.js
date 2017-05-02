@@ -5,6 +5,7 @@ let leanAppHeader = window.leanAppHeader;
 module.exports = {
 
     indexFun: function () {
+        
         //删除productMethod
         let removeLink = $('.remove-product-group');
         let modal = $('#confirm-remove-product-group');

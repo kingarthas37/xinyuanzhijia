@@ -7,5 +7,6 @@ require('./product-preview');
 require('./product-property');
 require('./product-brand');
 require('./product-groups');
+require('./product-groups-name');
 require('./upload');
 require('./sign');

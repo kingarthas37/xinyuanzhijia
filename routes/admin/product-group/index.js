@@ -50,7 +50,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/remove/:productGroupId', (req, res) => {
+router.post('/remove/:productGroupId', (req, res) => {
     let productGroupId = parseInt(req.params.productGroupId);
     productGroup.delete(productGroupId);
     res.send({success: 1})
