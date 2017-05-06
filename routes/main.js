@@ -16,6 +16,7 @@ module.exports = {
     '/product':require('./default/product'),
     '/product/detail':require('./default/product/detail'),
     '/product/recommend':require('./default/product/recommend'),
+    '/product/statistics':require('./default/product/statistics'),
     
     '/suggest':require('./default/search/suggest'),
 
