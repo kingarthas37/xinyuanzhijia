@@ -2,10 +2,11 @@
 
 let PhotoSwipe = require('photoswipe');
 let PhotoSwipeUI_Default = require('photoswipe-ui');
+let utils = require('../common/utils');
 
 module.exports = {
 
-    init() {
+    init(data) {
  
         //收藏
         this.favoriteProduct();
@@ -13,11 +14,10 @@ module.exports = {
         //点赞,分享
         this.eventsGood();
         this.eventsShare();
-
-        $('.am-slider').flexslider({
-            directionNav: false,
-            slideshow:false
-        });
+        
+        //显示推荐组合
+        this.recommendProducts(data.groups,data.groupsName);
+        
         
         //主图预览图懒加载
         $('img.lazy-container').lazyload({
@@ -180,6 +180,92 @@ module.exports = {
                 $(this).detach();
             });
             //ajax
+        });
+        
+    },
+
+    recommendProducts(groups,groupsName) {
+        let _this = this;
+        let products = [];
+        for(let i=0;i< groups.length;i++) {
+            for(let j=0; j< groups[i].products.length;j++) {
+                products.push(groups[i].products[j]);
+            }
+        }
+
+        $.ajax({
+            type:'get',
+            url:`/product/recommend/custom/${products.join()}`
+        }).then(data => {
+            console.info(data);
+            for(let i=0;i< groups.length; i++) {
+                for(let j=0;j<groupsName.length;j++) {
+                    if(groups[i].productGroupId === groupsName[j].productGroupId) {
+                        groups[i].name = groupsName[j].productGroupName;
+                    }
+                }
+            }
+            
+            for(let i=0; i< groups.length; i++) {
+                groups[i].html = [];
+                for(let j=0; j < groups[i].products.length; j++) {
+                    for(let k = 0;k < data.items.length; k++) {
+                        if(data.items[k].productId === parseInt(groups[i].products[j])) {
+                            groups[i].html.push({
+                                productId:data.items[k].productId,
+                                name:data.items[k].name,
+                                image:utils.productMainImageOutput(data.items[k].mainImage),
+                                price:data.items[k].price,
+                                isHot:data.items[k].isHot
+                            });
+                        }
+                    }
+                }
+            }
+            
+            this.recommendHtml(groups);
+            
+        });
+        
+    },
+    recommendHtml(data) {
+        
+        let cont = $('.recommend-content');
+        
+        let html = '';
+        
+        $.each(data,(i,n)=> {
+
+            html += `<div class="recommend"><h3>${n.name}:</h3></div><div class="am-slider am-slider-default slider-recommend"><ul class="am-slides">`;
+            if(n.html.length <= 3) {
+                html += `<li>`;
+                $.each(n.html,(i1,n1) => {
+                    html += `
+                        <dl>
+                            <dt>
+                                <a href="/product/detail/${n1.productId}"><img src="${n1.image}?imageMogr2/thumbnail/250" alt="${n1.name}"></a>
+                                <em>¥${n.price}</em>
+                            </dt>
+                            <dd>${n1.name}</dd>
+                        </dl>
+                    `;
+                });
+                html += `</li>`;
+            } else {
+                
+            }
+            
+            html += `</ul></div>`;
+            
+        });
+
+        console.info(html);
+
+        cont.html(html);
+
+        $('.am-slider').flexslider({
+            directionNav: false,
+            slideshow:false
         });
         
     }

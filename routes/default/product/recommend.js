@@ -15,7 +15,7 @@ let markdown = require('markdown').markdown;
 router.get('/user/:productId', (req, res) => {
     let productId = req.params.productId ? parseInt(req.params.productId) : null;
     let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
-    let memberIdArray = new Array();
+    let memberIdArray = [];
     let data = [];
     if (!productId) {
         res.send(data);
@@ -55,7 +55,7 @@ router.get('/custom/:productIds', (req, res) => {
     let productIds = req.params.productIds;
     AV.Promise.when(
         new AV.Promise(resolve => {
-            product.getProducts({limit:9, page:1,ids: productIds.toString(), select: 'name,mainImage,productId'}).then(items => {
+            product.getProducts({limit:9, page:1,ids: productIds.toString(), select: 'name,mainImage,productId,price,isHot'}).then(items => {
                 data = extend(data, {items});
                 resolve();
             });

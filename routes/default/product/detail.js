@@ -3,6 +3,7 @@
 let product = require('../../../lib/models/product').createNew();
 let productClick = require('../../../lib/models/product-click').createNew();
 let productWish = require('../../../lib/models/product-wish').createNew();
+let productGroup = require('../../../lib/models/product-group').createNew();
 let request = product.getRequest();
 let config = product.getConfig();
 let router = product.getRouter();
@@ -40,16 +41,23 @@ router.get('/:id', (req, res) => {
                 data = extend(data, {wish:false});
                 resolve();
             }
-
         }),
         new AV.Promise(resolve => {
             productWish.getWishCountByProductId(id).then(result => {
                 data = extend(data, {'wishCount': result.count});
                 resolve();
             });
+        }),
+        new AV.Promise(resolve => {
+            productGroup.getProductGroup({page:1,limit:10}).then(result => {
+                data = extend(data, {'groupsName': JSON.stringify(result.items)});
+                resolve();
+            });
         })
     ).then(() => {
         if(data.item) {
+            
+            data.item.groups = JSON.stringify(data.item.groups);
             data.item.detail = markdown.toHTML(data.item.detail);
             data.item.property = markdown.toHTML(data.item.property);
             data.item.instruction = markdown.toHTML(data.item.instruction);
@@ -75,21 +83,6 @@ router.get('/:id', (req, res) => {
         }
 
     });
-});
-
-router.get('/groups/:id', (req, res) => {
-    let id = req.params.id ? parseInt(req.params.id) : null;
-    let ret = {'data': null};
-    if (id) {
-        product.getProductById(id).then(result => {
-            if(result) {
-                ret.data = result.attributes;
-                res.send(ret);
-            }
-        });
-    } else {
-        res.send(ret);
-    }
 });
 
 module.exports = router;

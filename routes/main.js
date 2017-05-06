@@ -12,9 +12,11 @@ module.exports = {
     '/user/wish':require('./default/user/wish'),
     
     '/search':require('./default/search/index'),
+    
+    '/product':require('./default/product'),
     '/product/detail':require('./default/product/detail'),
     '/product/recommend':require('./default/product/recommend'),
-    //'/product/list':require('./default/product/index'),
+    
     '/suggest':require('./default/search/suggest'),
 
     '/order/express': require('./default/order/express'),

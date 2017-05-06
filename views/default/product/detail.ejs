@@ -11,6 +11,8 @@
 
 <body class="detail-page">
 
+<input type="hidden" id="product-id" value="<%= item.productId %>">
+
 <header class="sub fixed">
     <div class="back">
         <a href="javascript:;" class="go-back">
@@ -177,145 +179,65 @@
     <a class="events-share" href="javascript:;"><i class="am-icon-share"></i> <span>分享给好友</span> </a>
 </div>
 
-
-<div class="recommend">
-    <h3>为您搭配:</h3>
-    <div class="am-slider am-slider-default slider-recommend">
-        <ul class="am-slides">
-            <li>
-                <dl>
-                    <dt>
-                        <img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt="">
-                        <em>¥188</em>
-                    </dt>
-                    <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                    <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                    <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
-                    <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                    <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                    <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
-                    <dd></dd>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-            </li>
-        </ul>
-    </div>
+<div class="recommend-content">
+    
 </div>
 
-<div class="recommend">
-    <h3>其他推荐:</h3>
-    <div class="am-slider am-slider-default slider-recommend">
-        <ul class="am-slides">
-            <li>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
-                    <dd></dd>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
-                    <dd></dd>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
-                    <dd></dd>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-            </li>
-        </ul>
-    </div>
-</div>
+<!--
+<div class="recommend-content">
 
 <div class="recommend">
-    <h3>喜欢此产品的用户还喜欢:</h3>
-    <div class="am-slider am-slider-default slider-recommend">
-        <ul class="am-slides">
-            <li>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
-                    <dd></dd>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
-                    <dd></dd>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
-                    <dd></dd>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-                <dl>
-                    <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
-                </dl>
-            </li>
-        </ul>
+        <h3>为您搭配:</h3>
+        <div class="am-slider am-slider-default slider-recommend">
+            <ul class="am-slides">
+                <li>
+                    <dl>
+                        <dt>
+                            <img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt="">
+                            <em>¥188</em>
+                        </dt>
+                        <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                        <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                        <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                        <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                        <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                        <dd>Indio魔法油 - love me Indio魔法油 - love me Indio魔法油 - love me</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><img src="http://ac-quipuwpj.clouddn.com/d5dc126e3a1a183e6ea0.jpg?imageMogr2/thumbnail/250" alt=""> </dt>
+                        <dd></dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="http://ac-quipuwpj.clouddn.com/ec08ea75bcb777f5eedb.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                    </dl>
+                    <dl>
+                        <dt><img src="http://ac-quipuwpj.clouddn.com/fcdf9f321b2b90a2a32c.jpg?imageMogr2/thumbnail/250" alt=""></dt>
+                    </dl>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
+-->
 
 <div class="buy-button">
     <button type="button" id="buy" class="am-btn am-btn-default" data-am-modal="{target:'#modal-buy'}">购买</button>
@@ -360,12 +282,18 @@
     </div>
 </div>
 
+
 <% include ../partials/footer %>
 <% include ../partials/js %>
 <script>
     $(function() {
-        var product = require('product-detail');
-        product.init();
+        
+        var productDetail = require('product-detail');
+        productDetail.init({
+            groups:JSON.parse('<%- item.groups %>'),
+            groupsName:JSON.parse('<%- groupsName %>')
+        });
+        
     });
 </script>
 </body>
