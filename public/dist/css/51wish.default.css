@@ -616,12 +616,12 @@ footer {
   font-size: 14px;
   display: none; }
 
-span.new, span.hot {
+em.new, em.hot {
   position: absolute;
   top: 0;
   left: 0;
   background: rgba(235, 8, 40, 0.85); }
-  span.new:after, span.hot:after {
+  em.new:after, em.hot:after {
     content: "NEW";
     color: #fff;
     height: 14px;
@@ -632,9 +632,9 @@ span.new, span.hot {
     -webkit-transform: scale(0.75);
             transform: scale(0.75); }
 
-span.hot {
+em.hot {
   background: rgba(255, 125, 0, 0.9); }
-  span.hot:after {
+  em.hot:after {
     content: "HOT"; }
 
 sup.hot {
@@ -653,6 +653,18 @@ sup.hot {
     font-size: 12px;
     -webkit-transform: scale(0.75);
             transform: scale(0.75); }
+
+span.hot:after {
+  background: #ff7d00;
+  content: "HOT";
+  color: #fff;
+  height: 14px;
+  line-height: 14px;
+  padding: 0 4px;
+  font-size: 12px;
+  -webkit-transform: scale(0.75);
+          transform: scale(0.75);
+  display: inline-block; }
 
 .share-bg {
   position: fixed;
@@ -2004,17 +2016,16 @@ a.pswp__share--download:hover {
         line-height: 30px; }
       .detail-page .events a.active i {
         background: #f67bbb; }
-  .detail-page .recommend {
-    border-bottom: 5px solid #eee; }
-    .detail-page .recommend h3 {
-      margin: 0;
-      font-size: 13px;
-      color: #6071d5;
-      padding: 0 0 10px 10px;
-      height: 36px;
-      line-height: 36px;
-      border-bottom: 1px dashed #ddd; }
+  .detail-page .recommend h3 {
+    margin: 0;
+    font-size: 13px;
+    color: #6071d5;
+    padding: 0 0 10px 10px;
+    height: 36px;
+    line-height: 36px;
+    border-bottom: 1px dashed #ddd; }
   .detail-page .slider-recommend {
+    border-bottom: 5px solid #eee;
     background: #fff; }
     .detail-page .slider-recommend .am-slides dl {
       width: 33%;
@@ -2029,7 +2040,8 @@ a.pswp__share--download:hover {
         position: absolute;
         left: auto;
         bottom: 0;
-        background: rgba(255, 125, 0, 0.8);
+        right: 0;
+        background: rgba(40, 154, 50, 0.8);
         color: #fff;
         font-size: 11px;
         height: 16px;

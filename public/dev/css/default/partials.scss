@@ -567,7 +567,7 @@ footer {
     display: none;
 }
 
-span.new, span.hot {
+em.new,em.hot {
     position: absolute;
     top: 0;
     left: 0;
@@ -584,7 +584,7 @@ span.new, span.hot {
     }
 }
 
-span.hot {
+em.hot {
     background: rgba(255, 125, 0, 0.9);
     &:after {
         content: "HOT"
@@ -608,6 +608,21 @@ sup.hot {
         transform: scale(0.75);
     }
 }
+
+span.hot {
+    &:after {
+        background: $colorOrange;
+        content: "HOT";
+        color: #fff;
+        height: 14px;
+        line-height: 14px;
+        padding: 0 4px;
+        font-size: 12px;
+        transform: scale(0.75);
+        display: inline-block;
+    }
+}
+
 
 .share-bg {
     position: fixed;

@@ -8,6 +8,8 @@ module.exports = {
 
     init(data) {
  
+        this.productId = $('#product-id').val();
+        
         //收藏
         this.favoriteProduct();
         
@@ -17,7 +19,11 @@ module.exports = {
         
         //显示推荐组合
         this.recommendProducts(data.groups,data.groupsName);
-        
+
+        $('.am-slider').flexslider({
+            directionNav: false,
+            slideshow:false
+        });
         
         //主图预览图懒加载
         $('img.lazy-container').lazyload({
@@ -150,7 +156,7 @@ module.exports = {
     },
     
     eventsGood() {
-        
+        let _this = this;
         let btnEventsGood = $('.events-good');
         btnEventsGood.click(function() {
             if($(this).hasClass('active')) {
@@ -160,18 +166,18 @@ module.exports = {
             let em = $(this).find('em');
             let count = em.text() || 0;
             if(count === 0) {
-                em.text('(1)');
+                em.text('( 1 )');
             } else {
                 em.text(parseInt(count) + 1);
             }
-
-            //ajax
+            
+            $.ajax({url:`/product/statistics/approval/${_this.productId}`});
         });
         
     },
     
     eventsShare() {
-
+        let _this = this;
         let btnEventsShare = $('.events-share');
         btnEventsShare.click(function() {
             $(this).addClass('active');
@@ -179,13 +185,13 @@ module.exports = {
             $('.share-bg').click(function() {
                 $(this).detach();
             });
-            //ajax
+            $.ajax({url:`/product/statistics/share/${_this.productId}`});
         });
         
     },
 
     recommendProducts(groups,groupsName) {
-        let _this = this;
+        
         let products = [];
         for(let i=0;i< groups.length;i++) {
             for(let j=0; j< groups[i].products.length;j++) {
@@ -197,7 +203,7 @@ module.exports = {
             type:'get',
             url:`/product/recommend/custom/${products.join()}`
         }).then(data => {
-            console.info(data);
+            
             for(let i=0;i< groups.length; i++) {
                 for(let j=0;j<groupsName.length;j++) {
                     if(groups[i].productGroupId === groupsName[j].productGroupId) {
@@ -222,6 +228,10 @@ module.exports = {
                     }
                 }
             }
+
+            groups = groups.filter(n => {
+                return n.html.length;
+            });
             
             this.recommendHtml(groups);
             
@@ -231,39 +241,34 @@ module.exports = {
     recommendHtml(data) {
         
         let cont = $('.recommend-content');
-        
         let html = '';
-        
         $.each(data,(i,n)=> {
 
             html += `<div class="recommend"><h3>${n.name}:</h3></div><div class="am-slider am-slider-default slider-recommend"><ul class="am-slides">`;
-            if(n.html.length <= 3) {
-                html += `<li>`;
-                $.each(n.html,(i1,n1) => {
-                    html += `
-                        <dl>
-                            <dt>
-                                <a href="/product/detail/${n1.productId}"><img src="${n1.image}?imageMogr2/thumbnail/250" alt="${n1.name}"></a>
-                                <em>¥${n.price}</em>
-                            </dt>
-                            <dd>${n1.name}</dd>
-                        </dl>
-                    `;
-                });
-                html += `</li>`;
-            } else {
-                
-            }
+
+            $.each(n.html,(i1,n1) => {
+                if(i1 % 3 === 0) {
+                    html += `<li>`;
+                }
+                let hot = n1.isHot ? `<span class="hot"></span>` : '';
+                let price = n1.price ? `<em>¥${n1.price}</em>` : '';
+                html += `
+                    <dl>
+                        <dt>
+                            <a href="/product/detail/${n1.productId}"><img src="${n1.image}?imageMogr2/thumbnail/250" alt="${n1.name}"></a>
+                            ${price}
+                        </dt>
+                        <dd>${hot}${n1.name}</dd>
+                    </dl>
+                `;
+            });
             
             html += `</ul></div>`;
             
         });
 
-        console.info(html);
-
         cont.html(html);
-
-        $('.am-slider').flexslider({
+        cont.find('.am-slider').flexslider({
             directionNav: false,
             slideshow:false
         });
