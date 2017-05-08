@@ -16,6 +16,9 @@ let base = require('../../../lib/models/base');
 
 //class
 let Product = AV.Object.extend('Product');
+let ProductBanner = AV.Object.extend('ProductBanner');
+let ProductGroup =AV.Object.extend('ProductGroup');
+
 let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
@@ -36,28 +39,62 @@ router.get('/:productId',(req,res)=> {
     data = extend(data, {
         user: req.AV.user
     });
+
+
+    async.series([
+        cb => {
+            let query = new AV.Query(Product);
+            query.equalTo('productId', productId);
+            query.first().done(product => {
+
+                let name = product.get('name');
+                name = toUpperCase(name);
+
+                data = extend(data,{
+                    product,
+                    name:markdown.toHTML(name),
+                    nameEn:markdown.toHTML(product.get('nameEn')),
+                    detail: markdown.toHTML(product.get('detail')),
+                    review: markdown.toHTML(product.get('review')),
+                    property: markdown.toHTML(product.get('property')),
+                    instruction: markdown.toHTML(product.get('instruction')),
+                    use: markdown.toHTML(product.get('use')),
+                    detailImage: markdown.toHTML(product.get('detailImage')),
+                    groups:JSON.stringify(product.get('groups'))
+                });
+
+                cb();
+
+            });
+        },
+        cb => {
+            
+            let bannerId = parseInt(data.product.get('bannerId'));
+            let query = new AV.Query(ProductBanner);
+            query.equalTo('bannerId', bannerId);
+            query.first().then(result => {
+                data = extend(data,{
+                    banner:result
+                });
+                
+                cb();
+            });
+            
+        },
+        cb => {
+            
+            let query = new AV.Query(ProductGroup);
+            query.select('productGroupName','productGroupId');
+            query.find().then(results=> {
+                data = extend(data,{
+                    groupsName:JSON.stringify(results)
+                });
+                cb();
+            });
+            
+        }
+    ], () => res.render('admin/product/preview', data));
     
-    let query = new AV.Query(Product);
-    query.equalTo('productId', productId);
-    query.first().done(product => {
-
-        let name = product.get('name');
-        name = toUpperCase(name);
-        
-        data = extend(data,{
-            name:markdown.toHTML(name),
-            nameEn:markdown.toHTML(product.get('nameEn')),
-            detail: markdown.toHTML(product.get('detail')),
-            review: markdown.toHTML(product.get('review')),
-            property: markdown.toHTML(product.get('property')),
-            instruction: markdown.toHTML(product.get('instruction')),
-            use: markdown.toHTML(product.get('use')),
-            detailImage: markdown.toHTML(product.get('detailImage'))
-        });
-
-        res.render('admin/product/preview-web', data);
-        
-    });
     
 });
 
@@ -65,7 +102,7 @@ router.get('/:productId',(req,res)=> {
 
 
 //编辑时预览产品页
-router.post('/preview-taobao', function (req, res) {
+router.post('/quick-preview', function (req, res) {
 
     base.isAdminUserLogin(req, res);  //判断是否登录
 
@@ -132,7 +169,7 @@ router.post('/preview-taobao', function (req, res) {
                 cb();
             });
         }
-    ], () => res.render('admin/product/preview-taobao', data));
+    ], () => res.render('admin/product/quick-preview', data));
     
 });
 

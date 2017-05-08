@@ -11,6 +11,15 @@ module.exports = {
             }
         }
         return url + '?' + search.substring(0,search.length-1);
+    },
+
+    //product mainImage 转换
+    productMainImageOutput:(mainImage) => {
+        for(var i in mainImage){
+            if(mainImage[i].isMainImage) {
+                return mainImage[i].url;
+            }
+        }
     }
     
 };

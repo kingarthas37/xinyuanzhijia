@@ -150,8 +150,8 @@
 
     .preview-content {
         position: relative;
-        font-size: 20px;
-        line-height: 32px;
+        font-size:22px; 
+        line-height:38px;
         section {
             padding: 0;
             margin: 0 0 20px 0;
@@ -176,7 +176,6 @@
             margin-bottom: 20px;
         }
         p {
-            text-indent: 20px;
             margin: 0 0 15px 0;
             padding: 0;
         }
@@ -184,6 +183,55 @@
             p {
                 display: inline;
             }
+        }
+    }
+    
+    .recommend-content {
+        h3 {
+            height:40px;
+            line-height: 40px;
+            margin: 0 0 10px 0;
+            border-bottom:1px dashed #ccc;
+        }
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            list-style: none;
+            padding: 0;
+            margin:0;
+        }
+        .contents:before {
+            content: ' ';
+            display: table;
+        }
+        .contents:after {
+            content: ' ';
+            display: table;
+            clear: both;
+        }
+        dl {
+            margin:0 0 10px 0;
+            float:left;
+            width: 250px;
+        }
+        dt {
+            margin:0 0 10px 0;
+            text-align: center;
+            img {
+                width: 230px;
+                height: 230px;
+            }
+        }
+        dd {
+            padding: 0 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 50px;
+            line-height: 25px;
         }
     }
 

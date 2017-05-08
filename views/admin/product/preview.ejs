@@ -11,17 +11,35 @@
 
 <div class="product-preview-page">
 
-    <div class="preview-content">
+    <div class="cf">
+        <div class="l">
+                <span class="small-screen-hide">
+                <button type="button" class="am-btn am-btn-success btn-shot" disabled="disabled">生成淘宝详情图片</button>
+                <button type="button" class="am-btn am-btn-success btn-shot-recommend" disabled="disabled">生成推荐产品图片</button>
+                </span>
+        </div>
+        <div class="r">
+            <label><input class="disable-watermark" type="checkbox"> 不显示水印</label>
+        </div>
+    </div>
+
+    <hr class="small-screen-hide"/>
+
+    <h4><%- name %></h4>
+
+    <hr/>
+    
+    <div class="content">
+        
+        <div class="preview-content">
+
+        <%if(banner) { %><section class="section-banner"><img src="<%= banner.get('bannerUrl')%>"/></section><%}%>
         
         <% if (name) { %>
         <section><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2ehN0hFXXXXaIXpXXXXXXXXXX_!!42879206.png"></section>
         <div><%- name %></div>
         <% } %>
-
-        <% if (nameEn) { %>
-        <div class="no-wrap">[ <%- nameEn %> ]</div>
-        <% } %>
-
+        
         <% if (review) { %>
         <section><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2XdJYhFXXXXbhXpXXXXXXXXXX_!!42879206.png"></section>
         <div><%- review %></div>
@@ -53,12 +71,37 @@
         <% } %>
 
     </div>
+        
+        <div class="recommend-content"></div>
+        
+    </div>
+    
+</div>
 
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="modal-shot-success">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">生成成功!</div>
+        <div class="am-modal-bd">
+            请在/shot目录中查看
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
+        </div>
+    </div>
 </div>
 
 <% include ../partials/footer %>
 <% include ../partials/js %>
 
-
+<script type="text/javascript">
+    $(function() {
+        var productPreview = require('product-preview');
+        productPreview.init({
+            watermark:'<%= watermark.main %>'
+        });
+        productPreview.recommendProducts(JSON.parse('<%- groups %>'),JSON.parse('<%- groupsName %>'));
+    });
+</script>
 </body>
 </html>

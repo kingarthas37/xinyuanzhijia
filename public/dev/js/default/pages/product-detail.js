@@ -6,7 +6,7 @@ let utils = require('../common/utils');
 
 module.exports = {
 
-    init(data) {
+    init() {
  
         this.productId = $('#product-id').val();
         
@@ -17,9 +17,6 @@ module.exports = {
         this.eventsGood();
         this.eventsShare();
         
-        //显示推荐组合
-        this.recommendProducts(data.groups,data.groupsName);
-
         $('.am-slider').flexslider({
             directionNav: false,
             slideshow:false

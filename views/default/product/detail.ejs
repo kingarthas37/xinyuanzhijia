@@ -224,18 +224,13 @@
     </div>
 </div>
 
-
 <% include ../partials/footer %>
 <% include ../partials/js %>
 <script>
     $(function() {
-        
         var productDetail = require('product-detail');
-        productDetail.init({
-            groups:JSON.parse('<%- item.groups %>'),
-            groupsName:JSON.parse('<%- groupsName %>')
-        });
-        
+        productDetail.init();
+        productDetail.recommendProducts(JSON.parse('<%- item.groups %>'),JSON.parse('<%- groupsName %>'));
     });
 </script>
 </body>

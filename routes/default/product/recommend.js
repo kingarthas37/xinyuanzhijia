@@ -55,7 +55,7 @@ router.get('/custom/:productIds', (req, res) => {
     let productIds = req.params.productIds;
     AV.Promise.when(
         new AV.Promise(resolve => {
-            product.getProducts({limit:9, page:1,ids: productIds.toString(), select: 'name,mainImage,productId,price,isHot'}).then(items => {
+            product.getProducts({limit:9, page:1,ids: productIds.toString(), select: 'name,mainImage,productId,price,isHot,shopLink'}).then(items => {
                 data = extend(data, {items});
                 resolve();
             });
