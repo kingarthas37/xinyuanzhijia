@@ -55,7 +55,18 @@ module.exports = {
     screenShot() {
         
         let previewContent = $('.preview-content');
-        let html = $.trim(previewContent.html());
+
+        let styles = `<style>
+            body { margin:0; width:750px; background: #fff;  font-family:'Segoe UI','Lucida Grande','Helvetica','Arial','Microsoft YaHei'; font-size: 20px; line-height: 30px; }
+            section { padding: 0; margin: 0 0 20px 0; }
+            section img { margin:0;}
+            div { padding: 0 15px; margin-bottom: 20px;}
+            ul {margin: 0 0 15px 0;padding: 0 0 0 20px;}
+            img { width: 100%; margin-bottom: 20px; }
+            p { margin: 0 0 15px 0; padding: 0;}
+        </style>`;
+        
+        let html = previewContent.html();
         
         let btnShot = $('.btn-shot');
         btnShot.button('loading');
@@ -72,7 +83,7 @@ module.exports = {
                     url:'/admin/product/preview/shot',
                     type:'post',
                     data:{
-                        html:html,
+                        html:styles + html,
                         htmlHeight:previewContent.height(),
                         name:$('h4').text().replace(/\//g,'')
                     },
@@ -138,50 +149,70 @@ module.exports = {
 
         let cont = $('.recommend-content');
         let html = '';
+
         $.each(data,(i,n)=> {
 
-            html += `<h3>${n.name}:</h3><table class="contents">`;
+            html += `<h3>${n.name}:</h3><div>`;
 
             $.each(n.html,(i1,n1) => {
                 html += `
-                    <tr>
-                        <td width="150">
-                            <a href="/product/detail/${n1.productId}"><img src="${n1.image}?imageMogr2/thumbnail/150" alt="${n1.name}"></a>
-                        </td>
-                        <td width="600">
-                            ${n1.name}
-                        </td>
-                    </tr>
+                    <dl>
+                        <dt><img src="${n1.image}?imageMogr2/thumbnail/90"></dt>
+                        <dd>${n1.name}</dd>
+                    </dl>
                 `;
             });
-
-            html += `</table>`;
-
+            html += `</div>`;
         });
-
+        
         cont.html(html);
-        $('.btn-shot-recommend').button('reset');
+        
+        let imgLoad = 0;
+        cont.find('img').each(function(i,n) {
+            let length = cont.find('img').length;
+            this.onload = function() {
+                imgLoad ++;
+                if(imgLoad === length) {
+                    $('.btn-shot-recommend').button('reset');
+                }
+            };
+        });
         
     },
     screenShotRecommend() {
 
         let recommendContent = $('.recommend-content');
 
+        let styles = `<style>
+            body { margin:0; width:750px; background: #fff;  font-family:'Segoe UI','Lucida Grande','Helvetica','Arial','Microsoft YaHei'; }  
+            h3 { height:100px; line-height: 100px; margin:0; font-size:24px; padding-left:15px; }
+            dl { margin:0; }
+            dl:before { content: ' ';display: table;}
+            dl:after { content: ' ';display: table; clear: both; }
+            dt { margin:0; float:left; text-align: center; width: 120px; height: 100px;}
+            dd { float:left; margin:0; font-size:20px; width: 630px; height: 100px; line-height: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+            img { margin-top:5px; width: 90px; height: 90px; border-radius: 5px; }
+        </style>`;
+        
         let btnShotRecommend = $('.btn-shot-recommend');
         btnShotRecommend.button('loading');
         let progress = $.AMUI.progress;
 
         btnShotRecommend.click(function() {
-
-            let html = $.trim(recommendContent.html());
+            
             progress.start();
+
+            let html = recommendContent.html();
+            //.replace(/<h3>[\s\S]*?<\/h3>/gi,'');
+
             btnShotRecommend.button('loading').text('图片生成中...');
             $.ajax({
                 url:'/admin/product/preview/shot',
                 type:'post',
                 data:{
-                    html:html,
-                    htmlHeight:recommendContent.height(),
+                    html:styles + html,
+                    htmlHeight:(recommendContent.find('dl').length + recommendContent.find('h3').length) * 100,
+                    segmentHeight:100,
                     name:$('h4').text().replace(/\//g,'')
                 },
                 success:function() {

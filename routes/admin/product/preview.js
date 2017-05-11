@@ -49,7 +49,9 @@ router.get('/:productId',(req,res)=> {
 
                 let name = product.get('name');
                 name = toUpperCase(name);
-
+                
+                let detailImage = product.get('detailImage').replace(/\.jpg/gi,'.jpg'+ config.watermark.main);
+                
                 data = extend(data,{
                     product,
                     name:markdown.toHTML(name),
@@ -59,7 +61,7 @@ router.get('/:productId',(req,res)=> {
                     property: markdown.toHTML(product.get('property')),
                     instruction: markdown.toHTML(product.get('instruction')),
                     use: markdown.toHTML(product.get('use')),
-                    detailImage: markdown.toHTML(product.get('detailImage')),
+                    detailImage: markdown.toHTML(detailImage),
                     groups:JSON.stringify(product.get('groups'))
                 });
 
@@ -185,11 +187,13 @@ router.post('/shot', (req, res) => {
     let name = req.body.name.substr(0, 20);
     let html = req.body.html;
     let htmlHeight = parseInt(req.body.htmlHeight);
+    let segmentHeight = parseInt(req.body.segmentHeight);
 
     shot({
-        name:name,
-        html:html,
-        htmlHeight:htmlHeight
+        name,
+        html,
+        htmlHeight,
+        segmentHeight
     }).then(function() {
         res.json({success:1});
     },function(err) {

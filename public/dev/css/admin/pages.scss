@@ -149,90 +149,24 @@
     margin: 30px auto;
 
     .preview-content {
-        position: relative;
-        font-size:22px; 
-        line-height:38px;
-        section {
-            padding: 0;
-            margin: 0 0 20px 0;
-        }
-        div {
-            padding: 0 15px;
-            margin-bottom: 20px;
-        }
-        article {
-            padding: 0 15px;
-            margin-bottom: 20px;
-            p {
-                text-indent: 0;
-            }
-        }
-        ul {
-            margin: 0 0 15px 0;
-            padding: 0 0 0 20px;
-        }
-        img {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        p {
-            margin: 0 0 15px 0;
-            padding: 0;
-        }
-        .no-wrap {
-            p {
-                display: inline;
-            }
-        }
+        font-size: 20px;
+        line-height: 30px;
+        section { padding: 0; margin: 0 0 20px 0; }
+        section img { margin:0;}
+        div { padding: 0 15px; margin-bottom: 20px;}
+        ul {margin: 0 0 15px 0;padding: 0 0 0 20px;}
+        img { width: 100%; margin-bottom: 20px; }
+        p { margin: 0 0 15px 0; padding: 0;}
     }
     
     .recommend-content {
-        h3 {
-            height:40px;
-            line-height: 40px;
-            margin: 0 0 10px 0;
-            border-bottom:1px dashed #ccc;
-        }
-        ul {
-            padding: 0;
-            margin: 0;
-        }
-        li {
-            list-style: none;
-            padding: 0;
-            margin:0;
-        }
-        .contents:before {
-            content: ' ';
-            display: table;
-        }
-        .contents:after {
-            content: ' ';
-            display: table;
-            clear: both;
-        }
-        dl {
-            margin:0 0 10px 0;
-            float:left;
-            width: 250px;
-        }
-        dt {
-            margin:0 0 10px 0;
-            text-align: center;
-            img {
-                width: 230px;
-                height: 230px;
-            }
-        }
-        dd {
-            padding: 0 10px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            height: 50px;
-            line-height: 25px;
-        }
+        h3 { height:100px; line-height: 100px; margin:0; font-size:24px; padding-left:15px; }
+        dl { margin:0; }
+        dl:before { content: ' ';display: table;}
+        dl:after { content: ' ';display: table; clear: both; }
+        dt { margin:0; float:left; text-align: center; width: 120px; height: 100px;}
+        dd { float:left; margin:0; font-size:20px; width: 630px; height: 100px; line-height: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        img { margin-top:5px; width: 90px; height: 90px; border-radius: 5px;}
     }
 
 }
