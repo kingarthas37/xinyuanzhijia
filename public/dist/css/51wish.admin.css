@@ -411,6 +411,7 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
     width: 120px;
     height: 100px; }
   .product-preview-page .recommend-content dd {
+    color: #666;
     float: left;
     margin: 0;
     font-size: 20px;
@@ -425,6 +426,11 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
     width: 90px;
     height: 90px;
     border-radius: 5px; }
+  .product-preview-page .recommend-content a dd {
+    color: #333;
+    text-decoration: underline; }
+  .product-preview-page .recommend-code-hidden {
+    display: none; }
 
 .admin-product-property-page {
   padding: 0; }
