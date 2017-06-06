@@ -217,10 +217,10 @@ $(function() {
                 content += `
                     <li>
                         <div class="img">
-                            <a href="/detail/${item.productId}"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="${image}?imageMogr2/thumbnail/200"></a>
+                            <a href="/product/detail/${item.productId}"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="${image}?imageMogr2/thumbnail/200"></a>
                         </div>
                         <div class="detail">
-                            <h3><a href="/detail/${item.productId}">${item.name}</a></h3>
+                            <h3><a href="/product/detail/${item.productId}">${item.name}</a></h3>
                             <p>
                             <span class="price">¥ <strong>${price}</strong></span>
                             <span>${item.pageViews}次浏览</span>
