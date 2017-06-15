@@ -112,7 +112,7 @@ header {
 }
 
 footer {
-    padding: 15px 0;
+    padding: 15px 0 5px 0;
     text-align: center;
     color: #bababa;
     p {
@@ -122,6 +122,9 @@ footer {
         }
         margin: 0;
         font-size: 11px;
+        .link {
+            color: #fff;
+        }
     }
 }
 

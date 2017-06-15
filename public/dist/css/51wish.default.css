@@ -258,7 +258,7 @@ header {
           font-size: 16px; }
 
 footer {
-  padding: 15px 0;
+  padding: 15px 0 5px 0;
   text-align: center;
   color: #bababa; }
   footer p {
@@ -267,6 +267,8 @@ footer {
     footer p strong {
       font-size: 12px;
       color: #999; }
+    footer p .link {
+      color: #fff; }
 
 .am-form .am-form-icon i {
   color: #6071d5; }
@@ -1606,6 +1608,18 @@ a.pswp__share--download:hover {
         display: block;
         margin: 0 auto 5px auto;
         width: 30%; }
+
+.home-page {
+  text-align: center;
+  padding-top: 50px; }
+  .home-page img {
+    width: 25%;
+    display: block;
+    margin: auto; }
+  .home-page h1 {
+    margin: 0 0 50px 0;
+    font-size: 18px;
+    padding: 20px 0; }
 
 .login-page .am-form {
   padding-top: 20px;
