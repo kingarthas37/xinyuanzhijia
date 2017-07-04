@@ -33,14 +33,14 @@ app.use(session({secret:'51wish',resave:true,saveUninitialized: true, cookie : {
 app.use(require('connect-flash')());
 
 //设置跨域访问
-app.all('*', function(req, res, next) {
+/*app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
   res.header("X-Powered-By",' 3.2.1');
   res.header("Content-Type", "application/json;charset=utf-8");
   next();
-});
+});*/
 
 // 未处理异常捕获 middleware
 app.use(function(req, res, next) {
