@@ -38,24 +38,21 @@ router.get('/:productId', function (req, res, next) {
         
         let productData = {
             name:'(新建产品) ' + result.get('name'),
-            nameEn:'(new product) ' + result.get('nameEn'),
+            nameEn:result.get('nameEn'),
+            sampleName:result.get('sampleName'),
+            shopName:result.get('shopName'),
             mainImage:result.get('mainImage'),
             productMethod:result.get('productMethod'),
             category1:result.get('category1'),
             category2:result.get('category2'),
             bannerId:result.get('bannerId'),
             detail:result.get('detail'),
-            detailEn:result.get('detailEn'),
             description:result.get('description'),
             review:result.get('review'),
             property:result.get('property'),
-            propertyEn:result.get('propertyEn'),
             instruction:result.get('instruction'),
-            instructionEn:result.get('instructionEn'),
             use:result.get('use'),
-            useEn:result.get('useEn'),
-            detailImage:result.get('detailImage'),
-            video:result.get('video')
+            detailImage:result.get('detailImage')
         };
 
         return product.save(productData);

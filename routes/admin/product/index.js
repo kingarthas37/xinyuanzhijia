@@ -19,7 +19,7 @@ let pro = require('../../../lib/models/product').createNew();
 let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
-//let ProductProperty = AV.Object.extend('ProductProperty');
+let ProductProperty = AV.Object.extend('ProductProperty');
 
 
 let data = extend(config.data, {
@@ -149,20 +149,36 @@ router.get('/', (req, res) => {
 
 //删除product
 router.post('/remove/:productId',(req,res)=> {
-
-    base.isAdminUserLogin(req, res);  //判断是否登录
     
+    base.isAdminUserLogin(req, res);  //判断是否登录
     let productId = parseInt(req.params.productId);
+    
+    AV.Promise.when(
 
-    let query = new AV.Query(Product);
-    query.equalTo('productId',productId);
-    query.first().then(product => {
-        return product.destroy();
-    }).then(()=> {
+        new AV.Promise(resolve => {
+            let query = new AV.Query(Product);
+            query.equalTo('productId',productId);
+            query.first().then(product => {
+                return product.destroy();
+            }).then(resolve);
+
+        }),
+
+        new AV.Promise(resolve => {
+            let query = new AV.Query(ProductProperty);
+            query.equalTo('productId',productId);
+            query.first().then(product => {
+                return product.destroy();
+            }).then(resolve);
+
+        })
+
+    ).then(()=> {
         res.send({
             success:1
         });
     });
+    
 });
 
 
