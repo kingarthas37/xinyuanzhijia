@@ -32,15 +32,19 @@ app.use(AV.Cloud.CookieSession({secret: 'secret-av', maxAge: 1000*60*60*24*30, f
 app.use(session({secret:'51wish',resave:true,saveUninitialized: true, cookie : {maxAge: 60 * 1000 * 60}})); //60分钟
 app.use(require('connect-flash')());
 
-//设置跨域访问
-/*app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-  res.header("X-Powered-By",' 3.2.1');
-  res.header("Content-Type", "application/json;charset=utf-8");
-  next();
-});*/
+//allow custom header and CORS
+app.all('*',function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+
+  if (req.method == 'OPTIONS') {
+    res.send(200); //让options请求快速返回
+  }
+  else {
+    next();
+  }
+});
 
 // 未处理异常捕获 middleware
 app.use(function(req, res, next) {
