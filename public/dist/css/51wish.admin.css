@@ -421,7 +421,7 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; }
-  .product-preview-page .recommend-content img {
+  .product-preview-page .recommend-content dl img {
     margin-top: 5px;
     width: 90px;
     height: 90px;

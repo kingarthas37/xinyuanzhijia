@@ -94,7 +94,7 @@ module.exports = {
                     type:'post',
                     data:{
                         html:styles + html,
-                        segmentHeight:960,
+                        segmentHeight:480,
                         htmlHeight:previewContent.height(),
                         name:'产品-' + $('h4').text().replace(/\//g,'')
                     },
@@ -180,7 +180,7 @@ module.exports = {
             html += `</div>`;
         });
         
-        cont.html(html);
+        cont.append(html);
         
         let imgLoad = 0;
         cont.find('img').each(function(i,n) {
@@ -204,7 +204,7 @@ module.exports = {
             dl:after { content: ' ';display: table; clear: both; }
             dt { margin:0; float:left; text-align: center; width: 120px; height: 100px;}
             dd { color:#666; float:left; margin:0; font-size:20px; width: 630px; height: 100px; line-height: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-            img { margin-top:5px; width: 90px; height: 90px; border-radius: 5px; }
+            dl img { margin-top:5px; width: 90px; height: 90px; border-radius: 5px; }
             a dd { color:#333;  text-decoration: underline;}
         </style>`;
 
