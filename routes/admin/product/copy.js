@@ -57,19 +57,6 @@ router.get('/:productId', function (req, res, next) {
 
         return product.save(productData);
         
-    }).then(result => {
-      
-        let query = new AV.Query(Product);
-        query.equalTo('objectId',result.id);
-        return query.first();
-        
-    }).then(result => {
-
-        let productProperty = new ProductProperty();
-        return productProperty.save({
-            productId:result.get('productId')
-        });
-        
     }).then(() => {
         
         req.flash('success', '复制产品成功!');
