@@ -16,7 +16,11 @@
             <div class="small-screen-hide">
                 <button type="button" class="am-btn am-btn-success btn-shot" disabled="disabled">生成淘宝详情图片</button>
                 <% if(product.get('groups').length) {%>
-                <button type="button" class="am-btn am-btn-success btn-shot-recommend" disabled="disabled">生成推荐产品图片</button>
+                    <% for(var i=0;i<product.get('groups').length;i++) {%>
+                        <% if(product.get('groups')[i].products.length) {%>
+                            <button type="button" class="am-btn am-btn-success btn-shot-recommend" disabled="disabled">生成推荐产品图片</button>
+                        <%}%>
+                    <%}%>
                 <% } %>
             </div>
         </div>
@@ -41,6 +45,11 @@
             <section><img src="https://img.alicdn.com/imgextra/i3/42879206/TB2zLWap80lpuFjSszdXXcdxFXa_!!42879206.png"></section>
             <div><%- name %></div>
             <% } %>
+
+            <% if (detail) { %>
+            <section><img src="https://img.alicdn.com/imgextra/i2/42879206/TB29I9fp9tkpuFjy0FhXXXQzFXa_!!42879206.png"/></section>
+            <div><%- detail %></div>
+            <% } %>
             
             <% if (review) { %>
             <section><img src="https://img.alicdn.com/imgextra/i4/42879206/TB2CWsrs0RopuFjSZFtXXcanpXa_!!42879206.png"></section>
@@ -51,20 +60,15 @@
             <section><img src="https://img.alicdn.com/imgextra/i1/42879206/TB2u5VUp3NlpuFjy0FfXXX3CpXa_!!42879206.png"></section>
             <div><%- property %></div>
             <% } %>
-    
-            <% if (instruction) { %>
-            <section><img src="https://img.alicdn.com/imgextra/i1/42879206/TB2DlfQs9VmpuFjSZFFXXcZApXa_!!42879206.png"/></section>
-            <div><%- instruction %></div>
-            <% } %>
-    
-            <% if (detail) { %>
-            <section><img src="https://img.alicdn.com/imgextra/i2/42879206/TB29I9fp9tkpuFjy0FhXXXQzFXa_!!42879206.png"/></section>
-            <div><%- detail %></div>
-            <% } %>
-    
+
             <% if (use) { %>
             <section><img src="https://img.alicdn.com/imgextra/i1/42879206/TB2DlfQs9VmpuFjSZFFXXcZApXa_!!42879206.png"/></section>
             <div><%- use %></div>
+            <% } %>
+            
+            <% if (instruction) { %>
+            <section><img src="https://img.alicdn.com/imgextra/i2/42879206/TB2nVH3AxhmpuFjSZFyXXcLdFXa_!!42879206.png"/></section>
+            <div><%- instruction %></div>
             <% } %>
     
             <% if (detailImage) { %>
