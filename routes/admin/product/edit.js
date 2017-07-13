@@ -155,18 +155,49 @@ router.post('/:productId', (req, res) => {
 
     let query = new AV.Query(Product);
     query.equalTo('productId',productId);
-
-    let productData = {name,nameEn,sampleName,shopName,mainImage,productMethod,category1,category2,bannerId,detail,description,review,property,instruction,use,detailImage};
-    
+ 
     query.first().then(product => {
         
-        return product.save(productData);
+        return product.save({
+            name,
+            nameEn,
+            sampleName,
+            shopName,
+            mainImage,
+            productMethod,
+            category1,
+            category2,
+            bannerId,
+            detail,
+            description,
+            review,
+            property,
+            instruction,
+            use,
+            detailImage
+        });
         
     }).then(() =>{
-
-        productData = extend(productData, {productId});
+ 
         let productHistory = new ProductHistory();
-        return productHistory.save(productData);
+        return productHistory.save({
+            productId,
+            name,
+            nameEn,
+            sampleName,
+            shopName,
+            mainImage,
+            productMethod,
+            category1,
+            category2,
+            detail,
+            description,
+            review,
+            property,
+            instruction,
+            use,
+            detailImage
+        });
         
     }).then(product => {
         req.flash('success', '编辑商品成功!');

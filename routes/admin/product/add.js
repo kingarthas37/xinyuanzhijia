@@ -87,23 +87,48 @@ router.post('/', (req, res) => {
     let product = new Product();
     let productHistory = new ProductHistory();
     
-    let productData = {name,nameEn,sampleName,shopName,mainImage,productMethod,category1,category2,bannerId,detail,description,review,property,instruction,use,detailImage};
     
-    product.save(productData).then(result => {
+    product.save({
+        name,
+        nameEn,
+        sampleName,
+        shopName,
+        mainImage,
+        productMethod,
+        category1,
+        category2,
+        bannerId,
+        detail,
+        description,
+        review,
+        property,
+        instruction,
+        use,
+        detailImage
+    }).then(result => {
         let query = new AV.Query(Product);
         query.equalTo('objectId',result.id);
         return query.first();
     }).then(result => {
 
         let productId = result.get('productId');
-        productData = extend(productData, {productId});
-        return productHistory.save(productData);
-        
-    }).then(() => {
-        
-        let productProperty = new ProductProperty();
-        return productProperty.save({
-            productId:productData.productId
+        return productHistory.save({
+            productId,
+            name,
+            nameEn,
+            sampleName,
+            shopName,
+            mainImage,
+            productMethod,
+            category1,
+            category2,
+            detail,
+            description,
+            review,
+            property,
+            instruction,
+            use,
+            detailImage
         });
         
     }).then(() => {
@@ -112,8 +137,6 @@ router.post('/', (req, res) => {
     },err => console.info(err));
     
 });
-
-
 
 
 //对array或字符串数据处理,返回array
