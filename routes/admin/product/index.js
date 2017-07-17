@@ -43,6 +43,7 @@ router.get('/', (req, res) => {
     let category1Id = req.query['category1-id'] ? parseInt(req.query['category1-id']) : 0;
     let category2Id = req.query['category2-id'] ? parseInt(req.query['category2-id']) : 0;
     let search = req.query['search'] ? req.query['search'].trim() : '';
+    let productTitle = onsale == 1 ? '上架产品列表' : '下架产品列表';
 
     data = extend(data, {
         search,
@@ -54,7 +55,8 @@ router.get('/', (req, res) => {
         category1: [],
         category2: [],
         mainImage:[],
-        onsale
+        onsale,
+        productTitle
     });
 
     let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order};

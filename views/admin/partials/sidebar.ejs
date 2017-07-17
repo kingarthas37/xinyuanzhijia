@@ -5,7 +5,15 @@
             <li class="admin-parent">
                 <a class="am-cf" data-am-collapse="{target:'#collapse-product'}">产品编辑<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
                 <ul class="am-list am-collapse admin-sidebar-sub <%if(currentTag === 'product'){ %>am-in<%}%>" id="collapse-product">
-                    <li><a href="/admin/product" <%if(currentPage === 'product-index'){ %>class="current"<%}%> >所有产品列表</a></li>
+                    <li>
+                        <a class="am-cf 1" data-am-collapse="{target:'#collapse-product'}" >所有产品列表<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                        <ul class="am-list am-collapse admin-sidebar-sub <%if(currentTag === 'product'){ %>am-in<%}%>">
+                            <li><a href="/admin/product?onsale=1" <%if(currentPage === 'product-index' && onsale == 1){ %>class="current"<%}%> >上架产品列表</a>
+                            </li>
+                            <li><a href="/admin/product?onsale=2" <%if(currentPage === 'product-index' && onsale == 2){ %>class="current"<%}%> >下架产品列表</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a href="/admin/product-category" <%if(currentPage === 'product-category'){ %>class="current"<%}%>>产品分类列表</a></li>
                     <li><a href="/admin/product-method" <%if(currentPage === 'product-method'){ %>class="current"<%}%>>产品类型列表</a></li>
                     <li><a href="/admin/product-brand" <%if(currentPage === 'product-brand'){ %>class="current"<%}%>>产品品牌列表</a></li>
