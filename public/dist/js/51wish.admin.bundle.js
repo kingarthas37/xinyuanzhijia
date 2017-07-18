@@ -1979,11 +1979,11 @@ module.exports = {
                         relatedTarget: this,
                         onConfirm: function onConfirm() {
                             $.ajax({
-                                url: '/abcde',
+                                url: '/admin/product/product-copy',
                                 type: 'post',
                                 data: {
                                     productId: productId,
-                                    data: data
+                                    field: data
                                 }
                             });
                         }
