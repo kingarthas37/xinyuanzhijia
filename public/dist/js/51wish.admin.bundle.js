@@ -1974,7 +1974,6 @@ module.exports = {
                     form.find('input[type=checkbox]:checked').each(function () {
                         data.push(this.name);
                     });
-
                     modalConfirm.modal({
                         relatedTarget: this,
                         onConfirm: function onConfirm() {
