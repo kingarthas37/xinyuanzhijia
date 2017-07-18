@@ -238,4 +238,30 @@ router.get('/get-id/:productId', (req, res) => {
 
 });
 
+router.get('/product-copy', (req, res) => {
+    let productId = 666;//parseInt(req.params['productId']);
+    let field = 'property,name,detail'//req.params['field'];
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            pro.getProductById(productId).then(result => {
+                let fields = field.split(',');
+                let values = new Array();
+                for (var i = 0; i < fields.length; i++){
+                    values[i] = result.attributes[fields[i]];
+                }
+                pro.getProductsByCategoryId(result.attributes.category2).then(items => {
+                    items.forEach(item => {
+                        pro.updateProductFieldByProductId(item.attributes.productId, fields, values);
+                    });
+                });
+            });
+            resolve();
+        })
+    ).then(() => {
+        res.send({
+            success:1
+        });
+    });
+});
+
 module.exports = router;
