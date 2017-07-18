@@ -136,6 +136,45 @@ module.exports = {
         }
         
         
+        //copy product content
+        {
+            let form = $('.form-copy-product-content');
+            let modalConfirm = $('#modal-confirm');
+            let modalAlert = $('#modal-alert');
+            
+            form.find('.am-btn').click(function() {
+                
+                let productId = parseInt($(this).parents('tr').data('product-id'));
+
+                if(form.serialize() ==='') {
+                    modalAlert.modal({
+                        relatedTarget: this
+                    }).find('.am-modal-bd').text('请选择需要复制的内容');
+                    return false;
+                }
+
+                let data = [];
+                form.find('input[type=checkbox]:checked').each(function() {
+                    data.push(this.name);
+                });
+                
+                modalConfirm.modal({
+                    relatedTarget:this,
+                    onConfirm: function() {
+                        $.ajax({
+                            url:'/abcde',
+                            type:'post',
+                            data:{
+                                productId,
+                                data:data
+                            }
+                        });
+                    }
+                });
+                
+            });
+        }
+        
     },
 
     addFun:function() {
@@ -153,8 +192,6 @@ module.exports = {
         this.chooseBanner();
         this.submitControl();
         this.setImageList();
-        this.setCopyContent();
-        this.setHistoryContent();
         this.setZclip();
     },
     
@@ -413,21 +450,6 @@ module.exports = {
                     }
                 });
             });
-    },
-
-    setCopyContent() {
-        $('.copy-product-same-content').click(function() {
-            let category2Id = $(this).data('category');
-            console.info(category2Id);
-            console.info('laojia1');
-        });
-    },
-
-    setHistoryContent() {
-        $('.view-history-content').click(function() {
-            let historyId = $(this).data('product-history-id');
-            console.info(historyId);
-        });
     }
 
 };

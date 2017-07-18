@@ -170,24 +170,23 @@ footer p {
   opacity: 0.9;
   z-index: 1; }
 
-.admin-content .am-tabs-nav i {
-  color: red;
-  padding: 0 4px;
-  font-style: normal; }
-
-.admin-content .am-tabs-nav .am-active a {
-  font-weight: bold; }
-
-.admin-content label i {
-  color: red;
-  padding: 0 4px;
-  font-style: normal; }
-
-.admin-content label.error {
-  color: red;
-  display: block;
-  padding: 4px 0;
-  font-weight: normal; }
+.admin-content {
+  min-height: 500px; }
+  .admin-content .am-tabs-nav i {
+    color: red;
+    padding: 0 4px;
+    font-style: normal; }
+  .admin-content .am-tabs-nav .am-active a {
+    font-weight: bold; }
+  .admin-content label i {
+    color: red;
+    padding: 0 4px;
+    font-style: normal; }
+  .admin-content label.error {
+    color: red;
+    display: block;
+    padding: 4px 0;
+    font-weight: normal; }
 
 .admin-sidebar-list li a.current {
   color: #0e90d2;
@@ -341,6 +340,15 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
 .admin-product-page #select-banner {
   width: 200px;
   display: inline-block; }
+
+.admin-product-page .am-dropdown-content {
+  font-size: 13px; }
+  .admin-product-page .am-dropdown-content label {
+    padding: 0 20px;
+    font-size: 13px; }
+  .admin-product-page .am-dropdown-content .am-btn.am-btn-sm {
+    background: #0e90d2;
+    color: #fff; }
 
 /* admin product category page */
 .admin-product-category-page .am-accordion {

@@ -28,21 +28,6 @@
 
                 <form id="form-edit-product" class="am-form" method="post">
                     
-                    <!-- copy info start -->
-                    <div class="am-form-group">
-                        <%for(var i=0;i<product.get('category2').length;i++){%>
-                            <a href="javascript:;" class="copy-product-same-content" data-category="<%= product.get('category2')[i] %>"><i class="am-icon-copy"></i> 复试同类</a>
-                            <span class="sp"></span>
-                        <%}%>
-                        <%for(var i=0;i<productHistory.length;i++){%>
-                            <a href="javascript:;" class="view-history-content" data-product-history-id="<%= productHistory[i].get('productHistoryId') %>"><i class="am-icon-history"></i></a>
-                            <span class="sp"></span>
-                        <%}%>
-                    </div>
-                    <!-- copy info end -->
-
-                    <hr/>
-                    
                     <!-- name start -->
                     <div class="am-form-group">
                         <label for="name">产品名称<i>*</i>:</label>
@@ -61,14 +46,14 @@
                     </div>
                     -->
 
+                    <!--
                     <div class="am-form-group">
                         <label for="shop-name">产品网店名称:</label>
                         <input id="shop-name" name="shop-name" type="text" placeholder="输入产品网店名称" autocomplete="off" value="<%= product.get('shopName') %>" />
                     </div>
+                    -->
                     <!-- name end -->
-
-                    <hr>
-
+                    
                     <div class="category-group">
                         <% for(var i=0;i< product.get('productMethod').length;i++) { %>
 
