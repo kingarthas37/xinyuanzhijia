@@ -133,8 +133,6 @@ router.post('/:productId', (req, res) => {
 
     let name = req.body['name'];
     let nameEn = req.body['name-en'];
-    let sampleName = req.body['sample-name'];
-    let shopName = req.body['shop-name'];
     let mainImage = req.body['main-image'] ? JSON.parse(req.body['main-image']) : null;
     
     let productMethod = getQueryData(req.body['select-product-method']);
@@ -144,7 +142,6 @@ router.post('/:productId', (req, res) => {
     
     let bannerId = parseInt(req.body['select-banner']);
     let detail = req.body['detail'];
-    let description = req.body['description'];
     let review = req.body['review'];
     let property = req.body['property'];
     let instruction = req.body['instruction'];
@@ -161,15 +158,12 @@ router.post('/:productId', (req, res) => {
         return product.save({
             name,
             nameEn,
-            sampleName,
-            shopName,
             mainImage,
             productMethod,
             category1,
             category2,
             bannerId,
             detail,
-            description,
             review,
             property,
             instruction,
@@ -184,14 +178,11 @@ router.post('/:productId', (req, res) => {
             productId,
             name,
             nameEn,
-            sampleName,
-            shopName,
             mainImage,
             productMethod,
             category1,
             category2,
             detail,
-            description,
             review,
             property,
             instruction,

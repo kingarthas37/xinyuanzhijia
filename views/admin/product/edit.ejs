@@ -39,20 +39,7 @@
                         <input id="name-en" name="name-en" type="text" placeholder="输入产品名称英文" autocomplete="off" value="<%= product.get('nameEn') %>" />
                     </div>
 
-                    <!--
-                    <div class="am-form-group">
-                        <label for="sample-name">产品标准名称:</label>
-                        <input id="sample-name" name="sample-name" type="text" placeholder="输入产品标准名称" autocomplete="off" value="<%= product.get('sampleName') %>" />
-                    </div>
-                    -->
-
-                    <!--
-                    <div class="am-form-group">
-                        <label for="shop-name">产品网店名称:</label>
-                        <input id="shop-name" name="shop-name" type="text" placeholder="输入产品网店名称" autocomplete="off" value="<%= product.get('shopName') %>" />
-                    </div>
-                    -->
-                    <!-- name end -->
+                    <hr/>
                     
                     <div class="category-group">
                         <% for(var i=0;i< product.get('productMethod').length;i++) { %>
@@ -134,15 +121,6 @@
                     <div class="banner-view <% if(!product.get('bannerId')) { %>hide<% } %>"><% for(var i=0;i<banner.length;i++){ %><% if(banner[i].get('bannerId') === product.get('bannerId')) { %><img src="<%= banner[i].get('bannerUrl') %>" width="300" /><% }%><% } %></div>
                     <input type="hidden" id="banner" name="banner" value="<% for(var i=0;i<banner.length;i++){ %><% if(banner[i].get('bannerId') === product.get('bannerId')) { %><%= banner[i].get('bannerUrl') %><% }%><% } %>">
                     <!-- banner end -->
-
-                    <hr/>
-
-                    <!-- description start -->
-                    <div class="am-form-group">
-                        <label for="description">产品简述(主要用于列表展示页):</label>
-                        <input type="text" id="description" name="description" placeholder="输入产品简述" value="<%= product.get('description') %>">
-                    </div>
-                    <!-- description end -->
 
                     <hr/>
 

@@ -47,7 +47,6 @@ router.get('/:productId', function (req, res, next) {
             category2:result.get('category2'),
             bannerId:result.get('bannerId'),
             detail:result.get('detail'),
-            description:result.get('description'),
             review:result.get('review'),
             property:result.get('property'),
             instruction:result.get('instruction'),

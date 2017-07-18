@@ -162,11 +162,20 @@ module.exports = {
                     relatedTarget:this,
                     onConfirm: function() {
                         $.ajax({
-                            url:'/abcde',
-                            type:'post',
-                            data:{
-                                productId,
-                                data:data
+                            url: '/admin/product/product-copy',
+                            type: 'post',
+                            data: {
+                                productId: productId,
+                                field: data
+                            }
+                        }).then(data => {
+                            if(data.success) {
+                                modalAlert.modal({
+                                    relatedTarget: this,
+                                    onConfirm: function() {
+                                        location.reload();   
+                                    }
+                                }).find('.am-modal-bd').text('复制成功!');
                             }
                         });
                     }
