@@ -68,8 +68,21 @@ router.get('/:productId', function (req, res, next) {
             let query = new AV.Query(ProductMethod);
             query.find().then(productMethod => {
                 data = extend(data,{productMethod});
+                resolve();
             });
-            resolve();
+        },
+        getHistory(resolve) {
+          
+            let query = new AV.Query(ProductHistory);
+            query.equalTo('productId',productId);
+            query.descending('productHistoryId');
+            query.limit(3);
+            query.select('productHistoryId','productId','description','use','property','name','nameEn','review','instruction','detail');
+            query.find().then(productHistory => {
+                data = extend(data,{productHistory});
+                resolve();
+            });
+            
         },
         
         //处理main images

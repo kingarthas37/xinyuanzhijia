@@ -153,6 +153,8 @@ module.exports = {
         this.chooseBanner();
         this.submitControl();
         this.setImageList();
+        this.setCopyContent();
+        this.setHistoryContent();
         this.setZclip();
     },
     
@@ -411,6 +413,21 @@ module.exports = {
                     }
                 });
             });
-        }
+    },
+
+    setCopyContent() {
+        $('.copy-product-same-content').click(function() {
+            let category2Id = $(this).data('category');
+            console.info(category2Id);
+            console.info('laojia1');
+        });
+    },
+
+    setHistoryContent() {
+        $('.view-history-content').click(function() {
+            let historyId = $(this).data('product-history-id');
+            console.info(historyId);
+        });
+    }
 
 };

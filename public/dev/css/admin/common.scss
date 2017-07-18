@@ -57,13 +57,23 @@ label {
     font-size: 14px;
 }
 
-span.split {
+span.split,span.sp {
     padding: 0 5px;
     &:after {
         content: "|";
         color: #ddd;
     }
 }
+
+div {
+    .sp:last-child {
+        display: none;
+    }
+    .split:last-child {
+        display: none;
+    }
+}
+
 
 footer p {
     color: #7f8c8d;
