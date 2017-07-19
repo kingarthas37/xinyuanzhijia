@@ -191,13 +191,12 @@ router.get('/list-data',(req,res) => {
 //typeahead查询产品名称,用于order add/edit页面
 router.get('/get-product', (req, res) => {
 
-    let name = req.query['name'];
-    let query = new AV.Query(Product);
-    query.contains('name', name);
-    query.select('name', 'productId', 'mainImage');
-
-    query.find().then(results => {
-
+    let search = req.query['name'];
+    let page = 1;
+    let limit = 500;
+    let select = 'name, productId, mainImage';
+    let options = {search, page, limit, select};
+    pro.getProducts(options, false).then(results => {
         let jsonData = [];
 
         for (let i = 0; i < results.length; i++) {
@@ -213,9 +212,7 @@ router.get('/get-product', (req, res) => {
             jsonData.push(obj);
         }
         return res.json(jsonData);
-
-    }, ()=> res.json({success: 0}));
-
+    },()=>res.json({success: 0}));
 });
 
 //通过productId查询product name
