@@ -210,6 +210,27 @@ router.post('/attachment-manage/:productId', (req, res) => {
 });
 
 
+//保存原图
+router.post('/image-source/:productId', (req, res) => {
+
+    base.isAdminUserLogin(req, res);  //判断是否登录
+
+    let productId = parseInt(req.params.productId);
+    let imageSource = req.body['image-source'];
+    
+    let query = new AV.Query(Product);
+    query.equalTo('productId', productId);
+
+    query.first().then(item => {
+        return item.save({
+            imageSource
+        });
+    }).then(() => {
+        res.redirect(`/admin/product-property/${productId}?viewport=window`);
+    });
+
+});
+
 //保存备注
 router.post('/set-comment/:productId', (req, res) => {
 

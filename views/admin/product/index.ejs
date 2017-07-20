@@ -93,6 +93,7 @@
                     <tr>
                         <th>产品名称</th>
                         <th class="t-c">预览</th>
+                        <th class="t-c">原图</th>
                         <th class="t-c">产品url</th>
                         <th class="t-c">网店url</th>
                         <th class="t-c">内容</th>
@@ -118,6 +119,16 @@
                         <td class="t-c">
                             <a target="_blank" href="/admin/product/preview/<%= product[i].get('productId') %>"><i class="am-icon-external-link"></i></a>
                         </td>
+
+                        <td class="t-c">
+                            <%if(product[i].get('imageSource')) {%>
+                                <a target="_blank" href="<%= product[i].get('imageSource').split('\n')[0] %>"><i class="am-icon-image"></i></a>
+                            <%}else{%>
+                                -
+                            <%}%>
+                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#image-source"><i class="am-icon-edit"></i></a>
+                        </td>
+                        
                         <td class="t-c">
                             <span class="purchase-link" data-product-id="<%= product[i].get('productId') %>">
                                 <%if(product[i].get('purchaseLink').length) {%>

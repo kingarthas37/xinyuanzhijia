@@ -259,9 +259,28 @@
                             </div>
                         </dd>
                     </dl>
+
+                    <dl id="image-source" class="am-accordion-item">
+                        <dt class="am-accordion-title am-cf">
+                            8.编辑产品原图
+                        </dt>
+                        <dd class="am-accordion-bd am-collapse">
+                            <div class="am-accordion-content">
+                                <form class="am-form" action="/admin/product-property/image-source/<%= product.get('productId') %>" method="post">
+                                    <label>产品原图链接(多张图片用换行分开):</label>
+                                    <div class="am-form-group">
+                                        <textarea name="image-source" rows="3"><%= product.get('imageSource') %></textarea>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="am-btn am-btn-primary">保存</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </dd>
+                    </dl>
                     
                     <dl id="set-comment" class="am-accordion-item">
-                        <dt class="am-accordion-title am-cf">8.备注</dt>
+                        <dt class="am-accordion-title am-cf">9.备注</dt>
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
                                 <form class="am-form" action="/admin/product-property/set-comment/<%= product.get('productId') %>" method="post">
