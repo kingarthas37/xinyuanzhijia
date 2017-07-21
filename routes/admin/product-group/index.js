@@ -15,7 +15,7 @@ let AV = productGroup.getAV();
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 产品列表页`,
-    currentTag: 'product',
+    currentTag: 'product-settings',
     currentPage: 'product-index',
     watermark:config.watermark
 });

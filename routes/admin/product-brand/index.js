@@ -17,7 +17,7 @@ let ProductBrand = AV.Object.extend('ProductBrand');
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 品牌介绍页`,
-    currentTag: 'product',
+    currentTag: 'product-settings',
     currentPage: 'product-brand'
 });
 

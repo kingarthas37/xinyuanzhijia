@@ -22,7 +22,7 @@ let pager = require('../../../lib/component/pager');
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 产品分类编辑`,
-    currentTag:'product',
+    currentTag:'product-settings',
     currentPage: 'product-category'
 });
 

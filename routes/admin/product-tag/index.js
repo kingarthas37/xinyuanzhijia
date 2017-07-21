@@ -9,7 +9,7 @@ let flash = require('connect-flash');
 
 var data = extend(config.data, {
     title: `${config.data.titleAdmin} - 产品标签编辑`,
-    currentTag: 'product',
+    currentTag: 'product-settings',
     currentPage: 'product-tag'
 });
 

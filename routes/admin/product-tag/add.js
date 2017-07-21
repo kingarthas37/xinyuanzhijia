@@ -7,7 +7,7 @@ let extend = productTag.getExtend();
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 添加产品标签`,
-    currentTag: 'product',
+    currentTag: 'product-settings',
     currentPage: 'product-tag'
 });
 

@@ -19,7 +19,7 @@ let config = require('../../../lib/config');
 
 var data = extend(config.data, {
     title: `${config.data.titleAdmin} - 编辑产品类型`,
-    currentTag: 'product',
+    currentTag: 'product-settings',
     currentPage: 'product-method'
 });
 

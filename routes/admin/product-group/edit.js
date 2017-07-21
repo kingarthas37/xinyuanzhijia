@@ -10,7 +10,7 @@ let AV = productGroup.getAV();
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 编辑产品组合类型`,
-    currentTag: 'product',
+    currentTag: 'product-settings',
     currentPage: 'product-group'
 });
 

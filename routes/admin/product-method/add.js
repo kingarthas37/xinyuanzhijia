@@ -15,7 +15,7 @@ let base = require('../../../lib/models/base');
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 添加产品类型`,
-    currentTag: 'product',
+    currentTag: 'product-settings',
     currentPage: 'product-method'
 });
 
