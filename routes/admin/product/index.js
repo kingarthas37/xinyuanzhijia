@@ -19,6 +19,9 @@ let pro = require('../../../lib/models/product').createNew();
 let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
+var isArray = require('util').isArray;
+//let ProductProperty = AV.Object.extend('ProductProperty');
+
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 产品列表页`,
@@ -237,46 +240,33 @@ router.get('/get-id/:productId', (req, res) => {
 router.post('/product-copy', (req, res) => {
     let productId = parseInt(req.body['productId']);
     let fields = req.body['field[]'];
-    async.series([
-        cb => {
-            pro.getProductById(productId).then(result => {
-                let values = new Array();
-                for (var i = 0; i < fields.length; i++){
-                    values[i] = result.attributes[fields[i]];
-                }
-                pro.getProductsByCategoryId(result.attributes.category2).then(items => {
-                    items.forEach(item => {
-                        if (item.attributes.productId != productId) {
-                            pro.updateProductFieldByProductId(item.attributes.productId, fields, values);
-                        }
-                    });
-                    cb();
-                });
-            });
+    pro.getProductById(productId).then(result => {
+        let values = new Array();
+        if(isArray(fields)) {
+            for (var i = 0; i < fields.length; i++){
+                values[i] = result.attributes[fields[i]];
+            }
+        } else {
+            values[0] = result.attributes[fields];
         }
-    ], () => res.send({success:1}));
-    /*AV.Promise.when(
-        new AV.Promise(resolve => {
-            pro.getProductById(productId).then(result => {
-                let values = new Array();
-                for (var i = 0; i < fields.length; i++){
-                    values[i] = result.attributes[fields[i]];
-                }
-                pro.getProductsByCategoryId(result.attributes.category2).then(items => {
-                    items.forEach(item => {
-                        if (item.attributes.productId != productId) {
-                            pro.updateProductFieldByProductId(item.attributes.productId, fields, values);
+        pro.getProductsByCategoryId(result.attributes.category2).then(items => {
+            async.forEach(items, function(item, callback){
+                if (item.attributes.productId != productId) {
+                    if(isArray(fields)) {
+                        for (var i = 0; i < fields.length; i++) {
+                            item.set(fields[i], values[i]);
                         }
-                    });
-                });
+                    } else {
+                        item.set(fields, values[0]);
+                    }
+                    item.save();
+                }
+            }, function(err){
+                console.log('product copy:' + err);
             });
-            resolve();
-        })
-    ).then(() => {
-        res.send({
-            success:1
+            res.send({success:1});
         });
-    });*/
+    });
 });
 
 module.exports = router;
