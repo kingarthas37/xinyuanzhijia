@@ -237,7 +237,25 @@ router.get('/get-id/:productId', (req, res) => {
 router.post('/product-copy', (req, res) => {
     let productId = parseInt(req.body['productId']);
     let fields = req.body['field[]'];
-    AV.Promise.when(
+    async.series([
+        cb => {
+            pro.getProductById(productId).then(result => {
+                let values = new Array();
+                for (var i = 0; i < fields.length; i++){
+                    values[i] = result.attributes[fields[i]];
+                }
+                pro.getProductsByCategoryId(result.attributes.category2).then(items => {
+                    items.forEach(item => {
+                        if (item.attributes.productId != productId) {
+                            pro.updateProductFieldByProductId(item.attributes.productId, fields, values);
+                        }
+                    });
+                    cb();
+                });
+            });
+        }
+    ], () => res.send({success:1}));
+    /*AV.Promise.when(
         new AV.Promise(resolve => {
             pro.getProductById(productId).then(result => {
                 let values = new Array();
@@ -258,7 +276,7 @@ router.post('/product-copy', (req, res) => {
         res.send({
             success:1
         });
-    });
+    });*/
 });
 
 module.exports = router;
