@@ -150,51 +150,70 @@ router.post('/:productId', (req, res) => {
 
     let productId = parseInt(req.params.productId);
 
-    let query = new AV.Query(Product);
-    query.equalTo('productId',productId);
- 
-    query.first().then(product => {
-        
-        return product.save({
-            name,
-            nameEn,
-            mainImage,
-            productMethod,
-            category1,
-            category2,
-            bannerId,
-            detail,
-            review,
-            property,
-            instruction,
-            use,
-            detailImage
-        });
-        
-    }).then(() =>{
- 
-        let productHistory = new ProductHistory();
-        return productHistory.save({
-            productId,
-            name,
-            nameEn,
-            mainImage,
-            productMethod,
-            category1,
-            category2,
-            detail,
-            review,
-            property,
-            instruction,
-            use,
-            detailImage
-        });
-        
-    }).then(product => {
+    AV.Promise.when(
+
+        new AV.Promise(resolve => {
+
+            let query = new AV.Query(Product);
+            query.equalTo('productId',productId);
+            query.first().then(product => {
+                product.save({
+                    name,
+                    nameEn,
+                    mainImage,
+                    productMethod,
+                    category1,
+                    category2,
+                    bannerId,
+                    detail,
+                    review,
+                    property,
+                    instruction,
+                    use,
+                    detailImage
+                }).then(result => {
+                    resolve(result);
+                });
+            });
+        }),
+
+        new AV.Promise(resolve => {
+            let productHistory = new ProductHistory();
+            productHistory.save({
+                productId,
+                name,
+                nameEn,
+                mainImage,
+                productMethod,
+                category1,
+                category2,
+                detail,
+                review,
+                property,
+                instruction,
+                use,
+                detailImage
+            }).then(result => {
+                resolve(result);
+            });
+
+        }),
+
+        new AV.Promise(resolve => {
+
+            let query = new AV.Query(Product);
+            query.containedIn('category2',category2);
+            query.count().then(count => {
+                resolve(count);
+            });
+            
+        })
+
+    ).then((product,productHistory,category2Count) => {
         req.flash('success', '编辑商品成功!');
-        res.redirect(`/admin/product?product-method-id=${product.get('productMethod')[0]}&category1-id=${product.get('category1')[0]}&category2-id=${product.get('category2')[0]}`);
-        
-    },err => console.info(err));
+        res.redirect(`/admin/product?product-method-id=${product.get('productMethod')[0]}&category1-id=${product.get('category1')[0]}&category2-id=${product.get('category2')[0]}&limit=${category2Count}`);
+    });
+    
 
 });
 

@@ -19,8 +19,6 @@ let pro = require('../../../lib/models/product').createNew();
 let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
-//let ProductProperty = AV.Object.extend('ProductProperty');
-
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 产品列表页`,
@@ -56,7 +54,8 @@ router.get('/', (req, res) => {
         category2: [],
         mainImage:[],
         onsale,
-        productTitle
+        productTitle,
+        limit
     });
 
     let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order};
