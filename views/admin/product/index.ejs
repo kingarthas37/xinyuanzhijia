@@ -88,15 +88,15 @@
 
 
         <div class="am-g">
-            <div class="am-u-sm-12">
+            <div class="table-view am-u-sm-12">
                 <table class="am-table am-table-striped">
                     <thead>
                     <tr>
-                        <th>产品名称</th>
+                        <th class="product-title">产品名称</th>
                         <th class="t-c">预览</th>
-                        <th class="t-c">原图</th>
                         <th class="t-c">产品url</th>
                         <th class="t-c">网店url</th>
+                        <th class="t-c">原图</th>
                         <th class="t-c">内容</th>
                         <th class="t-c">附件</th>
                         <th class="t-c">选项</th>
@@ -117,17 +117,9 @@
 
                             <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>"><i class="am-icon-tag"></i></a> <%}%>
                         </td>
+                        
                         <td class="t-c">
                             <a target="_blank" href="/admin/product/preview/<%= product[i].get('productId') %>"><i class="am-icon-external-link"></i></a>
-                        </td>
-
-                        <td class="t-c">
-                            <%if(product[i].get('imageSource')) {%>
-                                <a target="_blank" href="<%= product[i].get('imageSource').split('\n')[0] %>"><i class="am-icon-image"></i></a>
-                            <%}else{%>
-                                -
-                            <%}%>
-                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#image-source"><i class="am-icon-edit"></i></a>
                         </td>
                         
                         <td class="t-c">
@@ -144,6 +136,7 @@
                             </span>
                             <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#purchase-link"><i class="am-icon-edit"></i></a>
                         </td>
+                        
                         <td class="t-c">
                             <span class="shop-link" data-product-id="<%= product[i].get('productId') %>">
                                 <%if(product[i].get('shopLink').length) {%>
@@ -158,6 +151,16 @@
                             </span>
                             <a class="link-modal-viewport" title="编辑" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#shop-link"><i class="am-icon-edit"></i></a>
                         </td>
+
+                        <td class="t-c">
+                            <%if(product[i].get('imageSource')) {%>
+                            <a target="_blank" href="<%= product[i].get('imageSource').split('\n')[0] %>"><i class="am-icon-image"></i></a>
+                            <%}else{%>
+                            -
+                            <%}%>
+                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#image-source"><i class="am-icon-edit"></i></a>
+                        </td>
+                        
                         <td class="t-c">
                             <a class="link-modal-viewport" title="内容管理" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#content-manage"><i class="am-icon-book"></i></a>
                         </td>

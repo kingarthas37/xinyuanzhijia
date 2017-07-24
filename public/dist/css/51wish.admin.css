@@ -159,6 +159,9 @@ footer p {
 .am-table th {
   font-weight: normal; }
 
+.table-view {
+  overflow: auto; }
+
 .am-alert {
   position: fixed;
   top: 20px;
@@ -326,8 +329,17 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
     color: #5eb95e;
     font-style: normal; }
 
+.admin-product-page .am-table th {
+  padding-left: 0;
+  padding-right: 0;
+  width: 60px; }
+  .admin-product-page .am-table th.product-title {
+    width: auto; }
+
 .admin-product-page .am-table td {
-  vertical-align: middle; }
+  vertical-align: middle;
+  padding-left: 0;
+  padding-right: 0; }
   .admin-product-page .am-table td a i {
     margin: 0 4px; }
 

@@ -71,8 +71,18 @@
     }
 
     .am-table {
+        th {
+            padding-left:0;
+            padding-right: 0;
+            width: 60px;
+            &.product-title {
+                width: auto;
+            }
+        }
         td {
             vertical-align: middle;
+            padding-left:0;
+            padding-right: 0;
             a {
                 i {
                     margin: 0 4px;
@@ -80,6 +90,7 @@
             }
         }
     }
+    
     td {
         img {
             border-radius: 4px;

@@ -228,6 +228,10 @@ footer p {
     }
 }
 
+.table-view {
+    overflow: auto;
+}
+
 .am-alert {
     position: fixed;
     top:20px;
