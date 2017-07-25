@@ -238,9 +238,12 @@ router.get('/get-id/:productId', (req, res) => {
 });
 
 router.post('/product-copy', (req, res) => {
+    console.info(111);
     let productId = parseInt(req.body['productId']);
     let fields = req.body['field[]'];
     let success = [];
+    console.log(productId);
+    console.log(fields);
     pro.getProductById(productId).then(result => {
         let values = [];
         if(isArray(fields)) {
@@ -252,6 +255,7 @@ router.post('/product-copy', (req, res) => {
         }
         pro.getProductsByCategoryId(result.attributes.category2).then(items => {
             async.forEach(items, function(item, callback){
+                console.log(item.get('productId'));
                 if (item.attributes.productId != productId) {
                     if(isArray(fields)) {
                         for (var i = 0; i < fields.length; i++) {
@@ -260,15 +264,21 @@ router.post('/product-copy', (req, res) => {
                     } else {
                         item.set(fields, values[0]);
                     }
-                    item.save().then(function() {
+                    console.log(item.attribute().productId);
+                    item.save().then(()=> {
+                        console.info(222);
                         success.push(item.attributes.productId);
                         callback();
                     });
+                } else {
+                    callback();
                 }
             }, function(err){
-                console.log('product copy:' + err);
+                if(err) {
+                    console.log('product copy:' + err);
+                }
+                res.send({success:success, count:success.length});
             });
-            res.send({success:success, count:success.length});
         });
     });
 });
