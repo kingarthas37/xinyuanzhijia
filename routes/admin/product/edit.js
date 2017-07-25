@@ -211,7 +211,7 @@ router.post('/:productId', (req, res) => {
 
     ).then((product,productHistory,category2Count) => {
         req.flash('success', '编辑商品成功!');
-        res.redirect(`/admin/product?product-method-id=${product.get('productMethod')[0]}&category1-id=${product.get('category1')[0]}&category2-id=${product.get('category2')[0]}&limit=${category2Count}`);
+        res.redirect(`/admin/product?product-method-id=${product.get('productMethod')[0]}&category1-id=${product.get('category1')[0]}&category2-id=${product.get('category2')[0]}&limit=${category2Count}&product-id=${productId}`);
     });
     
 
