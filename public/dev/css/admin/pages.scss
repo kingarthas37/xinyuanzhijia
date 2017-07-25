@@ -73,7 +73,9 @@
     .am-table {
         tr {
             &.on {
-                background: #feffed;
+                td {
+                    background: #feffed;
+                }
             }
         }
         th {
