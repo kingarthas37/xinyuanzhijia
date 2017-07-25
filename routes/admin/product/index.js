@@ -240,9 +240,9 @@ router.get('/get-id/:productId', (req, res) => {
 router.post('/product-copy', (req, res) => {
     let productId = parseInt(req.body['productId']);
     let fields = req.body['field[]'];
-    let success = new Array();
+    let success = [];
     pro.getProductById(productId).then(result => {
-        let values = new Array();
+        let values = [];
         if(isArray(fields)) {
             for (var i = 0; i < fields.length; i++){
                 values[i] = result.attributes[fields[i]];
@@ -260,8 +260,10 @@ router.post('/product-copy', (req, res) => {
                     } else {
                         item.set(fields, values[0]);
                     }
-                    item.save();
-                    success.push(item.attributes.productId);
+                    item.save().then(function() {
+                        success.push(item.attributes.productId);
+                        callback();
+                    });
                 }
             }, function(err){
                 console.log('product copy:' + err);
