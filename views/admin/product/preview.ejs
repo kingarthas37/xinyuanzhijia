@@ -77,24 +77,28 @@
             <% } %>
 
         </div>
-        
+
         <% if(product.get('groups').length) {%>
-            <div><img src="https://img.alicdn.com/imgextra/i4/42879206/TB2Dw47p9BjpuFjSsplXXa5MVXa_!!42879206.png"></div>
-            <div class="recommend-content">
-                
-            </div>
-            <hr>
-            <div class="am-form">
-                <div class="form-group">
-                    <label>生成代码:</label>
-                    <textarea class="recommend-code" rows="3"></textarea>
-                    <p>
-                        <button type="button" class="am-btn am-btn-primary btn-recommend-code">生成淘宝推荐产品代码</button>
-                        <button type="button" class="am-btn am-btn-primary btn-recommend-code-copy">复制淘宝推荐产品代码</button>
-                    </p>
-                    <div class="recommend-code-hidden"></div>
-                </div>
-            </div>
+            <% for(var i=0;i<product.get('groups').length;i++) {%>
+                <% if(product.get('groups')[i].products.length) {%>
+                    <div><img src="https://img.alicdn.com/imgextra/i4/42879206/TB2Dw47p9BjpuFjSsplXXa5MVXa_!!42879206.png"></div>
+                    <div class="recommend-content">
+            
+                    </div>
+                    <hr>
+                    <div class="am-form">
+                        <div class="form-group">
+                            <label>生成代码:</label>
+                            <textarea class="recommend-code" rows="3"></textarea>
+                            <p>
+                                <button type="button" class="am-btn am-btn-primary btn-recommend-code">生成淘宝推荐产品代码</button>
+                                <button type="button" class="am-btn am-btn-primary btn-recommend-code-copy">复制淘宝推荐产品代码</button>
+                            </p>
+                            <div class="recommend-code-hidden"></div>
+                        </div>
+                    </div>
+                <%}%>
+            <%}%>
         <% } %>
         
     </div>

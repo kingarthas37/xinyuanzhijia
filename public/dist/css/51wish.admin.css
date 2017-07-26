@@ -329,7 +329,7 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
     color: #5eb95e;
     font-style: normal; }
 
-.admin-product-page .am-table tr.on {
+.admin-product-page .am-table tr.on td {
   background: #feffed; }
 
 .admin-product-page .am-table th {

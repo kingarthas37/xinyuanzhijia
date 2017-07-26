@@ -196,6 +196,11 @@ module.exports = {
     },
     screenShotRecommend() {
 
+        let btnShotRecommend = $('.btn-shot-recommend');
+        if(!btnShotRecommend.length) {
+            return;
+        }
+        
         let styles = `<style>
             body { margin:0; width:750px; background: #fff;  font-family:'Segoe UI','Lucida Grande','Helvetica','Arial','Microsoft YaHei'; }  
             h3 { height:100px; line-height: 100px; margin:0; font-size:24px; padding-left:15px; }
@@ -210,7 +215,7 @@ module.exports = {
 
         let recommendContent = $('.recommend-content');
 
-        let btnShotRecommend = $('.btn-shot-recommend');
+        
         btnShotRecommend.button('loading');
         let progress = $.AMUI.progress;
 
