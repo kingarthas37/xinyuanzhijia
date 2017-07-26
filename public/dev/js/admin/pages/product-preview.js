@@ -79,6 +79,12 @@ module.exports = {
         let html = previewContent.html();
         
         let btnShot = $('.btn-shot');
+        
+        if(location.href.indexOf('localhost') === -1) {
+            btnShot.hide();
+            $('.btn-shot-recommend').hide();
+        }
+        
         btnShot.button('loading');
         let progress = $.AMUI.progress;
 
