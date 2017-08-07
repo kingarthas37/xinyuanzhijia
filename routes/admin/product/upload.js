@@ -8,6 +8,7 @@ let config = require('../../../lib/config');
 
 let upload = require('../../../lib/component/upload');
 let base = require('../../../lib/models/base');
+let imgAutoUpload = require('../../../lib/component/img-auto-upload');
 
 let data = extend(config.data, {
     title: '上传文件'
@@ -36,6 +37,13 @@ router.post('/',(req,res)=>{
     base.isAdminUserLogin(req, res);  //判断是否登录
     
     upload(req,result => {
+        res.send(result);
+    });
+});
+
+router.post('/auto', (req, res) => {
+    let url = req.body['img-url'];
+    imgAutoUpload(url, res, result => {
         res.send(result);
     });
 });
