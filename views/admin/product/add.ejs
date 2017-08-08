@@ -52,8 +52,8 @@
                                         <select class="select-product-method" name="select-product-method" required>
                                             <option value="">请选择产品类型</option>
                                             <% for (var i=0;i < productMethod.length; i++) { %>
-                                            <option value="<%= productMethod[i].get('productMethodId'); %>"><%=
-                                                productMethod[i].get('name'); %>
+                                            <option value="<%= productMethod[i].get('productMethodId'); %>" <% if(productMethod[i].get('productMethodId')== productMethodId) { %>selected="selected"<%}%>>
+                                                <%= productMethod[i].get('name'); %>
                                             </option>
                                             <% } %>
                                         </select>
@@ -68,6 +68,11 @@
                                     <div>
                                         <select class="select-category-1" name="select-category-1" required>
                                             <option value="">请选择商品一级分类</option>
+                                            <% for (var i=0;i < category1.length; i++) { %>
+                                            <option value="<%= category1[i].get('category1Id'); %>" <% if(category1[i].get('category1Id')== category1Id) { %>selected="selected"<%}%>>
+                                            <%= category1[i].get('name'); %>
+                                            </option>
+                                            <% } %>
                                         </select>
                                     </div>
                                 </div>
@@ -80,6 +85,11 @@
                                     <div>
                                         <select class="select-category-2" name="select-category-2" required>
                                             <option value="">请选择商品二级分类</option>
+                                            <% for (var i=0;i < category2.length; i++) { %>
+                                            <option value="<%= category2[i].get('category2Id'); %>" <% if(category2[i].get('category2Id')== category2Id) { %>selected="selected"<%}%>>
+                                            <%= category2[i].get('name'); %>
+                                            </option>
+                                            <% } %>
                                         </select>
                                     </div>
                                 </div>

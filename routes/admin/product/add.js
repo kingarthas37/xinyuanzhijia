@@ -34,12 +34,21 @@ router.get('/', (req, res) => {
     res.cookie('x_lc_sign',data.x_lc_sign);
     res.cookie('x_lc_session',req.AV.user._sessionToken);
 
+    let productMethodId = req.query['product-method-id'];
+    let category1Id = req.query['category1-id'];
+    let category2Id = req.query['category2-id'];
+    
     data = extend(data, {
-        user:req.AV.user
+        user:req.AV.user,
+        productMethodId,
+        category1Id,
+        category2Id,
+        category1:[],
+        category2:[]
     });
     
     AV.Promise.when(
-
+        
         new AV.Promise(resolve => {
             let query = new AV.Query(Banner);
             return query.find().then(banner => {
@@ -54,6 +63,36 @@ router.get('/', (req, res) => {
                 data = extend(data,{productMethod});
                 resolve();
             });
+        }),
+
+        new AV.Promise(resolve => {
+
+            if(!productMethodId) {
+                return resolve();
+            }
+            
+            let query = new AV.Query(ProductCategory1);
+            query.equalTo('productMethodId',parseInt(productMethodId));
+            return query.find().then(category1 => {
+                data = extend(data,{category1});
+                resolve();
+            });
+
+        }),
+
+        new AV.Promise(resolve => {
+
+            if(!category1Id) {
+                return resolve();
+            }
+
+            let query = new AV.Query(ProductCategory2);
+            query.equalTo('category1Id',parseInt(category1Id));
+            return query.find().then(category2 => {
+                data = extend(data,{category2});
+                resolve();
+            });
+
         })
         
     ).then(() => res.render('admin/product/add', data));
