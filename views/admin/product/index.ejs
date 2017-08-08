@@ -172,6 +172,7 @@
                                 <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><i class="am-icon-ellipsis-h"></i></button>
                                 <ul class="am-dropdown-content">
                                     <li><a href="/admin/product/copy/<%= product[i].get('productId') %>">复制</a></li>
+                                        <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="link-copy-etsy">生成Etsy</a></li>
                                     <li><a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#tags">标签管理</a></li>
                                     <li><a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#set-comment">备注</a></li>
                                     <li><a href="javascript:;" data-id="<%= product[i].get('productId') %>" class="remove-product">删除</a></li>
@@ -276,6 +277,25 @@
     </div>
 </div>
 <!-- modal confirm -->
+
+<!-- modal etsy -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-copy-etsy">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">输入Etsy.com产品地址</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-copy-etsy"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal etsy -->
 
 <% include ../partials/footer %>
 <% include ../partials/js %>

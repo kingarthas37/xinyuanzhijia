@@ -39,6 +39,7 @@ module.exports = {
     '/admin/product/add':require('./admin/product/add'),
     '/admin/product/edit':require('./admin/product/edit'),
     '/admin/product/copy':require('./admin/product/copy'),
+    '/admin/product/copy-etsy':require('./admin/product/copy-etsy'),
     '/admin/product/upload':require('./admin/product/upload'),
     '/admin/product/preview':require('./admin/product/preview'),
     '/admin/product/groups':require('./admin/product/groups'),

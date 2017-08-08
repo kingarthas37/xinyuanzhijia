@@ -194,6 +194,28 @@ module.exports = {
             });
         }
         
+        
+        //copy etsy
+        {
+            
+            let modal = $('#modal-copy-etsy');
+            let input = $('.input-copy-etsy');
+            
+            $('.link-copy-etsy').click(function() {
+                modal.modal({
+                    relatedTarget: this,
+                    onConfirm: function(e) {
+                        
+                        //ajax
+                        
+                    }
+                });
+                input[0].focus();
+                return false;
+            });
+            
+        }
+        
     },
 
     addFun:function() {
