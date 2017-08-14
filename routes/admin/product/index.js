@@ -317,23 +317,30 @@ router.get('/spider-info', (req, res) => {
                 result['description'] = description[0].replace(spiderConfig[domain]['replaceTag'], "").trim();
             }
             if (result['price']) {
-                var productObj;
-                async.series([
+                async.waterfall([
                     cb => {
                         let query = new AV.Query(Product);
                         query.equalTo('productId', productId);
                         query.first().done(product => {
-                            product.set('name', result['title']);
-                            product.set('detail', result['description']);
-                            product.set('mainImage', result['image'][0]);
-                            product.set('property', result['overView']);
-                            product.set('imageSource', result['image'].toString().replace(',', '\n'));
-                            productObj = product;
-                            cb();
+
+                            console.info(product);
+                            query.get(product.id).done(_result => {
+
+                              
+                                cb(null,_result);
+                            });
+                            
+                            //product.set('name', result['title']);
+                           // product.set('detail', result['description']);
+                           // product.set('mainImage', result['image'][0]);
+                          //  product.set('property', result['overView']);
+                         //   product.set('imageSource', result['image'].toString().replace(',', '\n'));
+                           
                         });
                     },
-                    cb => {
-                        productObj.save().then(() => {
+                    (product,cb) => {
+                        _result.set('name', result['title']);
+                        product.save().then(() => {
                             console.log(1234);
                             code = 1;
                             cb();
