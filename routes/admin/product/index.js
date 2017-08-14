@@ -15,6 +15,8 @@ let pager = require('../../../lib/component/pager');
 let Product = AV.Object.extend('Product');
 let base = require('../../../lib/models/base');
 let pro = require('../../../lib/models/product').createNew();
+var spider = require('../../../lib/spider');
+var https = require('https');
 
 let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
@@ -274,6 +276,79 @@ router.post('/product-copy', (req, res) => {
                 res.send({success:success, count:success.length});
             });
         });
+    });
+});
+
+router.get('/spider-info', (req, res) => {
+    let url = req.query.url;
+    let productId = parseInt(req.query.productId);
+    var domain = "www.etsy.com";
+    var result = [];
+    var response = res;
+    var spiderConfig = spider.spider;
+    var code = 0;
+    https.get(url, function(res) {
+        var html='';
+        res.on('data', function(data) {
+            html += data;
+        });
+        res.on('end',function() {
+            var price = html.match(spiderConfig[domain]['price']);
+            if(price) {
+                result['price'] = price[0].replace(spiderConfig[domain]['replacePrice'], "");
+            }
+            var title = html.match(spiderConfig[domain]['title']);
+            if(title) {
+                result['title'] = title[0].replace(spiderConfig[domain]['replaceTag'], "");
+            }
+            var image = html.match(spiderConfig[domain]['image']);
+            if(image) {
+                for(var i = 0; i < image.length; i++){
+                    image[i] = spiderConfig[domain]['path'] + image[i].match(spiderConfig[domain]['imageUrl'])[0].replace(/"/gi, "");
+                }
+                result['image'] = image.toString().replace(',', ' \n ');
+            }
+            var overView = html.match(spiderConfig[domain]['overView']);
+            if(overView) {
+                result['overView'] = overView[0].replace(spiderConfig[domain]['replaceTag'], "  ").trim();
+            }
+            var description = html.match(spiderConfig[domain]['description']);
+            if(description) {
+                result['description'] = description[0].replace(spiderConfig[domain]['replaceTag'], "").trim();
+            }
+            if (result['price']) {
+                var productObj;
+                async.series([
+                    cb => {
+                        let query = new AV.Query(Product);
+                        query.equalTo('productId', productId);
+                        query.first().done(product => {
+                            product.set('name', result['title']);
+                            product.set('detail', result['description']);
+                            product.set('mainImage', result['image'][0]);
+                            product.set('property', result['overView']);
+                            product.set('imageSource', result['image'].toString().replace(',', '\n'));
+                            productObj = product;
+                            cb();
+                        });
+                    },
+                    cb => {
+                        productObj.save().then(() => {
+                            console.log(1234);
+                            code = 1;
+                            cb();
+                        });
+                        cb();
+                    }
+                ], function (err, values) {
+                    response.send({code})
+                });
+            } else {
+                response.send({code});
+            }
+        });
+    }).on('error', function() {
+        console.log('error');
     });
 });
 
