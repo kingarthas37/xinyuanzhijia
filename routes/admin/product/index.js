@@ -281,7 +281,7 @@ router.post('/product-copy', (req, res) => {
 
 router.get('/spider-info', (req, res) => {
     let url = req.query.url;
-    let productId = parseInt(req.query.productId);
+    let productId = parseInt(req.query['product-id']);
     var domain = "www.etsy.com";
     var result = [];
     var response = res;
