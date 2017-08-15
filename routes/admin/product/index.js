@@ -306,7 +306,7 @@ router.get('/spider-info', (req, res) => {
                 for(var i = 0; i < image.length; i++){
                     image[i] = spiderConfig[domain]['path'] + image[i].match(spiderConfig[domain]['imageUrl'])[0].replace(/"/gi, "");
                 }
-                result['image'] = image.toString().replace(',', ' \n ');
+                result['image'] = image;
             }
             var overView = html.match(spiderConfig[domain]['overView']);
             if(overView) {
@@ -322,30 +322,22 @@ router.get('/spider-info', (req, res) => {
                         let query = new AV.Query(Product);
                         query.equalTo('productId', productId);
                         query.first().done(product => {
-
-                            console.info(product);
-                            query.get(product.id).done(_result => {
-
-                              
-                                cb(null,_result);
-                            });
-                            
-                            //product.set('name', result['title']);
-                           // product.set('detail', result['description']);
-                           // product.set('mainImage', result['image'][0]);
-                          //  product.set('property', result['overView']);
-                         //   product.set('imageSource', result['image'].toString().replace(',', '\n'));
-                           
+                            cb(null,product);
                         });
                     },
                     (product,cb) => {
-                        _result.set('name', result['title']);
+                        var mainImage = {1:{url:result['image'][0], isMainImage:true}};
+                        product.set('name', result['title']);
+                        product.set('detail', result['description']);
+                        product.set('mainImage', mainImage);
+                        product.set('property', result['overView']);
+                        product.set('originalPrice', result['price']);
+                        product.set('nameEn', result['title']);
+                        product.set('imageSource', result['image'].toString().replace(/,/g, '\n'));
                         product.save().then(() => {
-                            console.log(1234);
                             code = 1;
                             cb();
                         });
-                        cb();
                     }
                 ], function (err, values) {
                     response.send({code})
