@@ -200,13 +200,51 @@ module.exports = {
             
             let modal = $('#modal-copy-etsy');
             let input = $('.input-copy-etsy');
+            let modalLoading = $('#modal-loading');
+            
             
             $('.link-copy-etsy').click(function() {
+                let productId = $(this).data('product-id');
+                modalLoading.find('.am-modal-hd').text('正在导入...');
+                console.info(productId);
                 modal.modal({
                     relatedTarget: this,
                     onConfirm: function(e) {
                         
-                        //ajax
+                        if(!$.trim(input.val()) || $.trim(input.val()).indexOf('etsy.com') ===-1) {
+                            alert('请输入正确的etsy.com链接');
+                            return;
+                        }
+                        
+                        $.ajax({
+                            url:'/admin/product/spider-info',
+                            data:{
+                                'product-id':productId,
+                                'url':$.trim(input.val())
+                            }
+                        }).then(
+                            result => {
+                                if(result.code) {
+                                    modalLoading.find('.am-modal-hd').text('导入成功!正在更新...');
+                                    setTimeout(()=> {
+                                        location.reload();
+                                    },1000);
+                                } else {
+                                    modalLoading.find('.am-modal-hd').text('导入失败,请重试!');
+                                    setTimeout(()=> {
+                                        modalLoading.modal('close');
+                                    },1000);
+                                }
+                            },
+                            err => {
+                                console.info(err);
+                                modalLoading.find('.am-modal-hd').text('导入失败,请重试!');
+                                setTimeout(()=> {
+                                    modalLoading.modal('close');
+                                },1000);
+                            }
+                        );
+                        modalLoading.modal();
                         
                     }
                 });
