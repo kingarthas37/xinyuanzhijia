@@ -334,6 +334,7 @@ router.get('/spider-info', (req, res) => {
                         product.set('originalPrice', result['price']);
                         product.set('nameEn', result['title']);
                         product.set('imageSource', result['image'].toString().replace(/,/g, '\n'));
+                        product.set('purchaseLink', [url]);
                         product.save().then(() => {
                             code = 1;
                             cb();
