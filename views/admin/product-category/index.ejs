@@ -57,8 +57,9 @@
                                 <ul class="category-2-list">
                                     <% for (var j=0;j< category[i].contents.length;j++) { %>
                                          <li data-id="<%= category[i].contents[j].get('category2Id') %>">
-                                            <strong><a class="open-category-1" href="/admin/product?product-method-id=<%= category[i].get('productMethodId') %>&category1-id=<%= category[i].get('category1Id') %>&category2-id=<%= category[i].contents[j].get('category2Id') %>" target="_blank"><%= category[i].contents[j].get('name') %></a> <a target="_blank" href="/admin/product/add?product-method-id=<%= category[i].get('productMethodId') %>&category1-id=<%= category[i].get('category1Id') %>&category2-id=<%= category[i].contents[j].get('category2Id') %>">[新建]</a></strong>
+                                            <strong><a class="open-category-1" href="/admin/product?product-method-id=<%= category[i].get('productMethodId') %>&category1-id=<%= category[i].get('category1Id') %>&category2-id=<%= category[i].contents[j].get('category2Id') %>" target="_blank"><%= category[i].contents[j].get('name') %></a></strong>
                                             <span class="options">
+                                                <a target="_blank" href="/admin/product/add?product-method-id=<%= category[i].get('productMethodId') %>&category1-id=<%= category[i].get('category1Id') %>&category2-id=<%= category[i].contents[j].get('category2Id') %>">新建</a>
                                                 <a class="edit-category-2" href="javascript:;">编辑</a>
                                                 <a class="moveup-category-2" href="javascript:;">上移</a>
                                                 <a class="movedown-category-2" href="javascript:;">下移</a>

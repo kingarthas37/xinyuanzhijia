@@ -351,9 +351,9 @@ module.exports = {
                         <li data-id="${data.id}">
                             <strong>
                             <a href="/admin/product?product-method-id=${productMethodId}&category1-id=${category1Id}&category2-id=${data.id}" target="_blank">${data.name}</a>
-                            <a href="/admin/product/add?product-method-id=${productMethodId}&category1-id=${category1Id}&category2-id=${data.id}" target="_blank">[新建]</a>
                             </strong>
                             <span class="options">
+                                <a href="/admin/product/add?product-method-id=${productMethodId}&category1-id=${category1Id}&category2-id=${data.id}" target="_blank">新建</a>
                                 <a class="edit-category-2" href="javascript:;">编辑</a>
                                 <a class="moveup-category-2" href="javascript:;">上移</a>
                                 <a class="movedown-category-2" href="javascript:;">下移</a>
