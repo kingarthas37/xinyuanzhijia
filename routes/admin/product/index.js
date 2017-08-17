@@ -294,7 +294,7 @@ router.get('/spider-info', (req, res) => {
             res.destroy();
             message = '爬虫超时';
             response.send({code, message})
-        }, 30000);
+        }, 90000);
         res.on('data', function(data) {
             html += data;
         });
