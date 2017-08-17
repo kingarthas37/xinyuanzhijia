@@ -287,12 +287,19 @@ router.get('/spider-info', (req, res) => {
     var response = res;
     var spiderConfig = spider.spider;
     var code = 0;
+    var message = '';
     https.get(url, function(res) {
         var html='';
+        var response_timer = setTimeout(function() {
+            res.destroy();
+            message = '爬虫超时';
+            response.send({code, message})
+        }, 30000);
         res.on('data', function(data) {
             html += data;
         });
         res.on('end',function() {
+            clearTimeout(response_timer);
             var price = html.match(spiderConfig[domain]['price']);
             if(price) {
                 result['price'] = price[0].replace(spiderConfig[domain]['replacePrice'], "");
@@ -341,14 +348,16 @@ router.get('/spider-info', (req, res) => {
                         });
                     }
                 ], function (err, values) {
-                    response.send({code})
+                    response.send({code, message});
                 });
             } else {
-                response.send({code});
+                message = '页面解析错误';
+                response.send({code, message});
             }
         });
     }).on('error', function() {
-        console.log('error');
+        message = 'http get请求失败';
+        response.send({code, message});
     });
 });
 
