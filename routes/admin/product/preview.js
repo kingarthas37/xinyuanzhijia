@@ -35,7 +35,10 @@ let data = extend(config.data, {
 router.get('/:productId',(req,res)=> {
 
     var productId = parseInt(req.params.productId);
+    let productMethodId = parseInt(req.query['product-method-id']);
 
+    console.info(productMethodId);
+    
     data = extend(data, {
         user: req.AV.user
     });
@@ -50,7 +53,9 @@ router.get('/:productId',(req,res)=> {
                 let name = product.get('name');
                 name = toUpperCase(name);
                 
-                let detailImage = product.get('detailImage').replace(/\.jpg/gi,'.jpg'+ config.watermark.main);
+                //水印判断不同淘宝店铺
+                let watermark = productMethodId === 21 ? config.watermark.muxue928 : config.watermark.main;
+                let detailImage = product.get('detailImage').replace(/\.jpg/gi,'.jpg'+ watermark);
                 
                 data = extend(data,{
                     product,
@@ -127,17 +132,17 @@ router.post('/quick-preview', function (req, res) {
     let productMethodId = parseInt(req.body['select-product-method']);
     let category1Id = parseInt(req.body['select-category-1']);
     let category2Id = parseInt(req.body['select-category-2']);
-
+    
     data = extend(data,{
         name:name,
         nameEn:nameEn,
         banner:banner,
-        detail: imageSet(markdown.toHTML(detail)),
+        detail: markdown.toHTML(detail),
         review: markdown.toHTML(review),
-        property: imageSet(markdown.toHTML(property)),
-        instruction: imageSet(markdown.toHTML(instruction)),
-        use: imageSet(markdown.toHTML(use)),
-        detailImage: imageSet(markdown.toHTML(detailImage))
+        property: markdown.toHTML(property),
+        instruction: markdown.toHTML(instruction),
+        use: markdown.toHTML(use),
+        detailImage: markdown.toHTML(detailImage)
     });
 
     async.parallel([

@@ -124,9 +124,7 @@
 <script type="text/javascript">
     $(function() {
         var productPreview = require('product-preview');
-        productPreview.init({
-            watermark:'<%= watermark.main %>'
-        });
+        productPreview.init();
 
         if($('.btn-shot-recommend').length) {
             productPreview.recommendProducts(JSON.parse('<%- groups %>'),JSON.parse('<%- groupsName %>'));
