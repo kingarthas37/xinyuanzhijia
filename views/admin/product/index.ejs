@@ -107,7 +107,7 @@
                     <% for(var i=0; i < product.length; i++) {%>
                     <tr data-product-id="<%= product[i].get('productId') %>">
                         <td class="product-title">
-                            <%if(product[i].mainImage) {%><a target="_blank" href="<%= product[i].mainImage%>"><img width="32" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/32" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32" width="32"/><%}%> <a class="outofstock" href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%> {<%= product[i].get('productId')%>}</a>
+                            <%if(product[i].mainImage) {%><a target="_blank" href="<%= product[i].mainImage%>"><img width="32" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/32" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32" width="32"/><%}%> <a class="product-out" href="/admin/product/edit/<%= product[i].get('productId') %>"><%= product[i].get('name')%> {<%= product[i].get('productId')%>}</a>
 
                             <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock"><i class="am-icon-inbox <%if(product[i].get('stock')){%> instock<%}%>"><%if(product[i].get('stock')){%><em class="stock-num"><%= product[i].get('stock') %></em><%}%></i></a>
                             
