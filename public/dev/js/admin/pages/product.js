@@ -254,6 +254,21 @@ module.exports = {
             
         }
         
+        
+        //copy title
+        {
+            $('.copy-product-title').each(function(i,n) {
+                let clipboard = new Clipboard(n, {
+                    text: function() {
+                        return `${$(n).data('text')} {${$(n).data('id')}}`;
+                    }
+                });
+                clipboard.on('success',data => {
+                    $(n).addClass('on');
+                });
+            });
+        }
+        
     },
 
     addFun:function() {

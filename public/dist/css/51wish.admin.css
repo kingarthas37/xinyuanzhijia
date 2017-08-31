@@ -368,6 +368,12 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
 .admin-product-page .product-out {
   color: #666; }
 
+.admin-product-page .copy-product-title.on {
+  color: #5eb95e; }
+
+.admin-product-page .am-icon-warning {
+  color: #F37B1D; }
+
 /* admin product category page */
 .admin-product-category-page .am-accordion {
   margin: 0 0 30px 0; }
