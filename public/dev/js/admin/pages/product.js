@@ -269,6 +269,25 @@ module.exports = {
             });
         }
         
+        //
+        {
+            $('.image-source-download').click(function() {
+                let group = $(this).next();
+                let links = group.find('.image-source-value').val().split('\n');
+                let id = $(this).data('product-id');
+                if(links.length) {
+                    $.each(links,function(i,n) {
+                        group.append(`<a href="${n}" download>download</a>`);
+                    });
+                    group.find('a').each(function() {
+                        let evObj = document.createEvent('MouseEvents');
+                        evObj.initEvent('click', true, false);
+                        this.dispatchEvent(evObj);
+                    });
+                }
+            });  
+        }
+        
     },
 
     addFun:function() {

@@ -81,7 +81,7 @@
         th {
             padding-left:0;
             padding-right: 0;
-            width: 60px;
+            width: 70px;
             &.product-title {
                 width: auto;
             }
@@ -92,7 +92,7 @@
             padding-right: 0;
             a {
                 i {
-                    margin: 0 4px;
+                    margin: 0 2px;
                 }
             }
         }
@@ -139,7 +139,9 @@
         color: #F37B1D;
     }
     
-
+    .image-source-group {
+        display: none;
+    }
 }
 
 

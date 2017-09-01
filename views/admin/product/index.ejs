@@ -173,6 +173,15 @@
                             -
                             <%}%>
                             <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#image-source"><i class="am-icon-edit"></i></a>
+
+                            <%if(product[i].get('imageSource')) {%>
+                                <a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="image-source-download"><i class="am-icon-download"></i></a>
+                                <div class="image-source-group">
+                                    <input type="hidden" class="image-source-value" value="<%= product[i].get('imageSource') %>">
+                                    
+                                </div>
+                            <%}%>
+                            
                         </td>
                         
                         <td class="t-c">
