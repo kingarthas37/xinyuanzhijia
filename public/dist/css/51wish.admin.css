@@ -489,6 +489,9 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
     font-size: 12px;
     font-weight: normal;
     color: #999; }
+  .admin-product-property-page .image-source-download {
+    padding-top: 5px;
+    height: 20px; }
 
 /* admin product groups page */
 .product-groups-page .am-form-group {

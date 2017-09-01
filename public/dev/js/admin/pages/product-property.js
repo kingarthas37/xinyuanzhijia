@@ -21,7 +21,7 @@ module.exports = {
         this.setStockContent();
         this.setSettingsContent();
         this.setContentManage();
-        
+        this.setImageSourceLink();
     },
 
     setContentDisplay() {
@@ -123,6 +123,18 @@ module.exports = {
                 brandHiddenInput.val(value);
             }
         });
+        
+    },
+
+    setImageSourceLink() {
+        let imageSourceDownload = $('.image-source-download');
+        let links = $('textarea[name=image-source]').val().split('\n');
+        let id= $('#product-id').val();
+        if(links.length) {
+            $.each(links,function(i,n) {
+                imageSourceDownload.append(`<a href="${n}" download="下载.${id}.${i+1}">下载${i+1}</a> `);
+            });
+        }
         
     }
     

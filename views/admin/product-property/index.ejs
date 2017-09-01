@@ -18,6 +18,8 @@
     <!-- content start -->
     <div class="admin-content admin-product-property-page">
 
+        <input type="hidden" id="product-id" value="<%=product.get('productId')%>">
+        
         <div class="product-crumb am-cf am-padding">
             <div class="am-fl am-cf"><a href="/admin/product">产品编辑</a> / <a href="/admin/product-property/<%= product.get('productId') %>">编辑产品属性</a> /
                 <a href="/admin/product/edit/<%=product.get('productId')%>"><%=product.get('name')%></a></div>
@@ -273,6 +275,9 @@
                                     <label>产品原图链接(多张图片用换行分开):</label>
                                     <div class="am-form-group">
                                         <textarea name="image-source" rows="3"><%= product.get('imageSource') %></textarea>
+                                        <div class="image-source-download">
+                                            
+                                        </div>
                                     </div>
                                     <div>
                                         <button type="submit" class="am-btn am-btn-primary">保存</button>
