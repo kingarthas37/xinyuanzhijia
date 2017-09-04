@@ -300,6 +300,11 @@ router.get('/spider-info', (req, res) => {
         });
         res.on('end',function() {
             clearTimeout(response_timer);
+            /*var fs = require('fs');
+            var file = '1.html';
+            fs.appendFile(file, html, function(err) {
+
+            });*/
             var price = html.match(spiderConfig[domain]['price']);
             if(price) {
                 result['price'] = price[0].replace(spiderConfig[domain]['replacePrice'], "");
@@ -354,6 +359,7 @@ router.get('/spider-info', (req, res) => {
                 message = '页面解析错误';
                 response.send({code, message});
             }
+            response.send({code, message});
         });
     }).on('error', function() {
         message = 'http get请求失败';
