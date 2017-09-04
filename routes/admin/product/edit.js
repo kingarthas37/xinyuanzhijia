@@ -66,6 +66,7 @@ router.get('/:productId', function (req, res, next) {
         },
         getMethod(resolve) {
             let query = new AV.Query(ProductMethod);
+            query.ascending('index');
             query.find().then(productMethod => {
                 data = extend(data,{productMethod});
                 resolve();
@@ -96,6 +97,7 @@ router.get('/:productId', function (req, res, next) {
             async.forEachSeries(data.product.get('productMethod'), function(productMethodId,cb) {
                 let query = new AV.Query(ProductCategory1);
                 query.equalTo('productMethodId',productMethodId);
+                query.ascending('index');
                 query.find().then(results => {
                     category1.push(results);
                     cb();
@@ -111,6 +113,7 @@ router.get('/:productId', function (req, res, next) {
             async.forEachSeries(data.product.get('category1'), function(category1Id,cb) {
                 let query = new AV.Query(ProductCategory2);
                 query.equalTo('category1Id',category1Id);
+                query.ascending('index');
                 query.find().then(results => {
                     category2.push(results);
                     cb();

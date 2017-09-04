@@ -59,6 +59,7 @@ router.get('/', (req, res) => {
 
         new AV.Promise(resolve => {
             let query = new AV.Query(ProductMethod);
+            query.ascending('index');
             query.find().then(productMethod => {
                 data = extend(data,{productMethod});
                 resolve();
@@ -73,6 +74,7 @@ router.get('/', (req, res) => {
             
             let query = new AV.Query(ProductCategory1);
             query.equalTo('productMethodId',parseInt(productMethodId));
+            query.ascending('index');
             return query.find().then(category1 => {
                 data = extend(data,{category1});
                 resolve();
@@ -88,6 +90,7 @@ router.get('/', (req, res) => {
 
             let query = new AV.Query(ProductCategory2);
             query.equalTo('category1Id',parseInt(category1Id));
+            query.ascending('index');
             return query.find().then(category2 => {
                 data = extend(data,{category2});
                 resolve();
