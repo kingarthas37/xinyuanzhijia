@@ -359,7 +359,6 @@ router.get('/spider-info', (req, res) => {
                 message = '页面解析错误';
                 response.send({code, message});
             }
-            response.send({code, message});
         });
     }).on('error', function() {
         message = 'http get请求失败';
