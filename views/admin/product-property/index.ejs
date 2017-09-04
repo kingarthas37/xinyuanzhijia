@@ -80,7 +80,7 @@
 
                     <dl id="stock" class="am-accordion-item">
                         <dt class="am-accordion-title am-cf">
-                            3.库存管理
+                            3.库存,预定管理
                         </dt>
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
@@ -108,6 +108,21 @@
                                             <input type="text" autocomplete="off" name="sales" data-sales="<% if(product.get('sales')) {%><%=product.get('sales')%><%}else{%>0<%}%>" value="<% if(product.get('sales')) {%><%=product.get('sales')%><%}else{%>0<%}%>">
                                         </div>
                                     </div>
+
+                                    <hr/>
+
+                                    <label>已预定:</label>
+                                    <div class="am-form-inline">
+                                        <div class="am-form-group">
+                                            <select name="reserve">
+                                                <% for(var i=0;i<20;i++) { %>
+                                                <option <% if(product.get('reserve') == i) { %>selected="selected"<%}%> value="<%=i%>"><%=i%></option>
+                                                <% }%>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <hr/>
 
                                     <div>
                                         <button type="submit" class="am-btn am-btn-primary">保存</button>

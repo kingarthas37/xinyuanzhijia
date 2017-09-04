@@ -105,13 +105,14 @@ router.post('/stock/:productId', (req, res) => {
     let productId = parseInt(req.params.productId);
     let stock = parseInt(req.body.stock);
     let sales = parseInt(req.body.sales);
+    let reserve = parseInt(req.body.reserve);
     
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
     query.first().then(item => {
         
         return item.save({
-            stock,sales
+            stock,sales,reserve
         });
 
     }).then(() => {

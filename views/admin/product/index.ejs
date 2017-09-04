@@ -121,8 +121,16 @@
                                         <%if(product[i].get('stock')){%>
                                         <em class="stock-num"><%= product[i].get('stock') %></em>
                                         <%}%>
-                                    </i>
+                                    </i> st
                                 <%}%>
+                            </a>
+
+                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock">
+                                <i class="am-icon-arrow-circle-o-down  <%if(product[i].get('reserve')){%> instock<%}%>">
+                                    <%if(product[i].get('reserve')){%>
+                                    <em class="stock-num"><%= product[i].get('reserve') %></em>
+                                    <%}%>
+                                </i>
                             </a>
                             
                             <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#settings"><i class="am-icon-gear"></i></a>
