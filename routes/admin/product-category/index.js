@@ -47,6 +47,7 @@ router.get('/', (req, res) => {
         //product method
         new AV.Promise(resolve => {
             let query = new AV.Query(ProductMethod);
+            query.ascending('index');
             query.find().done(productMethod => {
                 data = extend(data, {productMethod});
                 resolve();
@@ -62,7 +63,6 @@ router.get('/', (req, res) => {
             {
                 //按index排序
                 query1.ascending('index');
-                
                 //productMethod
                 query1.equalTo('productMethodId',productMethodId);
             }
@@ -73,6 +73,7 @@ router.get('/', (req, res) => {
                     category: items
                 });
 
+                query2.ascending('index');
                 return query2.find();
 
             }).done(items2 => {
@@ -85,9 +86,9 @@ router.get('/', (req, res) => {
                         }
                     });
                     //对二级分类进行index排序
-                    item1.contents.sort((a,b)=> {
-                        return a.get('index') > b.get('index');
-                    });
+                    //item1.contents.sort((a,b)=> {
+                    //    return a.get('index') > b.get('index');
+                    //});
                 });
                 
                 resolve();
