@@ -143,6 +143,7 @@ module.exports = {
         let removeLink = $('.remove-category-1');
         let modal = $('#modal-category-1-remove');
         let alert = $('#modal-alert');
+        let productMethodId = this.productMethodId;
 
         //alert 关闭后移除暂存的实例，再次调用时重新初始化,可以解决2次调用同一代码的问题
         alert.on('closed.modal.amui', function () {
@@ -172,6 +173,7 @@ module.exports = {
                         $.get({
                             url: '/admin/product-category/remove-category-1',
                             data: {
+                                productMethodId,
                                 id: item.parents('.am-accordion-item').attr('data-id')
                             },
                             success: function (data) {

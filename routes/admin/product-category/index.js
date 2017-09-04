@@ -128,6 +128,7 @@ router.get('/remove-category-1', (req, res) => {
     let query1 = new AV.Query(ProductCategory1);
     let query2 = new AV.Query(ProductCategory2);
     let category1Id = parseInt(req.query.id);
+    let productMethodId = parseInt(req.query.productMethodId);
     
     //查询query2是否带有category1,否则无法删除
     query2.equalTo('category1Id',category1Id);
@@ -146,6 +147,7 @@ router.get('/remove-category-1', (req, res) => {
         item.destroy().done(()=> {
 
             let query = new AV.Query(ProductCategory1);
+            query.equalTo('productMethodId',productMethodId);
             query.ascending('index');
             return query.find();
 
