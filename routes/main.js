@@ -6,6 +6,7 @@ module.exports = {
     
     //website
     '/':require('./default/index/home'),
+    '/indiooil':require('./default/index/home'),
     
     '/index':require('./default/index'),
     '/user/login':require('./default/user/login'),
