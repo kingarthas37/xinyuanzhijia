@@ -14,7 +14,8 @@ let markdown = require('markdown').markdown;
 
 let data = extend(config.data, {
     title: `${config.data.name} - 搜索`,
-    currentPage: 'detail'
+    currentPage: 'detail',
+    watermark: config.watermark
 });
 
 router.get('/:id', (req, res) => {
@@ -56,7 +57,17 @@ router.get('/:id', (req, res) => {
         })
     ).then(() => {
         if(data.item) {
-            
+            data.water = '';
+            for (var i = 0; i < data.item.productMethod.length; i++){
+                if (data.item.productMethod[i] == 3) {
+                    data.water = data.watermark.main;
+                    break;
+                } else if (data.item.productMethod[i] == 21) {
+                    data.water = data.watermark.muxue928;
+                    break;
+                }
+            }
+            data.item.detailImage = data.item.detailImage.replace(/\.jpg/gi, '.jpg'+data.water);
             data.item.groups = JSON.stringify(data.item.groups);
             data.item.detail = markdown.toHTML(data.item.detail);
             data.item.property = markdown.toHTML(data.item.property);
