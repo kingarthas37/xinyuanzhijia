@@ -34,11 +34,11 @@
     <%}else{%>
         <ul class="am-slides lazy-container-view">
             <% for(var j = 0;j < imageViewArray.length; j++) { %>
-            <% if(j===0) { %>
-            <li><img src="<%= imageViewArray[j]; %>" /></li>
-            <% }else{ %>
-            <li><img class="lazy-container" src="//ac-JoaBcRTt.clouddn.com/182b4902f18265f1f5ff.png" data-original="<%= imageViewArray[j]; %>" /></li>
-            <% } %>
+                <% if(j===0) { %>
+                    <li><img src="<%= imageViewArray[j]; %>" /></li>
+                <% }else{ %>
+                    <li><img class="lazy-container" src="//ac-JoaBcRTt.clouddn.com/182b4902f18265f1f5ff.png" data-original="<%= imageViewArray[j]; %>" /></li>
+                <% } %>
             <% } %>
         </ul>
     <%}%>
