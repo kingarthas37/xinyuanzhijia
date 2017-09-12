@@ -231,7 +231,7 @@ $(function() {
                         <div class="detail">
                             <h3><a href="/product/detail/${item.productId}">${item.name}</a></h3>
                             <p>
-                            <span class="price">¥ <strong>${price}</strong></span>
+                            <!--<span class="price">¥ <strong>${price}</strong></span>-->
                             <span>${item.pageViews}次浏览</span>
                             </p>
                             <p>
