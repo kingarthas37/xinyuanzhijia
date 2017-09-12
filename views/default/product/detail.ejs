@@ -230,7 +230,9 @@
         <div class="am-modal-hd">购买接口调试中</div>
         <div class="am-modal-bd">
             <%if(item.shopLink.length) {%>
-                亲爱的客户,我们目前购买产品的接口尚在调试中,您暂时可以<a href="<%=item.shopLink[0]%>" target="_blank">点击此链接</a>前往我们的淘宝店铺购买哦!
+                亲爱的客户,我们目前购买产品的接口尚在调试中,您暂时可以复制链接:
+                <p><strong><%=item.shopLink[0]%></strong></p>
+                或前往我们淘宝店铺<strong>[<%if((item.productMethod[0])==3){ %>暮雪的心愿城<%}else{%>亚特兰蒂斯之谜<%}%>]</strong>购买哦!
             <%}else{%>
                 亲爱的客户,我们目前购买产品的接口尚在调试中,您暂时可以前往我们的淘宝店铺<strong>[<%if((item.productMethod[0])==3){ %>暮雪的心愿城<%}else{%>亚特兰蒂斯之谜<%}%>]</strong>搜索本产品进行购买,感谢您的理解和支持!
             <%}%>
