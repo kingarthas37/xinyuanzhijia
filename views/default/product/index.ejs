@@ -68,7 +68,9 @@
         <div class="detail">
             <h3><a href="/product/detail/<%=items[i].get('productId') %>"><%= items[i].get('name') %></a></h3>
             <p>
+                <!--
                 <span class="price">¥<strong> <%= (items[i].get('price') > 0 ? parseFloat(items[i].get('price')) : 0.00) %></strong></span>
+                -->
                 <span><%=items[i].get('pageViews') %>次浏览</span>
             </p>
             <p>

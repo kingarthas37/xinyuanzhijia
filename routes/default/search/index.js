@@ -101,7 +101,7 @@ router.get('/', (req, res) => {
             });
         })
     ).then(() => {
-        res.render('default/search', data);
+        res.render('default/product', data);
     });
 
 });

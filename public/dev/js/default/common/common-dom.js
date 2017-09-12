@@ -48,6 +48,15 @@ $(function() {
         searchSelect.find('.am-dropdown-content a').click(function() {
             searchProductMethod.val($(this).data('product-method-id'));
         });
+
+        if(/method=\d+/.test(location.search)) {
+            let productMethodId = /method=(\d+)/.exec(location.search)[1];
+            if(parseInt(productMethodId) === 21) {
+                setTimeout(()=> {
+                    searchSelect.find('a[data-product-method-id=21]').click();
+                },0);
+            }
+        }
         
     }
     

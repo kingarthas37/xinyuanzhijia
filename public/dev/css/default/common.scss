@@ -70,7 +70,7 @@ img.lazy {
     border-color: $colorMain;
 }
 
-.am-btn-primary:hover, .am-btn-primary:focus, .am-btn-primary:active, .am-btn-primary.am-active, .am-dropdown.am-active .am-btn-primary.am-dropdown-toggle {
+.am-btn-primary.am-active, .am-dropdown.am-active .am-btn-primary.am-dropdown-toggle {
     background: none;
     color: #666;
     outline: none;

@@ -53,7 +53,19 @@
 <div class="info-content">
     <div class="info">
         <div>
-            <span class="price">¥ <%= item.price || 0 %>.00</span>
+            <span class="price">¥ --</span>
+
+            <% if(item.stock){%>
+            <span class="stock"><a class="in-stock" href="javascript:;">
+                库存:
+                <%if(item.stock < 5){%>
+                少于5件
+                <%}else{%>
+                大于5件
+                <%}%>
+            </a></span>
+            <%}%>
+            
             <span class="stock">
                 <% if(item.isShortStock && item.isOnly){%>
                 <a class="short-stock" href="javascript:;" data-am-popover="{content:'该产品只有一件并已售完,请继续关注上架新品.'}"> 已售完 <i class="am-icon-question-circle-o"></i></a>
@@ -65,6 +77,7 @@
                 <a class="out-stock" href="javascript:;" data-am-popover="{content:'该件产品暂时没有库存,您可咨询我们了解新品物流状态,并可点击产品属性查看该产品大致到货时间.'}"> 暂无现货 <i class="am-icon-question-circle-o"></i></a>
                 <%}%>
             </span>
+            
         </div>
         <p>
             <span>浏览量: <strong><%= item.pageViews %></strong></span>
