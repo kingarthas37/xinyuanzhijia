@@ -25,12 +25,12 @@ router.get('/', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let keywords = req.query.keywords || null;
-    let stock = req.query.stock || null;
     let order = req.query.order || 'stock';
     let category1Id = req.query.cat1 || null;
     let category2Id = req.query.cat2 || null;
     let productMethodId = req.query.method || null;
     let price = req.query.price || null;
+    let stock = order == 'stock' ? 1 : (req.query.stock || null);
     let onsale = 1;
     let sortTitle = '智能排序';
     if (stock) {
