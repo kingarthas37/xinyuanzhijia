@@ -22,22 +22,26 @@
 </header>
 
 <div class="am-slider am-slider-default slider-image-view">
-    <ul class="am-slides lazy-container-view">
-        <% var imageViewArray = []; 
-           for(var i in item.mainImage){ 
-             if(item.mainImage[i].isMainImage) { 
+    <% var imageViewArray = [];
+        for(var i in item.mainImage){
+            if(item.mainImage[i].isMainImage) {
                 imageViewArray.push(item.mainImage[i].url+water)
-             }
-           }
-        %>
-        <% for(var j = 0;j < imageViewArray.length; j++) { %>
+            }
+    }
+    %>
+    <% if(imageViewArray.length == 1){%>
+        <div><img src="<%= imageViewArray[0]; %>" /></div>
+    <%}else{%>
+        <ul class="am-slides lazy-container-view">
+            <% for(var j = 0;j < imageViewArray.length; j++) { %>
             <% if(j===0) { %>
-              <li><img src="<%= imageViewArray[j]; %>" /></li>
+            <li><img src="<%= imageViewArray[j]; %>" /></li>
             <% }else{ %>
-              <li><img class="lazy-container" src="//ac-JoaBcRTt.clouddn.com/182b4902f18265f1f5ff.png" data-original="<%= imageViewArray[j]; %>" /></li>
+            <li><img class="lazy-container" src="//ac-JoaBcRTt.clouddn.com/182b4902f18265f1f5ff.png" data-original="<%= imageViewArray[j]; %>" /></li>
             <% } %>
-        <% } %>
-    </ul>
+            <% } %>
+        </ul>
+    <%}%>
 </div>
 
 <h1><%- item.name %> <%if(item.isHot){%><sup class="hot"></sup><%}%></h1>
