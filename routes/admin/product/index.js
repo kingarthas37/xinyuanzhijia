@@ -279,6 +279,24 @@ router.post('/product-copy', (req, res) => {
     });
 });
 
+router.post('/set-onsale/:productId',(req,res)=> {
+
+    let productId = parseInt(req.params['productId']);
+    let isOnsale = req.body['isOnsale'] === 'true' ? true : false;
+    let query = new AV.Query(Product);
+    query.equalTo('productId',productId);
+    query.first().then(result => {
+        
+        result.set('isOnsale', isOnsale);
+        return result.save();
+    }).then(result => {
+        res.send({
+            success:1
+        });
+    });
+    
+});
+
 router.get('/spider-info', (req, res) => {
     let url = req.query.url;
     let productId = parseInt(req.query['product-id']);

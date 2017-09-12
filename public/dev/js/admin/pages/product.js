@@ -269,7 +269,7 @@ module.exports = {
             });
         }
         
-        //
+        
         {
             $('.image-source-download').click(function() {
                 let group = $(this).next();
@@ -286,6 +286,32 @@ module.exports = {
                     });
                 }
             });  
+        }
+        
+        {
+            $('.set-onsale').click(function() {
+                let isOnsale = $(this).attr('isonsale') === 'true' ? false : true;
+                console.info(isOnsale);
+                let productId = $(this).parents('tr').data('product-id');
+                let title = $(this).parents('tr').find('.title');
+                $.ajax({
+                    type:'post',
+                    url:`/admin/product/set-onsale/${productId}`,
+                    data:{isOnsale}
+                }).then(data => {
+                    if(data.success) {
+                        if(isOnsale) {
+                            console.info(this);
+                            title.removeClass('product-out');
+                            $(this).attr('isonsale','true');
+                        } else {
+                            title.addClass('product-out');
+                            $(this).attr('isonsale','false');
+                        }
+                    }
+                });
+                
+            });
         }
         
     },
