@@ -207,7 +207,6 @@ module.exports = {
                         }
                     }
                 }
-
                 for(let i=0; i< groups.length; i++) {
                     groups[i].html = [];
                     for(let j=0; j < groups[i].products.length; j++) {
