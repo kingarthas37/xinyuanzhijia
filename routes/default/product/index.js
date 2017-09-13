@@ -30,10 +30,10 @@ router.get('/', (req, res) => {
     let category2Id = req.query.cat2 || null;
     let productMethodId = req.query.method || null;
     let price = req.query.price || null;
-    let stock = order == 'stock' ? 1 : (req.query.stock || null);
+    let stock = req.query.stock || null;
     let onsale = 1;
     let sortTitle = '智能排序';
-    if (stock) {
+    if (order == 'stock') {
         sortTitle = '现货';
     } else if (order == 'pageViews') {
         sortTitle = '热门';
