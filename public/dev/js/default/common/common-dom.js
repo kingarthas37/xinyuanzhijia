@@ -186,7 +186,9 @@ $(function() {
             dataType: 'json',
             appendCallback: false,
             pathParse: function (path,page) {
-                return ['/search/ajax?page=',location.search.replace('?','&')];
+                let url = $('.navigation').find('a').attr('href');
+                url = url.replace(/(page=\d+)/,'page=');
+                return [url,location.search.replace('?','&')];
             }
         },  function(data,opts) {
 
