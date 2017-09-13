@@ -346,7 +346,7 @@ router.get('/spider-info', (req, res) => {
             if(description) {
                 result['description'] = description[0].replace(spiderConfig[domain]['replaceTag'], "").trim();
             }
-            if (result['price']) {
+            if (result['title']) {
                 async.waterfall([
                     cb => {
                         let query = new AV.Query(Product);
