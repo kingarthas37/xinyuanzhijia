@@ -188,52 +188,51 @@ module.exports = {
     },
 
     recommendProducts(groups,groupsName) {
-        
         let products = [];
         for(let i=0;i< groups.length;i++) {
             for(let j=0; j< groups[i].products.length;j++) {
                 products.push(groups[i].products[j]);
             }
         }
+        if (products.length > 0) {
+            $.ajax({
+                type:'get',
+                url:`/product/recommend/custom/${products.join()}`
+            }).then(data => {
 
-        $.ajax({
-            type:'get',
-            url:`/product/recommend/custom/${products.join()}`
-        }).then(data => {
-            
-            for(let i=0;i< groups.length; i++) {
-                for(let j=0;j<groupsName.length;j++) {
-                    if(groups[i].productGroupId === groupsName[j].productGroupId) {
-                        groups[i].name = groupsName[j].productGroupName;
-                    }
-                }
-            }
-            
-            for(let i=0; i< groups.length; i++) {
-                groups[i].html = [];
-                for(let j=0; j < groups[i].products.length; j++) {
-                    for(let k = 0;k < data.items.length; k++) {
-                        if(data.items[k].productId === parseInt(groups[i].products[j])) {
-                            groups[i].html.push({
-                                productId:data.items[k].productId,
-                                name:data.items[k].name,
-                                image:utils.productMainImageOutput(data.items[k].mainImage),
-                                price:data.items[k].price,
-                                isHot:data.items[k].isHot
-                            });
+                for(let i=0;i< groups.length; i++) {
+                    for(let j=0;j<groupsName.length;j++) {
+                        if(groups[i].productGroupId === groupsName[j].productGroupId) {
+                            groups[i].name = groupsName[j].productGroupName;
                         }
                     }
                 }
-            }
 
-            groups = groups.filter(n => {
-                return n.html.length;
+                for(let i=0; i< groups.length; i++) {
+                    groups[i].html = [];
+                    for(let j=0; j < groups[i].products.length; j++) {
+                        for(let k = 0;k < data.items.length; k++) {
+                            if(data.items[k].productId === parseInt(groups[i].products[j])) {
+                                groups[i].html.push({
+                                    productId:data.items[k].productId,
+                                    name:data.items[k].name,
+                                    image:utils.productMainImageOutput(data.items[k].mainImage),
+                                    price:data.items[k].price,
+                                    isHot:data.items[k].isHot
+                                });
+                            }
+                        }
+                    }
+                }
+
+                groups = groups.filter(n => {
+                    return n.html.length;
+                });
+
+                this.recommendHtml(groups);
+
             });
-            
-            this.recommendHtml(groups);
-            
-        });
-        
+        }
     },
     recommendHtml(data) {
         
