@@ -100,7 +100,9 @@ if (app.get('env') === 'development') {
 
 // 如果是非开发环境，则页面只输出简单的错误信息
 app.use(function(err, req, res, next) { // jshint ignore:line
-  res.redirect('/error/'+res.statusCode);
+  if (res.statusCode === 500 || res.statusCode === 400) {
+    res.redirect('/error/'+res.statusCode);
+  }
   /*res.status(err.status || 500);
   res.render('error', {
     message: err.message || err,

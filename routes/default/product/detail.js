@@ -80,8 +80,8 @@ router.get('/:id', (req, res) => {
             var month = date.getMonth() + 1;
             var strDate = date.getDate();
             var currentDate = year + seperator + month + seperator + strDate;
-            var onsalDate = data.item.onsaleDate ? data.item.onsaleDate : data.item.createdAt;
-            var monthNum = product.getMct(product.formartDate(onsalDate), currentDate, seperator);
+            var onSaleDate = data.item.onsaleDate ? data.item.onsaleDate : data.item.createdAt;
+            var monthNum = product.getMct(product.formartDate(onSaleDate), currentDate, seperator);
             var monthSales = monthNum > 0 ? (data.item.sales / monthNum) : 0;
             if (monthSales < 1) {
                 data.item.monthSales = "少于1";
