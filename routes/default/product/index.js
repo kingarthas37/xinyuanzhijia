@@ -113,7 +113,7 @@ router.get('/ajax', (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let keywords = req.query.keywords || null;
     let order = req.query.order || 'stock';
-    let stock = order == 'stock' ? 1 : (req.query.stock || null);
+    let stock = req.query.stock || null;
     let category1Id = req.query.cat1 || null;
     let category2Id = req.query.cat2 || null;
     let productMethodId = req.query.method || null;
