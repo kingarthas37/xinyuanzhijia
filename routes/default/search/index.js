@@ -16,7 +16,8 @@ let productCategory2 = require('../../../lib/models/product-category2').createNe
 let data = extend(config.data, {
     title: `${config.data.name} - 搜索`,
     headerTitle:'搜索',
-    currentPage: 'search-index'
+    currentPage: 'search-index',
+    pageType: 'search'
 });
 
 //首页

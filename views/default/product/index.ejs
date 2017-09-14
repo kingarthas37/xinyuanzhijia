@@ -85,7 +85,7 @@
     <% } %>
 </ul>
 <div class="navigation">
-    <a href="/product/ajax?page=1"></a>
+    <a href="/<%=pageType%>/ajax?page=1"></a>
 </div>
 <% } else {%>
 <ul class="main-list">
@@ -93,7 +93,7 @@
 </ul>
 <%}%>
 
-<input type="hidden" id="ajax-search" value="<%= JSON.stringify({keywords,order,stock,cat1,cat2,price}) %>" />
+<input type="hidden" id="ajax-search" value="<%= JSON.stringify({keywords,order,stock,cat1,cat2,price,method}) %>" />
 <input type="hidden" id="count" value="<%= count %>" />
 
 <% include ../partials/footer %>
