@@ -77,7 +77,8 @@ router.get('/', (req, res) => {
                             page,search,
                             'product-method-id':productMethodId,
                             'category1-id':category1Id,
-                            'category2-id':category2Id
+                            'category2-id':category2Id,
+                            onsale
                         }
                     })
                 });
