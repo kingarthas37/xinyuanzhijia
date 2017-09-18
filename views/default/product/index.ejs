@@ -45,12 +45,12 @@
         <div class="am-dropdown sort" data-am-dropdown>
             <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span><%= sortTitle%></span> <span class="am-icon-caret-down"></span></button>
             <ul class="am-dropdown-content">
-                <li><a href="/product?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&order=pageViews&method=<%=method%>">热门 <i class="am-icon-star"></i></a></li>
-                <li><a href="/product?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&order=sales&method=<%=method%>">销量 <i class="am-icon-line-chart"></i></a></li>
-                <li><a href="/product?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&price=asc&method=<%=method%>">价格低-高 <i class="am-icon-sort-amount-desc"></i></a></li>
-                <li><a href="/product?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&price=desc&method=<%=method%>">价格高-低 <i class="am-icon-sort-amount-asc"></i></a></li>
+                <li><a href="/product?<%=path%>&order=pageViews">热门 <i class="am-icon-star"></i></a></li>
+                <li><a href="/product?<%=path%>&order=sales">销量 <i class="am-icon-line-chart"></i></a></li>
+                <li><a href="/product?<%=path%>&price=asc">价格低-高 <i class="am-icon-sort-amount-desc"></i></a></li>
+                <li><a href="/product?<%=path%>&price=desc">价格高-低 <i class="am-icon-sort-amount-asc"></i></a></li>
                 <li><a href="/product?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&stock=1&method=<%=method%>">现货 <i class="am-icon-plane"></i></a></li>
-                <li><a href="/product?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&method=<%=method%>">上架时间 <i class="am-icon-calendar-check-o"></i></a></li>
+                <li><a href="/product?<%=path%>">上架时间 <i class="am-icon-calendar-check-o"></i></a></li>
             </ul>
         </div>
     </div>

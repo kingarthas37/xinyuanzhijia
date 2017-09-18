@@ -25,13 +25,13 @@ let data = extend(config.data, {
 router.get('/', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
-    let keywords = req.query.keywords || null;
+    let keywords = req.query.keywords || '';
     let order = req.query.order || 'stock';
-    let category1Id = req.query.cat1 || null;
-    let category2Id = req.query.cat2 || null;
-    let productMethodId = req.query.method || null;
-    let price = req.query.price || null;
-    let stock = req.query.stock || null;
+    let category1Id = req.query.cat1 || '';
+    let category2Id = req.query.cat2 || '';
+    let productMethodId = req.query.method || '';
+    let price = req.query.price || '';
+    let stock = req.query.stock || '';
     let onsale = 1;
     let sortTitle = '智能排序';
     if (order == 'stock') {
@@ -47,6 +47,22 @@ router.get('/', (req, res) => {
     } else {
         sortTitle = '上架时间';
     }
+    let path = '';
+    if (keywords) {
+        path += '&keywords='+keywords;
+    }
+    if (category1Id) {
+        path += '&cat1='+category1Id;
+    }
+    if (category2Id) {
+        path += '&cat2='+category2Id;
+    }
+    if (productMethodId) {
+        path += '&method='+productMethodId;
+    }
+    if (stock) {
+        path += '&stock='+stock;
+    }
     data = extend(data,
         {'keywords': keywords,
             'order': order,
@@ -61,7 +77,8 @@ router.get('/', (req, res) => {
             'sortTitle' : sortTitle,
             'category1Name': '产品一级分类',
             'category2Name': '产品二级分类',
-            'method': productMethodId
+            'method': productMethodId,
+            'path': path
         });
     if (keywords) {
         let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
