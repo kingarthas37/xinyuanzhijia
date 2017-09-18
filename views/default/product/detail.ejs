@@ -62,10 +62,10 @@
             <% if(item.stock){%>
             <span class="stock"><a class="in-stock" href="javascript:;">
                 库存:
-                <%if(item.stock < 5){%>
-                少于5件
+                <%if(item.stock < 11){%>
+                    <%= item.stock%>
                 <%}else{%>
-                大于5件
+                    >10
                 <%}%>
             </a></span>
             <%}%>
