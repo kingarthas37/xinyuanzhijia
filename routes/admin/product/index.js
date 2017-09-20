@@ -289,6 +289,9 @@ router.post('/set-onsale/:productId',(req,res)=> {
     query.first().then(result => {
         
         result.set('isOnsale', isOnsale);
+        if (isOnsale) {
+            result.set('onsaleDate', new Date());
+        }
         return result.save();
     }).then(result => {
         res.send({

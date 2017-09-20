@@ -11,7 +11,7 @@ module.exports = {
             let category1 = $('.select-category-1');
             let category2 = $('.select-category-2');
             let productMethod = $('.select-product-method');
-            let onsale = $('.select-onsale');
+            let onsale = $('input[name=onsale]');
             
             let category1Val = category1.val();
             let category2Val = category2.val();

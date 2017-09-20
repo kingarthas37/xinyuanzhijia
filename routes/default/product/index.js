@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let keywords = req.query.keywords || '';
-    let order = req.query.order || 'pageViews';
+    let order = req.query.order || 'onsaleDate';
     let category1Id = req.query.cat1 || '';
     let category2Id = req.query.cat2 || '';
     let productMethodId = req.query.method || '';
@@ -109,6 +109,16 @@ router.get('/', (req, res) => {
         }),
         new AV.Promise(resolve => {
             product.getProducts(options).then(result => {
+                let nowDate = new Date();
+
+                result.forEach(n => {
+                    n.set('isNewSale', false);
+                    if (n.get('onsaleDate')) {
+                        let saleDate = n.get('onsaleDate');
+                        saleDate.setMonth(saleDate.getMonth() + 1);
+                        n.set('isNewSale', (saleDate > new Date()));
+                    }
+                });
                 data = extend(data, {items: result});
                 resolve();
             });
@@ -129,7 +139,7 @@ router.get('/ajax', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let keywords = req.query.keywords || null;
-    let order = req.query.order || 'stock';
+    let order = req.query.order || 'onsaleDate';
     let stock = req.query.stock || null;
     let category1Id = req.query.cat1 || null;
     let category2Id = req.query.cat2 || null;

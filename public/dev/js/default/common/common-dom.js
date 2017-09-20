@@ -188,7 +188,7 @@ $(function() {
             pathParse: function (path,page) {
                 let url = $('.navigation').find('a').attr('href');
                 url = url.replace(/(page=\d+)/,'page=');
-                return [url,location.search.replace('?','&')];
+                return [url,$('#ajax-search').val()];
             }
         },  function(data,opts) {
 
