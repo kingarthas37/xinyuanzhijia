@@ -115,7 +115,7 @@ router.get('/', (req, res) => {
                     n.set('isNewSale', false);
                     if (n.get('onsaleDate')) {
                         let saleDate = n.get('onsaleDate');
-                        saleDate.setMonth(saleDate.getMonth() + 1);
+                        saleDate.setMonth(saleDate.getMonth() + 2);
                         n.set('isNewSale', (saleDate > new Date()));
                     }
                 });
@@ -151,6 +151,16 @@ router.get('/ajax', (req, res) => {
     AV.Promise.when(
         new AV.Promise(resolve => {
             product.getProducts(options).then(result => {
+                let nowDate = new Date();
+
+                result.forEach(n => {
+                    n.set('isNewSale', false);
+                    if (n.get('onsaleDate')) {
+                        let saleDate = n.get('onsaleDate');
+                        saleDate.setMonth(saleDate.getMonth() + 2);
+                        n.set('isNewSale', (saleDate > new Date()));
+                    }
+                });
                 datas.items = result;
                 resolve();
             });
