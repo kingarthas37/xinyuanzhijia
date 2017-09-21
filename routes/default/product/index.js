@@ -109,8 +109,6 @@ router.get('/', (req, res) => {
         }),
         new AV.Promise(resolve => {
             product.getProducts(options).then(result => {
-                let nowDate = new Date();
-
                 result.forEach(n => {
                     n.set('isNewSale', false);
                     if (n.get('onsaleDate')) {
