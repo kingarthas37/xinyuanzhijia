@@ -139,6 +139,10 @@
 
                             <a title="上下架管理" class="set-onsale" isonsale="<%= product[i].get('isOnsale') %>" href="javascript:;"><i class="am-icon-level-up"></i></a>
 
+                            <a title="热门管理" class="set-hot" ishot="<%= product[i].get('isHot') %>" href="javascript:;"><i class="am-icon-level-up"></i></a>
+
+                            <a title="缺货/断货管理" class="set-short-stock" isshortstock="<%= product[i].get('isShortStock') %>" href="javascript:;"><i class="am-icon-level-up"></i></a>
+
                             <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a title="同类产品"  href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>&onsale=<%=onsale %>"><i class="am-icon-tag"></i></a> <%}%>
                         </td>
                         

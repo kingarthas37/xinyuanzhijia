@@ -313,6 +313,58 @@ module.exports = {
                 
             });
         }
+
+        {
+            $('.set-hot').click(function() {
+                let isHot = $(this).attr('ishot') === 'true' ? false : true;
+                console.info(isHot);
+                let productId = $(this).parents('tr').data('product-id');
+                let title = $(this).parents('tr').find('.title');
+                $.ajax({
+                    type:'post',
+                    url:`/admin/product/set-hot/${productId}`,
+                    data:{isHot}
+                }).then(data => {
+                    if(data.success) {
+                        if(isHot) {
+                            console.info(this);
+                            title.removeClass('product-out');
+                            $(this).attr('ishot','true');
+                        } else {
+                            title.addClass('product-out');
+                            $(this).attr('ishot','false');
+                        }
+                    }
+                });
+
+            });
+        }
+
+        {
+            $('.set-short-stock').click(function() {
+                let isShortStock = $(this).attr('isshortstock') === 'true' ? false : true;
+                console.info(isShortStock);
+                let productId = $(this).parents('tr').data('product-id');
+                let title = $(this).parents('tr').find('.title');
+                $.ajax({
+                    type:'post',
+                    url:`/admin/product/set-short-stock/${productId}`,
+                    data:{isShortStock}
+                }).then(data => {
+                    if(data.success) {
+                        if(isShortStock) {
+                            console.info(this);
+                            title.removeClass('product-out');
+                            $(this).attr('isshortstock','true');
+                        } else {
+                            title.addClass('product-out');
+                            $(this).attr('isshortstock','false');
+                        }
+                    }
+                });
+
+            });
+        }
         
     },
 

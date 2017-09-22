@@ -388,4 +388,40 @@ router.get('/spider-info', (req, res) => {
     });
 });
 
+router.post('/set-hot/:productId',(req,res)=> {
+
+    let productId = parseInt(req.params['productId']);
+    let isHot = req.body['isHot'] === 'true' ? true : false;
+    let query = new AV.Query(Product);
+    query.equalTo('productId',productId);
+    query.first().then(result => {
+
+        result.set('isHot', isHot);
+        return result.save();
+    }).then(result => {
+        res.send({
+            success:1
+        });
+    });
+
+});
+
+router.post('/set-short-stock/:productId',(req,res)=> {
+
+    let productId = parseInt(req.params['productId']);
+    let isShortStock = req.body['isShortStock'] === 'true' ? true : false;
+    let query = new AV.Query(Product);
+    query.equalTo('productId',productId);
+    query.first().then(result => {
+
+        result.set('isShortStock', isShortStock);
+        return result.save();
+    }).then(result => {
+        res.send({
+            success:1
+        });
+    });
+
+});
+
 module.exports = router;
