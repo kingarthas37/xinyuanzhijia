@@ -142,6 +142,19 @@
         }
     }
     
+    .product-hot {
+        position: relative;
+        sup {
+            position: absolute;
+            left:-14px;
+            top:-12px;
+        }
+    }
+
+    .product-short {
+        color:#F37B1D;
+    }
+    
     .product-out {
         color: #666;
     }

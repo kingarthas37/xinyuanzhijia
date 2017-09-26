@@ -301,7 +301,6 @@ module.exports = {
                 }).then(data => {
                     if(data.success) {
                         if(isOnsale) {
-                            console.info(this);
                             title.removeClass('product-out');
                             $(this).attr('isonsale','true');
                         } else {
@@ -317,7 +316,6 @@ module.exports = {
         {
             $('.set-hot').click(function() {
                 let isHot = $(this).attr('ishot') === 'true' ? false : true;
-                console.info(isHot);
                 let productId = $(this).parents('tr').data('product-id');
                 let title = $(this).parents('tr').find('.title');
                 $.ajax({
@@ -327,11 +325,12 @@ module.exports = {
                 }).then(data => {
                     if(data.success) {
                         if(isHot) {
-                            console.info(this);
-                            title.removeClass('product-out');
+                            title.append('<sup class="hot"></sup>');
+                            title.addClass('product-hot');
                             $(this).attr('ishot','true');
                         } else {
-                            title.addClass('product-out');
+                            title.find('sup').detach();
+                            title.addClass('product-hot');
                             $(this).attr('ishot','false');
                         }
                     }
@@ -343,7 +342,6 @@ module.exports = {
         {
             $('.set-short-stock').click(function() {
                 let isShortStock = $(this).attr('isshortstock') === 'true' ? false : true;
-                console.info(isShortStock);
                 let productId = $(this).parents('tr').data('product-id');
                 let title = $(this).parents('tr').find('.title');
                 $.ajax({
@@ -353,11 +351,10 @@ module.exports = {
                 }).then(data => {
                     if(data.success) {
                         if(isShortStock) {
-                            console.info(this);
-                            title.removeClass('product-out');
+                            title.addClass('product-short');
                             $(this).attr('isshortstock','true');
                         } else {
-                            title.addClass('product-out');
+                            title.removeClass('product-short');
                             $(this).attr('isshortstock','false');
                         }
                     }

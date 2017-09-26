@@ -358,3 +358,59 @@ body.viewport-window {
 
 }
 
+em.new,em.hot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(235, 8, 40, 0.85);
+    &:after {
+        content: "NEW";
+        color: #fff;
+        height: 14px;
+        line-height: 14px;
+        padding: 0 1px;
+        display: block;
+        font-size: 12px;
+        transform: scale(0.75);
+    }
+}
+
+em.hot {
+    background: rgba(255, 125, 0, 0.9);
+    &:after {
+        content: "HOT"
+    }
+}
+
+sup.hot {
+    position: relative;
+    &:after {
+        background: $colorOrange;
+        top:0;
+        left:0;
+        position: absolute;
+        content: "HOT";
+        color: #fff;
+        height: 14px;
+        line-height: 14px;
+        padding: 0 4px;
+        display: block;
+        font-size: 12px;
+        transform: scale(0.75);
+    }
+}
+
+span.hot {
+    &:after {
+        background: $colorOrange;
+        content: "HOT";
+        color: #fff;
+        height: 14px;
+        line-height: 14px;
+        padding: 0 4px;
+        font-size: 12px;
+        transform: scale(0.75);
+        display: inline-block;
+    }
+}
+

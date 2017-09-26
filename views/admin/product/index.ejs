@@ -109,7 +109,10 @@
                         <td class="product-title">
                             <%if(product[i].mainImage) {%><a target="_blank" href="<%= product[i].mainImage%>" data-am-popover="{content:'<img width=150 src=<%= product[i].mainImage%>?imageMogr2/thumbnail/150>', trigger:'hover focus'}"><img width="32" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/32" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32" width="32"/><%}%>
 
-                            <a class="title<%if(!product[i].get('isOnsale')) { %> product-out<% } %>" href="/admin/product/edit/<%= product[i].get('productId') %>" data-am-popover="{content:'原价:<%if(product[i].get('originalPrice')) {%><%=product[i].get('originalPrice')%><%}else{%>未设置<%}%>  价格:<%if(product[i].get('price')) {%><%=product[i].get('price')%><%}else{%>未设置<%}%>', trigger:'hover focus'}"><%= product[i].get('name')%> {<%= product[i].get('productId')%>}</a>
+                            <a class="title<%if(!product[i].get('isOnsale')) { %> product-out<% } %><%if(product[i].get('isShortStock')) { %> product-short<% } %><%if(product[i].get('isHot')) { %> product-hot<% } %>" href="/admin/product/edit/<%= product[i].get('productId') %>" data-am-popover="{content:'原价:<%if(product[i].get('originalPrice')) {%><%=product[i].get('originalPrice')%><%}else{%>未设置<%}%>  价格:<%if(product[i].get('price')) {%><%=product[i].get('price')%><%}else{%>未设置<%}%>', trigger:'hover focus'}">
+                                <%if(product[i].get('isHot')) { %> <sup class="hot"></sup><% } %>
+                                <%= product[i].get('name')%> {<%= product[i].get('productId')%>}
+                            </a>
 
                             <a title="复制标题" href="javascript:;" class="copy-product-title" data-text="<%= product[i].get('name')%>" data-id="<%= product[i].get('productId') %>" ><i  class="am-icon-copy"></i></a>
 
@@ -139,9 +142,9 @@
 
                             <a title="上下架管理" class="set-onsale" isonsale="<%= product[i].get('isOnsale') %>" href="javascript:;"><i class="am-icon-level-up"></i></a>
 
-                            <a title="热门管理" class="set-hot" ishot="<%= product[i].get('isHot') %>" href="javascript:;"><i class="am-icon-level-up"></i></a>
+                            <a title="热门管理" class="set-hot" ishot="<%= product[i].get('isHot') %>" href="javascript:;"><i class="am-icon-flash"></i></a>
 
-                            <a title="缺货/断货管理" class="set-short-stock" isshortstock="<%= product[i].get('isShortStock') %>" href="javascript:;"><i class="am-icon-level-up"></i></a>
+                            <a title="缺货/断货管理" class="set-short-stock" isshortstock="<%= product[i].get('isShortStock') %>" href="javascript:;"><i class="am-icon-level-down"></i></a>
 
                             <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a title="同类产品"  href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>&onsale=<%=onsale %>"><i class="am-icon-tag"></i></a> <%}%>
                         </td>
