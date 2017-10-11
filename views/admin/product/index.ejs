@@ -146,7 +146,7 @@
 
                             <a title="缺货/断货管理" class="set-short-stock" isshortstock="<%= product[i].get('isShortStock') %>" href="javascript:;"><i class="am-icon-level-down"></i></a>
 
-                            <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a title="同类产品"  href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>&onsale=<%=onsale %>"><i class="am-icon-tag"></i></a> <%}%>
+                            <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a title="同类产品"  href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>&onsale=<%=onsale %>&limit=200"><i class="am-icon-tag"></i></a> <%}%>
                         </td>
                         
                         <td class="t-c">
