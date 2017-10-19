@@ -8,8 +8,8 @@
                 <ul class="am-list am-collapse admin-sidebar-sub <%if(currentTag === 'product' && productMethodId == '3'){ %>am-in<%}%>" id="collapse-product">
                     <li><a href="/admin/product?onsale=1&product-method-id=3" <%if(currentPage === 'product-index' && productMethodId == '3' && onsale == 1){ %>class="current"<%}%> >上架产品列表</a></li>
                     <li><a href="/admin/product?onsale=2&product-method-id=3" <%if(currentPage === 'product-index' && productMethodId == '3' && onsale == 2){ %>class="current"<%}%> >未上架产品列表</a></li>
-                    <li><a href="#" <%if(currentPage === 'product-index' && productMethodId == '3' && onsale == 2){ %>class="current"<%}%> >缺货产品列表</a></li>
-                    <li><a href="/admin/product?product-method-id=3" <%if(currentPage === 'product-index' && productMethodId == '3' && onsale == 0){ %>class="current"<%}%> >所有产品列表</a></li>
+                    <li><a href="/admin/product?is-short-stock=true&product-method-id=3" <%if(currentPage === 'product-index' && isShortStock && productMethodId == '3'){ %>class="current"<%}%> >缺货产品列表</a></li>
+                    <li><a href="/admin/product?product-method-id=3" <%if(currentPage === 'product-index' && productMethodId == '3' && onsale == 0 && !isShortStock){ %>class="current"<%}%> >所有产品列表</a></li>
                 </ul>
             </li>
 
@@ -18,8 +18,8 @@
                 <ul class="am-list am-collapse admin-sidebar-sub <%if(currentTag === 'product' && productMethodId == '21'){ %>am-in<%}%>" id="collapse-custom-product">
                     <li><a href="/admin/product?onsale=1&product-method-id=21" <%if(currentPage === 'product-index' && productMethodId == '21' && onsale == 1){ %>class="current"<%}%> >上架产品列表</a></li>
                     <li><a href="/admin/product?onsale=2&product-method-id=21" <%if(currentPage === 'product-index' && productMethodId == '21' && onsale == 2){ %>class="current"<%}%> >未上架产品列表</a></li>
-                    <li><a href="#" <%if(currentPage === 'product-index' && productMethodId == '3' && onsale == 2){ %>class="current"<%}%> >缺货产品列表</a></li>
-                    <li><a href="/admin/product?product-method-id=21" <%if(currentPage === 'product-index' && productMethodId == '21' && onsale == 0){ %>class="current"<%}%> >所有产品列表</a></li>
+                    <li><a href="/admin/product?is-short-stock=true&product-method-id=21" <%if(currentPage === 'product-index' && isShortStock && productMethodId == '21'){ %>class="current"<%}%> >缺货产品列表</a></li>
+                    <li><a href="/admin/product?product-method-id=21" <%if(currentPage === 'product-index' && productMethodId == '21' && onsale == 0 && !isShortStock){ %>class="current"<%}%> >所有产品列表</a></li>
                 </ul>
             </li>
 

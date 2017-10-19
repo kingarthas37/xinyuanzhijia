@@ -47,6 +47,7 @@ router.get('/', (req, res) => {
     let category2Id = req.query['category2-id'] ? parseInt(req.query['category2-id']) : 0;
     let search = req.query['search'] ? req.query['search'].trim() : '';
     let productTitle = onsale == 1 ? '上架产品列表' : '下架产品列表';
+    let isShortStock = req.query['is-short-stock'] ? (req.query['is-short-stock'] == 'true' ? true : '') : '';
 
     data = extend(data, {
         search,
@@ -60,10 +61,11 @@ router.get('/', (req, res) => {
         mainImage:[],
         onsale,
         productTitle,
-        limit
+        limit,
+        isShortStock
     });
 
-    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order};
+    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock};
     AV.Promise.when(
         //获取count
         new AV.Promise(resolve => {
@@ -78,7 +80,8 @@ router.get('/', (req, res) => {
                             'product-method-id':productMethodId,
                             'category1-id':category1Id,
                             'category2-id':category2Id,
-                            onsale
+                            onsale,
+                            'is-short-stock':isShortStock
                         }
                     })
                 });
