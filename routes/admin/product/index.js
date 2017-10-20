@@ -21,6 +21,7 @@ var https = require('https');
 let ProductMethod = AV.Object.extend('ProductMethod');
 let ProductCategory1 = AV.Object.extend('ProductCategory1');
 let ProductCategory2 = AV.Object.extend('ProductCategory2');
+let orderTrack = require('../../../lib/models/order-track');
 var isArray = require('util').isArray;
 //let ProductProperty = AV.Object.extend('ProductProperty');
 
@@ -48,7 +49,6 @@ router.get('/', (req, res) => {
     let search = req.query['search'] ? req.query['search'].trim() : '';
     let productTitle = onsale == 1 ? '上架产品列表' : '下架产品列表';
     let isShortStock = req.query['is-short-stock'] ? (req.query['is-short-stock'] == 'true' ? true : '') : '';
-
     data = extend(data, {
         search,
         flash: {success: req.flash('success'), error: req.flash('error')},
@@ -92,6 +92,8 @@ router.get('/', (req, res) => {
         //查询当前页所有数据
         new AV.Promise(resolve => {
             pro.getProducts(options, false).then(items => {
+                let nowDate = new Date();
+                let startDate = new Date(nowDate.setDate(nowDate.getDate() - 90));
                 items.forEach(n => {
                     n.createdDate = `${n.updatedAt.getFullYear().toString().substring(2)}/${n.createdAt.getMonth() + 1}/${n.createdAt.getDate()}`;
                     n.updatedDate = `${n.updatedAt.getFullYear().toString().substring(2)}/${n.updatedAt.getMonth() + 1}/${n.updatedAt.getDate()}`;
@@ -104,6 +106,9 @@ router.get('/', (req, res) => {
                             }
                         }
                     }
+                    //var orderTrack = orderTrack.getOrderByProductId(n.get('productId'), startDate);
+                    //console.log(orderTrack);
+                    //n.
                 });
                 data = extend(data, {product: items});
                 resolve();

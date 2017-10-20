@@ -17,16 +17,19 @@ module.exports = {
             let category2Val = category2.val();
             let productMethodVal = productMethod.val();
             let onsaleVal = onsale.val();
+            let isShortStock = $('input[name=is-short-stock]').val();
 
             productMethod.change(function(){
                 if(this.value) {
                     return location.href = utils.urlParamsComponent('/admin/product',{
                         'product-method-id':this.value,
-                        'onsale':onsaleVal
+                        'onsale':onsaleVal,
+                        'is-short-stock':isShortStock
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
-                    'onsale':onsaleVal
+                    'onsale':onsaleVal,
+                    'is-short-stock':isShortStock
                 });
             });
 
@@ -35,12 +38,14 @@ module.exports = {
                     return location.href = utils.urlParamsComponent('/admin/product',{
                         'product-method-id':productMethodVal,
                         'category1-id':this.value,
-                        'onsale':onsaleVal
+                        'onsale':onsaleVal,
+                        'is-short-stock':isShortStock
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
                     'product-method-id':productMethodVal,
-                    'onsale':onsaleVal
+                    'onsale':onsaleVal,
+                    'is-short-stock':isShortStock
                 });
             });
 
@@ -50,13 +55,15 @@ module.exports = {
                         'product-method-id':productMethodVal,
                         'category1-id':category1Val,
                         'category2-id':this.value,
-                        'onsale':onsaleVal
+                        'onsale':onsaleVal,
+                        'is-short-stock':isShortStock
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
                     'product-method-id':productMethodVal,
                     'category1-id':category1Val,
-                    'onsale':onsaleVal
+                    'onsale':onsaleVal,
+                    'is-short-stock':isShortStock
                 });
             });
 
@@ -66,7 +73,8 @@ module.exports = {
                     'product-method-id':productMethodVal,
                     'category1-id':category1Val,
                     'category2-id':category2Val,
-                    'onsale':this.value
+                    'onsale':this.value,
+                    'is-short-stock':isShortStock
                 });
             });
             
