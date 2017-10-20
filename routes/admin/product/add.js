@@ -24,7 +24,7 @@ let base = require('../../../lib/models/base');
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 添加产品`,
     currentTag: 'product',
-    currentPage: 'product-index'
+    currentPage: 'product-add'
 });
 
 router.get('/', (req, res) => {
