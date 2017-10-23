@@ -92,8 +92,6 @@ router.get('/', (req, res) => {
         //查询当前页所有数据
         new AV.Promise(resolve => {
             pro.getProducts(options, false).then(items => {
-                let nowDate = new Date();
-                let startDate = new Date(nowDate.setDate(nowDate.getDate() - 90));
                 items.forEach(n => {
                     n.createdDate = `${n.updatedAt.getFullYear().toString().substring(2)}/${n.createdAt.getMonth() + 1}/${n.createdAt.getDate()}`;
                     n.updatedDate = `${n.updatedAt.getFullYear().toString().substring(2)}/${n.updatedAt.getMonth() + 1}/${n.updatedAt.getDate()}`;
@@ -106,9 +104,6 @@ router.get('/', (req, res) => {
                             }
                         }
                     }
-                    //var orderTrack = orderTrack.getOrderByProductId(n.get('productId'), startDate);
-                    //console.log(orderTrack);
-                    //n.
                 });
                 data = extend(data, {product: items});
                 resolve();
@@ -430,6 +425,15 @@ router.post('/set-short-stock/:productId',(req,res)=> {
         });
     });
 
+});
+
+router.get('/get-sales', (req, res) => {
+    let productIds = req.query['product-ids'];
+    let nowDate = new Date();
+    let startDate = new Date(nowDate.setDate(nowDate.getDate() - 90));
+    orderTrack.getOrderByProductIds(productIds, startDate).then(result => {
+        res.send({data:result});
+    });
 });
 
 module.exports = router;

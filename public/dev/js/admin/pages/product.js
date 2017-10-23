@@ -77,7 +77,20 @@ module.exports = {
                     'is-short-stock':isShortStock
                 });
             });
-            
+
+            $(function () {
+                var productIds = [];
+                $('.remove-product').each(function(i) {
+                    productIds.push($(this).attr('data-id'));
+                });
+                $.ajax({
+                    type:'get',
+                    url:`/admin/product/get-sales`,
+                    data:{'product-ids':productIds},
+                }).then(data => {
+                    console.log(data);
+                });
+            });
         }
         
        
