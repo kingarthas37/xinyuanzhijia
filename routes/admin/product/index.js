@@ -431,8 +431,30 @@ router.get('/get-sales', (req, res) => {
     let productIds = req.query['product-ids'];
     let nowDate = new Date();
     let startDate = new Date(nowDate.setDate(nowDate.getDate() - 90));
+    let thrityDate = new Date(nowDate.setDate(nowDate.getDate() - 30));
+    var items = [];
+
     orderTrack.getOrderByProductIds(productIds, startDate).then(result => {
-        res.send({data:result});
+        if (result) {
+            for (var i = 0; i < productIds.length; i++) {
+                var data = {'thrity':0,'ninety':0,'productId':productIds[i]};
+                result.forEach(n => {
+                    var productId = n.get('productId');
+                    var shippingCounts = n.get('shippingCount');
+                    for (var k = 0; k < productId.length; k++) {
+                        if (productId[k] == productIds[i]) {
+                            data.ninety += shippingCounts[k];
+                            if (n.createdAt >=  thrityDate) {
+                                data.thrity += shippingCounts[k];
+                            }
+                        }
+                    }
+                });
+                items.push(data);
+            }
+        }
+        res.send({data:items});
+
     });
 });
 
