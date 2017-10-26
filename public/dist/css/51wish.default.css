@@ -1814,6 +1814,10 @@ a.pswp__share--download:hover {
         font-size: 22px;
         color: #f40;
         display: block; }
+        .detail-page .info-content .info .price a {
+          font-size: 12px;
+          color: #888;
+          font-weight: normal; }
       .detail-page .info-content .info .stock {
         float: right;
         padding-right: 15px;
@@ -2005,7 +2009,7 @@ a.pswp__share--download:hover {
       display: block;
       width: 100%;
       margin: auto;
-      font-size: 20px;
+      font-size: 18px;
       border-radius: 5px;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
   .detail-page .events {
