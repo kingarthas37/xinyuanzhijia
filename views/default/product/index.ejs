@@ -68,16 +68,20 @@
             <a href="/product/detail/<%=items[i].get('productId') %>"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="<% for(var n in items[i].get('mainImage')) { %><% if(items[i].attributes.mainImage[n].isMainImage) { %><%= items[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
         </div>
         <div class="detail">
-            <h3><a href="/product/detail/<%=items[i].get('productId') %>"><%= items[i].get('name') %></a></h3>
+            <h3>
+                <a href="/product/detail/<%=items[i].get('productId') %>" <%if(items[i].get('isShortStock')) {%>class="out-stock"<%}%> >
+                    <% if (items[i].get('stock') > 0) { %>[现货]<% } %>
+                    <% if (items[i].get('isShortStock')) {%>[缺货]<%}%>
+                    <%= items[i].get('name') %>
+                </a>
+            </h3>
             <p>
-                <!--
-                <span class="price">¥<strong> <%= (items[i].get('price') > 0 ? parseFloat(items[i].get('price')) : 0.00) %></strong></span>
-                -->
+                <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span>
                 <span><%=items[i].get('pageViews') %>次浏览</span>
             </p>
             <p>
-                <% if (items[i].get('stock') > 0) { %><span class="active"><i class="am-icon-check"></i>现货</span><% } %>
                 <% if (items[i].get('isRefund')) { %><span class="active"><i class="am-icon-history"></i>7天退款</span><% } %>
+                <% if (items[i].get('stock') > 0) { %><span class="active"><i class="am-icon-check"></i>现货</span><% } %>
                 <% if (items[i].get('isHandmade')) { %><span class="active"><i class="am-icon-modx"></i>纯手工</span><% } %>
                 <% if (items[i].get('isOnly')) { %><span class="active"><i class="am-icon-gavel"></i>只此一件 </span><% } %>
             </p>

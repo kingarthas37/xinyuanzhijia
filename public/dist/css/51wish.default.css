@@ -556,6 +556,8 @@ footer {
       font-size: 14px;
       font-weight: bold;
       margin: 0 0 5px 0; }
+      .main-list li .detail h3 a.out-stock {
+        color: #999; }
     .main-list li .detail p {
       color: #999;
       padding: 0;
