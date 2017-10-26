@@ -86,9 +86,23 @@ module.exports = {
                 $.ajax({
                     type:'get',
                     url:`/admin/product/get-sales`,
-                    data:{'product-ids':productIds},
+                    data:{
+                        'product-ids':productIds
+                    }
                 }).then(data => {
-                    console.log(data);
+                    let rows = $('table tbody tr');
+                    $.each(data.data,(i,n)=> {
+                        rows.eq(i).find('.title').attr('data-popover-thrity', n.thrity);
+                        rows.eq(i).find('.title').attr('data-popover-ninety', n.ninety);
+                    });
+                    rows.each(function() {
+                        let title = $(this).find('.title');
+                        title.popover({
+                            content:`原价: ${title.data('popover-source-price')} 定价: ${title.data('popover-price')} <br/>30天销量: ${title.data('popover-thrity')} <br/>90天销量: ${title.data('popover-ninety')} <br/>总销量: ${title.data('popover-sales')}`,
+                            trigger:'hover'
+                        });
+                    });
+                   
                 });
             });
         }
