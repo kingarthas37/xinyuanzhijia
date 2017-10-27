@@ -46,6 +46,22 @@ router.get('/', (req, res) => {
     } else {
         sortTitle = '上架时间';
     }
+    let path = '';
+    if (keywords) {
+        path += '&keywords='+keywords;
+    }
+    if (category1Id) {
+        path += '&cat1='+category1Id;
+    }
+    if (category2Id) {
+        path += '&cat2='+category2Id;
+    }
+    if (productMethodId) {
+        path += '&method='+productMethodId;
+    }
+    if (stock) {
+        path += '&stock='+stock;
+    }
     data = extend(data,
         {'keywords': keywords,
             'order': order,
@@ -60,7 +76,8 @@ router.get('/', (req, res) => {
             'sortTitle' : sortTitle,
             'category1Name': '产品分类一级',
             'category2Name': '产品分类二级',
-            'method': productMethodId
+            'method': productMethodId,
+            'path': path
         });
     if (keywords) {
         let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
