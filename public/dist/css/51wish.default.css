@@ -1789,9 +1789,12 @@ a.pswp__share--download:hover {
     .detail-page .am-slider img {
       display: block;
       width: 100%; }
+  .detail-page .crumb {
+    font-size: 13px;
+    padding: 10px; }
   .detail-page h1 {
-    margin: 0;
-    padding: 10px;
+    margin: 0 0 10px 0;
+    padding: 0 10px;
     font-size: 16px;
     color: #6071d5; }
   .detail-page .info-content {

@@ -44,11 +44,16 @@
     <%}%>
 </div>
 
+<div class="crumb">
+    <a href="#">Indio魔法油</a> <i class="am-icon-angle-right"></i> <a href="#">Indio魔法油 - 金钱,招财</a>
+</div>
+
 <h1><%- item.name %> <%if(item.isHot){%><sup class="hot"></sup><%}%></h1>
 
 <div class="guarantee-content">
     <span><i class="am-icon-leaf"></i> 正品保障</span>
     <%if(item.isRefund){%><span><i class="am-icon-history"></i> 7天退货</span><%}%>
+    <% if(item.stock > 0) { %><span><i class="am-icon-check"></i> 现货</span><% } %>
     <%if(item.isDocument){%><span><i class="am-icon-book"></i> 产品说明书</span><%}%>
     <%if(item.isHandmade){%><span><i class="am-icon-modx"></i> 纯手工</span><%}%>
     <%if(item.isOnly){%><span><i class="am-icon-legal"></i> 唯一产品</span><%}%>
@@ -57,7 +62,7 @@
 <div class="info-content">
     <div class="info">
         <div>
-            <span class="price">¥ <%= (item.price ? item.price : '-') %> <a href="javascript:;" data-am-popover="{content:'此价格为参考价格,实际价格请参考淘宝店铺'}"> 参考价格 <i class="am-icon-question-circle-o"></i></a>
+            <span class="price">¥ <%= (item.price ? item.price : '-') %> <a href="javascript:;" data-am-popover="{content:'此价格为参考价格,实际价格请参考淘宝店铺。'}"> 参考价格 <i class="am-icon-question-circle-o"></i></a>
             </span>
             
             <% if(item.stock){%>
@@ -66,7 +71,7 @@
                 <%if(item.stock < 11){%>
                     <%= item.stock%>
                 <%}else{%>
-                    >10
+                    <i class="am-icon-angle-right"></i>10
                 <%}%>
             </a></span>
             <%}%>
@@ -75,11 +80,11 @@
                 <% if(item.isShortStock && item.isOnly){%>
                 <a class="short-stock" href="javascript:;" data-am-popover="{content:'该产品只有一件并已售完,请继续关注上架新品.'}"> 已售完 <i class="am-icon-question-circle-o"></i></a>
                 <%} else if(item.isShortStock){%>
-                <a class="short-stock" href="javascript:;" data-am-popover="{content:'该产品暂时缺货或断货,其原因可能为海外卖家材料,配件等供应不足造成,您可咨询我们了解该产品的最新供货进程.'}"> 缺货/断货 <i class="am-icon-question-circle-o"></i></a>
+                <a class="short-stock" href="javascript:;" data-am-popover="{content:'该产品暂时缺货或断货,其原因可能为海外卖家材料,配件等供应不足造成,您可咨询我们了解该产品的最新供货进程。'}"> 缺货/断货 <i class="am-icon-question-circle-o"></i></a>
                 <%} else if(item.stock){%>
-                <a class="in-stock" href="javascript:;" data-am-popover="{content:'通常情况下该产品有现货,但不排除特殊情况,比如其只有少量现货时,同一时间段内同时被其他客户拍下导致无货,您可以拍下之前咨询我们库存情况.'}"> 现货 <i class="am-icon-info-circle"></i></a>
+                <a class="in-stock" href="javascript:;" data-am-popover="{content:'通常情况下该产品有现货,但不排除特殊情况,比如其只有少量现货时,同一时间段内同时被其他客户拍下导致无货,您可以拍下之前咨询我们库存情况。'}"> 现货 <i class="am-icon-info-circle"></i></a>
                 <%} else { %>
-                <a class="out-stock" href="javascript:;" data-am-popover="{content:'该件产品暂时没有库存,您可咨询我们了解新品物流状态,并可点击产品属性查看该产品大致到货时间.'}"> 暂无现货 <i class="am-icon-question-circle-o"></i></a>
+                <a class="out-stock" href="javascript:;" data-am-popover="{content:'该件产品暂时没有库存,您可咨询我们了解新品物流状态,并可点击产品属性查看该产品大致到货时间。'}"> 暂无现货 <i class="am-icon-question-circle-o"></i></a>
                 <%}%>
             </span>
             
