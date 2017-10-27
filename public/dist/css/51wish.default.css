@@ -256,6 +256,9 @@ header {
         color: #fff; }
         header.sub .menu i.am-icon-search {
           font-size: 16px; }
+      header.sub .menu .account {
+        background: url("//ac-quipuwpj.clouddn.com/f113fc7f09efa5a521d2.png") no-repeat center;
+        background-size: 60%; }
 
 footer {
   padding: 15px 0 5px 0;
