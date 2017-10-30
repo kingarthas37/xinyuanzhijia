@@ -108,7 +108,20 @@ header {
             }
             .account {
                 background: url('//ac-quipuwpj.clouddn.com/f113fc7f09efa5a521d2.png') no-repeat center;
-                background-size:60%;
+                background-size:50%;
+            }
+            .am-dropdown {
+                .am-dropdown-toggle {
+                    padding: 0;
+                }
+                a {
+                    border:none;
+                }
+                .am-dropdown-content {
+                    a {
+                        width: auto;
+                    }
+                }
             }
         }
     }

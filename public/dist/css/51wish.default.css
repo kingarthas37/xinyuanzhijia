@@ -258,7 +258,13 @@ header {
           font-size: 16px; }
       header.sub .menu .account {
         background: url("//ac-quipuwpj.clouddn.com/f113fc7f09efa5a521d2.png") no-repeat center;
-        background-size: 60%; }
+        background-size: 50%; }
+      header.sub .menu .am-dropdown .am-dropdown-toggle {
+        padding: 0; }
+      header.sub .menu .am-dropdown a {
+        border: none; }
+      header.sub .menu .am-dropdown .am-dropdown-content a {
+        width: auto; }
 
 footer {
   padding: 15px 0 5px 0;
@@ -1702,7 +1708,7 @@ a.pswp__share--download:hover {
     top: -15px;
     left: 50%;
     line-height: 30px;
-    margin-left: -120px;
+    margin-left: -100px;
     font-size: 15px; }
 
 .login-page .form-userinfo .am-form-group {
