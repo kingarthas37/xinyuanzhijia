@@ -59,6 +59,7 @@ router.get('/', (req, res) => {
 
             let query1 = new AV.Query(ProductCategory1);
             let query2 = new AV.Query(ProductCategory2);
+            query2.limit(1000);
 
             {
                 //按index排序
