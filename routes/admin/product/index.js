@@ -49,6 +49,7 @@ router.get('/', (req, res) => {
     let search = req.query['search'] ? req.query['search'].trim() : '';
     let productTitle = onsale == 1 ? '上架产品列表' : '下架产品列表';
     let isShortStock = req.query['is-short-stock'] ? (req.query['is-short-stock'] == 'true' ? true : '') : '';
+    let isUpdateStock = req.query['is-update-stock'] ? req.query['is-update-stock'] : '';
     data = extend(data, {
         search,
         flash: {success: req.flash('success'), error: req.flash('error')},
@@ -62,10 +63,11 @@ router.get('/', (req, res) => {
         onsale,
         productTitle,
         limit,
-        isShortStock
+        isShortStock,
+        isUpdateStock
     });
 
-    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock};
+    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock};
     AV.Promise.when(
         //获取count
         new AV.Promise(resolve => {
@@ -81,7 +83,8 @@ router.get('/', (req, res) => {
                             'category1-id':category1Id,
                             'category2-id':category2Id,
                             onsale,
-                            'is-short-stock':isShortStock
+                            'is-short-stock':isShortStock,
+                            'is-update-stock':isUpdateStock
                         }
                     })
                 });
@@ -456,6 +459,23 @@ router.get('/get-sales', (req, res) => {
         res.send({data:items});
 
     });
+});
+
+
+router.post('/set-update-stock/:productId',(req,res)=> {
+    let productId = parseInt(req.params['productId']);
+    let isUpdateStock = req.body['isUpdateStock'] === 'true' ? true : false;
+    let query = new AV.Query(Product);
+    query.equalTo('productId',productId);
+    query.first().then(result => {
+        result.set('isUpdateStock', isUpdateStock);
+        return result.save();
+    }).then(result => {
+        res.send({
+            success:1
+        });
+    });
+
 });
 
 module.exports = router;

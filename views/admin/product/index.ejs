@@ -145,7 +145,7 @@
 
                             <a title="缺货/断货设置" class="set-short-stock <%if(product[i].get('isShortStock')) { %>on<% } %>" isshortstock="<%= product[i].get('isShortStock') %>" href="javascript:;"><i class="am-icon-level-down"></i></a>
 
-                            <a title="重新上架" class="set-update-stock" isupdatestock="" href="javascript:;"><i class="am-icon-retweet"></i></a>
+                            <a title="重新上架" class="set-update-stock" isupdatestock="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i class="am-icon-retweet"></i></a>
 
                             <a title="产品组合管理" href="/admin/product/groups/<%= product[i].get('productId') %>?product-method-id=<%=product[i].get('productMethod')[0]%>&category1-id=<%=product[i].get('category1')[0]%>&category2-id=<%=product[i].get('category2')[0]%>"><i class="am-icon-sitemap"></i></a>
 
