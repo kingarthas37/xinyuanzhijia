@@ -3,7 +3,6 @@
 let product = require('../../../lib/models/product').createNew();
 let productSearchKeywordsHistory = require('../../../lib/models/product-search-history').createNew();
 let commonMemberSearchHistory = require('../../../lib/models/common-member-search-history').createNew();
-let productMethod = require('../../../lib/models/product-method').createNew();
 let request = product.getRequest();
 let config = product.getConfig();
 let router = product.getRouter();

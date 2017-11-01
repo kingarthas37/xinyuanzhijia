@@ -12,11 +12,6 @@ $(function() {
         });
     } 
     
-    //header menu 下拉
-    {
-        //$('header').find('.am-dropdown').dropdown();
-    }
-    
     //图片懒加载
     {
         $('img.lazy').lazyload();
@@ -29,7 +24,6 @@ $(function() {
         let searchClose = $('.search-close').find('a');
         let searchInput = $('#search-input');
         let searchSelect = $('.search-select');
-        let searchProductMethod = $('#search-product-method');
     
         searchSelect.dropdown();
         
@@ -44,19 +38,6 @@ $(function() {
         searchBox.on('open.offcanvas.amui', function() {
             searchInput[0].focus();
         });
-
-        searchSelect.find('.am-dropdown-content a').click(function() {
-            searchProductMethod.val($(this).data('product-method-id'));
-        });
-
-        if(/method=\d+/.test(location.search)) {
-            let productMethodId = /method=(\d+)/.exec(location.search)[1];
-            if(parseInt(productMethodId) === 21) {
-                setTimeout(()=> {
-                    searchSelect.find('a[data-product-method-id=21]').click();
-                },0);
-            }
-        }
         
     }
     
@@ -75,10 +56,6 @@ $(function() {
         let searchSelect = $('.search-select');
         let searchSelectContent = searchSelect.find('.am-dropdown-content');
         let selectButton = searchSelect.find('.am-btn');
-        
-        searchSelect.on('close.dropdown.amui', function (e) {
-            
-        });
 
         searchSelectContent.find('a').click(function() {
             searchSelectContent.find('.am-active').removeClass('am-active');
@@ -95,7 +72,15 @@ $(function() {
         let searchBox = $('#search-box');
         let search = searchBox.find('.search');
         let searchInput = searchBox.find('#search-input');
-        let searchProductMethod = $('#search-product-method');
+       
+        let productMethodId = (()=> {
+            if(/method=\d+/.test(location.search)) {
+                return /method=(\d+)/.exec(location.search)[1];
+            } else {
+                return 3;
+            }
+        })();
+        $('#search-product-method').val(productMethodId);
         
         searchInput.typeahead(null, {
             limit:10,
@@ -115,7 +100,8 @@ $(function() {
                     url: '/suggest',
                     prepare: function (query, settings) {
                         settings.data = {
-                            name:$.trim(searchInput.val())
+                            name:$.trim(searchInput.val()),
+                            productMethodId
                         };
                         return settings;
                     }
@@ -242,6 +228,7 @@ $(function() {
                             <p>
                             <span class="price">¥ <strong>${price}</strong></span>
                             <span>${item.pageViews}次浏览</span>
+                            <span>已售${item.sales}件</span>
                             </p>
                             <p>
                                 ${isRefund} ${stock} ${isHandmade} ${isOnly}
