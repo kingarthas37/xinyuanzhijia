@@ -372,8 +372,8 @@ span.hot:after {
     color: #5eb95e; }
   .admin-product-page .am-icon-inbox .stock-num {
     position: absolute;
-    left: 12px;
-    top: -6px;
+    left: 10px;
+    top: -8px;
     font-size: 12px;
     font-weight: bold;
     color: #5eb95e;
@@ -385,8 +385,8 @@ span.hot:after {
     color: #F37B1D; }
   .admin-product-page .am-icon-arrow-circle-o-down .stock-num {
     position: absolute;
-    left: 12px;
-    top: -6px;
+    left: 10px;
+    top: -8px;
     font-size: 12px;
     font-weight: bold;
     color: #F37B1D;
@@ -435,7 +435,10 @@ span.hot:after {
     left: -14px;
     top: -12px; }
 
-.admin-product-page .product-short {
+.admin-product-page .set-short-stock.on {
+  color: #F37B1D; }
+
+.admin-product-page .set-update-stock.on {
   color: #F37B1D; }
 
 .admin-product-page .product-out {

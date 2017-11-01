@@ -378,7 +378,6 @@ module.exports = {
             $('.set-short-stock').click(function() {
                 let isShortStock = $(this).attr('isshortstock') === 'true' ? false : true;
                 let productId = $(this).parents('tr').data('product-id');
-                let title = $(this).parents('tr').find('.title');
                 $.ajax({
                     type:'post',
                     url:`/admin/product/set-short-stock/${productId}`,
@@ -386,15 +385,37 @@ module.exports = {
                 }).then(data => {
                     if(data.success) {
                         if(isShortStock) {
-                            title.addClass('product-short');
+                            $(this).addClass('on');
                             $(this).attr('isshortstock','true');
                         } else {
-                            title.removeClass('product-short');
+                            $(this).removeClass('on');
                             $(this).attr('isshortstock','false');
                         }
                     }
                 });
 
+            });
+        }
+        
+        {
+            $('.set-update-stock').click(function() {
+                let isUpdateStock = $(this).attr('isupdatestock') === 'true' ? false : true;
+                let productId = $(this).parents('tr').data('product-id');
+                $.ajax({
+                    type:'post',
+                    url:`/admin/product/set-update-stock/${productId}`,
+                    data:{isUpdateStock}
+                }).then(data => {
+                    if(data.success) {
+                        if(isUpdateStock) {
+                            $(this).addClass('on');
+                            $(this).attr('isupdatestock','true');
+                        } else {
+                            $(this).removeClass('on');
+                            $(this).attr('isupdatestock','false');
+                        }
+                    }
+                });
             });
         }
         
