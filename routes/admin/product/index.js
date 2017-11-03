@@ -464,7 +464,6 @@ router.get('/get-sales', (req, res) => {
     });
 });
 
-
 router.post('/set-update-stock/:productId',(req,res)=> {
     let productId = parseInt(req.params['productId']);
     let isUpdateStock = req.body['isUpdateStock'] === 'true' ? true : false;
@@ -478,6 +477,29 @@ router.post('/set-update-stock/:productId',(req,res)=> {
             success:1
         });
     });
+
+});
+
+router.post('/set-update-stock-date/:productId',(req,res)=> {
+    let productId = parseInt(req.params['productId']);
+    let updateStockDate = req.body['updateStockDate'] === 'true' ? true : false;
+    if (updateStockDate) {
+        let query = new AV.Query(Product);
+        query.equalTo('productId',productId);
+        query.first().then(result => {
+            result.set('updateStockDate', 1);
+            return result.save();
+        }).then(result => {
+            res.send({
+                success:1
+            });
+        });
+    } else {
+        res.send({
+            success:1
+        });
+    }
+
 
 });
 
