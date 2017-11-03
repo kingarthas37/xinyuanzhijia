@@ -106,13 +106,14 @@ router.post('/stock/:productId', (req, res) => {
     let stock = parseInt(req.body.stock);
     let sales = parseInt(req.body.sales);
     let reserve = parseInt(req.body.reserve);
+    let updateStockDate = req.body['is-zero-stock'] == '1' ? 0 : (Date.parse(new Date()) / 1000);
     
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
     query.first().then(item => {
-        
+        item.set('');
         return item.save({
-            stock,sales,reserve
+            stock,sales,reserve, updateStockDate
         });
 
     }).then(() => {
