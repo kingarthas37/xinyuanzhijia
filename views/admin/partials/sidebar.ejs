@@ -11,6 +11,7 @@
                     <li><a href="/admin/product?onsale=2&product-method-id=3" <%if(currentPage === 'product-index' && productMethodId == '3' && onsale == 2){ %>class="current"<%}%> >下架产品列表</a></li>
                     <li><a href="/admin/product?is-short-stock=true&product-method-id=3" <%if(currentPage === 'product-index' && isShortStock && productMethodId == '3'){ %>class="current"<%}%> >缺货产品列表</a></li>
                     <li><a href="/admin/product?is-update-stock=true&product-method-id=3" <%if(currentPage === 'product-index' && isUpdateStock && productMethodId == '3'){ %>class="current"<%}%>>重新上架产品列表</a></li>
+                    <li><a href="#">库存提醒列表</a></li>
                 </ul>
             </li>
 

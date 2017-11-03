@@ -418,6 +418,29 @@ module.exports = {
                 });
             });
         }
+
+
+        {
+            $('.set-warning-stock').click(function() {
+                let updateStockDate = $(this).attr('updatestockdate') === 'true' ? false : true;
+                let productId = $(this).parents('tr').data('product-id');
+                $.ajax({
+                    type:'post',
+                    url:`/admin/product/set-update-stock-date/${productId}`,
+                    data:{updateStockDate}
+                }).then(data => {
+                    if(data.success) {
+                        if(updateStockDate) {
+                            $(this).addClass('on');
+                            $(this).attr('updatestockdate','true');
+                        } else {
+                            $(this).removeClass('on');
+                            $(this).attr('updatestockdate','false');
+                        }
+                    }
+                });
+            });
+        }
         
     },
 

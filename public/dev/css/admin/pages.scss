@@ -159,6 +159,10 @@
         color: #F37B1D;
     }
     
+    .set-warning-stock.on {
+        color: #F37B1D;
+    }
+    
     .product-out {
         color: #666;
     }
@@ -275,7 +279,7 @@
     .am-accordion-content {
         .am-form-inline {
             margin-bottom: 10px;
-            select,input {
+            select,input[type=text] {
                 width: 100px;
             }
         }

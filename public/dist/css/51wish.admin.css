@@ -441,6 +441,9 @@ span.hot:after {
 .admin-product-page .set-update-stock.on {
   color: #F37B1D; }
 
+.admin-product-page .set-warning-stock.on {
+  color: #F37B1D; }
+
 .admin-product-page .product-out {
   color: #666; }
 
@@ -561,7 +564,7 @@ span.hot:after {
     margin: 0 0 15px 0; }
   .admin-product-property-page .am-accordion-content .am-form-inline {
     margin-bottom: 10px; }
-    .admin-product-property-page .am-accordion-content .am-form-inline select, .admin-product-property-page .am-accordion-content .am-form-inline input {
+    .admin-product-property-page .am-accordion-content .am-form-inline select, .admin-product-property-page .am-accordion-content .am-form-inline input[type=text] {
       width: 100px; }
   .admin-product-property-page .am-accordion-content .am-form label em {
     font-style: normal;
