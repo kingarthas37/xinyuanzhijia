@@ -491,22 +491,17 @@ module.exports = {
 
 
         {
-            $('.set-warning-stock').click(function() {
-                let updateStockDate = $(this).attr('updatestockdate') === 'true' ? false : true;
+            $('.set-warning-stock.on').click(function() {
                 let productId = $(this).parents('tr').data('product-id');
                 $.ajax({
                     type:'post',
                     url:`/admin/product/set-update-stock-date/${productId}`,
-                    data:{updateStockDate}
+                    data:{
+                        updateStockDate:true
+                    }
                 }).then(data => {
                     if(data.success) {
-                        if(updateStockDate) {
-                            $(this).addClass('on');
-                            $(this).attr('updatestockdate','true');
-                        } else {
-                            $(this).removeClass('on');
-                            $(this).attr('updatestockdate','false');
-                        }
+                        $(this).removeClass('on');
                     }
                 });
             });

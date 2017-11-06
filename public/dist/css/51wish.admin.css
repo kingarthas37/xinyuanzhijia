@@ -378,6 +378,8 @@ span.hot:after {
     font-weight: bold;
     color: #5eb95e;
     font-style: normal; }
+    .admin-product-page .am-icon-inbox .stock-num.none {
+      color: #0e90d2; }
 
 .admin-product-page .am-icon-arrow-circle-o-down {
   position: relative; }
