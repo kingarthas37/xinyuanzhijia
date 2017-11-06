@@ -499,8 +499,32 @@ router.post('/set-update-stock-date/:productId',(req,res)=> {
             success:1
         });
     }
+});
 
-
+router.post('/sync-price',(req,res)=> {
+    let productId = parseInt(req.body['productId']);
+    let success = [];
+    pro.getProductById(productId).then(result => {
+        let price = result.get('price');
+        pro.getProductsByCategoryId(result.attributes.category2).then(items => {
+            async.forEach(items, function(item, callback){
+                if (item.attributes.productId != productId) {
+                    item.set('price', price);
+                    item.save().then(()=> {
+                        success.push(item.attributes.productId);
+                        callback();
+                    });
+                } else {
+                    callback();
+                }
+            }, function(err){
+                if(err) {
+                    console.log('product sync price:' + err);
+                }
+                res.send({success:success, count:success.length});
+            });
+        });
+    });
 });
 
 module.exports = router;
