@@ -330,17 +330,10 @@ module.exports = {
                                 }
                             }).then(
                                 result => {
-                                    if(result.code) {
-                                        modalLoading.find('.am-modal-hd').text('修改成功!正在更新...');
-                                        setTimeout(()=> {
-                                            location.reload();
-                                        },1000);
-                                    } else {
-                                        modalLoading.find('.am-modal-hd').text('修改失败,请重试!');
-                                        setTimeout(()=> {
-                                            modalLoading.modal('close');
-                                        },1000);
-                                    }
+                                    modalLoading.find('.am-modal-hd').text('修改成功!正在更新...');
+                                    setTimeout(()=> {
+                                        location.reload();
+                                    },1000);
                                 },
                                 err => {
                                     console.info(err);
