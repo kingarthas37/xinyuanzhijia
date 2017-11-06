@@ -142,23 +142,6 @@
                                 <%= product[i].get('name') %> {<%= product[i].get('productId') %>}
                             </a>
 
-<<<<<<< HEAD
-                            <a title="复制标题" href="javascript:;" class="copy-product-title"
-                               data-text="<%= product[i].get('name') %>" data-id="<%= product[i].get('productId') %>"><i
-                                        class="am-icon-copy"></i></a>
-
-                            <a title="剩余库存" class="link-modal-viewport"
-                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock">
-                                <% if(product[i].get('isOnly')){ %>
-                                <i class="am-icon-warning"></i>
-                                <% } else { %>
-                                <i class="am-icon-inbox <% if(product[i].get('stock')){ %> instock<% } %>">
-                                    <% if(product[i].get('stock')){ %>
-                                    <em class="stock-num"><%= product[i].get('stock') %></em>
-                                    <% } %>
-                                </i>
-                                <% } %>
-=======
                             <a title="复制标题" href="javascript:;" class="copy-product-title" data-text="<%= product[i].get('name')%>" data-id="<%= product[i].get('productId') %>" ><i  class="am-icon-copy"></i></a>
 
                             <a title="剩余库存" class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock">
@@ -173,7 +156,6 @@
                                         <% } %>
                                     </i>
                                 <%}%>
->>>>>>> b95c0adc95db7bcf663b8e887bcfd0da49c4e669
                             </a>
 
                             <a title="已预定数量" class="link-modal-viewport"
@@ -216,15 +198,12 @@
                                         class="am-icon-tag"></i></a>
                             <% } %>
 
-<<<<<<< HEAD
-=======
                             <a title="重新上架设置" class="set-update-stock <%if(product[i].get('isUpdateStock')) { %>on<% } %>" isupdatestock="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i class="am-icon-retweet"></i></a>
                            
                             <a title="库存提醒设置" class="set-warning-stock <%if(product[i].get('updateStockDate') != 1) { %>on<% } %>" href="javascript:;"><i class="am-icon-dropbox"></i></a>
                             
                             <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a title="同类产品"  href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>&onsale=<%=onsale %>&limit=200"><i class="am-icon-tag"></i></a> <%}%>
                         
->>>>>>> b95c0adc95db7bcf663b8e887bcfd0da49c4e669
                         </td>
 
                         <td class="t-c">

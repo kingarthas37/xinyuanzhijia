@@ -305,7 +305,6 @@ module.exports = {
         }
 
         {// 改价
-
             let modal = $('#modal-change-price');
             let input = $('.input-change-price');
             let modalLoading = $('#modal-loading');
