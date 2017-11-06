@@ -67,6 +67,9 @@
             font-weight: bold;
             color: #5eb95e;
             font-style: normal;
+            &.none {
+                color: #0e90d2;
+            }
         }
     }
 
@@ -159,8 +162,10 @@
         color: #F37B1D;
     }
     
-    .set-warning-stock.on {
-        color: #F37B1D;
+    .set-warning-stock {
+        &.on {
+            color: #F37B1D;
+        }
     }
     
     .product-out {
