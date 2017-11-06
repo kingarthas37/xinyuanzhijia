@@ -16,7 +16,7 @@
 <% } %>
 
 <div class="am-cf admin-main">
-    
+
     <!-- sidebar start -->
     <% include ../partials/sidebar %>
     <!-- sidebar end -->
@@ -31,21 +31,23 @@
 
         <div class="am-g">
             <div class="am-form">
-                
+
                 <div class="cf">
                     <div class="am-u-sm-12 am-u-md-3">
                         <form action="/admin/product" method="get">
-                        <div class="am-form-group">
-                            <div class="am-input-group am-input-group-sm">
-                                <input type="text" name="search" value="<%=search%>" class="search am-form-field" placeholder="搜索产品">
-                                <input type="hidden" name="onsale" value="<%=onsale%>" />
-                                <input type="hidden" name="product-method-id" value="<%=productMethodId%>" />
-                                <input type="hidden" name="is-short-stock" value="<%=isShortStock%>" />
-                                <input type="hidden" name="update-stock-date" value="<%=updateStockDate%>" />
-                                <input type="hidden" name="is-update-stock" value="<%=isUpdateStock%>" />
-                                <span class="am-input-group-btn"><button class="am-btn am-btn-primary" type="submit">搜索</button></span>
+                            <div class="am-form-group">
+                                <div class="am-input-group am-input-group-sm">
+                                    <input type="text" name="search" value="<%= search %>" class="search am-form-field"
+                                           placeholder="搜索产品">
+                                    <input type="hidden" name="onsale" value="<%= onsale %>"/>
+                                    <input type="hidden" name="product-method-id" value="<%= productMethodId %>"/>
+                                    <input type="hidden" name="is-short-stock" value="<%= isShortStock %>"/>
+                                    <input type="hidden" name="update-stock-date" value="<%= updateStockDate %>"/>
+                                    <input type="hidden" name="is-update-stock" value="<%= isUpdateStock %>"/>
+                                    <span class="am-input-group-btn"><button class="am-btn am-btn-primary"
+                                                                             type="submit">搜索</button></span>
+                                </div>
                             </div>
-                        </div>
                         </form>
                     </div>
 
@@ -53,10 +55,13 @@
                         <div class="am-form-group">
                             <select class="select-product-method">
                                 <option value="">产品类型</option>
-                                <% for (var i=0;i < productMethod.length; i++) { %>
+                                <% for (var i = 0;i < productMethod.length; i++) { %>
                                 <option
-                                <% if(productMethod[i].get('productMethodId') === productMethodId ) { %> selected="selected" <% } %>
-                                value="<%= productMethod[i].get('productMethodId'); %>"> <%= productMethod[i].get('name');%></option><%
+                                        <% if(productMethod[i].get('productMethodId') === productMethodId ) { %>
+                                        selected="selected"
+                                        <% } %>
+                                        value="<%= productMethod[i].get('productMethodId'); %>"> <%= productMethod[i].get('name'); %></option>
+                                <%
                                 } %>
                             </select>
                         </div>
@@ -66,8 +71,12 @@
                         <div class="am-form-group">
                             <select class="select-category-1">
                                 <option value="">商品一级分类</option>
-                                <% for (var i=0;i < category1.length; i++) { %>
-                                <option <% if(category1[i].get('category1Id') === category1Id ) { %> selected="selected" <% } %>value="<%= category1[i].get('category1Id') %>"> <%= category1[i].get('name');%></option><% }%>
+                                <% for (var i = 0;i < category1.length; i++) { %>
+                                <option
+                                        <% if(category1[i].get('category1Id') === category1Id ) { %>
+                                        selected="selected"
+                                        <% } %>value="<%= category1[i].get('category1Id') %>"> <%= category1[i].get('name'); %></option>
+                                <% } %>
                             </select>
                         </div>
                     </div>
@@ -76,16 +85,19 @@
                         <div class="am-form-group">
                             <select class="select-category-2">
                                 <option value="">商品二级分类</option>
-                                <% for (var i=0;i < category2.length; i++) { %>
+                                <% for (var i = 0;i < category2.length; i++) { %>
                                 <option
-                                <% if(category2[i].get('category2Id') === category2Id ) { %> selected="selected" <% } %>
-                                value="<%= category2[i].get('category2Id') %>"> <%= category2[i].get('name');%></option><% }
+                                        <% if(category2[i].get('category2Id') === category2Id ) { %>
+                                        selected="selected"
+                                        <% } %>
+                                        value="<%= category2[i].get('category2Id') %>"> <%= category2[i].get('name'); %></option>
+                                <% }
                                 %>
                             </select>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
 
@@ -107,122 +119,184 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% for(var i=0; i < product.length; i++) {%>
+                    <% for(var i = 0; i < product.length; i++) { %>
                     <tr data-product-id="<%= product[i].get('productId') %>">
                         <td class="product-title">
-                            <%if(product[i].mainImage) {%><a target="_blank" href="<%= product[i].mainImage%>" data-am-popover="{content:'<img width=150 src=<%= product[i].mainImage%>?imageMogr2/thumbnail/150>', trigger:'hover focus'}"><img width="32" src="<%= product[i].mainImage%>?imageMogr2/thumbnail/32" alt=""></a><%}else{%><img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32" width="32"/><%}%>
+                            <% if(product[i].mainImage) { %>
+                            <a target="_blank" href="<%= product[i].mainImage %>"
+                               data-am-popover="{content:'<img width=150 src=<%= product[i].mainImage %>?imageMogr2/thumbnail/150>', trigger:'hover focus'}"><img
+                                        width="32" src="<%= product[i].mainImage %>?imageMogr2/thumbnail/32" alt=""></a>
+                            <% }else{ %>
+                            <img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32"
+                                 width="32"/>
+                            <% } %>
 
-                            <a class="title<%if(!product[i].get('isOnsale')) { %> product-out<% } %><%if(product[i].get('isHot')) { %> product-hot<% } %>" href="/admin/product/edit/<%= product[i].get('productId') %>" data-popover-source-price="<%if(product[i].get('originalPrice')) {%><%=product[i].get('originalPrice')%><%}else{%>-<%}%>" data-popover-price="<%if(product[i].get('price')) {%><%=product[i].get('price')%><%}else{%>-<%}%>" data-popover-sales="<%=product[i].get('sales')%>">
-                                <%if(product[i].get('isHot')) { %> <sup class="hot"></sup><% } %>
-                                <%= product[i].get('name')%> {<%= product[i].get('productId')%>}
+                            <a class="title<% if(!product[i].get('isOnsale')) { %> product-out<% } %> <% if(product[i].get('isHot')) { %> product-hot<% } %>"
+                               href="/admin/product/edit/<%= product[i].get('productId') %>"
+                               data-popover-source-price="<% if(product[i].get('originalPrice')) { %> <%= product[i].get('originalPrice') %> <% }else{ %>-<% } %>"
+                               data-popover-price="<% if(product[i].get('price')) { %> <%= product[i].get('price') %> <% }else{ %>-<% } %>"
+                               data-popover-sales="<%= product[i].get('sales') %>">
+                                <% if(product[i].get('isHot')) { %>
+                                <sup class="hot"></sup>
+                                <% } %>
+                                <%= product[i].get('name') %> {<%= product[i].get('productId') %>}
                             </a>
 
-                            <a title="复制标题" href="javascript:;" class="copy-product-title" data-text="<%= product[i].get('name')%>" data-id="<%= product[i].get('productId') %>" ><i  class="am-icon-copy"></i></a>
+                            <a title="复制标题" href="javascript:;" class="copy-product-title"
+                               data-text="<%= product[i].get('name') %>" data-id="<%= product[i].get('productId') %>"><i
+                                        class="am-icon-copy"></i></a>
 
-                            <a title="剩余库存" class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock">
-                                <%if(product[i].get('isOnly')){%>
-                                    <i class="am-icon-warning"></i>
-                                <%} else {%>
-                                    <i class="am-icon-inbox <%if(product[i].get('stock')){%> instock<%}%>">
-                                        <%if(product[i].get('stock')){%>
-                                        <em class="stock-num"><%= product[i].get('stock') %></em>
-                                        <%}%>
-                                    </i>
-                                <%}%>
+                            <a title="剩余库存" class="link-modal-viewport"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock">
+                                <% if(product[i].get('isOnly')){ %>
+                                <i class="am-icon-warning"></i>
+                                <% } else { %>
+                                <i class="am-icon-inbox <% if(product[i].get('stock')){ %> instock<% } %>">
+                                    <% if(product[i].get('stock')){ %>
+                                    <em class="stock-num"><%= product[i].get('stock') %></em>
+                                    <% } %>
+                                </i>
+                                <% } %>
                             </a>
 
-                            <a title="已预定数量" class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock">
-                                <i class="am-icon-arrow-circle-o-down  <%if(product[i].get('reserve')){%> instock<%}%>">
-                                    <%if(product[i].get('reserve')){%>
+                            <a title="已预定数量" class="link-modal-viewport"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock">
+                                <i class="am-icon-arrow-circle-o-down  <% if(product[i].get('reserve')){ %> instock<% } %>">
+                                    <% if(product[i].get('reserve')){ %>
                                     <em class="stock-num"><%= product[i].get('reserve') %></em>
-                                    <%}%>
+                                    <% } %>
                                 </i>
                             </a>
-                            
-                            <a title="属性设置" class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#settings"><i class="am-icon-gear"></i></a>
-                            
-                            <a title="上下架设置" class="set-onsale" isonsale="<%= product[i].get('isOnsale') %>" href="javascript:;"><i class="am-icon-level-up"></i></a>
 
-                            <a title="热门产品设置" class="set-hot" ishot="<%= product[i].get('isHot') %>" href="javascript:;"><i class="am-icon-flash"></i></a>
+                            <a title="属性设置" class="link-modal-viewport"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#settings"><i
+                                        class="am-icon-gear"></i></a>
 
-                            <a title="缺货/断货设置" class="set-short-stock <%if(product[i].get('isShortStock')) { %>on<% } %>" isshortstock="<%= product[i].get('isShortStock') %>" href="javascript:;"><i class="am-icon-level-down"></i></a>
+                            <a title="上下架设置" class="set-onsale" isonsale="<%= product[i].get('isOnsale') %>"
+                               href="javascript:;"><i class="am-icon-level-up"></i></a>
 
-                            <a title="重新上架设置" class="set-update-stock <%if(product[i].get('isUpdateStock')) { %>on<% } %>" isupdatestock="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i class="am-icon-retweet"></i></a>
-                           
-                            <a title="库存提醒设置" class="set-warning-stock <%if(product[i].get('updateStockDate') != 1) { %>on<% } %>" updatestockdate="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i class="am-icon-dropbox"></i></a>
-                            
-                            <% for(var j=0;j<product[i].get('productMethod').length;j++) { %><a title="同类产品"  href="/admin/product?product-method-id=<%=product[i].get('productMethod')[j]%>&category1-id=<%=product[i].get('category1')[j]%>&category2-id=<%=product[i].get('category2')[j]%>&onsale=<%=onsale %>&limit=200"><i class="am-icon-tag"></i></a> <%}%>
-                        
+                            <a title="热门产品设置" class="set-hot" ishot="<%= product[i].get('isHot') %>"
+                               href="javascript:;"><i class="am-icon-flash"></i></a>
+
+                            <a title="缺货/断货设置"
+                               class="set-short-stock <% if(product[i].get('isShortStock')) { %>on<% } %>"
+                               isshortstock="<%= product[i].get('isShortStock') %>" href="javascript:;"><i
+                                        class="am-icon-level-down"></i></a>
+
+                            <a title="重新上架设置"
+                               class="set-update-stock <% if(product[i].get('isUpdateStock')) { %>on<% } %>"
+                               isupdatestock="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i
+                                        class="am-icon-retweet"></i></a>
+
+                            <a title="库存提醒设置"
+                               class="set-warning-stock <% if(product[i].get('updateStockDate') != 1) { %>on<% } %>"
+                               updatestockdate="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i
+                                        class="am-icon-dropbox"></i></a>
+
+                            <% for(var j = 0;j < product[i].get('productMethod').length;j++) { %>
+                            <a title="同类产品"
+                               href="/admin/product?product-method-id=<%= product[i].get('productMethod')[j] %>&category1-id=<%= product[i].get('category1')[j] %>&category2-id=<%= product[i].get('category2')[j] %>&onsale=<%= onsale %>&limit=200"><i
+                                        class="am-icon-tag"></i></a>
+                            <% } %>
+
                         </td>
-                        
+
                         <td class="t-c">
-                            <a target="_blank" href="/admin/product/preview/<%= product[i].get('productId') %>?product-method-id=<%=productMethodId%>"><i class="am-icon-external-link"></i></a>
+                            <a target="_blank"
+                               href="/admin/product/preview/<%= product[i].get('productId') %>?product-method-id=<%= productMethodId %>"><i
+                                        class="am-icon-external-link"></i></a>
                         </td>
-                        
+
                         <td class="t-c">
                             <span class="purchase-link" data-product-id="<%= product[i].get('productId') %>">
-                                <%if(product[i].get('purchaseLink').length) {%>
-                                    <%for(var j=0;j < product[i].get('purchaseLink').length;j++) { %>
-                                        <%if(product[i].get('purchaseLink')[j]) { %>
-                                            <a href="<%= product[i].get('purchaseLink')[j] %>" target="_blank"><i class="am-icon-link"></i></a>
-                                        <%}%>
-                                    <%}%>
-                                <%}else{%>
-                                    -
-                                <%}%>
+                                <% if(product[i].get('purchaseLink').length) { %>
+                                <% for(var j = 0;j < product[i].get('purchaseLink').length;j++) { %>
+                                <% if(product[i].get('purchaseLink')[j]) { %>
+                                <a href="<%= product[i].get('purchaseLink')[j] %>" target="_blank"><i
+                                            class="am-icon-link"></i></a>
+                                <% } %>
+                                <% } %>
+                                <% }else{ %>
+                                -
+                                <% } %>
                             </span>
-                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#purchase-link"><i class="am-icon-edit"></i></a>
+                            <a class="link-modal-viewport"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#purchase-link"><i
+                                        class="am-icon-edit"></i></a>
                         </td>
-                        
+
                         <td class="t-c">
                             <span class="shop-link" data-product-id="<%= product[i].get('productId') %>">
-                                <%if(product[i].get('shopLink').length) {%>
-                                    <%for(var j=0;j < product[i].get('shopLink').length;j++) { %>
-                                        <%if(product[i].get('shopLink')[j]) { %>
-                                            <a href="<%= product[i].get('shopLink')[j] %>" target="_blank"><i class="am-icon-link"></i></a>
-                                        <%}%>
-                                    <%}%>
-                                <%}else{%>
-                                    -
-                                <%}%>
+                                <% if(product[i].get('shopLink').length) { %>
+                                <% for(var j = 0;j < product[i].get('shopLink').length;j++) { %>
+                                <% if(product[i].get('shopLink')[j]) { %>
+                                <a href="<%= product[i].get('shopLink')[j] %>" target="_blank"><i
+                                            class="am-icon-link"></i></a>
+                                <% } %>
+                                <% } %>
+                                <% }else{ %>
+                                -
+                                <% } %>
                             </span>
-                            <a class="link-modal-viewport" title="编辑" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#shop-link"><i class="am-icon-edit"></i></a>
+                            <a class="link-modal-viewport" title="编辑"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#shop-link"><i
+                                        class="am-icon-edit"></i></a>
                         </td>
 
                         <td class="t-c">
-                            <%if(product[i].get('imageSource')) {%>
-                            <a target="_blank" href="<%= product[i].get('imageSource').split('\n')[0] %>"><i class="am-icon-image"></i></a>
-                            <%}else{%>
+                            <% if(product[i].get('imageSource')) { %>
+                            <a target="_blank" href="<%= product[i].get('imageSource').split('\n')[0] %>"><i
+                                        class="am-icon-image"></i></a>
+                            <% }else{ %>
                             -
-                            <%}%>
-                            <a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#image-source"><i class="am-icon-edit"></i></a>
+                            <% } %>
+                            <a class="link-modal-viewport"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#image-source"><i
+                                        class="am-icon-edit"></i></a>
 
-                            <%if(product[i].get('imageSource')) {%>
-                                <a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="image-source-download"><i class="am-icon-download"></i></a>
-                                <div class="image-source-group">
-                                    <input type="hidden" class="image-source-value" value="<%= product[i].get('imageSource') %>">
-                                    
-                                </div>
-                            <%}%>
-                            
+                            <% if(product[i].get('imageSource')) { %>
+                            <a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
+                               class="image-source-download"><i class="am-icon-download"></i></a>
+                            <div class="image-source-group">
+                                <input type="hidden" class="image-source-value"
+                                       value="<%= product[i].get('imageSource') %>">
+
+                            </div>
+                            <% } %>
+
                         </td>
-                        
+
                         <td class="t-c">
-                            <a class="link-modal-viewport" title="内容管理" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#content-manage"><i class="am-icon-book"></i></a>
+                            <a class="link-modal-viewport" title="内容管理"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#content-manage"><i
+                                        class="am-icon-book"></i></a>
                         </td>
                         <td class="t-c">
-                            <a class="link-modal-viewport" title="附件管理" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#attachment-manage"><i class="am-icon-paperclip"></i></a>
+                            <a class="link-modal-viewport" title="附件管理"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#attachment-manage"><i
+                                        class="am-icon-paperclip"></i></a>
                         </td>
                         <td class="t-c">
                             <div class="am-dropdown" data-am-dropdown>
-                                <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><i class="am-icon-ellipsis-h"></i></button>
+                                <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><i
+                                            class="am-icon-ellipsis-h"></i></button>
                                 <ul class="am-dropdown-content">
                                     <li><a href="/admin/product/copy/<%= product[i].get('productId') %>">复制</a></li>
-                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="link-copy-etsy">生成Etsy</a></li>
-                                    <li><a href="/admin/product/groups/<%= product[i].get('productId') %>?product-method-id=<%=product[i].get('productMethod')[0]%>&category1-id=<%=product[i].get('category1')[0]%>&category2-id=<%=product[i].get('category2')[0]%>">产品组合管理</a></li>
-                                    <li><a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#tags">标签管理</a></li>
-                                    <li><a class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#set-comment">备注</a></li>
-                                    <li><a href="javascript:;" data-id="<%= product[i].get('productId') %>" class="remove-product">删除</a></li>
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
+                                           class="link-change-price">批量改价</a></li>
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
+                                           class="link-copy-etsy">生成Etsy</a></li>
+                                    <li>
+                                        <a href="/admin/product/groups/<%= product[i].get('productId') %>?product-method-id=<%= product[i].get('productMethod')[0] %>&category1-id=<%= product[i].get('category1')[0] %>&category2-id=<%= product[i].get('category2')[0] %>">产品组合管理</a>
+                                    </li>
+                                    <li><a class="link-modal-viewport"
+                                           href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#tags">标签管理</a>
+                                    </li>
+                                    <li><a class="link-modal-viewport"
+                                           href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#set-comment">备注</a>
+                                    </li>
+                                    <li><a href="javascript:;" data-id="<%= product[i].get('productId') %>"
+                                           class="remove-product">删除</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -240,7 +314,10 @@
                                             <label><input type="checkbox" name="instruction"> 产品说明</label>
                                             <label><input type="checkbox" name="use"> 产品使用说明</label>
                                             <label><input type="checkbox" name="detailImage"> 产品图片</label>
-                                            <div class="t-c"><button type="button" class="am-btn am-btn-primary am-btn-sm">复制</button></div>
+                                            <div class="t-c">
+                                                <button type="button" class="am-btn am-btn-primary am-btn-sm">复制
+                                                </button>
+                                            </div>
                                         </form>
                                     </li>
                                 </ul>
@@ -258,7 +335,7 @@
                         </ul>
                     </div>
                     <div class="am-fr">
-                        第<%=pager.page%>页 共<%=pager.count%>条
+                        第<%= pager.page %>页 共<%= pager.count %>条
                     </div>
                 </div>
 
@@ -305,7 +382,8 @@
 <!-- modal viewport iframe -->
 <div class="am-modal am-modal-prompt" tabindex="-1" id="modal-viewport">
     <div class="am-modal-dialog">
-        <div class="am-modal-hd"><a href="javascript:;" class="am-close am-close-spin" data-am-modal-close="">×</a></div>
+        <div class="am-modal-hd"><a href="javascript:;" class="am-close am-close-spin" data-am-modal-close="">×</a>
+        </div>
         <div class="am-modal-bd"></div>
     </div>
 </div>
@@ -344,6 +422,25 @@
 </div>
 <!-- modal etsy -->
 
+<!-- modal changePrice -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-change-price">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">输入更改的价格</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-change-price"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal changePrice -->
+
 <!-- modal loading -->
 <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="modal-loading">
     <div class="am-modal-dialog">
@@ -359,18 +456,18 @@
 <% include ../partials/js %>
 
 <script type="text/javascript">
-    
+
     $(function () {
         var product = require('product');
         product.indexFun();
     });
-    
+
     //iframe window关闭
     function closeViewportModal() {
         $('#modal-viewport').modal('close');
         location.reload();
     }
-    
+
 </script>
 </body>
 </html>

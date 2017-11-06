@@ -303,7 +303,62 @@ module.exports = {
             });
             
         }
-        
+
+        {// 改价
+
+            let modal = $('#modal-change-price');
+            let input = $('.input-change-price');
+            let modalLoading = $('#modal-loading');
+
+            $('.link-change-price').click(function() {
+                let productId = $(this).data('product-id');
+                modalLoading.find('.am-modal-hd').text('正在修改...');
+                // console.info(productId);
+                modal.modal({
+                    relatedTarget: this,
+                    onConfirm: function(e) {
+
+                        if(!$.trim(input.val())) {
+                            alert('请输入正确的价格');
+                            // return;
+                        }else{
+                            $.ajax({
+                                type:'post',
+                                url:'/admin/product/sync-price',
+                                data:{
+                                    'productId':productId,
+                                }
+                            }).then(
+                                result => {
+                                    if(result.code) {
+                                        modalLoading.find('.am-modal-hd').text('修改成功!正在更新...');
+                                        setTimeout(()=> {
+                                            location.reload();
+                                        },1000);
+                                    } else {
+                                        modalLoading.find('.am-modal-hd').text('修改失败,请重试!');
+                                        setTimeout(()=> {
+                                            modalLoading.modal('close');
+                                        },1000);
+                                    }
+                                },
+                                err => {
+                                    console.info(err);
+                                    modalLoading.find('.am-modal-hd').text('修改失败,请重试!');
+                                    setTimeout(()=> {
+                                        modalLoading.modal('close');
+                                    },1000);
+                                }
+                            );
+                            modalLoading.modal();
+                        }
+                    }
+                });
+                input[0].focus();
+                return false;
+            });
+
+        }
         
         //copy title
         {
