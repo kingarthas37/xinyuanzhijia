@@ -326,6 +326,7 @@ module.exports = {
                                 url:'/admin/product/sync-price',
                                 data:{
                                     'productId':productId,
+                                    'price':$.trim(input.val())
                                 }
                             }).then(
                                 result => {
