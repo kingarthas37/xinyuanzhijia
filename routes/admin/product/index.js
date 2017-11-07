@@ -504,21 +504,20 @@ router.post('/set-update-stock-date/:productId',(req,res)=> {
 router.post('/sync-price',(req,res)=> {
     let productId = parseInt(req.body['productId']);
     let price = parseFloat(req.body['price']);
+    let category2Id = parseInt(req.body['category2Id']);
     let success = [];
-    pro.getProductById(productId).then(result => {
-        pro.getProductsByCategoryId(result.attributes.category2).then(items => {
-            async.forEach(items, function(item, callback){
-                item.set('price', price);
-                item.save().then(()=> {
-                    success.push(item.attributes.productId);
-                    callback();
-                });
-            }, function(err){
-                if(err) {
-                    console.log('product sync price:' + err);
-                }
-                res.send({success:success, count:success.length});
+    pro.getProductsByCategoryId(category2Id).then(items => {
+        async.forEach(items, function(item, callback){
+            item.set('price', price);
+            item.save().then(()=> {
+                success.push(item.attributes.productId);
+                callback();
             });
+        }, function(err){
+            if(err) {
+                console.log('product sync price:' + err);
+            }
+            res.send({success:success, count:success.length});
         });
     });
 });
