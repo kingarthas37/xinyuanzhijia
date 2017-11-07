@@ -120,7 +120,8 @@
                     </thead>
                     <tbody>
                     <% for(var i = 0; i < product.length; i++) { %>
-                    <tr data-product-id="<%= product[i].get('productId') %>">
+                    <tr data-product-id="<%= product[i].get('productId') %>"
+                    >
                         <td class="product-title">
                             <% if(product[i].mainImage) { %>
                             <a target="_blank" href="<%= product[i].mainImage %>"
@@ -282,6 +283,7 @@
                                 <ul class="am-dropdown-content">
                                     <li><a href="/admin/product/copy/<%= product[i].get('productId') %>">复制</a></li>
                                     <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
+                                           data-category2-id="<%= product[i].get('category2')[i] %>"
                                            class="link-change-price">批量改价</a></li>
                                     <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
                                            class="link-copy-etsy">生成Etsy</a></li>

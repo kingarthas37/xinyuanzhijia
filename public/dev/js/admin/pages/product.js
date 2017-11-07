@@ -310,7 +310,11 @@ module.exports = {
             let modalLoading = $('#modal-loading');
 
             $('.link-change-price').click(function() {
-                let productId = $(this).data('product-id');
+                let productId = $(this).data('category2-id');
+                $(this).data('name','wang');
+                alert($(this).data('name'));
+                $(this).attr('data-product-id');
+                let category2id=$(this).data('category2-id');//category2-id=<%= product[i].get('category2')[j] %>
                 modalLoading.find('.am-modal-hd').text('正在修改...');
                 // console.info(productId);
                 modal.modal({
@@ -326,7 +330,8 @@ module.exports = {
                                 url:'/admin/product/sync-price',
                                 data:{
                                     'productId':productId,
-                                    'price':$.trim(input.val())
+                                    'price':$.trim(input.val()),
+                                    'category2Id':category2id,
                                 }
                             }).then(
                                 result => {
