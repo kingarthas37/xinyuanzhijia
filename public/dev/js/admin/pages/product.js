@@ -310,11 +310,8 @@ module.exports = {
             let modalLoading = $('#modal-loading');
 
             $('.link-change-price').click(function() {
-                let productId = $(this).data('category2-id');
-                $(this).data('name','wang');
-                alert($(this).data('name'));
-                $(this).attr('data-product-id');
-                let category2id=$(this).data('category2-id');//category2-id=<%= product[i].get('category2')[j] %>
+                let productId = $(this).data('product-id');
+                let category2Id=$(this).data('category2-id');
                 modalLoading.find('.am-modal-hd').text('正在修改...');
                 // console.info(productId);
                 modal.modal({
@@ -331,7 +328,7 @@ module.exports = {
                                 data:{
                                     'productId':productId,
                                     'price':$.trim(input.val()),
-                                    'category2Id':category2id,
+                                    'category2Id':category2Id
                                 }
                             }).then(
                                 result => {
