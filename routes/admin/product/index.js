@@ -263,7 +263,7 @@ router.post('/product-copy', (req, res) => {
             values[0] = result.attributes[fields];
         }
         pro.getProductsByCategoryId(result.attributes.category2).then(items => {
-            async.forEach(items, function(item, callback){
+            async.forEachLimit(items, 5, function(item, callback){
                 if (item.attributes.productId != productId) {
                     if(isArray(fields)) {
                         for (var i = 0; i < fields.length; i++) {
