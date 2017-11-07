@@ -506,7 +506,7 @@ router.post('/sync-price',(req,res)=> {
     let price = parseFloat(req.body['price']);
     let category2Id = parseInt(req.body['category2Id']);
     let success = [];
-    pro.getProductsByCategoryId(category2Id).then(items => {
+    pro.getProductsByCategoryId([category2Id]).then(items => {
         async.forEach(items, function(item, callback){
             item.set('price', price);
             item.save().then(()=> {
