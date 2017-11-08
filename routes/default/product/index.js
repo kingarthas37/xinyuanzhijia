@@ -118,7 +118,7 @@ router.get('/', (req, res) => {
             if (category1Id) {
                 productCategory2.getProductCategorys({category1Id}).then(result => {
                     data = extend(data, {'category2': result});
-                    console.log('category2==' + JSON.stringify(data));//没打印,不要
+                    //console.log('category2==' + JSON.stringify(data));//没打印,不要
 
                     resolve();
                 });

@@ -4,6 +4,8 @@ let product = require('../../../lib/models/product').createNew();
 let productClick = require('../../../lib/models/product-click').createNew();
 let productWish = require('../../../lib/models/product-wish').createNew();
 let productGroup = require('../../../lib/models/product-group').createNew();
+let productCategory1 = require('../../../lib/models/product-category1').createNew();
+let productCategory2 = require('../../../lib/models/product-category2').createNew();
 let request = product.getRequest();
 let config = product.getConfig();
 let router = product.getRouter();
@@ -29,7 +31,14 @@ router.get('/:id', (req, res) => {
                 productClick.setProductClick(memberId, config.productType.normal,result.get('productId'));
                 data = extend(data, {'item': result.attributes});
                 data.item.createdAt = result.createdAt;
-                resolve();
+                productCategory1.getProductCategoryById(result.get('category1')[0]).then(cat1 => {
+                    data = extend(data, {'category1': cat1.attributes});
+                    var _res = result;
+                    productCategory2.getProductCategoryById(_res.get('category2')[0]).then(cat2 => {
+                        data = extend(data, {'category2': cat2.attributes});
+                        resolve();
+                    });
+                });
             });
         }),
         new AV.Promise(resolve => {
