@@ -263,7 +263,7 @@ router.post('/product-copy', (req, res) => {
             values[0] = result.attributes[fields];
         }
         pro.getProductsByCategoryId(result.attributes.category2).then(items => {
-            async.forEach(items, function(item, callback){
+            async.forEachLimit(items, 5, function(item, callback){
                 if (item.attributes.productId != productId) {
                     if(isArray(fields)) {
                         for (var i = 0; i < fields.length; i++) {
@@ -506,8 +506,8 @@ router.post('/sync-price',(req,res)=> {
     let price = parseFloat(req.body['price']);
     let category2Id = parseInt(req.body['category2Id']);
     let success = [];
-    pro.getProductsByCategoryId(category2Id).then(items => {
-        async.forEach(items, function(item, callback){
+    pro.getProductsByCategoryId([category2Id]).then(items => {
+        async.forEachLimit(items,5, function(item, callback){
             item.set('price', price);
             item.save().then(()=> {
                 success.push(item.attributes.productId);
