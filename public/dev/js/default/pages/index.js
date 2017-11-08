@@ -3,9 +3,7 @@
 module.exports = {
     
     indexFun() {    
-        
-       
-        
+
     }
 
 };

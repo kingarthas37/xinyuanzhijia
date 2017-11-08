@@ -5,11 +5,18 @@ let Bloodhound = require('bloodhound');
 
 module.exports = {
     init() {
-        
+
+        // let taobaoInput=$('#taobaoInput');
+        // let shoplinkspan=$('#shop-link-span');
+
         //如果是iframe modal,则执行parent window关闭
         //如果返回的product-proerty的Location有viewport=window且没有类似#settings,则说明是返回关闭iframe
         if(location.search.indexOf('viewport=window') > -1 && !location.hash && window.parent.closeViewportModal) {
-            window.parent.closeViewportModal();
+
+            // if (taobaoInput.val()){
+            //     globalVar.gLog.log('product-property.js shoplinkspan=='+shoplinkspan);
+            // }
+            window.parent.closeViewportModal(1);
             return;
         }
         

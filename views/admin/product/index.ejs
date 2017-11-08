@@ -226,7 +226,8 @@
                         </td>
 
                         <td class="t-c">
-                            <span class="shop-link" data-product-id="<%= product[i].get('productId') %>">
+                            <span class="shop-link" data-product-id="<%= product[i].get
+                            ('productId') %>">
                                 <% if(product[i].get('shopLink').length) { %>
                                 <% for(var j = 0;j < product[i].get('shopLink').length;j++) { %>
                                 <% if(product[i].get('shopLink')[j]) { %>
@@ -314,6 +315,7 @@
                                             <label><input type="checkbox" name="property"> 产品属性</label>
                                             <label><input type="checkbox" name="instruction"> 产品说明</label>
                                             <label><input type="checkbox" name="use"> 产品使用说明</label>
+                                            <label><input type="checkbox" name="review"> 店主评语</label>
                                             <label><input type="checkbox" name="detailImage"> 产品图片</label>
                                             <div class="t-c">
                                                 <button type="button" class="am-btn am-btn-primary am-btn-sm">复制

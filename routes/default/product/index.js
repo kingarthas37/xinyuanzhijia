@@ -15,7 +15,7 @@ let productCategory2 = require('../../../lib/models/product-category2').createNe
 
 let data = extend(config.data, {
     title: `${config.data.name} - 产品列表`,
-    headerTitle:'产品列表',
+    headerTitle: '产品列表',
     currentPage: 'product',
     pageType: 'product'
 });
@@ -48,38 +48,41 @@ router.get('/', (req, res) => {
     }
     let path = '';
     if (keywords) {
-        path += '&keywords='+keywords;
+        path += '&keywords=' + keywords;
     }
     if (category1Id) {
-        path += '&cat1='+category1Id;
+        path += '&cat1=' + category1Id;
     }
     if (category2Id) {
-        path += '&cat2='+category2Id;
+        path += '&cat2=' + category2Id;
     }
     if (productMethodId) {
-        path += '&method='+productMethodId;
+        path += '&method=' + productMethodId;
     }
     if (stock) {
-        path += '&stock='+stock;
+        path += '&stock=' + stock;
     }
     data = extend(data,
-        {'keywords': keywords,
+        {
+            'keywords': keywords,
             'order': order,
             'stock': stock,
             'category1': null,
             'category2': null,
-            'count':0,
-            'items':null,
-            'cat1':category1Id,
-            'cat2':category2Id,
-            'price':price,
-            'sortTitle' : sortTitle,
+            'count': 0,
+            'items': null,
+            'cat1': category1Id,
+            'cat2': category2Id,
+            'price': price,
+            'sortTitle': sortTitle,
             'category1Name': '产品一级分类',
             'category2Name': '产品二级分类',
             'method': productMethodId,
             'path': path
         });
-    if (keywords) {
+
+    if (keywords) {//一开始进 product 页面时,此 判断没进来
+        // console.log('/Users/Ebates/Desktop/chamWork/H5/xinyuanzhijia/routes/default/product/index.js keywords=='+keywords);
         let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
         let memberId = member ? member.id : null;
         productSearchKeywordsHistory.setKeywordsHistory(keywords).then(result => {
@@ -88,11 +91,26 @@ router.get('/', (req, res) => {
             }
         });
     }
-    let options = {onsale, page, limit, 'search':keywords, category1Id, category2Id, productMethodId, stock, order, price};
+    let options = {
+        onsale,
+        page,
+        limit,
+        'search': keywords,
+        category1Id,
+        category2Id,
+        productMethodId,
+        stock,
+        order,
+        price
+    };
+
     AV.Promise.when(
         new AV.Promise(resolve => {
             productCategory1.getProductCategorys({productMethodId}).then(result => {
-                data = extend(data, {'category1' : result});
+                data = extend(data, {'category1': result});
+
+                // console.log('category1==' + JSON.stringify(data));//打印了,貌似 列表数据需要此 category1 属性
+
                 resolve();
             });
         }),
@@ -100,6 +118,8 @@ router.get('/', (req, res) => {
             if (category1Id) {
                 productCategory2.getProductCategorys({category1Id}).then(result => {
                     data = extend(data, {'category2': result});
+                    console.log('category2==' + JSON.stringify(data));//没打印,不要
+
                     resolve();
                 });
             } else {
@@ -116,18 +136,30 @@ router.get('/', (req, res) => {
                         n.set('isNewSale', (saleDate > new Date()));
                     }
                 });
+
                 data = extend(data, {items: result});
+
+                // console.log('options==' + JSON.stringify(data));//打印了,需要
+
                 resolve();
             });
         }),
         new AV.Promise(resolve => {
             product.getProducts(options, true).then(result => {
                 data = extend(data, {count: result});
+
+                // console.log('getProducts=='+JSON.stringify(data));//打印了,需要
                 resolve();
             });
         })
     ).then(() => {
+
+        // console.log('/Users/Ebates/Desktop/chamWork/H5/xinyuanzhijia/routes/default/product/index.js 开始画 product的跟页面');
+
+        // console.log('最终的data=='+JSON.stringify(data));//打印了
+
         res.render('default/product', data);
+
     });
 
 });
@@ -143,7 +175,18 @@ router.get('/ajax', (req, res) => {
     let productMethodId = req.query.method || null;
     let price = req.query.price || null;
     let onsale = 1;
-    let options = {onsale, page, limit, 'search':keywords, category1Id, category2Id, productMethodId, stock, order, price};
+    let options = {
+        onsale,
+        page,
+        limit,
+        'search': keywords,
+        category1Id,
+        category2Id,
+        productMethodId,
+        stock,
+        order,
+        price
+    };
     let datas = {'items': null};
     AV.Promise.when(
         new AV.Promise(resolve => {
@@ -172,7 +215,12 @@ router.get('/products-id/:productIds', (req, res) => {
     let productIds = req.params.productIds;
     AV.Promise.when(
         new AV.Promise(resolve => {
-            product.getProducts({limit:9, page:1,ids: productIds.toString(), select:'name,mainImage,productId'}).then(items => {
+            product.getProducts({
+                limit: 9,
+                page: 1,
+                ids: productIds.toString(),
+                select: 'name,mainImage,productId'
+            }).then(items => {
                 data = extend(data, {items});
                 resolve();
             });

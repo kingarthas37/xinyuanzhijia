@@ -24,6 +24,8 @@ router.get('/', (req, res) => {
         let member = user.getDecodeByBase64(req.cookies.login);
         data = extend(data, member);
     }
+
+    // console.log('/Users/Ebates/Desktop/chamWork/H5/xinyuanzhijia/routes/default/index/home.js 开始画 首页')
     res.render('default/index/home',data);
 
 });

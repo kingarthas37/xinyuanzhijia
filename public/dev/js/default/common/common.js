@@ -46,7 +46,12 @@ $(function () {
     
     //login
     window.isLogin = !!$.cookie('login');
-    
+
+    //globalVar 只能在 非 node环境的文件 里用
+    window.globalVar={
+        gLog:require('./log'),
+    }
+
     // Avoid `console` errors in browsers that lack a console.
     {
         var method;
