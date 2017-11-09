@@ -9,7 +9,6 @@ module.exports = {
         //如果是iframe modal,则执行parent window关闭
         //如果返回的product-proerty的Location有viewport=window且没有类似#settings,则说明是返回关闭iframe
         if(location.search.indexOf('viewport=window') > -1 && !location.hash && window.parent.closeViewportModal) {
-
             window.parent.closeViewportModal();
             return;
         }
