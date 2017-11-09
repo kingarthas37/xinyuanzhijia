@@ -28,6 +28,10 @@ $(function () {
         }
     }
 
+    // //globalVar 只能在 非 node环境的文件 里用
+    // window.globalVar={
+    //     gLog:require('./log'),
+    // }
 
     //jquery validate message中文
     {

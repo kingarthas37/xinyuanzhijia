@@ -458,17 +458,23 @@
 <% include ../partials/footer %>
 <% include ../partials/js %>
 
-<script type="text/javascript">
+<script type="text/javascript">closeViewportModal
 
     $(function () {
         var product = require('product');
         product.indexFun();
     });
 
+    window.gReloadPageVar = true;
+
     //iframe window关闭
     function closeViewportModal() {
         $('#modal-viewport').modal('close');
-        location.reload();
+        if(window.gReloadPageVar) {
+            location.reload();
+        } else {
+            window.gReloadPageVar = true;
+        }
     }
 
 </script>
