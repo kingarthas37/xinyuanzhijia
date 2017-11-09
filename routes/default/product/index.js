@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
     let order = req.query.order || 'onsaleDate';
     let category1Id = req.query.cat1 || '';
     let category2Id = req.query.cat2 || '';
-    let productMethodId = req.query.method || '';
+    let productMethodId = req.query.method || 3;
     let price = req.query.price || '';
     let stock = req.query.stock || '';
     let onsale = 1;
@@ -118,7 +118,7 @@ router.get('/', (req, res) => {
             if (category1Id) {
                 productCategory2.getProductCategorys({category1Id}).then(result => {
                     data = extend(data, {'category2': result});
-                    console.log('category2==' + JSON.stringify(data));//没打印,不要
+                    //console.log('category2==' + JSON.stringify(data));//没打印,不要
 
                     resolve();
                 });
