@@ -45,7 +45,7 @@
 </div>
 
 <div class="crumb">
-    <a href="/product?cat1=<%=category1.category1Id%>"><%=category1.name%></a> <i class="am-icon-angle-right"></i> <a href="/product?cat1=<%=category1.category1Id%>&cat2=<%=category2.category2Id%>"><%=category2.name%></a>
+    <a href="/product?method=<%=item.productMethod[0]%>&cat1=<%=category1.category1Id%>"><%=category1.name%></a> <i class="am-icon-angle-right"></i> <a href="/product?method=<%=item.productMethod[0]%>&cat1=<%=category1.category1Id%>&cat2=<%=category2.category2Id%>"><%=category2.name%></a>
 </div>
 
 <h1><%- item.name %> <%if(item.isHot){%><sup class="hot"></sup><%}%></h1>
