@@ -436,20 +436,22 @@ router.post('/set-short-stock/:productId',(req,res)=> {
 router.get('/get-sales', (req, res) => {
     let productIds = req.query['product-ids'];
     let nowDate = new Date();
-    let startDate = new Date(nowDate.setDate(nowDate.getDate() - 90));
-    let thrityDate = new Date(nowDate.setDate(nowDate.getDate() - 30));
+    let thirtyDate = new Date(nowDate.setDate(nowDate.getDate() - 30));
+    let startDate = new Date(nowDate.setDate(nowDate.getDate() - 60));
     var items = [];
     async.forEachLimit(productIds, 5, function(productId, callback) {
         orderTrack.getOrderByProductIds([productId], startDate).then(result => {
             var data = {'thirty':0,'ninety':0,'productId':productId};
             if (result) {
+                var ss = 0;
+                var aa = 0;
                 result.forEach(n => {
                     var pid = n.get('productId');
                     var shippingCounts = n.get('shippingCount');
                     for (var k = 0; k < pid.length; k++) {
                         if (pid[k] == productId) {
                             data.ninety += shippingCounts[k];
-                            if (n.createdAt >=  thrityDate) {
+                            if (n.createdAt >=  thirtyDate) {
                                 data.thirty += shippingCounts[k];
                             }
                         }
