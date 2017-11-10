@@ -107,13 +107,17 @@ module.exports = {
                 }).then(data => {
                     let rows = $('table tbody tr');
                     $.each(data.data,(i,n)=> {
-                        rows.eq(i).find('.title').attr('data-popover-thrity', n.thrity);
-                        rows.eq(i).find('.title').attr('data-popover-ninety', n.ninety);
+                        rows.each(function () {
+                            if (n.productId == $(this).attr('data-product-id')) {
+                                $(this).find('.title').attr('data-popover-thirty', n.thirty);
+                                $(this).find('.title').attr('data-popover-ninety', n.ninety);
+                            }
+                        });
                     });
                     rows.each(function() {
                         let title = $(this).find('.title');
                         title.popover({
-                            content:`原价: ${title.data('popover-source-price')} 定价: ${title.data('popover-price')} <br/>30天销量: ${title.data('popover-thrity')} <br/>90天销量: ${title.data('popover-ninety')} <br/>总销量: ${title.data('popover-sales')}`,
+                            content:`原价: ${title.data('popover-source-price')} 定价: ${title.data('popover-price')} <br/>30天销量: ${title.data('popover-thirty')} <br/>90天销量: ${title.data('popover-ninety')} <br/>总销量: ${title.data('popover-sales')}`,
                             trigger:'hover'
                         });
                     });
