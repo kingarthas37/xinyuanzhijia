@@ -439,16 +439,15 @@ router.get('/get-sales', (req, res) => {
     let startDate = new Date(nowDate.setDate(nowDate.getDate() - 90));
     let thrityDate = new Date(nowDate.setDate(nowDate.getDate() - 30));
     var items = [];
-
-    orderTrack.getOrderByProductIds(productIds, startDate).then(result => {
-        if (result) {
-            for (var i = 0; i < productIds.length; i++) {
-                var data = {'thrity':0,'ninety':0,'productId':productIds[i]};
+    async.forEachLimit(productIds, 5, function(productId, callback) {
+        orderTrack.getOrderByProductIds([productId], startDate).then(result => {
+            var data = {'thrity':0,'ninety':0,'productId':productId};
+            if (result) {
                 result.forEach(n => {
-                    var productId = n.get('productId');
+                    var pid = n.get('productId');
                     var shippingCounts = n.get('shippingCount');
-                    for (var k = 0; k < productId.length; k++) {
-                        if (productId[k] == productIds[i]) {
+                    for (var k = 0; k < pid.length; k++) {
+                        if (pid[k] == productId) {
                             data.ninety += shippingCounts[k];
                             if (n.createdAt >=  thrityDate) {
                                 data.thrity += shippingCounts[k];
@@ -456,11 +455,15 @@ router.get('/get-sales', (req, res) => {
                         }
                     }
                 });
-                items.push(data);
             }
+            items.push(data);
+            callback();
+        });
+    }, function(err){
+        if(err) {
+            console.log('product get sales:' + err);
         }
         res.send({data:items});
-
     });
 });
 
