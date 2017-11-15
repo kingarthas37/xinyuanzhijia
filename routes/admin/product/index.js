@@ -51,6 +51,7 @@ router.get('/', (req, res) => {
     let isShortStock = req.query['is-short-stock'] ? (req.query['is-short-stock'] == 'true' ? true : '') : '';
     let isUpdateStock = req.query['is-update-stock'] ? req.query['is-update-stock'] : '';
     let updateStockDate = req.query['update-stock-date'] ? req.query['update-stock-date'] : '';
+    let adminStock = req.query['stock'] || '';
     data = extend(data, {
         search,
         flash: {success: req.flash('success'), error: req.flash('error')},
@@ -66,10 +67,11 @@ router.get('/', (req, res) => {
         limit,
         isShortStock,
         isUpdateStock,
-        updateStockDate
+        updateStockDate,
+        adminStock
     });
 
-    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate};
+    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock};
     AV.Promise.when(
         //获取count
         new AV.Promise(resolve => {
