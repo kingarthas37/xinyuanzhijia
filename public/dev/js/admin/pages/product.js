@@ -10,6 +10,7 @@ module.exports = {
         {
             let category1 = $('.select-category-1');
             let category2 = $('.select-category-2');
+            let order = $('.select-order');
             let productMethod = $('.select-product-method');
             let onsale = $('input[name=onsale]');
             
@@ -90,6 +91,19 @@ module.exports = {
                     'is-short-stock':isShortStock,
                     'update-stock-date':updateStockDate,
                     'is-update-stock':isUpdateStock
+                });
+            });
+
+            order.change(function() {
+                return location.href = utils.urlParamsComponent('/admin/product',{
+                    'product-method-id':productMethodVal,
+                    'category1-id':category1Val,
+                    'category2-id':category2Val,
+                    'onsale':onsaleVal,
+                    'is-short-stock':isShortStock,
+                    'update-stock-date':updateStockDate,
+                    'is-update-stock':isUpdateStock,
+                    'order': this.value
                 });
             });
 

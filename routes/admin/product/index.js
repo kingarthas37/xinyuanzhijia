@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
 
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
-    let order = req.query.order || 'createdAt';
+    let order = req.query.order;
     let onsale = req.query.onsale ? parseInt(req.query.onsale) : 0;
 
     let productMethodId = req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 0;
@@ -52,6 +52,11 @@ router.get('/', (req, res) => {
     let isUpdateStock = req.query['is-update-stock'] ? req.query['is-update-stock'] : '';
     let updateStockDate = req.query['update-stock-date'] ? req.query['update-stock-date'] : '';
     let adminStock = req.query['stock'] || '';
+    if ((isShortStock || updateStockDate) && !order) {
+        order = 'updateAt';
+    } else if (!order) {
+        order = 'createAt';
+    }
     data = extend(data, {
         search,
         flash: {success: req.flash('success'), error: req.flash('error')},
@@ -68,7 +73,8 @@ router.get('/', (req, res) => {
         isShortStock,
         isUpdateStock,
         updateStockDate,
-        adminStock
+        adminStock,
+        order
     });
 
     let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock};
@@ -82,14 +88,17 @@ router.get('/', (req, res) => {
                         page, limit, count,
                         url: '/admin/product',
                         serialize: {
-                            page,search,
+                            page,
+                            search,
                             'product-method-id':productMethodId,
                             'category1-id':category1Id,
                             'category2-id':category2Id,
                             onsale,
                             'is-short-stock':isShortStock,
                             'is-update-stock':isUpdateStock,
-                            'update-stock-date':updateStockDate
+                            'update-stock-date':updateStockDate,
+                            'stock':adminStock,
+                            order
                         }
                     })
                 });
