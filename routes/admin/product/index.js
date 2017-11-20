@@ -52,11 +52,12 @@ router.get('/', (req, res) => {
     let isUpdateStock = req.query['is-update-stock'] ? req.query['is-update-stock'] : '';
     let updateStockDate = req.query['update-stock-date'] ? req.query['update-stock-date'] : '';
     let adminStock = req.query['stock'] || '';
-    if ((isShortStock || updateStockDate) && !order) {
-        order = 'updateAt';
+    if ((isShortStock || updateStockDate || adminStock || isUpdateStock) && !order) {
+        order = 'updatedAt';
     } else if (!order) {
-        order = 'createAt';
+        order = 'createdAt';
     }
+    console.log(order);
     data = extend(data, {
         search,
         flash: {success: req.flash('success'), error: req.flash('error')},
