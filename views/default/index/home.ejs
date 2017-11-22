@@ -9,16 +9,54 @@
     <% include ../partials/tongji %>
 </head>
 
-<body class="home-page">
+<body class="en homepage">
+<!--<img src="http://ac-JoaBcRTt.clouddn.com/221c734acf2eb97b8dd9.png">-->
+<!--<h1>Website is currently under construction,Coming soon!</h1>-->
+<!--<footer>-->
+    <!--<p><strong>51WISH.CN</strong></p>-->
+    <!--<p>Copyright © 2016-2017 51wish.cn All Rights Reserved. </p>-->
+    <!--<p><a class="link" href="/index">首页</a></p>-->
+<!--</footer>-->
+<div data-target="home" class="home">
+    <h1><a href="javascript:;" class="link" data-link="service">欢迎来到心愿之家</a></h1>
+    <div id="home-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                FOR <span>YOU</span>, FOR <span>US</span> !
+            </div>
+        </div>
+    </div>
+    <span class="arrow"></span>
+</div>
 
-<img src="http://ac-JoaBcRTt.clouddn.com/221c734acf2eb97b8dd9.png">
-<h1>Website is currently under construction,Coming soon!</h1>
+<div class="menu clearfix">
+    <a href="javascript:;"  data-link="home" class="logo link">LOGO</a>
+    <!--<div class="country">-->
+        <!--<a href="index-ch.html" class="chinese">中文</a>-->
+    <!--</div>-->
+    <ul>
+        <li> <a class="active link" data-link="home" href="javascript:;">Home</a> </li>
+        <li> <a class="link" data-link="aboutus" href="javascript:;">About Us</a> </li>
+        <!--<li> <a class="link" data-link="education" href="javascript:;">Education Service</a> </li>-->
+        <!--<li> <a class="link" data-link="enterprise" href="javascript:;">Enterprise Service</a> </li>-->
+        <!--<li> <a class="link" data-link="immigration" href="javascript:;">Immigration Consultancy</a> </li>-->
+        <!--<li> <a class="link" data-link="capital" href="javascript:;">Capital Operation</a> </li>-->
+        <!--<li> <a class="link" data-link="contact" href="javascript:;">Contact Us</a> </li>-->
+    </ul>
+</div>
 
-<footer>
-    <p><strong>51WISH.CN</strong></p>
-    <p>Copyright © 2016-2017 51wish.cn All Rights Reserved. </p>
-    <p><a class="link" href="/index">首页</a></p>
-</footer>
+<div data-target="aboutus" class="main-content content1">
+    <h2><span>关于我们</span></h2>
+    <p class="context">
+        HOT Hunter, was built up in 2002 in the State of Texas, USA. HOT Hunter has entered into the Chinese market in 2008 and the Shanghai office was set up in 2011. We have established long-lasting relationship with many Chinese consulting companies and related partners all over China and Asia.
+        <br>
+        HOT Hunter has setup a branch in Sydney, Australia in 2015; we cooperate with the Education section of the Australian Consulate General in People's Republic of China and the Training and Education Bureau of NSW. We focus on international education area, our target is to set up a solid platform that covers education service, enterprise service, immigration consultancy and investment management services.
+    </p>
+</div>
+
+<div class="footer">
+    © 2017 All Rights Reserved. 心愿之家
+</div>
 
 <% include ../partials/js %>
 <script>
@@ -28,4 +66,5 @@
     });
 </script>
 </body>
+
 </html>
