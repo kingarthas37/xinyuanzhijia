@@ -69,19 +69,19 @@ module.exports = {
                 stock.find(`option[value=${stockValue - 1}]`)[0].selected = true;
                 sales.val(salesValue + 1);
             }
-            stock.trigger('change',true);
+            stock.trigger('change');
         });
 
         stockPlus.click(function() {
             let stockValue = parseInt(stock.val());
             stock.find(`option[value=${stockValue + 1}]`)[0].selected = true;
-            stock.trigger('change',true);
+            stock.trigger('change');
         });
         
         reset.click(function() {
             stock.find(`option[value=${stock.data('stock')}]`)[0].selected = true;
             sales.val(sales.data('sales'));
-            stock.trigger('change',true);
+            stock.trigger('change');
         });
         
         

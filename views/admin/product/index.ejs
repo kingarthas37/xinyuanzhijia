@@ -51,7 +51,7 @@
                         </form>
                     </div>
 
-                    <div class="am-u-sm-12 am-u-md-3">
+                    <div class="am-u-sm-12 am-u-md-2">
                         <div class="am-form-group">
                             <select class="select-product-method">
                                 <option value="">产品类型</option>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    <div class="am-u-sm-12 am-u-md-3">
+                    <div class="am-u-sm-12 am-u-md-2">
                         <div class="am-form-group">
                             <select class="select-category-1">
                                 <option value="">商品一级分类</option>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
 
-                    <div class="am-u-sm-12 am-u-md-3">
+                    <div class="am-u-sm-12 am-u-md-2">
                         <div class="am-form-group">
                             <select class="select-category-2">
                                 <option value="">商品二级分类</option>
@@ -93,6 +93,15 @@
                                         value="<%= category2[i].get('category2Id') %>"> <%= category2[i].get('name'); %></option>
                                 <% }
                                 %>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-3">
+                        <div class="am-form-group">
+                            <select class="select-order">
+                                <option value="createdAt">排序(默认)</option>
+                                <option value="updatedAt" <% if(order == 'updatedAt') { %>selected="selected"<% } %>>更新时间</option>
                             </select>
                         </div>
                     </div>
