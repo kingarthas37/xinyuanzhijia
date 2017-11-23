@@ -57,7 +57,6 @@ router.get('/', (req, res) => {
     } else if (!order) {
         order = 'createdAt';
     }
-    console.log(order);
     data = extend(data, {
         search,
         flash: {success: req.flash('success'), error: req.flash('error')},

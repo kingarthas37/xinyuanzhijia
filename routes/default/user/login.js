@@ -17,7 +17,7 @@ let data = extend(config.data, {
 
 router.get('/', (req,res) => {
     if(req.cookies.login) {
-        res.redirect('/');
+        res.redirect('/product');
     }
     let referer = req.query.return ? req.query.return : '/';
     let wechatLoginUrl = config.wechatApi.authorize;
