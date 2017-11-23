@@ -19,7 +19,7 @@ router.get('/', (req,res) => {
     if(req.cookies.login) {
         res.redirect('/product');
     }
-    let referer = req.query.return ? req.query.return : '/';
+    let referer = req.query.return ? req.query.return : '/product';
     let wechatLoginUrl = config.wechatApi.authorize;
     let redirectUrl = config.website.domain + '/user/login/wechat-login';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
