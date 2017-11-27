@@ -14,6 +14,7 @@ module.exports = {
     '/user/userinfo':require('./default/user/userinfo'),
     '/user/mobile':require('./default/user/mobile'),
     '/user/wish':require('./default/user/wish'),
+    '/user/footmark':require('./default/user/footmark'),
     
     '/search':require('./default/search/index'),
     

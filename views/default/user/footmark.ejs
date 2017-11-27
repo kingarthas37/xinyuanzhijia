@@ -14,12 +14,13 @@
 
 <div class="am-container">
 
-<ui>
-    <a href="/user/userinfo"><li>我的信息</li></a>
-    <a href=""><li>我的购物车</li></a>
-    <a href="/user/wish"><li>我的收藏</li></a>
-    <a href="/user/footmark"><li>我的足迹</li></a>
-</ui>
+    <% for (var i = 0; i < items.length; i++) { %>
+    <div>
+        <%= items[i].get('productId')%>
+        <%= items[i].get('name')%>
+        <%= items[i].get('createdAt')%>
+    </div>
+    <% } %>
 
 </div>
 

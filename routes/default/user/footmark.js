@@ -1,7 +1,7 @@
 'use strict';
 
 let user = require('../../../lib/models/common-member').createNew();
-let productWish = require('../../../lib/models/product-wish').createNew();
+let productClick = require('../../../lib/models/product-click').createNew();
 let product = require('../../../lib/models/product').createNew();
 let config = user.getConfig();
 let router = user.getRouter();
@@ -13,57 +13,33 @@ let extend = require('xtend');
 require('../../../lib/utils');
 
 let data = extend(config.data, {
-    title:`${config.data.name}我的收藏`,
-    headerTitle:'我的收藏',
-    currentPage: 'user-wish'
+    title:`${config.data.name}我的足迹`,
+    headerTitle:'我的足迹',
+    currentPage: 'user-footmark'
 });
 
 router.get('/', (req,res) => {
     let sessionData = req.cookies.login;
     user.isWebUserLogin(req,res);
     let member = user.getDecodeByBase64(sessionData);
-    let page = req.query.page ? parseInt(req.query.page) : 1;
-    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
-    let order = 'createdAt';
-    productWish.getWishByCommonMemberId({'commonMemberId':member.id, page, limit, order}).then(result => {
+    let limit = 50;
+    productClick.getProductClickByMemberId(member.id, limit).then(result => {
         let items = [];
-        async.forEachLimit(result.items, 5, function (res, callback) {
+        async.forEachLimit(result, 5, function (res, callback) {
             product.getProductById(res.get('productId')).then(value => {
+                value.createdAt = res.get('createdAt');
                 items.push(value);
                 callback();
             });
         }, function(err){
             if(err) {
-                console.log('user wish:' + err);
+                console.log('user foot mark:' + err);
             }
-            data = extend(data, {'count':result.count, items});
-            res.render('default/user/wish', data);
+            data = extend(data, {items});
+            res.render('default/user/footmark', data);
         });
     });
 
-});
-
-router.get('/ajax', (req,res) => {
-    let sessionData = req.cookies.login;
-    user.isWebUserLogin(req,res);
-    let member = user.getDecodeByBase64(sessionData);
-    let page = req.query.page ? parseInt(req.query.page) : 1;
-    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
-    let order = 'createdAt';
-    productWish.getWishByCommonMemberId({'commonMemberId':member.id, page, limit, order}).then(result => {
-        let items = [];
-        async.forEachLimit(result.items, 5, function (res, callback) {
-            product.getProductById(res.get('productId')).then(value => {
-                items.push(value);
-                callback();
-            });
-        }, function(err){
-            if(err) {
-                console.log('product sync price:' + err);
-            }
-            res.send({items});
-        });
-    });
 });
 
 router.get('/add/:productId', (req,res) => {

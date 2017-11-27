@@ -16,10 +16,10 @@ let data = extend(config.data, {
 
 
 router.get('/', (req,res) => {
-    if(req.cookies.login) {
-        res.redirect('/');
+    if(!req.cookies.login) {
+        res.redirect('/user/login');
     }
-    res.render('default/user/index');
+    res.render('default/user/index', data);
 });
 
 module.exports = router;
