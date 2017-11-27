@@ -14,6 +14,16 @@
   white-space: nowrap;
   text-overflow: ellipsis; }
 
+/* amazeui */
+.am-container .am-form input[type=text]:focus {
+  border-color: #6071d5; }
+
+.am-container .am-form .am-form-icon i {
+  color: #6071d5; }
+
+.am-container .am-list > li {
+  box-shadow: none; }
+
 a {
   color: #6071d5; }
 
@@ -170,9 +180,6 @@ p.normal {
   .small-screen-hide {
     display: none; } }
 
-.am-form input[type=text]:focus {
-  border-color: #6071d5; }
-
 header {
   background: #fff;
   height: 50px;
@@ -265,6 +272,8 @@ header {
         border: none; }
       header.sub .menu .am-dropdown .am-dropdown-content a {
         width: auto; }
+  header .header-menu {
+    display: none; }
 
 footer {
   padding: 15px 0 5px 0;
@@ -278,9 +287,6 @@ footer {
       color: #999; }
     footer p .link {
       color: #fff; }
-
-.am-form .am-form-icon i {
-  color: #6071d5; }
 
 #search-box .am-offcanvas-bar {
   width: auto;
@@ -1635,7 +1641,6 @@ a.pswp__share--download:hover {
 .login-page .am-form {
   padding-top: 20px;
   padding-bottom: 20px;
-  width: 90%;
   margin: auto; }
   .login-page .am-form p {
     margin: 0 0 20px 0; }
@@ -2398,5 +2403,17 @@ body.homepage {
   body.homepage .popover li {
     margin-bottom: 5px;
     font-size: 13px; }
+
+.user-page .am-container {
+  width: 90%; }
+
+.user-page .header-menu-user {
+  display: block; }
+
+.user-index-page .am-container {
+  padding-top: 20px; }
+
+.user-index-page .admin-list li a {
+  padding-left: 0; }
 
 /*# sourceMappingURL=51wish.default.css.map */

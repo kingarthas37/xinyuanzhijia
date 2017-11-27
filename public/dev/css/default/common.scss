@@ -1,3 +1,25 @@
+/* amazeui */
+.am-container {
+
+    .am-form {
+        input[type=text]:focus {
+            border-color:$colorMain;
+        }
+
+        .am-form-icon {
+            i {
+                color: $colorMain;
+            }
+        }
+    }
+
+    .am-list > li {
+        box-shadow: none;
+    }
+    
+}
+
+
 a {
     color: $colorMain;
 }
@@ -208,10 +230,3 @@ p.normal {
         display: none;
     }
 }
-
-.am-form {
-    input[type=text]:focus {
-        border-color:$colorMain;
-    }
-}
-

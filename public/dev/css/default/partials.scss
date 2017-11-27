@@ -125,7 +125,11 @@ header {
             }
         }
     }
-
+    
+    .header-menu {
+        display: none;
+    }
+    
 }
 
 footer {
@@ -145,13 +149,7 @@ footer {
     }
 }
 
-.am-form {
-    .am-form-icon {
-        i {
-            color: $colorMain;
-        }
-    }
-}
+
 
 //搜索界面
 #search-box {
@@ -658,3 +656,4 @@ span.hot {
     right:0;
     z-index: 999;
 }
+
