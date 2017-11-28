@@ -101,8 +101,6 @@ router.get('/wechat-login', (req, res) => {
                 }
             };
             request(option, function(err, response, body) {
-                console.log(openid);
-                console.log(accessToken);
                 user.singInWithWechat(openid, accessToken, {'nickname': body.nickname, 'sex': body.sex}).then(result => {
                     if (result.length > 0) {
                         user.setSessionCookie(_req, _res, result[0], config.website.cookieDomain);
