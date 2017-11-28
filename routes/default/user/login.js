@@ -89,11 +89,26 @@ router.get('/wechat-login', (req, res) => {
                 _res.send(body);
                 return;
             }
-            user.singInWithWechat(body.openid, body.access_token).then(result => {
-                if (result.length > 0) {
-                    user.setSessionCookie(_req, _res, result[0], config.website.cookieDomain);
-                    _res.redirect('/');
+            let openid = body.openid;
+            let accessToken = body.access_token;
+            url = config.wechatApi.authorizeUserinfo.replace('{accessToken}', accessToken).replace('{openid}', openid);
+            option = {
+                url: url,
+                json: true,
+                method: 'GET',
+                headers: {
+                    "content-type": "application/json"
                 }
+            };
+            request(option, function(err, response, body) {
+                console.log(body);
+                _res.send(body);
+                /*user.singInWithWechat(openid, accessToken).then(result => {
+                    if (result.length > 0) {
+                        user.setSessionCookie(_req, _res, result[0], config.website.cookieDomain);
+                        _res.redirect('/');
+                    }
+                });*/
             });
         });
     }
