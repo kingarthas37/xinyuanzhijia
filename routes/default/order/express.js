@@ -8,7 +8,8 @@ let extend = orderTrack.getExtend();
 
 let data = extend(config.data, {
     title: `${config.data.name} - 我的快递查询`,
-    currentPage: 'order-index'
+    currentPage: 'order-index',
+    headerTitle:'历史发货订单查询 '
 });
 
 //首页
