@@ -29,6 +29,7 @@ router.get('/', (req,res) => {
         let items = [];
         async.forEachLimit(result.items, 5, function (res, callback) {
             product.getProductById(res.get('productId')).then(value => {
+                value.updatedAt = res.updatedAt;
                 items.push(value);
                 callback();
             });
@@ -54,12 +55,13 @@ router.get('/ajax', (req,res) => {
         let items = [];
         async.forEachLimit(result.items, 5, function (res, callback) {
             product.getProductById(res.get('productId')).then(value => {
+                value.updatedAt = res.updatedAt;
                 items.push(value);
                 callback();
             });
         }, function(err){
             if(err) {
-                console.log('product sync price:' + err);
+                console.log('user wish:' + err);
             }
             res.send({items});
         });
