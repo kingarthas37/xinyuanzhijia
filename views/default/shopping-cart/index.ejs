@@ -1,5 +1,26 @@
-<form action="/shopping-cart/add" method="post">
-    商品id<input type="text" name="pid" />
-    数量<input type="text" name="count" />
-    <button style="width: 60px; height: 30px" type="submit"> 提交</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <meta name="keywords" content="" >
+    <meta name="description" content="" >
+    <% include ../partials/css %>
+    <% include ../partials/tongji %>
+</head>
+<body class="user-page user-index-page">
+
+<% include ../partials/header-sub %>
+
+<div class="am-container">
+    <% for(var i=0; i<items.length; i++) { %>
+        <%= items[i].get('productId') %>
+        <%= items[i].get('name')%>
+        <%= items[i].get('count') %>
+    <% } %>
+</div>
+
+<% include ../partials/js %>
+
+</body>
+</html>

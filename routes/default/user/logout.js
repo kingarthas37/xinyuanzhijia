@@ -17,8 +17,7 @@ let data = extend(config.data, {
 router.get('/', (req, res) => {
     res.cookie('login', false, {maxAge: -1000});
     res.cookie('login', false, {maxAge: -1000, domain: config.website.cookieDomain});
-    console.log(123);
-    res.redirect('/product');
+    res.redirect('/');
 });
 
 module.exports = router;
