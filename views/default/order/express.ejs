@@ -14,6 +14,7 @@
 
     <form id="form" class="am-form" action="/order/express" method="get">
         <p><i class="am-icon-map-marker color-main"></i> 输入您的收货信息所使用的手机号码</p>
+        <p class="color-gray">(注:该查询信息以您的每笔订单收货地址所提供的手机号为准,如果您的订单有更换地址或手机号,或为代发,可能导致实际查询结果有误,请作为参考使用)</p>
         <div class="am-form-group am-form-icon">
             <i class="am-icon-mobile"></i>
             <input id="mobile" name="mobile" maxlength="11" value="<%= mobile %>" autocomplete="off" type="text" class="am-form-field" placeholder="请输入您的手机号">
@@ -55,6 +56,11 @@
                                 <% if(items[i].attributes.shippingCompany == 'tiantian') {
                                     express = 'TTKDEX';
                                     expressName = '天天快递';
+                                } %>
+
+                                <% if(items[i].attributes.shippingCompany == 'kuaijie') {
+                                express = 'FASTEXPRESS';
+                                expressName = '快捷快递';
                                 } %>
                                 
                                 <% if(items[i].attributes.shippingCompany == 'shunfeng') {

@@ -44,7 +44,7 @@ router.get('/query/:number/:type', (req, res) => {
     let number = req.params.number;
     let com = req.params.type;
     if (!number || !com) {
-        res.send({'list':null, 'msg':'系统繁忙请稍后查询'});
+        res.send({'list':null, 'msg':'系统繁忙请稍后重新进行查询'});
     } else {
         aliExpress.getExpressInfo(number, com).then(result => {
             res.send(result);
