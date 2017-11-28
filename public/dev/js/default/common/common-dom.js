@@ -155,8 +155,66 @@ $(function() {
         
     }
     
-    //列表页infinitescroll
+    
+    //$.fn产品列表页infinitescroll
     {
+        $.fn.setInfinitescroll = function(opts) {
+
+            let container = $(this);
+            
+            let settings = $.extend({
+                navSelector:'.navigation',
+                nextSelector:'.navigation a',
+                setPathParse:()=> {},
+                setData:()=> {}
+            },opts || {});
+            
+            container.infinitescroll({
+                debug: false,
+                loading: {
+                    img:'//ac-JoaBcRTt.clouddn.com/8ded071cdd14788c50fa.gif',
+                    msgText:'加载中...',
+                    speed: 500
+                },
+                animate: false,
+                itemSelector:'li',
+                navSelector:settings.navSelector,
+                nextSelector:settings.nextSelector,
+                dataType: 'json',
+                appendCallback: false,
+                pathParse: function (path,page) {
+                    console.info(path, page);
+                    return settings.setPathParse(path,page);
+                }
+            },  function(data,opts) {
+                
+                if(!data.items.length) {
+                    $('#infscr-loading').detach();
+                    mainList.infinitescroll('unbind');
+                    mainList.append('<div class="loading"></div>');
+                    let msg = $('<div id="infscr-loading" style="display:none;">当前选择下已加载全部内容</div>');
+                    mainList.find('.loading').append(msg);
+                    msg.fadeIn();
+                    setTimeout(()=> {
+                        msg.fadeOut();
+                    },3000);
+                    return false;
+                }
+
+                let html = $(settings.setData(data));
+                html.find('img.lazy').lazyload();
+                container.append(html);
+            });
+            
+            return container;
+        };
+        
+    }
+    
+    //产品列表页infinitescroll
+    /*
+    {
+        
         let mainList = $('.main-list');
         mainList.infinitescroll({
             debug: false,
@@ -182,7 +240,7 @@ $(function() {
                 $('#infscr-loading').detach();
                 mainList.infinitescroll('unbind');
                 mainList.append('<div class="loading"></div>');
-                let msg = $('<div id="infscr-loading" style="display: none;">当前选择下已加载全部内容</div>');
+                let msg = $('<div id="infscr-loading" style="display:none;">当前选择下已加载全部内容</div>');
                 mainList.find('.loading').append(msg);
                 msg.fadeIn();
                 setTimeout(()=> {
@@ -244,7 +302,6 @@ $(function() {
             mainList.append(html);
         });
         
-        
     }
-    
+    */
 });

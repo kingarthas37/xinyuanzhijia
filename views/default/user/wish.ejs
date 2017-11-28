@@ -12,22 +12,61 @@
 
 <% include ../partials/header-sub %>
 
-<div class="am-container">
+<div class="am-alert alert-search-info">共有<span><%= count %></span>条收藏记录</div>
 
-    总数:<%= count %>
-    <% for (var i = 0; i < items.length; i++) { %>
-    <div>
-        <%= items[i].get('productId')%>
-        <%= items[i].get('name')%>
+<div>
+
+    <% if (count > 0) { %>
+    <ul class="main-list">
+        <% for(var i=0; i< items.length;i++) {%>
+        <li>
+            <div class="img">
+                <%if (items[i].get('isHot')){ %><em class="hot"></em><%}%>
+                <%if (items[i].get('isNewSale')){ %><em class="new"></em><%}%>
+                <a href="/product/detail/<%=items[i].get('productId') %>"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="<% for(var n in items[i].get('mainImage')) { %><% if(items[i].attributes.mainImage[n].isMainImage) { %><%= items[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
+            </div>
+            <div class="detail">
+                <h3>
+                    <a href="/product/detail/<%=items[i].get('productId') %>" <%if(items[i].get('isShortStock')) {%>class="out-stock"<%}%> >
+                    <% if (items[i].get('stock') > 0) { %>[现货]<% } %>
+                    <% if (items[i].get('isShortStock')) {%>[缺货]<%}%>
+                    <%= items[i].get('name') %>
+                    </a>
+                </h3>
+                <p>
+                    <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span>
+                </p>
+                <p>
+                    收藏日期: <%=items[i].updatedAt.getFullYear()%>/<%=(items[i].updatedAt.getMonth()+1)%>/<%=items[i].updatedAt.getDate()%>
+                    <br>
+                    <a href="#">取消收藏</a>
+                </p>
+            </div>
+        </li>
+
+        <% } %>
+    </ul>
+    <div class="navigation">
+        <a href="/user/wish/ajax?page=1"></a>
     </div>
-    <% } %>
+    <% } else {%>
+    <ul class="main-list">
+        <li><span class="color-gray f-13">没有搜索到相关产品,请重新进行查询哦.</span> </li>
+    </ul>
+    <%}%>
 
 </div>
 
 
 
-
 <% include ../partials/js %>
+
+<script>
+    $(function() {
+        var user = require('user');
+        user.wishFun();
+    });
+</script>
 
 </body>
 </html>
