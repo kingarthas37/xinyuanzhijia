@@ -19,24 +19,79 @@ let data = extend(config.data, {
 });
 
 router.get('/', (req,res) => {
-    res.render('default/shopping-cart', data);
+    let carts = req.cookies.xcarts;
+    let sessionData = req.cookies.login;
+    data = extend(data, {'items':[]});
+    async.series([
+        cb=> {
+            if (carts && sessionData) {
+                shoppingCart.setShoppingCartCookie(req,res,{carts}, -10);
+                let member = user.getDecodeByBase64(sessionData);
+                carts = shoppingCart.getDecodeByBase64(carts);
+                async.forEachLimit(carts, 5, function(res, callback){
+                    shoppingCart.add({'productId':res.productId, 'count':res.count, 'commonMemberId':member.id}).then(() => {
+                        callback();
+                    });
+                }, function(err) {
+                    cb();
+                });
+            } else {
+                cb();
+            }
+        },
+        cb=> {
+            if (sessionData) {
+                let member = user.getDecodeByBase64(sessionData);
+                shoppingCart.getShoppingCartsByMemberId(member.id, {'order':'updatedAt'}).then(result => {
+                    async.forEachLimit(result, 5, function(res, callback){
+                        product.getProductById(res.get('productId')).then(item => {
+                            item.set('count', res.get('count'));
+                            data.items.push(item);
+                            callback();
+                        });
+                    }, function(err) {
+                        cb();
+                    });
+                });
+            } else if (carts) {
+                async.forEachLimit(carts, 5, function(res, callback){
+                    product.getProductById(res.productId).then(item => {
+                        item.set('count', res.count);
+                        data.items.push(item);
+                        callback();
+                    });
+                }, function(err) {
+                    cb();
+                });
+            } else {
+                cb();
+            }
+        }
+    ], function (err, values) {
+        res.render('default/shopping-cart', data);
+    });
 });
 
 router.post('/add', (req,res) => {
     let productId = parseInt(req.body['pid']);
     let count = parseInt(req.body['count']);
-    shoppingCart.setShoppingCartCookie(req,res,{productId, count}, 60*1000*60*24*365);
-    var carts = req.cookies.xcarts;
-    console.log(carts);
-    res.send({'success':1});
-   /* if(req.cookies.login) {
-        
-        res.send({'success':1});
+    if(req.cookies.login) {
+        let sessionData = req.cookies.login;
+        let member = user.getDecodeByBase64(sessionData);
+        shoppingCart.add({productId, 'commonMemberId':member.id, count}).then(item => {
+            res.send({'success':1});
+        });
     } else {
         var carts = req.cookies.xcarts;
-        console.log(carts.productId);
+        if(carts) {
+            carts[productId]['count'] = count;
+            carts[productId]['productId'] = productId;
+        } else {
+            carts[productId]['count'] += count;
+        }
+        shoppingCart.setShoppingCartCookie(req,res,{carts}, 60*1000*60*24*36);
         res.send({'success':1});
-    }*/
+    }
 });
 
 module.exports = router;
