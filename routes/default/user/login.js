@@ -17,9 +17,9 @@ let data = extend(config.data, {
 
 router.get('/', (req,res) => {
     if(req.cookies.login) {
-        res.redirect('/product');
+        res.redirect('/user/index');
     }
-    let referer = req.query.return ? req.query.return : '/product';
+    let referer = req.query.return ? req.query.return : '/user/index';
     let wechatLoginUrl = config.wechatApi.authorize;
     let redirectUrl = config.website.domain + '/user/login/wechat-login';
     wechatLoginUrl = wechatLoginUrl.replace('{appid}', config.wechatConfig.appId).replace('{redirectUrl}', redirectUrl).replace('{scopt}', 'snsapi_userinfo').replace('{state}', '51wish');
@@ -97,13 +97,6 @@ router.get('/wechat-login', (req, res) => {
             });
         });
     }
-});
-
-
-router.get('/logout', (req, res) => {
-    res.cookie('login', false, {maxAge: -1000});
-    res.cookie('login', false, {maxAge: -1000, domain: config.website.cookieDomain});
-    res.redirect('/');
 });
 
 router.get('/wechat-base-login', (req, res) => {

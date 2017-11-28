@@ -15,9 +15,12 @@ module.exports = {
     '/user/mobile':require('./default/user/mobile'),
     '/user/wish':require('./default/user/wish'),
     '/user/footmark':require('./default/user/footmark'),
+    '/user/logout': require('./default/user/logout'),
     
     '/search':require('./default/search/index'),
-    
+
+    '/shopping-cart':require('./default/shopping-cart/index'),
+
     '/product':require('./default/product'),
     '/product/detail':require('./default/product/detail'),
     '/product/recommend':require('./default/product/recommend'),
