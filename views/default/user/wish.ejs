@@ -39,7 +39,7 @@
                 <p>
                     收藏日期: <%=items[i].updatedAt.getFullYear()%>/<%=(items[i].updatedAt.getMonth()+1)%>/<%=items[i].updatedAt.getDate()%>
                     <br>
-                    <a href="#">取消收藏</a>
+                    <a class="cancel-fav" href="/user/wish/edit/<%=items[i].get('productId') %>">取消收藏</a>
                 </p>
             </div>
         </li>

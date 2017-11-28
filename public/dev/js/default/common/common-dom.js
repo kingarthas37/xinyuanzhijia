@@ -183,17 +183,16 @@ $(function() {
                 dataType: 'json',
                 appendCallback: false,
                 pathParse: function (path,page) {
-                    console.info(path, page);
                     return settings.setPathParse(path,page);
                 }
             },  function(data,opts) {
-                
+
                 if(!data.items.length) {
                     $('#infscr-loading').detach();
-                    mainList.infinitescroll('unbind');
-                    mainList.append('<div class="loading"></div>');
+                    container.infinitescroll('unbind');
+                    container.append('<div class="loading"></div>');
                     let msg = $('<div id="infscr-loading" style="display:none;">当前选择下已加载全部内容</div>');
-                    mainList.find('.loading').append(msg);
+                    container.find('.loading').append(msg);
                     msg.fadeIn();
                     setTimeout(()=> {
                         msg.fadeOut();

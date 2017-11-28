@@ -326,6 +326,22 @@ module.exports = {
                 return content;
             }
         });
+
+
+        //取消收藏
+        $('.main-list').on('click','.cancel-fav',function() {
+            $.ajax({
+                url:$(this).attr('href'),
+                success:()=> {
+                    $(this).parents('li').animate({
+                        opacity:0,
+                        height:0,
+                        padding:0
+                    });
+                }
+            });
+            return false;
+        });
         
     }
 
