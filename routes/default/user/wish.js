@@ -24,7 +24,7 @@ router.get('/', (req,res) => {
     let member = user.getDecodeByBase64(sessionData);
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
-    let order = 'createdAt';
+    let order = 'updatedAt';
     productWish.getWishByCommonMemberId({'commonMemberId':member.id, page, limit, order}).then(result => {
         let items = [];
         async.forEachLimit(result.items, 5, function (res, callback) {
@@ -56,7 +56,7 @@ router.get('/ajax', (req,res) => {
     let member = user.getDecodeByBase64(sessionData);
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
-    let order = 'createdAt';
+    let order = 'updatedAt';
     productWish.getWishByCommonMemberId({'commonMemberId':member.id, page, limit, order}).then(result => {
         let items = [];
         async.forEachLimit(result.items, 5, function (res, callback) {
