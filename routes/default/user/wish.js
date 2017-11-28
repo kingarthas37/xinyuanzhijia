@@ -30,6 +30,12 @@ router.get('/', (req,res) => {
         async.forEachLimit(result.items, 5, function (res, callback) {
             product.getProductById(res.get('productId')).then(value => {
                 value.updatedAt = res.updatedAt;
+                value.set('isNewSale', false);
+                if (value.get('onsaleDate')) {
+                    let saleDate = value.get('onsaleDate');
+                    saleDate.setMonth(saleDate.getMonth() + 2);
+                    value.set('isNewSale', (saleDate > new Date()));
+                }
                 items.push(value);
                 callback();
             });
@@ -56,6 +62,12 @@ router.get('/ajax', (req,res) => {
         async.forEachLimit(result.items, 5, function (res, callback) {
             product.getProductById(res.get('productId')).then(value => {
                 value.updatedAt = res.updatedAt;
+                value.set('isNewSale', false);
+                if (value.get('onsaleDate')) {
+                    let saleDate = value.get('onsaleDate');
+                    saleDate.setMonth(saleDate.getMonth() + 2);
+                    value.set('isNewSale', (saleDate > new Date()));
+                }
                 items.push(value);
                 callback();
             });
