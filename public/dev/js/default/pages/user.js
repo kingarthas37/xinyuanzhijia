@@ -343,6 +343,12 @@ module.exports = {
             return false;
         });
         
+    },
+
+    footmarkFun(){
+        
+        
+        
     }
 
 };

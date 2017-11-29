@@ -8,26 +8,49 @@
     <% include ../partials/css %>
     <% include ../partials/tongji %>
 </head>
-<body class="user-page user-index">
+<body class="user-page user-footmark-page">
 
 <% include ../partials/header-sub %>
 
-<div class="am-container">
+    <div class="am-alert alert-search-info">最多显示前100条浏览记录</div>
+ 
+    <ul class="main-list">
+        <% for(var i=0; i< items.length;i++) {%>
+        <li>
+            <div class="img">
+                <%if (items[i].get('isHot')){ %><em class="hot"></em><%}%>
+                <%if (items[i].get('isNewSale')){ %><em class="new"></em><%}%>
+                <a href="/product/detail/<%=items[i].get('productId') %>"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="<% for(var n in items[i].get('mainImage')) { %><% if(items[i].attributes.mainImage[n].isMainImage) { %><%= items[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
+            </div>
+            <div class="detail">
+                <h3>
+                    <a href="/product/detail/<%=items[i].get('productId') %>" <%if(items[i].get('isShortStock')) {%>class="out-stock"<%}%> >
+                    <% if (items[i].get('stock') > 0) { %>[现货]<% } %>
+                    <% if (items[i].get('isShortStock')) {%>[缺货]<%}%>
+                    <%= items[i].get('name') %>
+                    </a>
+                </h3>
+                <p>
+                    <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span>
+                </p>
+                <p>
+                    浏览时间: <%=items[i].updatedAt.getFullYear()%>/<%=(items[i].updatedAt.getMonth()+1)%>/<%=items[i].updatedAt.getDate()%>
+                </p>
+            </div>
+        </li>
 
-    <% for (var i = 0; i < items.length; i++) { %>
-    <div>
-        <%= items[i].get('productId')%>
-        <%= items[i].get('name')%>
-        <%= items[i].get('createdAt')%>
-    </div>
-    <% } %>
-
-</div>
-
+        <% } %>
+    </ul>
 
 
 
 <% include ../partials/js %>
 
+<script>
+    $(function() {
+        var user = require('user');
+        user.footmarkFun();
+    });
+</script>
 </body>
 </html>

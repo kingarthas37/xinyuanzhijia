@@ -618,7 +618,7 @@ footer {
 
 .am-alert {
   position: fixed;
-  width: 140px;
+  width: 180px;
   border: none;
   opacity: 0.8;
   bottom: 100px;
@@ -2405,13 +2405,11 @@ body.homepage {
     font-size: 13px; }
 
 .user-page .am-container {
-  width: 90%; }
+  width: 90%;
+  padding-top: 20px; }
 
 .user-page .header-menu-user {
   display: block; }
-
-.user-index-page .am-container {
-  padding-top: 20px; }
 
 .user-index-page .admin-list li a {
   padding-left: 0; }
