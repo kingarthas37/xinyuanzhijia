@@ -55,3 +55,31 @@
     }
     
 }
+
+.user-cart-page {
+    .info {
+        padding: 10px 0;
+        font-size: 14px;
+        color: #999;
+    }
+
+    .buy-button {
+        margin-top:10px;
+        width: 100%;
+        .am-btn {
+            border: none;
+            color: #fff;
+            background: linear-gradient(to right, $colorGradient1 0%, $colorGradient2 100%);
+            height: 45px;
+            display: block;
+            width: 100%;
+            margin:auto;
+            font-size: 18px;
+            border-radius: 5px;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+            &.on {
+                opacity: 0.75;
+            }
+        }
+    }
+}

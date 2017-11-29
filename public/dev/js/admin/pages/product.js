@@ -529,7 +529,7 @@ module.exports = {
         this.submitControl();
         this.setImageList();
         this.setZclip();
-
+        this.saveData();
     },
     editFun:function() {
         
@@ -538,6 +538,7 @@ module.exports = {
         this.submitControl();
         this.setImageList();
         this.setZclip();
+        this.saveData();
     },
     
     //一级,二级分类选择
@@ -795,6 +796,14 @@ module.exports = {
                     }
                 });
             });
+    },
+
+    saveData:function() {
+        $(document).on('keydown',function(e) {
+            if(e.keyCode === 13 && e.ctrlKey) {
+                $('#submit').click();
+            }
+        });
     }
 
 };

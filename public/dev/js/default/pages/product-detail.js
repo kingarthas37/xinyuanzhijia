@@ -82,6 +82,37 @@ module.exports = {
             }
         }
         
+        //购买
+        {
+            let buyButton = $('#buy');
+            let productId = $('#product-id');
+            buyButton.click(function() {
+                if(buyButton.hasClass('on')) {
+                    return false;
+                }
+                buyButton.addClass('on').text('正在添加,请稍后...');
+                
+                $.ajax({
+                    url:'/shopping-cart/add',
+                    type:'post',
+                    data:{
+                        pid:productId.val(),
+                        count:1
+                    }
+                }).then(data => {
+                    
+                    if(data.success === 1) {
+                        location.href = '/shopping-cart';
+                    } else {
+                        buyButton.removeClass('on').text('加入到我的购物清单');
+                    }
+                    
+                },error => {
+                    buyButton.removeClass('on').text('加入到我的购物清单');
+                });
+            });
+        }
+        
 
     },
 

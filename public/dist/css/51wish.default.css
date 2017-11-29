@@ -2017,8 +2017,7 @@ a.pswp__share--download:hover {
     width: 100%;
     bottom: 0;
     left: 0;
-    padding: 5px 15px;
-    background: rgba(255, 255, 255, 0.5); }
+    padding: 5px 15px; }
     .detail-page .buy-button .am-btn {
       border: none;
       color: #fff;
@@ -2031,6 +2030,8 @@ a.pswp__share--download:hover {
       font-size: 18px;
       border-radius: 5px;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+      .detail-page .buy-button .am-btn.on {
+        opacity: 0.75; }
   .detail-page .events {
     padding: 10px 0;
     border-bottom: 5px solid #eee;
@@ -2444,5 +2445,28 @@ body.homepage {
 
 .user-index-page .icon-user-index-logout {
   background-image: url("http://ac-JoaBcRTt.clouddn.com/376a11aa224b4316e0e3.png"); }
+
+.user-cart-page .info {
+  padding: 10px 0;
+  font-size: 14px;
+  color: #999; }
+
+.user-cart-page .buy-button {
+  margin-top: 10px;
+  width: 100%; }
+  .user-cart-page .buy-button .am-btn {
+    border: none;
+    color: #fff;
+    background: -webkit-linear-gradient(left, #6397f5 0%, #f67bbb 100%);
+    background: linear-gradient(to right, #6397f5 0%, #f67bbb 100%);
+    height: 45px;
+    display: block;
+    width: 100%;
+    margin: auto;
+    font-size: 18px;
+    border-radius: 5px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+    .user-cart-page .buy-button .am-btn.on {
+      opacity: 0.75; }
 
 /*# sourceMappingURL=51wish.default.css.map */

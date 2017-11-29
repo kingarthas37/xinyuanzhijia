@@ -8,19 +8,54 @@
     <% include ../partials/css %>
     <% include ../partials/tongji %>
 </head>
-<body class="user-page user-index-page">
+<body class="user-page user-cart-page">
 
 <% include ../partials/header-sub %>
 
-<div class="am-container">
-    <% for(var i=0; i<items.length; i++) { %>
-        <%= items[i].get('productId') %>
-        <%= items[i].get('name')%>
-        <%= items[i].get('count') %>
+<ul class="main-list">
+    <% for(var i=0; i< items.length;i++) {%>
+    <li>
+        <div class="img">
+            <%if (items[i].get('isHot')){ %><em class="hot"></em><%}%>
+            <%if (items[i].get('isNewSale')){ %><em class="new"></em><%}%>
+            <a href="/product/detail/<%=items[i].get('productId') %>"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="<% for(var n in items[i].get('mainImage')) { %><% if(items[i].attributes.mainImage[n].isMainImage) { %><%= items[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
+        </div>
+        <div class="detail">
+            <h3>
+                <a href="/product/detail/<%=items[i].get('productId') %>" <%if(items[i].get('isShortStock')) {%>class="out-stock"<%}%> >
+                <% if (items[i].get('stock') > 0) { %>[现货]<% } %>
+                <% if (items[i].get('isShortStock')) {%>[缺货]<%}%>
+                <%= items[i].get('name') %>
+                </a>
+            </h3>
+            <p>
+                <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span> 数量:1
+            </p>
+            
+        </div>
+    </li>
+
     <% } %>
+</ul>
+
+<div class="am-container">
+    <ul class="info">
+        <li><i class="am-icon-info-circle color-main"></i> 目前网站价格仅为参考价格,最终价格请结合淘宝店铺零售价为准.</li>
+        <li><i class="am-icon-credit-card color-main"></i> 由于支付权限原因,目前我们仅支持下单后跳转到淘宝店铺进行支付,您可根据系统提示进行后续操作,感谢您的支持和理解!</li>
+    </ul>
+    <div class="color-main">共有<strong>2</strong>件商品,总价值<strong>¥998</strong></div>
+    <div class="buy-button">
+        <button type="button" id="buy" class="am-btn am-btn-default">提交订单</button>
+    </div>
 </div>
 
 <% include ../partials/js %>
 
+<script>
+    $(function() {
+        var cart = require('cart');
+        cart.init();
+    });
+</script>
 </body>
 </html>
