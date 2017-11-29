@@ -2416,4 +2416,35 @@ body.homepage {
 .user-index-page .admin-list li a {
   padding-left: 0; }
 
+.user-index-page .am-panel a {
+  color: #666; }
+
+.user-index-page .am-panel .icon {
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px; }
+
+.user-index-page .icon-user-index-cart {
+  background-image: url("http://ac-JoaBcRTt.clouddn.com/c6042ff06f9a1d5ce43c.png"); }
+
+.user-index-page .icon-user-index-fav {
+  background-image: url("http://ac-JoaBcRTt.clouddn.com/71248491bb6ec1bcda58.png"); }
+
+.user-index-page .icon-user-index-view {
+  background-image: url("http://ac-JoaBcRTt.clouddn.com/776bcdbd3610d37a494b.png"); }
+
+.user-index-page .icon-user-index-account {
+  background-image: url("http://ac-JoaBcRTt.clouddn.com/0a9ae1fe920ed43074ce.png"); }
+
+.user-index-page .icon-user-index-track {
+  background-image: url("http://ac-JoaBcRTt.clouddn.com/fcfb619d250f214d6748.png"); }
+
+.user-index-page .icon-user-index-logout {
+  background-image: url("http://ac-JoaBcRTt.clouddn.com/376a11aa224b4316e0e3.png"); }
+
 /*# sourceMappingURL=51wish.default.css.map */

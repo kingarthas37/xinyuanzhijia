@@ -15,7 +15,46 @@
     
     .admin-list li a {
         padding-left: 0;
-        
+    }
+    
+    .am-panel {
+        a {
+            color: #666;
+        }
+        .icon {
+            width: 32px;
+            height: 32px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+    }
+    
+    .icon-user-index-cart {
+        background-image: url('http://ac-JoaBcRTt.clouddn.com/c6042ff06f9a1d5ce43c.png');
+    }
+    
+    .icon-user-index-fav {
+        background-image: url('http://ac-JoaBcRTt.clouddn.com/71248491bb6ec1bcda58.png');
+    }
+    
+    .icon-user-index-view {
+        background-image: url('http://ac-JoaBcRTt.clouddn.com/776bcdbd3610d37a494b.png');
+    }
+    
+    .icon-user-index-account {
+        background-image: url('http://ac-JoaBcRTt.clouddn.com/0a9ae1fe920ed43074ce.png');
+    }
+    
+    .icon-user-index-track {
+        background-image: url('http://ac-JoaBcRTt.clouddn.com/fcfb619d250f214d6748.png');
+    }
+    
+    .icon-user-index-logout {
+        background-image: url('http://ac-JoaBcRTt.clouddn.com/376a11aa224b4316e0e3.png');
     }
     
 }
