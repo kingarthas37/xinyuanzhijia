@@ -7,7 +7,8 @@ module.exports = {
     init() {
  
         if(utils.isWechatBrowser()) {
-            $('#buy').addClass('on').click(function() {
+            $('.buy-button').addClass('on');
+            $('#buy').click(function() {
                 $('body').append('<div class="buy-bg"></div>');
                 $('.buy-bg').click(function() {
                     $(this).detach();
