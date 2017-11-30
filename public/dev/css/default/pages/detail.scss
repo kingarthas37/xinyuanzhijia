@@ -449,5 +449,17 @@
     .am-popover-caret {
         border-bottom-color: #000;
     }
+
+    .share-bg {
+        position: fixed;
+        background: #000 url("http://ac-JoaBcRTt.clouddn.com/d955de0919a833463323.png") no-repeat right top;
+        background-size: 50%;
+        opacity: 0.8;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        z-index: 999;
+    }
     
 }

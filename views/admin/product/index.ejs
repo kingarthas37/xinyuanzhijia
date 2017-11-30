@@ -133,9 +133,8 @@
                     >
                         <td class="product-title">
                             <% if(product[i].mainImage) { %>
-                            <a target="_blank" href="<%= product[i].mainImage %>"
-                               data-am-popover="{content:'<img width=150 src=<%= product[i].mainImage %>?imageMogr2/thumbnail/150>', trigger:'hover focus'}"><img
-                                        width="32" src="<%= product[i].mainImage %>?imageMogr2/thumbnail/32" alt=""></a>
+                            <a target="_blank" href="<%= product[i].mainImage %>"><img
+                                        width="32" src="<%= product[i].mainImage %>?imageMogr2/thumbnail/32" alt="" data-am-popover="{content:'<img width=150 src=<%= product[i].mainImage %>?imageMogr2/thumbnail/150>', trigger:'hover focus'}"></a>
                             <% }else{ %>
                             <img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32"
                                  width="32"/>

@@ -314,6 +314,16 @@ span.hot:after {
           transform: scale(0.75);
   display: inline-block; }
 
+.am-popover-inner {
+  background-color: #f1f1f1 !important;
+  color: #333 !important; }
+
+.am-popover {
+  border-color: #f1f1f1 !important; }
+
+.am-popover-caret {
+  border-bottom-color: #f1f1f1 !important; }
+
 /* admin sign page */
 .admin-sign-page {
   padding: 50px 0; }
