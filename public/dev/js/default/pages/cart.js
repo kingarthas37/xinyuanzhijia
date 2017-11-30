@@ -8,12 +8,20 @@ module.exports = {
  
        $('#buy').click(function() {
            
-           alert(utils.isWechatBrowser());
+           if(utils.isWechatBrowser()) {
+
+               $('body').append('<div class="buy-bg"></div>');
+               $('.buy-bg').click(function() {
+                   $(this).detach();
+               });
+               
+           } else {
+               
+               alert(3);
+               
+           }
            
-           $('body').append('<div class="buy-bg"></div>');
-           $('.buy-bg').click(function() {
-               $(this).detach();
-           });
+          
        });
         
     }
