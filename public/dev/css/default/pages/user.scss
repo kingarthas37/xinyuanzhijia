@@ -1,7 +1,11 @@
 .user-page {
     .am-container {
-        width: 90%;
         padding-top: 20px;
+        padding-left:0;
+        padding-right:0;
+        margin-left:10px;
+        margin-right:10px;
+        width:auto;
     }
     .header-menu-user {
         display: block;
@@ -58,13 +62,18 @@
 
 .user-cart-page {
     .info {
-        padding: 10px 0;
+        padding:0;
         font-size: 14px;
-        color: #999;
+        color: #888;
+        li {
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+            border-bottom: 1px dashed #eee;
+        }
     }
 
     .buy-button {
-        margin:10px 0;
+        margin:10px 0 20px 0;
         width: 100%;
         .am-btn {
             border: none;

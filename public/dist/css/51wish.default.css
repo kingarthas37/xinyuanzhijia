@@ -2155,7 +2155,6 @@ a.pswp__share--download:hover {
     padding: 20px 0; }
 
 .login-page .am-form {
-  padding-top: 20px;
   padding-bottom: 20px;
   margin: auto; }
   .login-page .am-form p {
@@ -2236,8 +2235,6 @@ a.pswp__share--download:hover {
   margin-bottom: 15px; }
 
 .order-page .am-form {
-  padding-top: 20px;
-  width: 90%;
   margin: auto; }
   .order-page .am-form p {
     margin-bottom: 20px; }
@@ -2932,8 +2929,12 @@ body.homepage {
     font-size: 13px; }
 
 .user-page .am-container {
-  width: 90%;
-  padding-top: 20px; }
+  padding-top: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: auto; }
 
 .user-page .header-menu-user {
   display: block; }
@@ -2973,12 +2974,16 @@ body.homepage {
   background-image: url("http://ac-JoaBcRTt.clouddn.com/376a11aa224b4316e0e3.png"); }
 
 .user-cart-page .info {
-  padding: 10px 0;
+  padding: 0;
   font-size: 14px;
-  color: #999; }
+  color: #888; }
+  .user-cart-page .info li {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px dashed #eee; }
 
 .user-cart-page .buy-button {
-  margin: 10px 0;
+  margin: 10px 0 20px 0;
   width: 100%; }
   .user-cart-page .buy-button .am-btn {
     border: none;
@@ -2997,7 +3002,7 @@ body.homepage {
 
 .user-cart-page .buy-bg {
   position: fixed;
-  background: #000 url("http://ac-JoaBcRTt.clouddn.com/df5153e9018e961a9b99.png") no-repeat right top;
+  background: #000 url("http://ac-JoaBcRTt.clouddn.com/13ec526e84bf5abf5c97.png") no-repeat right top;
   background-size: 50%;
   opacity: 0.9;
   top: 0;
