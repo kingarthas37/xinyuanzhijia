@@ -12,6 +12,8 @@
 
 <% include ../partials/header-sub %>
 
+<h4><i class="am-icon-check-circle"></i> 购物车目前共有<strong>2</strong>件商品,总价值约为<strong>¥998</strong></h4>
+
 <ul class="main-list">
     <% for(var i=0; i< items.length;i++) {%>
     <li>
@@ -29,9 +31,11 @@
                 </a>
             </h3>
             <p>
-                <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span> 数量:1
+                参考价格: <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span>
             </p>
-            
+            <p>
+                <a class="shop-add-link" target="_blank" href="<%= items[i].get('shopLink')[0] %>"><i class="am-icon-cart-arrow-down"></i> 加入到淘宝店铺购物车</a>
+            </p>
         </div>
     </li>
 
@@ -42,8 +46,8 @@
     <ul class="info">
         <li><i class="am-icon-credit-card color-main"></i> 由于支付权限原因,目前我们仅支持下单后跳转到淘宝店铺进行支付,您可根据系统提示进行后续操作,感谢您的支持和理解!</li>
         <li><i class="am-icon-info-circle color-main"></i> 目前网站价格仅为参考价格,最终价格请结合淘宝店铺零售价为准.</li>
+        <li><i class="am-icon-info-circle color-main"></i> 如发生产品对应链接错误,您可以直接在淘宝店铺中搜索该产品名称即可找到对应产品.</li>
     </ul>
-    <div class="color-main"><i class="am-icon-shopping-cart"></i> 购物车目前共有<strong>2</strong>件商品,总价值约<strong>¥998</strong></div>
     <div class="buy-button">
         <button type="button" id="buy" class="am-btn am-btn-default">去淘宝店铺下单</button>
     </div>

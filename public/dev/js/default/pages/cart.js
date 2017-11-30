@@ -6,24 +6,16 @@ module.exports = {
 
     init() {
  
-       $('#buy').click(function() {
-           
-           if(utils.isWechatBrowser()) {
-
-               $('body').append('<div class="buy-bg"></div>');
-               $('.buy-bg').click(function() {
-                   $(this).detach();
-               });
-               
-           } else {
-               
-               alert(3);
-               
-           }
-           
-          
-       });
-        
+        if(utils.isWechatBrowser()) {
+            $('#buy').addClass('on').click(function() {
+                $('body').append('<div class="buy-bg"></div>');
+                $('.buy-bg').click(function() {
+                    $(this).detach();
+                });
+            });
+        } else {
+            $('.shop-add-link').addClass('on');
+        }
     }
 
 };

@@ -61,6 +61,12 @@
 }
 
 .user-cart-page {
+    h4 {
+        padding: 10px 10px 0 10px;
+        margin:0;
+        font-size: 14px;
+        color: $colorMain;
+    }
     .info {
         padding:0;
         font-size: 14px;
@@ -72,9 +78,14 @@
         }
     }
 
+    .am-container {
+        margin-bottom:20px;
+    }
+    
     .buy-button {
-        margin:10px 0 20px 0;
+        margin-top:10px;
         width: 100%;
+        display: none;
         .am-btn {
             border: none;
             color: #fff;
@@ -90,6 +101,9 @@
                 opacity: 0.75;
             }
         }
+        &.on {
+            display: block;
+        }
     }
 
     .buy-bg {
@@ -102,5 +116,16 @@
         left:0;
         right:0;
         z-index: 999;
+    }
+    
+    .shop-add-link {
+        font-size: 13px;
+        color: $colorGreen;
+        font-weight: bold;
+        text-decoration: underline;
+        display: none;
+        &.on {
+            display: inline;
+        }
     }
 }

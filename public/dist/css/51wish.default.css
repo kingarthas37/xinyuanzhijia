@@ -2973,6 +2973,12 @@ body.homepage {
 .user-index-page .icon-user-index-logout {
   background-image: url("http://ac-JoaBcRTt.clouddn.com/376a11aa224b4316e0e3.png"); }
 
+.user-cart-page h4 {
+  padding: 10px 10px 0 10px;
+  margin: 0;
+  font-size: 14px;
+  color: #6071d5; }
+
 .user-cart-page .info {
   padding: 0;
   font-size: 14px;
@@ -2982,9 +2988,13 @@ body.homepage {
     margin-bottom: 5px;
     border-bottom: 1px dashed #eee; }
 
+.user-cart-page .am-container {
+  margin-bottom: 20px; }
+
 .user-cart-page .buy-button {
-  margin: 10px 0 20px 0;
-  width: 100%; }
+  margin-top: 10px;
+  width: 100%;
+  display: none; }
   .user-cart-page .buy-button .am-btn {
     border: none;
     color: #fff;
@@ -2999,6 +3009,8 @@ body.homepage {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
     .user-cart-page .buy-button .am-btn.on {
       opacity: 0.75; }
+  .user-cart-page .buy-button.on {
+    display: block; }
 
 .user-cart-page .buy-bg {
   position: fixed;
@@ -3010,5 +3022,14 @@ body.homepage {
   left: 0;
   right: 0;
   z-index: 999; }
+
+.user-cart-page .shop-add-link {
+  font-size: 13px;
+  color: #289a32;
+  font-weight: bold;
+  text-decoration: underline;
+  display: none; }
+  .user-cart-page .shop-add-link.on {
+    display: inline; }
 
 /*# sourceMappingURL=51wish.default.css.map */
