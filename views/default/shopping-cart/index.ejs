@@ -34,7 +34,7 @@
                 参考价格: <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span>
             </p>
             <p>
-                <a class="shop-add-link" target="_blank" href="<%= items[i].get('shopLink')[0] %>"><i class="am-icon-cart-arrow-down"></i> 加入到淘宝店铺购物车</a>
+                <a class="shop-add-link" href="<%= items[i].get('shopLink')[0] %>"><i class="am-icon-cart-arrow-down"></i> 加入到淘宝店铺购物车</a>
             </p>
         </div>
     </li>
