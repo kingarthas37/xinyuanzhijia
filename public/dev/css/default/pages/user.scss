@@ -133,12 +133,8 @@
         color: $colorOrange;
         font-weight: bold;
         text-decoration: underline;
-        display: none;
         .am-icon-check-circle {
             display: none;
-        }
-        &.on {
-            display: inline;
         }
         &.clicked {
             color: $colorGray;

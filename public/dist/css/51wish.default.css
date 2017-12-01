@@ -3036,12 +3036,9 @@ body.homepage {
   font-size: 13px;
   color: #ff7d00;
   font-weight: bold;
-  text-decoration: underline;
-  display: none; }
+  text-decoration: underline; }
   .user-cart-page .shop-add-link .am-icon-check-circle {
     display: none; }
-  .user-cart-page .shop-add-link.on {
-    display: inline; }
   .user-cart-page .shop-add-link.clicked {
     color: #999; }
     .user-cart-page .shop-add-link.clicked .am-icon-check-circle {
