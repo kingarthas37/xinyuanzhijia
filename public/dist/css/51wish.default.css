@@ -2645,6 +2645,21 @@ a.pswp__share--download:hover {
     height: 40px;
     border: 1px solid #289a32;
     border-radius: 0; }
+  .detail-page #modal-buy .copy-link {
+    border-radius: 3px;
+    color: #289a32;
+    border: 1px solid #289a32;
+    background: #fff;
+    margin: 0;
+    padding: 4px 10px;
+    display: inline-block; }
+    .detail-page #modal-buy .copy-link i {
+      display: none; }
+    .detail-page #modal-buy .copy-link.active {
+      color: #ff7d00;
+      border-color: #ff7d00; }
+      .detail-page #modal-buy .copy-link.active i {
+        display: inline; }
 
 body.homepage {
   font-family: 'Apple Braille','\5FAE\8F6F\96C5\9ED1';

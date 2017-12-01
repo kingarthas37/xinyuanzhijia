@@ -477,6 +477,25 @@
             border:1px solid $colorGreen;
             border-radius:0;
         }
+        .copy-link {
+            border-radius: 3px;
+            color: $colorGreen;
+            border:1px solid $colorGreen;
+            background: #fff;
+            margin:0;
+            padding: 4px 15px;
+            display: inline-block;
+            i {
+                display: none;
+            }
+            &.active {
+                i {
+                    display: inline;
+                }
+                color: $colorOrange;
+                border-color:$colorOrange;
+            }
+        }
     }
     
     

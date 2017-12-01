@@ -91,6 +91,7 @@ module.exports = {
             
             buyButton.click(function() {
                 modalBuy.modal();
+                copyLink.removeClass('active').find('span').text('复制口令');
             });
 
             modalBuy.on('open.modal.amui', function() {
@@ -106,7 +107,7 @@ module.exports = {
                 }
             });
             clipboard.on('success',data => {
-                copyLink.addClass('color-green');
+                copyLink.addClass('active').find('span').text('已复制');
             });
             
         }
