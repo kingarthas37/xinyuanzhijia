@@ -204,7 +204,7 @@
 <div class="recommend-content"></div>
 
 <div class="buy-button">
-    <button type="button" id="buy" class="am-btn am-btn-default">加入到我的购物清单</button>
+    <button type="button" id="buy" class="am-btn am-btn-default">去淘宝店铺购买</button>
 </div>
 
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -236,15 +236,10 @@
 
 <div class="am-modal am-modal-alert" tabindex="-1" id="modal-buy">
     <div class="am-modal-dialog">
-        <div class="am-modal-hd">购买接口调试中</div>
+        <div class="am-modal-hd">复制淘宝商品链接</div>
         <div class="am-modal-bd">
-            <%if(item.shopLink.length) {%>
-                亲爱的客户,我们目前购买产品的接口尚在调试中,您暂时可以复制链接:
-                <p><strong><%=item.shopLink[0]%></strong></p>
-                或前往我们淘宝店铺<strong>[<%if((item.productMethod[0])==3){ %>暮雪的心愿城<%}else{%>亚特兰蒂斯之谜<%}%>]</strong>购买哦!
-            <%}else{%>
-                亲爱的客户,我们目前购买产品的接口尚在调试中,您暂时可以前往我们的淘宝店铺<strong>[<%if((item.productMethod[0])==3){ %>暮雪的心愿城<%}else{%>亚特兰蒂斯之谜<%}%>]</strong>搜索本产品进行购买,感谢您的理解和支持!
-            <%}%>
+            <p>请<strong>手动复制</strong>该链接地址,随后打开淘宝客户端即可:</p>
+            <input type="text" class="shop-link" value="<%=item.shopLink[0]%>">
         </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn">确定</span>

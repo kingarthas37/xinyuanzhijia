@@ -85,21 +85,21 @@ module.exports = {
         //购买
         {
             let buyButton = $('#buy');
-            let productId = $('#product-id');
+            let modalBuy = $('#modal-buy');
+            let shopLink = modalBuy.find('.shop-link');
+            
             buyButton.click(function() {
-                if(buyButton.hasClass('on')) {
-                    return false;
-                }
-                buyButton.addClass('on').text('正在添加,请稍后...');
                 
+                modalBuy.modal();
+                
+                /*
                 $.ajax({
                     url:'/shopping-cart/add',
                     type:'post',
                     data:{
-                        pid:productId.val(),
+                        pid:productId.val()
                     }
                 }).then(data => {
-                    
                     if(data.success === 1) {
                         location.href = '/shopping-cart';
                     } else {
@@ -109,6 +109,15 @@ module.exports = {
                 },error => {
                     buyButton.removeClass('on').text('加入到我的购物清单');
                 });
+                */
+            });
+
+            modalBuy.on('open.modal.amui', function() {
+                setTimeout(()=> {
+                    console.info(222);
+                    shopLink.select();
+                    shopLink[0].focus();
+                },500);
             });
         }
         

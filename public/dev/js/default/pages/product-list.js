@@ -80,7 +80,7 @@ module.exports = {
                     url: `/user/wish/edit/${productId}`
                 }).then(data => {
                     if (data.success) {
-                        $(this).removeClass('add').text('+ 收藏');
+                        $(this).removeClass('add').text('+收藏');
                     }
                 });
                 
@@ -89,7 +89,7 @@ module.exports = {
                     url: `/user/wish/add/${productId}`
                 }).then(data => {
                     if (data.success) {
-                        $(this).addClass('add').text('- 已收藏');
+                        $(this).addClass('add').text('-已收藏');
                     }
                 });
             }

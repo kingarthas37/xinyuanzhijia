@@ -2634,6 +2634,16 @@ a.pswp__share--download:hover {
     left: 0;
     right: 0;
     z-index: 999; }
+  .detail-page #modal-buy .am-modal-hd {
+    font-size: 16px;
+    font-weight: bold; }
+  .detail-page #modal-buy .am-modal-bd {
+    font-size: 14px;
+    text-align: left; }
+  .detail-page #modal-buy .shop-link {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ff7d00; }
 
 body.homepage {
   font-family: 'Apple Braille','\5FAE\8F6F\96C5\9ED1';
