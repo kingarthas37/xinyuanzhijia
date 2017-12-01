@@ -114,7 +114,6 @@ module.exports = {
 
             modalBuy.on('open.modal.amui', function() {
                 setTimeout(()=> {
-                    console.info(222);
                     shopLink.select();
                     shopLink[0].focus();
                 },500);
