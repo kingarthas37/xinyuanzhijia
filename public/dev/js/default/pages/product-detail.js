@@ -87,29 +87,10 @@ module.exports = {
             let buyButton = $('#buy');
             let modalBuy = $('#modal-buy');
             let shopLink = modalBuy.find('.shop-link');
+            let copyLink = modalBuy.find('.copy-link');
             
             buyButton.click(function() {
-                
                 modalBuy.modal();
-                
-                /*
-                $.ajax({
-                    url:'/shopping-cart/add',
-                    type:'post',
-                    data:{
-                        pid:productId.val()
-                    }
-                }).then(data => {
-                    if(data.success === 1) {
-                        location.href = '/shopping-cart';
-                    } else {
-                        buyButton.removeClass('on').text('加入到我的购物清单');
-                    }
-                    
-                },error => {
-                    buyButton.removeClass('on').text('加入到我的购物清单');
-                });
-                */
             });
 
             modalBuy.on('open.modal.amui', function() {
@@ -118,8 +99,17 @@ module.exports = {
                     shopLink[0].focus();
                 },500);
             });
+
+            let clipboard = new Clipboard(copyLink[0], {
+                text: function() {
+                    return shopLink.val();
+                }
+            });
+            clipboard.on('success',data => {
+                copyLink.addClass('color-green');
+            });
+            
         }
-        
 
     },
 
