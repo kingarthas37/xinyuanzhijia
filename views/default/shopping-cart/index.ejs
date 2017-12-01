@@ -12,7 +12,7 @@
 
 <% include ../partials/header-sub %>
 
-<h4><i class="am-icon-check-circle"></i> 购物车目前共有<strong>2</strong>件商品,总价值约为<strong>¥998</strong></h4>
+<h4><i class="am-icon-check-circle"></i> 购物车目前共有<strong>2</strong>件商品,总价值约为<strong>¥998</strong>,请依次点击每件商品的"加入到淘宝购物车"进行选购</h4>
 
 <ul class="main-list">
     <% for(var i=0; i< items.length;i++) {%>
@@ -34,7 +34,7 @@
                 参考价格: <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span>
             </p>
             <p>
-                <a class="shop-add-link" href="<%= items[i].get('shopLink')[0] %>"><i class="am-icon-cart-arrow-down"></i> 加入到淘宝店铺购物车</a>
+                <i class="icon-taobao"></i> <a class="shop-add-link" href="<%= items[i].get('shopLink')[0] %>"> 加入到淘宝店铺购物车 <i class="am-icon-check-circle"></i></a>
             </p>
         </div>
     </li>

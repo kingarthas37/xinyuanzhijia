@@ -19,6 +19,9 @@ let data = extend(config.data, {
 });
 
 router.get('/', (req,res) => {
+    if(!req.cookies.login) {
+        res.redirect('/user/login');
+    }
     let carts = req.cookies.xcarts;
     let sessionData = req.cookies.login;
     data = extend(data, {'items':[]});

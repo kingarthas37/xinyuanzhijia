@@ -1092,7 +1092,7 @@ footer {
         .main-list li .detail p span i {
           margin-right: 2px; }
       .main-list li .detail p .price {
-        color: #ff7d00; }
+        color: #eb0828; }
         .main-list li .detail p .price strong {
           font-size: 16px; }
       .main-list li .detail p .active {
@@ -3023,13 +3023,28 @@ body.homepage {
   right: 0;
   z-index: 999; }
 
+.user-cart-page .icon-taobao {
+  background: url("http://ac-JoaBcRTt.clouddn.com/90d163a516bd8ea00f01.png");
+  background-size: 100%;
+  background-position: center;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle; }
+
 .user-cart-page .shop-add-link {
   font-size: 13px;
-  color: #289a32;
+  color: #ff7d00;
   font-weight: bold;
   text-decoration: underline;
   display: none; }
+  .user-cart-page .shop-add-link .am-icon-check-circle {
+    display: none; }
   .user-cart-page .shop-add-link.on {
     display: inline; }
+  .user-cart-page .shop-add-link.clicked {
+    color: #999; }
+    .user-cart-page .shop-add-link.clicked .am-icon-check-circle {
+      display: inline; }
 
 /*# sourceMappingURL=51wish.default.css.map */

@@ -117,15 +117,34 @@
         right:0;
         z-index: 999;
     }
+
+    .icon-taobao {
+        background: url('http://ac-JoaBcRTt.clouddn.com/90d163a516bd8ea00f01.png');
+        background-size: 100%;
+        background-position: center;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        vertical-align: middle;
+    }
     
     .shop-add-link {
         font-size: 13px;
-        color: $colorGreen;
+        color: $colorOrange;
         font-weight: bold;
         text-decoration: underline;
         display: none;
+        .am-icon-check-circle {
+            display: none;
+        }
         &.on {
             display: inline;
+        }
+        &.clicked {
+            color: $colorGray;
+            .am-icon-check-circle {
+                display: inline;
+            }
         }
     }
 }

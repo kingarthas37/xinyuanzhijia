@@ -15,7 +15,9 @@ module.exports = {
                 });
             });
         } else {
-            $('.shop-add-link').addClass('on');
+            $('.shop-add-link').addClass('on').click(function() {
+                $(this).addClass('clicked');
+            });
         }
     }
 
