@@ -15,7 +15,7 @@ module.exports = {
             } else {
                 $(this).addClass('clicked');
             }
-            
+            return false;
         });
     }
 
