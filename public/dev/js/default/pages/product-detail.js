@@ -97,13 +97,15 @@ module.exports = {
                     type:'post',
                     data:{
                         pid:productId.val(),
-                        count:1
                     }
                 }).then(data => {
-                    buyButton.removeClass('on').text('加入到我的购物清单');
+                    
                     if(data.success === 1) {
                         location.href = '/shopping-cart';
+                    } else {
+                        buyButton.removeClass('on').text('加入到我的购物清单');
                     }
+                    
                 },error => {
                     buyButton.removeClass('on').text('加入到我的购物清单');
                 });

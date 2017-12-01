@@ -65,7 +65,7 @@
 <% if (count > 0) { %>
 <ul class="main-list">
     <% for(var i=0; i< items.length;i++) {%>
-    <li>
+    <li data-product-id="<%=items[i].get('productId') %>">
         <div class="img">
             <%if (items[i].get('isHot')){ %><em class="hot"></em><%}%>
             <%if (items[i].get('isNewSale')){ %><em class="new"></em><%}%>
@@ -83,6 +83,7 @@
                 <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span>
                 <span><%=items[i].get('pageViews') %>次浏览</span>
                 <span>已售<%=items[i].get('sales')%>件</span>
+                <a class="fav" href="javascript:;">+ 收藏</a>
             </p>
             <p>
                 <% if (items[i].get('isRefund')) { %><span class="active"><i class="am-icon-history"></i>7天退款</span><% } %>

@@ -6,7 +6,8 @@ module.exports = {
 
     init() {
         
-        $('.main-list').setInfinitescroll({
+        let mainList = $('.main-list');
+        mainList.setInfinitescroll({
             setPathParse:(path,page)=> {
                 let url = $('.navigation').find('a').attr('href');
                 url = url.replace(/(page=\d+)/,'page=');
@@ -37,7 +38,7 @@ module.exports = {
                     let isShortStockCss = item.isShortStock ? 'class="out-stock"' : '';
 
                     content += `
-                    <li>
+                    <li data-product-id="${item.productId}">
                         <div class="img">
                             <a href="/product/detail/${item.productId}"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="${image}?imageMogr2/thumbnail/200"></a>
                         </div>
@@ -51,6 +52,7 @@ module.exports = {
                             <span class="price">¥ <strong>${price}</strong></span>
                             <span>${item.pageViews}次浏览</span>
                             <span>已售${item.sales}件</span>
+                            <a class="fav" href="javascript:;">+收藏</a>
                             </p>
                             <p>
                                 ${isRefund} ${stock} ${isHandmade} ${isOnly}
@@ -61,6 +63,35 @@ module.exports = {
 
                 });
                 return content;
+            }
+        });
+
+        mainList.on('click','.fav',function() {
+
+            if (!window.isLogin) {
+                location.href = `/user/login?return=${location.pathname}`;
+                return false;
+            }
+
+            let productId = $(this).parents('li').data('product-id');
+            
+            if($(this).hasClass('add')) {
+                $.ajax({
+                    url: `/user/wish/edit/${productId}`
+                }).then(data => {
+                    if (data.success) {
+                        $(this).removeClass('add').text('+ 收藏');
+                    }
+                });
+                
+            } else {
+                $.ajax({
+                    url: `/user/wish/add/${productId}`
+                }).then(data => {
+                    if (data.success) {
+                        $(this).addClass('add').text('- 已收藏');
+                    }
+                });
             }
         });
         

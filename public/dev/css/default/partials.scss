@@ -1161,7 +1161,8 @@ footer {
                 margin: 0 0 5px 0;
                 line-height: 20px;
                 font-size: 12px;
-
+                @extend %clearfix;
+                
                 &:last-child {
                     margin-bottom: 0;
                 }
@@ -1185,6 +1186,11 @@ footer {
                     border-radius: 2px;
                     color: $colorMain;
                     background-color: #eaf2ff;
+                }
+                .fav {
+                    &.add {
+                        font-weight: bold;
+                    }
                 }
             }
 
