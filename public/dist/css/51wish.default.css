@@ -2991,11 +2991,10 @@ body.homepage {
 .user-cart-page .am-container {
   margin-bottom: 20px; }
 
-.user-cart-page .buy-button {
-  margin-top: 10px;
-  width: 100%;
-  display: none; }
-  .user-cart-page .buy-button .am-btn {
+.user-cart-page .clear-cart-button {
+  margin-bottom: 20px;
+  width: 100%; }
+  .user-cart-page .clear-cart-button .am-btn {
     border: none;
     color: #fff;
     background: -webkit-linear-gradient(left, #6397f5 0%, #f67bbb 100%);
@@ -3007,10 +3006,6 @@ body.homepage {
     font-size: 18px;
     border-radius: 5px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
-    .user-cart-page .buy-button .am-btn.on {
-      opacity: 0.75; }
-  .user-cart-page .buy-button.on {
-    display: block; }
 
 .user-cart-page .buy-bg {
   position: fixed;

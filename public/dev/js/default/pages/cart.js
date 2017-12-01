@@ -17,6 +17,16 @@ module.exports = {
             }
             return false;
         });
+        
+        let modalClearCart = $('#modal-clear-cart');
+        $('#clear-cart').click(function() {
+            modalClearCart.modal({
+                relatedTarget: this,
+                onConfirm: function(options) {
+                    location.href = '/shopping-cart?empty=true';
+                }
+            });
+        });
     }
 
 };

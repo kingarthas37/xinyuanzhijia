@@ -43,16 +43,26 @@
 </ul>
 
 <div class="am-container">
+    <div class="clear-cart-button">
+        <button type="button" id="clear-cart" class="am-btn am-btn-default">清空购物车</button>
+    </div>
     <ul class="info">
         <li><i class="am-icon-credit-card color-main"></i> 由于支付权限原因,目前我们仅支持下单后跳转到淘宝店铺进行支付,您可根据系统提示进行后续操作,感谢您的支持和理解!</li>
         <li><i class="am-icon-info-circle color-main"></i> 目前网站价格仅为参考价格,最终价格请结合淘宝店铺零售价为准.</li>
         <li><i class="am-icon-info-circle color-main"></i> 如发生产品对应链接错误,您可以直接在淘宝店铺中搜索该产品名称即可找到对应产品.</li>
     </ul>
-    <!--
-    <div class="buy-button">
-        <button type="button" id="buy" class="am-btn am-btn-default">去淘宝店铺下单</button>
+</div>
+
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-clear-cart">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            确定要清除购物车么？
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
     </div>
-    -->
 </div>
 
 <% include ../partials/js %>
