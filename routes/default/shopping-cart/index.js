@@ -19,9 +19,6 @@ let data = extend(config.data, {
 });
 
 router.get('/', (req,res) => {
-    if(!req.cookies.login) {
-        res.redirect('/user/login');
-    }
     let carts = req.cookies.xcarts;
     let sessionData = req.cookies.login;
     data = extend(data, {'items':[]});
@@ -95,6 +92,22 @@ router.post('/add', (req,res) => {
         shoppingCart.setShoppingCartCookie(req,res,{carts}, 60*1000*60*24*36);
         res.send({'success':1});
     }
+});
+
+router.post('/delete', (req,res) => {
+    let carts = req.cookies.xcarts;
+    let sessionData = req.cookies.login;
+    let success = 0;
+    if (carts) {
+        shoppingCart.setShoppingCartCookie(req,res,{carts}, -10);
+        success = 1;
+    }
+    if (sessionData) {
+        let member = user.getDecodeByBase64(sessionData);
+        shoppingCart.deleteShoppingCartByMemberId(member.id);
+        success = 1;
+    }
+    res.send({success});
 });
 
 module.exports = router;
