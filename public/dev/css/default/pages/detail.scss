@@ -53,6 +53,14 @@
         padding: 0 10px;
         font-size: 16px;
         color: $colorMain;
+        .hot {
+            padding-left: 32px;
+        }
+        .events-share {
+            font-weight: normal;
+            color: $colorGreen;
+            font-size: 14px;
+        }
     }
 
     .info-content {
@@ -452,7 +460,7 @@
 
     .share-bg {
         position: fixed;
-        background: #000 url("http://ac-JoaBcRTt.clouddn.com/d955de0919a833463323.png") no-repeat right top;
+        background: #000 url("//ac-QuiPuWpJ.clouddn.com/a92368907c6801747a12.png") no-repeat right top;
         background-size: 50%;
         opacity: 0.9;
         top:0;

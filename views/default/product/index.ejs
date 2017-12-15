@@ -82,8 +82,8 @@
             <p>
                 <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span>
                 <span><%=items[i].get('pageViews') %>次浏览</span>
-                <span>已售<%=items[i].get('sales')%>件</span>
-                <a class="fav" href="javascript:;">+收藏</a>
+                <!--<span>已售<%=items[i].get('sales')%>件</span>-->
+                <a class="fav <%if(items[i].get('wish')){%>on<%}%>" href="javascript:;">收藏</a>
             </p>
             <p>
                 <% if (items[i].get('isRefund')) { %><span class="active"><i class="am-icon-history"></i>7天退款</span><% } %>

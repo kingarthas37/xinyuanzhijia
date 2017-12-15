@@ -52,7 +52,7 @@ module.exports = {
                             <span class="price">¥ <strong>${price}</strong></span>
                             <span>${item.pageViews}次浏览</span>
                             <span>已售${item.sales}件</span>
-                            <a class="fav" href="javascript:;">+收藏</a>
+                            <a class="fav" href="javascript:;">收藏</a>
                             </p>
                             <p>
                                 ${isRefund} ${stock} ${isHandmade} ${isOnly}
@@ -80,7 +80,7 @@ module.exports = {
                     url: `/user/wish/edit/${productId}`
                 }).then(data => {
                     if (data.success) {
-                        $(this).removeClass('add').text('+收藏');
+                        $(this).removeClass('add').text('收藏');
                     }
                 });
                 
@@ -89,7 +89,7 @@ module.exports = {
                     url: `/user/wish/add/${productId}`
                 }).then(data => {
                     if (data.success) {
-                        $(this).addClass('add').text('-已收藏');
+                        $(this).addClass('add').text('已收藏');
                     }
                 });
             }

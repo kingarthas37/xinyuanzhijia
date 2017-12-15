@@ -48,7 +48,7 @@
     <a href="/product?method=<%=item.productMethod[0]%>&cat1=<%=category1.category1Id%>"><%=category1.name%></a> <i class="am-icon-angle-right"></i> <a href="/product?method=<%=item.productMethod[0]%>&cat1=<%=category1.category1Id%>&cat2=<%=category2.category2Id%>"><%=category2.name%></a>
 </div>
 
-<h1><%- item.name %> <%if(item.isHot){%><sup class="hot"></sup><%}%></h1>
+<h1><%if(item.isHot){%><sup class="hot"></sup><%}%><%- item.name %> <a title="分享给好友" class="events-share" href="javascript:;"><i class="am-icon-share-alt"></i></a></h1>
 
 <div class="guarantee-content">
     <span><i class="am-icon-leaf"></i> 正品保障</span>

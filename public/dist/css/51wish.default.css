@@ -1102,7 +1102,8 @@ footer {
         color: #6071d5;
         background-color: #eaf2ff; }
       .main-list li .detail p .fav.add {
-        font-weight: bold; }
+        font-weight: bold;
+        color: #289a32; }
 
 .main-list .loading {
   height: 32px; }
@@ -2326,6 +2327,12 @@ a.pswp__share--download:hover {
     padding: 0 10px;
     font-size: 16px;
     color: #6071d5; }
+    .detail-page h1 .hot {
+      padding-left: 32px; }
+    .detail-page h1 .events-share {
+      font-weight: normal;
+      color: #289a32;
+      font-size: 14px; }
   .detail-page .info-content {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2626,7 +2633,7 @@ a.pswp__share--download:hover {
     border-bottom-color: #000; }
   .detail-page .share-bg {
     position: fixed;
-    background: #000 url("http://ac-JoaBcRTt.clouddn.com/d955de0919a833463323.png") no-repeat right top;
+    background: #000 url("//ac-QuiPuWpJ.clouddn.com/a92368907c6801747a12.png") no-repeat right top;
     background-size: 50%;
     opacity: 0.9;
     top: 0;

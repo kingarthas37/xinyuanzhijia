@@ -175,7 +175,7 @@ module.exports = {
         }
 
         {
-            $('.am-table').on('click','.am-icon-link',function() {
+            $('.am-table').on('mousedown','.am-icon-link',function() {
                 $(this).addClass('on');
             });
         }
