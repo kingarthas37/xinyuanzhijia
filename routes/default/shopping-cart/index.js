@@ -28,7 +28,7 @@ router.get('/', (req,res) => {
                 shoppingCart.setShoppingCartCookie(req,res,{carts}, -10);
                 let member = user.getDecodeByBase64(sessionData);
                 carts = shoppingCart.getDecodeByBase64(carts);
-                async.forEachLimit(carts, 5, function(res, callback){
+                async.forEachSeries(carts, function(res, callback){
                     shoppingCart.add({'productId':res.productId, 'count':res.count, 'commonMemberId':member.id}).then(() => {
                         callback();
                     });
@@ -43,7 +43,7 @@ router.get('/', (req,res) => {
             if (sessionData) {
                 let member = user.getDecodeByBase64(sessionData);
                 shoppingCart.getShoppingCartsByMemberId(member.id, {'order':'updatedAt'}).then(result => {
-                    async.forEachLimit(result, 5, function(res, callback){
+                    async.forEachSeries(result, function(res, callback){
                         product.getProductById(res.get('productId')).then(item => {
                             item.set('count', res.get('count'));
                             data.items.push(item);
@@ -54,7 +54,7 @@ router.get('/', (req,res) => {
                     });
                 });
             } else if (carts) {
-                async.forEachLimit(carts, 5, function(res, callback){
+                async.forEachSeries(carts, function(res, callback){
                     product.getProductById(res.productId).then(item => {
                         item.set('count', res.count);
                         data.items.push(item);
