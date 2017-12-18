@@ -40,8 +40,8 @@ router.get('/', (req, res) => {
                 data = extend(data, {'newReleases':items});
                 resolve();
             });
-        }),
-        new AV.Promise(resolve => {
+        })//,
+        /*new AV.Promise(resolve => {
             let result = [];
             let productIds = [];
             orderTrack.getOrdersByCreateAt(10, 1).then(items => {
@@ -69,7 +69,7 @@ router.get('/', (req, res) => {
                     resolve();
                 });
             });
-        })
+        })*/
     ).then(() => {
         res.render('default/index/index',data);
     });

@@ -57,28 +57,7 @@
 
 </ul>
 最近卖出
-<ul class="main-list">
-    <% for(var i =0; i < openSell.length; i++) { %>
 
-    <li>
-        <div class="img">
-            <span class="new"></span>
-            <a href="/product/detail/<%=openSell[i].get('productId')%>"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="<% for(var n in openSell[i].get('mainImage')) { %><% if(openSell[i].attributes.mainImage[n].isMainImage) { %><%= openSell[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
-        </div>
-        <div class="detail">
-            <h3><a href="/product/detail/<%=openSell[i].get('productId')%>"><%= openSell[i].get('name') %></a></h3>
-            <p>
-                <span class="price">¥<strong> <%= (openSell[i].get('price') ? openSell[i].get('price') + '.00' : '-') %></strong></span>
-                <span><%=newReleases[i].get('pageViews') %>次浏览</span>
-            </p>
-            <p>
-                <span class="active"><i class="am-icon-history"></i>7天退款</span>
-            </p>
-        </div>
-    </li>
-    <% } %>
-
-</ul>
 
 <% include ../partials/footer %>
 <% include ../partials/js %>
