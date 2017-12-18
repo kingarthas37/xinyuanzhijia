@@ -8,6 +8,8 @@ window.leanApp = {
 };
 
 window.taobaoShop = {
+    shop1Name:'暮雪的心愿城',
+    shop2Name:'亚特兰蒂斯之谜',
     shop1:'//muxue698.taobao.com',
     shop2:'//muxue928.taobao.com'
-}
+};

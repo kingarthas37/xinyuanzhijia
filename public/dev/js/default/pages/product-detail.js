@@ -88,17 +88,28 @@ module.exports = {
             let modalBuy = $('#modal-buy');
             let shopLink = $('#shop-link');
             let openTbLink = $('.open-tb-link');
+            let tbName = $('.tb-name');
             let productMethodId = parseInt($('#product-method-id').val());
 
-            let clipboard = new Clipboard(buyButton[0], {
-                text: function() {
-                    return shopLink.val();
-                }
-            });
+            if(shopLink.val()) {
+                let clipboard = new Clipboard(buyButton[0], {
+                    text: function() {
+                        return shopLink.val();
+                    }
+                });
 
-            clipboard.on('success',data => {
-                modalBuy.modal();
-            });
+                clipboard.on('success',data => {
+                    modalBuy.find('.success').addClass('on');
+                    modalBuy.find('.failed').removeClass('on');
+                    modalBuy.modal();
+                });
+            } else {
+                buyButton.click(function() {
+                    modalBuy.find('.success').removeClass('on');
+                    modalBuy.find('.failed').addClass('on');
+                    modalBuy.modal();
+                });
+            }
             
             let tbLinkValue = '';
             if(/http[^\s]+/.test(shopLink.val())) {
@@ -106,6 +117,7 @@ module.exports = {
                 openTbLink.attr('href',tbLinkValue);
             } else {
                 openTbLink.attr('href',productMethodId === 3 ? window.taobaoShop.shop1 : window.taobaoShop.shop2);
+                tbName.text(productMethodId === 3 ? window.taobaoShop.shop1Name : window.taobaoShop.shop2Name);
             }
         }
 

@@ -2647,6 +2647,7 @@ a.pswp__share--download:hover {
     font-size: 16px;
     font-weight: bold; }
   .detail-page #modal-buy .am-modal-bd {
+    margin: 0;
     font-size: 14px;
     text-align: left; }
   .detail-page #modal-buy .shop-link {
@@ -2672,6 +2673,10 @@ a.pswp__share--download:hover {
       border-color: #ff7d00; }
       .detail-page #modal-buy .copy-link.active i {
         display: inline; }
+  .detail-page #modal-buy .am-modal-hd, .detail-page #modal-buy .am-modal-bd {
+    display: none; }
+    .detail-page #modal-buy .am-modal-hd.on, .detail-page #modal-buy .am-modal-bd.on {
+      display: block; }
 
 .user-page .am-container {
   padding-top: 20px;

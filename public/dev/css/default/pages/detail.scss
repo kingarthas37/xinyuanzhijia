@@ -479,6 +479,7 @@
             font-weight: bold;
         }
         .am-modal-bd {
+            margin: 0;
             font-size: 14px;
             text-align: left;
         }
@@ -510,6 +511,13 @@
                 border-color:$colorOrange;
             }
         }
+        .am-modal-hd,.am-modal-bd {
+            display: none;
+            &.on {
+                display: block;
+            }
+            
+        } 
     }
     
     
