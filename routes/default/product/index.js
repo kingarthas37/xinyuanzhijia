@@ -13,6 +13,8 @@ let markdown = require('markdown').markdown;
 let productCategory1 = require('../../../lib/models/product-category1').createNew();
 let productCategory2 = require('../../../lib/models/product-category2').createNew();
 let orderTrack = require('../../../lib/models/order-track').createNew();
+let productWish = require('../../../lib/models/product-wish').createNew();
+let user = require('../../../lib/models/common-member').createNew();
 let methodId = [21];
 
 let data = extend(config.data, {
@@ -129,6 +131,8 @@ router.get('/', (req, res) => {
             }
         }),
         new AV.Promise(resolve => {
+            let sessionData = req.cookies.login;
+            let items = [];
             product.getProducts(options).then(result => {
                 result.forEach(n => {
                     n.set('isNewSale', false);
@@ -137,13 +141,28 @@ router.get('/', (req, res) => {
                         saleDate.setMonth(saleDate.getMonth() + 2);
                         n.set('isNewSale', (saleDate > new Date()));
                     }
+                    n.set('isWish', false);
                 });
-
-                data = extend(data, {items: result});
-
-                // console.log('options==' + JSON.stringify(data));//打印了,需要
-
-                resolve();
+                if (sessionData) {
+                    let member = user.getDecodeByBase64(sessionData);
+                    async.forEachLimit(result, 5, function(item, callback){
+                        productWish.getWishByCommonMemberIdAndProductId(member.id, item.get('productId')).then(wish => {
+                            item.set('isWish', wish.wish);
+                            items.push(item);
+                            callback();
+                        });
+                    },  function(err){
+                        if(err) {
+                            console.log('product open sell:' + err);
+                        }
+                        data = extend(data, {items});
+                        resolve();
+                    });
+                } else {
+                    items = result;
+                    data = extend(data, {items});
+                    resolve();
+                }
             });
         }),
         new AV.Promise(resolve => {
@@ -189,7 +208,8 @@ router.get('/ajax', (req, res) => {
         order,
         price
     };
-    let datas = {'items': null};
+    let datas = {'items': []};
+    let sessionData = req.cookies.login;
     AV.Promise.when(
         new AV.Promise(resolve => {
             product.getProducts(options).then(result => {
@@ -202,9 +222,26 @@ router.get('/ajax', (req, res) => {
                         saleDate.setMonth(saleDate.getMonth() + 2);
                         n.set('isNewSale', (saleDate > new Date()));
                     }
+                    n.set('isWish', false);
                 });
-                datas.items = result;
-                resolve();
+                if (sessionData) {
+                    let member = user.getDecodeByBase64(sessionData);
+                    async.forEachLimit(result, 5, function(item, callback){
+                        productWish.getWishByCommonMemberIdAndProductId(member.id, item.get('productId')).then(wish => {
+                            item.set('isWish', wish.wish);
+                            datas.items.push(item);
+                            callback();
+                        });
+                    },  function(err){
+                        if(err) {
+                            console.log('product open sell:' + err);
+                        }
+                        resolve();
+                    });
+                } else {
+                    datas.items = result;
+                    resolve();
+                }
             });
         })
     ).then(() => {
