@@ -11,7 +11,6 @@ module.exports = {
         $('.shop-add-link').each(function(i,n) {
             let clipboard = new Clipboard(n, {
                 text: function() {
-                    
                     return $(n).data('shop-link');
                 }
             });
