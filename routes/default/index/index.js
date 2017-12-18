@@ -1,6 +1,9 @@
 'use strict';
 
 let user = require('../../../lib/models/common-member').createNew();
+let AV = user.getAV();
+let orderTrack = require('../../../lib/models/order-track').createNew();
+let product = require('../../../lib/models/product').createNew();
 let config = user.getConfig();
 let router = user.getRouter();
 
@@ -29,11 +32,47 @@ router.get('/', (req, res) => {
     }
 
     let page = req.query.page ? parseInt(req.query.page) : 1;
-
-
+    let methodId = [21];
     // console.log('/Users/Ebates/Desktop/chamWork/H5/xinyuanzhijia/routes/default/index/home.js 开始画 首页')
-
-    res.render('default/index/index',data);
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            product.getProductsByUpdateStockDate(20, methodId, 1).then(items => {
+                data = extend(data, {'newReleases':items});
+                resolve();
+            });
+        }),
+        new AV.Promise(resolve => {
+            let result = [];
+            let productIds = [];
+            orderTrack.getOrdersByCreateAt(10, 1).then(items => {
+                async.forEachLimit(items, 1, function(item, callback){
+                    async.forEachLimit(item.get('productId'), 1, function(productId, callback){
+                        if (productIds.indexOf(productId) < 0) {
+                            product.getProductByIdAndMethod(parseInt(productId), methodId).then(value => {
+                                if (value) {
+                                    result.push(value);
+                                }
+                                productIds.push(productId);
+                                callback();
+                            });
+                        } else {
+                            callback();
+                        }
+                    }, function(err) {
+                        callback();
+                    });
+                }, function(err){
+                    if(err) {
+                        console.log('product open sell:' + err);
+                    }
+                    data = extend(data, {'openSell':result});
+                    resolve();
+                });
+            });
+        })
+    ).then(() => {
+        res.render('default/index/index',data);
+    });
 
 });
 

@@ -13,6 +13,7 @@ let markdown = require('markdown').markdown;
 let productCategory1 = require('../../../lib/models/product-category1').createNew();
 let productCategory2 = require('../../../lib/models/product-category2').createNew();
 let orderTrack = require('../../../lib/models/order-track').createNew();
+let methodId = [21];
 
 let data = extend(config.data, {
     title: `${config.data.name} - 产品列表`,
@@ -234,12 +235,15 @@ router.get('/products-id/:productIds', (req, res) => {
 router.get('/open-sell', (req,res) => {
     let result = [];
     let productIds = [];
-    orderTrack.getOrdersByCreateAt(10).then(items => {
+    let page = req.query.page ? parseInt(req.query.page) : 2;
+    orderTrack.getOrdersByCreateAt(10, page).then(items => {
         async.forEachLimit(items, 1, function(item, callback){
             async.forEachLimit(item.get('productId'), 1, function(productId, callback){
                 if (productIds.indexOf(productId) < 0) {
-                    product.getProductById(parseInt(productId)).then(value => {
-                        result.push({productId:value});
+                    product.getProductByIdAndMethod(parseInt(productId), methodId).then(value => {
+                        if (value) {
+                            result.push(value);
+                        }
                         productIds.push(productId);
                         callback();
                     });
@@ -260,9 +264,10 @@ router.get('/open-sell', (req,res) => {
 
 router.get('/new-releases', (req,res) => {
     let result;
+    let page = req.query.page ? parseInt(req.query.page) : 2;
     AV.Promise.when(
         new AV.Promise(resolve => {
-            product.getProductsByUpdateStockDate(50).then(items => {
+            product.getProductsByUpdateStockDate(20, methodId, page).then(items => {
                 result = extend(result, {items});
                 resolve();
             });

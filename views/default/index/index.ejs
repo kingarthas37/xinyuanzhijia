@@ -33,64 +33,50 @@
     <li><a href="javascript:;" class="index-nav-ico-3"><img src="/<%= asset %>/images/default/icons/index-nav-3.png" alt=""><span class="color-gray">自营专区</span></a></li>
     <li><a href="/" class="index-nav-ico-8"><img src="/<%= asset %>/images/default/icons/index-nav-8.png" alt=""><span>所有分类</span></a></li>
 </ul>
-
+最新上架
 <ul class="main-list">
+    <% for(var i =0; i < newReleases.length; i++) { %>
 
     <li>
         <div class="img">
             <span class="new"></span>
-            <a href="/product/detail/834"><img src="http://ac-QuiPuWpJ.clouddn.com/bf53f3578e0460aa2c1e.jpg?imageMogr2/thumbnail/200" class="lazy" width="100" height="100" data-original="http://ac-QuiPuWpJ.clouddn.com/bf53f3578e0460aa2c1e.jpg?imageMogr2/thumbnail/200"></a>
+            <a href="/product/detail/<%=newReleases[i].get('productId')%>"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="<% for(var n in newReleases[i].get('mainImage')) { %><% if(newReleases[i].attributes.mainImage[n].isMainImage) { %><%= newReleases[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
         </div>
         <div class="detail">
-            <h3><a href="/product/detail/834">(新建产品) 魔法权杖/女巫权杖 - 幸福仙子</a></h3>
+            <h3><a href="/product/detail/<%=newReleases[i].get('productId')%>"><%= newReleases[i].get('name') %></a></h3>
             <p>
-                <span class="price">¥<strong> 0</strong></span>
-                <span>42次浏览</span>
+                <span class="price">¥<strong> <%= (newReleases[i].get('price') ? newReleases[i].get('price') + '.00' : '-') %></strong></span>
+                <span><%=newReleases[i].get('pageViews') %>次浏览</span>
             </p>
             <p>
                 <span class="active"><i class="am-icon-history"></i>7天退款</span>
             </p>
         </div>
     </li>
+<% } %>
 
+</ul>
+最近卖出
+<ul class="main-list">
+    <% for(var i =0; i < openSell.length; i++) { %>
 
     <li>
         <div class="img">
-            <span class="hot"></span>
-            <a href="/product/detail/833"><img src="http://ac-QuiPuWpJ.clouddn.com/ebbba0e0a11a816edd96.jpg?imageMogr2/thumbnail/200" class="lazy" width="100" height="100" data-original="http://ac-QuiPuWpJ.clouddn.com/ebbba0e0a11a816edd96.jpg?imageMogr2/thumbnail/200"></a>
+            <span class="new"></span>
+            <a href="/product/detail/<%=openSell[i].get('productId')%>"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="<% for(var n in openSell[i].get('mainImage')) { %><% if(openSell[i].attributes.mainImage[n].isMainImage) { %><%= openSell[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
         </div>
         <div class="detail">
-            <h3><a href="/product/detail/833">(新建产品) 魔法权杖/女巫权杖 - 魔法蝴蝶</a></h3>
+            <h3><a href="/product/detail/<%=openSell[i].get('productId')%>"><%= openSell[i].get('name') %></a></h3>
             <p>
-                <span class="price">¥<strong> 0</strong></span>
-                <span>39次浏览</span>
+                <span class="price">¥<strong> <%= (openSell[i].get('price') ? openSell[i].get('price') + '.00' : '-') %></strong></span>
+                <span><%=newReleases[i].get('pageViews') %>次浏览</span>
             </p>
             <p>
-
-                <span class="active"><i class="am-icon-history"></i>7天退款</span>
-
-
-            </p>
-        </div>
-    </li>
-
-
-    <li>
-        <div class="img">
-            <a href="/product/detail/820"><img src="http://ac-QuiPuWpJ.clouddn.com/fc0746c02bd66d6b5209.jpg?imageMogr2/thumbnail/200" class="lazy" width="100" height="100" data-original="http://ac-QuiPuWpJ.clouddn.com/fc0746c02bd66d6b5209.jpg?imageMogr2/thumbnail/200"></a>
-        </div>
-        <div class="detail">
-            <h3><a href="/product/detail/820">(新建产品) 魔法权杖/女巫权杖 - 万能钥匙</a></h3>
-            <p>
-                <span class="price">¥<strong> 0</strong></span>
-                <span>7次浏览</span>
-            </p>
-            <p>
-
                 <span class="active"><i class="am-icon-history"></i>7天退款</span>
             </p>
         </div>
     </li>
+    <% } %>
 
 </ul>
 
