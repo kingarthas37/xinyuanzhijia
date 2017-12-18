@@ -102,14 +102,18 @@ module.exports = {
                     modalBuy.find('.success').addClass('on');
                     modalBuy.find('.failed').removeClass('on');
                     modalBuy.modal();
+                    addToCart();
                 });
             } else {
                 buyButton.click(function() {
                     modalBuy.find('.success').removeClass('on');
                     modalBuy.find('.failed').addClass('on');
                     modalBuy.modal();
+                    addToCart();
                 });
             }
+            
+            
             
             let tbLinkValue = '';
             if(/http[^\s]+/.test(shopLink.val())) {
@@ -119,6 +123,21 @@ module.exports = {
                 openTbLink.attr('href',productMethodId === 3 ? window.taobaoShop.shop1 : window.taobaoShop.shop2);
                 tbName.text(productMethodId === 3 ? window.taobaoShop.shop1Name : window.taobaoShop.shop2Name);
             }
+        }
+
+        function addToCart() {
+            $.ajax({
+                url:'/shopping-cart/add',
+                type:'post',
+                data:{
+                    pid:$('#product-id').val(),
+                    count:1
+                }
+            }).then(data => {
+                console.info('成功添加到购物车!');
+            },error => {
+                console.info('添加到购物车失败!',error);
+            });
         }
 
     },

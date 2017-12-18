@@ -13,10 +13,6 @@
 <% include ../partials/header-sub %>
 
 <% if(items.length) { %>
-<h4><i class="am-icon-check-circle"></i> 购物车目前共有<strong>2</strong>件商品,总价值约为<strong>¥998</strong>,请依次点击每件商品的"加入到淘宝购物车"进行选购:</h4>
-<%}%>
-
-<% if(items.length) { %>
     <ul class="main-list">
     <% for(var i=0; i< items.length;i++) {%>
     <li>
@@ -36,9 +32,15 @@
             <p>
                 参考价格: <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span>
             </p>
-            <p>
-                <i class="icon-taobao"></i> <a class="shop-add-link" href="<%= items[i].get('shopLink')[0] %>"> 加入到淘宝店铺购物车 <i class="am-icon-check-circle"></i></a>
-            </p>
+            <% if(items[i].get('shopLink')[1]){ %>
+                <p>
+                    <i class="icon-taobao"></i> <a class="shop-add-link" href="javascript:;" data-shop-link="<%= items[i].get('shopLink')[1] %>"> 再次添加到淘宝购物车 <i class="am-icon-check-circle"></i></a>
+                </p>
+            <%}else{%>
+                <p>
+                    <span class="color-gray">暂时无法添加,请手动添加</span>
+                </p>
+            <%}%>
         </div>
     </li>
 
@@ -47,7 +49,7 @@
 <% } else { %>
 <div class="cart-empty-info">
     <div></div>
-    <p>您的购物车暂时还没有任何商品哦! <a href="/">立即去购物</a></p>
+    <p>您暂时还没有购买过任何商品哦! <a href="/">立即去购物</a></p>
 </div>
 <%}%>
 
@@ -55,7 +57,7 @@
 <div class="am-container">
     <% if(items.length) { %>
     <div class="clear-cart-button">
-        <button type="button" id="clear-cart" class="am-btn am-btn-default">清空购物车</button>
+        <button type="button" id="clear-cart" class="am-btn am-btn-default">清空购物记录</button>
     </div>
     <%}%>
     <ul class="info">
@@ -68,11 +70,23 @@
 <div class="am-modal am-modal-confirm" tabindex="-1" id="modal-clear-cart">
     <div class="am-modal-dialog">
         <div class="am-modal-bd">
-            确定要清除购物车么？
+            确定要清除购物足迹么？
         </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn" data-am-modal-cancel>取消</span>
             <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="modal-buy">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd color-main success">生成口令成功!</div>
+        <div class="am-modal-bd success">
+            请直接打开淘宝APP客户端,或<a href="javascript:;" class="open-tb-link" target="_blank">点此使用浏览器打开</a>即可添加淘宝购物车并直接购买哦!
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
         </div>
     </div>
 </div>

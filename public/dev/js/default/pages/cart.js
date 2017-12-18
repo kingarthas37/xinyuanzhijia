@@ -5,17 +5,21 @@ let utils = require('../common/utils');
 module.exports = {
 
     init() {
-        $('.shop-add-link').click(function() {
 
-            if(utils.isWechatBrowser()) {
-                $('body').append('<div class="buy-bg"></div>');
-                $('.buy-bg').click(function() {
-                    $(this).detach();
-                });
-            } else {
-                $(this).addClass('clicked');
-            }
-            return false;
+        let modalBuy = $('#modal-buy');
+        
+        $('.shop-add-link').each(function(i,n) {
+            let clipboard = new Clipboard(n, {
+                text: function() {
+                    
+                    return $(n).data('shop-link');
+                }
+            });
+            clipboard.on('success',data => {
+                modalBuy.find('.success').addClass('on');
+                modalBuy.find('.failed').removeClass('on');
+                modalBuy.modal();
+            });
         });
         
         let modalClearCart = $('#modal-clear-cart');

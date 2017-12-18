@@ -1204,16 +1204,47 @@ span.hot:after {
   right: 0;
   z-index: 999; }
 
-.buy-bg {
-  position: fixed;
-  background: #000 url("../images/default/common/share-bg.png") no-repeat right top;
-  background-size: 50%;
-  opacity: 0.8;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 999; }
+#modal-buy p {
+  margin: 0 0 10px 0; }
+
+#modal-buy .am-modal-hd {
+  font-size: 16px;
+  font-weight: bold; }
+
+#modal-buy .am-modal-bd {
+  margin: 0;
+  font-size: 14px;
+  text-align: left; }
+
+#modal-buy .shop-link {
+  width: 100%;
+  height: 64px;
+  line-height: 20px;
+  font-size: 13px;
+  padding-top: 2px;
+  border: 1px solid #289a32;
+  border-radius: 0; }
+
+#modal-buy .copy-link {
+  border-radius: 3px;
+  color: #289a32;
+  border: 1px solid #289a32;
+  background: #fff;
+  margin: 0;
+  padding: 4px 15px;
+  display: inline-block; }
+  #modal-buy .copy-link i {
+    display: none; }
+  #modal-buy .copy-link.active {
+    color: #ff7d00;
+    border-color: #ff7d00; }
+    #modal-buy .copy-link.active i {
+      display: inline; }
+
+#modal-buy .am-modal-hd, #modal-buy .am-modal-bd {
+  display: none; }
+  #modal-buy .am-modal-hd.on, #modal-buy .am-modal-bd.on {
+    display: block; }
 
 .favorite-box {
   display: -webkit-box;
@@ -2641,42 +2672,6 @@ a.pswp__share--download:hover {
     left: 0;
     right: 0;
     z-index: 999; }
-  .detail-page #modal-buy p {
-    margin: 0 0 10px 0; }
-  .detail-page #modal-buy .am-modal-hd {
-    font-size: 16px;
-    font-weight: bold; }
-  .detail-page #modal-buy .am-modal-bd {
-    margin: 0;
-    font-size: 14px;
-    text-align: left; }
-  .detail-page #modal-buy .shop-link {
-    width: 100%;
-    height: 64px;
-    line-height: 20px;
-    font-size: 13px;
-    padding-top: 2px;
-    border: 1px solid #289a32;
-    border-radius: 0; }
-  .detail-page #modal-buy .copy-link {
-    border-radius: 3px;
-    color: #289a32;
-    border: 1px solid #289a32;
-    background: #fff;
-    margin: 0;
-    padding: 4px 15px;
-    display: inline-block; }
-    .detail-page #modal-buy .copy-link i {
-      display: none; }
-    .detail-page #modal-buy .copy-link.active {
-      color: #ff7d00;
-      border-color: #ff7d00; }
-      .detail-page #modal-buy .copy-link.active i {
-        display: inline; }
-  .detail-page #modal-buy .am-modal-hd, .detail-page #modal-buy .am-modal-bd {
-    display: none; }
-    .detail-page #modal-buy .am-modal-hd.on, .detail-page #modal-buy .am-modal-bd.on {
-      display: block; }
 
 .user-page .am-container {
   padding-top: 20px;
@@ -2706,22 +2701,22 @@ a.pswp__share--download:hover {
   margin-right: 5px; }
 
 .user-index-page .icon-user-index-cart {
-  background-image: url("http://ac-JoaBcRTt.clouddn.com/c6042ff06f9a1d5ce43c.png"); }
+  background-image: url("//ac-JoaBcRTt.clouddn.com/c6042ff06f9a1d5ce43c.png"); }
 
 .user-index-page .icon-user-index-fav {
-  background-image: url("http://ac-JoaBcRTt.clouddn.com/71248491bb6ec1bcda58.png"); }
+  background-image: url("//ac-JoaBcRTt.clouddn.com/71248491bb6ec1bcda58.png"); }
 
 .user-index-page .icon-user-index-view {
-  background-image: url("http://ac-JoaBcRTt.clouddn.com/776bcdbd3610d37a494b.png"); }
+  background-image: url("//ac-JoaBcRTt.clouddn.com/776bcdbd3610d37a494b.png"); }
 
 .user-index-page .icon-user-index-account {
-  background-image: url("http://ac-JoaBcRTt.clouddn.com/0a9ae1fe920ed43074ce.png"); }
+  background-image: url("//ac-JoaBcRTt.clouddn.com/0a9ae1fe920ed43074ce.png"); }
 
 .user-index-page .icon-user-index-track {
-  background-image: url("http://ac-JoaBcRTt.clouddn.com/fcfb619d250f214d6748.png"); }
+  background-image: url("//ac-JoaBcRTt.clouddn.com/fcfb619d250f214d6748.png"); }
 
 .user-index-page .icon-user-index-logout {
-  background-image: url("http://ac-JoaBcRTt.clouddn.com/376a11aa224b4316e0e3.png"); }
+  background-image: url("//ac-JoaBcRTt.clouddn.com/376a11aa224b4316e0e3.png"); }
 
 .user-cart-page h4 {
   padding: 10px 10px 0 10px;
@@ -2759,7 +2754,7 @@ a.pswp__share--download:hover {
 
 .user-cart-page .buy-bg {
   position: fixed;
-  background: #000 url("http://ac-JoaBcRTt.clouddn.com/13ec526e84bf5abf5c97.png") no-repeat right top;
+  background: #000 url("//ac-JoaBcRTt.clouddn.com/13ec526e84bf5abf5c97.png") no-repeat right top;
   background-size: 50%;
   opacity: 0.9;
   top: 0;
@@ -2769,7 +2764,7 @@ a.pswp__share--download:hover {
   z-index: 999; }
 
 .user-cart-page .icon-taobao {
-  background: url("http://ac-JoaBcRTt.clouddn.com/90d163a516bd8ea00f01.png");
+  background: url("//ac-JoaBcRTt.clouddn.com/90d163a516bd8ea00f01.png");
   background-size: 100%;
   background-position: center;
   width: 16px;
@@ -2790,7 +2785,7 @@ a.pswp__share--download:hover {
       display: inline; }
 
 .user-cart-page .cart-empty-info div {
-  background: url("http://ac-JoaBcRTt.clouddn.com/54085c2e46e25a78c310.png");
+  background: url("//ac-JoaBcRTt.clouddn.com/54085c2e46e25a78c310.png");
   background-position: center;
   background-size: 100%;
   width: 160px;

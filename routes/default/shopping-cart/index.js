@@ -13,8 +13,8 @@ let extend = require('xtend');
 require('../../../lib/utils');
 
 let data = extend(config.data, {
-    title:`${config.data.name}我的购物车`,
-    headerTitle:'我的购物车',
+    title:`${config.data.name}我的购物足迹`,
+    headerTitle:'我的购物足迹',
     currentPage: 'shopping-cart'
 });
 
