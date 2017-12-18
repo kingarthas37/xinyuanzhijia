@@ -40,7 +40,13 @@ router.get('/', (req, res) => {
                 data = extend(data, {'newReleases':items});
                 resolve();
             });
-        })//,
+        }),
+        new AV.Promise(resolve => {
+            product.getProductsByPageViews(20, methodId, 1).then(items => {
+                data = extend(data, {'hot':items});
+                resolve();
+            });
+        })
         /*new AV.Promise(resolve => {
             let result = [];
             let productIds = [];

@@ -232,33 +232,18 @@ router.get('/products-id/:productIds', (req, res) => {
     });
 });
 
-router.get('/open-sell', (req,res) => {
-    let result = [];
-    let productIds = [];
+router.get('/hot', (req,res) => {
+    let result;
     let page = req.query.page ? parseInt(req.query.page) : 2;
-    orderTrack.getOrdersByCreateAt(10, page).then(items => {
-        async.forEachLimit(items, 1, function(item, callback){
-            async.forEachLimit(item.get('productId'), 1, function(productId, callback){
-                if (productIds.indexOf(productId) < 0) {
-                    product.getProductByIdAndMethod(parseInt(productId), methodId).then(value => {
-                        if (value) {
-                            result.push(value);
-                        }
-                        productIds.push(productId);
-                        callback();
-                    });
-                } else {
-                    callback();
-                }
-            }, function(err) {
-                callback();
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            product.getProductsByPageViews(20, methodId, page).then(items => {
+                result = extend(result, {items});
+                resolve();
             });
-        }, function(err){
-            if(err) {
-                console.log('product open sell:' + err);
-            }
-            res.send(result);
-        });
+        })
+    ).then(() => {
+        res.send(result);
     });
 });
 
