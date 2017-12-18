@@ -86,30 +86,27 @@ module.exports = {
         {
             let buyButton = $('#buy');
             let modalBuy = $('#modal-buy');
-            let shopLink = modalBuy.find('.shop-link');
-            let copyLink = modalBuy.find('.copy-link');
-            
-            buyButton.click(function() {
-                modalBuy.modal();
-                copyLink.removeClass('active').find('span').text('复制口令');
-            });
+            let shopLink = $('#shop-link');
+            let openTbLink = $('.open-tb-link');
+            let productMethodId = parseInt($('#product-method-id').val());
 
-            modalBuy.on('open.modal.amui', function() {
-                setTimeout(()=> {
-                    shopLink.select();
-                    shopLink[0].focus();
-                },500);
-            });
-
-            let clipboard = new Clipboard(copyLink[0], {
+            let clipboard = new Clipboard(buyButton[0], {
                 text: function() {
                     return shopLink.val();
                 }
             });
+
             clipboard.on('success',data => {
-                copyLink.addClass('active').find('span').text('已复制');
+                modalBuy.modal();
             });
             
+            let tbLinkValue = '';
+            if(/http[^\s]+/.test(shopLink.val())) {
+                tbLinkValue = /(http[^\s]+)/.exec(shopLink.val())[1];
+                openTbLink.attr('href',tbLinkValue);
+            } else {
+                openTbLink.attr('href',productMethodId === 3 ? window.taobaoShop.shop1 : window.taobaoShop.shop2);
+            }
         }
 
     },

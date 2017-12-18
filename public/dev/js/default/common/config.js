@@ -6,3 +6,8 @@ window.leanApp = {
     MasterKey:'mCIsLsrtOgujruzfcEGDm9Uh',
     api:'https://api.leancloud.cn/1.1/'
 };
+
+window.taobaoShop = {
+    shop1:'//muxue698.taobao.com',
+    shop2:'//muxue928.taobao.com'
+}
