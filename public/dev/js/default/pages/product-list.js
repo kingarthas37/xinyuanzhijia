@@ -36,6 +36,8 @@ module.exports = {
                     let isStockText = item.stock > 0 ? '[现货]' : '';
                     let isShortStockText = item.isShortStock ? '[缺货]' : '';
                     let isShortStockCss = item.isShortStock ? 'class="out-stock"' : '';
+                    let isWishClass = item.isWish ? 'add' : '';
+                    let isWishText = item.isWish ? '已收藏': '收藏';
 
                     content += `
                     <li data-product-id="${item.productId}">
@@ -51,8 +53,7 @@ module.exports = {
                             <p>
                             <span class="price">¥ <strong>${price}</strong></span>
                             <span>${item.pageViews}次浏览</span>
-                            <span>已售${item.sales}件</span>
-                            <a class="fav" href="javascript:;">收藏</a>
+                            <a class="fav ${isWishClass}" href="javascript:;">${isWishText}</a>
                             </p>
                             <p>
                                 ${isRefund} ${stock} ${isHandmade} ${isOnly}
