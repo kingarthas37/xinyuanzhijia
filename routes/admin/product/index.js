@@ -52,6 +52,7 @@ router.get('/', (req, res) => {
     let isUpdateStock = req.query['is-update-stock'] ? req.query['is-update-stock'] : '';
     let updateStockDate = req.query['update-stock-date'] ? req.query['update-stock-date'] : '';
     let adminStock = req.query['stock'] || '';
+    let hot = req.query['hot'] || '';
     if ((isShortStock || updateStockDate || adminStock || isUpdateStock) && !order) {
         order = 'updatedAt';
     } else if (!order) {
@@ -74,10 +75,11 @@ router.get('/', (req, res) => {
         isUpdateStock,
         updateStockDate,
         adminStock,
-        order
+        order,
+        hot
     });
 
-    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock};
+    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock, hot};
     AV.Promise.when(
         //获取count
         new AV.Promise(resolve => {
@@ -98,7 +100,8 @@ router.get('/', (req, res) => {
                             'is-update-stock':isUpdateStock,
                             'update-stock-date':updateStockDate,
                             'stock':adminStock,
-                            order
+                            order,
+                            hot
                         }
                     })
                 });

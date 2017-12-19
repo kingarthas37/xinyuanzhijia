@@ -21,6 +21,7 @@ module.exports = {
             let isShortStock = $('input[name=is-short-stock]').val();
             let updateStockDate = $('input[name=update-stock-date]').val();
             let isUpdateStock = $('input[name=is-update-stock]').val();
+            let hot = $('input[name=hot]').val();
             productMethod.change(function(){
                 if(this.value) {
                     return location.href = utils.urlParamsComponent('/admin/product',{
@@ -28,14 +29,16 @@ module.exports = {
                         'onsale':onsaleVal,
                         'is-short-stock':isShortStock,
                         'update-stock-date':updateStockDate,
-                        'is-update-stock':isUpdateStock
+                        'is-update-stock':isUpdateStock,
+                        hot
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
                     'onsale':onsaleVal,
                     'is-short-stock':isShortStock,
                     'update-stock-date':updateStockDate,
-                    'is-update-stock':isUpdateStock
+                    'is-update-stock':isUpdateStock,
+                    hot
                 });
             });
 
@@ -47,7 +50,8 @@ module.exports = {
                         'onsale':onsaleVal,
                         'is-short-stock':isShortStock,
                         'update-stock-date':updateStockDate,
-                        'is-update-stock':isUpdateStock
+                        'is-update-stock':isUpdateStock,
+                        hot
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
@@ -55,7 +59,8 @@ module.exports = {
                     'onsale':onsaleVal,
                     'is-short-stock':isShortStock,
                     'update-stock-date':updateStockDate,
-                    'is-update-stock':isUpdateStock
+                    'is-update-stock':isUpdateStock,
+                    hot
                 });
             });
 
@@ -68,7 +73,8 @@ module.exports = {
                         'onsale':onsaleVal,
                         'is-short-stock':isShortStock,
                         'update-stock-date':updateStockDate,
-                        'is-update-stock':isUpdateStock
+                        'is-update-stock':isUpdateStock,
+                        hot
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
@@ -77,7 +83,8 @@ module.exports = {
                     'onsale':onsaleVal,
                     'is-short-stock':isShortStock,
                     'update-stock-date':updateStockDate,
-                    'is-update-stock':isUpdateStock
+                    'is-update-stock':isUpdateStock,
+                    hot
                 });
             });
 
@@ -90,7 +97,8 @@ module.exports = {
                     'onsale':this.value,
                     'is-short-stock':isShortStock,
                     'update-stock-date':updateStockDate,
-                    'is-update-stock':isUpdateStock
+                    'is-update-stock':isUpdateStock,
+                    hot
                 });
             });
 
@@ -103,7 +111,8 @@ module.exports = {
                     'is-short-stock':isShortStock,
                     'update-stock-date':updateStockDate,
                     'is-update-stock':isUpdateStock,
-                    'order': this.value
+                    'order': this.value,
+                    hot
                 });
             });
 
