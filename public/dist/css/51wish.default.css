@@ -2176,17 +2176,36 @@ a.pswp__share--download:hover {
         margin: 0 auto 5px auto;
         width: 30%; }
 
-.home-page {
+.index-page .am-tabs .am-nav-tabs {
+  border-color: #eee; }
+
+.index-page .am-tabs .am-tabs-bd {
+  border: none; }
+
+.index-page .am-tabs.row-3 .am-tabs-nav li {
+  width: 33%; }
+
+.index-page .am-tabs .am-tabs-nav li {
+  width: 50%;
   text-align: center;
-  padding-top: 50px; }
-  .home-page img {
-    width: 25%;
-    display: block;
-    margin: auto; }
-  .home-page h1 {
-    margin: 0 0 50px 0;
-    font-size: 18px;
-    padding: 20px 0; }
+  border: none; }
+  .index-page .am-tabs .am-tabs-nav li a {
+    font-size: 15px;
+    padding: 0 15px;
+    height: 45px;
+    line-height: 45px;
+    margin: 0;
+    display: inline-block;
+    color: #666;
+    border: none !important;
+    border-bottom: 1px solid #eee !important; }
+  .index-page .am-tabs .am-tabs-nav li.am-active a {
+    font-weight: bold;
+    border-bottom: 2px solid #6071d5 !important;
+    color: #6071d5; }
+
+.index-page .am-tabs .am-tab-panel {
+  padding: 0; }
 
 .login-page .am-form {
   padding-bottom: 20px;
