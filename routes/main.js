@@ -5,8 +5,7 @@ require('express').Router();
 module.exports = {
     
     //website
-    '/':require('./default/index/home'),
-    '/indiooil':require('./default/index/home'),
+    '/':require('./default/index'),
     
     '/index':require('./default/index'),
     '/user/index':require('./default/user/index'),
