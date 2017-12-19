@@ -46,19 +46,30 @@
 
             <ul class="main-list">
                 <% for(var i =0; i < newReleases.length; i++) { %>
-                <li>
+                <li data-product-id="<%=newReleases[i].get('productId') %>">
                     <div class="img">
-                        <span class="new"></span>
-                        <a href="/product/detail/<%=newReleases[i].get('productId')%>"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="<% for(var n in newReleases[i].get('mainImage')) { %><% if(newReleases[i].attributes.mainImage[n].isMainImage) { %><%= newReleases[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
+                        <%if (newReleases[i].get('isHot')){ %><em class="hot"></em><%}%>
+                        <%if (newReleases[i].get('isNewSale')){ %><em class="new"></em><%}%>
+                        <a href="/product/detail/<%=newReleases[i].get('productId') %>"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="<% for(var n in newReleases[i].get('mainImage')) { %><% if(newReleases[i].attributes.mainImage[n].isMainImage) { %><%= newReleases[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
                     </div>
                     <div class="detail">
-                        <h3><a href="/product/detail/<%=newReleases[i].get('productId')%>"><%= newReleases[i].get('name') %></a></h3>
+                        <h3>
+                            <a href="/product/detail/<%=newReleases[i].get('productId') %>" <%if(newReleases[i].get('isShortStock')) {%>class="out-stock"<%}%> >
+                                <% if (newReleases[i].get('stock') > 0) { %>[现货]<% } %>
+                                <% if (newReleases[i].get('isShortStock')) {%>[缺货]<%}%>
+                                <%= newReleases[i].get('name') %>
+                            </a>
+                        </h3>
                         <p>
                             <span class="price">¥<strong> <%= (newReleases[i].get('price') ? newReleases[i].get('price') + '.00' : '-') %></strong></span>
                             <span><%=newReleases[i].get('pageViews') %>次浏览</span>
+                            <a class="fav <%if(newReleases[i].get('isWish')){%>add<%}%>" href="javascript:;"><%if(newReleases[i].get('isWish')){%>已收藏<%}else{%>收藏<%}%></a>
                         </p>
                         <p>
-                            <span class="active"><i class="am-icon-history"></i>7天退款</span>
+                            <% if (newReleases[i].get('isRefund')) { %><span class="active"><i class="am-icon-history"></i>7天退款</span><% } %>
+                            <% if (newReleases[i].get('stock') > 0) { %><span class="active"><i class="am-icon-check"></i>现货</span><% } %>
+                            <% if (newReleases[i].get('isHandmade')) { %><span class="active"><i class="am-icon-modx"></i>纯手工</span><% } %>
+                            <% if (newReleases[i].get('isOnly')) { %><span class="active"><i class="am-icon-gavel"></i>只此一件 </span><% } %>
                         </p>
                     </div>
                 </li>
@@ -70,25 +81,7 @@
         <div class="am-tab-panel param" id="tab-product-hot">
 
             <ul class="main-list">
-                <% for(var i =0; i < hot.length; i++) { %>
 
-                <li>
-                    <div class="img">
-                        <span class="new"></span>
-                        <a href="/product/detail/<%=hot[i].get('productId')%>"><img src="//ac-JoaBcRTt.clouddn.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="<% for(var n in hot[i].get('mainImage')) { %><% if(hot[i].attributes.mainImage[n].isMainImage) { %><%= hot[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
-                    </div>
-                    <div class="detail">
-                        <h3><a href="/product/detail/<%=hot[i].get('productId')%>"><%= hot[i].get('name') %></a></h3>
-                        <p>
-                            <span class="price">¥<strong> <%= (hot[i].get('price') ? hot[i].get('price') + '.00' : '-') %></strong></span>
-                            <span><%=hot[i].get('pageViews') %>次浏览</span>
-                        </p>
-                        <p>
-                            <span class="active"><i class="am-icon-history"></i>7天退款</span>
-                        </p>
-                    </div>
-                </li>
-                <% } %>
 
             </ul>
             

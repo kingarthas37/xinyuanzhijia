@@ -270,13 +270,31 @@ router.get('/products-id/:productIds', (req, res) => {
 });
 
 router.get('/hot', (req,res) => {
-    let result;
+    let result = [];
     let page = req.query.page ? parseInt(req.query.page) : 2;
+    let sessionData = req.cookies.login;
     AV.Promise.when(
         new AV.Promise(resolve => {
             product.getProductsByPageViews(20, methodId, page).then(items => {
-                result = extend(result, {items});
-                resolve();
+                if (sessionData) {
+                    let member = user.getDecodeByBase64(sessionData);
+                    async.forEachLimit(items, 1, function(item, callback){
+                        productWish.getWishByCommonMemberIdAndProductId(member.id, item.get('productId')).then(wish => {
+                            item.set('isWish', wish.wish);
+                            result.push(item);
+                            callback();
+                        });
+                    },  function(err){
+                        if(err) {
+                            console.log('product open sell:' + err);
+                        }
+                        data = extend(data, {'newReleases':result});
+                        resolve();
+                    });
+                } else {
+                    data = extend(data, {'newReleases':items});
+                    resolve();
+                }
             });
         })
     ).then(() => {
@@ -285,13 +303,31 @@ router.get('/hot', (req,res) => {
 });
 
 router.get('/new-releases', (req,res) => {
-    let result;
+    let result = [];
     let page = req.query.page ? parseInt(req.query.page) : 2;
+    let sessionData = req.cookies.login;
     AV.Promise.when(
         new AV.Promise(resolve => {
             product.getProductsByUpdateStockDate(20, methodId, page).then(items => {
-                result = extend(result, {items});
-                resolve();
+                if (sessionData) {
+                    let member = user.getDecodeByBase64(sessionData);
+                    async.forEachLimit(items, 1, function(item, callback){
+                        productWish.getWishByCommonMemberIdAndProductId(member.id, item.get('productId')).then(wish => {
+                            item.set('isWish', wish.wish);
+                            result.push(item);
+                            callback();
+                        });
+                    },  function(err){
+                        if(err) {
+                            console.log('product open sell:' + err);
+                        }
+                        data = extend(data, {'newReleases':result});
+                        resolve();
+                    });
+                } else {
+                    data = extend(data, {'newReleases':items});
+                    resolve();
+                }
             });
         })
     ).then(() => {

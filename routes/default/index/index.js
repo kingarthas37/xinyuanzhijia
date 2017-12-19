@@ -4,6 +4,7 @@ let user = require('../../../lib/models/common-member').createNew();
 let AV = user.getAV();
 let orderTrack = require('../../../lib/models/order-track').createNew();
 let product = require('../../../lib/models/product').createNew();
+let productWish = require('../../../lib/models/product-wish').createNew();
 let config = user.getConfig();
 let router = user.getRouter();
 
@@ -26,27 +27,45 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
+    let member = null;
     if (req.cookies.login) {
-        let member = user.getDecodeByBase64(req.cookies.login);
+        member = user.getDecodeByBase64(req.cookies.login);
         data = extend(data, member);
     }
 
+    let result = [];
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let methodId = [21];
     // console.log('/Users/Ebates/Desktop/chamWork/H5/xinyuanzhijia/routes/default/index/home.js 开始画 首页')
     AV.Promise.when(
         new AV.Promise(resolve => {
             product.getProductsByUpdateStockDate(20, methodId, 1).then(items => {
-                data = extend(data, {'newReleases':items});
-                resolve();
+                if (member) {
+                    async.forEachLimit(items, 1, function (item, callback) {
+                        productWish.getWishByCommonMemberIdAndProductId(member.id, item.get('productId')).then(wish => {
+                            item.set('isWish', wish.wish);
+                            result.push(item);
+                            callback();
+                        });
+                    }, function (err) {
+                        if (err) {
+                            console.log('product open sell:' + err);
+                        }
+                        data = extend(data, {'newReleases': result});
+                        resolve();
+                    });
+                } else {
+                    data = extend(data, {'newReleases': items});
+                    resolve();
+                }
             });
-        }),
-        new AV.Promise(resolve => {
+        })
+        /*new AV.Promise(resolve => {
             product.getProductsByPageViews(20, methodId, 1).then(items => {
                 data = extend(data, {'hot':items});
                 resolve();
             });
-        })
+        })*/
         /*new AV.Promise(resolve => {
             let result = [];
             let productIds = [];
