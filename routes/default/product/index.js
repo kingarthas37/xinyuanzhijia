@@ -145,7 +145,7 @@ router.get('/', (req, res) => {
                 });
                 if (sessionData) {
                     let member = user.getDecodeByBase64(sessionData);
-                    async.forEachLimit(result, 5, function(item, callback){
+                    async.forEachLimit(result, 1, function(item, callback){
                         productWish.getWishByCommonMemberIdAndProductId(member.id, item.get('productId')).then(wish => {
                             item.set('isWish', wish.wish);
                             items.push(item);
@@ -226,7 +226,7 @@ router.get('/ajax', (req, res) => {
                 });
                 if (sessionData) {
                     let member = user.getDecodeByBase64(sessionData);
-                    async.forEachLimit(result, 5, function(item, callback){
+                    async.forEachLimit(result, 1, function(item, callback){
                         productWish.getWishByCommonMemberIdAndProductId(member.id, item.get('productId')).then(wish => {
                             item.set('isWish', wish.wish);
                             datas.items.push(item);
