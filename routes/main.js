@@ -69,6 +69,8 @@ module.exports = {
     '/admin/product-group/add':require('./admin/product-group/add'),
     '/admin/product-group/edit':require('./admin/product-group/edit'),
 
-    '/admin/sync':require('./admin/sync')
+    '/admin/sync':require('./admin/sync'),
+
+    '/admin/filter-words':require('./admin/filter-words')
     
 };

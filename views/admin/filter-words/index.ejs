@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="51wish.cn" />
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+<div class="am-cf admin-main">
+
+    <!-- sidebar start -->
+    <% include ../partials/sidebar %>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <form method="post" action="/admin/filter-words">
+                <input type="checkbox" name="isFilter">开启过滤
+                <div id="filter-words">
+                    <div>
+                        原词<input type="text" name="oldWords[]">
+                        新词<input type="text" name="newWords[]"><span>-</span>
+                    </div>
+                    <div>
+                        原词<input type="text" name="oldWords[]">
+                        新词<input type="text" name="newWords[]"><span>-</span>
+                    </div>
+                </div>
+                <input type="submit" value="提交">
+            </form>
+        </div>
+    </div>
+    <!-- content end -->
+
+</div>
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+<script type="text/javascript">
+    $(function () {
+
+
+    });
+</script>
+</body>
+</html>
