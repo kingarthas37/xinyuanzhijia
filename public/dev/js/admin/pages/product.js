@@ -140,7 +140,7 @@ module.exports = {
                     rows.each(function() {
                         let title = $(this).find('.title');
                         title.popover({
-                            content:`原价: ${title.data('popover-source-price')} 成本价:￥${title.data('popover-cost-price')} 定价: ￥${title.data('popover-price')} <br/>30天销量: ${title.data('popover-thirty')} <br/>90天销量: ${title.data('popover-ninety')} <br/>总销量: ${title.data('popover-sales')}`,
+                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>30天销量: ${title.data('popover-thirty')} <br/>90天销量: ${title.data('popover-ninety')} <br/>总销量: ${title.data('popover-sales')}`,
                             trigger:'hover'
                         });
                     });

@@ -144,6 +144,7 @@
                             <a class="title<% if(!product[i].get('isOnsale')) { %> product-out<% } %> <% if(product[i].get('isHot')) { %> product-hot<% } %>"
                                href="/admin/product/edit/<%= product[i].get('productId') %>"
                                data-popover-source-price="<% if(product[i].get('originalPrice')) { %> <%= product[i].get('originalPrice') %> <% }else{ %>-<% } %>"
+                               data-popover-cost-price="<% if(product[i].get('costPrice')) { %> <%= product[i].get('costPrice') %> <% }else{ %>-<% } %>"
                                data-popover-price="<% if(product[i].get('price')) { %> <%= product[i].get('price') %> <% }else{ %>-<% } %>"
                                data-popover-sales="<%= product[i].get('sales') %>">
                                 <% if(product[i].get('isHot')) { %>
