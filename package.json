@@ -14,7 +14,7 @@
     "express"
   ],
   "license": "MIT",
-  "dependencies":{
+  "dependencies": {
     "ejs": "2.3.1",
     "express": "4.12.3",
     "express-session": "^1.13.0",
@@ -83,13 +83,13 @@
     "jquery-lazyload": "./public/js/jquery.lazyload.js",
     "jquery-validate": "./public/js/jquery.validate.min.js",
     "jquery-form": "./public/js/jquery.form.min.js",
-    "jquery-infinitescroll":"./public/js/jquery.infinitescroll.min.js",
+    "jquery-infinitescroll": "./public/js/jquery.infinitescroll.min.js",
     "clipboard": "./public/js/clipboard.min.js",
     "jquery-cookie": "./public/js/jquery.cookie.js",
     "bloodhound": "./public/js/bloodhound.min.js",
     "typeahead": "./public/js/typeahead.jquery.min.js",
-    "photoswipe":"./public/js/photoswipe.min.js",
-    "photoswipe-ui":"./public/js/photoswipe-ui-default.min.js"
+    "photoswipe": "./public/js/photoswipe.min.js",
+    "photoswipe-ui": "./public/js/photoswipe-ui-default.min.js"
   },
   "browserify": {
     "transform": "browserify-shim"
