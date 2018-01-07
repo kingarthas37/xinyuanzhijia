@@ -351,6 +351,12 @@ body.viewport-window {
         border:none;
         box-shadow: none;
         background: #000;
+        label {
+            vertical-align: middle;
+            input {
+                vertical-align: middle;
+            }
+        }
     }
     .am-popover-caret {
         border-bottom-color: #000;

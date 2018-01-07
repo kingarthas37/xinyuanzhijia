@@ -488,9 +488,56 @@ module.exports = {
 
             });
         }
-        
+
+        //重新上架淘宝
         {
-            $('.set-update-stock').click(function() {
+
+            $('.set-update-stock:not(.on)').each(function () {
+
+            });
+
+            $('.update-totaobao-confirm').click(function () {
+                let popover = $(this).parent();
+                let updateTotaobaoImage = popover.find('.update-totaobao-image');
+                let updateTotaobaoTitle = popover.find('.update-totaobao-title');
+                let updateTotaobaoContent = popover.find('.update-totaobao-content');
+
+                let productId = $(this).data('product-id');
+                let item = $(`tr[data-product-id=${productId}]`).find('.set-update-stock');
+
+                $.ajax({
+                    type:'post',
+                    url:`/admin/product/set-update-stock/${productId}`,
+                    data:{
+                        isUpdateStock:true,
+                        updateTotaobaoImage:updateTotaobaoImage.prop('checked'),
+                        updateTotaobaoTitle:updateTotaobaoTitle.prop('checked'),
+                        updateTotaobaoContent:updateTotaobaoContent.prop('checked')
+                    }
+                }).then(data => {
+                    if(data.success) {
+                        item.addClass('on');
+                        item.attr('isupdatestock','true');
+                    }
+                    item.popover('close');
+                });
+
+            });
+
+            $('.set-update-stock.on').click(function() {
+                let productId = $(this).parents('tr').data('product-id');
+                $.ajax({
+                    type:'post',
+                    url:`/admin/product/set-update-stock/${productId}`,
+                    data:{isUpdateStock:false}
+                }).then(data => {
+                    if(data.success) {
+                        $(this).removeClass('on');
+                        $(this).attr('isupdatestock','false');
+                    }
+                });
+
+               /*
                 let isUpdateStock = $(this).attr('isupdatestock') === 'true' ? false : true;
                 let productId = $(this).parents('tr').data('product-id');
                 $.ajax({
@@ -508,6 +555,7 @@ module.exports = {
                         }
                     }
                 });
+                */
             });
         }
 
@@ -528,11 +576,11 @@ module.exports = {
                 });
             });
         }
-        
+
     },
 
     addFun:function() {
-        
+
         this.setCategory();
         this.chooseBanner('add');
         this.submitControl();
@@ -541,7 +589,7 @@ module.exports = {
         this.saveData();
     },
     editFun:function() {
-        
+
         this.setCategory();
         this.chooseBanner();
         this.submitControl();
@@ -549,29 +597,29 @@ module.exports = {
         this.setZclip();
         this.saveData();
     },
-    
+
     //一级,二级分类选择
     setCategory:function() {
-        
+
         let categoryGroup = $('.category-group');
         let $btnAddCategory = $('.btn-add-category');
         let _this = this;
-        
+
         categoryGroup.on('change','.select-product-method',function() {
 
             let $this = $(this);
             let group = $this.parents('.group');
             let $selectCategory1 = group.find('.select-category-1');
             let $selectCategory2 = group.find('.select-category-2');
-            
+
             if(!this.value) {
                 return false;
             }
-            
+
             if(_this.isSubmitBtn) {
                 return false;
             }
-            
+
             let productMethodId = parseInt(this.value);
 
             $.get({
@@ -587,11 +635,11 @@ module.exports = {
                 });
                 $selectCategory1.append(options);
             });
-            
+
         });
 
         categoryGroup.on('change','.select-category-1',function() {
-            
+
             let group = $(this).parents('.group');
             let $selectCategory2 = group.find('.select-category-2');
 
@@ -603,9 +651,9 @@ module.exports = {
             if(_this.isSubmitBtn) {
                 return false;
             }
-            
+
             let category1Id = parseInt(this.value);
-            
+
             $.get({
                 url:leanApp.api + 'classes/ProductCategory2',
                 headers:leanAppHeader,
@@ -623,7 +671,7 @@ module.exports = {
         categoryGroup.on('click','.btn-remove-category',function() {
             $(this).parents('.group').detach();
         });
-        
+
         //添加新category group并初始化
         $btnAddCategory.click(function() {
             let group = $(this).parents('.group');
@@ -636,9 +684,9 @@ module.exports = {
             newGroup.find('.btn-add-category').removeClass('btn-add-category').addClass('btn-remove-category').text('删除');
             newGroup.find('label').detach();
         });
-        
+
     },
-    
+
     //选择banner
     chooseBanner:function(page) {
 
@@ -646,7 +694,7 @@ module.exports = {
         let bannerView = $('.banner-view');
         let banner = $('#banner');
         let selectBannerRandom = $('.select-banner-random');
-        
+
         select.on('change',function() {
             let src = select.find('option:selected').attr('data-src');
             bannerView.removeClass('hide');
@@ -659,13 +707,13 @@ module.exports = {
             select.find('option').get(bannerRange).selected = true;
             select.trigger('change');
         });
-        
+
         if(page==='add') {
             setTimeout(()=> {
                 selectBannerRandom.click();
             },1000);
         }
-        
+
     },
     //设置主图预览
     setImageList:function() {
@@ -673,7 +721,7 @@ module.exports = {
         let _this = this;
         let imageView = $('.image-list');
         let detailImage = $('#detail-image');
-        
+
         imageView.on('click','.move',function() {
             let content = $(this).parents('li');
             if(content.index() === 0) {
@@ -685,39 +733,39 @@ module.exports = {
 
         imageView.on('click','.remove',function() {
             let content = $(this).parents('li');
-            
+
             //自动删除文本框中图片链接
             let imageSrc = content.find('img').attr('src');
             imageSrc = imageSrc.replace('?imageMogr2/thumbnail/100','');
             imageSrc = `![](${imageSrc})`;
             let val = detailImage.val().replace(imageSrc,'');
             detailImage.val($.trim(val));
-            
+
             content.detach();
             _this.updateMainImage();
-           
+
         });
 
         imageView.on('click','input[type=checkbox]',function() {
             _this.updateMainImage();
         });
-        
+
     },
 
- 
-    
+
+
     //提交时状态设置
     submitControl:function() {
-        
+
         let submit = $('#submit');
         let _this = this;
         _this.isSubmitBtn =false;
-        
+
         $('form :submit').click(function() {
-            
+
             let $this = $(this);
             _this.isSubmitBtn = true;
-            
+
             $('form').attr({
                 'action':$this.data('action'),
                 'target':$this.data('target')
@@ -726,7 +774,7 @@ module.exports = {
             if(this.id === 'submit') {
                 $this.data('state',$this[0].id);
             }
-            
+
             //由于submit时amazeui的select会触发一次onchange,导致category1和category2会重置,数据丢失
             //还原isSubmitBtn,让select enable
             setTimeout(function() {
@@ -737,8 +785,8 @@ module.exports = {
             }.bind(this),1000);
             return true;
         });
-        
-        
+
+
         $('.am-form').validator({
             submit:function() {
                 if(!this.isFormValid()){
@@ -762,11 +810,11 @@ module.exports = {
 
     //更新image list
     updateMainImage:function() {
-        
+
         let image = $('#main-image');
         let imageView = $('.image-list');
         let value = {};
-        
+
         imageView.find('input[type=checkbox]').each(function() {
             let content = $(this).parents('li');
             value[content.data('id')] = {
@@ -775,11 +823,11 @@ module.exports = {
             };
         });
         image.val(JSON.stringify(value));
-        
+
         this.setZclip();
-        
+
     },
-    
+
     setZclip:function() {
             let detailImage = $('#detail-image');
             let imageView = $('.image-list');

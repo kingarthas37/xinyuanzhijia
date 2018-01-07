@@ -261,6 +261,10 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
     border: none;
     box-shadow: none;
     background: #000; }
+    .am-popover .am-popover-inner label {
+      vertical-align: middle; }
+      .am-popover .am-popover-inner label input {
+        vertical-align: middle; }
   .am-popover .am-popover-caret {
     border-bottom-color: #000; }
 

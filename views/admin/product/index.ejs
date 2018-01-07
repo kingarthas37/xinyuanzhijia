@@ -195,8 +195,15 @@
 
                             <a title="重新上架设置"
                                class="set-update-stock <% if(product[i].get('isUpdateStock')) { %>on<% } %>"
-                               isupdatestock="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i
-                                        class="am-icon-retweet"></i></a>
+                               isupdatestock="<%= product[i].get('isUpdateStock') %>" href="javascript:;"
+
+                                    <% if(product[i].get('isUpdateStock')) { %>
+                                        data-am-popover="{trigger: 'hover',content:'<label><input type=checkbox class=update-totaobao-image />主图</label><span class=sp></span><label><input type=checkbox class=update-totaobao-title />标题</label><span class=sp></span><label><input type=checkbox class=update-totaobao-content />内容</label><span class=sp></span>'}"
+                                    <% } else { %>
+                                        data-am-popover="{content:'<label><input checked=true type=checkbox class=update-totaobao-image />主图</label><span class=sp></span><label><input checked=true  type=checkbox class=update-totaobao-title />标题</label><span class=sp></span><label><input checked=true  type=checkbox class=update-totaobao-content />内容</label><span class=sp></span><a href=javascript:; class=update-totaobao-confirm data-product-id=<%= product[i].get('productId') %>><strong>确认</strong></a>'}"
+                                    <% } %>
+
+                            ><i class="am-icon-retweet"></i></a>
 
                             <a title="库存提醒设置"
                                class="set-warning-stock <% if(product[i].get('updateStockDate') != 1) { %>on<% } %>"
