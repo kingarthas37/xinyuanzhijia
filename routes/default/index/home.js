@@ -14,7 +14,7 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
-    let baseUrl = req.baseUrl.replace('/', '');
+    /*let baseUrl = req.baseUrl.replace('/', '');
     var rewrite = {indiooil:'/product?cat1=79&method=3'};
     if (rewrite[baseUrl]) {
         res.redirect(rewrite[baseUrl]);
@@ -23,10 +23,13 @@ router.get('/', (req, res) => {
     if (req.cookies.login) {
         let member = user.getDecodeByBase64(req.cookies.login);
         data = extend(data, member);
-    }
-
+    }*/
+    if (req.headers['user-agent'].toLowerCase().indexOf('mobile') > -1) {
+        res.redirect('/');
+    } else {
     // console.log('/Users/Ebates/Desktop/chamWork/H5/xinyuanzhijia/routes/default/index/home.js 开始画 首页')
-    res.render('default/index/home',data);
+        res.render('default/index/home',data);
+    }
 
 });
 

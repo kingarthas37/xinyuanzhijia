@@ -541,4 +541,25 @@ router.post('/sync-price',(req,res)=> {
     });
 });
 
+router.post('/sync-cost-price',(req,res)=> {
+    let productId = parseInt(req.body['productId']);
+    let price = parseFloat(req.body['costPrice']);
+    let category2Id = parseInt(req.body['category2Id']);
+    let success = [];
+    pro.getProductsByCategoryId([category2Id]).then(items => {
+        async.forEachLimit(items,5, function(item, callback){
+            item.set('costPrice', price);
+            item.save().then(()=> {
+                success.push(item.attributes.productId);
+                callback();
+            });
+        }, function(err){
+            if(err) {
+                console.log('product sync cost price:' + err);
+            }
+            res.send({success:success, count:success.length});
+        });
+    });
+});
+
 module.exports = router;

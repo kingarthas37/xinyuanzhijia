@@ -27,78 +27,81 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
-    let member = null;
-    if (req.cookies.login) {
-        member = user.getDecodeByBase64(req.cookies.login);
-        data = extend(data, member);
-    }
+    if (req.headers['user-agent'].toLowerCase().indexOf('mobile') < 0) {
+        res.redirect('/home');
+    } else {
+        let member = null;
+        if (req.cookies.login) {
+            member = user.getDecodeByBase64(req.cookies.login);
+            data = extend(data, member);
+        }
 
-    let result = [];
-    let page = req.query.page ? parseInt(req.query.page) : 1;
-    let methodId = [21];
-    // console.log('/Users/Ebates/Desktop/chamWork/H5/xinyuanzhijia/routes/default/index/home.js 开始画 首页')
-    AV.Promise.when(
-        new AV.Promise(resolve => {
-            product.getProductsByUpdateStockDate(20, methodId, 1).then(items => {
-                if (member) {
-                    async.forEachLimit(items, 1, function (item, callback) {
-                        productWish.getWishByCommonMemberIdAndProductId(member.id, item.get('productId')).then(wish => {
-                            item.set('isWish', wish.wish);
-                            result.push(item);
-                            callback();
-                        });
-                    }, function (err) {
-                        if (err) {
-                            console.log('product open sell:' + err);
-                        }
-                        data = extend(data, {'newReleases': result});
-                        resolve();
-                    });
-                } else {
-                    data = extend(data, {'newReleases': items});
-                    resolve();
-                }
-            });
-        })
-        /*new AV.Promise(resolve => {
-            product.getProductsByPageViews(20, methodId, 1).then(items => {
-                data = extend(data, {'hot':items});
-                resolve();
-            });
-        })*/
-        /*new AV.Promise(resolve => {
-            let result = [];
-            let productIds = [];
-            orderTrack.getOrdersByCreateAt(10, 1).then(items => {
-                async.forEachLimit(items, 1, function(item, callback){
-                    async.forEachLimit(item.get('productId'), 1, function(productId, callback){
-                        if (productIds.indexOf(productId) < 0) {
-                            product.getProductByIdAndMethod(parseInt(productId), methodId).then(value => {
-                                if (value) {
-                                    result.push(value);
-                                }
-                                productIds.push(productId);
+        let result = [];
+        let page = req.query.page ? parseInt(req.query.page) : 1;
+        let methodId = [21];
+        // console.log('/Users/Ebates/Desktop/chamWork/H5/xinyuanzhijia/routes/default/index/home.js 开始画 首页')
+        AV.Promise.when(
+            new AV.Promise(resolve => {
+                product.getProductsByUpdateStockDate(20, methodId, 1).then(items => {
+                    if (member) {
+                        async.forEachLimit(items, 1, function (item, callback) {
+                            productWish.getWishByCommonMemberIdAndProductId(member.id, item.get('productId')).then(wish => {
+                                item.set('isWish', wish.wish);
+                                result.push(item);
                                 callback();
                             });
-                        } else {
-                            callback();
-                        }
-                    }, function(err) {
-                        callback();
-                    });
-                }, function(err){
-                    if(err) {
-                        console.log('product open sell:' + err);
+                        }, function (err) {
+                            if (err) {
+                                console.log('product open sell:' + err);
+                            }
+                            data = extend(data, {'newReleases': result});
+                            resolve();
+                        });
+                    } else {
+                        data = extend(data, {'newReleases': items});
+                        resolve();
                     }
-                    data = extend(data, {'openSell':result});
+                });
+            })
+            /*new AV.Promise(resolve => {
+                product.getProductsByPageViews(20, methodId, 1).then(items => {
+                    data = extend(data, {'hot':items});
                     resolve();
                 });
-            });
-        })*/
-    ).then(() => {
-        res.render('default/index/index',data);
-    });
-
+            })*/
+            /*new AV.Promise(resolve => {
+                let result = [];
+                let productIds = [];
+                orderTrack.getOrdersByCreateAt(10, 1).then(items => {
+                    async.forEachLimit(items, 1, function(item, callback){
+                        async.forEachLimit(item.get('productId'), 1, function(productId, callback){
+                            if (productIds.indexOf(productId) < 0) {
+                                product.getProductByIdAndMethod(parseInt(productId), methodId).then(value => {
+                                    if (value) {
+                                        result.push(value);
+                                    }
+                                    productIds.push(productId);
+                                    callback();
+                                });
+                            } else {
+                                callback();
+                            }
+                        }, function(err) {
+                            callback();
+                        });
+                    }, function(err){
+                        if(err) {
+                            console.log('product open sell:' + err);
+                        }
+                        data = extend(data, {'openSell':result});
+                        resolve();
+                    });
+                });
+            })*/
+        ).then(() => {
+            res.render('default/index/index',data);
+        });
+    }
 });
 
 module.exports = router;

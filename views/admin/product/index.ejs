@@ -304,6 +304,9 @@
                                            data-category2-id="<%= product[i].get('category2')[0] %>"
                                            class="link-change-price">批量改价</a></li>
                                     <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
+                                           data-category2-id="<%= product[i].get('category2')[0] %>"
+                                           class="link-change-cost-price">批量修改成本价</a></li>
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
                                            class="link-copy-etsy">生成Etsy</a></li>
                                     <li>
                                         <a href="/admin/product/groups/<%= product[i].get('productId') %>?product-method-id=<%= product[i].get('productMethod')[0] %>&category1-id=<%= product[i].get('category1')[0] %>&category2-id=<%= product[i].get('category2')[0] %>">产品组合管理</a>
