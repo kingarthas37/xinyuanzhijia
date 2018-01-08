@@ -1,5 +1,6 @@
 require('../../../../js/main');
 
+require('./home');
 require('./order');
 require('./index');
 require('./user');
