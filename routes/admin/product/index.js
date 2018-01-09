@@ -124,6 +124,9 @@ router.get('/', (req, res) => {
                             }
                         }
                     }
+                    if(!n.get('offlineTag')) {
+                        n.set('offlineTag', {'updateTotaobaoImage':0,'updateTotaobaoTitle':0,'updateTotaobaoContent':0});
+                    }
                 });
                 data = extend(data, {product: items});
                 resolve();
@@ -486,10 +489,14 @@ router.get('/get-sales', (req, res) => {
 router.post('/set-update-stock/:productId',(req,res)=> {
     let productId = parseInt(req.params['productId']);
     let isUpdateStock = req.body['isUpdateStock'] === 'true' ? true : false;
+    let updateTotaobaoImage = req.body['updateTotaobaoImage'] === 'true' ? 1 : 0;
+    let updateTotaobaoTitle = req.body['updateTotaobaoTitle'] === 'true' ? 1 : 0;
+    let updateTotaobaoContent = req.body['updateTotaobaoContent'] === 'true' ? 1 : 0;
     let query = new AV.Query(Product);
     query.equalTo('productId',productId);
     query.first().then(result => {
         result.set('isUpdateStock', isUpdateStock);
+        result.set('offlineTag',{updateTotaobaoImage,updateTotaobaoTitle,updateTotaobaoContent});
         return result.save();
     }).then(result => {
         res.send({
