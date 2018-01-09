@@ -402,7 +402,7 @@ module.exports = {
                         }else{
                             $.ajax({
                                 type:'post',
-                                url:'/admin/product/sync-price',
+                                url:'/admin/product/sync-cost-price',
                                 data:{
                                     'productId':productId,
                                     'costPrice':$.trim(input.val()),
