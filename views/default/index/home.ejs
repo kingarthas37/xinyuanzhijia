@@ -9,62 +9,230 @@
     <% include ../partials/tongji %>
 </head>
 
-<body class="en homepage">
-<!--<img src="http://ac-JoaBcRTt.clouddn.com/221c734acf2eb97b8dd9.png">-->
-<!--<h1>Website is currently under construction,Coming soon!</h1>-->
-<!--<footer>-->
-    <!--<p><strong>51WISH.CN</strong></p>-->
-    <!--<p>Copyright © 2016-2017 51wish.cn All Rights Reserved. </p>-->
-    <!--<p><a class="link" href="/index">首页</a></p>-->
-<!--</footer>-->
-<div data-target="home" class="home">
-    <h1><a href="javascript:;" class="link" data-link="service">欢迎来到心愿之家</a></h1>
-    <div id="home-carousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                FOR <span>YOU</span>, FOR <span>US</span> !
+<body class="home-page">
+
+    <div data-target="home" class="home">
+
+        <h1><a href="javascript:;" class="link" data-link="service">WELCOME TO HOTHUNTER!</a></h1>
+
+        <div id="home-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    FOR <span>YOU</span>, FOR <span>US</span> !
+                </div>
             </div>
+            <!--<ol class="carousel-indicators">
+                <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
+            </ol>-->
         </div>
+
+        <span class="arrow"></span>
+
     </div>
-    <span class="arrow"></span>
-</div>
 
-<div class="menu clearfix">
-    <a href="javascript:;"  data-link="home" class="logo link">LOGO</a>
-    <!--<div class="country">-->
-        <!--<a href="index-ch.html" class="chinese">中文</a>-->
-    <!--</div>-->
-    <ul>
-        <li> <a class="active link" data-link="home" href="javascript:;">Home</a> </li>
-        <li> <a class="link" data-link="aboutus" href="javascript:;">About Us</a> </li>
-        <!--<li> <a class="link" data-link="education" href="javascript:;">Education Service</a> </li>-->
-        <!--<li> <a class="link" data-link="enterprise" href="javascript:;">Enterprise Service</a> </li>-->
-        <!--<li> <a class="link" data-link="immigration" href="javascript:;">Immigration Consultancy</a> </li>-->
-        <!--<li> <a class="link" data-link="capital" href="javascript:;">Capital Operation</a> </li>-->
-        <!--<li> <a class="link" data-link="contact" href="javascript:;">Contact Us</a> </li>-->
-    </ul>
-</div>
 
-<div data-target="aboutus" class="main-content content1">
-    <h2><span>关于我们</span></h2>
-    <p class="context">
-        HOT Hunter, was built up in 2002 in the State of Texas, USA. HOT Hunter has entered into the Chinese market in 2008 and the Shanghai office was set up in 2011. We have established long-lasting relationship with many Chinese consulting companies and related partners all over China and Asia.
-        <br>
-        HOT Hunter has setup a branch in Sydney, Australia in 2015; we cooperate with the Education section of the Australian Consulate General in People's Republic of China and the Training and Education Bureau of NSW. We focus on international education area, our target is to set up a solid platform that covers education service, enterprise service, immigration consultancy and investment management services.
-    </p>
-</div>
 
-<div class="footer">
-    © 2017 All Rights Reserved. 心愿之家
-</div>
+    <div class="menu clearfix">
+        <a href="javascript:;"  data-link="home" class="logo link">LOGO</a>
+        <div class="country">
+            <a href="index-ch.html" class="chinese">中文</a>
+        </div>
+        <ul>
+            <li> <a class="active link" data-link="home" href="javascript:;">Home</a> </li>
+            <li> <a class="link" data-link="aboutus" href="javascript:;">About Us</a> </li>
+            <li> <a class="link" data-link="education" href="javascript:;">Education Service</a> </li>
+            <li> <a class="link" data-link="enterprise" href="javascript:;">Enterprise Service</a> </li>
+            <li> <a class="link" data-link="immigration" href="javascript:;">Immigration Consultancy</a> </li>
+            <li> <a class="link" data-link="capital" href="javascript:;">Capital Operation</a> </li>
+            <li> <a class="link" data-link="contact" href="javascript:;">Contact Us</a> </li>
+        </ul>
+    </div>
 
-<% include ../partials/js %>
-<script>
-    $(function() {
-        var index = require('index');
-        index.indexFun();
-    });
-</script>
+
+    <div data-target="aboutus" class="main-content content1">
+
+        <h2><span>About Us</span></h2>
+
+        <p class="context">
+            HOT Hunter, was built up in 2002 in the State of Texas, USA. HOT Hunter has entered into the Chinese market in 2008 and the Shanghai office was set up in 2011. We have established long-lasting relationship with many Chinese consulting companies and related partners all over China and Asia.
+            <br>
+            HOT Hunter has setup a branch in Sydney, Australia in 2015; we cooperate with the Education section of the Australian Consulate General in People's Republic of China and the Training and Education Bureau of NSW. We focus on international education area, our target is to set up a solid platform that covers education service, enterprise service, immigration consultancy and investment management services.
+        </p>
+
+    </div>
+
+
+    <div data-target="education" class="main-content content2">
+
+        <h2><span>Education Service</span></h2>
+
+        <p class="context">
+            HOT Hunter Education Service is made up by our China Team and Australia Team. We look after all education related services over China and Australia. We cater to all students in both countries. We are the bridge.
+        </p>
+
+        <p class="p1">HOT Hunter Education Service includes: </p>
+
+        <div class="clearfix">
+
+            <dl>
+                <dt data-toggle="popover" data-title="Pathway" data-content="<ul><li>For all the students in AU and China</li><li>Internship Opportunity</li><li>Career path design</li><li>Pathway orientation training</li></ul>">
+                    <span class="dt1"></span>
+                </dt>
+                <dd>Pathway</dd>
+            </dl>
+
+            <dl>
+                <dt data-toggle="popover" data-title="Cooperative Education" data-content="<ul>
+    <li>Import Courses/Certifications from Australia TAFE/College/University</li><li>Design training package </li><li>Credit Certification</li><li>Teacher Management</li><li>Professional Development (Cert IV TAE)</li></ul>">
+                    <span class="dt2"></span>
+                </dt>
+                <dd>Cooperative Education</dd>
+            </dl>
+
+            <dl>
+                <dt data-toggle="popover" data-placement="left" data-title="Overseas Study" data-content="
+     <ul>
+    <li>Children Overseas Study Service (Under 18)</li><li>Adult Overseas Study Service (Above 18)</li>
+    </ul>">
+                    <span class="dt3"></span>
+                </dt>
+                <dd>Overseas Study</dd>
+            </dl>
+
+            <dl class="last">
+                <dt data-toggle="popover" data-placement="left" data-title="Study Tour" data-content="
+     <ul>
+    <li>Children Customized Study Tour (English Study, Tailored Study in AU School, Etc.)</li>
+    <li>Adult Customized Study Tour (English improvement, Short Course in University/TAFE, Etc.)</li>
+    <li>International Cultural Exchange</li>
+    </ul>">
+                    <span class="dt4"></span>
+                </dt>
+                <dd>Study Tour</dd>
+            </dl>
+
+        </div>
+
+        <p>
+            <img src="images/school.jpg" alt="">
+        </p>
+
+    </div>
+
+
+    <div data-target="enterprise" class="main-content content3">
+
+        <div class="panel">
+            <h2><span>Enterprise Service</span></h2>
+
+            <p class="context">
+                HOT Hunter provides the best service for enterprises. Thanks to the rich experience and deep professional knowledge of our team, we can not only be your brain tank but also your reliable business partner.
+            </p>
+
+
+            <div class="clearfix">
+                <dl>
+                    <dt>
+                        <span class="dt1"></span>
+                    </dt>
+                    <dd>Recruiting Service</dd>
+                </dl>
+
+                <dl>
+                    <dt>
+                        <span class="dt2"></span>
+                    </dt>
+                    <dd>Survey Service</dd>
+                </dl>
+
+                <dl>
+                    <dt>
+                        <span class="dt3"></span>
+                    </dt>
+                    <dd>IT/IS Consultancy Service</dd>
+                </dl>
+
+                <dl class="last">
+                    <dt>
+                        <span class="dt4"></span>
+                    </dt>
+                    <dd>Corporate Training</dd>
+                </dl>
+            </div>
+
+            <ul>
+                <li><strong>Recruiting Service:</strong> HOT Hunter provide full Human Resources Support to Employers and Job-Seekers. We are your first and best choice.</li>
+                <li><strong>Survey Service:</strong> Hothunter’s salary survey service, provides detailed and objective position information which reflects the market. By using carpet statistical channels and professional statistical methods, and by mainly analyzing comprehensively from the overall structure, the salary and benefits, the incentive mechanism, the candidate’s background, and other angles, Hothunter provides customers the most accurate and complete research report, which is different from before that customers have been given fuzzy industry information without reference personnel resume or detailed information about customers. Hothunter’s survey service covers many main industries such asInternet/e-commerce manufacturing, chemical, medicine, FMCG, IT, finance, media, new energy. With the help of our professional service, customers will be more intuitive to look at industry, choose more valuable and competitive strategy plan for their own enterprises.</li>
+                <li><strong>IT/IS Consultancy Service:</strong> HOT Hunter provides the best Information Technology Strategy consultancy service for your company. Our senior consultant worked as Regional CIO for Fortune 500 companies for more than 10 years. We analyze your situation, design the most suitable IT Strategy for you, we can deliver the IT projects for you as well. Help your company  evolve to higher level via IT reengineering.</li>
+                <li><strong>Corporate Training:</strong> HOT Hunter can provide the most suitable training for your company. Based on our strong education background, we can cooperate with all Universities/TAFE/Colleges in AU/China. We have a lot of resource within Fortune 500 companies internal training area as well. With our accurate analyse, we love to help your team growing up in very short period.</li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div data-target="immigration" class="main-content content4">
+
+        <div class="panel">
+            <h2><span>Immigration Consultancy</span></h2>
+
+            <p class="context">HOT Hunter provides Australia Immigration Consultancy service in the most professional way. We partner with a lot of registered and professional Immigration Lawyer and JP in Australia. We have successfully helped more than 100 customers immigrate to Australia in the past 5 years. Find us, find your future!</p>
+
+            <h3>Lawyer Certification:</h3>
+
+
+            <p class="context">Remark: According to the latest law, from 2017, the Migration Agent Registration Authority will NOT renew any MARA certification as hardcopy. You can check all update to date information via:
+                <a href="https://www.mara.gov.au" target="_blank">https://www.mara.gov.au/</a></p>
+            <!-- <p class="t-c">
+                 <a href="download/JP%20Certificate%202.pdf">JP Certificate 2.pdf</a> | <a href="download/MARA%20Rego.pdf">MARA Rego.pdf</a>
+             </p>-->
+
+            <p class="pdf">
+                <img src="images/pdf1.jpg" alt="">
+                <img src="images/pdf2.jpg" alt="">
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div data-target="capital" class="main-content content3">
+
+        <div class="panel">
+            <h2><span>Capital Operation</span></h2>
+
+            <p class="context">HOT Hunter is not only an education service company, but also an industry booster! We have very strong resources in both China and Australia as an education investor. We can help your organization growing bigger, and become stronger. Also we can help you to purchase an education organization directly, and also to sell yours.</p>
+
+        </div>
+
+    </div>
+
+
+
+    <div data-target="contact" class="main-content content5">
+
+
+        <div class="panel">
+            <p class="tel">Shanghai Office: Room 1109, Flat E, NO. 1715 Zhong Shan Bei RD, Shanghai, China, 200062</p>
+            <p class="tel">Shanghai Office Contact: +86 21 6113 6271; +86 21 6113 6272</p>
+            <div class="panel">
+                <iframe src="map.html" frameborder="0" width="420" height="220"></iframe>
+            </div>
+            <p class="tel">Sydney Office：451 Pitt St, Haymarket, Sydney, NSW, 2000</p>
+            <p class="tel">Sydney Office Contact: +61 (0) 42 395 7929; +61 (0) 41 091 7717</p>
+            <div class="panel">
+                <iframe src="map-au.html" frameborder="0" width="420" height="220"></iframe>
+            </div>
+            <p>Email：<a style="color: #fff;" href="mailto:info@hothunter.cn">info@hothunter.cn</a>  <span style="padding:0 5px;"></span> <a style="color:#fff" href="mailto:info@hothunter.com.au">info@hothunter.com.au</a> </p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2015 All Rights Reserved. Hothunter
+    </div>
+
 </body>
 
 </html>

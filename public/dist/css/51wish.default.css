@@ -2042,6 +2042,299 @@ a.pswp__share--download:hover {
 .pswp--minimal--dark .pswp__top-bar {
   background: none; }
 
+.home-page {
+  max-width: 100%; }
+  .home-page .home {
+    height: 100%;
+    background: url("http://ac-quipuwpj.clouddn.com/ba0adc7b92082c18aa7d.jpg") no-repeat center;
+    background-size: cover;
+    position: relative;
+    text-align: center; }
+  .home-page .home h1 {
+    display: inline-block;
+    color: #fff;
+    padding: 20px;
+    font-weight: normal;
+    font-size: 60px;
+    margin-top: 120px;
+    cursor: pointer;
+    margin-bottom: 50px; }
+  .home-page .home h1:hover {
+    border-color: #e63b67;
+    color: #e63b67; }
+  .home-page .home h1 a {
+    color: #e63b67; }
+  .home-page .home h1:hover a {
+    color: #e63b67;
+    text-decoration: none; }
+  .home-page .home .arrow {
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -16px;
+    bottom: 40px;
+    width: 32px;
+    height: 32px;
+    background-image: url("//ac-quipuwpj.clouddn.com/5a2ce0377a7079cf12a1.png");
+    -webkit-animation: floor1 3s 1s infinite ease-in-out;
+    animation: floor1 3s 1s infinite ease-in-out; }
+
+@-webkit-keyframes floor1 {
+  from {
+    -webkit-transform: translate(0px, 0px);
+    opacity: 1; }
+  50% {
+    -webkit-transform: translate(0px, 20px);
+    opacity: 0.7; }
+  to {
+    -webkit-transform: translate(0px, 0px);
+    opacity: 1; } }
+
+@keyframes floor1 {
+  from {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+    opacity: 1; }
+  50% {
+    -webkit-transform: translate(0px, 20px);
+            transform: translate(0px, 20px);
+    opacity: 0.7; }
+  to {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+    opacity: 1; } }
+  .home-page #home-carousel {
+    background: rgba(56, 62, 77, 0.3); }
+  .home-page #home-carousel .carousel-inner .item {
+    height: 180px;
+    line-height: 180px;
+    color: #fff;
+    font-size: 60px; }
+  .home-page #home-carousel .carousel-inner .item span {
+    color: #dd0000; }
+  .home-page #home-carousel ol {
+    bottom: 0;
+    margin-bottom: 0; }
+  .home-page .menu {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
+    height: 80px;
+    line-height: 80px;
+    top: 0;
+    left: 0;
+    background: #fff;
+    padding: 0 10px; }
+  .home-page .menu.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; }
+  .home-page .menu .country {
+    float: left;
+    height: 80px;
+    line-height: 80px; }
+  .home-page .menu .country a {
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    background: url("../images/icon-english.png") no-repeat left center;
+    padding-left: 30px;
+    color: #999; }
+  .home-page .menu .country a.chinese {
+    background-image: url("../images/icon-china.png"); }
+  .home-page .menu .country a:hover {
+    color: #e63b67; }
+  .home-page .menu .logo {
+    display: block;
+    float: left;
+    text-indent: -9999px;
+    background: url("//ac-quipuwpj.clouddn.com/d760034020c1d9d353ac.png") no-repeat;
+    width: 300px;
+    height: 80px; }
+  .home-page .menu ul {
+    margin: 0;
+    padding: 0;
+    float: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .home-page .menu li {
+    display: inline-block; }
+  .home-page .menu li a {
+    display: block;
+    padding: 0 10px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 16px;
+    color: #6d625e; }
+  .home-page .menu li a.active {
+    color: #e63b67;
+    text-decoration: none; }
+  .home-page .menu li a:hover {
+    text-decoration: none;
+    color: #e63b67; }
+  .home-page .panel {
+    background: none;
+    box-shadow: none; }
+  .home-page h2 {
+    display: inline-block;
+    font-size: 40px;
+    color: #e63b67;
+    margin: auto;
+    font-weight: normal;
+    margin-bottom: 20px; }
+  .home-page h2 span {
+    display: block;
+    padding: 8px 20px; }
+  .home-page h2.even {
+    border-color: #e63b67; }
+  .home-page h2.even span {
+    background-color: #e63b67; }
+  .home-page .main-content {
+    padding-top: 80px;
+    padding-bottom: 40px;
+    text-align: center;
+    font-size: 16px; }
+  .home-page .main-content p.context {
+    width: 980px;
+    margin: auto;
+    text-align: left;
+    line-height: 28px;
+    margin-bottom: 20px; }
+  .home-page .main-content p.context strong {
+    color: #e63b67;
+    font-weight: bold; }
+  .home-page .main-content .panel {
+    width: 980px;
+    margin: auto;
+    border: none; }
+  .home-page .content1 {
+    background: #f5f5f5; }
+  .home-page .content2 .p1 {
+    padding-top: 20px;
+    font-size: 20px;
+    color: #999;
+    margin-bottom: 20px; }
+  .home-page .content2 div {
+    width: 980px;
+    margin: auto; }
+  .home-page .content2 dl {
+    height: 240px;
+    float: left;
+    width: 222px;
+    margin-right: 30px; }
+  .home-page .content2 dt {
+    cursor: pointer;
+    padding-top: 20px;
+    height: 160px;
+    margin-bottom: 10px;
+    background: url("../images/bg-2.png") no-repeat center; }
+  .home-page .content2 dl.last {
+    margin-right: 0; }
+  .home-page .content2 dt span {
+    display: block;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 0 auto;
+    background: #ccc;
+    background: url("../images/icon-1.png") no-repeat; }
+  .home-page .content2 .dt2 {
+    background-image: url("../images/icon-2.png"); }
+  .home-page .content2 .dt3 {
+    background-image: url("../images/icon-3.png"); }
+  .home-page .content2 .dt4 {
+    background-image: url("../images/icon8.png"); }
+  .home-page .content3 {
+    background: #f5f5f5; }
+  .home-page .content3 h3 {
+    margin: 0 0 20px 0; }
+  .home-page .content3 ul {
+    padding: 20px 0;
+    text-align: left; }
+  .home-page .content3 li {
+    list-style: none;
+    line-height: 30px;
+    padding-left: 30px;
+    background: url("../images/icon-li.png") no-repeat 0 3px; }
+  .home-page .content3 li strong {
+    color: #e63b67;
+    font-weight: bold; }
+  .home-page .content3 dl {
+    float: left;
+    width: 200px;
+    margin-right: 60px; }
+  .home-page .content3 dt {
+    margin-bottom: 10px; }
+  .home-page .content3 dl.last {
+    margin-right: 0; }
+  .home-page .content3 dt span {
+    display: block;
+    width: 128px;
+    height: 128px;
+    margin: auto;
+    background: #ccc; }
+  .home-page .content3 .dt1 {
+    background: url("../images/icon-5.png"); }
+  .home-page .content3 .dt2 {
+    background: url("../images/icon-4.png"); }
+  .home-page .content3 .dt3 {
+    background: url("../images/icon-7.png"); }
+  .home-page .content3 .dt4 {
+    background: url("../images/icon-6.png"); }
+  .home-page .content4 .pdf {
+    padding-top: 20px; }
+  .home-page .content4 .pdf img {
+    width: 250px;
+    border: 1px solid #ddd;
+    margin: 0 30px; }
+  .home-page .content5 {
+    height: 900px;
+    background: #f5f5f5 url("../images/bg-3.jpg") no-repeat center;
+    background-size: cover; }
+  .home-page .content5 .panel {
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px; }
+  .home-page .content5 p {
+    width: 90%;
+    margin: 10px auto;
+    color: #fff;
+    padding: 10px 0;
+    border-radius: 5px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); }
+  .home-page .content5 .tel {
+    color: #000;
+    padding: 10px 0;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    text-shadow: none; }
+  .home-page .footer {
+    text-align: center;
+    padding: 40px 0 120px 0;
+    color: #666; }
+  @media screen and (max-width: 800px) {
+    .home-page .menu ul {
+      display: none; }
+    .home-page .menu .country {
+      float: right; } }
+  .home-page .en .menu .logo {
+    background-image: url("../images/logo-en.png"); }
+  .home-page .en .menu li a {
+    padding: 0 5px;
+    font-size: 14px; }
+  .home-page .cn .content5.main-content {
+    padding-top: 70px; }
+  .home-page .popover {
+    max-width: 400px; }
+  .home-page .popover div {
+    width: auto; }
+  .home-page .popover ul {
+    margin: 0;
+    padding: 0;
+    padding-left: 15px; }
+  .home-page .popover li {
+    margin-bottom: 5px;
+    font-size: 13px; }
+
 /* error page */
 .error-page .img {
   margin: 20px auto;
