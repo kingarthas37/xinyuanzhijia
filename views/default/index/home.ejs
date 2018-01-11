@@ -12,39 +12,17 @@
 <body class="home-page">
 
     <div data-target="home" class="home">
-
-        <h1><a href="javascript:;" class="link" data-link="service">WELCOME TO HOTHUNTER!</a></h1>
-
-        <div id="home-carousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    FOR <span>YOU</span>, FOR <span>US</span> !
-                </div>
-            </div>
-            <!--<ol class="carousel-indicators">
-                <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
-            </ol>-->
-        </div>
-
+        <h1></h1>
         <span class="arrow"></span>
-
     </div>
 
 
 
     <div class="menu clearfix">
-        <a href="javascript:;"  data-link="home" class="logo link">LOGO</a>
-        <div class="country">
-            <a href="index-ch.html" class="chinese">中文</a>
-        </div>
         <ul>
             <li> <a class="active link" data-link="home" href="javascript:;">Home</a> </li>
             <li> <a class="link" data-link="aboutus" href="javascript:;">About Us</a> </li>
             <li> <a class="link" data-link="education" href="javascript:;">Education Service</a> </li>
-            <li> <a class="link" data-link="enterprise" href="javascript:;">Enterprise Service</a> </li>
-            <li> <a class="link" data-link="immigration" href="javascript:;">Immigration Consultancy</a> </li>
-            <li> <a class="link" data-link="capital" href="javascript:;">Capital Operation</a> </li>
-            <li> <a class="link" data-link="contact" href="javascript:;">Contact Us</a> </li>
         </ul>
     </div>
 
@@ -114,7 +92,7 @@
         </div>
 
         <p>
-            <img src="images/school.jpg" alt="">
+
         </p>
 
     </div>
@@ -188,8 +166,7 @@
              </p>-->
 
             <p class="pdf">
-                <img src="images/pdf1.jpg" alt="">
-                <img src="images/pdf2.jpg" alt="">
+
             </p>
 
         </div>
@@ -213,19 +190,7 @@
     <div data-target="contact" class="main-content content5">
 
 
-        <div class="panel">
-            <p class="tel">Shanghai Office: Room 1109, Flat E, NO. 1715 Zhong Shan Bei RD, Shanghai, China, 200062</p>
-            <p class="tel">Shanghai Office Contact: +86 21 6113 6271; +86 21 6113 6272</p>
-            <div class="panel">
-                <iframe src="map.html" frameborder="0" width="420" height="220"></iframe>
-            </div>
-            <p class="tel">Sydney Office：451 Pitt St, Haymarket, Sydney, NSW, 2000</p>
-            <p class="tel">Sydney Office Contact: +61 (0) 42 395 7929; +61 (0) 41 091 7717</p>
-            <div class="panel">
-                <iframe src="map-au.html" frameborder="0" width="420" height="220"></iframe>
-            </div>
-            <p>Email：<a style="color: #fff;" href="mailto:info@hothunter.cn">info@hothunter.cn</a>  <span style="padding:0 5px;"></span> <a style="color:#fff" href="mailto:info@hothunter.com.au">info@hothunter.com.au</a> </p>
-        </div>
+
 
     </div>
 
@@ -233,6 +198,14 @@
         © 2015 All Rights Reserved. Hothunter
     </div>
 
-</body>
+    <% include ../partials/footer %>
+    <% include ../partials/js %>
+    <script>
+        $(function() {
+            var home = require('home');
+            home.init();
+        });
+    </script>
 
+</body>
 </html>
