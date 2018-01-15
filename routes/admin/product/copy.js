@@ -65,4 +65,54 @@ router.get('/:productId', function (req, res, next) {
 
 });
 
+//编辑产品页
+router.get('/ten/:productId', function (req, res, next) {
+
+    base.isAdminUserLogin(req, res);  //判断是否登录
+
+    let productId = parseInt(req.params.productId);
+    let product = new Product();
+    
+    let query = new AV.Query(Product);
+    query.equalTo('productId',productId);
+    query.first().then(result => {
+        
+        let productData = {
+            name:'(新建产品) ' + result.get('name'),
+            nameEn:result.get('nameEn'),
+            sampleName:result.get('sampleName'),
+            shopName:result.get('shopName'),
+            mainImage:result.get('mainImage'),
+            productMethod:result.get('productMethod'),
+            category1:result.get('category1'),
+            category2:result.get('category2'),
+            bannerId:result.get('bannerId'),
+            detail:result.get('detail'),
+            review:result.get('review'),
+            property:result.get('property'),
+            instruction:result.get('instruction'),
+            use:result.get('use'),
+            detailImage:result.get('detailImage')
+        };
+        var i = 0;
+        async.whilst(
+            function() { return i < 10 },
+            function(cb) {
+                product.save(productData);
+                i++;
+                setTimeout(cb, 1000);
+            },
+            function(err) {
+                return true;
+            }
+        );
+    }).then(() => {
+        
+        req.flash('success', '复制产品成功!');
+        res.redirect('/admin/product');
+        
+    },err => console.info(err));
+
+});
+
 module.exports = router;
