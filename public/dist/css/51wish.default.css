@@ -2135,141 +2135,33 @@ a.pswp__share--download:hover {
   .home-page .menu li a:hover {
     text-decoration: none;
     color: #a6936a; }
-  .home-page .panel {
-    background: none;
-    box-shadow: none; }
-  .home-page h2 {
-    display: inline-block;
-    font-size: 40px;
-    color: #a6936a;
-    margin: auto;
-    font-weight: normal;
-    margin-bottom: 20px; }
-  .home-page h2 span {
-    display: block;
-    padding: 8px 20px; }
-  .home-page h2.even {
-    border-color: #a6936a; }
-  .home-page h2.even span {
-    background-color: #a6936a; }
   .home-page .main-content {
-    padding-top: 80px;
-    padding-bottom: 40px;
+    padding-top: 40px;
+    padding-bottom: 20px;
     text-align: center;
     font-size: 16px; }
-  .home-page .main-content p.context {
-    width: 980px;
-    margin: auto;
-    text-align: left;
-    line-height: 28px;
-    margin-bottom: 20px; }
-  .home-page .main-content p.context strong {
-    color: #a6936a;
-    font-weight: bold; }
-  .home-page .main-content .panel {
-    width: 980px;
-    margin: auto;
-    border: none; }
-  .home-page .content1 {
-    background: #f5f5f5; }
-  .home-page .content2 .p1 {
-    padding-top: 20px;
-    font-size: 20px;
-    color: #999;
-    margin-bottom: 20px; }
-  .home-page .content2 div {
-    width: 980px;
-    margin: auto; }
-  .home-page .content2 dl {
-    height: 240px;
-    float: left;
-    width: 222px;
-    margin-right: 30px; }
-  .home-page .content2 dt {
-    cursor: pointer;
-    padding-top: 20px;
-    height: 160px;
-    margin-bottom: 10px; }
-  .home-page .content2 dl.last {
-    margin-right: 0; }
-  .home-page .content2 dt span {
-    display: block;
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 0 auto;
-    background: #ccc; }
-  .home-page .content3 {
-    background: #f5f5f5; }
-  .home-page .content3 h3 {
-    margin: 0 0 20px 0; }
-  .home-page .content3 ul {
-    padding: 20px 0;
-    text-align: left; }
-  .home-page .content3 li {
-    list-style: none;
-    line-height: 30px;
-    padding-left: 30px; }
-  .home-page .content3 li strong {
-    color: #a6936a;
-    font-weight: bold; }
-  .home-page .content3 dl {
-    float: left;
-    width: 200px;
-    margin-right: 60px; }
-  .home-page .content3 dt {
-    margin-bottom: 10px; }
-  .home-page .content3 dl.last {
-    margin-right: 0; }
-  .home-page .content3 dt span {
-    display: block;
-    width: 128px;
-    height: 128px;
-    margin: auto;
-    background: #ccc; }
-  .home-page .content4 .pdf {
-    padding-top: 20px; }
-  .home-page .content4 .pdf img {
-    width: 250px;
-    border: 1px solid #ddd;
-    margin: 0 30px; }
-  .home-page .content5 {
-    height: 900px;
-    background-size: cover; }
-  .home-page .content5 .panel {
-    text-align: center;
-    line-height: 30px;
-    font-size: 20px; }
-  .home-page .content5 p {
-    width: 90%;
-    margin: 10px auto;
-    color: #fff;
-    padding: 10px 0;
-    border-radius: 5px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); }
-  .home-page .content5 .tel {
-    color: #000;
-    padding: 10px 0;
-    font-size: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    text-shadow: none; }
+    .home-page .main-content img {
+      width: 100%; }
   .home-page .footer {
     text-align: center;
-    padding: 40px 0 120px 0;
-    color: #666; }
-  @media screen and (max-width: 800px) {
-    .home-page .menu ul {
-      display: none; } }
-  .home-page .popover {
-    max-width: 400px; }
-  .home-page .popover div {
-    width: auto; }
-  .home-page .popover ul {
-    margin: 0;
-    padding: 0;
-    padding-left: 15px; }
-  .home-page .popover li {
-    margin-bottom: 5px;
-    font-size: 13px; }
+    padding: 40px 0 40px 0;
+    background: #000;
+    color: #a6936a; }
+    .home-page .footer .content {
+      width: 1000px;
+      margin: auto; }
+    .home-page .footer a {
+      color: #a6936a; }
+      .home-page .footer a:hover {
+        color: #d2c098; }
+    .home-page .footer .info {
+      font-size: 12px;
+      line-height: 20px; }
+      .home-page .footer .info p {
+        margin: 0;
+        padding: 0; }
+    .home-page .footer .sp {
+      padding: 0 5px; }
 
 /* error page */
 .error-page .img {

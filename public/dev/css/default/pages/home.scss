@@ -151,250 +151,52 @@
     color:#a6936a;
   }
 
-  .panel {
-    background: none;
-    box-shadow: none;
-  }
 
-  h2 {
-    display: inline-block;
-    font-size: 40px;
-    color:#a6936a;
-    margin:auto;
-    font-weight: normal;
-    margin-bottom: 20px;
-  }
 
-  h2 span {
-    display: block;
-    padding:8px 20px;
-  }
-
-  h2.even {
-    border-color:#a6936a;
-  }
-
-  h2.even span {
-    background-color: #a6936a;
-  }
 
   .main-content {
-    padding-top:80px;
-    padding-bottom: 40px;
+    padding-top:40px;
+    padding-bottom: 20px;
     text-align: center;
     font-size: 16px;
+
+    img {
+      width: 100%;
+    }
+
   }
 
-  .main-content p.context {
-    width:980px;
-    margin:auto;
-    text-align: left;
-    line-height: 28px;
-    margin-bottom: 20px;
-  }
 
-  .main-content p.context strong {
-    color:#a6936a;
-    font-weight: bold;
-  }
-
-  .main-content .panel {
-    width:980px;
-    margin:auto;
-    border:none;
-  }
-
-  .content1 {
-    background: #f5f5f5;
-  }
-
-  .content2 {
-  }
-
-  .content2 .p1 {
-    padding-top: 20px;
-    font-size: 20px;
-    color:#999;
-    margin-bottom: 20px;
-  }
-
-  .content2 div {
-    width:980px;
-    margin: auto;
-  }
-
-  .content2 dl {
-    height: 240px;
-    float:left;
-    width:222px;
-    margin-right: 30px;
-  }
-
-  .content2 dt {
-    cursor: pointer;
-    padding-top: 20px;
-    height: 160px;
-    margin-bottom: 10px;
- //   background: url('../images/bg-2.png') no-repeat center;
-  }
-
-  .content2 dl.last {
-    margin-right: 0;
-  }
-
-  .content2 dt span {
-    display: block;
-    width:96px;
-    height: 96px;
-    margin:0 auto 0 auto;
-    background: #ccc;
-   // background: url('../images/icon-1.png') no-repeat;
-  }
-
-  .content2 .dt2  {
-  //  background-image: url('../images/icon-2.png');
-  }
-
-  .content2 .dt3  {
-   // background-image: url('../images/icon-3.png');
-  }
-
-  .content2 .dt4  {
-   // background-image: url('../images/icon8.png');
-  }
-
-  .content3 {
-    background: #f5f5f5;
-  }
-
-  .content3 h3 {
-    margin: 0 0 20px 0;
-  }
-
-  .content3 ul {
-    padding:20px 0;
-    text-align: left;
-  }
-
-  .content3 li {
-    list-style: none;
-    line-height: 30px;
-    padding-left: 30px;
- //   background: url('../images/icon-li.png') no-repeat 0 3px;
-  }
-
-  .content3 li strong {
-    color: #a6936a;
-    font-weight: bold;
-  }
-
-  .content3 dl {
-    float:left;
-    width:200px;
-    margin-right: 60px;
-  }
-
-  .content3 dt {
-    margin-bottom: 10px;
-  }
-
-  .content3 dl.last {
-    margin-right: 0;
-  }
-
-  .content3 dt span {
-    display: block;
-    width:128px;
-    height: 128px;
-    margin:auto;
-    background: #ccc;
-  }
-
-  .content3 .dt1 {
-   // background: url('../images/icon-5.png');
-  }
-
-  .content3 .dt2 {
-  //  background: url('../images/icon-4.png');
-  }
-
-  .content3 .dt3 {
-   // background: url('../images/icon-7.png');
-  }
-
-  .content3 .dt4 {
-  //  background: url('../images/icon-6.png');
-  }
-
-  .content4 .pdf {
-    padding-top:20px;
-  }
-
-  .content4 .pdf img {
-    width: 250px;
-    border: 1px solid #ddd;
-    margin:0 30px;
-  }
-
-  .content5 {
-    height:900px;
-   // background:#f5f5f5 url('../images/bg-3.jpg') no-repeat center;
-    background-size: cover;
-  }
-
-  .content5 .panel {
-    text-align: center;
-    line-height:30px;
-    font-size: 20px;
-  }
-
-  .content5 p {
-    width:90%;
-    margin:10px auto;
-    color:#fff;
-    padding:10px 0;
-    border-radius: 5px;
-    text-shadow:1px 1px 5px rgba(0,0,0,0.8);
-  }
-
-  .content5 .tel {
-    color:#000;
-    padding:10px 0;
-    font-size: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    text-shadow: none;
-  }
 
   .footer {
     text-align: center;
-    padding:40px 0 120px 0;
-    color:#666;
-  }
-
-  @media screen and (max-width:800px){
-    .menu ul {
-      display: none;
+    padding:40px 0 40px 0;
+    background: #000;
+    color:#a6936a;
+    .content {
+      width: 1000px;
+      margin:auto;
     }
-  }
+    a {
+      color: #a6936a;
+      &:hover {
+        color: #d2c098;
+      }
+    }
 
-  .popover {
-    max-width: 400px;
-  }
+    .info {
+      font-size: 12px;
+      line-height: 20px;
+      p {
+        margin:0;
+        padding: 0;
+      }
+    }
 
-  .popover div {
-    width:auto;
-  }
+    .sp {
+      padding: 0 5px  ;
+    }
 
-  .popover ul {
-    margin:0;
-    padding:0;
-    padding-left: 15px;
   }
-
-  .popover li {
-    margin-bottom: 5px;
-    font-size: 13px;
-  }
-
 
 }
