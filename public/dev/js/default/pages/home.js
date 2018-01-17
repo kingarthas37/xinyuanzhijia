@@ -27,7 +27,7 @@ module.exports = {
         });
 
         $('.arrow').click(function () {
-            $menu.find('a').eq(1).click();
+            $menu.find('a').eq(2).click();
         });
 
         //link direct

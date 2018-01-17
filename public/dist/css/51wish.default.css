@@ -2114,9 +2114,10 @@ a.pswp__share--download:hover {
     display: block;
     float: left;
     text-indent: -9999px;
-    background: url("//ac-quipuwpj.clouddn.com/d760034020c1d9d353ac.png") no-repeat;
-    width: 300px;
-    height: 80px; }
+    background: url("//ac-quipuwpj.clouddn.com/14c7791e449bfdecb647.png") no-repeat center;
+    width: 80px;
+    height: 80px;
+    background-size: 70%; }
   .home-page .menu ul {
     margin: 0;
     padding: 0;
@@ -2127,8 +2128,6 @@ a.pswp__share--download:hover {
     float: left; }
     .home-page .menu li.right {
       float: right; }
-      .home-page .menu li.right a {
-        font-size: 13px; }
   .home-page .menu li a {
     display: block;
     padding: 0 10px;
@@ -2170,22 +2169,68 @@ a.pswp__share--download:hover {
         padding: 0; }
     .home-page .footer .sp {
       padding: 0 5px; }
-    .home-page .footer ul li {
-      float: left;
-      width: 20%;
-      color: #fff;
-      font-size: 13px; }
-      .home-page .footer ul li a {
-        color: #fff; }
-      .home-page .footer ul li h3 {
-        margin: 0;
-        padding: 0;
-        height: 30px;
-        line-height: 30px;
-        font-size: 14px; }
-      .home-page .footer ul li p {
-        margin: 0;
-        padding: 0; }
+    .home-page .footer ul {
+      margin-bottom: 40px; }
+      .home-page .footer ul li {
+        float: left;
+        width: 160px;
+        color: #fff;
+        font-size: 13px; }
+        .home-page .footer ul li.contact {
+          float: right;
+          width: 250px;
+          font-size: 12px; }
+          .home-page .footer ul li.contact h4 {
+            height: 32px;
+            line-height: 32px;
+            vertical-align: middle;
+            font-weight: normal;
+            text-align: left;
+            margin: 0;
+            padding: 0; }
+            .home-page .footer ul li.contact h4 span {
+              vertical-align: middle;
+              display: inline-block;
+              height: 32px;
+              width: 32px;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: 75%; }
+              .home-page .footer ul li.contact h4 span.icon-weixin {
+                background-image: url("http://ac-quipuwpj.clouddn.com/26ad2dcaf37046b8f609.png"); }
+              .home-page .footer ul li.contact h4 span.icon-qq {
+                background-image: url("http://ac-quipuwpj.clouddn.com/4928903ae90c92d595a3.png"); }
+              .home-page .footer ul li.contact h4 span.icon-business {
+                background-image: url("http://ac-quipuwpj.clouddn.com/6346f936f48326d94a83.png"); }
+        .home-page .footer ul li a {
+          color: #fff; }
+        .home-page .footer ul li h3 {
+          margin: 0;
+          padding: 0;
+          height: 30px;
+          line-height: 30px;
+          font-size: 14px; }
+        .home-page .footer ul li p {
+          margin: 0 0 10px 0;
+          padding: 0; }
+        .home-page .footer ul li .img {
+          width: 80px;
+          height: 80px;
+          margin: auto;
+          background-size: 100% 100%;
+          background-repeat: no-repeat; }
+          .home-page .footer ul li .img a {
+            display: block;
+            width: 80px;
+            height: 80px; }
+        .home-page .footer ul li:nth-child(1) .img {
+          background-image: url("//ac-quipuwpj.clouddn.com/b06314dd957d6f737e8a.png"); }
+        .home-page .footer ul li:nth-child(2) .img {
+          background-image: url("//ac-quipuwpj.clouddn.com/b06314dd957d6f737e8a.png"); }
+        .home-page .footer ul li:nth-child(3) .img {
+          background-image: url("//ac-quipuwpj.clouddn.com/6166033ce6948c7b3e49.png"); }
+        .home-page .footer ul li:nth-child(4) .img {
+          background-image: url("//ac-quipuwpj.clouddn.com/fe73f67ea424a3480618.png"); }
 
 /* error page */
 .error-page .img {
