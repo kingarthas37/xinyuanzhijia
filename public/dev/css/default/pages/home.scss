@@ -1,24 +1,24 @@
 .home-page {
   max-width: 100%;
   background: #f0e7d4;
-  .home {
+  .content1 {
     height: 100%;
-    background:url('http://ac-quipuwpj.clouddn.com/d0d5fe85f49935c3af15.jpg') no-repeat;
+    background:url('//ac-quipuwpj.clouddn.com/d0d5fe85f49935c3af15.jpg') no-repeat;
     background-size:cover;
     position: relative;
     text-align: center;
   }
 
-  .home h1 {
+  .content1 h1 {
     width: 550px;
     height: 318px;
     position: absolute;
-    background: url('http://ac-quipuwpj.clouddn.com/2d55be42d8d4576f2759.png') no-repeat center;
-    top:50px;
+    background: url('//ac-quipuwpj.clouddn.com/0651108b1f7713af57da.png') no-repeat center;
+    top:70px;
     left: 50px;
   }
 
-  .home .arrow {
+  .content1 .arrow {
     display: block;
     cursor: pointer;
     position: absolute;
@@ -27,7 +27,7 @@
     bottom:40px;
     width:32px;
     height: 32px;
-    background-image: url('http://ac-quipuwpj.clouddn.com/f78e56cb1155c8674b06.png');
+    background-image: url('//ac-quipuwpj.clouddn.com/f78e56cb1155c8674b06.png');
     -webkit-animation: floor1 3s 1s infinite ease-in-out;
     -moz-animation: floor1 3s 1s infinite ease-in-out;
     -ms-animation: floor1 3s 1s infinite ease-in-out;
@@ -104,7 +104,7 @@
     width: 100%;
     background: rgba(0,0,0,0.9);
     padding:0 10px;
-
+    z-index: 1;
   }
 
   .menu.active {
@@ -214,7 +214,7 @@
         font-size: 13px;
         &.contact {
           float:right;
-          width: 250px;
+          width: 200px;
           font-size: 12px;
           h4 {
             height: 32px;
@@ -233,13 +233,13 @@
               background-position: center;
               background-size:75%;
               &.icon-weixin {
-                background-image: url('http://ac-quipuwpj.clouddn.com/26ad2dcaf37046b8f609.png');
+                background-image: url('//ac-quipuwpj.clouddn.com/26ad2dcaf37046b8f609.png');
               }
               &.icon-qq {
-                background-image: url('http://ac-quipuwpj.clouddn.com/4928903ae90c92d595a3.png');
+                background-image: url('//ac-quipuwpj.clouddn.com/4928903ae90c92d595a3.png');
               }
               &.icon-business {
-                background-image: url('http://ac-quipuwpj.clouddn.com/6346f936f48326d94a83.png');
+                background-image: url('//ac-quipuwpj.clouddn.com/6346f936f48326d94a83.png');
               }
             }
           }
