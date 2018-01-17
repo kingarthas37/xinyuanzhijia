@@ -2043,7 +2043,8 @@ a.pswp__share--download:hover {
   background: none; }
 
 .home-page {
-  max-width: 100%; }
+  max-width: 100%;
+  background: #f0e7d4; }
   .home-page .home {
     height: 100%;
     background: url("http://ac-quipuwpj.clouddn.com/d0d5fe85f49935c3af15.jpg") no-repeat;
@@ -2059,6 +2060,7 @@ a.pswp__share--download:hover {
     left: 50px; }
   .home-page .home .arrow {
     display: block;
+    cursor: pointer;
     position: absolute;
     left: 50%;
     margin-left: -16px;
@@ -2094,12 +2096,14 @@ a.pswp__share--download:hover {
             transform: translate(0px, 0px);
     opacity: 1; } }
   .home-page .menu {
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
     height: 80px;
     line-height: 80px;
     top: 0;
     left: 0;
-    background: #000;
+    position: fixed;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
     padding: 0 10px; }
   .home-page .menu.active {
     position: fixed;
@@ -2120,7 +2124,11 @@ a.pswp__share--download:hover {
     text-overflow: ellipsis;
     white-space: nowrap; }
   .home-page .menu li {
-    display: inline-block; }
+    float: left; }
+    .home-page .menu li.right {
+      float: right; }
+      .home-page .menu li.right a {
+        font-size: 13px; }
   .home-page .menu li a {
     display: block;
     padding: 0 10px;
@@ -2136,13 +2144,13 @@ a.pswp__share--download:hover {
     text-decoration: none;
     color: #a6936a; }
   .home-page .main-content {
-    padding-top: 40px;
-    padding-bottom: 20px;
+    padding-top: 20px;
     text-align: center;
     font-size: 16px; }
     .home-page .main-content img {
       width: 100%; }
   .home-page .footer {
+    margin-top: 20px;
     text-align: center;
     padding: 40px 0 40px 0;
     background: #000;
@@ -2162,6 +2170,22 @@ a.pswp__share--download:hover {
         padding: 0; }
     .home-page .footer .sp {
       padding: 0 5px; }
+    .home-page .footer ul li {
+      float: left;
+      width: 20%;
+      color: #fff;
+      font-size: 13px; }
+      .home-page .footer ul li a {
+        color: #fff; }
+      .home-page .footer ul li h3 {
+        margin: 0;
+        padding: 0;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px; }
+      .home-page .footer ul li p {
+        margin: 0;
+        padding: 0; }
 
 /* error page */
 .error-page .img {

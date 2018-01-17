@@ -16,9 +16,9 @@ module.exports = {
             var top = $(this).scrollTop();
             scrollTop = top;
             if(top >= screenHeight) {
-                $menu.addClass('active');
+              //  $menu.addClass('active');
             }else {
-                $menu.removeClass('active');
+              //  $menu.removeClass('active');
             }
 
             changeMenuLink();
@@ -26,6 +26,9 @@ module.exports = {
 
         });
 
+        $('.arrow').click(function () {
+            $menu.find('a').eq(1).click();
+        });
 
         //link direct
         var $html = $('html,body');
@@ -48,7 +51,7 @@ module.exports = {
         $('a.link').click(function() {
             $menu.find('.active').removeClass('active');
             $(this).addClass('active');
-            $html.animate({scrollTop: parseInt($('div[data-target='+ $(this).attr('data-link') +']').attr('data-top')) - 80 });
+            $html.animate({scrollTop: parseInt($('div[data-target='+ $(this).attr('data-link') +']').attr('data-top'))  });
         });
 
 
