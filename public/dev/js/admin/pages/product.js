@@ -22,6 +22,7 @@ module.exports = {
             let updateStockDate = $('input[name=update-stock-date]').val();
             let isUpdateStock = $('input[name=is-update-stock]').val();
             let hot = $('input[name=hot]').val();
+            let stock = $('input[name=stock]').val();
             productMethod.change(function(){
                 if(this.value) {
                     return location.href = utils.urlParamsComponent('/admin/product',{
@@ -30,7 +31,8 @@ module.exports = {
                         'is-short-stock':isShortStock,
                         'update-stock-date':updateStockDate,
                         'is-update-stock':isUpdateStock,
-                        hot
+                        hot,
+                        stock
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
@@ -38,7 +40,8 @@ module.exports = {
                     'is-short-stock':isShortStock,
                     'update-stock-date':updateStockDate,
                     'is-update-stock':isUpdateStock,
-                    hot
+                    hot,
+                    stock
                 });
             });
 
@@ -51,7 +54,8 @@ module.exports = {
                         'is-short-stock':isShortStock,
                         'update-stock-date':updateStockDate,
                         'is-update-stock':isUpdateStock,
-                        hot
+                        hot,
+                        stock
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
@@ -60,7 +64,8 @@ module.exports = {
                     'is-short-stock':isShortStock,
                     'update-stock-date':updateStockDate,
                     'is-update-stock':isUpdateStock,
-                    hot
+                    hot,
+                    stock
                 });
             });
 
@@ -74,7 +79,8 @@ module.exports = {
                         'is-short-stock':isShortStock,
                         'update-stock-date':updateStockDate,
                         'is-update-stock':isUpdateStock,
-                        hot
+                        hot,
+                        stock
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
@@ -84,7 +90,8 @@ module.exports = {
                     'is-short-stock':isShortStock,
                     'update-stock-date':updateStockDate,
                     'is-update-stock':isUpdateStock,
-                    hot
+                    hot,
+                    stock
                 });
             });
 
@@ -98,7 +105,8 @@ module.exports = {
                     'is-short-stock':isShortStock,
                     'update-stock-date':updateStockDate,
                     'is-update-stock':isUpdateStock,
-                    hot
+                    hot,
+                    stock
                 });
             });
 
@@ -112,7 +120,8 @@ module.exports = {
                     'update-stock-date':updateStockDate,
                     'is-update-stock':isUpdateStock,
                     'order': this.value,
-                    hot
+                    hot,
+                    stock
                 });
             });
 
