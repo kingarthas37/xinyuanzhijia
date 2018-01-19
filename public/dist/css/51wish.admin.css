@@ -394,6 +394,8 @@ span.hot:after {
     font-style: normal; }
     .admin-product-page .am-icon-inbox .stock-num.none {
       color: #0e90d2; }
+    .admin-product-page .am-icon-inbox .stock-num.sold {
+      color: #f00; }
 
 .admin-product-page .am-icon-arrow-circle-o-down {
   position: relative; }

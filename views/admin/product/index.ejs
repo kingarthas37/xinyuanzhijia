@@ -163,9 +163,11 @@
                                     <i class="am-icon-inbox <%if(product[i].get('stock')){%> instock<%}%>">
                                         <%if(product[i].get('stock')){%>
                                         <em class="stock-num"><%= product[i].get('stock') %></em>
-                                        <%} else {%>
+                                        <%} else if(product[i].get('sold')>0) {%>
+                                        <em class="stock-num sold"><%= (0 - product[i].get('sold')) %></em>
+                                        <% } else { %>
                                         <em class="stock-num none">0</em>
-                                        <% } %>
+                                        <%}%>
                                     </i>
                                 <%}%>
                             </a>

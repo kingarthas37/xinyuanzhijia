@@ -55,7 +55,7 @@ router.post('/purchase-link/:productId', (req, res) => {
 
     let productId = parseInt(req.params.productId);
     let purchaseLink = req.body['purchase-link'];
-    
+
     purchaseLink = purchaseLink.map(item => utils.urlCompleting(item));
 
     let query = new AV.Query(Product);
@@ -107,6 +107,8 @@ router.post('/stock/:productId', (req, res) => {
     let sales = parseInt(req.body.sales);
     let reserve = parseInt(req.body.reserve);
     let updateStockDate = parseInt(req.body.updateStockDate);
+    let sold =parseInt(req.body.sold);
+
     if (updateStockDate == 1) {
         updateStockDate = (Date.parse(new Date()) / 1000);
     } else if (updateStockDate == 0) {
@@ -114,7 +116,7 @@ router.post('/stock/:productId', (req, res) => {
     } else {
         updateStockDate = 1;
     }
-    
+
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
     query.first().then(item => {
@@ -122,7 +124,7 @@ router.post('/stock/:productId', (req, res) => {
             item.set('updateStockDate', updateStockDate);
         }
         return item.save({
-            stock,sales,reserve
+            stock,sales,reserve,sold
         });
 
     }).then(() => {
@@ -150,7 +152,7 @@ router.post('/settings/:productId', (req, res) => {
     let arrivedTime = parseInt(req.body['arrived-time']);
     let onsaleDate = new Date(req.body['onsale-date']);
     let originalPrice = req.body['original-price'];
-    
+
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
     query.first().then(item => {
@@ -186,7 +188,7 @@ router.post('/content-manage/:productId', (req, res) => {
     let productId = parseInt(req.params.productId);
     let productBrandId = parseInt(req.body['brand-id']);
     let video = req.body['video'];
-    
+
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
     query.first().then(item => {
@@ -195,7 +197,7 @@ router.post('/content-manage/:productId', (req, res) => {
             productBrandId,
             video
         });
-        
+
     }).then(() => {
         res.redirect(`/admin/product-property/${productId}?viewport=window`);
     });
@@ -232,7 +234,7 @@ router.post('/image-source/:productId', (req, res) => {
 
     let productId = parseInt(req.params.productId);
     let imageSource = req.body['image-source'];
-    
+
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
 
@@ -257,7 +259,7 @@ router.post('/set-comment/:productId', (req, res) => {
 
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
-    
+
     query.first().then(item => {
 
         return item.save({

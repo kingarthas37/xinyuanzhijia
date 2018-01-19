@@ -19,7 +19,7 @@
     <div class="admin-content admin-product-property-page">
 
         <input type="hidden" id="product-id" value="<%=product.get('productId')%>">
-        
+
         <div class="product-crumb am-cf am-padding">
             <div class="am-fl am-cf"><a href="/admin/product">产品编辑</a> / <a href="/admin/product-property/<%= product.get('productId') %>">编辑产品属性</a> /
                 <a href="/admin/product/edit/<%=product.get('productId')%>"><%=product.get('name')%></a></div>
@@ -27,9 +27,9 @@
 
         <div class="am-g">
             <div class="am-u-sm-12">
-                
+
                 <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion>
-                    
+
                     <dl id="purchase-link" class="am-accordion-item">
                         <dt class="am-accordion-title am-cf">
                             1.产品购买链接编辑
@@ -84,26 +84,36 @@
                             <div class="am-accordion-content">
                                 <form class="am-form" action="/admin/product-property/stock/<%= product.get('productId') %>" method="post">
 
-                                    <label>库存:</label>
-                                    <div class="am-form-inline">
-                                        <div class="am-form-group">
-                                            <select name="stock" data-stock="<% if(product.get('stock')) {%><%=product.get('stock')%><%}else{%>0<%}%>">
-                                                <% for(var i=0;i<100;i++) { %>
-                                                <option <% if(product.get('stock') == i) { %>selected="selected"<%}%> value="<%=i%>"><%=i%></option>
-                                                <% }%>
-                                            </select>
+                                    <div class="cf">
+                                        <div class="l">
+                                            <label>库存:</label>
+                                            <div class="am-form-inline">
+                                                <div class="am-form-group">
+                                                    <select name="stock" data-stock="<% if(product.get('stock')) {%><%=product.get('stock')%><%}else{%>0<%}%>">
+                                                        <% for(var i=0;i<100;i++) { %>
+                                                        <option <% if(product.get('stock') == i) { %>selected="selected"<%}%> value="<%=i%>"><%=i%></option>
+                                                        <% }%>
+                                                    </select>
+                                                </div>
+                                                <div class="am-form-group">
+                                                    <span><a href="javascript:;" class="stock-plus">+1库存</a></span>
+                                                    <span class="split"></span>
+                                                    <span><a href="javascript:;" class="stock-minus">-1库存</a></span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="am-form-group">
-                                            <span><a href="javascript:;" class="stock-plus">+1库存</a></span>
-                                            <span class="split"></span>
-                                            <span><a href="javascript:;" class="stock-minus">-1库存</a></span>
-                                        </div>
-                                    </div>
 
-                                    <label>总销量:</label>
-                                    <div class="am-form-inline">
-                                        <div class="am-form-group">
-                                            <input type="text" autocomplete="off" name="sales" data-sales="<% if(product.get('sales')) {%><%=product.get('sales')%><%}else{%>0<%}%>" value="<% if(product.get('sales')) {%><%=product.get('sales')%><%}else{%>0<%}%>">
+                                        <div class="l">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </div>
+
+                                        <div class="l">
+                                            <label>总销量:</label>
+                                            <div class="am-form-inline">
+                                                <div class="am-form-group">
+                                                    <input type="text" autocomplete="off" name="sales" data-sales="<% if(product.get('sales')) {%><%=product.get('sales')%><%}else{%>0<%}%>" value="<% if(product.get('sales')) {%><%=product.get('sales')%><%}else{%>0<%}%>">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -115,17 +125,35 @@
                                             <label><input class="ckb-warning-stock-in" value="1" type="checkbox" name="updateStockDate"> 新到货提醒</label>
                                         </div>
                                     </div>
-                                    
+
                                     <hr/>
-                                    
-                                    <label>产品在途/已预定:</label>
-                                    <div class="am-form-inline">
-                                        <div class="am-form-group">
+
+                                    <div class="cf">
+                                        <div class="l">
+                                            <label>已售出:</label>
+                                            <div class="am-form-inline">
+                                                <div class="am-form-group">
+                                                    <input type="text" autocomplete="off" name="sold" value="<%= product.get('sold') %>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="l">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </div>
+                                        <div class="l">
+                                            <label>产品在途/已预定:</label>
+                                            <div class="am-form-inline">
+                                                <div class="am-form-group">
+                                                    <input type="text" autocomplete="off" name="reserve" value="<%= product.get('reserve') %>">
+                                                    <!--
                                             <select name="reserve">
                                                 <% for(var i=0;i<101;i++) { %>
                                                 <option <% if(product.get('reserve') == i) { %>selected="selected"<%}%> value="<%=i%>"><%=i%></option>
                                                 <% }%>
                                             </select>
+                                            -->
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -139,7 +167,7 @@
                             </div>
                         </dd>
                     </dl>
-                    
+
                     <dl id="settings" class="am-accordion-item">
                         <dt class="am-accordion-title am-cf">
                             4.产品属性设置
@@ -159,7 +187,7 @@
                                     <div class="am-form-group">
                                         <input name="price" type="text" value="<%= product.get('price') %>" autocomplete="off" placeholder="输入价格" />
                                     </div>
-                                    
+
                                     <label>产地/国家:</label>
                                     <div class="am-form-group">
                                         <select name="country">
@@ -183,7 +211,7 @@
                                     <div class="am-form-group">
                                         <input type="text" name="onsale-date" id="onsale-date" data-am-datepicker="{format:'yyyy-mm-dd', viewMode: 'months'}" required placeholder="上架日期" value="<%if(product.get('onsaleDate')) { %><%= product.get('onsaleDate').getFullYear() %>-<%= product.get('onsaleDate').getMonth()+1%>-<%= product.get('onsaleDate').getDate() %><%}else{%><%= new Date(product.createdAt).getFullYear() %>-<%= new Date(product.createdAt).getMonth()+1 %>-<%= new Date(product.createdAt).getDate() %><%}%>" />
                                     </div>
-                                    
+
                                     <div class="am-form-group">
                                         <label><input type="checkbox" name="is-refund" <% if(product.get('isRefund')) { %>checked="checked"<%}%> > 支持7天退货</label>
                                         <span class="split"></span>
@@ -208,7 +236,7 @@
                                             <option value="5" <%if(product.get('arrivedTime') ==5){%>selected="selected"<%}%> >非常慢(2个月以上)</option>
                                         </select>
                                     </div>
-                                    
+
                                     <label>上架产品: <em>(上架后才能在前台展示)</em></label>
                                     <div class="am-form-group">
                                         <label class="color-green"><input type="checkbox" name="is-onsale" <% if(product.get('isOnsale')) { %>checked="checked"<%}%>> <strong>上架产品</strong></label>
@@ -253,12 +281,12 @@
                                     <div class="am-form-group typeahead-content">
                                         <input id="brand-id" type="text" value="<%= product.get('productBrandId') %>" autocomplete="off" placeholder="输入品牌介绍"/>
                                     </div>
-                                    
+
                                     <label>视频连接(多个视频用回车分开):</label>
                                     <div class="am-form-group">
                                         <textarea name="video" id="video" rows="2"><%= product.get('video') %></textarea>
                                     </div>
-                                    
+
                                     <div>
                                         <button type="submit" class="am-btn am-btn-primary save-norefresh">保存</button>
                                     </div>
@@ -310,7 +338,7 @@
                             </div>
                         </dd>
                     </dl>
-                    
+
                     <dl id="set-comment" class="am-accordion-item">
                         <dt class="am-accordion-title am-cf">9.备注</dt>
                         <dd class="am-accordion-bd am-collapse">
@@ -329,9 +357,9 @@
                             </div>
                         </dd>
                     </dl>
-                    
+
                 </section>
-                
+
             </div>
         </div>
 
@@ -345,11 +373,11 @@
 
 <script type="text/javascript">
     $(function () {
-        
+
         var product = require('product-property');
         product.init();
     });
-    
+
     function attachmentUploadSuccess(data) {
         var attachment = $('#attachment');
         var val = attachment.val();

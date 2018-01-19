@@ -20,7 +20,7 @@ module.exports = {
                     if (scrollTop >= n.top  && scrollTop <= n.height  && i !== currentMenuLink) {
                         currentMenuLink = i;
                         $menuList.find('.active').removeClass('active');
-                        $menuList.find('a').eq(i+1).addClass('active');
+                        $menuList.find('a').eq(i).addClass('active');
                         return;
                     }
                 });
@@ -57,5 +57,5 @@ module.exports = {
 
         }
 
-   }
+    }
 };
