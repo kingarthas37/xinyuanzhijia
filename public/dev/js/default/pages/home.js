@@ -12,24 +12,6 @@ module.exports = {
             var $menu = $('.menu'),
                 $menuList = $menu.find('ul'),
                 scrollTop = 0;
-            $(window).scroll(function() {
-                var top = $(this).scrollTop();
-                scrollTop = top;
-
-                $.each(menuPosArr,function(i,n) {
-                    if (scrollTop >= n.top  && scrollTop <= n.height  && i !== currentMenuLink) {
-                        currentMenuLink = i;
-                        $menuList.find('.active').removeClass('active');
-                        $menuList.find('a').eq(i).addClass('active');
-                        return;
-                    }
-                });
-
-            });
-
-            $('.arrow').click(function () {
-                $menu.find('a').eq(2).click();
-            });
 
             //link direct
             var $html = $('html,body');
@@ -48,6 +30,27 @@ module.exports = {
                     height:height + top
                 });
             });
+
+            $(window).scroll(function() {
+                var top = $(this).scrollTop();
+                scrollTop = top;
+
+                $.each(menuPosArr,function(i,n) {
+                    if (scrollTop >= n.top  && scrollTop <= n.height  && i !== currentMenuLink) {
+                        currentMenuLink = i;
+                        $menuList.find('.active').removeClass('active');
+                        $menuList.find('a').eq(i+1).addClass('active');
+                        return;
+                    }
+                });
+
+            });
+
+            $('.arrow').click(function () {
+                $menu.find('a').eq(2).click();
+            });
+
+
 
             $('a.link').click(function() {
                 $menu.find('.active').removeClass('active');
