@@ -63,6 +63,8 @@ module.exports = {
         let reset = $('.stock-reset');
         let sold = $('#sold');
         let reserve = $('#reserve');
+        let soldPlus = content.find('.sold-plus');
+        let soldMinus = content.find('.sold-minus');
         
         stockMinus.click(function() {
             let stockValue = parseInt(stock.val());
@@ -138,6 +140,18 @@ module.exports = {
                 }
             });
         }
+        
+        //sold加减
+        soldPlus.click(function () {
+            sold.val(parseInt(sold.val()) + 1);
+        });
+
+        soldMinus.click(function () {
+            if(parseInt(sold.val()) > 0) {
+                sold.val(parseInt(sold.val()) - 1);
+            }
+        });
+
         
     },
 
