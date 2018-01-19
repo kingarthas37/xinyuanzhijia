@@ -152,6 +152,9 @@ module.exports = {
             }
         });
 
+        $('.reserve-plus').click(function () {
+            reserve.val(parseInt(reserve.val()) + parseInt( $(this).data('plus')));
+        });
         
     },
 
