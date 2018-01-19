@@ -61,6 +61,8 @@ module.exports = {
         let stockMinus = content.find('.stock-minus');
         let stockPlus = content.find('.stock-plus');
         let reset = $('.stock-reset');
+        let sold = $('#sold');
+        let reserve = $('#reserve');
         
         stockMinus.click(function() {
             let stockValue = parseInt(stock.val());
@@ -81,9 +83,10 @@ module.exports = {
         reset.click(function() {
             stock.find(`option[value=${stock.data('stock')}]`)[0].selected = true;
             sales.val(sales.data('sales'));
+            reserve.val(reserve.data('reserve'));
+            sold.val(sold.data('sold'));
             stock.trigger('change');
         });
-        
         
         let ckbWarningStockOut = $('.ckb-warning-stock-out');
         let ckbWarningStockIn = $('.ckb-warning-stock-in');
@@ -115,12 +118,25 @@ module.exports = {
             if(nowStock === 0) {
                 stock.change(function() {
                     if(parseInt(stock.val()) > 0) {
+                        sold.val(0);
                         ckbWarningStockIn.prop('checked',true);
                     } else {
                         ckbWarningStockIn.prop('checked',false);
                     }
                 });
             }
+        }
+
+        //普通状态stock change，该表在途input值
+        {
+            let currentStock = stock.data('stock');
+            stock.change(function() {
+                if(parseInt(reserve.val()) > 0) {
+                    let stockChanged = this.value - currentStock;
+                    reserve.val(parseInt(reserve.val()) - stockChanged );
+                    currentStock = this.value;
+                }
+            });
         }
         
     },

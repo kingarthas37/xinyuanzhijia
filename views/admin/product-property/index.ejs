@@ -133,7 +133,7 @@
                                             <label>已售出:</label>
                                             <div class="am-form-inline">
                                                 <div class="am-form-group">
-                                                    <input type="text" autocomplete="off" name="sold" value="<%= product.get('sold') %>">
+                                                    <input type="text" autocomplete="off" id="sold" name="sold" data-sold="<%= product.get('sold') %>" value="<%= product.get('sold') %>">
                                                 </div>
                                             </div>
                                         </div>
@@ -144,7 +144,7 @@
                                             <label>产品在途/已预定:</label>
                                             <div class="am-form-inline">
                                                 <div class="am-form-group">
-                                                    <input type="text" autocomplete="off" name="reserve" value="<%= product.get('reserve') %>">
+                                                    <input type="text" autocomplete="off" id="reserve" name="reserve" data-reserve="<%= product.get('reserve') %>" value="<%= product.get('reserve') %>">
                                                     <!--
                                             <select name="reserve">
                                                 <% for(var i=0;i<101;i++) { %>
