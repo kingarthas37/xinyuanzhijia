@@ -410,6 +410,9 @@ span.hot:after {
     color: #F37B1D;
     font-style: normal; }
 
+.admin-product-page .am-icon-language.on {
+  color: #F37B1D; }
+
 .admin-product-page .am-table tr.on td {
   background: #feffed; }
 

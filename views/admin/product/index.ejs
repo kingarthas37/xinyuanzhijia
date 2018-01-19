@@ -213,6 +213,9 @@
                                updatestockdate="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i
                                         class="am-icon-dropbox"></i></a>
 
+                            <a title="产品翻译更新设置"
+                               class="set-product-trans"  href="javascript:;"><i class="am-icon-language"></i></a>
+
                             <% for(var j = 0;j < product[i].get('productMethod').length;j++) { %>
                             <a title="同类产品"
                                href="/admin/product?product-method-id=<%= product[i].get('productMethod')[j] %>&category1-id=<%= product[i].get('category1')[j] %>&category2-id=<%= product[i].get('category2')[j] %>&onsale=<%= onsale %>&limit=200"><i

@@ -93,6 +93,12 @@
         }
     }
 
+    .am-icon-language {
+      &.on {
+        color: #F37B1D;
+      }
+    }
+
     .am-table {
         tr {
             &.on {
