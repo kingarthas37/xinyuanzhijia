@@ -72,6 +72,7 @@ module.exports = {
 
     '/admin/sync':require('./admin/sync'),
 
-    '/admin/filter-words':require('./admin/filter-words')
-    
+    '/admin/filter-words':require('./admin/filter-words'),
+    '/admin/import-order':require('./admin/import-order')
+
 };
