@@ -24,6 +24,7 @@ module.exports = {
             let hot = $('input[name=hot]').val();
             let stock = $('input[name=stock]').val();
             let search = $('input[name=search]').val();
+            let isTranslation = $('input[name=is-translation]').val();
             productMethod.change(function(){
                 if(this.value) {
                     return location.href = utils.urlParamsComponent('/admin/product',{
@@ -34,7 +35,8 @@ module.exports = {
                         'is-update-stock':isUpdateStock,
                         hot,
                         stock,
-                        search
+                        search,
+                        isTranslation
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
@@ -44,7 +46,8 @@ module.exports = {
                     'is-update-stock':isUpdateStock,
                     hot,
                     stock,
-                    search
+                    search,
+                    isTranslation
                 });
             });
 
@@ -59,7 +62,8 @@ module.exports = {
                         'is-update-stock':isUpdateStock,
                         hot,
                         stock,
-                        search
+                        search,
+                        isTranslation
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
@@ -70,7 +74,8 @@ module.exports = {
                     'is-update-stock':isUpdateStock,
                     hot,
                     stock,
-                    search
+                    search,
+                    isTranslation
                 });
             });
 
@@ -86,7 +91,8 @@ module.exports = {
                         'is-update-stock':isUpdateStock,
                         hot,
                         stock,
-                        search
+                        search,
+                        isTranslation
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
@@ -98,7 +104,8 @@ module.exports = {
                     'is-update-stock':isUpdateStock,
                     hot,
                     stock,
-                    search
+                    search,
+                    isTranslation
                 });
             });
 
@@ -114,7 +121,8 @@ module.exports = {
                     'is-update-stock':isUpdateStock,
                     hot,
                     stock,
-                    search
+                    search,
+                    isTranslation
                 });
             });
 
@@ -130,7 +138,8 @@ module.exports = {
                     'order': this.value,
                     hot,
                     stock,
-                    search
+                    search,
+                    isTranslation
                 });
             });
 

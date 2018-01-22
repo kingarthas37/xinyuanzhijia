@@ -75,6 +75,7 @@ router.get('/ten/:productId', function (req, res, next) {
     
     let query = new AV.Query(Product);
     query.equalTo('productId',productId);
+
     query.first().then(result => {
         
         let productData = {
@@ -95,23 +96,23 @@ router.get('/ten/:productId', function (req, res, next) {
             detailImage:result.get('detailImage')
         };
         var i = 0;
-        async.whilst(
-            function() { return i < 10 },
-            function(cb) {
-                product.save(productData);
-                i++;
-                setTimeout(cb, 1000);
-            },
-            function(err) {
-                return true;
+
+        let arrs = [];
+        while (i < 3) {
+            arrs.push(productData);
+            i++;
+        }
+        async.forEachLimit(arrs, 3, function(item, callback){
+            product.save(item).then(()=> {
+                callback();
+            });
+        }, function(err){
+            if(err) {
+                console.log('product copy ten error:' + err);
             }
-        );
-    }).then(() => {
-        
-        req.flash('success', '复制产品成功!');
-        res.redirect('/admin/product');
-        
-    },err => console.info(err));
+            res.send({success:success, count:success.length});
+        });
+    });
 
 });
 
