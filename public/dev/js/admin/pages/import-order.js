@@ -15,11 +15,15 @@ module.exports = {
             $.each(arrValue,function (i,n) {
                 n = n.replace(/\t/g,' ');
                 n = n.replace(/\s+/g,' ');
+                let name = /([^\$]+)\$/.exec(n)[1];
+                name = name.replace(/\d\/\d.*/,'');
+                name = $.trim(name);
                 arrWisdomData.push({
-                    name:$.trim(/([^\$]+)\$/.exec(n)[1]),
+                    name:name,
                     count:/\$[^\s]+\s(\d+)/.exec(n)[1]
                 });
             });
+            console.log(arrWisdomData);
             $.ajax({
                 url:'/admin/import-order/data',
                 type:'post',
