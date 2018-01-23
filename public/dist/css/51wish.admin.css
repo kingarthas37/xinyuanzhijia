@@ -613,4 +613,12 @@ span.hot:after {
     text-align: center;
     padding-top: 5px; }
 
+/* admin import order page */
+.admin-import-order-page textarea {
+  width: 99%; }
+
+.admin-import-order-page h3 {
+  margin: 0;
+  padding: 0; }
+
 /*# sourceMappingURL=51wish.admin.css.map */

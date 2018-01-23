@@ -22,10 +22,18 @@
     <!-- sidebar end -->
 
     <!-- content start -->
-    <div class="admin-content">
+    <div class="admin-content admin-import-order-page">
+
         <div class="am-cf am-padding">
-            <h3>导入wisdomproduct.com:</h3>
-            <textarea name="" id="" class="input-wisdom-order" style="width:99%" rows="10">
+            <div class="am-fl am-cf"><strong><a href="/admin">首页</a></strong> / <a href="/admin/import-order">在途订单批量导入</a>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-cf am-padding">
+                <h3>导入wisdomproduct.com:</h3>
+                <div class="am-form-group">
+                    <textarea class="input-wisdom-order" rows="10">
 
 7 DAY GLASS CANDLE MONEY DRAWING - GREEN	 	 $2.55 	 24	 $61.20
  CANDLE 7 DAY DO AS I SAY ORANGE/PURPLE	 	 $2.66 	 6	 $15.96
@@ -37,10 +45,15 @@
 
 
             </textarea>
-            <input class="btn-import-wisdom-order" type="button" value="导入">
+                </div>
+                <div class="am-form-group">
+                    <input class="am-btn am-btn-primary btn-import-wisdom-order" type="button" value="导入">
+                </div>
 
-            <h3>导入Luckymojo.com:</h3>
-            <textarea name="" id="" class="input-luckymojo-order" style="width:99%" rows="10">
+                <hr/>
+                <h3>导入Luckymojo.com:</h3>
+                <div class="am-form-group">
+                     <textarea class="input-luckymojo-order"  rows="10">
 3	Attraction Sachet Powders	SPD-HOO-ATTR	$5.00	$15.00
 3	Black Cat Sachet Powders	SPD-HOO-BKCA	$5.00	$15.00
 3	Block Buster Sachet Powders	SPD-HOO-BLOC	$5.00	$15.00
@@ -112,59 +125,36 @@
 3	Zodiac Sachet Powders	SPD-ZOD-13ZO	$5.00	$15.00
 
             </textarea>
-            <input class="btn-import-luckymojo-order" type="button" value="导入">
+                </div>
+                <div class="am-form-group">
+                    <input class="am-btn am-btn-primary btn-import-luckymojo-order" type="button" value="导入">
+                </div>
+            </div>
         </div>
+
     </div>
     <!-- content end -->
 
+</div>
+
+
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="modal-order-search">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">正在匹配...
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+
+        </div>
+    </div>
 </div>
 
 <% include ../partials/footer %>
 <% include ../partials/js %>
 <script type="text/javascript">
     $(function () {
-        var inputWisdomOrder = $('.input-wisdom-order');
-        var inputWisdomValue = $.trim(inputWisdomOrder.val());
-        $('.btn-import-wisdom-order').click(function () {
-            var arrWisdomData = [];
-            var arrValue = inputWisdomValue.split('\n');
-            $.each(arrValue,function (i,n) {
-                n = n.replace(/\t/g,' ');
-                n = n.replace(/\s+/g,' ');
-                arrWisdomData.push({
-                    name:$.trim(/([^\$]+)\$/.exec(n)[1]),
-                    count:/\$[^\s]+\s(\d+)/.exec(n)[1]
-                });
-            });
-            console.log(arrWisdomData);
-            $.ajax({
-                url:'/input-order/data',
-                data:JSON.stringify(arrWisdomData)
-            })
-        });
-
-
-        var inputLuckymojoOrder = $('.input-luckymojo-order');
-        var inputLuckymojoValue = $.trim(inputLuckymojoOrder.val());
-        $('.btn-import-luckymojo-order').click(function () {
-            var arrLuckymojoData = [];
-            var arrValue = inputLuckymojoValue.split('\n');
-            $.each(arrValue,function (i,n) {
-                n = n.replace(/\t/g,' ');
-                n = n.replace(/\s+/g,' ');
-                arrLuckymojoData.push({
-                    name:/(\w+\-\w+\-\w+)/.exec(n)[1],
-                    count:/(\d+)/.exec(n)[1]
-                });
-            });
-            console.log(arrLuckymojoData);
-            $.ajax({
-                url:'/input-order/data',
-                data:JSON.stringify(arrLuckymojoData)
-            })
-        });
-
-
+        var importOrder = require('import-order');
+        importOrder.indexFun();
     });
 </script>
 </body>
