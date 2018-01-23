@@ -27,13 +27,13 @@
             <h3>导入wisdomproduct.com:</h3>
             <textarea name="" id="" class="input-wisdom-order" style="width:99%" rows="10">
 
-7 DAY GLASS CANDLE MONEY DRAWING - GREEN	 	 $2.55 	 24	 $61.20
+7 Day Candle 2 Color Love Drawing - Pink / Red	 	 $2.55 	 24	 $61.20
  CANDLE 7 DAY DO AS I SAY ORANGE/PURPLE	 	 $2.66 	 6	 $15.96
  7 DAY GLASS CANDLE BLOCKBUSTER - BLACK	 	 $2.55 	 6	 $15.30
  7 DAY CANDLE 2 COLOR HUMMINGBIRD - RED / GREEN	 	 $2.70 	 6	 $16.20
  CANDLE 7 DAY ALL PURPOSE 7 COLORS	 	 $2.74 	 6	 $16.44
  7 DAY GLASS CANDLE COME TO ME - RED	 	 $2.55 	 6	 $15.30
- CANDLE 7 DAY ADAM & EVE RED	 	 $2.54 	 6	 $15.24
+ 7 Day Candle 2 Color Love Drawing - Pink / Red	 	 $2.54 	 6	 $15.24
 
 
             </textarea>
@@ -138,8 +138,9 @@
             });
             console.log(arrWisdomData);
             $.ajax({
-                url:'/input-order/data',
-                data:JSON.stringify(arrWisdomData)
+                url:'/admin/import-order/data',
+                type:'post',
+                data:{'import-data': JSON.stringify(arrWisdomData)}
             })
         });
 
@@ -159,7 +160,7 @@
             });
             console.log(arrLuckymojoData);
             $.ajax({
-                url:'/input-order/data',
+                url:'/admin/import-order/data',
                 data:JSON.stringify(arrLuckymojoData)
             })
         });

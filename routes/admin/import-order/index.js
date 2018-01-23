@@ -6,6 +6,7 @@ let async = require('async');
 let extend = require('xtend');
 
 let config = require('../../../lib/config');
+let product = require('../../../lib/models/product');
 
 let data = extend(config.data, {
     title: `${config.data.name} - 批量导入在途订单`,
@@ -25,6 +26,29 @@ router.get('/', (req, res) => {
     });
 
     res.render('admin/import-order', data);
+
+});
+
+router.post('/data', (req, res) => {
+    let importData = req.body['import-data'];
+    let result = [];
+    if (importData) {
+        async.forEachLimit(JSON.parse(importData), 20, function(imData, callback){
+                product.getProductByNameEn(imData.name).then(item => {
+                    imData.isTrue = false;
+                    if (item) {
+                        imData.isTrue = true;
+                    }
+                    result.push(imData);
+                    callback();
+                });
+        }, function(err){
+            if(err) {
+                console.log('import data error:' + err);
+            }
+            res.send({result});
+        });
+    }
 
 });
 
