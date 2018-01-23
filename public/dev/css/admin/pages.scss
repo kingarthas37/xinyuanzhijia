@@ -345,3 +345,23 @@
     padding: 0;
   }
 }
+
+#modal-order-search {
+  .am-modal-dialog {
+    width: 800px;
+  }
+  .am-table {
+
+    td {
+      font-size: 12px;
+      text-align: left;
+      span {
+        padding: 4px;
+        color: #fff;
+      }
+      .import-check-true {
+        background: #0e90d2;
+      }
+    }
+  }
+}

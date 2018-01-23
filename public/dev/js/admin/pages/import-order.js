@@ -2,14 +2,18 @@
 
 let leanAppHeader = window.leanAppHeader;
 let utils = require('../common/utils');
+let async = require('async');
 
 module.exports = {
     indexFun:function () {
 
-        let modalOrderSearch = $('.modal-order-search');
+        let modalOrderSearch = $('#modal-order-search');
+        let modalOrderSearchContent = modalOrderSearch.find('.am-table tbody');
 
         let inputWisdomOrder = $('.input-wisdom-order');
         $('.btn-import-wisdom-order').click(function () {
+            modalOrderSearch.modal();
+            modalOrderSearchContent.empty();
             let arrWisdomData = [];
             let arrValue = $.trim(inputWisdomOrder.val()).split('\n');
             $.each(arrValue,function (i,n) {
@@ -23,17 +27,31 @@ module.exports = {
                     count:/\$[^\s]+\s(\d+)/.exec(n)[1]
                 });
             });
-            console.log(arrWisdomData);
-            $.ajax({
-                url:'/admin/import-order/data',
-                type:'post',
-                data:{'import-data': JSON.stringify(arrWisdomData)}
+
+            async.forEachSeries(arrWisdomData, function(item, callback) {
+                $.ajax({
+                    url:'/admin/import-order/data',
+                    type:'post',
+                    data:{'import-data': JSON.stringify([item])}
+                }).then(function (data) {
+                    modalOrderSearchContent.append(`<tr>
+                        <td>${data.result[0].name}</td>
+                        <td>${data.result[0].count}</td>
+                        <td><span class="import-check-true"><i class="am-icon-check"></i> 可导入</span></td>
+                    </tr>`);
+                    callback();
+                });
+            }, function(err) {
             });
+
+
         });
 
 
         let inputLuckymojoOrder = $('.input-luckymojo-order');
         $('.btn-import-luckymojo-order').click(function () {
+            modalOrderSearch.modal();
+            modalOrderSearchContent.empty();
             let arrLuckymojoData = [];
             let arrValue = $.trim(inputLuckymojoOrder.val()).split('\n');
             $.each(arrValue,function (i,n) {
@@ -44,10 +62,19 @@ module.exports = {
                     count:/(\d+)/.exec(n)[1]
                 });
             });
-            $.ajax({
-                url:'/admin/import-order/data',
-                type:'post',
-                data:{'import-data': JSON.stringify(arrLuckymojoData)}
+            async.forEachSeries(arrLuckymojoData, function(item, callback) {
+                $.ajax({
+                    url:'/admin/import-order/data',
+                    type:'post',
+                    data:{'import-data': JSON.stringify([item])}
+                }).then(function (data) {
+                    modalOrderSearchContent.append(`<tr>
+                        <td>${data.result[0].name}</td>
+                        <td>${data.result[0].count}</td>
+                    </tr>`);
+                    callback();
+                });
+            }, function(err) {
             });
         });
     }

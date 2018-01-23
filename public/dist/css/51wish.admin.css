@@ -621,4 +621,16 @@ span.hot:after {
   margin: 0;
   padding: 0; }
 
+#modal-order-search .am-modal-dialog {
+  width: 800px; }
+
+#modal-order-search .am-table td {
+  font-size: 12px;
+  text-align: left; }
+  #modal-order-search .am-table td span {
+    padding: 4px;
+    color: #fff; }
+  #modal-order-search .am-table td .import-check-true {
+    background: #0e90d2; }
+
 /*# sourceMappingURL=51wish.admin.css.map */
