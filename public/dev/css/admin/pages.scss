@@ -351,10 +351,17 @@
     width: 800px;
   }
   .am-table {
-
+    vertical-align: middle;
+    th.t-c {
+      text-align: center;
+    }
     td {
+      vertical-align: middle;
       font-size: 12px;
       text-align: left;
+      &.t-c {
+        text-align: center;
+      }
       span {
         padding: 4px;
         color: #fff;
