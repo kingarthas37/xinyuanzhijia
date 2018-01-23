@@ -22,11 +22,11 @@ module.exports = {
                     count:/\$[^\s]+\s(\d+)/.exec(n)[1]
                 });
             });
-            console.log(arrWisdomData);
             $.ajax({
-                url:'/input-order/data',
-                data:JSON.stringify(arrWisdomData)
-            })
+                url:'/admin/import-order/data',
+                type:'post',
+                data:{'import-data': JSON.stringify(arrWisdomData)}
+            });
         });
 
 
@@ -43,11 +43,11 @@ module.exports = {
                     count:/(\d+)/.exec(n)[1]
                 });
             });
-            console.log(arrLuckymojoData);
             $.ajax({
-                url:'/input-order/data',
+                url:'/admin/import-order/data',
+                type:'post',
                 data:JSON.stringify(arrLuckymojoData)
-            })
+            });
         });
     }
 };
