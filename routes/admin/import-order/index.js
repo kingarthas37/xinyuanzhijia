@@ -36,8 +36,18 @@ router.post('/data', (req, res) => {
         async.forEachLimit(JSON.parse(importData), 20, function(imData, callback){
                 product.getProductByNameEn(imData.name).then(item => {
                     imData.isTrue = false;
+                    imData.productId = '';
+                    imData.nameCn = '';
+                    imData.stock = '';
+                    imData.reserve = '';
+                    imData.mainImage = '';
                     if (item) {
                         imData.isTrue = true;
+                        imData.productId = item.get('productId');
+                        imData.nameCn = item.get('name');
+                        imData.stock = item.get('stock');
+                        imData.reserve = item.get('reserve');
+                        imData.mainImage = item.get('mainImage');
                     }
                     result.push(imData);
                     callback();
