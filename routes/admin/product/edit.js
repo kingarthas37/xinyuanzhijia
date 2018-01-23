@@ -135,7 +135,9 @@ router.post('/:productId', (req, res) => {
     base.isAdminUserLogin(req, res);  //判断是否登录
 
     let name = req.body['name'];
+    name = name.toUpperCase().trim().replace(/\t/g,' ').replace(/\s+/g,' ');
     let nameEn = req.body['name-en'];
+    nameEn = nameEn.toUpperCase().trim().replace(/\t/g,' ').replace(/\s+/g,' ');
     let mainImage = req.body['main-image'] ? JSON.parse(req.body['main-image']) : null;
     
     let productMethod = getQueryData(req.body['select-product-method']);

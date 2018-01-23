@@ -8,12 +8,10 @@ module.exports = {
 
         let modalOrderSearch = $('.modal-order-search');
 
-
         let inputWisdomOrder = $('.input-wisdom-order');
-        let inputWisdomValue = $.trim(inputWisdomOrder.val());
         $('.btn-import-wisdom-order').click(function () {
             let arrWisdomData = [];
-            let arrValue = inputWisdomValue.split('\n');
+            let arrValue = $.trim(inputWisdomOrder.val()).split('\n');
             $.each(arrValue,function (i,n) {
                 n = n.replace(/\t/g,' ');
                 n = n.replace(/\s+/g,' ');
@@ -31,10 +29,9 @@ module.exports = {
 
 
         let inputLuckymojoOrder = $('.input-luckymojo-order');
-        let inputLuckymojoValue = $.trim(inputLuckymojoOrder.val());
         $('.btn-import-luckymojo-order').click(function () {
             let arrLuckymojoData = [];
-            let arrValue = inputLuckymojoValue.split('\n');
+            let arrValue = $.trim(inputLuckymojoOrder.val()).split('\n');
             $.each(arrValue,function (i,n) {
                 n = n.replace(/\t/g,' ');
                 n = n.replace(/\s+/g,' ');
@@ -46,7 +43,7 @@ module.exports = {
             $.ajax({
                 url:'/admin/import-order/data',
                 type:'post',
-                data:JSON.stringify(arrLuckymojoData)
+                data:{'import-data': JSON.stringify(arrLuckymojoData)}
             });
         });
     }
