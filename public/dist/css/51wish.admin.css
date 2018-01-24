@@ -638,6 +638,16 @@ span.hot:after {
       padding: 4px;
       color: #fff; }
     #modal-order-search .am-table td .import-check-true {
-      background: #0e90d2; }
+      background: #0e90d2;
+      display: inline-block;
+      width: 40px; }
+    #modal-order-search .am-table td .import-check-false {
+      background: #dd514c;
+      display: inline-block;
+      width: 40px; }
+    #modal-order-search .am-table td .import-check-success {
+      background: #5eb95e;
+      display: inline-block;
+      width: 40px; }
 
 /*# sourceMappingURL=51wish.admin.css.map */

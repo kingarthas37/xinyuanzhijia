@@ -368,6 +368,18 @@
       }
       .import-check-true {
         background: #0e90d2;
+        display: inline-block;
+        width: 40px;
+      }
+      .import-check-false {
+        background: #dd514c;
+        display: inline-block;
+        width: 40px;
+      }
+      .import-check-success {
+        background: #5eb95e;
+        display: inline-block;
+        width: 40px;
       }
     }
   }
