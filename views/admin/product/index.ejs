@@ -216,7 +216,7 @@
                                         class="am-icon-dropbox"></i></a>
 
                             <a title="产品翻译更新设置"
-                               class="set-product-trans <% if(product[i].get('isTranslation') == 'true') { %>on<% } %>" istranslationdate="product[i].get('isTranslation')"  href="javascript:;"><i class="am-icon-language"></i></a>
+                               class="set-product-trans <% if(product[i].get('isTranslation') == true) { %>on<% } %>" istranslationdate="<%= product[i].get('isTranslation') %>"  href="javascript:;"><i class="am-icon-language"></i></a>
 
                             <% for(var j = 0;j < product[i].get('productMethod').length;j++) { %>
                             <a title="同类产品"

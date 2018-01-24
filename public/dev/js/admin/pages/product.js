@@ -656,18 +656,23 @@ module.exports = {
         }
 
         {
-            $('.set-product-trans.on').click(function() {
-                alert(11);
-                    let productId = $(this).parents('tr').data('product-id');
-                    $.ajax({
+            $('.set-product-trans').click(function() {
+                let isTranslation = $(this).attr('istranslationdate') === 'true' ? false : true;
+
+                let productId = $(this).parents('tr').data('product-id');
+                 $.ajax({
                         type:'post',
                         url:`/admin/product/set-is-translation/${productId}`,
                     data:{
-                        isTranslation:true
+                        isTranslation
                     }
                 }).then(data => {
-                    if(data.success) {
+                    if(isTranslation) {
+                        $(this).addClass('on');
+                        $(this).attr('istranslationdate','true');
+                    } else {
                         $(this).removeClass('on');
+                        $(this).attr('istranslationdate','false');
                     }
                 });
             });
