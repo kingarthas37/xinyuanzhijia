@@ -655,6 +655,24 @@ module.exports = {
             });
         }
 
+        {
+            $('.set-product-trans.on').click(function() {
+                alert(11);
+                    let productId = $(this).parents('tr').data('product-id');
+                    $.ajax({
+                        type:'post',
+                        url:`/admin/product/set-is-translation/${productId}`,
+                    data:{
+                        isTranslation:true
+                    }
+                }).then(data => {
+                    if(data.success) {
+                        $(this).removeClass('on');
+                    }
+                });
+            });
+        }
+
     },
 
     addFun:function() {

@@ -530,6 +530,21 @@ router.post('/set-update-stock-date/:productId',(req,res)=> {
     }
 });
 
+router.post('/set-is-translation/:productId',(req,res)=> {
+    let productId = parseInt(req.params['productId']);
+    let isTranslation = req.body['isTranslation'] === 'true' ? true : false;
+    let query = new AV.Query(Product);
+    query.equalTo('productId',productId);
+    query.first().then(result => {
+        result.set('isTranslation', isTranslation);
+        return result.save();
+    }).then(result => {
+        res.send({
+            success:1
+        });
+    });
+});
+
 router.post('/sync-price',(req,res)=> {
     let productId = parseInt(req.body['productId']);
     let price = parseFloat(req.body['price']);
