@@ -62,5 +62,20 @@ router.post('/data', (req, res) => {
 
 });
 
+router.post('/save-data', (req, res) => {
+    let productId = req.body['productId'];
+    let reserve = req.body['reserve'];
+    let newReserve = req.body['newReserve'];
+    product.first().then(result => {
+        if (result) {
+            result.set('reserve', (reserve+newReserve));
+            result.save().then(() => {
+                res.send({success:1});
+            });
+        } else {
+            res.send({success:'商品ID错误!'});
+        }
+    });
+});
 
 module.exports = router;
