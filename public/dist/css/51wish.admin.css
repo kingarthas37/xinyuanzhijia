@@ -465,6 +465,9 @@ span.hot:after {
 .admin-product-page .set-warning-stock.on {
   color: #F37B1D; }
 
+.admin-product-page .set-product-trans.on {
+  color: #F37B1D; }
+
 .admin-product-page .product-out {
   color: #666; }
 

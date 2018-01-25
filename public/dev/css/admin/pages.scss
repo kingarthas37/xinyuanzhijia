@@ -176,6 +176,12 @@
             color: #F37B1D;
         }
     }
+
+    .set-product-trans {
+      &.on {
+          color: #F37B1D;
+      }
+    }
     
     .product-out {
         color: #666;
