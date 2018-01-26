@@ -21,6 +21,7 @@ router.get('/', (req, res) => {
 
     base.isAdminUserLogin(req,res);  //判断是否登录
     let page = req.query['page'] || 1;
+    console.log('aaaaa');
     product.getProducts({'limit':1000, 'page':parseInt(page), 'select':'nameEn,productId'}).then(result => {
         let index = 0;
         async.forEachLimit(result, 5, function(item, callback){
