@@ -7,6 +7,7 @@ let async = require('async');
 module.exports = {
     indexFun:function () {
 
+        let _this = this;
         this.modalOrderSearch = $('#modal-order-search');
         this.modalOrderSearchContent = this.modalOrderSearch.find('.am-table tbody');
         this.countLen = this.modalOrderSearch.find('.count-len');
@@ -15,11 +16,34 @@ module.exports = {
         this.setWisdomOrderSite();
         this.setLuckymojoOrderSite();
 
+        $('.btn-import-order').click(()=> {
 
+            let arr = [];
+            this.modalOrderSearchContent.find('tr').each(function (i,n) {
+               arr.push({
+                   productId:$(n).data('product-id'),
+                   reserve:$(n).data('reserve'),
+                   newReserve:$(n).data('count')
+               });
+            });
 
-
-        $('.btn-import-order').click(function () {
             if(confirm('确定进行批量设置?')) {
+
+                async.forEachSeries(arr, function(item, callback) {
+                    $.ajax({
+                        url:'/admin/import-order/save-data',
+                        type:'post',
+                        data:{
+                            productId:item.productId,
+                            reserve:item.reserve,
+                            newReserve:item.newReserve
+                        }
+                    }).then(function () {
+                        let tr = _this.modalOrderSearchContent.find(`tr[data-product-id=${item.productId}]`);
+                        tr.find('.import-check-true').removeClass('import-check-true').addClass('import-check-success');
+                    });
+                }, function(err) {
+                });
 
             }
         });
@@ -47,7 +71,7 @@ module.exports = {
                 });
             });
 
-            let countLen = 1;
+            let countLen = 0;
             _this.countLen.text(`${countLen}/${arrWisdomData.length}`);
             async.forEachSeries(arrWisdomData, function(item, callback) {
                 $.ajax({
@@ -55,6 +79,9 @@ module.exports = {
                     type:'post',
                     data:{'import-data': JSON.stringify([item])}
                 }).then(function (data) {
+                    if(countLen < arrWisdomData.length) {
+                        countLen ++;
+                    }
                     _this.appendData(data,countLen,arrWisdomData,callback);
                 });
             }, function(err) {
@@ -80,7 +107,7 @@ module.exports = {
                     count:/(\d+)/.exec(n)[1]
                 });
             });
-            let countLen = 1;
+            let countLen = 0;
             _this.countLen.text(`${countLen}/${arrLuckymojoData.length}`);
             async.forEachSeries(arrLuckymojoData, function(item, callback) {
                 $.ajax({
@@ -88,6 +115,9 @@ module.exports = {
                     type:'post',
                     data:{'import-data': JSON.stringify([item])}
                 }).then(function (data) {
+                    if(countLen < arrLuckymojoData.length) {
+                        countLen ++;
+                    }
                     _this.appendData(data,countLen,arrLuckymojoData,callback);
                 });
             }, function(err) {
@@ -96,9 +126,7 @@ module.exports = {
     },
     appendData(data,_countLen,arrData,callback) {
         let _this = this;
-        let countLen = _countLen;
-        _this.countLen.text(`${countLen}/${arrData.length}`);
-        countLen ++;
+        _this.countLen.text(`${_countLen}/${arrData.length}`);
         let mainImage = 'http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png';
         for(let i in data.result[0].mainImage) {
             if(data.result[0].mainImage[i].isMainImage) {
@@ -111,7 +139,7 @@ module.exports = {
         let reserve = data.result[0].reserve === '' ? '-' : data.result[0].reserve;
         let isImportTrue = data.result[0].isTrue ? '<span class="import-check-true"><i class="am-icon-check"></i></span>' : '<span class="import-check-false"><i class="am-icon-close"></i></span>';
 
-        _this.modalOrderSearchContent.append(`<tr>
+        _this.modalOrderSearchContent.append(`<tr data-product-id="${data.result[0].productId}" data-reserve="${reserve}" data-count="${data.result[0].count}">
                         <td class="t-c"><a target="_blank" href="${mainImage}"><img src="${mainImage}?imageMogr2/thumbnail/32" alt=""></a></td>
                         <td>[${data.result[0].name}]<br/>${nameCn}</td>
                         <td class="t-c">${stock}</td>
