@@ -16,19 +16,25 @@ module.exports = {
         this.setWisdomOrderSite();
         this.setLuckymojoOrderSite();
 
-        $('.btn-import-order').click(()=> {
+        //正在导入标记
+        this.isImporting = false;
+
+        this.btnImportOrder.click(()=> {
 
             let arr = [];
             this.modalOrderSearchContent.find('tr').each(function (i,n) {
-               arr.push({
-                   productId:$(n).data('product-id'),
-                   reserve:$(n).data('reserve'),
-                   newReserve:$(n).data('count')
-               });
+                if($(n).attr('data-product-id')) {
+                    arr.push({
+                        productId:$(n).data('product-id'),
+                        reserve:$(n).data('reserve'),
+                        newReserve:$(n).data('count')
+                    });
+                }
             });
 
             if(confirm('确定进行批量设置?')) {
-
+                _this.isImporting = true;
+                $(_this.btnImportOrder).attr('disabled','disabled');
                 async.forEachSeries(arr, function(item, callback) {
                     $.ajax({
                         url:'/admin/import-order/save-data',
@@ -41,11 +47,25 @@ module.exports = {
                     }).then(function () {
                         let tr = _this.modalOrderSearchContent.find(`tr[data-product-id=${item.productId}]`);
                         tr.find('.import-check-true').removeClass('import-check-true').addClass('import-check-success');
+                        tr.find('.update-reserve').addClass('on');
+                        callback();
                     });
                 }, function(err) {
+                    if(err) {
+                        alert(arr);
+                        return false;
+                    }
+                    setTimeout(function () {
+                        _this.isImporting = false;
+                        alert('批量更新完成!');
+                    },1000);
                 });
 
             }
+        });
+
+        this.modalOrderSearch.on('open.modal.amui', function(){
+            $(_this.btnImportOrder).attr('disabled','disabled');
         });
 
     },
@@ -54,8 +74,16 @@ module.exports = {
         let _this = this;
         let inputWisdomOrder = $('.input-wisdom-order');
         $('.btn-import-wisdom-order').click(function () {
+
+            if(_this.isImporting) {
+                alert('正在导入中，请稍后...');
+                return false;
+            }
+
+            _this.isImporting = true;
             _this.modalOrderSearch.modal();
             _this.modalOrderSearchContent.empty();
+            $(_this.btnImportOrder).attr('disabled','disabled');
             _this.countLen.text('');
             let arrWisdomData = [];
             let arrValue = $.trim(inputWisdomOrder.val()).split('\n');
@@ -82,11 +110,14 @@ module.exports = {
                     if(countLen < arrWisdomData.length) {
                         countLen ++;
                     }
+                    if(countLen === arrWisdomData.length) {
+                        $(_this.btnImportOrder).removeAttr('disabled');
+                    }
                     _this.appendData(data,countLen,arrWisdomData,callback);
                 });
             }, function(err) {
+                _this.isImporting = false;
             });
-
 
         });
     },
@@ -95,8 +126,16 @@ module.exports = {
         let inputLuckymojoOrder = $('.input-luckymojo-order');
 
         $('.btn-import-luckymojo-order').click(function () {
+
+            if(_this.isImporting) {
+                alert('正在导入中，请稍后...');
+                return false;
+            }
+
+            _this.isImporting = true;
             _this.modalOrderSearch.modal();
             _this.modalOrderSearchContent.empty();
+            $(_this.btnImportOrder).attr('disabled','disabled');
             let arrLuckymojoData = [];
             let arrValue = $.trim(inputLuckymojoOrder.val()).split('\n');
             $.each(arrValue,function (i,n) {
@@ -118,9 +157,13 @@ module.exports = {
                     if(countLen < arrLuckymojoData.length) {
                         countLen ++;
                     }
+                    if(countLen === arrLuckymojoData.length) {
+                        $(_this.btnImportOrder).removeAttr('disabled');
+                    }
                     _this.appendData(data,countLen,arrLuckymojoData,callback);
                 });
             }, function(err) {
+                _this.isImporting = false;
             });
         });
     },
@@ -145,6 +188,7 @@ module.exports = {
                         <td class="t-c">${stock}</td>
                         <td class="t-c">${reserve}</td>
                         <td class="t-c"><strong>${data.result[0].count}</strong></td>
+                        <td class="t-c"><i class="update-reserve">${ reserve=== '-' ? '-' :(parseInt(reserve) + parseInt(data.result[0].count))}</i></td>
                         <td class="t-c">${isImportTrue}</td>
                     </tr>`);
         callback();
