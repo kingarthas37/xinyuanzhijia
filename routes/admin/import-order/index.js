@@ -1,6 +1,7 @@
 'use strict';
 
 let router = require('express').Router();
+var AV = require('leanengine');
 
 let async = require('async');
 let extend = require('xtend');
@@ -66,7 +67,9 @@ router.post('/save-data', (req, res) => {
     let productId = req.body['productId'];
     let reserve = req.body['reserve'];
     let newReserve = req.body['newReserve'];
-    product.first().then(result => {
+    let p = AV.Object.extend('Product');
+    let query = new AV.Query(p);
+    query.first().then(result => {
         if (result) {
             result.set('reserve', (reserve+newReserve));
             result.save().then(() => {
