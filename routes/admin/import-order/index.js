@@ -64,11 +64,12 @@ router.post('/data', (req, res) => {
 });
 
 router.post('/save-data', (req, res) => {
-    let productId = req.body['productId'];
-    let reserve = req.body['reserve'];
-    let newReserve = req.body['newReserve'];
+    let productId = parseInt(req.body['productId']);
+    let reserve = parseInt(req.body['reserve']);
+    let newReserve = parseInt(req.body['newReserve']);
     let p = AV.Object.extend('Product');
     let query = new AV.Query(p);
+    query.equalTo('productId', productId);
     query.first().then(result => {
         if (result) {
             result.set('reserve', (reserve+newReserve));
