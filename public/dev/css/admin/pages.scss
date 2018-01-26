@@ -354,7 +354,7 @@
 
 #modal-order-search {
   .am-modal-dialog {
-    width: 800px;
+    width: 1000px;
   }
   .am-table {
     vertical-align: middle;
@@ -386,6 +386,13 @@
         background: #5eb95e;
         display: inline-block;
         width: 40px;
+      }
+      .update-reserve {
+        font-style: normal;
+        font-weight: bold;
+        &.on {
+          color: #5eb95e;
+        }
       }
     }
   }
