@@ -20,12 +20,12 @@ let base = require('../../../lib/models/base');
 router.get('/', (req, res) => {
 
     base.isAdminUserLogin(req,res);  //判断是否登录
-
-    product.getProducts({'limit':1000, 'page':1, 'select':'nameEn, name, productId'}).then(result => {
+console.log(111);
+    product.getProducts({'limit':1000, 'page':1, 'select':'nameEn'}).then(result => {
         async.forEachLimit(result, 5, function(item, callback){
             //item.set('name', item.get('name').toUpperCase().trim().replace(/\t/g,' ').replace(/\s+/g,' '));
-            //item.set('nameEn', item.get('nameEn').toUpperCase().trim().replace(/\t/g,' ').replace(/\s+/g,' '));
-            item.set('reserve', 0);
+            item.set('nameEn', item.get('nameEn').toUpperCase().trim().replace(/\t/g,' ').replace(/\s+/g,' '));
+          //  item.set('reserve', 0);
             item.save().then(() => {
                 console.log(item.get('productId'));
                 callback();
