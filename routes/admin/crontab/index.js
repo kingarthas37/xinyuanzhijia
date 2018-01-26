@@ -20,7 +20,8 @@ let base = require('../../../lib/models/base');
 router.get('/', (req, res) => {
 
     base.isAdminUserLogin(req,res);  //判断是否登录
-    product.getProducts({'limit':1000, 'page':1, 'select':'nameEn,productId'}).then(result => {
+    let page = req.query['page'] || 1;
+    product.getProducts({'limit':1000, 'page':parseInt(page), 'select':'nameEn,productId'}).then(result => {
         let index = 0;
         async.forEachLimit(result, 5, function(item, callback){
             //item.set('name', item.get('name').toUpperCase().trim().replace(/\t/g,' ').replace(/\s+/g,' '));
@@ -28,7 +29,7 @@ router.get('/', (req, res) => {
           //  item.set('reserve', 0);
             item.save().then(() => {
                 index++;
-                console.log(index,item.get('productId'));
+                console.log('index:'+index,'productId:'+ item.get('productId'));
                 callback();
             });
         });
