@@ -72,7 +72,9 @@ module.exports = {
         $('.btn-save-text').click(function () {
            let content = $(this).parents('.content');
            let text = $.trim(content.find('textarea').val());
-            $.cookie(content.find('textarea').attr('class'),text,{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:'/',domain:location.host});
+            text = text.replace(/\t/g,' ');
+            text = text.replace(/\s+/g,' ');
+            $.cookie(content.find('textarea').attr('class'),encodeURIComponent(text),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:'/',domain:location.host});
             setTimeout(function () {
                 location.reload();
             },500);
@@ -132,7 +134,7 @@ module.exports = {
         });
 
         if($.cookie('input-wisdom-order')) {
-            $('.input-wisdom-order').val($.cookie('input-wisdom-order'));
+            $('.input-wisdom-order').val(decodeURIComponent($.cookie('input-wisdom-order')));
         }
 
     },
@@ -183,7 +185,7 @@ module.exports = {
         });
 
         if($.cookie('input-wisdom-order')) {
-            $('.input-luckymojo-order').val($.cookie('input-luckymojo-order'));
+            $('.input-luckymojo-order').val(decodeURIComponent($.cookie('input-luckymojo-order')));
         }
     },
     setProductOrderSite() {
@@ -234,8 +236,8 @@ module.exports = {
             });
         });
 
-        if($.cookie('input-wisdom-order')) {
-            $('.input-luckymojo-order').val($.cookie('input-luckymojo-order'));
+        if($.cookie('input-product-order')) {
+            $('.input-product-order').val(decodeURIComponent($.cookie('input-product-order')));
         }
 
     },
