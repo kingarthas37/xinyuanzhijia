@@ -68,6 +68,15 @@ module.exports = {
             $(_this.btnImportOrder).attr('disabled','disabled');
         });
 
+        $('.btn-save-text').click(function () {
+           let content = $(this).parents('.content');
+           let text = $.trim(content.find('textarea').val());
+            $.cookie(content.find('textarea').attr('class'),text,{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:'/',domain:location.host});
+            setTimeout(function () {
+                location.reload();
+            },500);
+        });
+
     },
     setWisdomOrderSite() {
 
