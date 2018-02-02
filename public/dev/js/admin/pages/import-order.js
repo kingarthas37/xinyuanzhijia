@@ -72,7 +72,7 @@ module.exports = {
         $('.btn-save-text').click(function () {
            let content = $(this).parents('.content');
            let text = $.trim(content.find('textarea').val());
-            text = text.replace(/\t/g,' ');
+         //   text = text.replace(/\t/g,' ');
             text = text.replace(/\s+/g,' ');
             $.cookie(content.find('textarea').attr('class'),text,{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:'/',domain:location.host});
             setTimeout(function () {
