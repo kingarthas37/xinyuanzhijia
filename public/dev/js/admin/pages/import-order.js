@@ -184,7 +184,7 @@ module.exports = {
             });
         });
 
-        if($.cookie('input-wisdom-order')) {
+        if($.cookie('input-luckymojo-order')) {
             $('.input-luckymojo-order').val($.cookie('input-luckymojo-order'));
         }
     },
