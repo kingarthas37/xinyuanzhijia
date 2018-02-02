@@ -129,6 +129,11 @@ module.exports = {
             });
 
         });
+
+        if($.cookie('input-wisdom-order')) {
+            $('.input-wisdom-order').val($.cookie('input-wisdom-order'));
+        }
+
     },
     setLuckymojoOrderSite() {
         let _this = this;
