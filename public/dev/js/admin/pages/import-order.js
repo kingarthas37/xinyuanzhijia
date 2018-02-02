@@ -15,6 +15,7 @@ module.exports = {
 
         this.setWisdomOrderSite();
         this.setLuckymojoOrderSite();
+        this.setProductOrderSite();
 
         //正在导入标记
         this.isImporting = false;
@@ -180,7 +181,65 @@ module.exports = {
                 _this.isImporting = false;
             });
         });
+
+        if($.cookie('input-wisdom-order')) {
+            $('.input-luckymojo-order').val($.cookie('input-luckymojo-order'));
+        }
     },
+    setProductOrderSite() {
+
+        let _this = this;
+        let inputProductOrder = $('.input-product-order');
+
+        $('.btn-import-product-order').click(function () {
+
+            if(_this.isImporting) {
+                alert('正在导入中，请稍后...');
+                return false;
+            }
+
+            _this.isImporting = true;
+            _this.modalOrderSearch.modal();
+            _this.modalOrderSearchContent.empty();
+            $(_this.btnImportOrder).attr('disabled','disabled');
+            let arrProductData = [];
+            let arrValue = $.trim(inputProductOrder.val()).split('\n');
+            $.each(arrValue,function (i,n) {
+                n = n.replace(/\t/g,' ');
+                n = n.replace(/\s+/g,' ');
+                n = n.toUpperCase();
+                arrProductData.push({
+                    name:$.trim(/([^\*]+)/.exec(n)[1]),
+                    count:/\*\s?(\d+)/.exec(n)[1]
+                });
+            });
+            let countLen = 0;
+            _this.countLen.text(`${countLen}/${arrProductData.length}`);
+            async.forEachSeries(arrProductData, function(item, callback) {
+                $.ajax({
+                    url:'/admin/import-order/data',
+                    type:'post',
+                    data:{'import-data': JSON.stringify([item])}
+                }).then(function (data) {
+                    if(countLen < arrProductData.length) {
+                        countLen ++;
+                    }
+                    if(countLen === arrProductData.length) {
+                        $(_this.btnImportOrder).removeAttr('disabled');
+                    }
+                    _this.appendData(data,countLen,arrProductData,callback);
+                });
+            }, function(err) {
+                _this.isImporting = false;
+            });
+        });
+
+        if($.cookie('input-wisdom-order')) {
+            $('.input-luckymojo-order').val($.cookie('input-luckymojo-order'));
+        }
+
+    },
+
     appendData(data,_countLen,arrData,callback) {
         let _this = this;
         _this.countLen.text(`${_countLen}/${arrData.length}`);
