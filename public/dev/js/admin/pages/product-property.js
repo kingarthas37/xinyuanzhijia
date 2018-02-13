@@ -133,11 +133,13 @@ module.exports = {
         {
             let currentStock = stock.data('stock');
             stock.change(function() {
+                /*
                 if(parseInt(reserve.val()) > 0) {
                     let stockChanged = this.value - currentStock;
                     reserve.val(parseInt(reserve.val()) - stockChanged );
                     currentStock = this.value;
                 }
+                */
             });
         }
         
