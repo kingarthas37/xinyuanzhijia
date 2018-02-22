@@ -33,7 +33,7 @@
                         <select name="courseTemplateId" id="course-template">
                             <option data-info="" value="">选择模板</option>
                             <% for (var i = 0; i < courseTemplate.length; i++) { %>
-                            <option data-info="{'defaultName': '<%= courseTemplate[i].get('defaultName')%>', 'defaultContent': '<%= courseTemplate[i].get('defaultContent') %>'}" value="<%= courseTemplate[i].get('courseTemplateId')%>"><%= courseTemplate[i].get('name')%></option>
+                            <option <% if (courseTemplate[i].get('courseTemplateId') == course.get('courseTemplateId')) { %>selected<% } %> data-info="{'defaultName': '<%= courseTemplate[i].get('defaultName')%>', 'defaultContent': '<%= courseTemplate[i].get('defaultContent') %>'}" value="<%= courseTemplate[i].get('courseTemplateId')%>"><%= courseTemplate[i].get('name')%></option>
                             <% } %>
                         </select>
                     </div>
@@ -44,7 +44,7 @@
                     <!-- name start -->
                     <div class="am-form-group">
                         <label for="name">课程名称:</label>
-                        <input id="name" name="name" type="text" placeholder="输入课程名称" />
+                        <input id="name" name="name" type="text" value="<%= course.get('name') %>" />
                     </div>
                     <!-- name end -->
 
@@ -53,7 +53,7 @@
                     <!-- content start -->
                     <div class="am-form-group">
                         <label for="content">课程描述:</label>
-                        <textarea id="content" name="content"></textarea>
+                        <textarea id="content" name="content"><%= course.get('content') %></textarea>
                     </div>
                     <!-- content end -->
 
@@ -62,7 +62,7 @@
                     <!-- count start -->
                     <div class="am-form-group">
                         <label for="count">课程人数:</label>
-                        <input id="count" name="count" type="text"/>
+                        <input id="count" name="count" type="text" value="<%= course.get('count') %>"/>
                     </div>
                     <!-- count end -->
 
@@ -71,14 +71,14 @@
                     <!-- start date start -->
                     <div class="am-form-group">
                         <label for="start-date">课程开始时间:</label>
-                        <input id="start-date" name="startDate" type="text" />
+                        <input id="start-date" name="startDate" type="text" <%= course.get('startDate') %> />
                     </div>
                     <!-- start date end -->
 
                     <!-- price start -->
                     <div class="am-form-group">
                         <label for="price">课程价格:</label>
-                        <input id="price" name="price" type="text" />
+                        <input id="price" name="price" type="text" value="<%= course.get('price') %>" />
                     </div>
                     <!-- price end -->
 

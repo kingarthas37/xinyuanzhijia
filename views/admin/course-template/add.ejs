@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+<div class="am-cf admin-main">
+
+    <!-- sidebar start -->
+    <% include ../partials/sidebar %>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content admin-product-brand-page">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong><a href="/admin/course-template">课程模板列表</a></strong> / <a href="/admin/course/add">添加课程模板</a></div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+
+                <form id="form-add-product" class="am-form" method="post" >
+
+                    <!--  course template start -->
+                    <div class="am-form-group">
+                        <label for="name" >模板名称<i>*</i></label>
+                        <input type="text" name="name" id="name" />
+                    </div>
+                    <!--  course template end -->
+
+                    <hr/>
+
+                    <!-- name start -->
+                    <div class="am-form-group">
+                        <label for="default-name">默认课程名称:</label>
+                        <input id="default-name" name="defaultName" type="text" placeholder="" />
+                    </div>
+                    <!-- name end -->
+
+                    <hr/>
+
+                    <!-- content start -->
+                    <div class="am-form-group">
+                        <label for="default-content">默认课程描述:</label>
+                        <textarea id="default-content" name="defaultContent"></textarea>
+                    </div>
+                    <!-- content end -->
+
+                    <hr/>
+
+                    <div class="am-form-group">
+                        <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
+                        <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- content end -->
+
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

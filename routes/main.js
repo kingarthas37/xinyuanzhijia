@@ -31,6 +31,9 @@ module.exports = {
     '/order/express': require('./default/order/express'),
 
     '/error':require('./default/error'),
+
+    '/course':require('./default/course'),
+    '/course/user':require('./default/course/user'),
     
     //admin
     '/admin/login':require('./admin/sign/login'),
@@ -75,6 +78,13 @@ module.exports = {
     '/admin/filter-words':require('./admin/filter-words'),
     '/admin/import-order':require('./admin/import-order'),
 
-    '/admin/crontab':require('./admin/crontab')
+    '/admin/crontab':require('./admin/crontab'),
 
+    '/admin/course':require('./admin/course'),
+    '/admin/course/add':require('./admin/course/add'),
+    '/admin/course/edit':require('./admin/course/edit'),
+    '/admin/course-template':require('./admin/course-template'),
+    '/admin/course-template/add':require('./admin/course-template/add'),
+    '/admin/course-template/edit':require('./admin/course-template/edit'),
+    '/admin/course-user':require('./admin/course-user')
 };

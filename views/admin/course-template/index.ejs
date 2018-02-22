@@ -23,21 +23,21 @@
     <div class="admin-content admin-product-method-page">
 
         <div class="am-cf am-padding">
-            <div class="am-fl am-cf"><strong>课程列表</strong></div>
+            <div class="am-fl am-cf"><strong>课程模板列表</strong></div>
         </div>
 
         <div class="am-g">
             <!--<form class="am-form" action="/admin/product-method">-->
-                <!--<div class="am-u-sm-12 am-u-md-3">-->
-                    <!--<div class="am-form-group">-->
-                        <!--<div class="am-input-group am-input-group-sm">-->
-                            <!--<input type="text" name="search" class="am-form-field" placeholder="搜索产品类型">-->
-                            <!--<span class="am-input-group-btn">-->
-                                <!--<button class="am-btn am-btn-primary" type="submit">搜索</button>-->
-                            <!--</span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <!--<div class="am-u-sm-12 am-u-md-3">-->
+            <!--<div class="am-form-group">-->
+            <!--<div class="am-input-group am-input-group-sm">-->
+            <!--<input type="text" name="search" class="am-form-field" placeholder="搜索产品类型">-->
+            <!--<span class="am-input-group-btn">-->
+            <!--<button class="am-btn am-btn-primary" type="submit">搜索</button>-->
+            <!--</span>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
             <!--</form>-->
         </div>
 
@@ -48,24 +48,16 @@
                 <table class="am-table am-table-striped">
                     <thead>
                     <tr>
-                        <th>课程名</th>
-                        <th>课程链接</th>
-                        <th class="t-c small-screen-hide">课程报名人数</th>
-                        <th class="t-c small-screen-hide">课程看开始时间</th>
-                        <th class="t-c small-screen-hide">报名用户</th>
+                        <th>模板名称</th>
                         <th width="60" class="t-c small-screen-hide">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <% if(course) { %>
-                    <% for(var i=0; i < course.length; i++) {%>
+                    <% if(courseTemplate) { %>
+                    <% for(var i=0; i < courseTemplate.length; i++) {%>
                     <tr>
-                        <td><a href="/admin/course/edit/<%= course[i].get('courseId') %>"><%= course[i].get('name') %></a></td>
-                        <td><%= course[i].get('link') %></td>
-                        <td><%= course[i].get('haveCount') %>/<%=course[i].get('count')%></td>
-                        <td><%=course[i].get('startDate')%></td>
-                        <td><a href="/admin/course-user?course-id=<%= course[i].get('courseId') %>" >查看</a></td>
-                        <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= course[i].get('courseId') %>" class="remove-course">删除</a></td>
+                        <td><a href="/admin/course-template/edit/<%= courseTemplate[i].get('courseTemplateId') %>"><%= courseTemplate[i].get('name') %></a></td>
+                        <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= courseTemplate[i].get('courseTemplateId') %>" class="remove-course">删除</a></td>
                     </tr>
                     <% }
                     } %>
@@ -82,7 +74,7 @@
                 </div>
 
                 <div class="am-form-group">
-                    <a href="/admin/course/add" class="am-btn am-btn-primary" role="button">添加新课程</a>
+                    <a href="/admin/course-template/add" class="am-btn am-btn-primary" role="button">添加新课程模板</a>
                 </div>
 
             </div>
@@ -94,8 +86,8 @@
 </div>
 
 
-<!-- modal 删除产品 -->
-<div class="am-modal am-modal-confirm" tabindex="-1" id="confirm-remove-course">
+<!-- modal 删除模板 -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="confirm-remove-course-template">
     <div class="am-modal-dialog">
         <div class="am-modal-bd">
             确定要删除这条记录吗？
@@ -106,7 +98,7 @@
         </div>
     </div>
 </div>
-<!-- modal 删除产品 -->
+<!-- modal 删除模板 -->
 
 
 <!-- modal alert -->
@@ -127,8 +119,8 @@
 
 <script type="text/javascript">
     $(function () {
-        var course = require('course');
-        course.indexFun();
+        var courseTemplate = require('course-template');
+        courseTemplate.indexFun();
     });
 </script>
 </body>

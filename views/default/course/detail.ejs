@@ -11,13 +11,15 @@
 <body>
 
 <% include ../partials/header-sub %>
-<ul>
-<% if(course) { %>
-<% for(var i=0; i < course.length; i++) {%>
-    <a href="/course/detail/<%= course[i].get('courseId') %>"><%= course[i].get('name') %></a>
-<% }
-} %>
-</ul>
+<div><%= course.get('name') %></div>
+<div><%= course.get('content') %></div>
+<div>
+    <% if (course.get('haveCount') < course.get('count')) { %>
+    <a href="/course/user/<%= course.get('courseId')%>">立即报名</a>
+    <% } else { %>
+    报名已满
+    <% } %>
+</div>
 <% include ../partials/footer %>
 <% include ../partials/js %>
 </body>
