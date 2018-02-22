@@ -40,7 +40,18 @@ router.post('/:courseId',(req,res)=> {
         if (item.get('haveCount') >= item.get('count')) {
             res.send({'code':0, 'message': '本课程人数已满!'});
         } else {
-            courseUser.add({courseId, name, sex, birthday, wechat}).then(() => res.send({'code':1, 'message': '报名成功!'}) );
+            AV.Promise.when(
+                new AV.Promise(resolve => {
+                    courseUser.add({courseId, name, sex, birthday, wechat}).then(() => {
+                        resolve();
+                    });
+                }),
+                new AV.Promise(resolve => {
+                    item.set('haveCount', (item.get('haveCount')+1));
+                    item.save();    //更新报名人数
+                    resolve();
+                })
+            ).then(() => res.send({'code':1, 'message': '报名成功!'}));
         }
     });
 
