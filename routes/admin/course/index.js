@@ -45,7 +45,7 @@ router.get('/', (req, res) => {
                 resolve();
             });
         }),
-    ).then(() => res.render('admin/course', data));
+    ).then(() => { res.render('admin/course', data); });
 });
 
 
@@ -58,7 +58,7 @@ router.post('/remove/:courseId',(req,res)=> {
 
     query.first().then(item => {
         item.destroy();
-    }).then(() => res.send({success: 1}));
+    }).then(() => { res.send({success: 1}); });
 
 });
 
