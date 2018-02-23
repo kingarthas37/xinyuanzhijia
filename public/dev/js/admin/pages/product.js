@@ -578,6 +578,7 @@ module.exports = {
                 let updateTotaobaoImage = popover.find('.update-totaobao-image');
                 let updateTotaobaoTitle = popover.find('.update-totaobao-title');
                 let updateTotaobaoContent = popover.find('.update-totaobao-content');
+                let updateTotaobaoPrice = popover.find('.update-totaobao-price');
 
                 let productId = $(this).data('product-id');
                 let item = $(`tr[data-product-id=${productId}]`).find('.set-update-stock');
@@ -589,7 +590,8 @@ module.exports = {
                         isUpdateStock:true,
                         updateTotaobaoImage:updateTotaobaoImage.prop('checked'),
                         updateTotaobaoTitle:updateTotaobaoTitle.prop('checked'),
-                        updateTotaobaoContent:updateTotaobaoContent.prop('checked')
+                        updateTotaobaoContent:updateTotaobaoContent.prop('checked'),
+                        updateTotaobaoPrice:updateTotaobaoPrice.prop('checked')
                     }
                 }).then(data => {
                     if(data.success) {

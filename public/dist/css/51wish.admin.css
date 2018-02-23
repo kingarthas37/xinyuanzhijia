@@ -255,7 +255,7 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
   display: none; }
 
 .am-popover {
-  max-width: 220px; }
+  max-width: 280px; }
   .am-popover .am-popover-inner {
     color: #fff;
     border: none;
