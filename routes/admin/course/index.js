@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
                 });
                 resolve();
             });
-        }),
+        })
     ).then(() => { res.render('admin/course', data); });
 });
 

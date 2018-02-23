@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
                 data = extend(data, {courseTemplate: result.items});
                 resolve();
             });
-        }),
+        })
     ).then(() => { res.render('admin/course/add', data); } );
 });
 
