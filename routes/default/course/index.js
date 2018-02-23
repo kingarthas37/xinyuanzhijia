@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
                     }),
                     course:result.items
                 });
-                resolve(data);
+                resolve();
             });
         })
     ).then(() => { res.render('default/course', data); } );
