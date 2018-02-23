@@ -42,8 +42,8 @@ router.get('/', (req, res) => {
                 });
                 resolve(data);
             });
-        }),
-    ).then(() => { res.render('default/course', data) } );
+        })
+    ).then(() => { res.render('default/course', data); } );
 });
 
 
