@@ -51,7 +51,7 @@ router.post('/:courseId',(req,res)=> {
                     item.save();    //更新报名人数
                     resolve();
                 })
-            ).then(() => res.send({'code':1, 'message': '报名成功!'}));
+            ).then(() => { res.send({'code':1, 'message': '报名成功!'}) } );
         }
     });
 
