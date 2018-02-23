@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
                     }),
                     courseTemplate:result.items
                 });
-                resolve(data);
+                resolve();
             });
         }),
     ).then(() => res.render('admin/course-template', data));

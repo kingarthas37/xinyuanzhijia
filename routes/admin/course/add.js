@@ -26,11 +26,10 @@ router.get('/', (req, res) => {
         new AV.Promise(resolve => {
             courseTemplate.getCourseTemplates({limit: 999}).then(result => {
                 data = extend(data, {courseTemplate: result.items});
-
-                resolve(data);
+                resolve();
             });
         }),
-    ).then(() => res.render('admin/course/add', data));
+    ).then(() => { res.render('admin/course/add', data); } );
 });
 
 

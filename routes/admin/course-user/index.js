@@ -43,10 +43,10 @@ router.get('/', (req, res) => {
                     }),
                     courseUser:result.items
                 });
-                resolve(data);
+                resolve();
             });
         }),
-    ).then(() => res.render('admin/course-user', data));
+    ).then(() => { res.render('admin/course-user', data); } );
 });
 
 

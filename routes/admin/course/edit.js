@@ -27,16 +27,16 @@ router.get('/:courseId', (req, res) => {
         new AV.Promise(resolve => {
             courseTemplate.getCourseTemplates({limit: 999}).then(result => {
                 data = extend(data, {courseTemplate: result.items});
-                resolve(data);
+                resolve();
             });
         }),
         new AV.Promise(resolve => {
             course.getCourseByCourseId(courseId).then(item => {
                 data = extend(data, {course: item});
-                resolve(data);
+                resolve();
             });
         })
-    ).then(() => res.render('admin/course/edit', data));
+    ).then(() => { res.render('admin/course/edit', data); } );
 });
 
 
