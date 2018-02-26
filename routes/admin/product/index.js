@@ -496,11 +496,12 @@ router.post('/set-update-stock/:productId',(req,res)=> {
     let updateTotaobaoTitle = req.body['updateTotaobaoTitle'] === 'true' ? 1 : 0;
     let updateTotaobaoContent = req.body['updateTotaobaoContent'] === 'true' ? 1 : 0;
     let updateTotaobaoPrice = req.body['updateTotaobaoPrice'] === 'true' ? 1 : 0;
+    let updateTotaobaoCategory = req.body['updateTotaobaoCategory'] === 'true' ? 1 : 0;
     let query = new AV.Query(Product);
     query.equalTo('productId',productId);
     query.first().then(result => {
         result.set('isUpdateStock', isUpdateStock);
-    result.set('offlineTag',{updateTotaobaoImage,updateTotaobaoTitle,updateTotaobaoContent,updateTotaobaoPrice});
+    result.set('offlineTag',{updateTotaobaoImage,updateTotaobaoTitle,updateTotaobaoContent,updateTotaobaoPrice, updateTotaobaoCategory});
     return result.save();
     }).then(result => {
         res.send({
