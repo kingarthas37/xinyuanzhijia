@@ -6,7 +6,8 @@ let async = require('async');
 let extend = require('xtend');
 
 let config = require('../../../lib/config');
-let product = require('../../../lib/models/product');
+let product = require('../../../lib/models/product').createNew();
+let orderTrack = require('../../../lib/models/order-track').createNew();
 
 let data = extend(config.data, {
     title: `${config.data.name} - 脚本`,
@@ -37,6 +38,39 @@ router.get('/', (req, res) => {
     });
 
     res.send({'success':1});
+});
+
+router.get('/get-mobile', (req, res) => {
+    let page = req.query['page'] || 1;
+    let limit = req.query['limit'] || 1000;
+    let mobileArray = [];
+    let mobileStr = [];
+    orderTrack.getOrdersByCreateAt(limit, page).then(items => {
+        if (items) {
+            items.forEach(item => {
+                let mobile = item.get('shippingAddress');
+                mobile = mobile.match(/((((13[0-9])|(15[^4])|(18[0,1,2,3,5-9])|(17[0-8])|(147))\d{8}))?/g);
+                mobile.forEach(m => {
+                    if (m != '') {
+                        mobileArray.push(m.trim());
+                    }
+                });
+            });
+        }
+        if (mobileArray) {
+            mobileArray.sort();
+            let tempStr = '';
+            for (var i in mobileArray) {
+                if(mobileArray[i] != tempStr) {
+                    mobileStr.push(mobileArray[i]);
+                    tempStr=mobileArray[i];
+                } else {
+                    continue;
+                }
+            }
+        }
+        res.send(mobileStr.toString());
+    });
 });
 
 
