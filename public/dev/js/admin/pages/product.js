@@ -161,13 +161,15 @@ module.exports = {
                             if (n.productId == $(this).attr('data-product-id')) {
                                 $(this).find('.title').attr('data-popover-thirty', n.thirty);
                                 $(this).find('.title').attr('data-popover-ninety', n.ninety);
+                                $(this).find('.title').attr('data-popover-last-month', n.lastMonty);
+                                $(this).find('.title').attr('data-popover-two-month', n.twoMonty);
                             }
                         });
                     });
                     rows.each(function() {
                         let title = $(this).find('.title');
                         title.popover({
-                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>30天销量: ${title.data('popover-thirty')} <br/>90天销量: ${title.data('popover-ninety')} <br/>总销量: ${title.data('popover-sales')}`,
+                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>上个月销量: ${title.data('popover-last-month')} <br/>两个月销量: ${title.data('popover-two-month')} <br/>30天销量: ${title.data('popover-thirty')} <br/>90天销量: ${title.data('popover-ninety')} <br/>总销量: ${title.data('popover-sales')}`,
                             trigger:'hover'
                         });
                     });

@@ -456,21 +456,46 @@ router.post('/set-short-stock/:productId',(req,res)=> {
 router.get('/get-sales', (req, res) => {
     let productIds = req.query['product-ids'];
     let nowDate = new Date();
+
+    //上个月第一天
+    let lastMonthFirstDay = new Date();
+    lastMonthFirstDay.setMonth(lastMonthFirstDay.getMonth()-1);
+    lastMonthFirstDay.setDate(1);
+
+    //上个最后一天
+    let lastMonthLastDay = new Date();
+    nowDate.setDate(1);
+    lastMonthLastDay.setDate((nowDate.getDate() - 1));
+
+    //上两个月第一天
+    let twoMonthFirstDay = new Date();
+    twoMonthFirstDay.setMonth(twoMonthFirstDay.getMonth()-2);
+    twoMonthFirstDay.setDate(1);
+
+    nowDate = new Date();
     let thirtyDate = new Date(nowDate.setDate(nowDate.getDate() - 30));
-    let startDate = new Date(nowDate.setDate(nowDate.getDate() - 60));
+    let startDate = twoMonthFirstDay;
+    let ninetyDate = new Date(nowDate.setDate(nowDate.getDate() - 60));
+
     var items = [];
     async.forEachLimit(productIds, 5, function(productId, callback) {
         orderTrack.getOrderByProductIds([productId], startDate).then(result => {
-            var data = {'thirty':0,'ninety':0,'productId':productId};
+            var data = {'thirty':0,'ninety':0,'productId':productId, 'lastMonty':0, 'twoMonty':0};
             if (result) {
-                var ss = 0;
-                var aa = 0;
                 result.forEach(n => {
                     var pid = n.get('productId');
                     var shippingCounts = n.get('shippingCount');
                     for (var k = 0; k < pid.length; k++) {
                         if (pid[k] == productId) {
-                            data.ninety += shippingCounts[k];
+                            if (n.createdAt >= twoMonthFirstDay && n.createdAt <= lastMonthLastDay) {
+                                data.twoMonty += shippingCounts[k];
+                            }
+                            if (n.createdAt >= lastMonthFirstDay && n.createdAt <= lastMonthLastDay) {
+                                data.lastMonty += shippingCounts[k];
+                            }
+                            if (n.createdAt >= ninetyDate) {
+                                data.ninety += shippingCounts[k];
+                            }
                             if (n.createdAt >=  thirtyDate) {
                                 data.thirty += shippingCounts[k];
                             }
