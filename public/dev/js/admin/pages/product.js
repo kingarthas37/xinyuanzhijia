@@ -156,6 +156,10 @@ module.exports = {
                     }
                 }).then(data => {
                     let rows = $('table tbody tr');
+                    let lastMonthFirstDay = new Date();
+                    lastMonthFirstDay.setMonth(lastMonthFirstDay.getMonth()-1);
+                    let twoMonthFirstDay = new Date();
+                    twoMonthFirstDay.setMonth(twoMonthFirstDay.getMonth()-2);
                     $.each(data.data,(i,n)=> {
                         rows.each(function () {
                             if (n.productId == $(this).attr('data-product-id')) {
@@ -169,7 +173,7 @@ module.exports = {
                     rows.each(function() {
                         let title = $(this).find('.title');
                         title.popover({
-                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>上个月销量: ${title.data('popover-last-month')} <br/>两个月销量: ${title.data('popover-two-month')} <br/>30天销量: ${title.data('popover-thirty')} <br/>90天销量: ${title.data('popover-ninety')} <br/>总销量: ${title.data('popover-sales')}`,
+                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>${twoMonthFirstDay.getMonth()+1}月销量: ${title.data('popover-two-month')} <br/>${lastMonthFirstDay.getMonth()+1}月销量: ${title.data('popover-last-month')} <br/>30天销量: ${title.data('popover-thirty')} <br/>90天销量: ${title.data('popover-ninety')} <br/>总销量: ${title.data('popover-sales')}`,
                             trigger:'hover'
                         });
                     });
