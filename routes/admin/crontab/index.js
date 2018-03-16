@@ -1,6 +1,7 @@
 'use strict';
 
 let router = require('express').Router();
+let AV = require('leanengine');
 
 let async = require('async');
 let extend = require('xtend');
@@ -73,5 +74,32 @@ router.get('/get-mobile', (req, res) => {
     });
 });
 
+router.get('/get-product', (req, res) => {
+    let page = req.query['page'] || 1;
+    let limit = req.query['limit'] || 1000;
+    let productMethodId = req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 3;
+    let category1Id = req.query['category1-id'] ? parseInt(req.query['category1-id']) : 0;
+    let onsale = req.query.onsale ? parseInt(req.query.onsale) : 0;
+    let select = 'detail, mainImage, name, use, instruction, detailImage';
+    let options = {page, limit, onsale, productMethodId, category1Id, select};
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            product.getProducts(options, false).then(items => {
+                items.forEach(n => {
+                    let mainImage = n.get('mainImage');
+                    if(mainImage) {
+                        for(let i in mainImage) {
+                            if(!n.mainImage) {
+                                n.mainImage = mainImage[i].url;
+                            }
+                        }
+                    }
+                });
+                data = extend(data, {product: items});
+                resolve();
+            });
+        })
+    ).then(() => res.render('admin/crontab', data));
+});
 
 module.exports = router;

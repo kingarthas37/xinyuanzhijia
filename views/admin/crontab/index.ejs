@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+<table>
+    <% for(var i=0; i< product.length;i++) {%>
+    <tr>
+        <td>
+            <img src="<% for(var n in product[i].get('mainImage')) { %><% if(product[i].attributes.mainImage[n].isMainImage) { %><%= product[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" alt="">
+        </td>
+        <td>
+            <h3><%= product[i].get('name') %></h3>
+            <h4><%= product[i].get('detail') %></h4>
+        </td>
+    </tr>
+    <% } %>
+</table>
+</body>
+</html>

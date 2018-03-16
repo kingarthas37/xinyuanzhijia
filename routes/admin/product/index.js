@@ -462,7 +462,7 @@ router.get('/get-sales', (req, res) => {
     lastMonthFirstDay.setMonth(lastMonthFirstDay.getMonth()-1);
     lastMonthFirstDay.setDate(1);
 
-    //上个最后一天
+    //上个月最后一天
     let lastMonthLastDay = new Date();
     nowDate.setDate(1);
     lastMonthLastDay.setDate((nowDate.getDate() - 1));
@@ -487,7 +487,7 @@ router.get('/get-sales', (req, res) => {
                     var shippingCounts = n.get('shippingCount');
                     for (var k = 0; k < pid.length; k++) {
                         if (pid[k] == productId) {
-                            if (n.createdAt >= twoMonthFirstDay && n.createdAt <= lastMonthLastDay) {
+                            if (n.createdAt >= twoMonthFirstDay && n.createdAt < lastMonthFirstDay) {
                                 data.twoMonty += shippingCounts[k];
                             }
                             if (n.createdAt >= lastMonthFirstDay && n.createdAt <= lastMonthLastDay) {
