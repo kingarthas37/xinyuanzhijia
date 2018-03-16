@@ -9,6 +9,8 @@ let extend = require('xtend');
 let config = require('../../../lib/config');
 let product = require('../../../lib/models/product').createNew();
 let orderTrack = require('../../../lib/models/order-track').createNew();
+let ProductCategory1 = AV.Object.extend('ProductCategory1');
+let ProductCategory2 = AV.Object.extend('ProductCategory2');
 
 let data = extend(config.data, {
     title: `${config.data.name} - 脚本`,
@@ -76,12 +78,13 @@ router.get('/get-mobile', (req, res) => {
 
 router.get('/get-product', (req, res) => {
     let page = req.query['page'] || 1;
-    let limit = req.query['limit'] || 1000;
+    let limit = req.query['limit'] || 1;
     let productMethodId = req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 3;
     let category1Id = req.query['category1-id'] ? parseInt(req.query['category1-id']) : 0;
+    let category2Id = req.query['category2-id'] ? parseInt(req.query['category2-id']) : 0;
     let onsale = req.query.onsale ? parseInt(req.query.onsale) : 0;
     let select = 'detail, mainImage, name, use, instruction, detailImage';
-    let options = {page, limit, onsale, productMethodId, category1Id, select};
+    let options = {page, limit, onsale, productMethodId, category1Id, category2Id, select};
     AV.Promise.when(
         new AV.Promise(resolve => {
             product.getProducts(options, false).then(items => {
@@ -96,6 +99,36 @@ router.get('/get-product', (req, res) => {
                     }
                 });
                 data = extend(data, {product: items});
+                resolve();
+            });
+        }),
+        //查询category1
+        new AV.Promise(resolve => {
+            if(!category1Id) {
+                return resolve();
+            }
+
+            let query = new AV.Query(ProductCategory1);
+            query.equalTo('category1Id', category1Id);
+            query.ascending('index');
+            query.first().then(category1 => {
+                data = extend(data, {category1});
+                resolve();
+            });
+        }),
+
+        //查询categoty2
+        new AV.Promise(resolve => {
+
+            if (!category2Id) {
+                return resolve();
+            }
+
+            let query = new AV.Query(ProductCategory2);
+            query.equalTo('category2Id', category2Id);
+            query.ascending('index');
+            query.first().then(category2 => {
+                data = extend(data, {category2});
                 resolve();
             });
         })
