@@ -78,7 +78,7 @@ router.get('/get-mobile', (req, res) => {
 
 router.get('/get-product', (req, res) => {
     let page = req.query['page'] || 1;
-    let limit = req.query['limit'] || 1;
+    let limit = req.query['limit'] || 1000;
     let productMethodId = req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 3;
     let category1Id = req.query['category1-id'] ? parseInt(req.query['category1-id']) : 0;
     let category2Id = req.query['category2-id'] ? parseInt(req.query['category2-id']) : 0;
@@ -88,16 +88,18 @@ router.get('/get-product', (req, res) => {
     AV.Promise.when(
         new AV.Promise(resolve => {
             product.getProducts(options, false).then(items => {
-                items.forEach(n => {
-                    let mainImage = n.get('mainImage');
-                    if(mainImage) {
-                        for(let i in mainImage) {
-                            if(!n.mainImage) {
-                                n.mainImage = mainImage[i].url;
+                if (items) {
+                    items.forEach(n => {
+                        let mainImage = n.get('mainImage');
+                        if(mainImage) {
+                            for(let i in mainImage) {
+                                if(!n.mainImage) {
+                                    n.mainImage = mainImage[i].url;
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                }
                 data = extend(data, {product: items});
                 resolve();
             });
