@@ -173,7 +173,7 @@ module.exports = {
                     rows.each(function() {
                         let title = $(this).find('.title');
                         title.popover({
-                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>${twoMonthFirstDay.getMonth()+1}月销量: ${title.data('popover-two-month')} <br/>${lastMonthFirstDay.getMonth()+1}月销量: ${title.data('popover-last-month')} <br/>30天销量: ${title.data('popover-thirty')} <br/>90天销量: ${title.data('popover-ninety')} <br/>总销量: ${title.data('popover-sales')}`,
+                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>30天销量: ${title.data('popover-thirty')} | 90天销量: ${title.data('popover-ninety')} <br/>  ${twoMonthFirstDay.getMonth()+1}月份销量: ${title.data('popover-two-month')} | ${lastMonthFirstDay.getMonth()+1}月份销量: ${title.data('popover-last-month')}  <br/>总销量: ${title.data('popover-sales')}`,
                             trigger:'hover'
                         });
                     });
