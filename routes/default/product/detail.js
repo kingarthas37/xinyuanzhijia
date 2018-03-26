@@ -76,7 +76,7 @@ router.get('/:id', (req, res) => {
                     break;
                 }
             }
-            data.item.detailImage = data.item.detailImage.replace(/\.jpg/gi, '.jpg'+data.water);
+            data.item.detailImage = data.item.detailImage.replace(/\.jpg/gi, '.jpg'+data.water).replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com');
             data.item.groups = JSON.stringify(data.item.groups);
             data.item.detail = markdown.toHTML(data.item.detail);
             data.item.property = markdown.toHTML(data.item.property);

@@ -36,8 +36,6 @@ router.get('/:productId',(req,res)=> {
 
     var productId = parseInt(req.params.productId);
     let productMethodId = parseInt(req.query['product-method-id']);
-
-    console.info(productMethodId);
     
     data = extend(data, {
         user: req.AV.user
