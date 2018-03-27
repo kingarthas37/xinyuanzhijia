@@ -77,8 +77,8 @@ router.get('/get-mobile', (req, res) => {
 });
 
 router.get('/get-product', (req, res) => {
-    let page = req.query['page'] || 1;
-    let limit = req.query['limit'] || 1000;
+    let page = parseInt(req.query['page']) || 1;
+    let limit = parseInt(req.query['limit']) || 1000;
     let productMethodId = req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 3;
     let category1Id = req.query['category1-id'] ? parseInt(req.query['category1-id']) : 0;
     let category2Id = req.query['category2-id'] ? parseInt(req.query['category2-id']) : 0;
