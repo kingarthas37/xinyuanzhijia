@@ -13,7 +13,7 @@
     <% for(var i=0; i< product.length;i++) {%>
     <tr>
         <td>
-            <img src="<% for(var n in product[i].get('mainImage')) { %><% if(product[i].attributes.mainImage[n].isMainImage) { %><%= product[i].attributes.mainImage[n].url %>?imageMogr2/thumbnail/200<%break;}}%>" alt="">
+            <img src="<% for(var n in product[i].get('mainImage')) { %><% if(product[i].attributes.mainImage[n].isMainImage) { %><%= product[i].attributes.mainImage[n].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>?imageMogr2/thumbnail/200<%break;}}%>" alt="">
         </td>
         <td>
             <h3><%= product[i].get('name') %></h3>
