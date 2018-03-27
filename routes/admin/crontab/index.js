@@ -77,7 +77,6 @@ router.get('/get-mobile', (req, res) => {
 });
 
 router.get('/get-product', (req, res) => {
-    base.isAdminUserLogin(req,res);  //判断是否登录
     let page = req.query['page'] || 1;
     let limit = req.query['limit'] || 1000;
     let productMethodId = req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 3;
