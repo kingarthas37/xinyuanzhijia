@@ -658,4 +658,47 @@ span.hot:after {
       #modal-order-search .am-table td .update-reserve.on {
         color: #5eb95e; }
 
+.book-oils .container {
+  width: 827px;
+  height: 1181px;
+  overflow: hidden;
+  margin: auto;
+  background: #efefef; }
+  .book-oils .container h1, .book-oils .container h2, .book-oils .container h3, .book-oils .container h4 {
+    margin: 0;
+    padding: 0; }
+  .book-oils .container h1 {
+    width: 760px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: normal;
+    margin-left: auto;
+    margin-right: auto; }
+  .book-oils .container table {
+    width: 760px;
+    margin: auto; }
+    .book-oils .container table td {
+      vertical-align: top;
+      height: 140px; }
+    .book-oils .container table h3 {
+      font-weight: bold;
+      font-size: 14px; }
+    .book-oils .container table h4 {
+      font-weight: normal;
+      font-size: 14px; }
+    .book-oils .container table .img {
+      width: 140px; }
+      .book-oils .container table .img .img-border {
+        width: 120px;
+        height: 120px;
+        box-sizing: content-box; }
+      .book-oils .container table .img img {
+        border-radius: 10px;
+        width: 120px;
+        height: 120px;
+        outline: none; }
+    .book-oils .container table .text {
+      width: 620px; }
+
 /*# sourceMappingURL=51wish.admin.css.map */

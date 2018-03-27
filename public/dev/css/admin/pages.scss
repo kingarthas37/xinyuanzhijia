@@ -397,3 +397,64 @@
     }
   }
 }
+
+
+.book-oils {
+    .container {
+        width:827px;
+        height: 1181px;
+        overflow: hidden;
+        margin:auto;
+        background: #efefef;
+   //     background: url('http://lc-JoaBcRTt.cn-n1.lcfile.com/81f37ddc60483190c65d.jpg') no-repeat 100% 100%;
+        h1,h2,h3,h4 {
+            margin:0;
+            padding: 0;
+        }
+        h1 {
+            width: 760px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 20px;
+            font-weight: normal;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        table {
+            width: 760px;
+            margin:auto;
+            td {
+                vertical-align: top;
+                height: 140px;
+            }
+            h3 {
+                font-weight: bold;
+                font-size: 14px;
+            }
+            h4 {
+                font-weight: normal;
+                font-size: 14px;
+            }
+            .img {
+                width: 140px;
+                .img-border {
+                //    border:1px solid #000;
+                    width:120px;
+                    height: 120px;
+                    box-sizing:content-box;
+
+                }
+                img {
+                    border-radius: 10px;
+                    width: 120px;
+                    height: 120px;
+                    outline: none;
+                }
+            }
+            .text {
+                width: 620px;
+
+            }
+        }
+    }
+}
