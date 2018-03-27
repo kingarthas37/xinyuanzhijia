@@ -84,7 +84,7 @@ router.get('/get-product', (req, res) => {
     let category1Id = req.query['category1-id'] ? parseInt(req.query['category1-id']) : 0;
     let category2Id = req.query['category2-id'] ? parseInt(req.query['category2-id']) : 0;
     let onsale = req.query.onsale ? parseInt(req.query.onsale) : 0;
-    let select = 'detail, mainImage, name, detailImage';
+    let select = 'detail, mainImage, name, use, instruction, detailImage';
     let options = {page, limit, onsale, productMethodId, category1Id, category2Id, select};
     AV.Promise.when(
         new AV.Promise(resolve => {
