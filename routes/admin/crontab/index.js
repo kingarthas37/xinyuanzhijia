@@ -25,7 +25,6 @@ router.get('/', (req, res) => {
 
     base.isAdminUserLogin(req,res);  //判断是否登录
     let page = req.query['page'] || 1;
-    console.log('aaaaa');
     product.getProducts({'limit':1000, 'page':parseInt(page), 'select':'nameEn,productId'}).then(result => {
         let index = 0;
         async.forEachLimit(result, 5, function(item, callback){
@@ -44,6 +43,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/get-mobile', (req, res) => {
+    base.isAdminUserLogin(req,res);  //判断是否登录
     let page = req.query['page'] || 1;
     let limit = req.query['limit'] || 1000;
     let mobileArray = [];
@@ -77,13 +77,14 @@ router.get('/get-mobile', (req, res) => {
 });
 
 router.get('/get-product', (req, res) => {
+    base.isAdminUserLogin(req,res);  //判断是否登录
     let page = req.query['page'] || 1;
     let limit = req.query['limit'] || 1000;
     let productMethodId = req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 3;
     let category1Id = req.query['category1-id'] ? parseInt(req.query['category1-id']) : 0;
     let category2Id = req.query['category2-id'] ? parseInt(req.query['category2-id']) : 0;
     let onsale = req.query.onsale ? parseInt(req.query.onsale) : 0;
-    let select = 'detail, mainImage, name, use, instruction, detailImage';
+    let select = 'detail, mainImage, name, detailImage';
     let options = {page, limit, onsale, productMethodId, category1Id, category2Id, select};
     AV.Promise.when(
         new AV.Promise(resolve => {
@@ -94,7 +95,7 @@ router.get('/get-product', (req, res) => {
                         if(mainImage) {
                             for(let i in mainImage) {
                                 if(!n.mainImage) {
-                                    n.mainImage = mainImage[i].url;
+                                    n.mainImage = mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com');
                                 }
                             }
                         }
