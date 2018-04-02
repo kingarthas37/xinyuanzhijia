@@ -316,7 +316,6 @@ module.exports = {
             $('.link-copy-etsy').click(function() {
                 let productId = $(this).data('product-id');
                 modalLoading.find('.am-modal-hd').text('正在导入...');
-                console.info(productId);
                 modal.modal({
                     relatedTarget: this,
                     onConfirm: function(e) {
@@ -364,6 +363,53 @@ module.exports = {
             
         }
 
+        //关联分类属性
+        {
+            let modal = $('#modal-bind-category');
+            let input = $('.input-bind-category');
+            let modalLoading = $('#modal-loading');
+
+            $('.link-bind-category').click(function () {
+                let productId = $(this).data('product-id');
+                modalLoading.find('.am-modal-hd').text('正在修改...');
+                modal.modal({
+                    relatedTarget: this,
+                    onConfirm: function(e) {
+
+                        if(!$.trim(input.val())) {
+                            alert('请输入正确的ID');
+                            // return;
+                        }else{
+                            $.ajax({
+                                type:'post',
+                                url:'/admin/product/sync-pricetest',
+                                data:{
+                                    'productId':productId,
+                                    'bindId':input.val()
+                                }
+                            }).then(
+                                result => {
+                                    modalLoading.find('.am-modal-hd').text('关联成功!正在更新...');
+                                    setTimeout(()=> {
+                                        location.reload();
+                                    },1000);
+                                },
+                                err => {
+                                    console.info(err);
+                                    modalLoading.find('.am-modal-hd').text('关联失败,请重试!');
+                                    setTimeout(()=> {
+                                        modalLoading.modal('close');
+                                    },1000);
+                                }
+                            );
+                            modalLoading.modal();
+                        }
+                    }
+                });
+                input[0].focus();
+            });
+        }
+
         {// 改价
             let modal = $('#modal-change-price');
             let input = $('.input-change-price');
@@ -373,7 +419,6 @@ module.exports = {
                 let productId = $(this).data('product-id');
                 let category2Id=$(this).data('category2-id');
                 modalLoading.find('.am-modal-hd').text('正在修改...');
-                // console.info(productId);
                 modal.modal({
                     relatedTarget: this,
                     onConfirm: function(e) {

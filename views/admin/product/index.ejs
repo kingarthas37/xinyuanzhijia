@@ -218,6 +218,11 @@
                             <a title="产品翻译更新设置"
                                class="set-product-trans <% if(product[i].get('isTranslation') == true) { %>on<% } %>" istranslationdate="<%= product[i].get('isTranslation') %>"  href="javascript:;"><i class="am-icon-language"></i></a>
 
+                            <!--
+                            <a title="产品属性分类设置"
+                               class="set-product-trans <% if(product[i].get('isTranslation') == true) { %>on<% } %>" istranslationdate="<%= product[i].get('isTranslation') %>"  href="javascript:;"><i class="am-icon-ellipsis-v"></i></a>
+                               -->
+
                             <% for(var j = 0;j < product[i].get('productMethod').length;j++) { %>
                             <a title="同类产品"
                                href="/admin/product?product-method-id=<%= product[i].get('productMethod')[j] %>&category1-id=<%= product[i].get('category1')[j] %>&category2-id=<%= product[i].get('category2')[j] %>&onsale=<%= onsale %>&limit=200"><i
@@ -308,7 +313,10 @@
                                             class="am-icon-ellipsis-h"></i></button>
                                 <ul class="am-dropdown-content">
                                     <li><a href="/admin/product/copy/<%= product[i].get('productId') %>">复制</a></li>
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="link-bind-category">关联分类属性</a></li>
+                                    <!--
                                     <li><a href="/admin/product/copy/ten/<%= product[i].get('productId') %>">复制十条</a></li>
+                                    -->
                                     <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
                                            data-category2-id="<%= product[i].get('category2')[0] %>"
                                            class="link-change-price">批量改价</a></li>
@@ -483,6 +491,26 @@
     </div>
 </div>
 <!-- modal lodaing -->
+
+<!-- modal bind category -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-bind-category">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">输入主产品ID (取消关联请留空文本框)</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-bind-category"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal  bind category -->
+
 
 <% include ../partials/footer %>
 <% include ../partials/js %>
