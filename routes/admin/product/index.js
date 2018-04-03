@@ -54,6 +54,7 @@ router.get('/', (req, res) => {
     let adminStock = req.query['stock'] || '';
     let hot = req.query['hot'] || '';
     let isTranslation = req.query['is-translation'] ? (req.query['is-translation'] == 'true' ? true : '') : '';
+    let parentProductId = req.query['parent-product-id'] ? parseInt(req.query['parent-product-id']) : '';
     if ((isShortStock || updateStockDate || adminStock || isUpdateStock) && !order) {
         order = 'updatedAt';
     } else if (!order) {
@@ -78,10 +79,11 @@ router.get('/', (req, res) => {
         adminStock,
         order,
         hot,
-        isTranslation
+        isTranslation,
+        parentProductId
     });
 
-    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock, hot, isTranslation};
+    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock, hot, isTranslation, parentProductId};
     AV.Promise.when(
         //获取count
         new AV.Promise(resolve => {
@@ -104,7 +106,8 @@ router.get('/', (req, res) => {
                             'stock':adminStock,
                             order,
                             hot,
-                            'is-translation': isTranslation
+                            'is-translation': isTranslation,
+                            parentProductId
                         }
                     })
                 });
@@ -612,5 +615,26 @@ router.post('/sync-cost-price',(req,res)=> {
         });
     });
 });
+
+router.post('/set-parent-product', (req,res) => {
+    let productId = parseInt(req.body['productId']);
+    let parentProductId = parseInt(req.body['parentProductId']);
+    async.auto({
+        setParentProductId(resolve) {
+            pro.getProductById(productId).then(item => {
+                item.set('parentProductId', parentProductId);
+                item.save();
+                resolve();
+            });
+        },
+        setIsParent(resolve) {
+            pro.getProductById(parentProductId).then(item => {
+                item.set('isParent', true);
+                item.save();
+                resolve();
+            })
+        }
+    }, (err,results) => res.send({success:1}));
+})
 
 module.exports = router;

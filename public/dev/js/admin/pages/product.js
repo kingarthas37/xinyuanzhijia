@@ -382,10 +382,10 @@ module.exports = {
                         }else{
                             $.ajax({
                                 type:'post',
-                                url:'/admin/product/sync-pricetest',
+                                url:'/admin/product/set-parent-product',
                                 data:{
                                     'productId':productId,
-                                    'bindId':input.val()
+                                    'parentProductId':input.val()
                                 }
                             }).then(
                                 result => {
@@ -731,7 +731,11 @@ module.exports = {
                 });
             });
         }
-
+        {
+            $('.set-product-parent').click(function() {
+                window.location.href = '/admin/product?parent-product-id='+$(this).attr('parentProductId');
+            });
+        }
     },
 
     addFun:function() {
