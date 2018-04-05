@@ -144,6 +144,11 @@
                                  width="32"/>
                             <% } %>
 
+                            <% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %>
+                            <a title="产品属性分类设置"
+                               class="set-product-parent <% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %>on<% } %>" <% if(product[i].get('isParent') == true) { %>parentProductId="<%= product[i].get('productId') %>"<% } else if(product[i].get('parentProductId')) { %>parentProductId="<%= product[i].get('parentProductId') %>"<% } %>"  href="javascript:;"><i class="am-icon-ellipsis-v"></i></a>
+                            <% } %>
+
                             <a class="title<% if(!product[i].get('isOnsale')) { %> product-out<% } %> <% if(product[i].get('isHot')) { %> product-hot<% } %>"
                                href="/admin/product/edit/<%= product[i].get('productId') %>"
                                data-popover-source-price="<% if(product[i].get('originalPrice')) { %> <%= product[i].get('originalPrice') %> <% }else{ %>-<% } %>"
@@ -217,11 +222,6 @@
 
                             <a title="产品翻译更新设置"
                                class="set-product-trans <% if(product[i].get('isTranslation') == true) { %>on<% } %>" istranslationdate="<%= product[i].get('isTranslation') %>"  href="javascript:;"><i class="am-icon-language"></i></a>
-
-                            <% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %>
-                            <a title="产品属性分类设置"
-                               class="set-product-parent <% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %>on<% } %>" <% if(product[i].get('isParent') == true) { %>parentProductId="<%= product[i].get('productId') %>"<% } else if(product[i].get('parentProductId')) { %>parentProductId="<%= product[i].get('parentProductId') %>"<% } %>"  href="javascript:;"><i class="am-icon-ellipsis-v"></i></a>
-                            <% } %>
 
                             <% for(var j = 0;j < product[i].get('productMethod').length;j++) { %>
                             <a title="同类产品"
