@@ -245,7 +245,7 @@ module.exports = {
     appendData(data,_countLen,arrData,callback) {
         let _this = this;
         _this.countLen.text(`${_countLen}/${arrData.length}`);
-        let mainImage = 'http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png';
+        let mainImage = '//lc-JoaBcRTt.cn-n1.lcfile.com/d4c225054f005a4d7d39.png';
         for(let i in data.result[0].mainImage) {
             if(data.result[0].mainImage[i].isMainImage) {
                 mainImage = data.result[0].mainImage[i].url;

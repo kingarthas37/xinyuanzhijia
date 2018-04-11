@@ -456,6 +456,9 @@ span.hot:after {
     left: -14px;
     top: -12px; }
 
+.admin-product-page .product-parent {
+  font-size: 15px; }
+
 .admin-product-page .set-short-stock.on {
   color: #F37B1D; }
 

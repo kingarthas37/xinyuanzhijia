@@ -140,7 +140,7 @@
                             <a target="_blank" href="<%= product[i].mainImage.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>"><img
                                         width="32" src="<%= product[i].mainImage.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>?imageMogr2/thumbnail/32" alt="" data-am-popover="{content:'<img width=150 src=<%= product[i].mainImage.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>?imageMogr2/thumbnail/150>', trigger:'hover focus'}"></a>
                             <% }else{ %>
-                            <img src="http://ac-QuiPuWpJ.clouddn.com/0d56f9d95dc6da7edf45.png?imageMogr2/thumbnail/32"
+                            <img src="//lc-JoaBcRTt.cn-n1.lcfile.com/d4c225054f005a4d7d39.png?imageMogr2/thumbnail/32"
                                  width="32"/>
                             <% } %>
 
@@ -149,7 +149,7 @@
                                class="set-product-parent <% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %>on<% } %>" <% if(product[i].get('isParent') == true) { %>parentProductId="<%= product[i].get('productId') %>"<% } else if(product[i].get('parentProductId')) { %>parentProductId="<%= product[i].get('parentProductId') %>"<% } %>"  href="javascript:;"><i class="am-icon-ellipsis-v"></i></a>
                             <% } %>
 
-                            <a class="title<% if(!product[i].get('isOnsale')) { %> product-out<% } %> <% if(product[i].get('isHot')) { %> product-hot<% } %>"
+                            <a class="title<% if(!product[i].get('isOnsale')) { %> product-out<% } %> <% if(product[i].get('isHot')) { %> product-hot<% } %><% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %> product-parent<%}%>"
                                href="/admin/product/edit/<%= product[i].get('productId') %>"
                                data-popover-source-price="<% if(product[i].get('originalPrice')) { %> <%= product[i].get('originalPrice') %> <% }else{ %>-<% } %>"
                                data-popover-cost-price="<% if(product[i].get('costPrice')) { %> <%= product[i].get('costPrice') %> <% }else{ %>-<% } %>"
