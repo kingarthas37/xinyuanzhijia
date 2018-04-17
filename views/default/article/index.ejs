@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <meta name="keywords" content="" >
+    <meta name="description" content="" >
+    <% include ../partials/css %>
+    <% include ../partials/tongji %>
+</head>
+<body>
+
+<% include ../partials/header-sub %>
+<ul>
+    <% if(article) { %>
+    <% for(var i=0; i < article.length; i++) {%>
+    <a href="/blog/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
+    <% }
+    } %>
+</ul>
+<% include ../partials/footer %>
+<% include ../partials/js %>
+</body>
+</html>

@@ -42,10 +42,25 @@ router.post('/', (req, res) => {
     let link = req.body['link'] || null;
     let count = parseInt(req.body['count']);
     let price = Math.floor(req.body['price']);
-    console.log({courseTemplateId,content,name,startDate,link,count,price});
-    course.add({courseTemplateId,content,name,startDate,link,count,price}).then(() => {
-        req.flash('success', '添加课程成功!');
-        res.redirect('/admin/course');
+    course.add({courseTemplateId,content,name,startDate,link,count,price}).then(item => {
+        let url = 'https://api.weibo.com/2/short_url/shorten.json?source=330275214&url_long='+encodeURI(config.website.domain+'course/detail/'+item.get('courseTemplateId'));
+        https.get(url, function(response) {
+            var html='';
+            response.on('data', function(data) {
+                html = data;
+            });
+            response.on('end',function() {
+
+                item.set('link', html)
+                req.flash('success', '添加课程成功!');
+                res.redirect('/admin/course');
+            });
+        }).on('error', function() {
+            console.log('error');
+            req.flash('success', '添加课程失败!');
+            res.redirect('/admin/course');
+        });
+
     });
 });
 

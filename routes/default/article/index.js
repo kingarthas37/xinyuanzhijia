@@ -12,9 +12,10 @@ let pager = require('../../../lib/component/pager');
 let flash = require('connect-flash');
 
 let data = extend(config.data, {
-    title: `${config.data.name} - 文章`,
-    currentTag:'article',
-    currentPage: 'article'
+    title: `${config.data.name} - 博客`,
+    headerTitle: '博客',
+    currentPage: 'article',
+    pageType: 'article'
 });
 
 
@@ -23,7 +24,6 @@ router.get('/', (req, res) => {
     data = extend(data, {
         flash: {success: req.flash('success'), error: req.flash('error')}
     });
-    article.isAdminUserLogin(req,res);  //判断是否登录
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let options = {page,limit};
@@ -32,33 +32,24 @@ router.get('/', (req, res) => {
             article.getArticle(options).then(result => {
                 let count = result.count;
                 data = extend(data, {
-                    pager: pager.init(page, limit, count),
-                    pagerHtml: pager.initHtml({
-                        page, limit, count,
-                        url: '/admin/article',
-                        serialize: {
-                            page
-                        }
-                    }),
+                    count,
                     article:result.items
                 });
                 resolve();
             });
         })
-    ).then(() => { res.render('admin/article', data); });
+    ).then(() => { res.render('default/article', data); });
 });
 
 
-router.post('/remove/:articleId',(req,res)=> {
+router.get('/:articleId',(req,res)=> {
 
     let articleId = parseInt(req.params.articleId);
 
-    let query = new AV.Query(article);
-    query.equalTo('articleId',articleId);
-
-    query.first().then(item => {
-        item.destroy();
-    }).then(() => { res.send({success: 1}); });
+    article.getArticleByArticleId(articleId).then(item => {
+        data = extend(data, {item});
+        res.render('default/article/detail', data);
+    });
 
 });
 
