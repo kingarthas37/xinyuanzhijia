@@ -376,10 +376,7 @@ module.exports = {
                     relatedTarget: this,
                     onConfirm: function(e) {
 
-                        if(!$.trim(input.val())) {
-                            alert('请输入正确的ID');
-                            // return;
-                        }else{
+
                             $.ajax({
                                 type:'post',
                                 url:'/admin/product/set-parent-product',
@@ -404,7 +401,7 @@ module.exports = {
                             );
                             modalLoading.modal();
                         }
-                    }
+
                 });
                 input[0].focus();
             });

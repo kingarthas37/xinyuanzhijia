@@ -618,21 +618,53 @@ router.post('/sync-cost-price',(req,res)=> {
 
 router.post('/set-parent-product', (req,res) => {
     let productId = parseInt(req.body['productId']);
+    req.body['parentProductId'] = req.body['parentProductId'] || 0;
     let parentProductId = parseInt(req.body['parentProductId']);
     async.auto({
         setParentProductId(resolve) {
             pro.getProductById(productId).then(item => {
-                item.set('parentProductId', parentProductId);
-                item.save();
-                resolve();
+                if (parentProductId == 0) {
+                    let pid = item.get('parentProductId');
+                    if (item.get('isParent') == false) {        //非主产品才能绑定
+                        item.set('parentProductId', parentProductId);
+                        item.save().then(() => {
+                            pro.getProducts({parentProductId:pid}, true).then(count => {
+                                if (count > 0) {
+                                    resolve();
+                                } else {
+                                    pro.getProductById(parentProductId).then(item => {
+                                        item.set('isParent', false);
+                                        item.save();
+                                        resolve();
+                                    });
+                                }
+
+                            });
+                        });
+                    } else {
+                        resolve();
+                    }
+                } else {
+                    if (item.get('isParent') == false) {        //非主产品才能绑定
+                        item.set('parentProductId', parentProductId);
+                        item.save();
+                        resolve();
+                    } else {
+                        resolve();
+                    }
+                }
             });
         },
         setIsParent(resolve) {
-            pro.getProductById(parentProductId).then(item => {
-                item.set('isParent', true);
-                item.save();
+            if (parentProductId != 0) {
+                pro.getProductById(parentProductId).then(item => {
+                    item.set('isParent', true);
+                    item.save();
+                    resolve();
+                });
+            } else {
                 resolve();
-            })
+            }
         }
     }, (err,results) => res.send({success:1}));
 })

@@ -158,7 +158,7 @@
                                 <% if(product[i].get('isHot')) { %>
                                 <sup class="hot"></sup>
                                 <% } %>
-                                <%= product[i].get('name') %> {<%= product[i].get('productId') %>}
+                                <% if(product[i].get('isParent') == true){ %>[主] <% } %><%= product[i].get('name') %> {<%= product[i].get('productId') %>}
                             </a>
 
                             <a title="复制标题" href="javascript:;" class="copy-product-title" data-text="<%= product[i].get('name')%>" data-id="<%= product[i].get('productId') %>" ><i  class="am-icon-copy"></i></a>

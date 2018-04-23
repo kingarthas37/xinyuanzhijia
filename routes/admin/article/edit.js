@@ -13,6 +13,7 @@ let config = require('../../../lib/config');
 let article = require('../../../lib/models/article').createNew();
 let articleCategory = require('../../../lib/models/article-category').createNew();
 let base = require('../../../lib/models/base');
+let markdown = require('markdown').markdown;
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 文章编辑`,
@@ -48,7 +49,8 @@ router.post('/:articleId', (req, res) => {
     let name = req.body['name'];
     let image = req.body['image'];
     let taoBaoLink = req.body['taoBaoLink'];
-    let videoLink = req.body['videoLink'];
+    let videoLink = req.body['video-link'];
+    console.log(req.body);
     article.update({articleCategoryId,content,name,image,taoBaoLink,videoLink}, articleId).then(() => {
         req.flash('success', '文章编辑成功!');
         res.redirect('/admin/article');
