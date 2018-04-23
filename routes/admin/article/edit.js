@@ -44,9 +44,12 @@ router.post('/:articleId', (req, res) => {
     base.isAdminUserLogin(req, res);  //判断是否登录
     let articleId = parseInt(req.params.articleId);
     let articleCategoryId = parseInt(req.body['articleCategoryId']);
-    let content = req.body['content'];
+    let content = markdown.toHTML(req.body['content']);
     let name = req.body['name'];
-    article.update({articleCategoryId,content,name}, articleId).then(() => {
+    let image = req.body['image'];
+    let taoBaoLink = req.body['taoBaoLink'];
+    let videoLink = req.body['videoLink'];
+    article.update({articleCategoryId,content,name,image,taoBaoLink,videoLink}, articleId).then(() => {
         req.flash('success', '文章编辑成功!');
         res.redirect('/admin/article');
     });

@@ -13,6 +13,7 @@ let config = require('../../../lib/config');
 let article = require('../../../lib/models/article').createNew();
 let articleCategory = require('../../../lib/models/article-category').createNew();
 let base = require('../../../lib/models/base');
+let markdown = require('markdown').markdown;
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 文章编辑`,
@@ -36,7 +37,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     base.isAdminUserLogin(req, res);  //判断是否登录
     let articleCategoryId = parseInt(req.body['articleCategoryId']);
-    let content = req.body['content'];
+    let content = markdown.toHTML(req.body['content']);
     let name = req.body['name'];
     let image = req.body['image'];
     let taoBaoLink = req.body['taoBaoLink'];

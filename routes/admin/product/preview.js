@@ -54,7 +54,7 @@ router.get('/:productId',(req,res)=> {
                 //水印判断不同淘宝店铺
                 let watermark = productMethodId === 21 ? config.watermark.muxue928 : config.watermark.main;
                 let detailImage = product.get('detailImage').replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com');
-                detailImage += watermark;
+                //detailImage += watermark;
                 console.log(detailImage);
                 data = extend(data,{
                     product,
