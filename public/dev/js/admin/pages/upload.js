@@ -11,7 +11,7 @@ module.exports = {
         let text = $('.text');
         let fileType = options.fileType;
         let callbackName = options.callbackName;
-        
+        console.log(callbackName);
         formUpload.submit(function () {
             
             uploadLoading.addClass('on');

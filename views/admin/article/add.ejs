@@ -52,10 +52,40 @@
 
                     <!-- content start -->
                     <div class="am-form-group">
-                        <label for="content">文章详情:</label>
-                        <textarea id="content" name="content"></textarea>
+                        <label for="content">文章详情 <small>(md5)</small>:</label>
+                        <textarea id="content" name="content" rows="5"></textarea>
                     </div>
                     <!-- content end -->
+
+                    <!-- content start -->
+                    <div class="am-form-group">
+                        <label for="content">淘宝链接 <small>(md5)</small>:</label>
+                        <textarea id="taoBaoLink" name="taoBaoLink" rows="5"></textarea>
+                    </div>
+                    <!-- content end -->
+
+                    <!-- images start -->
+                    <div class="am-form-group">
+                        <label for="image">文章图片：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/article/upload" frameborder="0"></iframe>
+                        </div>
+                        <ul class="image-list"></ul>
+                        <hr/>
+                        <input id="image" name="image" type="text" placeholder="输入文章图片"/>
+                    </div>
+                    <!-- images end -->
+
+                    <!-- video start -->
+                    <div class="am-form-group">
+                        <label for="video-link">文章视频：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/article/upload" frameborder="0"></iframe>
+                        </div>
+                        <hr/>
+                        <input id="video-link" name="video-link" type="text" placeholder="输入文章视频"/>
+                    </div>
+                    <!-- video end -->
 
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>

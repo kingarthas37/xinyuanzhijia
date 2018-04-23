@@ -15,36 +15,32 @@ let articleCategory = require('../../../lib/models/article-category').createNew(
 let base = require('../../../lib/models/base');
 
 let data = extend(config.data, {
-    title: `${config.data.titleAdmin} - 文章编辑`,
+    title: `${config.data.titleAdmin} - 文章预览`,
     currentTag: 'article',
     currentPage: 'article'
 });
 
-router.get('/', (req, res) => {
+
+//预览文章页
+router.get('/:articleId',(req,res)=> {
+
     base.isAdminUserLogin(req, res);  //判断是否登录
+    let articleId = parseInt(req.params.articleId);
     AV.Promise.when(
         new AV.Promise(resolve => {
             articleCategory.getArticleCategory({limit: 999}).then(result => {
                 data = extend(data, {articleCategory: result.items});
                 resolve();
             });
+        }),
+        new AV.Promise(resolve => {
+            article.getArticleByArticleId(articleId).then(item => {
+                data = extend(data, {article: item});
+                resolve();
+            });
         })
-    ).then(() => { res.render('admin/article/add', data); } );
+    ).then(() => { res.render('admin/article/edit', data); } );
 });
 
-
-router.post('/', (req, res) => {
-    base.isAdminUserLogin(req, res);  //判断是否登录
-    let articleCategoryId = parseInt(req.body['articleCategoryId']);
-    let content = req.body['content'];
-    let name = req.body['name'];
-    let image = req.body['image'];
-    let taoBaoLink = req.body['taoBaoLink'];
-    let videoLink = req.body['videoLink'];
-    article.add({articleCategoryId,content,name,image,taoBaoLink,videoLink}).then(() => {
-        req.flash('success', '文章添加成功!');
-        res.redirect('/admin/article');
-    });
-});
 
 module.exports = router;

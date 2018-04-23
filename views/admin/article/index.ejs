@@ -27,18 +27,7 @@
         </div>
 
         <div class="am-g">
-            <!--<form class="am-form" action="/admin/product-method">-->
-            <!--<div class="am-u-sm-12 am-u-md-3">-->
-            <!--<div class="am-form-group">-->
-            <!--<div class="am-input-group am-input-group-sm">-->
-            <!--<input type="text" name="search" class="am-form-field" placeholder="搜索产品类型">-->
-            <!--<span class="am-input-group-btn">-->
-            <!--<button class="am-btn am-btn-primary" type="submit">搜索</button>-->
-            <!--</span>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</form>-->
+
         </div>
 
 
@@ -57,7 +46,10 @@
                     <% for(var i=0; i < article.length; i++) {%>
                     <tr>
                         <td><a href="/admin/article/edit/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a></td>
-                        <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= article[i].get('articleId') %>" class="remove-article">删除</a></td>
+                        <td><img src="<%=article[i].get('image') %>" /></td>
+                        <td class="t-c small-screen-hide">
+                            <a href="/admin/article/preview/<%= article[i].get('articleId') %>" target="_blank" data-id="<%= article[i].get('articleId') %>" class="">预览</a>
+                            <a href="javascript:;" data-id="<%= article[i].get('articleId') %>" class="remove-article">删除</a></td>
                     </tr>
                     <% }
                     } %>

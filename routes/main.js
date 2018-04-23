@@ -93,6 +93,8 @@ module.exports = {
     '/admin/article':require('./admin/article'),
     '/admin/article/add':require('./admin/article/add'),
     '/admin/article/edit':require('./admin/article/edit'),
+    '/admin/article/upload':require('./admin/article/upload'),
+    '/admin/article/preview':require('./admin/article/preview'),
     '/admin/article-category':require('./admin/article-category'),
     '/admin/article-category/add':require('./admin/article-category/add'),
     '/admin/article-category/edit':require('./admin/article-category/edit'),
