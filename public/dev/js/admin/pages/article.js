@@ -32,8 +32,6 @@ module.exports = {
             };
         });
         image.val(JSON.stringify(value));
-
-        this.setZclip();
     },
 
     //上传主展示图片callback
@@ -42,7 +40,6 @@ module.exports = {
         $.each(data,(i,n)=> {
             videoFile.val(n.url);
         });
-        this.updateFile();
     }
 
 };

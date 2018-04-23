@@ -107,10 +107,16 @@
 <% include ../partials/js %>
 
 <script type="text/javascript">
+    var article;
     $(function () {
-        var article = require('article');
-        article.indexFun();
+        require('upload');
+        article = require('article');
+        //article.indexFun();
     });
+    //iframe upload callback
+    function uploadFileSuccess(data) {
+        article.uploadFileSuccess(data);
+    }
 </script>
 </body>
 </html>
