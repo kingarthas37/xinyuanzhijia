@@ -375,35 +375,29 @@ module.exports = {
                 modal.modal({
                     relatedTarget: this,
                     onConfirm: function(e) {
-
-                        if(!$.trim(input.val())) {
-                            alert('请输入正确的ID');
-                            // return;
-                        }else{
-                            $.ajax({
-                                type:'post',
-                                url:'/admin/product/set-parent-product',
-                                data:{
-                                    'productId':productId,
-                                    'parentProductId':input.val()
-                                }
-                            }).then(
-                                result => {
-                                    modalLoading.find('.am-modal-hd').text('关联成功!正在更新...');
-                                    setTimeout(()=> {
-                                        location.reload();
-                                    },1000);
-                                },
-                                err => {
-                                    console.info(err);
-                                    modalLoading.find('.am-modal-hd').text('关联失败,请重试!');
-                                    setTimeout(()=> {
-                                        modalLoading.modal('close');
-                                    },1000);
-                                }
-                            );
-                            modalLoading.modal();
-                        }
+                        $.ajax({
+                            type:'post',
+                            url:'/admin/product/set-parent-product',
+                            data:{
+                                'productId':productId,
+                                'parentProductId':input.val()
+                            }
+                        }).then(
+                            result => {
+                                modalLoading.find('.am-modal-hd').text('关联成功!正在更新...');
+                                setTimeout(()=> {
+                                    location.reload();
+                                },1000);
+                            },
+                            err => {
+                                console.info(err);
+                                modalLoading.find('.am-modal-hd').text('关联失败,请重试!');
+                                setTimeout(()=> {
+                                    modalLoading.modal('close');
+                                },1000);
+                            }
+                        );
+                        modalLoading.modal();
                     }
                 });
                 input[0].focus();
