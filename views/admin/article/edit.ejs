@@ -80,7 +80,7 @@
                     <div class="am-form-group">
                         <label for="video-link">文章视频：</label>
                         <div class="upload-content">
-                            <iframe class="upload" src="/admin/article/upload" frameborder="0"></iframe>
+                            <iframe class="upload" src="/admin/article/upload?callback=uploadVideoFileSuccess" frameborder="0"></iframe>
                         </div>
                         <ul class="video-list"></ul>
                         <hr/>
@@ -117,6 +117,10 @@
     //iframe upload callback
     function uploadFileSuccess(data) {
         article.uploadFileSuccess(data);
+    }
+    //iframe upload callback
+    function uploadVideoFileSuccess(data) {
+        article.uploadVideoFileSuccess(data);
     }
 </script>
 </body>

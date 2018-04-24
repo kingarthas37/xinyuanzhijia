@@ -27,16 +27,17 @@ module.exports = {
 
         imageView.find('input[type=checkbox]').each(function() {
             let content = $(this).parents('li');
-            value[content.data('id')] = {
-                "url":content.find('.img-link').attr('href'),
-            };
+            console.log(content);
+            console.log(content.find('.img-link').attr('href'));
+            value = content.find('.img-link').attr('href')
         });
-        image.val(JSON.stringify(value));
+        image.val(value);
     },
 
     //上传主展示图片callback
     uploadVideoFileSuccess:function(data) {
-        let videoFile = $('.video-link');
+        let videoFile = $('#video-link');
+        console.log(data);
         $.each(data,(i,n)=> {
             videoFile.val(n.url);
         });

@@ -43,14 +43,11 @@ router.get('/', (req, res) => {
 
 
 router.get('/:articleId',(req,res)=> {
-
     let articleId = parseInt(req.params.articleId);
-
     article.getArticleByArticleId(articleId).then(item => {
-        data = extend(data, {item});
+        data = extend(data, {article:item});
         res.render('default/article/detail', data);
     });
-
 });
 
 module.exports = router;

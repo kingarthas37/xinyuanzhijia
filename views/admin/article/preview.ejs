@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+<div class="am-cf admin-main">
+
+    <!-- sidebar start -->
+    <% include ../partials/sidebar %>
+    <!-- sidebar end -->
+
+    <div><%= article.get('name')%></div>
+    主图<img src="<%= article.get('image') %>" />
+    <div>文章详情:<br /><%- article.get('content') %></div>
+    <div>淘宝链接:<%= article.get('taoBaoLink') %></div>
+    <div>视频链接:<%= article.get('videoLink') %></div>
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+</body>
+</html>

@@ -629,10 +629,10 @@ router.post('/set-parent-product', (req,res) => {
                         item.set('parentProductId', parentProductId);
                         item.save().then(() => {
                             pro.getProducts({parentProductId:pid}, true).then(count => {
-                                if (count > 0) {
+                                if (count > 1) {
                                     resolve();
                                 } else {
-                                    pro.getProductById(parentProductId).then(item => {
+                                    pro.getProductById(pid).then(item => {
                                         item.set('isParent', false);
                                         item.save();
                                         resolve();

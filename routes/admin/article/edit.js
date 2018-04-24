@@ -37,7 +37,9 @@ router.get('/:articleId', (req, res) => {
                 resolve();
             });
         })
-    ).then(() => { res.render('admin/article/edit', data); } );
+    ).then(() => {
+        console.log(data);
+        res.render('admin/article/edit', data); } );
 });
 
 
@@ -50,7 +52,6 @@ router.post('/:articleId', (req, res) => {
     let image = req.body['image'];
     let taoBaoLink = req.body['taoBaoLink'];
     let videoLink = req.body['video-link'];
-    console.log(req.body);
     article.update({articleCategoryId,content,name,image,taoBaoLink,videoLink}, articleId).then(() => {
         req.flash('success', '文章编辑成功!');
         res.redirect('/admin/article');

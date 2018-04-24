@@ -39,7 +39,7 @@ router.get('/:articleId',(req,res)=> {
                 resolve();
             });
         })
-    ).then(() => { res.render('admin/article/edit', data); } );
+    ).then(() => { res.render('admin/article/preview', data); } );
 });
 
 

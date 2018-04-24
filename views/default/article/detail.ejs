@@ -12,10 +12,10 @@
 
 <% include ../partials/header-sub %>
 <ul>
-    <% if(item) { %>
-        <%= item.get('name') %>
-    <%= item.get('content') %>
-    } %>
+
+<%= article.get('name')%>
+    <%- article.get('content')%>
+    <img src="<%= article.get('image') %>" />
 </ul>
 <% include ../partials/footer %>
 <% include ../partials/js %>
