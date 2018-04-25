@@ -53,9 +53,8 @@ router.post('/remove/:articleId',(req,res)=> {
 
     let articleId = parseInt(req.params.articleId);
 
-    let query = new AV.Query(article);
+    let query = new AV.Query(AV.Object.extend('Article'));
     query.equalTo('articleId',articleId);
-
     query.first().then(item => {
         item.destroy();
     }).then(() => { res.send({success: 1}); });

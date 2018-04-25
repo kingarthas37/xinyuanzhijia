@@ -6,7 +6,36 @@ let utils = require('../common/utils');
 module.exports = {
 
     indexFun:function() {
+        //删除product
+        {
+            let alert = $('#modal-alert');
+            $('.remove-article').click(function() {
+                $('#confirm-remove-article').modal({
+                    relatedTarget: this,
+                    onConfirm: function() {
 
+                        let target = $(this.relatedTarget);
+                        let articleId = target.attr('data-id');
+                        $.ajax({
+                            type:'post',
+                            url:`/admin/article/remove/${articleId}`
+                        }).then(()=> {
+                            alert.modal({
+                                relatedTarget: this,
+                                onConfirm:()=> {
+                                    let target = $(this.relatedTarget);
+                                    target.parents('tr').detach();
+                                }
+                            }).find('.am-modal-bd').text('删除文章成功!');
+                        });
+                    },
+                    onCancel:()=> { return false; }
+                });
+
+                return false;
+
+            });
+        }
     },
 
     //上传主展示图片callback
