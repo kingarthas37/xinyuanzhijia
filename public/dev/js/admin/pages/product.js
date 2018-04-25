@@ -730,6 +730,27 @@ module.exports = {
                 window.location.href = '/admin/product?parent-product-id='+$(this).attr('parentProductId');
             });
         }
+
+        //显示规格
+        {
+
+            $('.set-product-parent').each(function () {
+                 let row = $(this).parents('tr');
+                 if(row.hasClass('main-product-row')) {
+                     return;
+                 }
+                 let parentId = parseInt($(this).attr('parentproductid'));
+                 let parentTargetRow = $('.main-product-row[data-product-id='+ parentId + ']');
+                 if(parentTargetRow.length) {
+                     row.addClass('sub-product-row');
+                     parentTargetRow.after(row);
+                 } else {
+                     row.detach();
+                 }
+            });
+
+        }
+
     },
 
     addFun:function() {

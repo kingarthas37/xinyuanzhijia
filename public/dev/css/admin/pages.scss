@@ -106,6 +106,21 @@
                     background: #feffed;
                 }
             }
+            &.main-product-row {
+
+            }
+            &.sub-product-row {
+                td {
+                    background-color: #feffed;
+                    &.product-title {
+                        padding-left: 30px;
+                        font-size: 12px !important;
+                        a {
+                            font-size: 12px !important;
+                        }
+                    }
+                }
+            }
         }
         th {
             padding-left:0;

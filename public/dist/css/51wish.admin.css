@@ -416,6 +416,14 @@ span.hot:after {
 .admin-product-page .am-table tr.on td {
   background: #feffed; }
 
+.admin-product-page .am-table tr.sub-product-row td {
+  background-color: #feffed; }
+  .admin-product-page .am-table tr.sub-product-row td.product-title {
+    padding-left: 30px;
+    font-size: 12px !important; }
+    .admin-product-page .am-table tr.sub-product-row td.product-title a {
+      font-size: 12px !important; }
+
 .admin-product-page .am-table th {
   padding-left: 0;
   padding-right: 0;
