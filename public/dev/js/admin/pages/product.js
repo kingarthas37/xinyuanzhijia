@@ -224,12 +224,14 @@ module.exports = {
         
         //编辑定位
         {
-            if(/product-id=\d+/.test(location.search)) {
-                let editProductId = /product-id=(\d+)/.exec(location.search)[1];
-                let item = $(`tr[data-product-id=${editProductId}]`);
-                item.addClass('on');
-                $('html,body').animate({'scrollTop':item.offset().top});
-            }
+            setTimeout(function () {
+                if(/product-id=\d+/.test(location.search)) {
+                    let editProductId = /product-id=(\d+)/.exec(location.search)[1];
+                    let item = $(`tr[data-product-id=${editProductId}]`);
+                    item.addClass('on');
+                    $('html,body').animate({'scrollTop':item.offset().top});
+                }
+            },0);
         }
         
         
