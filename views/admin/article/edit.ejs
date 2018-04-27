@@ -16,7 +16,7 @@
     <!-- sidebar end -->
 
     <!-- content start -->
-    <div class="admin-content admin-article-pagee">
+    <div class="admin-content admin-article-page">
 
         <div class="am-cf am-padding">
             <div class="am-fl am-cf"><strong><a href="/admin/article">文章列表</a></strong> / 编辑文章</div>
@@ -39,7 +39,7 @@
                     <!--  course template start -->
                     <div class="am-form-group">
                         <label for="article-category" >文章分类<i>*</i></label>
-                        <select name="articleCategoryId" id="article-category">
+                        <select required name="articleCategoryId" id="article-category">
                             <option value="">选择分类</option>
                             <% for (var i = 0; i < articleCategory.length; i++) { %>
                             <option <% if (articleCategory[i].get('articleCategoryId') == article.get('articleCategoryId')) { %>selected<% } %> value="<%= articleCategory[i].get('articleCategoryId')%>"><%= articleCategory[i].get('name')%></option>
@@ -52,11 +52,16 @@
 
                     <!-- images start -->
                     <div class="am-form-group">
-                        <label for="image">文章主图图片(大小750px*750px)：</label>
-                        <input id="image" name="image" type="text" placeholder="输入文章图片" value="<%= article.get('image')%>"/>
+                        <label for="image">文章主图图片(大小750px*750px): <i>*</i></label>
+                        <input required id="image" name="image" type="text" placeholder="输入文章图片" value="<%= article.get('image')%>"/>
                         <div class="main-image-view">
-
+                            <% if(article.get('image')) { %>
+                             <a href="<%= article.get('image') %>" target="_blank">
+                                 <img width="100" src="<%= article.get('image') %>?imageMogr2/thumbnail/100">
+                             </a>
+                            <%}%>
                         </div>
+                        <hr/>
                         <div class="upload-content">
                             <iframe class="upload" src="/admin/article/upload?callback=uploadMainImageSuccess" frameborder="0"></iframe>
                         </div>

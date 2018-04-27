@@ -27,9 +27,35 @@
         </div>
 
         <div class="am-g">
+            <div class="am-form">
 
+                <div class="cf">
+                    <div class="am-u-sm-12 am-u-md-3">
+                        <form action="/admin/product" method="get">
+                            <div class="am-form-group">
+                                <div class="am-input-group am-input-group-sm">
+                                    <input type="text" name="search" value="" class="search am-form-field" placeholder="搜索文章标题">
+                                    <span class="am-input-group-btn"><button class="am-btn am-btn-primary" type="submit">搜索</button></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-2">
+                        <div class="am-form-group">
+                            <select class="">
+                                <option value="">选择分类</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-7">
+                    </div>
+
+                </div>
+
+            </div>
         </div>
-
 
         <div class="am-g">
             <div class="am-u-sm-12">
@@ -43,6 +69,7 @@
                         <th class="t-c">视频链接</th>
                         <th class="t-c">数据</th>
                         <th class="t-c">操作</th>
+                        <th class="t-c">更新日期</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,13 +83,18 @@
 
                             <a href="/admin/article/edit/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
                         </td>
-                        <td class="t-c"></td>
+                        <td class="t-c"><a href="#">测试</a></td>
                         <td class="t-c">-</td>
                         <td class="t-c">-</td>
-                        <td class="t-c">浏览次数:90</td>
+                        <td class="t-c">浏览:90</td>
                         <td class="t-c">
                             <a href="/admin/article/preview/<%= article[i].get('articleId') %>" target="_blank" data-id="<%= article[i].get('articleId') %>" class="">预览</a>
-                            <a href="javascript:;" data-id="<%= article[i].get('articleId') %>" class="remove-article">删除</a></td>
+                            <a href="#">复制</a>
+                            <a href="javascript:;" data-id="<%= article[i].get('articleId') %>" class="remove-article">删除</a>
+                        </td>
+                        <td class="t-c">
+                            2018-4-28
+                        </td>
                     </tr>
                     <% }
                     } %>

@@ -39,8 +39,8 @@
                     <!--  course template start -->
                     <div class="am-form-group">
                         <label for="article-category" >文章分类 <i>*</i></label>
-                        <select name="articleCategoryId" id="article-category">
-                            <option value="0">选择分类</option>
+                        <select required name="articleCategoryId" id="article-category">
+                            <option value="">选择分类</option>
                             <% for (var i = 0; i < articleCategory.length; i++) { %>
                             <option value="<%= articleCategory[i].get('articleCategoryId')%>"><%= articleCategory[i].get('name')%></option>
                             <% } %>
@@ -52,8 +52,8 @@
 
                     <!-- images start -->
                     <div class="am-form-group">
-                        <label for="image">文章主图图片(大小750px*750px)：</label>
-                        <input id="image" name="image" type="text" placeholder="输入文章图片"/>
+                        <label for="image">文章主图图片(大小750px*750px): <i>*</i></label>
+                        <input required id="image" name="image" type="text" placeholder="输入文章图片"/>
                         <div class="main-image-view"></div>
                         <hr>
                         <div class="upload-content">
