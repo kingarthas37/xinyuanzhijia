@@ -54,7 +54,8 @@
                     <div class="am-form-group">
                         <label for="image">文章主图图片(大小750px*750px)：</label>
                         <input id="image" name="image" type="text" placeholder="输入文章图片"/>
-                        <br>
+                        <div class="main-image-view"></div>
+                        <hr>
                         <div class="upload-content">
                             <iframe class="upload" src="/admin/article/upload?callback=uploadMainImageSuccess" frameborder="0"></iframe>
                         </div>
@@ -81,7 +82,8 @@
                     <div class="am-form-group">
                         <label for="video-link">文章视频：</label>
                         <input id="video-link" name="video-link" type="text" placeholder="输入文章视频"/>
-                        <br>
+                        <div class="video-view"></div>
+                        <hr/>
                         <div class="upload-content">
                             <iframe class="upload" src="/admin/article/upload?callback=uploadVideoFileSuccess" frameborder="0"></iframe>
                         </div>
@@ -118,11 +120,11 @@
     });
     //iframe upload callback
     function uploadMainImageSuccess(data) {
-        $('#image').val(data[0].url);
+        $('#image').val(data[0].url).trigger('change');
     }
     //iframe upload callback
     function uploadVideoFileSuccess(data) {
-        $('#video-link').val(data[0].url);
+        $('#video-link').val(data[0].url).trigger('change');;
     }
 </script>
 </body>

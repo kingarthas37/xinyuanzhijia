@@ -715,4 +715,7 @@ span.hot:after {
 .admin-article-page .am-table td {
   vertical-align: middle; }
 
+.admin-article-page .main-image-view img {
+  margin-top: 15px; }
+
 /*# sourceMappingURL=51wish.admin.css.map */

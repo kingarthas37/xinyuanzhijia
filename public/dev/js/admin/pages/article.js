@@ -39,44 +39,41 @@ module.exports = {
     },
 
     addFun:function () {
-        $('.am-form').validator({});
+        this.domEvent();
         $('#name')[0].focus();
     },
     editFun:function () {
+        this.domEvent();
+    },
+    domEvent() {
+
         $('.am-form').validator({});
-    },
-    //上传主展示图片callback
-    uploadFileSuccess:function(data) {
-        let imageView = $('.image-list');
-        $.each(data,(i,n)=> {
-            imageView.append(`<li data-id="${n.id}" class="am-cf"><div class="am-fl"><input type="checkbox" /></div><div class="am-fr"><p><a class="img-link" href="${n.url}" target="_blank"><img src="${n.url}?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a> | <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> | <a class="remove" href="javascript:;">删除</a></p></div></li>`);
-        });
-        this.updateImage();
-    },
 
-    //更新image list
-    updateImage:function() {
+        //主图片上传dom
+        {
+            let image = $('#image');
+            let imageView =  $('.main-image-view');
+            image.change(function () {
+                imageView.html(`<a href="${image.val()}" target="_blank"><img src="${image.val()}?imageMogr2/thumbnail/100" width="100" /></a>`);
+            });
+        }
 
-        let image = $('#image');
-        let imageView = $('.image-list');
-        let value = {};
+        //视频上传dom
+        {
+            let video = $('#video-link');
+            let videoView =  $('.video-view');
+            /*
+            video.change(function () {
+                videoView.html(`
+                    <video width="100" height="100" controls>
+                        <source src="${video.val()}" type="video/mp4">
+                    </video>
+                `);
+            });
+            */
+        }
 
-        imageView.find('input[type=checkbox]').each(function() {
-            let content = $(this).parents('li');
-            console.log(content);
-            console.log(content.find('.img-link').attr('href'));
-            value = content.find('.img-link').attr('href')
-        });
-        image.val(value);
-    },
-
-    //上传主展示图片callback
-    uploadVideoFileSuccess:function(data) {
-        let videoFile = $('#video-link');
-        console.log(data);
-        $.each(data,(i,n)=> {
-            videoFile.val(n.url);
-        });
     }
+
 
 };

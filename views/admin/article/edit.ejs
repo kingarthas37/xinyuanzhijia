@@ -54,7 +54,9 @@
                     <div class="am-form-group">
                         <label for="image">文章主图图片(大小750px*750px)：</label>
                         <input id="image" name="image" type="text" placeholder="输入文章图片" value="<%= article.get('image')%>"/>
-                        <br>
+                        <div class="main-image-view">
+
+                        </div>
                         <div class="upload-content">
                             <iframe class="upload" src="/admin/article/upload?callback=uploadMainImageSuccess" frameborder="0"></iframe>
                         </div>
@@ -123,6 +125,7 @@
     //iframe upload callback
     function uploadMainImageSuccess(data) {
         $('#image').val(data[0].url);
+
     }
     //iframe upload callback
     function uploadVideoFileSuccess(data) {
