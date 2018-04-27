@@ -20,10 +20,10 @@
     <!-- sidebar end -->
 
     <!-- content start -->
-    <div class="admin-content admin-product-method-page">
+    <div class="admin-content admin-article-page">
 
         <div class="am-cf am-padding">
-            <div class="am-fl am-cf"><strong>文章列表</strong></div>
+            <div class="am-fl am-cf"><strong><a href="/admin">首页</a></strong> / <a href="/admin/article">文章列表</a></div>
         </div>
 
         <div class="am-g">
@@ -37,17 +37,30 @@
                 <table class="am-table am-table-striped">
                     <thead>
                     <tr>
-                        <th>文章名称</th>
-                        <th width="60" class="t-c small-screen-hide">操作</th>
+                        <th width="300">文章名称</th>
+                        <th class="t-c">所属分类</th>
+                        <th class="t-c">网店链接</th>
+                        <th class="t-c">视频链接</th>
+                        <th class="t-c">数据</th>
+                        <th class="t-c">操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     <% if(article) { %>
                     <% for(var i=0; i < article.length; i++) {%>
                     <tr>
-                        <td><a href="/admin/article/edit/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a></td>
-                        <td><img src="<%=article[i].get('image') %>" /></td>
-                        <td class="t-c small-screen-hide">
+                        <td>
+                            <a href="<%=article[i].get('image') %>" target="_blank">
+                                <img width="40" src="<%=article[i].get('image') %>?imageMogr2/thumbnail/40" alt="" data-am-popover="{content:'<img width=150 src=<%=article[i].get('image') %>?imageMogr2/thumbnail/150>', trigger:'hover focus'}">
+                            </a>
+
+                            <a href="/admin/article/edit/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
+                        </td>
+                        <td class="t-c"></td>
+                        <td class="t-c">-</td>
+                        <td class="t-c">-</td>
+                        <td class="t-c">浏览次数:90</td>
+                        <td class="t-c">
                             <a href="/admin/article/preview/<%= article[i].get('articleId') %>" target="_blank" data-id="<%= article[i].get('articleId') %>" class="">预览</a>
                             <a href="javascript:;" data-id="<%= article[i].get('articleId') %>" class="remove-article">删除</a></td>
                     </tr>

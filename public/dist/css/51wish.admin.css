@@ -711,4 +711,8 @@ span.hot:after {
     .book-oils .container table .text {
       width: 700px; }
 
+/* admin article page */
+.admin-article-page .am-table td {
+  vertical-align: middle; }
+
 /*# sourceMappingURL=51wish.admin.css.map */

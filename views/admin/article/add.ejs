@@ -16,7 +16,7 @@
     <!-- sidebar end -->
 
     <!-- content start -->
-    <div class="admin-content admin-product-brand-page">
+    <div class="admin-content admin-article-page">
 
         <div class="am-cf am-padding">
             <div class="am-fl am-cf"><strong><a href="/admin/article">文章列表</a></strong> / <a href="/admin/article/add">添加文章</a></div>
@@ -27,11 +27,20 @@
 
                 <form id="form-add-product" class="am-form" method="post" >
 
+                    <!-- name start -->
+                    <div class="am-form-group">
+                        <label for="name">文章名称: <i>*</i></label>
+                        <input id="name" name="name" type="text" value="" required />
+                    </div>
+                    <!-- name end -->
+
+                    <hr/>
+
                     <!--  course template start -->
                     <div class="am-form-group">
-                        <label for="article-category" >文章分类<i>*</i></label>
+                        <label for="article-category" >文章分类 <i>*</i></label>
                         <select name="articleCategoryId" id="article-category">
-                            <option data-info="" value="">选择分类</option>
+                            <option value="0">选择分类</option>
                             <% for (var i = 0; i < articleCategory.length; i++) { %>
                             <option value="<%= articleCategory[i].get('articleCategoryId')%>"><%= articleCategory[i].get('name')%></option>
                             <% } %>
@@ -41,51 +50,45 @@
 
                     <hr/>
 
-                    <!-- name start -->
+                    <!-- images start -->
                     <div class="am-form-group">
-                        <label for="name">文章名称:</label>
-                        <input id="name" name="name" type="text" value="" />
+                        <label for="image">文章主图图片(大小750px*750px)：</label>
+                        <input id="image" name="image" type="text" placeholder="输入文章图片"/>
+                        <br>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/article/upload?callback=uploadMainImageSuccess" frameborder="0"></iframe>
+                        </div>
                     </div>
-                    <!-- name end -->
+                    <!-- images end -->
 
                     <hr/>
 
                     <!-- content start -->
                     <div class="am-form-group">
                         <label for="content">文章详情 <small>(md5)</small>:</label>
-                        <textarea id="content" name="content" rows="5"></textarea>
+                        <textarea id="content" name="content" rows="10"></textarea>
                     </div>
                     <!-- content end -->
 
                     <!-- content start -->
                     <div class="am-form-group">
-                        <label for="content">淘宝链接 <small>(md5)</small>:</label>
-                        <textarea id="taoBaoLink" name="taoBaoLink" rows="5"></textarea>
+                        <label for="content">网店链接:</label>
+                        <input type="text" id="taoBaoLink" name="taoBaoLink">
                     </div>
                     <!-- content end -->
-
-                    <!-- images start -->
-                    <div class="am-form-group">
-                        <label for="image">文章图片：</label>
-                        <div class="upload-content">
-                            <iframe class="upload" src="/admin/article/upload" frameborder="0"></iframe>
-                        </div>
-                        <ul class="image-list"></ul>
-                        <hr/>
-                        <input id="image" name="image" type="text" placeholder="输入文章图片"/>
-                    </div>
-                    <!-- images end -->
 
                     <!-- video start -->
                     <div class="am-form-group">
                         <label for="video-link">文章视频：</label>
-                        <div class="upload-content">
-                            <iframe class="upload" src="/admin/article/upload" frameborder="0"></iframe>
-                        </div>
-                        <hr/>
                         <input id="video-link" name="video-link" type="text" placeholder="输入文章视频"/>
+                        <br>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/article/upload?callback=uploadVideoFileSuccess" frameborder="0"></iframe>
+                        </div>
                     </div>
                     <!-- video end -->
+
+                    <hr>
 
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
@@ -111,15 +114,15 @@
     $(function () {
         require('upload');
         article = require('article');
-        //article.indexFun();
+        article.addFun();
     });
     //iframe upload callback
-    function uploadFileSuccess(data) {
-        article.uploadFileSuccess(data);
+    function uploadMainImageSuccess(data) {
+        $('#image').val(data[0].url);
     }
     //iframe upload callback
     function uploadVideoFileSuccess(data) {
-        article.uploadVideoFileSuccess(data);
+        $('#video-link').val(data[0].url);
     }
 </script>
 </body>

@@ -38,6 +38,13 @@ module.exports = {
         }
     },
 
+    addFun:function () {
+        $('.am-form').validator({});
+        $('#name')[0].focus();
+    },
+    editFun:function () {
+        $('.am-form').validator({});
+    },
     //上传主展示图片callback
     uploadFileSuccess:function(data) {
         let imageView = $('.image-list');
