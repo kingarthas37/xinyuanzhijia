@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     base.isAdminUserLogin(req, res);  //判断是否登录
     let articleCategoryId = parseInt(req.body['articleCategoryId']);
-    let content = markdown.toHTML(req.body['content']);
+    let content = req.body['content'];
     let name = req.body['name'];
     let image = req.body['image'];
     let taoBaoLink = req.body['taoBaoLink'];

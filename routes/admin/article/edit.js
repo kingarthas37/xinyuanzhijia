@@ -38,7 +38,6 @@ router.get('/:articleId', (req, res) => {
             });
         })
     ).then(() => {
-        console.log(data);
         res.render('admin/article/edit', data); } );
 });
 
@@ -47,7 +46,7 @@ router.post('/:articleId', (req, res) => {
     base.isAdminUserLogin(req, res);  //判断是否登录
     let articleId = parseInt(req.params.articleId);
     let articleCategoryId = parseInt(req.body['articleCategoryId']);
-    let content = markdown.toHTML(req.body['content']);
+    let content = req.body['content'];
     let name = req.body['name'];
     let image = req.body['image'];
     let taoBaoLink = req.body['taoBaoLink'];

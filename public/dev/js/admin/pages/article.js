@@ -9,6 +9,7 @@ module.exports = {
         //删除product
         {
             let alert = $('#modal-alert');
+            let search = $('input[name=search]').val();
             $('.remove-article').click(function() {
                 $('#confirm-remove-article').modal({
                     relatedTarget: this,
@@ -34,6 +35,18 @@ module.exports = {
 
                 return false;
 
+            });
+            $('#articleCategory').change(function() {
+                if(this.value) {
+                    return location.href = utils.urlParamsComponent('/admin/article',{
+                        search,
+                        'article-category-id': this.value
+                    });
+                }
+                location.href = utils.urlParamsComponent('/admin/article',{
+                    search,
+                    'article-category-id': this.value
+                });
             });
         }
     },

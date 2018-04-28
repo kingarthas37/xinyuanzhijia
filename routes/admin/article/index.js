@@ -7,6 +7,7 @@ let extend = require('xtend');
 
 let config = require('../../../lib/config');
 let article = require('../../../lib/models/article').createNew();
+let articleCategory = require('../../../lib/models/article-category').createNew();
 let AV = require('leanengine');
 let pager = require('../../../lib/component/pager');
 let flash = require('connect-flash');
@@ -26,8 +27,20 @@ router.get('/', (req, res) => {
     article.isAdminUserLogin(req,res);  //判断是否登录
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
-    let options = {page,limit};
+    let search = req.query.search || null;
+    let articleCategoryId = req.query['article-category-id'] ? parseInt(req.query['article-category-id']) : null;
+    let options = {page, limit, search, articleCategoryId};
+    data = extend(data, {
+        search,
+        articleCategoryId
+    });
     AV.Promise.when(
+        new AV.Promise(resolve => {
+            articleCategory.getArticleCategory({limit: 999}).then(result => {
+                data = extend(data, {articleCategory: result.items});
+                resolve();
+            });
+        }),
         new AV.Promise(resolve => {
             article.getArticle(options).then(result => {
                 let count = result.count;
@@ -37,7 +50,9 @@ router.get('/', (req, res) => {
                         page, limit, count,
                         url: '/admin/article',
                         serialize: {
-                            page
+                            page,
+                            search,
+                            articleCategoryId,
                         }
                     }),
                     article:result.items

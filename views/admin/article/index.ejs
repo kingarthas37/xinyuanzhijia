@@ -31,7 +31,7 @@
 
                 <div class="cf">
                     <div class="am-u-sm-12 am-u-md-3">
-                        <form action="/admin/product" method="get">
+                        <form action="/admin/article" method="get">
                             <div class="am-form-group">
                                 <div class="am-input-group am-input-group-sm">
                                     <input type="text" name="search" value="" class="search am-form-field" placeholder="搜索文章标题">
@@ -43,8 +43,11 @@
 
                     <div class="am-u-sm-12 am-u-md-2">
                         <div class="am-form-group">
-                            <select class="">
+                            <select class="" name="articleCategory" id="articleCategory">
                                 <option value="">选择分类</option>
+                                <% for(var j = 0; j < articleCategory.length; j++) { %>
+                                <option <% if (articleCategoryId ==  articleCategory[j].get('articleCategoryId')) { %> selected <% } %>value="<%= articleCategory[j].get('articleCategoryId')%>"><%= articleCategory[j].get('name')%></option>
+                                <% } %>
                             </select>
                         </div>
                     </div>
@@ -83,17 +86,23 @@
 
                             <a href="/admin/article/edit/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
                         </td>
-                        <td class="t-c"><a href="#">测试</a></td>
-                        <td class="t-c">-</td>
-                        <td class="t-c">-</td>
-                        <td class="t-c">浏览:90</td>
+                        <td class="t-c">
+                            <% for(var j = 0; j < articleCategory.length; j++) { %>
+                                <% if (articleCategory[j].get('articleCategoryId') == article[i].get('articleCategoryId')) { %>
+                                    <a href="#"><%= articleCategory[j].get('name') %></a>
+                                <% } %>
+                            <% } %>
+                        </td>
+                        <td class="t-c"><a href="<%= article[i].get('taoBaoLink') %>"></a></td>
+                        <td class="t-c"><a href="<%= article[i].get('videoLink') %>"></a></td>
+                        <td class="t-c">浏览:<%= article[i].get('pageView') %></td>
                         <td class="t-c">
                             <a href="/admin/article/preview/<%= article[i].get('articleId') %>" target="_blank" data-id="<%= article[i].get('articleId') %>" class="">预览</a>
                             <a href="#">复制</a>
                             <a href="javascript:;" data-id="<%= article[i].get('articleId') %>" class="remove-article">删除</a>
                         </td>
                         <td class="t-c">
-                            2018-4-28
+                            <%= article[i].get('updatedAt').getFullYear()%>-<%= article[i].get('updatedAt').getMonth() + 1 %>-<%= article[i].get('updatedAt').getDate()%>
                         </td>
                     </tr>
                     <% }
