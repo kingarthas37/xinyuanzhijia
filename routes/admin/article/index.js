@@ -11,6 +11,7 @@ let articleCategory = require('../../../lib/models/article-category').createNew(
 let AV = require('leanengine');
 let pager = require('../../../lib/component/pager');
 let flash = require('connect-flash');
+let newArticle = AV.Object.extend('Article');
 
 let data = extend(config.data, {
     title: `${config.data.name} - 文章`,
@@ -73,6 +74,31 @@ router.post('/remove/:articleId',(req,res)=> {
     query.first().then(item => {
         item.destroy();
     }).then(() => { res.send({success: 1}); });
+
+});
+
+router.get('/copy/:articleId',(req,res)=> {
+
+    let articleId = parseInt(req.params.articleId);
+
+    let query = new AV.Query(AV.Object.extend('Article'));
+    query.equalTo('articleId',articleId);
+    query.first().then(item => {
+        let act = new newArticle();
+        let articleData = {
+            'name': item.get('name'),
+            'articleCategoryId': item.get('articleCategoryId'),
+            'content': item.get('content'),
+            'image': item.get('image'),
+            'taoBaoLink': item.get('taoBaoLink'),
+            'videoLink': item.get('videoLink')
+        };
+        return act.save(articleData);
+    }).then(() => {
+        req.flash('success', '复制文章成功!');
+        res.redirect('/admin/article');
+
+    },err => console.info(err));
 
 });
 

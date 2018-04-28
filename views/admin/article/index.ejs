@@ -34,7 +34,7 @@
                         <form action="/admin/article" method="get">
                             <div class="am-form-group">
                                 <div class="am-input-group am-input-group-sm">
-                                    <input type="text" name="search" value="" class="search am-form-field" placeholder="搜索文章标题">
+                                    <input type="text" name="search" value="<%=search%>" class="search am-form-field" placeholder="搜索文章标题">
                                     <span class="am-input-group-btn"><button class="am-btn am-btn-primary" type="submit">搜索</button></span>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                         <td class="t-c">
                             <% for(var j = 0; j < articleCategory.length; j++) { %>
                                 <% if (articleCategory[j].get('articleCategoryId') == article[i].get('articleCategoryId')) { %>
-                                    <a href="#"><%= articleCategory[j].get('name') %></a>
+                                    <a href="/admin/article?article-category-id=<%= article[i].get('articleCategoryId')%>&search=<%= search%>"><%= articleCategory[j].get('name') %></a>
                                 <% } %>
                             <% } %>
                         </td>
@@ -98,7 +98,7 @@
                         <td class="t-c">浏览:<%= article[i].get('pageView') %></td>
                         <td class="t-c">
                             <a href="/admin/article/preview/<%= article[i].get('articleId') %>" target="_blank" data-id="<%= article[i].get('articleId') %>" class="">预览</a>
-                            <a href="#">复制</a>
+                            <a href="/admin/article/copy/<%= article[i].get('articleId') %>">复制</a>
                             <a href="javascript:;" data-id="<%= article[i].get('articleId') %>" class="remove-article">删除</a>
                         </td>
                         <td class="t-c">
