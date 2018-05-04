@@ -157,9 +157,15 @@ module.exports = {
                 }).then(data => {
                     let rows = $('table tbody tr');
                     let lastMonthFirstDay = new Date();
-                    lastMonthFirstDay.setMonth(lastMonthFirstDay.getMonth()-1);
-                    let twoMonthFirstDay = new Date();
-                    twoMonthFirstDay.setMonth(twoMonthFirstDay.getMonth()-2);
+                    let lastMonth = lastMonthFirstDay.getMonth();
+                    let twoMonth = lastMonth - 1;
+                    if (lastMonth == 0) {
+                        lastMonth = 12;
+                        twoMonth = 11;
+                    }
+                    if (lastMonth == 1) {
+                        twoMonth = 12;
+                    }
                     $.each(data.data,(i,n)=> {
                         rows.each(function () {
                             if (n.productId == $(this).attr('data-product-id')) {
@@ -173,7 +179,7 @@ module.exports = {
                     rows.each(function() {
                         let title = $(this).find('.title');
                         title.popover({
-                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>30天销量: ${title.data('popover-thirty')} | 90天销量: ${title.data('popover-ninety')} <br/>  ${twoMonthFirstDay.getMonth()+1}月份销量: ${title.data('popover-two-month')} | ${lastMonthFirstDay.getMonth()+1}月份销量: ${title.data('popover-last-month')}  <br/>总销量: ${title.data('popover-sales')}`,
+                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>30天销量: ${title.data('popover-thirty')} | 90天销量: ${title.data('popover-ninety')} <br/>  ${twoMonth}月份销量: ${title.data('popover-two-month')} | ${lastMonth}月份销量: ${title.data('popover-last-month')}  <br/>总销量: ${title.data('popover-sales')}`,
                             trigger:'hover'
                         });
                     });
