@@ -51,7 +51,8 @@ router.post('/:articleId', (req, res) => {
     let image = req.body['image'];
     let taoBaoLink = req.body['taoBaoLink'];
     let videoLink = req.body['video-link'];
-    article.update({articleCategoryId,content,name,image,taoBaoLink,videoLink}, articleId).then(() => {
+    let detailImages = req.body['detail-images'];
+    article.update({articleCategoryId,content,name,image,taoBaoLink,videoLink}, articleId, detailImages).then(() => {
         req.flash('success', '文章编辑成功!');
         res.redirect('/admin/article');
     });
