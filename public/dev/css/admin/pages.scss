@@ -509,6 +509,37 @@
         }
     }
 
+    .image-list {
+        margin: 0;
+        padding: 0;
+        li {
+
+            margin-top: 15px;
+            display: inline-block;
+            margin-right: 10px;
+
+            .am-fl {
+                display: none;
+                margin-right: 4px;
+            }
+
+            p {
+                font-size: 15px;
+                margin: 0 auto;
+                text-align: center;
+                color: #ddd;
+                &:first-child {
+                    margin-bottom: 5px;
+                    border: 1px solid #ddd;
+                    @include align-img(100px, 100px);
+                }
+                .oncopy {
+                    color: #5eb95e;
+                }
+            }
+        }
+    }
+
 }
 
 /* admin-article-preview-page */

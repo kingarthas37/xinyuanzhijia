@@ -69,7 +69,20 @@
                         <label for="content">文章详情 <small>(md5)</small>:</label>
                         <textarea id="content" name="content" rows="10"></textarea>
                     </div>
+
+                    <!-- images start -->
+                    <div class="am-form-group">
+                        <label for="detail-image">添加详情图片(建议图片宽度：800px，可多选图片)：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/article/upload?callback=uploadDetailImageSuccess" frameborder="0"></iframe>
+                        </div>
+                        <ul class="image-list"></ul>
+                        <input id="detail-images" name="detail-images" type="text">
+                    </div>
+                    <!-- images end -->
                     <!-- content end -->
+
+                    <hr/>
 
                     <!-- content start -->
                     <div class="am-form-group">
@@ -118,6 +131,12 @@
         article = require('article');
         article.addFun();
     });
+
+    //iframe upload detail images callback
+    function uploadDetailImageSuccess(data) {
+        article.uploadDetailImageSuccess(data);
+    }
+
     //iframe upload callback
     function uploadMainImageSuccess(data) {
         $('#image').val(data[0].url).trigger('change');
