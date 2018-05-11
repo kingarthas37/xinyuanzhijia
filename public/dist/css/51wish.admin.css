@@ -718,4 +718,34 @@ span.hot:after {
 .admin-article-page .main-image-view img {
   margin-top: 15px; }
 
+.admin-article-page #modal-preview .am-modal-dialog {
+  width: 770px;
+  padding: 10px; }
+
+.admin-article-page #modal-preview .article-content {
+  width: 750px;
+  height: 400px;
+  overflow: hidden;
+  padding: 0; }
+  .admin-article-page #modal-preview .article-content iframe {
+    width: 750px;
+    height: 400px; }
+
+/* admin-article-preview-page */
+.admin-article-preview-page header, .admin-article-preview-page .admin-sidebar, .admin-article-preview-page footer {
+  display: none; }
+
+.admin-article-preview-page .admin-main {
+  background: #fff; }
+
+.admin-article-preview-page h1 {
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0 0  20px 0;
+  padding: 0;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-bottom: 1px dashed #ddd; }
+
 /*# sourceMappingURL=51wish.admin.css.map */

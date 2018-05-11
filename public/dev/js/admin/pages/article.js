@@ -53,11 +53,18 @@ module.exports = {
         //预览
         {
             let modal = $('#modal-preview');
-            let iframe = $('#iframe-article');
+
             $('.btn-preview').click(function () {
+                let iframe = $('#iframe-article');
                 let articleId = parseInt($(this).data('id'));
                 modal.modal();
                 iframe[0].src = `/admin/article/preview/${articleId}`;
+            });
+
+            modal.on('closed.modal.amui', function() {
+                $(this).removeData('amui.modal');
+                modal.find('iframe').detach();
+                modal.find('.article-content').html(`<iframe id="iframe-article" src="" frameborder="0"></iframe>`);
             });
         }
 
