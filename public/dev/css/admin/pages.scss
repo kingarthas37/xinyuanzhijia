@@ -491,4 +491,32 @@
             margin-top:15px;
         }
     }
+
+    #modal-preview {
+        .am-modal-dialog {
+            width: 770px;
+            padding: 10px;
+        }
+        .article-content {
+            width: 750px;
+            height: 400px;
+            overflow: hidden;
+            padding: 0;
+            iframe {
+                width: 750px;
+                height: 400px;
+            }
+        }
+    }
+
+}
+
+/* admin-article-preview-page */
+.admin-article-preview-page {
+    header,.admin-sidebar,footer {
+        display: none;
+    }
+    .admin-main {
+        background: #fff;
+    }
 }

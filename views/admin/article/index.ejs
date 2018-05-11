@@ -5,7 +5,7 @@
     <title><%= title %></title>
     <% include ../partials/css %>
 </head>
-<body>
+<body class="admin-article-page">
 
 <% include ../partials/header %>
 
@@ -20,7 +20,7 @@
     <!-- sidebar end -->
 
     <!-- content start -->
-    <div class="admin-content admin-article-page">
+    <div class="admin-content ">
 
         <div class="am-cf am-padding">
             <div class="am-fl am-cf"><strong><a href="/admin">首页</a></strong> / <a href="/admin/article">文章列表</a></div>
@@ -97,7 +97,7 @@
                         <td class="t-c"><a href="<%= article[i].get('videoLink') %>"></a></td>
                         <td class="t-c">浏览:<%= article[i].get('pageView') %></td>
                         <td class="t-c">
-                            <a href="/admin/article/preview/<%= article[i].get('articleId') %>" target="_blank" data-id="<%= article[i].get('articleId') %>" class="">预览</a>
+                            <a href="javascript:;"  target="_blank" data-id="<%= article[i].get('articleId') %>" class="btn-preview">预览</a>
                             <a href="/admin/article/copy/<%= article[i].get('articleId') %>">复制</a>
                             <a href="javascript:;" data-id="<%= article[i].get('articleId') %>" class="remove-article">删除</a>
                         </td>
@@ -159,6 +159,15 @@
 </div>
 <!-- modal alert -->
 
+<!-- modal preview -->
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="modal-preview">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd article-content">
+            <iframe id="iframe-article" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
+<!-- modal preview -->
 
 <% include ../partials/footer %>
 <% include ../partials/js %>

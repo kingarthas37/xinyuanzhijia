@@ -49,6 +49,18 @@ module.exports = {
                 });
             });
         }
+
+        //预览
+        {
+            let modal = $('#modal-preview');
+            let iframe = $('#iframe-article');
+            $('.btn-preview').click(function () {
+                let articleId = parseInt($(this).data('id'));
+                modal.modal();
+                iframe[0].src = `/admin/article/preview/${articleId}`;
+            });
+        }
+
     },
 
     addFun:function () {
