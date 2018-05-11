@@ -13,6 +13,7 @@ let config = require('../../../lib/config');
 let article = require('../../../lib/models/article').createNew();
 let articleCategory = require('../../../lib/models/article-category').createNew();
 let base = require('../../../lib/models/base');
+let markdown = require('markdown').markdown;
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 文章预览`,
@@ -35,7 +36,7 @@ router.get('/:articleId',(req,res)=> {
         }),
         new AV.Promise(resolve => {
             article.getArticleByArticleId(articleId).then(item => {
-                data = extend(data, {article: item});
+                data = extend(data, {article: item, content: markdown.toHTML(item.get('content'))});
                 resolve();
             });
         })
