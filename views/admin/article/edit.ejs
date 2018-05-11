@@ -75,6 +75,28 @@
                         <label for="content">文章详情<small>(md5)</small>:</label>
                         <textarea id="content" name="content" rows="10"><%= article.get('content') %></textarea>
                     </div>
+
+                    <!-- images start -->
+                    <div class="am-form-group">
+                        <label for="detail-image">添加详情图片(建议图片宽度：800px，可多选图片)：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/article/upload?callback=uploadDetailImageSuccess" frameborder="0"></iframe>
+                        </div>
+                        <ul class="image-list">
+                            <%
+                            var detailImageArray = article.get('detailImages').split(',');
+                            if(detailImageArray.length) {
+                            for (var i=0;i< detailImageArray.length; i++) { %>
+                            <li data-id="<%= detailImageArray[i].id%>" class="am-cf">
+                                <div class="am-fl"><input type="checkbox" /></div>
+                                <div class="am-fr">
+                                    <p><a class="img-link" href="<%= detailImageArray[i]%>" target="_blank"><img src="<%= detailImageArray[i] %>?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a> <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> <a class="remove" href="javascript:;">删除</a></p></div></li>
+                            <% } %>
+                        </ul>
+                        <input id="detail-images" name="detail-images" type="text" value="<%= article.get('detailImages') %>">
+                    </div>
+                    <!-- images end -->
+
                     <!-- content end -->
 
                     <hr>

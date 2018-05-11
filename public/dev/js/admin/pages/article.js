@@ -123,7 +123,7 @@ module.exports = {
         let imageView = $('.image-list');
         let value = '';
 
-        imageView.find('input[type=checkbox]').each(function() {
+        imageView.find('input[type=checkbox]').each(function(i,n) {
             let content = $(this).parents('li');
             value += content.find('.img-link').attr('href') + ',';
         });
