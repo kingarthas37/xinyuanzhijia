@@ -44,10 +44,23 @@ router.get('/', (req, res) => {
 
 router.get('/:articleId',(req,res)=> {
     let articleId = parseInt(req.params.articleId);
-    article.getArticleByArticleId(articleId).then(item => {
-        data = extend(data, {article:item});
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            article.getArticleByArticleId(articleId).then(result => {
+                article.updateArticlePageViews(result);
+                resolve();
+            });
+        }),
+        new AV.Promise(resolve => {
+            article.getArticleByArticleId(articleId).then(item => {
+                data = extend(data, {article:item});
+                resolve();
+            });
+        })
+    ).then(() => {
         res.render('default/article/detail', data);
     });
+
 });
 
 module.exports = router;
