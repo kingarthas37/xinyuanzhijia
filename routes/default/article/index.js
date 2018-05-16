@@ -21,9 +21,6 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
-    data = extend(data, {
-        flash: {success: req.flash('success'), error: req.flash('error')}
-    });
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let options = {page,limit};
@@ -39,6 +36,24 @@ router.get('/', (req, res) => {
             });
         })
     ).then(() => { res.render('default/article', data); });
+});
+
+router.get('/ajax', (req, res) => {
+    let page = req.query.page ? parseInt(req.query.page) : 1;
+    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
+    let options = {page,limit};
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            article.getArticle(options).then(result => {
+                let count = result.count;
+                data = extend(data, {
+                    count,
+                    article:result.items
+                });
+                resolve();
+            });
+        })
+    ).then(() => { res.send(data); });
 });
 
 
