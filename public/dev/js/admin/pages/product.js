@@ -763,33 +763,36 @@ module.exports = {
         {
 
             let noWisdomProductLinks = [];
-            $('.purchase-link').each(function () {
-                if($(this).find('a').attr('href').indexOf('wisdomproducts.com')> -1) {
+            $('.purchase-link a').each(function () {
+                if($(this).attr('href').indexOf('wisdomproducts.com')> -1) {
                     noWisdomProductLinks.push(true);
                 }
             });
             if(!noWisdomProductLinks.length) {
                 $('.check-wisdomproducts-stock').prop('disabled',true);
+            } else {
+
+                $('.check-wisdomproducts-stock').click(function () {
+                    let text = $(this).text();
+                    $(this).text('检测中...');
+                    $(this).prop('disabled',true);
+                    let arr = [];
+                    $('.purchase-link a').each(function () {
+                        if($(this).attr('href').indexOf('wisdomproducts.com')> -1) {
+                            arr.push({
+                                productId:$(this).parent().data('product-id'),
+                                url:$(this).attr('href')
+                            });
+                        }
+                    });
+                    $.ajax({
+                        url:'/product/check-wisdom-products-stock',
+                        data:JSON.stringify(arr)
+                    });
+                });
+
             }
 
-            $('.check-wisdomproducts-stock').click(function () {
-                let text = $(this).text();
-                $(this).text('检测中...');
-                $(this).prop('disabled',true);
-                let arr = [];
-                $('.purchase-link').each(function () {
-                    if($(this).find('a').attr('href').indexOf('wisdomproducts.com')> -1) {
-                        arr.push({
-                            productId:$(this).data('product-id'),
-                            url:$(this).find('a').attr('href')
-                        });
-                    }
-                });
-                if(!arr.length) {
-                    $(this).text(text);
-                    $(this).prop('disabled',false);
-                }
-            });
         }
 
     },
