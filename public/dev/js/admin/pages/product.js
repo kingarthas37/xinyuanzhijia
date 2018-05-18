@@ -759,6 +759,39 @@ module.exports = {
 
         }
 
+        //检测check-wisdomproducts-stock
+        {
+
+            let noWisdomProductLinks = [];
+            $('.purchase-link').each(function () {
+                if($(this).find('a').attr('href').indexOf('wisdomproducts.com')> -1) {
+                    noWisdomProductLinks.push(true);
+                }
+            });
+            if(!noWisdomProductLinks.length) {
+                $('.check-wisdomproducts-stock').prop('disabled',true);
+            }
+
+            $('.check-wisdomproducts-stock').click(function () {
+                let text = $(this).text();
+                $(this).text('检测中...');
+                $(this).prop('disabled',true);
+                let arr = [];
+                $('.purchase-link').each(function () {
+                    if($(this).find('a').attr('href').indexOf('wisdomproducts.com')> -1) {
+                        arr.push({
+                            productId:$(this).data('product-id'),
+                            url:$(this).find('a').attr('href')
+                        });
+                    }
+                });
+                if(!arr.length) {
+                    $(this).text(text);
+                    $(this).prop('disabled',false);
+                }
+            });
+        }
+
     },
 
     addFun:function() {
