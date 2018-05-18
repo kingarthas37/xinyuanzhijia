@@ -753,7 +753,7 @@ module.exports = {
                      row.addClass('sub-product-row');
                      parentTargetRow.after(row);
                  } else {
-                     row.detach();
+                    // row.detach();
                  }
             });
 
