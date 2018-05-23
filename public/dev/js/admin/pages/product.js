@@ -776,19 +776,18 @@ module.exports = {
                     let text = $(this).text();
                     $(this).text('检测中...');
                     $(this).prop('disabled',true);
-                    let arr = [];
                     $('.purchase-link a').each(function () {
                         if($(this).attr('href').indexOf('wisdomproducts.com')> -1) {
-                            arr.push({
-                                productId:$(this).parent().data('product-id'),
-                                url:$(this).attr('href')
+                            $.ajax({
+                                url:'/product/check-wisdom-products-stock',
+                                data:{
+                                    productId:$(this).parent().data('product-id'),
+                                    url:$(this).attr('href')
+                                }
                             });
                         }
                     });
-                    $.ajax({
-                        url:'/product/check-wisdom-products-stock',
-                        data:JSON.stringify(arr)
-                    });
+
                 });
 
             }
