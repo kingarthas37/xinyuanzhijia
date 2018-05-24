@@ -13,10 +13,10 @@
 <% include ../partials-desktop/menu %>
 
 <div class="crumb">
-    <a href="/blog" class="on">所有分类 (99)</a>
-    <a href="/blog">测试2 (10)</a>
-    <a href="/blog">测试3 (4)</a>
-    <a href="/blog">测试4 (5)</a>
+    <a href="/blog" class="on">所有分类 (<%= articleCategoryCount%>)</a>
+    <% for (var k=0; k<articleCategory.length; k++) { %>
+    <a href="/blog?catid=<%= articleCategory[k].get('articleCategoryId')%>"><%= articleCategory[k].get('name')%></a>
+    <% } %>
 </div>
 
 <ul class="main-list">

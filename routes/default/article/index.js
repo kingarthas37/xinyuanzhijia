@@ -7,6 +7,7 @@ let extend = require('xtend');
 
 let config = require('../../../lib/config');
 let article = require('../../../lib/models/article').createNew();
+let articleCategory = require('../../../lib/models/article-category').createNew();
 let AV = require('leanengine');
 let pager = require('../../../lib/component/pager');
 let flash = require('connect-flash');
@@ -24,7 +25,8 @@ let data = extend(config.data, {
 router.get('/', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
-    let options = {page,limit};
+    let articleCategoryId = req.query.catid ? parseInt(req.query.catid) : '';
+    let options = {page,limit, articleCategoryId};
     AV.Promise.when(
         new AV.Promise(resolve => {
             article.getArticle(options).then(result => {
@@ -35,6 +37,12 @@ router.get('/', (req, res) => {
                 });
                 resolve();
             });
+        }),
+        new AV.Promise(resolve => {
+            articleCategory.getArticleCategory({'limit':999}).then(category => {
+                data = extend(data, {articleCategory:category.items, articleCategoryCount: category.count});
+                resolve();
+            });
         })
     ).then(() => { res.render('default/article', data); });
 });
@@ -42,7 +50,8 @@ router.get('/', (req, res) => {
 router.get('/ajax', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
-    let options = {page,limit};
+    let articleCategoryId = req.query.catid ? parseInt(req.query.catid) : '';
+    let options = {page,limit, articleCategoryId};
     AV.Promise.when(
         new AV.Promise(resolve => {
             article.getArticle(options).then(result => {
