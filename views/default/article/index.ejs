@@ -13,7 +13,10 @@
 <% include ../partials-desktop/menu %>
 
 <div class="crumb">
-    <a href="#">所有分类(99)</a>
+    <a href="/blog" class="on">所有分类 (99)</a>
+    <a href="/blog">测试2 (10)</a>
+    <a href="/blog">测试3 (4)</a>
+    <a href="/blog">测试4 (5)</a>
 </div>
 
 <ul class="main-list">
@@ -27,11 +30,25 @@
                 <div class="title">
                     <a href="/blog/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
                 </div>
+                <div class="info">
+                    <div class="left">
+
+                    </div>
+                    <div class="right">
+                        <span>人气:99</span>
+                        <span class="split"></span>
+                        <span>日期:2018/5/24</span>
+                    </div>
+                </div>
             </div>
         </li>
     <% }
     } %>
 </ul>
+
+<div class="navigation">
+    <a href="/blog/ajax?page=1"></a>
+</div>
 
 <% include ../partials-desktop/footer %>
 <% include ../partials/js %>

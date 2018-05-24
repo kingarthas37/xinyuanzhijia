@@ -7,13 +7,28 @@
     padding-right: 10px;
     width: 1200px;
     margin:auto;
+    a {
+      background: #000;
+      display: inline-block;
+      color: #a6936a;
+      height:30px;
+      line-height: 30px;
+      padding:0 10px 0 10px;
+      margin-bottom: 6px;
+      font-size: 14px;
+      margin-right:10px;
+    }
   }
 
   .main-list {
     @extend %clearfix;
-    //width: 90%;
+    position: relative;
     width:1200px;
     margin:auto;
+    padding-bottom: 32px;
+    div {
+      float:none;
+    }
     li {
       border:none;
       margin:0 0 20px 0;
@@ -28,8 +43,8 @@
         }
         .title {
           margin:10px 0 10px 0;
-          height: 50px;
-          line-height: 25px;
+          height: 40px;
+          line-height: 20px;
           overflow:hidden;
           text-overflow:ellipsis;
           display:-webkit-box;
@@ -40,7 +55,33 @@
             color: #333;
           }
         }
+        .info {
+          @extend %clearfix;
+          font-size: 12px;
+          height: 20px;
+          line-height: 20px;
+          color: #666;
+          .left {
+            float: left;
+          }
+          .right {
+            float: right;
+          }
+        }
       }
+    }
+
+    .loading {
+      display: block;
+      position: absolute !important;
+      bottom:0 !important;
+      width: 100%;
+    }
+
+    #infscr-loading {
+      position: absolute !important;
+      bottom:0 !important;
+      width: 100%;
     }
 
   }
