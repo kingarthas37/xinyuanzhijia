@@ -9,24 +9,15 @@
     <% include ../partials/tongji %>
 </head>
 
-<body class="home-page">
+<body class="home-page desktop-page">
 
 <div data-target="content1" class="main-content content1">
     <h1></h1>
     <span class="arrow"></span>
 </div>
 
-<div class="menu clearfix">
-    <ul>
-        <li class="logo"><a href="/">心愿之家</a></li>
-        <li> <a class="active link" data-link="content1" href="javascript:;">Home</a> </li>
-        <li> <a class="link" data-link="content2" href="javascript:;">About Us</a> </li>
-        <li> <a class="link" data-link="content3" href="javascript:;">About Us</a> </li>
-        <li> <a class="link" data-link="content4" href="javascript:;">About Us</a> </li>
-        <li> <a class="link" data-link="content5" href="javascript:;">About Us</a> </li>
-        <li class="right"><a href="/user/login">注册/登录</a></li>
-    </ul>
-</div>
+
+<% include ../partials-desktop/menu %>
 
 <div data-target="content2" class="main-content content2">
     <img src="http://ac-quipuwpj.clouddn.com/c7fd2054131d2d5b645c.jpg" alt="">
@@ -44,52 +35,7 @@
     <img src="http://ac-quipuwpj.clouddn.com/f9e106e61f93c510158f.jpg" alt="">
 </div>
 
-<div class="footer">
-    <div class="content">
-        <ul class="cf">
-            <li>
-                <h3>淘宝主店店铺</h3>
-                <p><a href="http://muxue698.taobao.com" target="_blank">[暮雪的心愿城]</a></p>
-                <div class="img">
-                    <a href="http://muxue698.taobao.com" target="_blank"></a>
-                </div>
-            </li>
-            <li>
-                <h3>淘宝精品店店铺</h3>
-                <p><a href="http://muxue928.taobao.com" target="_blank">[亚特兰蒂斯之谜]</a></p>
-                <div class="img">
-                    <a href="http://muxue928.taobao.com" target="_blank"></a>
-                </div>
-            </li>
-            <li>
-                <h3>微信公众号</h3>
-                <p>[心愿之家]</p>
-                <div class="img">
-                </div>
-            </li>
-            <li>
-                <h3>新浪微博</h3>
-                <p>[心愿之家-51wish]</p>
-                <div class="img">
-                    <a href="//weibo.com/u/6093438599" target="_blank"></a>
-                </div>
-            </li>
-            <li class="contact">
-                <h3>联系我们/客服咨询</h3>
-                <h4><span class="icon-weixin"></span> 微信号: muxue698_zimu</h4>
-                <!--
-                <h4><span class="icon-qq"></span> QQ: <a
-                            href="http://wpa.qq.com/msgrd?&uin=3440559032&site=qq&menu=yes">3440559032</a></h4> -->
-                <h4><span class="icon-business"></span>商务合作: <a href="mailto:53497490@qq.com">53497490@qq.com</a></h4>
-            </li>
-        </ul>
-        <div class="info">
-            <p>© <%=new Date().getFullYear()%> 51wish.cn 心愿之家</p>
-            <p>上海巨壳网络科技有限公司 <span class="sp"></span> <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">沪ICP备16013026号</a> <span class="sp"></span>
-                <img src="//ac-quipuwpj.clouddn.com/e47fede241f86a022b02.png" width="20" height="20"> 沪公网安备</p>
-        </div>
-    </div>
-</div>
+<% include ../partials-desktop/footer %>
 
 <% include ../partials/js %>
 <script>
@@ -98,6 +44,5 @@
         home.init();
     });
 </script>
-
 </body>
 </html>

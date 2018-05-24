@@ -8,9 +8,10 @@
     <% include ../partials/css %>
     <% include ../partials/tongji %>
 </head>
-<body>
+<body class="blog-page desktop-page">
 
-<% include ../partials/header-sub %>
+<% include ../partials-desktop/menu %>
+
 <ul>
     <% if(article) { %>
     <% for(var i=0; i < article.length; i++) {%>
@@ -18,7 +19,8 @@
     <% }
     } %>
 </ul>
-<% include ../partials/footer %>
+
+<% include ../partials-desktop/footer %>
 <% include ../partials/js %>
 </body>
 </html>
