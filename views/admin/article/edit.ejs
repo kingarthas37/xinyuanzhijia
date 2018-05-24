@@ -83,9 +83,9 @@
                             <iframe class="upload" src="/admin/article/upload?callback=uploadDetailImageSuccess" frameborder="0"></iframe>
                         </div>
                         <ul class="image-list">
-                            <%  var detailImageArray = article.get('detailImages').split(',');
 
-                            if(detailImageArray.length) {
+                            <%  var detailImageArray = article.get('detailImages').split(',');
+                            if(article.get('detailImages').length) {
                             for (var i =0;i< detailImageArray.length; i++) { %>
                             <li class="am-cf">
                                 <div class="am-fl"><input type="checkbox" /></div>

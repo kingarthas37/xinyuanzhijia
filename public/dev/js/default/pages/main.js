@@ -7,3 +7,4 @@ require('./user');
 require('./product-list');
 require('./product-detail');
 require('./cart');
+require('./article');

@@ -8,19 +8,38 @@
     <% include ../partials/css %>
     <% include ../partials/tongji %>
 </head>
-<body class="blog-page desktop-page">
+<body class="article-page desktop-page">
 
 <% include ../partials-desktop/menu %>
 
-<ul>
+<div class="crumb">
+    <a href="#">所有分类(99)</a>
+</div>
+
+<ul class="main-list">
     <% if(article) { %>
     <% for(var i=0; i < article.length; i++) {%>
-    <a href="/blog/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
+        <li>
+            <div class="content">
+                <div class="main-img">
+                    <a href="/blog/<%= article[i].get('articleId') %>"><img width="260" height="260" src="<%= article[i].get('image') %>" alt="<%= article[i].get('name') %>"></a>
+                </div>
+                <div class="title">
+                    <a href="/blog/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
+                </div>
+            </div>
+        </li>
     <% }
     } %>
 </ul>
 
 <% include ../partials-desktop/footer %>
 <% include ../partials/js %>
+<script>
+    $(function() {
+        var article = require('article');
+        article.initDesktop();
+    });
+</script>
 </body>
 </html>

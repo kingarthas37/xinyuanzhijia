@@ -1,9 +1,9 @@
 @charset "UTF-8";
-.main-tab:before, .main-menu .am-dropdown .am-dropdown-content li:before, .main-list li .detail p:before, .detail-page .info-content .info div:before, .detail-page .slider-recommend .am-slides:before, .main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after, .main-list li .detail p:after, .detail-page .info-content .info div:after, .detail-page .slider-recommend .am-slides:after {
+.main-tab:before, .main-menu .am-dropdown .am-dropdown-content li:before, .main-list li .detail p:before, .detail-page .info-content .info div:before, .detail-page .slider-recommend .am-slides:before, .article-page .main-list:before, .main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after, .main-list li .detail p:after, .detail-page .info-content .info div:after, .detail-page .slider-recommend .am-slides:after, .article-page .main-list:after {
   content: ' ';
   display: table; }
 
-.main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after, .main-list li .detail p:after, .detail-page .info-content .info div:after, .detail-page .slider-recommend .am-slides:after {
+.main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after, .main-list li .detail p:after, .detail-page .info-content .info div:after, .detail-page .slider-recommend .am-slides:after, .article-page .main-list:after {
   clear: both; }
 
 #search-box .twitter-typeahead .tt-menu a {
@@ -1246,6 +1246,140 @@ span.hot:after {
   #modal-buy .am-modal-hd.on, #modal-buy .am-modal-bd.on {
     display: block; }
 
+.desktop-page {
+  max-width: 100%; }
+  .desktop-page .menu {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    height: 80px;
+    line-height: 80px;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 0 10px;
+    z-index: 1; }
+  .desktop-page .menu.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; }
+  .desktop-page .menu .logo {
+    display: block;
+    float: left;
+    text-indent: -9999px;
+    background: url("//lc-joabcrtt.cn-n1.lcfile.com/17160e8c8e82cbdce7bc.png?imageMogr2/thumbnail/80") no-repeat center;
+    width: 80px;
+    height: 80px;
+    background-size: 70%; }
+  .desktop-page .menu ul {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .desktop-page .menu li {
+    float: left; }
+    .desktop-page .menu li.right {
+      float: right; }
+  .desktop-page .menu li a {
+    display: block;
+    padding: 0 10px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 16px;
+    color: #a6936a; }
+  .desktop-page .menu li a.active {
+    text-decoration: none;
+    color: #d2c098;
+    font-weight: bold; }
+  .desktop-page .menu li a:hover {
+    text-decoration: none;
+    color: #a6936a; }
+  .desktop-page .footer {
+    margin-top: 20px;
+    text-align: center;
+    padding: 40px 0 40px 0;
+    background: #000;
+    color: #a6936a; }
+    .desktop-page .footer .content {
+      width: 1000px;
+      margin: auto; }
+    .desktop-page .footer a {
+      color: #a6936a; }
+      .desktop-page .footer a:hover {
+        color: #d2c098; }
+    .desktop-page .footer .info {
+      font-size: 12px;
+      line-height: 20px; }
+      .desktop-page .footer .info p {
+        margin: 0;
+        padding: 0; }
+    .desktop-page .footer .sp {
+      padding: 0 5px; }
+    .desktop-page .footer ul {
+      margin-bottom: 40px; }
+      .desktop-page .footer ul li {
+        float: left;
+        width: 160px;
+        color: #fff;
+        font-size: 13px; }
+        .desktop-page .footer ul li.contact {
+          float: right;
+          width: 200px;
+          font-size: 12px; }
+          .desktop-page .footer ul li.contact h4 {
+            height: 32px;
+            line-height: 32px;
+            vertical-align: middle;
+            font-weight: normal;
+            text-align: left;
+            margin: 0;
+            padding: 0; }
+            .desktop-page .footer ul li.contact h4 span {
+              vertical-align: middle;
+              display: inline-block;
+              height: 32px;
+              width: 32px;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: 75%; }
+              .desktop-page .footer ul li.contact h4 span.icon-weixin {
+                background-image: url("//lc-quipuwpj.cn-n1.lcfile.com/26ad2dcaf37046b8f609.png"); }
+              .desktop-page .footer ul li.contact h4 span.icon-qq {
+                background-image: url("//lc-quipuwpj.cn-n1.lcfile.com/4928903ae90c92d595a3.png"); }
+              .desktop-page .footer ul li.contact h4 span.icon-business {
+                background-image: url("//lc-quipuwpj.cn-n1.lcfile.com/6346f936f48326d94a83.png"); }
+        .desktop-page .footer ul li a {
+          color: #fff; }
+        .desktop-page .footer ul li h3 {
+          margin: 0;
+          padding: 0;
+          height: 30px;
+          line-height: 30px;
+          font-size: 14px; }
+        .desktop-page .footer ul li p {
+          margin: 0 0 10px 0;
+          padding: 0; }
+        .desktop-page .footer ul li .img {
+          width: 80px;
+          height: 80px;
+          margin: auto;
+          background-size: 100% 100%;
+          background-repeat: no-repeat; }
+          .desktop-page .footer ul li .img a {
+            display: block;
+            width: 80px;
+            height: 80px; }
+        .desktop-page .footer ul li:nth-child(1) .img {
+          background-image: url("//lc-quipuwpj.cn-n1.lcfile.com/b06314dd957d6f737e8a.png"); }
+        .desktop-page .footer ul li:nth-child(2) .img {
+          background-image: url("//lc-quipuwpj.cn-n1.lcfile.com/b06314dd957d6f737e8a.png"); }
+        .desktop-page .footer ul li:nth-child(3) .img {
+          background-image: url("//lc-quipuwpj.cn-n1.lcfile.com/6166033ce6948c7b3e49.png"); }
+        .desktop-page .footer ul li:nth-child(4) .img {
+          background-image: url("//lc-quipuwpj.cn-n1.lcfile.com/b6ee8d9dfe95e932e52c.png"); }
+
 .favorite-box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2043,7 +2177,6 @@ a.pswp__share--download:hover {
   background: none; }
 
 .home-page {
-  max-width: 100%;
   background: #f0e7d4; }
   .home-page .content1 {
     height: 100%;
@@ -2095,143 +2228,12 @@ a.pswp__share--download:hover {
     -webkit-transform: translate(0px, 0px);
             transform: translate(0px, 0px);
     opacity: 1; } }
-  .home-page .menu {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
-    height: 80px;
-    line-height: 80px;
-    top: 0;
-    left: 0;
-    position: fixed;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 0 10px;
-    z-index: 1; }
-  .home-page .menu.active {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0; }
-  .home-page .menu .logo {
-    display: block;
-    float: left;
-    text-indent: -9999px;
-    background: url("//ac-quipuwpj.clouddn.com/14c7791e449bfdecb647.png") no-repeat center;
-    width: 80px;
-    height: 80px;
-    background-size: 70%; }
-  .home-page .menu ul {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; }
-  .home-page .menu li {
-    float: left; }
-    .home-page .menu li.right {
-      float: right; }
-  .home-page .menu li a {
-    display: block;
-    padding: 0 10px;
-    height: 80px;
-    line-height: 80px;
-    font-size: 16px;
-    color: #a6936a; }
-  .home-page .menu li a.active {
-    text-decoration: none;
-    color: #d2c098;
-    font-weight: bold; }
-  .home-page .menu li a:hover {
-    text-decoration: none;
-    color: #a6936a; }
   .home-page .main-content {
     padding-top: 20px;
     text-align: center;
     font-size: 16px; }
     .home-page .main-content img {
       width: 100%; }
-  .home-page .footer {
-    margin-top: 20px;
-    text-align: center;
-    padding: 40px 0 40px 0;
-    background: #000;
-    color: #a6936a; }
-    .home-page .footer .content {
-      width: 1000px;
-      margin: auto; }
-    .home-page .footer a {
-      color: #a6936a; }
-      .home-page .footer a:hover {
-        color: #d2c098; }
-    .home-page .footer .info {
-      font-size: 12px;
-      line-height: 20px; }
-      .home-page .footer .info p {
-        margin: 0;
-        padding: 0; }
-    .home-page .footer .sp {
-      padding: 0 5px; }
-    .home-page .footer ul {
-      margin-bottom: 40px; }
-      .home-page .footer ul li {
-        float: left;
-        width: 160px;
-        color: #fff;
-        font-size: 13px; }
-        .home-page .footer ul li.contact {
-          float: right;
-          width: 200px;
-          font-size: 12px; }
-          .home-page .footer ul li.contact h4 {
-            height: 32px;
-            line-height: 32px;
-            vertical-align: middle;
-            font-weight: normal;
-            text-align: left;
-            margin: 0;
-            padding: 0; }
-            .home-page .footer ul li.contact h4 span {
-              vertical-align: middle;
-              display: inline-block;
-              height: 32px;
-              width: 32px;
-              background-repeat: no-repeat;
-              background-position: center;
-              background-size: 75%; }
-              .home-page .footer ul li.contact h4 span.icon-weixin {
-                background-image: url("//ac-quipuwpj.clouddn.com/26ad2dcaf37046b8f609.png"); }
-              .home-page .footer ul li.contact h4 span.icon-qq {
-                background-image: url("//ac-quipuwpj.clouddn.com/4928903ae90c92d595a3.png"); }
-              .home-page .footer ul li.contact h4 span.icon-business {
-                background-image: url("//ac-quipuwpj.clouddn.com/6346f936f48326d94a83.png"); }
-        .home-page .footer ul li a {
-          color: #fff; }
-        .home-page .footer ul li h3 {
-          margin: 0;
-          padding: 0;
-          height: 30px;
-          line-height: 30px;
-          font-size: 14px; }
-        .home-page .footer ul li p {
-          margin: 0 0 10px 0;
-          padding: 0; }
-        .home-page .footer ul li .img {
-          width: 80px;
-          height: 80px;
-          margin: auto;
-          background-size: 100% 100%;
-          background-repeat: no-repeat; }
-          .home-page .footer ul li .img a {
-            display: block;
-            width: 80px;
-            height: 80px; }
-        .home-page .footer ul li:nth-child(1) .img {
-          background-image: url("//ac-quipuwpj.clouddn.com/b06314dd957d6f737e8a.png"); }
-        .home-page .footer ul li:nth-child(2) .img {
-          background-image: url("//ac-quipuwpj.clouddn.com/b06314dd957d6f737e8a.png"); }
-        .home-page .footer ul li:nth-child(3) .img {
-          background-image: url("//ac-quipuwpj.clouddn.com/6166033ce6948c7b3e49.png"); }
-        .home-page .footer ul li:nth-child(4) .img {
-          background-image: url("//ac-quipuwpj.clouddn.com/b6ee8d9dfe95e932e52c.png"); }
 
 /* error page */
 .error-page .img {
@@ -2993,5 +2995,40 @@ a.pswp__share--download:hover {
   text-align: center;
   color: #999;
   padding: 0 20px; }
+
+.article-page {
+  background: #f0e7d4; }
+  .article-page .crumb {
+    padding-top: 100px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 1200px;
+    margin: auto; }
+  .article-page .main-list {
+    width: 1200px;
+    margin: auto; }
+    .article-page .main-list li {
+      border: none;
+      margin: 0 0 20px 0;
+      float: left;
+      width: 25%;
+      padding: 0 10px 0 10px; }
+      .article-page .main-list li .content {
+        padding: 10px;
+        width: 100%;
+        background: #efefef; }
+        .article-page .main-list li .content .title {
+          margin: 10px 0 10px 0;
+          height: 50px;
+          line-height: 25px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2; }
+          .article-page .main-list li .content .title a {
+            font-size: 15px;
+            color: #333; }
 
 /*# sourceMappingURL=51wish.default.css.map */

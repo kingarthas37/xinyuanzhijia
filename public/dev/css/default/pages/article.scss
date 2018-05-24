@@ -1,0 +1,48 @@
+.article-page {
+  background: #f0e7d4;
+  .crumb {
+    padding-top: 100px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 1200px;
+    margin:auto;
+  }
+
+  .main-list {
+    @extend %clearfix;
+    //width: 90%;
+    width:1200px;
+    margin:auto;
+    li {
+      border:none;
+      margin:0 0 20px 0;
+      float:left;
+      width: 25%;
+      padding: 0 10px 0 10px;
+      .content {
+        padding: 10px;
+        width: 100%;
+        background: #efefef;
+        .main-img {
+        }
+        .title {
+          margin:10px 0 10px 0;
+          height: 50px;
+          line-height: 25px;
+          overflow:hidden;
+          text-overflow:ellipsis;
+          display:-webkit-box;
+          -webkit-box-orient:vertical;
+          -webkit-line-clamp:2;
+          a {
+            font-size: 15px;
+            color: #333;
+          }
+        }
+      }
+    }
+
+  }
+
+}

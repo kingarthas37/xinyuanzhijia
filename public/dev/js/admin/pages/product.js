@@ -794,6 +794,13 @@ module.exports = {
 
         }
 
+        //如果搜索结果只有一条且是有规格产品，则跳转展示整个产品
+        {
+            if($('.set-product-parent').length ===1) {
+                $(".set-product-parent").click();
+            }
+        }
+
     },
 
     addFun:function() {
