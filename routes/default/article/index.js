@@ -48,7 +48,7 @@ router.get('/ajax', (req, res) => {
                 let count = result.count;
                 data = extend(data, {
                     count,
-                    article:result.items
+                    items:result.items
                 });
                 resolve();
             });
