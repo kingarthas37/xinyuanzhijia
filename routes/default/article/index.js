@@ -10,6 +10,7 @@ let article = require('../../../lib/models/article').createNew();
 let AV = require('leanengine');
 let pager = require('../../../lib/component/pager');
 let flash = require('connect-flash');
+let markdown = require('markdown').markdown;
 
 let data = extend(config.data, {
     title: `${config.data.name} - 博客`,
@@ -68,6 +69,7 @@ router.get('/:articleId',(req,res)=> {
         }),
         new AV.Promise(resolve => {
             article.getArticleByArticleId(articleId).then(item => {
+				item.set('content', markdown.toHTML(item.get('content'));
                 data = extend(data, {article:item});
                 resolve();
             });
