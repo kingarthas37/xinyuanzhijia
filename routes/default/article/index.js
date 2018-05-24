@@ -27,6 +27,7 @@ router.get('/', (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let articleCategoryId = req.query.catid ? parseInt(req.query.catid) : '';
     let options = {page,limit, articleCategoryId};
+    data = extend(data, {articleCategoryId});
     AV.Promise.when(
         new AV.Promise(resolve => {
             article.getArticle(options).then(result => {

@@ -13,9 +13,9 @@
 <% include ../partials-desktop/menu %>
 
 <div class="crumb">
-    <a href="/blog" class="on">所有分类 (<%= articleCategoryCount%>)</a>
+    <a href="/blog" <%if(!articleCategoryId) { %> class="on"<%}%>>所有分类 (<%= count %>)<%=articleCategoryId%></a>
     <% for (var k=0; k<articleCategory.length; k++) { %>
-    <a href="/blog?catid=<%= articleCategory[k].get('articleCategoryId')%>"><%= articleCategory[k].get('name')%></a>
+    <a <% if(articleCategoryId == articleCategory[k].get('articleCategoryId')) { %> class="on" <% } %> href="/blog?catid=<%= articleCategory[k].get('articleCategoryId')%>"><%= articleCategory[k].get('name')%></a>
     <% } %>
 </div>
 
