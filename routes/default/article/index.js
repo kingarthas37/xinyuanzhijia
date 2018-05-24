@@ -69,7 +69,7 @@ router.get('/:articleId',(req,res)=> {
         }),
         new AV.Promise(resolve => {
             article.getArticleByArticleId(articleId).then(item => {
-				item.set('content', markdown.toHTML(item.get('content'));
+				item.set('content', markdown.toHTML(item.get('content')));
                 data = extend(data, {article:item});
                 resolve();
             });

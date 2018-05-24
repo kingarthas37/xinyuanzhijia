@@ -1,6 +1,12 @@
 .desktop-page {
 
     max-width: 100%;
+    a {
+        color: #86680c;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 
     .menu {
         box-shadow: 0 4px 15px rgba(0,0,0,0.07);

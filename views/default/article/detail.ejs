@@ -8,16 +8,35 @@
     <% include ../partials/css %>
     <% include ../partials/tongji %>
 </head>
-<body>
+<body class="article-page desktop-page">
 
-<% include ../partials/header-sub %>
-<ul>
+<% include ../partials-desktop/menu %>
 
-<%= article.get('name')%>
-    <%- article.get('content')%>
-    <img src="<%= article.get('image') %>" />
-</ul>
-<% include ../partials/footer %>
+<div class="detail-content">
+
+    <h1><%= article.get('name')%></h1>
+
+    <div class="detail-crumb cf">
+        <div class="l">
+            <a href="/blog">博客/文章</a>
+            <i class="am-icon-angle-right"></i>
+            <a href="#">测试分类2</a>
+        </div>
+        <div class="r">
+            阅读量:99
+            <span class="split"></span>
+            2018年05月23日 18:35
+        </div>
+    </div>
+
+    <div class="preview-content">
+        <%- article.get('content')%>
+    </div>
+
+</div>
+
+
+<% include ../partials-desktop/footer %>
 <% include ../partials/js %>
 </body>
 </html>

@@ -1248,6 +1248,10 @@ span.hot:after {
 
 .desktop-page {
   max-width: 100%; }
+  .desktop-page a {
+    color: #86680c; }
+    .desktop-page a:hover {
+      text-decoration: underline; }
   .desktop-page .menu {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
     height: 80px;
@@ -2997,7 +3001,10 @@ a.pswp__share--download:hover {
   padding: 0 20px; }
 
 .article-page {
-  background: #f0e7d4; }
+  background-image: url("//lc-JoaBcRTt.cn-n1.lcfile.com/0360b8aeefb196dc3c79.jpg");
+  background-repeat: repeat-y;
+  background-size: contain;
+  color: #5b4606; }
   .article-page .crumb {
     padding-top: 100px;
     padding-bottom: 20px;
@@ -3062,5 +3069,43 @@ a.pswp__share--download:hover {
       position: absolute !important;
       bottom: 0 !important;
       width: 100%; }
+  .article-page .detail-content {
+    padding-top: 100px;
+    padding-bottom: 40px;
+    width: 800px;
+    margin: auto; }
+    .article-page .detail-content h1 {
+      font-size: 20px;
+      text-align: center;
+      margin: 0 0 10px 0;
+      padding: 0; }
+    .article-page .detail-content .detail-crumb {
+      height: 40px;
+      line-height: 40px;
+      margin-bottom: 10px; }
+      .article-page .detail-content .detail-crumb .r {
+        font-size: 14px; }
+    .article-page .detail-content .preview-content {
+      font-size: 16px;
+      line-height: 30px; }
+      .article-page .detail-content .preview-content section {
+        padding: 0;
+        margin: 0 0 20px 0; }
+      .article-page .detail-content .preview-content section img {
+        margin: 0; }
+      .article-page .detail-content .preview-content div {
+        padding: 0 15px;
+        margin-bottom: 20px; }
+      .article-page .detail-content .preview-content ul {
+        margin: 0 0 15px 0;
+        padding: 0 0 0 20px; }
+      .article-page .detail-content .preview-content li {
+        list-style: disc; }
+      .article-page .detail-content .preview-content img {
+        width: 100%;
+        margin-bottom: 20px; }
+      .article-page .detail-content .preview-content p {
+        margin: 0 0 15px 0;
+        padding: 0; }
 
 /*# sourceMappingURL=51wish.default.css.map */

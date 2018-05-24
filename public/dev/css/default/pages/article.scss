@@ -1,5 +1,8 @@
 .article-page {
-  background: #f0e7d4;
+  background-image:url('//lc-JoaBcRTt.cn-n1.lcfile.com/0360b8aeefb196dc3c79.jpg');
+  background-repeat: repeat-y;
+  background-size: contain;
+  color: #5b4606;
   .crumb {
     padding-top: 100px;
     padding-bottom: 20px;
@@ -82,6 +85,44 @@
       position: absolute !important;
       bottom:0 !important;
       width: 100%;
+    }
+
+  }
+
+  .detail-content {
+    padding-top:100px;
+    padding-bottom: 40px;
+    width:800px;
+    margin:auto;
+
+    h1 {
+      font-size: 20px;
+      text-align: center;
+      margin:0 0 10px 0;
+      padding: 0;
+    }
+
+    .detail-crumb {
+      height: 40px;
+      line-height: 40px;
+      margin-bottom: 10px;
+      .r {
+        font-size: 14px;
+      }
+    }
+
+    .preview-content {
+      font-size: 16px;
+      line-height: 30px;
+      section { padding: 0; margin: 0 0 20px 0; }
+      section img { margin:0;}
+      div { padding: 0 15px; margin-bottom: 20px;}
+      ul {margin: 0 0 15px 0;padding: 0 0 0 20px;}
+      li {
+        list-style: disc;
+      }
+      img { width: 100%; margin-bottom: 20px; }
+      p { margin: 0 0 15px 0; padding: 0;}
     }
 
   }
