@@ -3003,7 +3003,7 @@ a.pswp__share--download:hover {
 .article-page {
   background-image: url("//lc-JoaBcRTt.cn-n1.lcfile.com/0360b8aeefb196dc3c79.jpg");
   background-repeat: repeat-y;
-  background-size: contain;
+  background-size: 100%;
   color: #5b4606; }
   .article-page .crumb {
     padding-top: 100px;
