@@ -3022,6 +3022,8 @@ a.pswp__share--download:hover {
       margin-bottom: 6px;
       font-size: 14px;
       margin-right: 10px; }
+      .article-page .crumb a.on {
+        color: #f4e3bf; }
   .article-page .main-list {
     position: relative;
     width: 1200px;
