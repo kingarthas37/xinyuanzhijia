@@ -675,7 +675,6 @@ router.get('/check-wisdom-products-stock', (req, res) => {
     var response = res;
     var code = 0;
     var message = '';
-    url = 'https://www.wisdomproducts.com/product/indio-oil-come-to-me/843';
     https.get(url, function(res) {
         var html='';
         var response_timer = setTimeout(function() {
