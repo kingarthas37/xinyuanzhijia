@@ -779,7 +779,7 @@ module.exports = {
                     $('.purchase-link a').each(function () {
                         if($(this).attr('href').indexOf('wisdomproducts.com')> -1) {
                             $.ajax({
-                                url:'/product/check-wisdom-products-stock',
+                                url:'/admin/product/check-wisdom-products-stock',
                                 data:{
                                     productId:$(this).parent().data('product-id'),
                                     url:$(this).attr('href')
@@ -796,7 +796,7 @@ module.exports = {
 
         //如果搜索结果只有一条且是有规格产品，则跳转展示整个产品
         {
-            if($('.set-product-parent').length ===1) {
+            if($('.set-product-parent').length ===1 && $('.am-table').find('tbody tr').length ===1) {
                 $(".set-product-parent").click();
             }
         }
