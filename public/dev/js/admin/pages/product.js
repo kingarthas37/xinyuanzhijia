@@ -807,6 +807,36 @@ module.exports = {
 
         }
 
+        //推荐购买数
+        {
+            $('.recommend-purchase').click(function () {
+                $('.recommend-purchase-info').detach();
+                $('.product-row').each(function (i, n) {
+
+                   let dataThirty = parseInt($(n).find('.title').attr('data-popover-thirty')); //30天销量
+                   let dataNinety = parseInt($(n).find('.title').attr('data-popover-ninety'));  //90天销量
+                   let dataLastMonth = parseInt($(n).find('.title').attr('data-popover-last-month')); //上月销量
+                   let dataLastTowMonth = parseInt($(n).find('.title').attr('data-popover-two-month')); //上上月销量
+                   let dataAll = parseInt($(n).find('.title').attr('data-popover-sales')); //总销量
+                   let stock = parseInt($(n).find('.am-icon-inbox .stock-num').text()); //当前库存
+                   let reserve = parseInt($(n).find('.am-icon-arrow-circle-o-down .stock-num').text()) || 0;
+
+                   let currentStock = stock + reserve;
+                   let maxSales = Math.max.apply(null,[dataThirty, parseInt(dataNinety/3), dataLastMonth ,dataLastTowMonth]); //取最大30天销量值
+
+                   //计算结果：
+                    let reserveNums = maxSales - currentStock;
+                    if(reserveNums <= 0) {
+                        reserveNums = '';
+                    } else {
+                        reserveNums = Math.floor(reserveNums * 1.2);
+                        reserveNums = '<strong>[推荐预定数:' + reserveNums + ']</strong>';
+                    }
+                   $(n).find('.product-title').append(`<span class="recommend-purchase-info">${reserveNums}</span>`);
+               })
+            });
+        }
+
         //如果搜索结果只有一条且是有规格产品，则跳转展示整个产品
         {
             if($('.set-product-parent').length ===1 && $('.am-table').find('tbody tr').length ===1) {

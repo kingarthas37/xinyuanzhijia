@@ -222,10 +222,20 @@
     }
     
     .wisdom-check-info {
+        margin-right:3px;
         font-weight: bold;
         font-size: 13px;
         color: #5eb95e;
         &.outstock {
+            color: #f00;
+        }
+    }
+
+    .recommend-purchase-info {
+        margin-right:3px;
+        font-size: 13px;
+        color: #999;
+        strong {
             color: #f00;
         }
     }

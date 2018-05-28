@@ -492,10 +492,18 @@ span.hot:after {
   display: none; }
 
 .admin-product-page .wisdom-check-info {
+  margin-right: 3px;
   font-weight: bold;
   font-size: 13px;
   color: #5eb95e; }
   .admin-product-page .wisdom-check-info.outstock {
+    color: #f00; }
+
+.admin-product-page .recommend-purchase-info {
+  margin-right: 3px;
+  font-size: 13px;
+  color: #999; }
+  .admin-product-page .recommend-purchase-info strong {
     color: #f00; }
 
 /* admin product category page */
