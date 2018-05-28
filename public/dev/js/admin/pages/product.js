@@ -791,10 +791,9 @@ module.exports = {
                                 }
                             }).then((data)=> {
                                 count ++;
-                                console.log(linkLength,count);
                                 if(linkLength === count) {
                                     _this.prop('disabled',false);
-                                    $(this).text(text);
+                                    _this.text(text);
                                 }
                                 let outstock = data.message === '缺货' ? 'outstock' : '';
                                 $(`.am-table tr[data-product-id=${id}]`).find('.product-title').append(`<span class="wisdom-check-info ${outstock}">[${data.message}]</span>`);
