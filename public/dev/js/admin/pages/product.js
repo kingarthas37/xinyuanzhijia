@@ -775,6 +775,7 @@ module.exports = {
                 $('.check-wisdomproducts-stock').click(function () {
                     let text = $(this).text();
                     $(this).text('检测中...');
+                    $('.wisdom-check-info').detach();
                     $(this).prop('disabled',true);
                     let linkLength = $('.purchase-link').length;
                     let count = 0;
@@ -789,10 +790,12 @@ module.exports = {
                                 }
                             }).then((data)=> {
                                 count ++;
+                                console.log(linkLength,count);
                                 if(linkLength === count) {
                                     $(this).prop('disabled',false);
                                 }
-                                $(`.am-table tr[data-product-id=${id}]`).find('.product-title').append(`<span class="wisdom-check-info">[${data.message}]</span>`);
+                                let outstock = data.message === '缺货' ? 'outstock' : '';
+                                $(`.am-table tr[data-product-id=${id}]`).find('.product-title').append(`<span class="wisdom-check-info ${outstock}">[${data.message}]</span>`);
                             });
                         }
                     });
