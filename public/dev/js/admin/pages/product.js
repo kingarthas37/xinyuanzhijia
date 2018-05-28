@@ -829,7 +829,7 @@ module.exports = {
                     if(reserveNums <= 0) {
                         reserveNums = '';
                     } else {
-                        reserveNums = Math.floor(reserveNums * 1.2);
+                        reserveNums = Math.floor(reserveNums * 1.5);
                         reserveNums = '<strong>[推荐预定数:' + reserveNums + ']</strong>';
                     }
                    $(n).find('.product-title').append(`<span class="recommend-purchase-info">${reserveNums}</span>`);
