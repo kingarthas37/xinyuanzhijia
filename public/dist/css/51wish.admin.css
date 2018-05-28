@@ -491,6 +491,10 @@ span.hot:after {
 .admin-product-page .image-source-group {
   display: none; }
 
+.admin-product-page .wisdom-check-info {
+  font-weight: bold;
+  color: #F37B1D; }
+
 /* admin product category page */
 .admin-product-category-page .am-accordion {
   margin: 0 0 30px 0; }

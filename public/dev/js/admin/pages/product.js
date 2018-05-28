@@ -777,13 +777,16 @@ module.exports = {
                     $(this).text('检测中...');
                     $(this).prop('disabled',true);
                     $('.purchase-link a').each(function () {
+                        let id = $(this).parent().data('product-id');
                         if($(this).attr('href').indexOf('wisdomproducts.com')> -1) {
                             $.ajax({
                                 url:'/admin/product/check-wisdom-products-stock',
                                 data:{
-                                    productId:$(this).parent().data('product-id'),
+                                    productId:id,
                                     url:$(this).attr('href')
                                 }
+                            }).then((data)=> {
+                                $(`.am-table tr[data-product-id=${id}]`).find('.product-title').append(`<span class="wisdom-check-info">[${data.message}]</span>`);
                             });
                         }
                     });
