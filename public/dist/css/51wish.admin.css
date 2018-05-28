@@ -493,7 +493,10 @@ span.hot:after {
 
 .admin-product-page .wisdom-check-info {
   font-weight: bold;
-  color: #F37B1D; }
+  font-size: 13px;
+  color: #5eb95e; }
+  .admin-product-page .wisdom-check-info.outstock {
+    color: #f00; }
 
 /* admin product category page */
 .admin-product-category-page .am-accordion {

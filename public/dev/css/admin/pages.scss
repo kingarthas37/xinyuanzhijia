@@ -223,7 +223,11 @@
     
     .wisdom-check-info {
         font-weight: bold;
-        color: #F37B1D;
+        font-size: 13px;
+        color: #5eb95e;
+        &.outstock {
+            color: #f00;
+        }
     }
     
 }

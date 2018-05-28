@@ -776,6 +776,8 @@ module.exports = {
                     let text = $(this).text();
                     $(this).text('检测中...');
                     $(this).prop('disabled',true);
+                    let linkLength = $('.purchase-link').length;
+                    let count = 0;
                     $('.purchase-link a').each(function () {
                         let id = $(this).parent().data('product-id');
                         if($(this).attr('href').indexOf('wisdomproducts.com')> -1) {
@@ -786,6 +788,10 @@ module.exports = {
                                     url:$(this).attr('href')
                                 }
                             }).then((data)=> {
+                                count ++;
+                                if(linkLength === count) {
+                                    $(this).prop('disabled',false);
+                                }
                                 $(`.am-table tr[data-product-id=${id}]`).find('.product-title').append(`<span class="wisdom-check-info">[${data.message}]</span>`);
                             });
                         }
