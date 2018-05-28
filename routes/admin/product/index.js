@@ -667,6 +667,44 @@ router.post('/set-parent-product', (req,res) => {
             }
         }
     }, (err,results) => res.send({success:1}));
-})
+});
+
+router.get('/check-wisdom-products-stock', (req, res) => {
+    let url = req.query['url'];
+    let productId = parseInt(req.query['productId']) || 0;
+    var response = res;
+    var code = 0;
+    var message = '';
+    https.get(url, function(res) {
+        var html='';
+        var response_timer = setTimeout(function() {
+            res.destroy();
+            message = '爬虫超时';
+            response.send({code, message})
+        }, 90000);
+        res.on('data', function(data) {
+            html += data;
+        });
+        res.on('end',function() {
+            clearTimeout(response_timer);
+            if (html.match(/id="add_to_cart"/gi)) {
+                message = '有货';
+            } else if (html.match(/id="out_of_stock"/gi)) {
+                message = '缺货';
+            } else if (html.match(/class="add_cart"/gi)) {
+                message = '有货';
+            } else if(html.match(/class="out-of-stock"/gi)) {
+                message = '缺货';
+            } else {
+                message = '页面解析错误';
+            }
+            response.send({code, message});
+        });
+    }).on('error', function() {
+        message = 'http get请求失败';
+        response.send({code, message});
+    });
+
+});
 
 module.exports = router;
