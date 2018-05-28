@@ -773,6 +773,7 @@ module.exports = {
             } else {
 
                 $('.check-wisdomproducts-stock').click(function () {
+                    let _this = $(this);
                     let text = $(this).text();
                     $(this).text('检测中...');
                     $('.wisdom-check-info').detach();
@@ -792,7 +793,7 @@ module.exports = {
                                 count ++;
                                 console.log(linkLength,count);
                                 if(linkLength === count) {
-                                    $(this).prop('disabled',false);
+                                    _this.prop('disabled',false);
                                 }
                                 let outstock = data.message === '缺货' ? 'outstock' : '';
                                 $(`.am-table tr[data-product-id=${id}]`).find('.product-title').append(`<span class="wisdom-check-info ${outstock}">[${data.message}]</span>`);
