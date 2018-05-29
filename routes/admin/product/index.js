@@ -58,7 +58,7 @@ router.get('/', (req, res) => {
     if ((isShortStock || updateStockDate || adminStock || isUpdateStock) && !order) {
         order = 'updatedAt';
     } else if (!order) {
-        order = 'createdAt';
+        order = 'sales';
     }
     data = extend(data, {
         search,
