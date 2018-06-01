@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
     base.isAdminUserLogin(req, res);  //判断是否登录
 
     let page = req.query.page ? parseInt(req.query.page) : 1;
-    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
+    let limit = req.query.limit ? parseInt(req.query.limit) : 60;
     let order = req.query.order;
     let onsale = req.query.onsale ? parseInt(req.query.onsale) : 0;
 
