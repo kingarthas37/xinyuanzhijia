@@ -6,7 +6,7 @@
             <li class="admin-parent">
                 <a class="am-cf" data-am-collapse="{target:'#collapse-product'}">产品列表<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
                 <ul class="am-list am-collapse admin-sidebar-sub <%if(currentTag === 'product' && productMethodId == '3'){ %>am-in<%}%>" id="collapse-product">
-                    <li><a href="/admin/product?product-method-id=3" <%if(currentPage === 'product-index' && productMethodId == '3' && onsale == 0 && !isShortStock && !isUpdateStock && !updateStockDate && !adminStock && !hot && !isTranslation){ %>class="current"<%}%> >所有产品列表</a></li>
+                    <li><a href="/admin/product?product-method-id=3" <%if(currentPage === 'product-index' && productMethodId == '3' && onsale == 0 && !isShortStock && !isUpdateStock && !updateStockDate && !adminStock && !hot && !isTranslation && !isSales){ %>class="current"<%}%> >所有产品列表</a></li>
                     <li><a href="/admin/product?onsale=1&product-method-id=3" <%if(currentPage === 'product-index' && productMethodId == '3' && onsale == 1){ %>class="current"<%}%> >上架产品列表</a></li>
                     <li><a href="/admin/product?onsale=2&product-method-id=3" <%if(currentPage === 'product-index' && productMethodId == '3' && onsale == 2){ %>class="current"<%}%> >下架产品列表</a></li>
                     <li><a href="/admin/product?is-short-stock=true&product-method-id=3" <%if(currentPage === 'product-index' && isShortStock && productMethodId == '3'){ %>class="current"<%}%> >缺货产品列表</a></li>
@@ -16,13 +16,14 @@
                     <li><a href="/admin/product?update-stock-date=1&product-method-id=3" <%if(currentPage === 'product-index' && updateStockDate=='1' && productMethodId == '3'){ %>class="current"<%}%>>库存提醒列表(有库存)</a></li>
                     <li><a href="/admin/product?hot=1&product-method-id=3" <%if(currentPage === 'product-index' && hot && productMethodId == '3'){ %>class="current"<%}%>>热门产品列表</a></li>
                     <li><a href="/admin/product?is-translation=true&product-method-id=3" <%if(currentPage === 'product-index' && isTranslation && productMethodId == '3'){ %>class="current"<%}%>>产品翻译更新列表</a></li>
+                    <li><a href="/admin/product?is-sales=true&product-method-id=3" <%if(currentPage === 'product-index' && isSales && productMethodId == '3'){ %>class="current"<%}%>>促销产品列表</a></li>
                 </ul>
             </li>
 
             <li class="admin-parent">
                 <a class="am-cf" data-am-collapse="{target:'#collapse-custom-product'}">精品列表<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
                 <ul class="am-list am-collapse admin-sidebar-sub <%if(currentTag === 'product' && productMethodId == '21'){ %>am-in<%}%>" id="collapse-custom-product">
-                    <li><a href="/admin/product?product-method-id=21" <%if(currentPage === 'product-index' && productMethodId == '21' && onsale == 0 && !isShortStock && !isUpdateStock && !updateStockDate && !adminStock && !hot && !isTranslation){ %>class="current"<%}%> >所有产品列表</a></li>
+                    <li><a href="/admin/product?product-method-id=21" <%if(currentPage === 'product-index' && productMethodId == '21' && onsale == 0 && !isShortStock && !isUpdateStock && !updateStockDate && !adminStock && !hot && !isTranslation && !isSales){ %>class="current"<%}%> >所有产品列表</a></li>
                     <li><a href="/admin/product?onsale=1&product-method-id=21" <%if(currentPage === 'product-index' && productMethodId == '21' && onsale == 1){ %>class="current"<%}%> >上架产品列表</a></li>
                     <li><a href="/admin/product?onsale=2&product-method-id=21" <%if(currentPage === 'product-index' && productMethodId == '21' && onsale == 2){ %>class="current"<%}%> >下架产品列表</a></li>
                     <li><a href="/admin/product?is-short-stock=true&product-method-id=21" <%if(currentPage === 'product-index' && isShortStock && productMethodId == '21'){ %>class="current"<%}%> >缺货产品列表</a></li>
@@ -32,6 +33,7 @@
                     <li><a href="/admin/product?update-stock-date=1&product-method-id=21" <%if(currentPage === 'product-index' && updateStockDate=='1' && productMethodId == '21'){ %>class="current"<%}%>>库存提醒列表(有库存)</a></li>
                     <li><a href="/admin/product?hot=1&product-method-id=21" <%if(currentPage === 'product-index' && hot && productMethodId == '21'){ %>class="current"<%}%>>热门产品列表</a></li>
                     <li><a href="/admin/product?is-translation=true&product-method-id=21" <%if(currentPage === 'product-index' && isTranslation && productMethodId == '21'){ %>class="current"<%}%>>产品翻译更新列表</a></li>
+                    <li><a href="/admin/product?is-sales=true&product-method-id=3" <%if(currentPage === 'product-index' && isSales && productMethodId == '21'){ %>class="current"<%}%>>促销产品列表</a></li>
 
                 </ul>
             </li>

@@ -54,6 +54,7 @@ router.get('/', (req, res) => {
     let adminStock = req.query['stock'] || '';
     let hot = req.query['hot'] || '';
     let isTranslation = req.query['is-translation'] ? (req.query['is-translation'] == 'true' ? true : '') : '';
+    let isSales = req.query['is-sales'] ? (req.query['is-sales'] == 'true' ? true : '') : '';
     let parentProductId = req.query['parent-product-id'] ? parseInt(req.query['parent-product-id']) : '';
     if ((isShortStock || updateStockDate || adminStock || isUpdateStock) && !order) {
         order = 'updatedAt';
@@ -80,10 +81,11 @@ router.get('/', (req, res) => {
         order,
         hot,
         isTranslation,
-        parentProductId
+        parentProductId,
+        isSales
     });
 
-    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock, hot, isTranslation, parentProductId};
+    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock, hot, isTranslation, parentProductId, isSales};
     AV.Promise.when(
         //获取count
         new AV.Promise(resolve => {
@@ -107,7 +109,8 @@ router.get('/', (req, res) => {
                             order,
                             hot,
                             'is-translation': isTranslation,
-                            parentProductId
+                            parentProductId,
+                            isSales
                         }
                     })
                 });
@@ -691,9 +694,9 @@ router.get('/check-wisdom-products-stock', (req, res) => {
                 message = '有货';
             } else if (html.match(/id="out_of_stock"/gi)) {
                 message = '缺货';
-            } else if (html.search('class="add_cart"') < html.search('class="out-of-stock"')) {     //判断出现的位置
+            } else if (html.search('class="add_cart"') >= 0 && html.search('class="add_cart"') < html.search('class="out-of-stock"')) {     //判断出现的位置
                 message = '有货';
-            } else if(html.search('class="add_cart"') > html.search('class="out-of-stock"')) {      //判断出现的位置
+            } else if(html.search('class="add_cart"') < 0 || html.search('class="add_cart"') > html.search('class="out-of-stock"')) {      //判断出现的位置
                 message = '缺货';
             } else {
                 message = '页面解析错误';
@@ -705,6 +708,21 @@ router.get('/check-wisdom-products-stock', (req, res) => {
         response.send({code, message});
     });
 
+});
+
+router.post('/set-is-sales/:productId',(req,res)=> {
+    let productId = parseInt(req.params['productId']);
+    let isSales = req.body['isSales'] === 'true' ? true : false;
+    let query = new AV.Query(Product);
+    query.equalTo('productId',productId);
+    query.first().then(result => {
+        result.set('isSales', isSales);
+        return result.save();
+    }).then(result => {
+        res.send({
+            success:1
+        });
+    });
 });
 
 module.exports = router;
