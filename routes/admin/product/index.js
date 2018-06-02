@@ -712,7 +712,7 @@ router.get('/check-wisdom-products-stock', (req, res) => {
 
 router.post('/set-is-sales/:productId',(req,res)=> {
     let productId = parseInt(req.params['productId']);
-    let isSales = parseInt(req.body['isSales']);
+    let isSales = parseInt(req.body['state']);
     let query = new AV.Query(Product);
     query.equalTo('productId',productId);
     query.first().then(result => {
