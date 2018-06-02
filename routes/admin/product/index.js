@@ -54,7 +54,7 @@ router.get('/', (req, res) => {
     let adminStock = req.query['stock'] || '';
     let hot = req.query['hot'] || '';
     let isTranslation = req.query['is-translation'] ? (req.query['is-translation'] == 'true' ? true : '') : '';
-    let isSales = req.query['is-sales'] ? (req.query['is-sales'] == 'true' ? true : '') : '';
+    let isSales = req.query['is-sales'] || '';
     let parentProductId = req.query['parent-product-id'] ? parseInt(req.query['parent-product-id']) : '';
     if ((isShortStock || updateStockDate || adminStock || isUpdateStock) && !order) {
         order = 'updatedAt';
@@ -712,7 +712,7 @@ router.get('/check-wisdom-products-stock', (req, res) => {
 
 router.post('/set-is-sales/:productId',(req,res)=> {
     let productId = parseInt(req.params['productId']);
-    let isSales = req.body['isSales'] === 'true' ? true : false;
+    let isSales = parseInt(req.body['isSales']);
     let query = new AV.Query(Product);
     query.equalTo('productId',productId);
     query.first().then(result => {
