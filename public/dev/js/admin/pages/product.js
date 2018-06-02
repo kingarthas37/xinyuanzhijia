@@ -711,6 +711,41 @@ module.exports = {
             });
         }
 
+        //促销折扣
+        {
+            $('.set-discount').click(function() {
+
+                let state = parseInt($(this).attr('data-state'));
+                if(state===0) {
+                    state = 1;
+                } else if(state === 1) {
+                    state = 2;
+                } else if (state === 2) {
+                    state = 0;
+                }
+
+                let productId = $(this).parents('tr').data('product-id');
+
+                $.ajax({
+                    type:'post',
+                    url:`/admin/product/set-is-sales/${productId}`,
+                    data:{
+                        state:state
+                    }
+                }).then(data => {
+
+                    if(state === 1) {
+                        $(this).removeClass('on').addClass('off');
+                    } else if (state === 2) {
+                        $(this).add('off').removeClass('on');
+                    } else if(state === 0) {
+                        $(this).removeClass('off').removeClass('on');
+                    }
+
+                });
+            });
+        }
+
         {
             $('.set-product-trans').click(function() {
                 let isTranslation = $(this).attr('istranslationdate') === 'true' ? false : true;

@@ -473,6 +473,12 @@ span.hot:after {
 .admin-product-page .set-update-stock.on {
   color: #F37B1D; }
 
+.admin-product-page .set-discount.on {
+  color: #F37B1D; }
+
+.admin-product-page .set-discount.off {
+  color: #f00; }
+
 .admin-product-page .set-warning-stock.on {
   color: #F37B1D; }
 

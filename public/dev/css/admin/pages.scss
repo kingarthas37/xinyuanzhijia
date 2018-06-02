@@ -190,6 +190,15 @@
     .set-update-stock.on {
         color: #F37B1D;
     }
+
+    .set-discount {
+        &.on {
+            color: #F37B1D;
+        }
+        &.off {
+            color: #f00;
+        }
+    }
     
     .set-warning-stock {
         &.on {
