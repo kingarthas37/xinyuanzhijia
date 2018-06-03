@@ -730,6 +730,8 @@ module.exports = {
                 } else if(state === 1) {
                     state = 2;
                 } else if (state === 2) {
+                    state = 3;
+                } else if (state === 3) {
                     state = 0;
                 }
 
@@ -744,13 +746,15 @@ module.exports = {
                 }).then(data => {
 
                     $(this).attr('data-state',state);
-                    console.log(state);
+
                     if(state === 1) {
-                        $(this).removeClass('off').addClass('on');
+                        $(this).removeClass('on-2').removeClass('on-3').addClass('on-1');
                     } else if (state === 2) {
-                        $(this).removeClass('on').addClass('off');
+                        $(this).removeClass('on-1').removeClass('on-3').addClass('on-2');
+                    } else if(state === 3) {
+                        $(this).removeClass('on-1').removeClass('on-2').addClass('on-3');
                     } else if(state === 0) {
-                        $(this).removeClass('on').removeClass('off');
+                        $(this).removeClass('on-1').removeClass('on-2').removeClass('on-3');
                     }
 
                 });

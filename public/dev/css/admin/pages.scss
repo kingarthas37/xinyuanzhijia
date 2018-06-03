@@ -192,10 +192,13 @@
     }
 
     .set-discount {
-        &.on {
+        &.on-1 {
+            color: #F37B1D;
+        }
+        &.on-2 {
             color: #5eb95e;
         }
-        &.off {
+        &.on-3 {
             color: #f00;
         }
     }
