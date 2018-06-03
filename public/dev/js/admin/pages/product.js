@@ -734,12 +734,14 @@ module.exports = {
                     }
                 }).then(data => {
 
+                    $(this).attr('data-state',state);
+                    console.log(state);
                     if(state === 1) {
-                        $(this).removeClass('on').addClass('off');
+                        $(this).removeClass('off').addClass('on');
                     } else if (state === 2) {
-                        $(this).add('off').removeClass('on');
+                        $(this).removeClass('on').addClass('off');
                     } else if(state === 0) {
-                        $(this).removeClass('off').removeClass('on');
+                        $(this).removeClass('on').removeClass('off');
                     }
 
                 });
