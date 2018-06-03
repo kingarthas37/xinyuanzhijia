@@ -110,7 +110,7 @@ router.get('/', (req, res) => {
                             hot,
                             'is-translation': isTranslation,
                             parentProductId,
-                            isSales
+                            'is-sales':isSales
                         }
                     })
                 });
