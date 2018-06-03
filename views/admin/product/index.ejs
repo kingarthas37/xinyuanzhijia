@@ -230,7 +230,7 @@
                                updatestockdate="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i
                                         class="am-icon-dropbox"></i></a>
 
-                            <a title="促销" class="set-discount <% if(product[i].get('isSales')=='1') { %>on<%}%><% if(product[i].get('isSales')=='2') { %>off<%}%>" href="javascript:;" data-state="<%= product[i].get('isSales')%>"><i class="am-icon-usd"></i></a>
+                            <a title="促销" class="set-discount <% if(product[i].get('isSales')=='1') { %>on<%}%><% if(product[i].get('isSales')=='2') { %>off<%}%>" href="javascript:;" data-state="<%if(product[i].get('isSales')) {%><%= product[i].get('isSales')%><%}else{%>0<%}%>"><i class="am-icon-usd"></i></a>
 
                             <a title="产品翻译更新设置"
                                class="set-product-trans <% if(product[i].get('isTranslation') == true) { %>on<% } %>" istranslationdate="<%= product[i].get('isTranslation') %>"  href="javascript:;"><i class="am-icon-language"></i></a>
