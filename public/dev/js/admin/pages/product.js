@@ -25,6 +25,7 @@ module.exports = {
             let stock = $('input[name=stock]').val();
             let search = $('input[name=search]').val();
             let isTranslation = $('input[name=is-translation]').val();
+            let isSales = $('input[name=is-sales]').val();
             productMethod.change(function(){
                 if(this.value) {
                     return location.href = utils.urlParamsComponent('/admin/product',{
@@ -36,7 +37,8 @@ module.exports = {
                         hot,
                         stock,
                         search,
-                        isTranslation
+                        'is-translation':isTranslation,
+                        'is-sales': isSales
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
@@ -47,7 +49,8 @@ module.exports = {
                     hot,
                     stock,
                     search,
-                    isTranslation
+                    'is-translation':isTranslation,
+                    'is-sales': isSales
                 });
             });
 
@@ -63,7 +66,8 @@ module.exports = {
                         hot,
                         stock,
                         search,
-                        isTranslation
+                        'is-translation':isTranslation,
+                        'is-sales': isSales
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
@@ -75,7 +79,8 @@ module.exports = {
                     hot,
                     stock,
                     search,
-                    isTranslation
+                    'is-translation':isTranslation,
+                    'is-sales': isSales
                 });
             });
 
@@ -92,7 +97,8 @@ module.exports = {
                         hot,
                         stock,
                         search,
-                        isTranslation
+                        'is-translation':isTranslation,
+                        'is-sales': isSales
                     });
                 }
                 location.href = utils.urlParamsComponent('/admin/product',{
@@ -105,7 +111,8 @@ module.exports = {
                     hot,
                     stock,
                     search,
-                    isTranslation
+                    'is-translation':isTranslation,
+                    'is-sales': isSales
                 });
             });
 
@@ -122,7 +129,8 @@ module.exports = {
                     hot,
                     stock,
                     search,
-                    isTranslation
+                    'is-translation':isTranslation,
+                    'is-sales': isSales
                 });
             });
 
@@ -139,7 +147,8 @@ module.exports = {
                     hot,
                     stock,
                     search,
-                    isTranslation
+                    'is-translation':isTranslation,
+                    'is-sales': isSales
                 });
             });
 
