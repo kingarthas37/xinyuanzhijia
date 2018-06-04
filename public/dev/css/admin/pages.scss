@@ -40,7 +40,16 @@
             display: none;
         }
     }
-    
+
+    .no-wisdom-stock {
+        td {
+            color: #999 !important;
+            a {
+                color: #999 !important;
+            }
+        }
+    }
+
     .am-table .am-dropdown .am-btn {
         background: none;
         color: #666;

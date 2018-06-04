@@ -846,7 +846,12 @@ module.exports = {
                                     _this.text(text);
                                 }
                                 let outstock = data.message === '缺货' ? 'outstock' : '';
-                                $(`.am-table tr[data-product-id=${id}]`).find('.product-title').append(`<span class="wisdom-check-info ${outstock}">[${data.message}]</span>`);
+                                let tr = $(`.am-table tr[data-product-id=${id}]`);
+                                tr.find('.product-title').append(`<span class="wisdom-check-info ${outstock}">[${data.message}]</span>`);
+                                if(outstock) {
+                                    tr.addClass('no-wisdom-stock');
+                                }
+
                             });
                         }
                     });
