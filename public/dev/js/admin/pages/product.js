@@ -192,6 +192,8 @@ module.exports = {
                             trigger:'hover'
                         });
                     });
+
+                    $('.recommend-purchase').removeAttr('disabled');
                    
                 });
             });
