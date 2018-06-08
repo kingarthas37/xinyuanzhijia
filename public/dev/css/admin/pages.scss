@@ -41,6 +41,11 @@
         }
     }
 
+    .hide-no-wisdom {
+        .no-wisdom-stock {
+            display: none;
+        }
+    }
     .no-wisdom-stock {
         td {
             color: #999 !important;

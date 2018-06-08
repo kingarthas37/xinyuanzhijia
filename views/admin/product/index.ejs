@@ -115,10 +115,13 @@
             </div>
             <div class="am-form">
                 <div class="cf">
-                    <div class="am-u-sm-12 am-u-md-12">
+                    <div class="am-u-sm-6 am-u-md-6">
                         <button type="button" class="recommend-purchase am-btn am-btn-primary am-btn-sm" disabled="disabled">预定数推测</button>
                         <button type="button" class="check-wisdomproducts-stock am-btn am-btn-primary am-btn-sm">检测wisdom</button>
                         <button type="button" class="check-taobao-stock am-btn am-btn-primary am-btn-sm">检测淘宝</button>
+                    </div>
+                    <div class="am-u-sm-6 am-u-md-6 t-r">
+                        <label> <input class="hide-wisdomproducts-outstock" type="checkbox"> 隐藏wisdom缺货</label>
                     </div>
 
                 </div>
@@ -127,8 +130,8 @@
 
 
         <div class="am-g">
-            <div class="table-view am-u-sm-12">
-                <table class="am-table am-table-striped">
+            <div  class="table-view am-u-sm-12">
+                <table id="product-list" class="am-table am-table-striped">
                     <thead>
                     <tr>
                         <th class="product-title">产品名称</th>

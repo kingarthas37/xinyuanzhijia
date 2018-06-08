@@ -377,6 +377,9 @@ span.hot:after {
 .admin-product-page .banner-view.hide, .admin-product-page #select-banner.hide, .admin-product-page #banner.hide {
   display: none; }
 
+.admin-product-page .hide-no-wisdom .no-wisdom-stock {
+  display: none; }
+
 .admin-product-page .no-wisdom-stock td {
   color: #999 !important; }
   .admin-product-page .no-wisdom-stock td a {

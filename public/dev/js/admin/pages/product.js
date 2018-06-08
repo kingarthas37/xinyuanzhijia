@@ -864,6 +864,27 @@ module.exports = {
 
         }
 
+
+        //隐藏wisdom缺货项
+        {
+            //no-wisdom-stock
+            let checkbox = $('.hide-wisdomproducts-outstock');
+            if($.cookie('hide-wisdomproducts-outstock')) {
+                checkbox.prop('checked',true);
+                $('#product-list').addClass('hide-no-wisdom');
+            }
+
+            checkbox.click(function () {
+                if(this.checked) {
+                    $.cookie('hide-wisdomproducts-outstock','true',{expires:new Date(new Date().getTime() + 1000*60*60*24*365),path:'/',domain:location.host});
+                    $('#product-list').addClass('hide-no-wisdom');
+                } else {
+                    $.cookie('hide-wisdomproducts-outstock','',{expires:new Date(new Date().getTime()),path:'/',domain:location.host});
+                    $('#product-list').removeClass('hide-no-wisdom');
+                }
+            });
+        }
+
         //推荐购买数
         {
             $('.recommend-purchase').click(function () {
