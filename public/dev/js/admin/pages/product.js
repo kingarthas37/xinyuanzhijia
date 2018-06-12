@@ -909,17 +909,17 @@ module.exports = {
                         totalMonth = (currentYear - createYear) * 12 + (currentMonth - createMonth);
                     }
 
-
+                    console.log(totalMonth);
 
                    let currentStock = stock + reserve;
                    let maxSales = Math.max.apply(null,[dataThirty, parseInt(dataNinety/3), dataLastMonth ,dataLastTowMonth]); //取最大30天销量值
 
                    //计算结果：
-                    let reserveNums = maxSales - currentStock;
+                    let reserveNums = maxSales * 3 - currentStock;
                     if(reserveNums <= 0) {
                         reserveNums = '';
                     } else {
-                        reserveNums = Math.floor(reserveNums * 2);
+                        reserveNums = Math.ceil(reserveNums);
                         reserveNums = '<strong>[推荐预定数:' + reserveNums + ']</strong>';
                     }
                    $(n).find('.product-title').append(`<span class="recommend-purchase-info">${reserveNums}</span>`);
