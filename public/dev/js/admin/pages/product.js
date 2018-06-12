@@ -888,6 +888,7 @@ module.exports = {
         //推荐购买数
         {
             $('.recommend-purchase').click(function () {
+
                 $('.recommend-purchase-info').detach();
                 $('.product-row').each(function (i, n) {
 
@@ -898,6 +899,17 @@ module.exports = {
                    let dataAll = parseInt($(n).find('.title').attr('data-popover-sales')); //总销量
                    let stock = parseInt($(n).find('.am-icon-inbox .stock-num').text()); //当前库存
                    let reserve = parseInt($(n).find('.am-icon-arrow-circle-o-down .stock-num').text()) || 0;
+                   let totalMonth = 0;  //从上架到目前的总月份
+                    {
+                        let createTime = parseInt($(n).find('.title').attr('data-createdate'));
+                        let createYear = new Date(createTime).getFullYear();
+                        let createMonth = new Date(createTime).getMonth() + 1;
+                        let currentYear = new Date().getFullYear();
+                        let currentMonth = new Date().getMonth() + 1;
+                        totalMonth = (currentYear - createYear) * 12 + (currentMonth - createMonth);
+                    }
+
+
 
                    let currentStock = stock + reserve;
                    let maxSales = Math.max.apply(null,[dataThirty, parseInt(dataNinety/3), dataLastMonth ,dataLastTowMonth]); //取最大30天销量值

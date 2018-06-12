@@ -168,7 +168,9 @@
                                data-popover-cost-price="<% if(product[i].get('costPrice')) { %> <%= product[i].get('costPrice') %> <% }else{ %>-<% } %>"
                                data-popover-price="<% if(product[i].get('price')) { %> <%= product[i].get('price') %> <% }else{ %>-<% } %>"
                                data-popover-sales="<%= product[i].get('sales') %>"
-                               data-parent-id="<%=product[i].get('parentProductId') %>" >
+                               data-parent-id="<%=product[i].get('parentProductId') %>"
+                               data-createdate="<%=product[i].createdAt.getTime() %>"
+                                >
                                 <% if(product[i].get('isHot')) { %>
                                 <sup class="hot"></sup>
                                 <% } %>
