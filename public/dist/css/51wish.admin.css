@@ -497,6 +497,9 @@ span.hot:after {
 .admin-product-page .set-discount.on-3 {
   color: #f00 !important; }
 
+.admin-product-page .set-discount.on-4 {
+  color: #5c23ff !important; }
+
 .admin-product-page .set-warning-stock.on {
   color: #F37B1D; }
 

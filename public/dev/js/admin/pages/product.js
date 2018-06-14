@@ -727,13 +727,15 @@ module.exports = {
             $('.set-discount').click(function() {
 
                 let state = parseInt($(this).attr('data-state'));
-                if(state===0) {
+                if(state === 0) {
                     state = 2;
                 } else if(state === 1) {
                     state = 3;
                 } else if (state === 2) {
                     state = 1;
                 } else if (state === 3) {
+                    state = 4;
+                } else if (state === 4) {
                     state = 0;
                 }
 
@@ -750,13 +752,15 @@ module.exports = {
                     $(this).attr('data-state',state);
 
                     if(state === 1) {
-                        $(this).removeClass('on-2').removeClass('on-3').addClass('on-1');
+                        $(this).removeClass('on-2').removeClass('on-3').removeClass('on-4').addClass('on-1');
                     } else if (state === 2) {
-                        $(this).removeClass('on-1').removeClass('on-3').addClass('on-2');
+                        $(this).removeClass('on-1').removeClass('on-3').removeClass('on-4').addClass('on-2');
                     } else if(state === 3) {
-                        $(this).removeClass('on-1').removeClass('on-2').addClass('on-3');
+                        $(this).removeClass('on-1').removeClass('on-2').removeClass('on-4').addClass('on-3');
+                    } else if(state === 4) {
+                        $(this).removeClass('on-1').removeClass('on-2').removeClass('on-3').addClass('on-4');
                     } else if(state === 0) {
-                        $(this).removeClass('on-1').removeClass('on-2').removeClass('on-3');
+                        $(this).removeClass('on-1').removeClass('on-2').removeClass('on-3').removeClass('on-4');
                     }
 
                 });
@@ -908,8 +912,6 @@ module.exports = {
                         let currentMonth = new Date().getMonth() + 1;
                         totalMonth = (currentYear - createYear) * 12 + (currentMonth - createMonth);
                     }
-
-                    console.log(totalMonth);
 
                    let currentStock = stock + reserve;
                    let maxSales = Math.max.apply(null,[dataThirty, parseInt(dataNinety/3), dataLastMonth ,dataLastTowMonth]); //取最大30天销量值

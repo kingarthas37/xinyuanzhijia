@@ -236,7 +236,7 @@
                                updatestockdate="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i
                                         class="am-icon-dropbox"></i></a>
 
-                            <a title="促销" class="set-discount <% if(product[i].get('isSales')=='1') { %>on-1<%}%><% if(product[i].get('isSales')=='2') { %>on-2<%}%><% if(product[i].get('isSales')=='3') { %>on-3<%}%>" href="javascript:;" data-state="<%if(product[i].get('isSales')) {%><%= product[i].get('isSales')%><%}else{%>0<%}%>"><i class="am-icon-usd"></i></a>
+                            <a title="促销" class="set-discount <% if(product[i].get('isSales')=='1') { %>on-1<%}%><% if(product[i].get('isSales')=='2') { %>on-2<%}%><% if(product[i].get('isSales')=='3') { %>on-3<%}%><% if(product[i].get('isSales')=='4') { %>on-4<%}%>" href="javascript:;" data-state="<%if(product[i].get('isSales')) {%><%= product[i].get('isSales')%><%}else{%>0<%}%>"><i class="am-icon-usd"></i></a>
 
                             <a title="产品翻译更新设置"
                                class="set-product-trans <% if(product[i].get('isTranslation') == true) { %>on<% } %>" istranslationdate="<%= product[i].get('isTranslation') %>"  href="javascript:;"><i class="am-icon-language"></i></a>
