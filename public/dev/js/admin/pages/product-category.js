@@ -20,6 +20,7 @@ module.exports = {
         this.removeCategory2();
         this.moveCategory2Up();
         this.moveCategory2Down();
+        this.keepStock();
     },
     
     //选择产品类型
@@ -572,6 +573,48 @@ module.exports = {
 
         });
 
+
+    },
+
+    //是否缺货下架
+    keepStock: function () {
+
+        this.container.on('click', '.keep-stock', function () {
+
+            let $this = $(this);
+            let outstock = $(this).attr('data-outstock') === 'true' ? true : false;
+
+            let content = $(this).parents('li');
+            let category2Id = content.attr('data-id');
+
+            $.get({
+                url: leanApp.api + 'classes/ProductCategory2',
+                headers: leanAppHeader,
+                data: 'where={"category2Id":' + category2Id + '}'
+            }).done(data => {
+                return $.ajax({
+                    type: 'PUT',
+                    url: leanApp.api + 'classes/ProductCategory2/' + data.results[0].objectId,
+                    headers: leanAppHeader,
+                    data: JSON.stringify({
+                        isKeepStock: !outstock
+                    })
+                });
+            }).done(() => {
+
+                if(outstock) {
+                    $this.addClass('false');
+                    $this.text('下架(否)');
+                    $this.attr('data-outstock','false');
+                } else {
+                    $this.removeClass('false');
+                    $this.text('下架(是)');
+                    $this.attr('data-outstock','true');
+                }
+
+            });
+
+        });
 
     }
 

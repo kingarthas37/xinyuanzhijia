@@ -385,6 +385,9 @@ span.hot:after {
   .admin-product-page .no-wisdom-stock td a {
     color: #999 !important; }
 
+.admin-product-page .am-icon-lock {
+  color: #666; }
+
 .admin-product-page .am-table .am-dropdown .am-btn {
   background: none;
   color: #666;
@@ -557,6 +560,11 @@ span.hot:after {
     border-bottom: 1px dashed #ddd; }
     .admin-product-category-page .am-accordion li:hover {
       background: #f5f5f5; }
+
+.admin-product-category-page .keep-stock {
+  color: #5eb95e; }
+  .admin-product-category-page .keep-stock.false {
+    color: #f00; }
 
 /* product preview page */
 .product-preview-page {

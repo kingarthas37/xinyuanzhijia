@@ -64,6 +64,7 @@
                                                 <a class="moveup-category-2" href="javascript:;">上移</a>
                                                 <a class="movedown-category-2" href="javascript:;">下移</a>
                                                 <a class="remove-category-2" href="javascript:;">删除</a>
+                                                <a class="keep-stock <% if(!category[i].contents[j].get('isKeepStock')) { %>false<% } %>" href="javascript:;" data-outstock="<%= category[i].contents[j].get('isKeepStock') %>">下架(<% if(!category[i].contents[j].get('isKeepStock')) { %>否<% }else { %>是<%}%>)</a>
                                             </span>
                                          </li>
                                     <% } %>

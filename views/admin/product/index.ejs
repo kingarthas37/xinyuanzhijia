@@ -93,7 +93,7 @@
                                         <% if(category2[i].get('category2Id') === category2Id ) { %>
                                         selected="selected"
                                         <% } %>
-                                        value="<%= category2[i].get('category2Id') %>"> <%= category2[i].get('name'); %></option>
+                                        value="<%= category2[i].get('category2Id') %>"> <%= category2[i].get('name'); %><% if(!category2[i].get('isKeepStock')) {%>(否)<%}%></option>
                                 <% }
                                 %>
                             </select>
@@ -195,6 +195,7 @@
                                 <%}%>
                             </a>
 
+
                             <a title="已预定数量" class="link-modal-viewport"
                                href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock">
                                 <i class="am-icon-arrow-circle-o-down  <% if(product[i].get('reserve')){ %> instock<% } %>">
@@ -246,7 +247,7 @@
                                href="/admin/product?product-method-id=<%= product[i].get('productMethod')[j] %>&category1-id=<%= product[i].get('category1')[j] %>&category2-id=<%= product[i].get('category2')[j] %>&onsale=<%= onsale %>&limit=200"><i
                                         class="am-icon-tag"></i></a>
                             <% } %>
-                        
+
                         </td>
 
                         <td class="t-c">
