@@ -53,9 +53,12 @@ router.get('/:productId',(req,res)=> {
                 
                 //水印判断不同淘宝店铺
                 let watermark = productMethodId === 21 ? config.watermark.muxue928 : config.watermark.main;
-                let detailImage = product.get('detailImage').replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/\.jpg/gi,'.jpg'+ watermark);
-                //detailImage += watermark;
-                console.log(detailImage);
+                let detailImage = product.get('detailImage').replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com');
+                if (/.JPG/.test(detailImage)) {
+                    detailImage = detailImage.replace(/\.JPG/gi,'.JPG'+ watermark);
+                } else {
+                    detailImage = detailImage.replace(/\.jpg/gi,'.jpg'+ watermark);
+                }
                 data = extend(data,{
                     product,
                     name:markdown.toHTML(name),
