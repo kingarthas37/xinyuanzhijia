@@ -936,6 +936,28 @@ module.exports = {
             }
         }
 
+        //无库存时是否下架淘宝
+        {
+            $('.set-outstock-off').click(function() {
+                let productId = $(this).parents('tr').data('product-id');
+                $.ajax({
+                    type:'get',
+                    url:`/admin/product/get-stock/${productId}`,
+                }).then(data => {
+                    console.log(data);
+                    if (data.success > 0) {
+                        if (data.data) {
+                            $(this).addClass('on');
+                        } else {
+                            $(this).removeClass('on');
+                        }
+                    } else {
+                        alert(data.data);
+                    }
+                });
+            });
+        }
+
     },
 
     addFun:function() {

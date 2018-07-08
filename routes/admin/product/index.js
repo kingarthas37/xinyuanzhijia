@@ -725,8 +725,8 @@ router.post('/set-is-sales/:productId',(req,res)=> {
     });
 });
 
-router.get('/get-stock', (req,res) => {
-    let productId = parseInt(req.query['product-id']) || 0;
+router.get('/get-stock/:productId', (req,res) => {
+    let productId = parseInt(req.params['productId']) || 0;
     if (productId>0) {
         let query = new AV.Query(Product);
         query.equalTo('productId',productId);
