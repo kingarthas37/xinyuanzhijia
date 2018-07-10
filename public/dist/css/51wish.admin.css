@@ -506,6 +506,14 @@ span.hot:after {
 .admin-product-page .set-warning-stock.on {
   color: #F37B1D; }
 
+.admin-product-page .set-outstock-off.on {
+  color: #b0b0b0; }
+
+.admin-product-page .set-outstock-off.method-21 {
+  color: #b0b0b0; }
+  .admin-product-page .set-outstock-off.method-21.on {
+    color: #0e90d2; }
+
 .admin-product-page .set-product-trans.on {
   color: #F37B1D; }
 

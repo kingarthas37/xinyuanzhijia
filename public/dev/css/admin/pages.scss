@@ -230,6 +230,18 @@
         }
     }
 
+    .set-outstock-off {
+        &.on {
+            color: #b0b0b0;
+        }
+        &.method-21 {
+            color: #b0b0b0;
+            &.on {
+                color:#0e90d2;
+            }
+        }
+    }
+
     .set-product-trans {
       &.on {
           color: #F37B1D;
