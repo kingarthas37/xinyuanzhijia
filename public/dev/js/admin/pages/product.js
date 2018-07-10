@@ -943,7 +943,7 @@ module.exports = {
                 let productId = $(this).parents('tr').data('product-id');
                 $.ajax({
                     type:'post',
-                    url:`/admin/product/is-stock/${productId}`,
+                    url:`/admin/product/set-stock/${productId}`,
                     data:{
                         isStock
                     }
