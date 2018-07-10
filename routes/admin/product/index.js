@@ -727,11 +727,12 @@ router.post('/set-is-sales/:productId',(req,res)=> {
 
 router.post('/set-stock/:productId', (req,res) => {
     let productId = parseInt(req.params['productId']) || 0;
+    let isStock = req.body['isStock'] === 'true' ? true : false;
     if (productId>0) {
         let query = new AV.Query(Product);
         query.equalTo('productId',productId);
         query.first().then(result => {
-            result.set('isStock', isTranslation);
+            result.set('isStock', isStock);
             return result.save();
         }).then(result => {
             res.send({

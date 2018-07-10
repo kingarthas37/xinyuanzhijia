@@ -939,20 +939,21 @@ module.exports = {
         //无库存时是否下架淘宝
         {
             $('.set-outstock-off').click(function() {
+                let isStock = $(this).attr('isstockdate') === 'true' ? false : true;
                 let productId = $(this).parents('tr').data('product-id');
                 $.ajax({
                     type:'post',
                     url:`/admin/product/is-stock/${productId}`,
+                    data:{
+                        isStock
+                    }
                 }).then(data => {
-                    console.log(data);
-                    if (data.success > 0) {
-                        if (data.data) {
-                            $(this).addClass('on');
-                        } else {
-                            $(this).removeClass('on');
-                        }
+                    if(isStock) {
+                        $(this).addClass('on');
+                        $(this).attr('isstockdate','true');
                     } else {
-                        alert(data.data);
+                        $(this).removeClass('on');
+                        $(this).attr('isstockdate','false');
                     }
                 });
             });
