@@ -725,17 +725,18 @@ router.post('/set-is-sales/:productId',(req,res)=> {
     });
 });
 
-router.get('/get-stock/:productId', (req,res) => {
+router.post('/set-stock/:productId', (req,res) => {
     let productId = parseInt(req.params['productId']) || 0;
     if (productId>0) {
         let query = new AV.Query(Product);
         query.equalTo('productId',productId);
         query.first().then(result => {
-            if(result.get('stock') > 0) {
-                res.send({success:1,data:true});
-            } else {
-                res.send({success:1,data:false});
-            }
+            result.set('isStock', isTranslation);
+            return result.save();
+        }).then(result => {
+            res.send({
+                success:1
+            });
         });
     } else {
         res.send({success:0, data:'ID错误'});

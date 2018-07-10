@@ -941,8 +941,8 @@ module.exports = {
             $('.set-outstock-off').click(function() {
                 let productId = $(this).parents('tr').data('product-id');
                 $.ajax({
-                    type:'get',
-                    url:`/admin/product/get-stock/${productId}`,
+                    type:'post',
+                    url:`/admin/product/is-stock/${productId}`,
                 }).then(data => {
                     console.log(data);
                     if (data.success > 0) {
