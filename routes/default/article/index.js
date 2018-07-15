@@ -26,7 +26,8 @@ router.get('/', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let articleCategoryId = req.query.catid ? parseInt(req.query.catid) : '';
-    let options = {page,limit, articleCategoryId};
+    let status = 1; //只显示发布的文章
+    let options = {page,limit, articleCategoryId, status};
     data = extend(data, {articleCategoryId});
     AV.Promise.when(
         new AV.Promise(resolve => {
@@ -52,7 +53,8 @@ router.get('/ajax', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let articleCategoryId = req.query.catid ? parseInt(req.query.catid) : '';
-    let options = {page,limit, articleCategoryId};
+    let status = 1; //只显示发布的文章
+    let options = {page,limit, articleCategoryId, status};
     AV.Promise.when(
         new AV.Promise(resolve => {
             article.getArticle(options).then(result => {
