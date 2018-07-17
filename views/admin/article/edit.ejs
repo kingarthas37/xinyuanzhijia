@@ -128,7 +128,7 @@
                     <!-- push start -->
                     <div class="am-form-group">
                         <div>
-                            <label><strong>发布文章：<input type="checkbox" name="status"></strong></label>
+                            <label><strong>发布文章：<input type="checkbox" name="status" <%if(article.get('status')) { %> checked="checked"<% }%>></strong></label>
                         </div>
                     </div>
                     <!-- push end -->

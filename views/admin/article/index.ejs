@@ -71,6 +71,7 @@
                         <th class="t-c">网店链接</th>
                         <th class="t-c">视频链接</th>
                         <th class="t-c">数据</th>
+                        <th class="t-c">状态</th>
                         <th class="t-c">操作</th>
                         <th class="t-c">更新日期</th>
                     </tr>
@@ -100,6 +101,13 @@
                             <% if(article[i].get('videoLink')) { %><a target="_blank" href="<%= article[i].get('videoLink') %>"><i class="am-icon-video-camera"></i></a><%}else{%>-<%}%>
                         </td>
                         <td class="t-c">浏览:<%= article[i].get('pageView') %></td>
+                        <td class="t-c">
+                            <%if(article[i].get('status')){ %>
+                            <strong>已发布</strong>
+                            <%}else{%>
+                            未发布
+                            <%}%>
+                        </td>
                         <td class="t-c">
                             <a href="javascript:;"  target="_blank" data-id="<%= article[i].get('articleId') %>" class="btn-preview">预览</a>
                             <a href="/admin/article/copy/<%= article[i].get('articleId') %>">复制</a>
