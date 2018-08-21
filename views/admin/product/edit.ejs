@@ -106,6 +106,7 @@
                     <hr/>
 
                     <!-- banner start -->
+                    <!--
                     <div class="am-form-group am-form-select">
                         <label for="select-banner">选择商品匹配的Banner (淘宝店铺使用)：</label>
                         <div>
@@ -120,9 +121,8 @@
 
                     <div class="banner-view <% if(!product.get('bannerId')) { %>hide<% } %>"><% for(var i=0;i<banner.length;i++){ %><% if(banner[i].get('bannerId') === product.get('bannerId')) { %><img src="<%= banner[i].get('bannerUrl') %>" width="300" /><% }%><% } %></div>
                     <input type="hidden" id="banner" name="banner" value="<% for(var i=0;i<banner.length;i++){ %><% if(banner[i].get('bannerId') === product.get('bannerId')) { %><%= banner[i].get('bannerUrl') %><% }%><% } %>">
+                    -->
                     <!-- banner end -->
-
-                    <hr/>
 
                     <!-- review start -->
                     <div class="am-form-group">
