@@ -744,4 +744,21 @@ router.post('/set-stock/:productId', (req,res) => {
     }
 });
 
+router.post('/set-discount',(req,res)=> {
+    let productId = parseInt(req.body['productId']);
+    let discount = parseFloat(req.body['discount']);
+    let query = new AV.Query(Product);
+
+    query.equalTo('productId',productId);
+    query.select('discount');
+    query.first().then(result => {
+        result.set('discount', discount);
+        result.save().then(()=>{
+            res.send({
+                success:1
+            });
+        });
+    });
+});
+
 module.exports = router;

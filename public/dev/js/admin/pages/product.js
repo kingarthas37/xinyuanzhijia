@@ -959,6 +959,55 @@ module.exports = {
             });
         }
 
+        {// 设置促销折扣
+            let modal = $('#modal-change-discount');
+            let input = $('.link-change-discount');
+            let modalLoading = $('#modal-loading');
+
+            $('.link-change-discount').click(function() {
+                let productId = $(this).data('product-id');
+                let category2Id=$(this).data('category2-id');
+                modalLoading.find('.am-modal-hd').text('正在修改...');
+                modal.modal({
+                    relatedTarget: this,
+                    onConfirm: function(e) {
+
+                        if(!$.trim(input.val())) {
+                            alert('请输入正确的折扣');
+                            // return;
+                        }else{
+                            $.ajax({
+                                type:'post',
+                                url:'/admin/product/set-discount',
+                                data:{
+                                    'productId':productId,
+                                    'discount':$.trim(input.val())
+                                }
+                            }).then(
+                                result => {
+                                    modalLoading.find('.am-modal-hd').text('修改成功!正在更新...');
+                                    setTimeout(()=> {
+                                        location.reload();
+                                    },1000);
+                                },
+                                err => {
+                                    console.info(err);
+                                    modalLoading.find('.am-modal-hd').text('修改失败,请重试!');
+                                    setTimeout(()=> {
+                                        modalLoading.modal('close');
+                                    },1000);
+                                }
+                            );
+                            modalLoading.modal();
+                        }
+                    }
+                });
+                input[0].focus();
+                return false;
+            });
+
+        }
+
     },
 
     addFun:function() {
