@@ -161,7 +161,7 @@
                             <a title="产品属性分类设置"
                                class="set-product-parent <% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %>on<% } %>" <% if(product[i].get('isParent') == true) { %>parentProductId="<%= product[i].get('productId') %>"<% } else if(product[i].get('parentProductId')) { %>parentProductId="<%= product[i].get('parentProductId') %>"<% } %>"  href="javascript:;"><i class="am-icon-ellipsis-v"></i></a>
                             <% } %>
-
+                            <span style="color: lightcoral;"><%= product[i].get('discount')%>折</span>
                             <a class="title<% if(!product[i].get('isOnsale')) { %> product-out<% } %> <% if(product[i].get('isHot')) { %> product-hot<% } %><% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %> product-parent<%}%>"
                                href="/admin/product/edit/<%= product[i].get('productId') %>"
                                data-popover-source-price="<% if(product[i].get('originalPrice')) { %> <%= product[i].get('originalPrice') %> <% }else{ %>-<% } %>"
