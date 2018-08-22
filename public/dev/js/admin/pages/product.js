@@ -961,7 +961,7 @@ module.exports = {
 
         {// 设置促销折扣
             let modal = $('#modal-change-discount');
-            let input = $('.link-change-discount');
+            let input = $('.input-change-discount');
             let modalLoading = $('#modal-loading');
 
             $('.link-change-discount').click(function() {
