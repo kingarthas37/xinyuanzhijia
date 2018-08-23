@@ -94,6 +94,19 @@
         }
     }
 
+    .am-icon-usd {
+        position: relative;
+        .discount-num {
+            position: absolute;
+            left:10px;
+            top:-8px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #5eb95e;
+            font-style: normal;
+        }
+    }
+
     .am-icon-arrow-circle-o-down {
         &.instock {
             color: #F37B1D;

@@ -161,7 +161,6 @@
                             <a title="产品属性分类设置"
                                class="set-product-parent <% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %>on<% } %>" <% if(product[i].get('isParent') == true) { %>parentProductId="<%= product[i].get('productId') %>"<% } else if(product[i].get('parentProductId')) { %>parentProductId="<%= product[i].get('parentProductId') %>"<% } %>"  href="javascript:;"><i class="am-icon-ellipsis-v"></i></a>
                             <% } %>
-                            <span style="color: lightcoral;"><%= product[i].get('discount')%>折</span>
                             <a class="title<% if(!product[i].get('isOnsale')) { %> product-out<% } %> <% if(product[i].get('isHot')) { %> product-hot<% } %><% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %> product-parent<%}%>"
                                href="/admin/product/edit/<%= product[i].get('productId') %>"
                                data-popover-source-price="<% if(product[i].get('originalPrice')) { %> <%= product[i].get('originalPrice') %> <% }else{ %>-<% } %>"
@@ -237,7 +236,7 @@
                                updatestockdate="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i
                                         class="am-icon-dropbox"></i></a>
 
-                            <a title="促销" class="set-discount <% if(product[i].get('isSales')=='1') { %>on-1<%}%><% if(product[i].get('isSales')=='2') { %>on-2<%}%><% if(product[i].get('isSales')=='3') { %>on-3<%}%><% if(product[i].get('isSales')=='4') { %>on-4<%}%>" href="javascript:;" data-state="<%if(product[i].get('isSales')) {%><%= product[i].get('isSales')%><%}else{%>0<%}%>"><i class="am-icon-usd"></i></a>
+                            <a title="促销" class="set-discount <% if(product[i].get('isSales')=='1') { %>on-1<%}%><% if(product[i].get('isSales')=='2') { %>on-2<%}%><% if(product[i].get('isSales')=='3') { %>on-3<%}%><% if(product[i].get('isSales')=='4') { %>on-4<%}%>" href="javascript:;" data-state="<%if(product[i].get('isSales')) {%><%= product[i].get('isSales')%><%}else{%>0<%}%>"><i class="am-icon-usd"><% if(parseInt(product[i].get('discount')) > 0) { %><em class="discount-num"><%= product[i].get('discount')%></em><%}%></i></a>
 
                             <a title="无库存时是否下架淘宝" href="javascript:;" class="set-outstock-off method-<%= product[i].get('productMethod')%> <% if(product[i].get('isStock') == true) { %>on<% } %>" isstockdate="<%= product[i].get('isStock') %>"><i class="am-icon-long-arrow-down"></i></a>
 
