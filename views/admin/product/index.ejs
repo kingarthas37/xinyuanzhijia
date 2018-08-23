@@ -342,6 +342,7 @@
                                     <li><a href="/admin/product/copy/ten/<%= product[i].get('productId') %>">复制十条</a></li>
                                     -->
                                     <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="link-change-discount">设置促销折扣</a></li>
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" data-category2-id="<%= product[i].get('category2')[0] %>" class="link-change-category-discount">分类批量设置促销折扣</a></li>
                                     <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
                                            data-category2-id="<%= product[i].get('category2')[0] %>"
                                            class="link-change-price">批量改价</a></li>
@@ -554,6 +555,25 @@
     </div>
 </div>
 <!-- modal changeDiscount -->
+
+<!-- modal changeDiscountByCategory -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-change-category-discount">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">输入促销折扣</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-change-category-discount"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal changeDiscountByCategory -->
 
 
 <% include ../partials/footer %>

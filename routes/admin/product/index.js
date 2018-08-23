@@ -761,4 +761,25 @@ router.post('/set-discount',(req,res)=> {
     });
 });
 
+router.post('/set-category-discount',(req,res)=> {
+    let productId = parseInt(req.body['productId']);
+    let discount = parseFloat(req.body['discount']);
+    let category2Id = parseInt(req.body['category2Id']);
+    let success = [];
+    pro.getProductsByCategoryId([category2Id]).then(items => {
+        async.forEachLimit(items,5, function(item, callback){
+            item.set('discount', discount);
+            item.save().then(()=> {
+                success.push(item.attributes.productId);
+                callback();
+            });
+        }, function(err){
+            if(err) {
+                console.log('set category discount:' + err);
+            }
+            res.send({success:success, count:success.length});
+        });
+    });
+});
+
 module.exports = router;
