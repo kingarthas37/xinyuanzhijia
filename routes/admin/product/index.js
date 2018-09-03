@@ -782,4 +782,43 @@ router.post('/set-category-discount',(req,res)=> {
     });
 });
 
+router.post('/set-maximum',(req,res)=> {
+    let productId = parseInt(req.body['productId']);
+    let maximun = parseFloat(req.body['maximun']);
+    let query = new AV.Query(Product);
+
+    query.equalTo('productId',productId);
+    query.select('maximun');
+    query.first().then(result => {
+        result.set('maximun', maximun);
+        result.save().then(()=>{
+            res.send({
+                success:1
+            });
+        });
+    });
+});
+
+router.post('/set-category-discount',(req,res)=> {
+    let productId = parseInt(req.body['productId']);
+    let maximun = parseFloat(req.body['maximun']);
+    let category2Id = parseInt(req.body['category2Id']);
+    let success = [];
+    pro.getProductsByCategoryId([category2Id]).then(items => {
+        async.forEachLimit(items,5, function(item, callback){
+            item.set('maximun', maximun);
+            item.save().then(()=> {
+                success.push(item.attributes.productId);
+                callback();
+            });
+        }, function(err){
+            if(err) {
+                console.log('set category maximun:' + err);
+            }
+            res.send({success:success, count:success.length});
+        });
+    });
+});
+
+
 module.exports = router;

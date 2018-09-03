@@ -1054,6 +1054,103 @@ module.exports = {
                 input[0].focus();
                 return false;
             });
+        }
+
+        {// 设置促销折扣
+            let modal = $('#modal-change-maximum');
+            let input = $('.input-change-maximum');
+            let modalLoading = $('#modal-loading');
+
+            $('.link-change-maximum').click(function() {
+                let productId = $(this).data('product-id');
+                modalLoading.find('.am-modal-hd').text('正在修改...');
+                modal.modal({
+                    relatedTarget: this,
+                    onConfirm: function(e) {
+
+                        if(!$.trim(input.val())) {
+                            alert('请输入正确的数量');
+                            // return;
+                        }else{
+                            $.ajax({
+                                type:'post',
+                                url:'/admin/product/set-maximum',
+                                data:{
+                                    'productId':productId,
+                                    'maximum':$.trim(input.val())
+                                }
+                            }).then(
+                                result => {
+                                    modalLoading.find('.am-modal-hd').text('修改成功!正在更新...');
+                                    setTimeout(()=> {
+                                        location.reload();
+                                    },1000);
+                                },
+                                err => {
+                                    console.info(err);
+                                    modalLoading.find('.am-modal-hd').text('修改失败,请重试!');
+                                    setTimeout(()=> {
+                                        modalLoading.modal('close');
+                                    },1000);
+                                }
+                            );
+                            modalLoading.modal();
+                        }
+                    }
+                });
+                input[0].focus();
+                return false;
+            });
+
+        }
+
+        {// 分类批量设置促销折扣
+            let modal = $('#modal-change-category-maximum');
+            let input = $('.input-change-category-maximum');
+            let modalLoading = $('#modal-loading');
+
+            $('.link-change-category-maximum').click(function() {
+                let productId = $(this).data('product-id');
+                let category2Id=$(this).data('category2-id');
+                modalLoading.find('.am-modal-hd').text('正在修改...');
+                modal.modal({
+                    relatedTarget: this,
+                    onConfirm: function(e) {
+
+                        if(!$.trim(input.val())) {
+                            alert('请输入正确的数量');
+                            // return;
+                        }else{
+                            $.ajax({
+                                type:'post',
+                                url:'/admin/product/set-category-maximum',
+                                data:{
+                                    'productId':productId,
+                                    'maximum':$.trim(input.val()),
+                                    'category2Id':category2Id
+                                }
+                            }).then(
+                                result => {
+                                    modalLoading.find('.am-modal-hd').text('修改成功!正在更新...');
+                                    setTimeout(()=> {
+                                        location.reload();
+                                    },1000);
+                                },
+                                err => {
+                                    console.info(err);
+                                    modalLoading.find('.am-modal-hd').text('修改失败,请重试!');
+                                    setTimeout(()=> {
+                                        modalLoading.modal('close');
+                                    },1000);
+                                }
+                            );
+                            modalLoading.modal();
+                        }
+                    }
+                });
+                input[0].focus();
+                return false;
+            });
 
         }
     },
