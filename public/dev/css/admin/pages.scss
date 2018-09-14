@@ -98,13 +98,26 @@
         position: relative;
         .discount-num {
             position: absolute;
-            left:10px;
+            left:6px;
             top:-8px;
             font-size: 12px;
             font-weight: bold;
             color: #0e90d2;
             font-style: normal;
         }
+    }
+
+    .maximum {
+        color:#666;
+        font-size: 12px;
+        &.off {
+            text-decoration:line-through;
+            color: #999;
+        }
+    }
+    .maximum-reserve {
+        color: #5eb95e;
+        font-size: 12px;
     }
 
     .am-icon-arrow-circle-o-down {
@@ -181,6 +194,10 @@
 
     .am-icon-link.on {
         color: $colorOrange;
+    }
+
+    .am-icon-link.off {
+        color: #999;
     }
     
     #select-banner {

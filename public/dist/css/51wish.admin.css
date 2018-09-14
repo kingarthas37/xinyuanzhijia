@@ -419,12 +419,23 @@ span.hot:after {
   position: relative; }
   .admin-product-page .am-icon-usd .discount-num {
     position: absolute;
-    left: 10px;
+    left: 6px;
     top: -8px;
     font-size: 12px;
     font-weight: bold;
     color: #0e90d2;
     font-style: normal; }
+
+.admin-product-page .maximum {
+  color: #666;
+  font-size: 12px; }
+  .admin-product-page .maximum.off {
+    text-decoration: line-through;
+    color: #999; }
+
+.admin-product-page .maximum-reserve {
+  color: #5eb95e;
+  font-size: 12px; }
 
 .admin-product-page .am-icon-arrow-circle-o-down {
   position: relative; }
@@ -472,6 +483,9 @@ span.hot:after {
 
 .admin-product-page .am-icon-link.on {
   color: #ff7d00; }
+
+.admin-product-page .am-icon-link.off {
+  color: #999; }
 
 .admin-product-page #select-banner {
   width: 200px;
