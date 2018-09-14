@@ -784,13 +784,13 @@ router.post('/set-category-discount',(req,res)=> {
 
 router.post('/set-maximum',(req,res)=> {
     let productId = parseInt(req.body['productId']);
-    let maximun = parseFloat(req.body['maximun']);
+    let maximum = parseFloat(req.body['maximum']);
     let query = new AV.Query(Product);
 
     query.equalTo('productId',productId);
-    query.select('maximun');
+    query.select('maximum');
     query.first().then(result => {
-        result.set('maximun', maximun);
+        result.set('maximum', maximum);
         result.save().then(()=>{
             res.send({
                 success:1
@@ -799,21 +799,21 @@ router.post('/set-maximum',(req,res)=> {
     });
 });
 
-router.post('/set-category-discount',(req,res)=> {
+router.post('/set-category-maximum',(req,res)=> {
     let productId = parseInt(req.body['productId']);
-    let maximun = parseFloat(req.body['maximun']);
+    let maximum = parseFloat(req.body['maximum']);
     let category2Id = parseInt(req.body['category2Id']);
     let success = [];
     pro.getProductsByCategoryId([category2Id]).then(items => {
         async.forEachLimit(items,5, function(item, callback){
-            item.set('maximun', maximun);
+            item.set('maximum', maximum);
             item.save().then(()=> {
                 success.push(item.attributes.productId);
                 callback();
             });
         }, function(err){
             if(err) {
-                console.log('set category maximun:' + err);
+                console.log('set category maximum:' + err);
             }
             res.send({success:success, count:success.length});
         });
