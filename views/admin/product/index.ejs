@@ -263,7 +263,7 @@
                                 <% for(var j = 0;j < product[i].get('purchaseLink').length;j++) { %>
                                 <% if(product[i].get('purchaseLink')[j]) { %>
                                 <a href="<%= product[i].get('purchaseLink')[j] %>" target="_blank"><i
-                                            class="am-icon-link <%if( (product[i].get('stock') + product[i].get('reserve')) >= product[i].get('maximum')) { %>off<%}%>"></i></a>
+                                            class="am-icon-link <%if( product[i].get('maximum') && (product[i].get('stock') + product[i].get('reserve')) >= product[i].get('maximum')) { %>off<%}%>"></i></a>
                                 <% } %>
                                 <% } %>
                                 <% }else{ %>
