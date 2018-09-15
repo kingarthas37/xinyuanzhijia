@@ -694,6 +694,8 @@ router.get('/check-wisdom-products-stock', (req, res) => {
                 message = '有货';
             } else if (html.match(/id="out_of_stock"/gi)) {
                 message = '缺货';
+            } else if(html.search('class="add_cart"') >= 0) {
+                message = '有货';
             } else if (html.search('class="add_cart"') >= 0 && html.search('class="add_cart"') < html.search('class="out-of-stock"')) {     //判断出现的位置
                 message = '有货';
             } else if(html.search('class="add_cart"') < 0 || html.search('class="add_cart"') > html.search('class="out-of-stock"')) {      //判断出现的位置
