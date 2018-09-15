@@ -46,6 +46,11 @@
             display: none;
         }
     }
+
+    .product-row.hide-maximum {
+        display: none;
+    }
+
     .no-wisdom-stock {
         td {
             color: #999 !important;

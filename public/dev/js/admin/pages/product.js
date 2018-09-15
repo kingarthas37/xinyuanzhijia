@@ -889,6 +889,30 @@ module.exports = {
             });
         }
 
+        //隐藏无需订货产品
+        {
+            let checkbox = $('.hide-maximum-product');
+            if($.cookie('hide-maximum-productk')) {
+                checkbox.prop('checked',true);
+                $('.maximum.off').each(function (i,n) {
+                   $(this).parents('.product-row').addClass('hide-maximum');
+                });
+            }
+
+            checkbox.click(function () {
+                if(this.checked) {
+                    $.cookie('hide-maximum-productk','true',{expires:new Date(new Date().getTime() + 1000*60*60*24*365),path:'/',domain:location.host});
+                    $('.maximum.off').each(function (i,n) {
+                        $(this).parents('.product-row').addClass('hide-maximum');
+                    });
+                } else {
+                    $.cookie('hide-maximum-productk','',{expires:new Date(new Date().getTime()),path:'/',domain:location.host});
+                    $('.product-row.hide-maximum').removeClass('hide-maximum');
+                }
+            });
+
+        }
+
         //推荐购买数
         {
             $('.recommend-purchase').click(function () {
