@@ -151,7 +151,7 @@
                     <tr data-product-id="<%= product[i].get('productId') %>" class="product-row<% if(product[i].get('isParent') == true){ %>    main-product-row<% } %>">
                         <td class="product-title">
                             <% if(product[i].get('colorTag')){%>
-                            <a href="#">[<%= product[i].get('colorTag') %>]</a>
+                            <a href="/admin/product?color-tag=<%= product[i].get('colorTag') %>&product-method-id=<%= productMethodId %>&onsale=<%= onsale %>">[<%= product[i].get('colorTag') %>]</a>
                             <%}%>
                             <% if(product[i].mainImage) { %>
                             <a target="_blank" href="<%= product[i].mainImage.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>"><img
