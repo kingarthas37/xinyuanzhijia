@@ -56,6 +56,7 @@ router.get('/', (req, res) => {
     let isTranslation = req.query['is-translation'] ? (req.query['is-translation'] == 'true' ? true : '') : '';
     let isSales = req.query['is-sales'] || '';
     let parentProductId = req.query['parent-product-id'] ? parseInt(req.query['parent-product-id']) : '';
+    let colorTag = req.query['color-tag'] ? parseInt(req.query['color-tag']) : '';
     if ((isShortStock || updateStockDate || adminStock || isUpdateStock) && !order) {
         order = 'updatedAt';
     } else if (!order) {
@@ -82,10 +83,11 @@ router.get('/', (req, res) => {
         hot,
         isTranslation,
         parentProductId,
-        isSales
+        isSales,
+        colorTag
     });
 
-    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock, hot, isTranslation, parentProductId, isSales};
+    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock, hot, isTranslation, parentProductId, isSales, colorTag};
     AV.Promise.when(
         //获取count
         new AV.Promise(resolve => {
@@ -110,7 +112,8 @@ router.get('/', (req, res) => {
                             hot,
                             'is-translation': isTranslation,
                             parentProductId,
-                            'is-sales':isSales
+                            'is-sales':isSales,
+                            'color-tag':colorTag
                         }
                     })
                 });
@@ -818,6 +821,23 @@ router.post('/set-category-maximum',(req,res)=> {
                 console.log('set category maximum:' + err);
             }
             res.send({success:success, count:success.length});
+        });
+    });
+});
+
+router.post('/set-color-tag',(req,res)=> {
+    let productId = parseInt(req.body['productId']);
+    let colorTag = parseFloat(req.body['colorTag']);
+    let query = new AV.Query(Product);
+
+    query.equalTo('productId',productId);
+    query.select('colorTag');
+    query.first().then(result => {
+        result.set('colorTag', colorTag);
+        result.save().then(()=>{
+            res.send({
+                success:1
+            });
         });
     });
 });

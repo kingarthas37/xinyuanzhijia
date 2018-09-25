@@ -1177,6 +1177,54 @@ module.exports = {
             });
 
         }
+
+        {// 设置颜色标记
+            let modal = $('#modal-change-color-tag');
+            let input = $('.input-change-color-tag');
+            let modalLoading = $('#modal-loading');
+
+            $('.link-change-color-tag').click(function() {
+                let productId = $(this).data('product-id');
+                modalLoading.find('.am-modal-hd').text('正在修改...');
+                modal.modal({
+                    relatedTarget: this,
+                    onConfirm: function(e) {
+
+                        if(!$.trim(input.val())) {
+                            alert('请输入正确的数量');
+                            // return;
+                        }else{
+                            $.ajax({
+                                type:'post',
+                                url:'/admin/product/set-color-tag',
+                                data:{
+                                    'productId':productId,
+                                    'colorTag':$.trim(input.val())
+                                }
+                            }).then(
+                                result => {
+                                    modalLoading.find('.am-modal-hd').text('修改成功!正在更新...');
+                                    setTimeout(()=> {
+                                        location.reload();
+                                    },1000);
+                                },
+                                err => {
+                                    console.info(err);
+                                    modalLoading.find('.am-modal-hd').text('修改失败,请重试!');
+                                    setTimeout(()=> {
+                                        modalLoading.modal('close');
+                                    },1000);
+                                }
+                            );
+                            modalLoading.modal();
+                        }
+                    }
+                });
+                input[0].focus();
+                return false;
+            });
+
+        }
     },
 
     addFun:function() {
