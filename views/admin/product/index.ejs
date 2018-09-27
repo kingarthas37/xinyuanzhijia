@@ -150,9 +150,7 @@
                     <% for(var i = 0; i < product.length; i++) { %>
                     <tr data-product-id="<%= product[i].get('productId') %>" class="product-row<% if(product[i].get('isParent') == true){ %>    main-product-row<% } %>">
                         <td class="product-title">
-                            <% if(product[i].get('colorTag')){%>
-                            <a href="/admin/product?color-tag=<%= product[i].get('colorTag') %>&product-method-id=<%= productMethodId %>&onsale=<%= onsale %>">[<%= product[i].get('colorTag') %>]</a>
-                            <%}%>
+
                             <% if(product[i].mainImage) { %>
                             <a target="_blank" href="<%= product[i].mainImage.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>"><img
                                         width="32" src="<%= product[i].mainImage.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>?imageMogr2/thumbnail/32" alt="" data-am-popover="{content:'<img width=250 src=<%= product[i].mainImage.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>?imageMogr2/thumbnail/250>', trigger:'hover focus'}"></a>
@@ -246,6 +244,11 @@
 
                             <a title="产品翻译更新设置"
                                class="set-product-trans <% if(product[i].get('isTranslation') == true) { %>on<% } %>" istranslationdate="<%= product[i].get('isTranslation') %>"  href="javascript:;"><i class="am-icon-language"></i></a>
+
+
+                            <% if(product[i].get('colorTag')){%>
+                            <a href="/admin/product?color-tag=<%= product[i].get('colorTag') %>&product-method-id=<%= productMethodId %>&onsale=<%= onsale %>">(<%= product[i].get('colorTag') %>)</a>
+                            <%}%>
 
                             <% for(var j = 0;j < product[i].get('productMethod').length;j++) { %>
                             <a title="同类产品"
