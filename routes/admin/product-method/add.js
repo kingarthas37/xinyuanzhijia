@@ -38,12 +38,14 @@ router.post('/', (req, res) => {
 
     let name = req.body['name'];
     let label = req.body['label'];
+    let index = parseInt(req.body['index']);
  
     let productMethod = new ProductMethod();
 
     productMethod.save({
         name:name,
-        label:label
+        label:label,
+        index:index
     }).done(()=> {
         req.flash('success', '添加产品类型成功!');
         res.redirect('/admin/product-method');

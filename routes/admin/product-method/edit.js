@@ -50,6 +50,7 @@ router.post('/:productMethodId', (req, res) => {
 
     let name = req.body['name'];
     let label = req.body['label'];
+    let index = parseInt(req.body['index']);
 
     let productMethodId = parseInt(req.params.productMethodId);
 
@@ -59,7 +60,8 @@ router.post('/:productMethodId', (req, res) => {
         
         return item.save({
             name:name,
-            label:label
+            label:label,
+            index:index
         });
         
     }).then(() => {

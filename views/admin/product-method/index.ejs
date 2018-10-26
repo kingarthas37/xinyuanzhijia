@@ -50,7 +50,9 @@
                     <tr>
                         <th>产品类型名称</th>
                         <th>产品类型标签</th>
+                        <th>排序</th>
                         <th width="80" class="t-c small-screen-hide">更新时间</th>
+                        <th width="60" class="t-c small-screen-hide">编辑</th>
                         <th width="60" class="t-c small-screen-hide">删除</th>
                     </tr>
                     </thead>
@@ -59,7 +61,9 @@
                     <tr>
                         <td><a href="/admin/product-method/edit/<%= productMethod[i].get('productMethodId') %>"><%= productMethod[i].get('name') %></a></td>
                         <td><%= productMethod[i].get('label') %></td>
+                        <td><%= productMethod[i].get('index') %></td>
                         <td class="t-c small-screen-hide"><%=productMethod[i].updatedDate%></td>
+                        <td><a href="/admin/product-method/edit/<%= productMethod[i].get('productMethodId') %>">编辑</a></td>
                         <td class="t-c small-screen-hide"><a href="javascript:;" data-id="<%= productMethod[i].get('productMethodId') %>" class="remove-product-method">删除</a></td>
                     </tr>
                     <% } %>
