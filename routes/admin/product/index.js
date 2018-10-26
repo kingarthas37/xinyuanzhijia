@@ -149,6 +149,7 @@ router.get('/', (req, res) => {
         new AV.Promise(resolve => {
 
             let query = new AV.Query(ProductMethod);
+            query.ascending('index');
             query.find().then(productMethod => {
                 data = extend(data, {productMethod});
                 resolve();
