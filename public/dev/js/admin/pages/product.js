@@ -736,6 +736,9 @@ module.exports = {
                 } else if (state === 3) {
                     state = 4;
                 } else if (state === 4) {
+                    state = 5;
+                }
+                else if (state === 5) {
                     state = 0;
                 }
 
@@ -759,8 +762,12 @@ module.exports = {
                         $(this).removeClass('on-1').removeClass('on-2').removeClass('on-4').addClass('on-3');
                     } else if(state === 4) {
                         $(this).removeClass('on-1').removeClass('on-2').removeClass('on-3').addClass('on-4');
-                    } else if(state === 0) {
-                        $(this).removeClass('on-1').removeClass('on-2').removeClass('on-3').removeClass('on-4');
+                    }
+                     else if(state === 5) {
+                        $(this).removeClass('on-1').removeClass('on-2').removeClass('on-3').removeClass('on-4').addClass('on-5');
+                    }
+                    else if(state === 0) {
+                        $(this).removeClass('on-1').removeClass('on-2').removeClass('on-3').removeClass('on-4').removeClass('on-5');
                     }
 
                 });
