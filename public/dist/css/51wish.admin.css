@@ -380,6 +380,9 @@ span.hot:after {
 .admin-product-page .hide-no-wisdom .no-wisdom-stock {
   display: none; }
 
+.admin-product-page .product-row.hide-nosale {
+  display: none; }
+
 .admin-product-page .product-row.hide-maximum {
   display: none; }
 

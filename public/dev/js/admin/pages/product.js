@@ -896,6 +896,37 @@ module.exports = {
             });
         }
 
+
+        //隐藏无需更新促销产品
+        {
+            let checkbox = $('.hide-nosale-product');
+            if($.cookie('hide-nosale-product')) {
+                checkbox.prop('checked',true);
+                $('.set-discount.on-5').each(function (i, n) {
+                    $(this).parents('.product-row').addClass('hide-nosale');
+                });
+                $('.set-discount.on-1').each(function (i, n) {
+                    $(this).parents('.product-row').addClass('hide-nosale');
+                });
+            }
+
+            checkbox.click(function () {
+                if(this.checked) {
+                    $.cookie('hide-nosale-product','true',{expires:new Date(new Date().getTime() + 1000*60*60*24*365),path:'/',domain:location.host});
+                    $('.set-discount.on-5').each(function (i, n) {
+                        $(this).parents('.product-row').addClass('hide-nosale');
+                    });
+                    $('.set-discount.on-1').each(function (i, n) {
+                        $(this).parents('.product-row').addClass('hide-nosale');
+                    });
+                } else {
+                    $.cookie('hide-nosale-product','',{expires:new Date(new Date().getTime()),path:'/',domain:location.host});
+                    $('.product-row.hide-nosale').removeClass('hide-maximum');
+                }
+            });
+
+        }
+
         //隐藏无需订货产品
         {
             let checkbox = $('.hide-maximum-product');

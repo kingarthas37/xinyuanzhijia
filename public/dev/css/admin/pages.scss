@@ -47,6 +47,10 @@
         }
     }
 
+    .product-row.hide-nosale {
+        display: none;
+    }
+
     .product-row.hide-maximum {
         display: none;
     }
