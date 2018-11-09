@@ -921,7 +921,7 @@ module.exports = {
                     });
                 } else {
                     $.cookie('hide-nosale-product','',{expires:new Date(new Date().getTime()),path:'/',domain:location.host});
-                    $('.product-row.hide-nosale').removeClass('hide-maximum');
+                    $('.product-row.hide-nosale').removeClass('hide-nosale');
                 }
             });
 
