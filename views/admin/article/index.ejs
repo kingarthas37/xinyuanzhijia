@@ -68,6 +68,7 @@
                     <tr>
                         <th width="300">文章名称</th>
                         <th class="t-c">所属分类</th>
+                        <th class="t-c">博客链接</th>
                         <th class="t-c">网店链接</th>
                         <th class="t-c">视频链接</th>
                         <th class="t-c">数据</th>
@@ -93,6 +94,9 @@
                                     <a href="/admin/article?article-category-id=<%= article[i].get('articleCategoryId')%>&search=<%= search%>"><%= articleCategory[j].get('name') %></a>
                                 <% } %>
                             <% } %>
+                        </td>
+                        <td class="t-c">
+                           博客链接
                         </td>
                         <td class="t-c">
                             <% if(article[i].get('taoBaoLink')) { %><a target="_blank" href="<%= article[i].get('taoBaoLink') %>"><i class="am-icon-link"></i></a><%}else{%>-<%}%>
