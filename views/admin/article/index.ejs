@@ -69,6 +69,7 @@
                         <th width="300">文章名称</th>
                         <th class="t-c">所属分类</th>
                         <th class="t-c">博客链接</th>
+                        <th class="t-c">原文链接</th>
                         <th class="t-c">网店链接</th>
                         <th class="t-c">视频链接</th>
                         <th class="t-c">数据</th>
@@ -97,6 +98,9 @@
                         </td>
                         <td class="t-c">
                             <% if(article[i].get('weiBoLink')) { %><a target="_blank" href="<%= article[i].get('weiBoLink') %>"><i class="am-icon-link"></i></a><%}else{%>-<%}%>
+                        </td>
+                        <td class="t-c">
+                            <% if(article[i].get('originalLink')) { %><a target="_blank" href="<%= article[i].get('originalLink') %>"><i class="am-icon-link"></i></a><%}else{%>-<%}%>
                         </td>
                         <td class="t-c">
                             <% if(article[i].get('taoBaoLink')) { %><a target="_blank" href="<%= article[i].get('taoBaoLink') %>"><i class="am-icon-link"></i></a><%}else{%>-<%}%>
