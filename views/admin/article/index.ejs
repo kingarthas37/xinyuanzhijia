@@ -96,7 +96,7 @@
                             <% } %>
                         </td>
                         <td class="t-c">
-                           博客链接
+                            <% if(article[i].get('weiBoLink')) { %><a target="_blank" href="<%= article[i].get('weiBoLink') %>"><i class="am-icon-link"></i></a><%}else{%>-<%}%>
                         </td>
                         <td class="t-c">
                             <% if(article[i].get('taoBaoLink')) { %><a target="_blank" href="<%= article[i].get('taoBaoLink') %>"><i class="am-icon-link"></i></a><%}else{%>-<%}%>

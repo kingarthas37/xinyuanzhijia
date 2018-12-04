@@ -7,7 +7,30 @@ module.exports = {
     indexFun:function() {
 
         $('.remove-course').click(function () {
-           alert(3);
+            let articleCategoryId = $(this).attr(data-id);
+            $('#confirm-remove-article-category').modal({
+                relatedTarget: this,
+                onConfirm: function() {
+
+                    let target = $(this.relatedTarget);
+                    let articleId = target.attr('data-id');
+                    $.ajax({
+                        type:'post',
+                        url:`/admin/article-category/remove/${articleCategoryId}`
+                    }).then(()=> {
+                        alert.modal({
+                            relatedTarget: this,
+                            onConfirm:()=> {
+                                let target = $(this.relatedTarget);
+                                target.parents('tr').detach();
+                            }
+                        }).find('.am-modal-bd').text('删除文章分类成功!');
+                    });
+                },
+                onCancel:()=> { return false; }
+            });
+
+            return false;
         });
 
     }

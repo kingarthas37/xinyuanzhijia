@@ -53,7 +53,8 @@ router.post('/:articleId', (req, res) => {
     let videoLink = req.body['video-link'];
     let detailImages = req.body['detail-images'];
     let status = req.body['status'] ? 1 : 0;
-    article.update({articleCategoryId,content,name,image,taoBaoLink,videoLink, detailImages, status}, articleId).then(() => {
+    let weiBoLink = req.body['weiBoLink'];
+    article.update({articleCategoryId,content,name,image,taoBaoLink,videoLink, detailImages, status, weiBoLink}, articleId).then(() => {
         req.flash('success', '文章编辑成功!');
         res.redirect('/admin/article');
     });
