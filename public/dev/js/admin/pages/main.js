@@ -11,3 +11,4 @@ require('./product-groups-name');
 require('./upload');
 require('./sign');
 require('./import-order');
+require('./article-category');
