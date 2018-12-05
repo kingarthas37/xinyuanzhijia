@@ -51,10 +51,9 @@ router.get('/', (req, res) => {
 
 
 router.post('/remove/:articleCategoryId',(req,res)=> {
-
     let articleCategoryId = parseInt(req.params.articleCategoryId);
 
-    let query = new AV.Query(articleCategory);
+    let query = new AV.Query(AV.Object.extend('ArticleCategory'));
     query.equalTo('articleCategoryId',articleCategoryId);
 
     query.first().then(item => {
