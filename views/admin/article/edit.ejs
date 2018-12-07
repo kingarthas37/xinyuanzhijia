@@ -38,7 +38,7 @@
 
                     <!-- name start -->
                     <div class="am-form-group">
-                        <label for="englishName">文章英文名称: <i>*</i></label>
+                        <label for="englishName">文章英文名称: </label>
                         <input id="englishName" name="englishName" type="text" value="<%= article.get('englishName') %>"  />
                     </div>
                     <!-- name end -->
@@ -85,8 +85,8 @@
                         <input required id="image-weitao" name="image-weitao" type="text" placeholder="输入微淘文章主图" value="<%= article.get('image')%>"/>
                         <div class="main-image-view">
                             <% if(article.get('image')) { %>
-                            <a href="<%= article.get('image') %>" target="_blank">
-                                <img width="100" src="<%= article.get('image') %>?imageMogr2/thumbnail/100">
+                            <a href="<%= article.get('imageWeitao') %>" target="_blank">
+                                <img width="100" src="<%= article.get('imageWeitao') %>?imageMogr2/thumbnail/100">
                             </a>
                             <%}%>
                         </div>

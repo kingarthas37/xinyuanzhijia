@@ -88,7 +88,6 @@ module.exports = {
             let image = $('#image');
             let imageView =  $('.main-image-view');
             image.change(function () {
-                alert(2);
                 imageView.html(`<a href="${image.val()}" target="_blank"><img src="${image.val()}?imageMogr2/thumbnail/100" width="100" /></a>`);
             });
         }
@@ -98,7 +97,6 @@ module.exports = {
             let image = $('#image-weitao');
             let imageView =  $('.main-image-weitao-view');
             image.change(function () {
-                alert(4);
                 imageView.html(`<a href="${image.val()}" target="_blank"><img src="${image.val()}?imageMogr2/thumbnail/100" width="100" /></a>`);
             });
         }
