@@ -79,6 +79,26 @@
 
                     <hr/>
 
+                    <!-- image weitao start -->
+                    <div class="am-form-group">
+                        <label for="image">微淘主图图片(大小750px*422px): <i>*</i></label>
+                        <input required id="image-weitao" name="image-weitao" type="text" placeholder="输入微淘文章主图" value="<%= article.get('image')%>"/>
+                        <div class="main-image-view">
+                            <% if(article.get('image')) { %>
+                            <a href="<%= article.get('image') %>" target="_blank">
+                                <img width="100" src="<%= article.get('image') %>?imageMogr2/thumbnail/100">
+                            </a>
+                            <%}%>
+                        </div>
+                        <hr/>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/article/upload?callback=uploadMainImageWeitaoSuccess" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                    <!-- images weitao end -->
+
+                    <hr>
+
                     <!-- content start -->
                     <div class="am-form-group">
                         <label for="content">文章详情<small>(md5)</small>:</label>
@@ -196,13 +216,17 @@
 
     //iframe upload callback
     function uploadMainImageSuccess(data) {
-        $('#image').val(data[0].url);
+        $('#image').val(data[0].url).trigger('change');;
 
     }
     //iframe upload callback
     function uploadVideoFileSuccess(data) {
-        $('#video-link').val(data[0].url);
+        $('#video-link').val(data[0].url).trigger('change');;
     }
+    function uploadMainImageWeitaoSuccess(data) {
+        $('#image-weitao').val(data[0].url).trigger('change');;
+    }
+
 </script>
 
 </body>

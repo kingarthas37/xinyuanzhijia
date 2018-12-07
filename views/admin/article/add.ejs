@@ -73,6 +73,20 @@
 
                     <hr/>
 
+                    <!-- images weitao start -->
+                    <div class="am-form-group">
+                        <label for="image">文章微淘主图图片(大小750px*422px): </label>
+                        <input id="image-weitao" name="image-weitao" type="text" placeholder="输入微淘主图图片"/>
+                        <div class="main-image-weitao-view"></div>
+                        <hr>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/article/upload?callback=uploadMainImageWeitaoSuccess" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                    <!-- images weitao end -->
+
+                    <hr/>
+
                     <!-- content start -->
                     <div class="am-form-group">
                         <label for="content">文章详情 <small>(md5)</small>:</label>
@@ -176,6 +190,10 @@
     //iframe upload callback
     function uploadVideoFileSuccess(data) {
         $('#video-link').val(data[0].url).trigger('change');;
+    }
+
+    function uploadMainImageWeitaoSuccess(data) {
+        $('#image-weitao').val(data[0].url).trigger('change');
     }
 </script>
 </body>
