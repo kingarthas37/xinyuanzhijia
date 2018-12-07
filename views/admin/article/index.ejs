@@ -68,14 +68,14 @@
                     <tr>
                         <th width="300">文章名称</th>
                         <th class="t-c">所属分类</th>
-                        <th class="t-c">博客链接</th>
-                        <th class="t-c">原文链接</th>
-                        <th class="t-c">网店链接</th>
-                        <th class="t-c">视频链接</th>
-                        <th class="t-c">数据</th>
+                        <th class="t-c">微博url</th>
+                        <th class="t-c">原文url</th>
+                        <th class="t-c">网店url</th>
+                        <th class="t-c">视频url</th>
+                       <!-- <th class="t-c">数据</th> -->
                         <th class="t-c">状态</th>
                         <th class="t-c">操作</th>
-                        <th class="t-c">更新日期</th>
+                        <th class="t-c">日期</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -87,7 +87,7 @@
                                 <img width="40" src="<%=article[i].get('image') %>?imageMogr2/thumbnail/40" alt="" data-am-popover="{content:'<img width=150 src=<%=article[i].get('image') %>?imageMogr2/thumbnail/150>', trigger:'hover focus'}">
                             </a>
 
-                            <a href="/admin/article/edit/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
+                            <a title="<%= article[i].get('englishName') %>" href="/admin/article/edit/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
                         </td>
                         <td class="t-c">
                             <% for(var j = 0; j < articleCategory.length; j++) { %>
@@ -108,7 +108,9 @@
                         <td class="t-c">
                             <% if(article[i].get('videoLink')) { %><a target="_blank" href="<%= article[i].get('videoLink') %>"><i class="am-icon-video-camera"></i></a><%}else{%>-<%}%>
                         </td>
+                        <!--
                         <td class="t-c">浏览:<%= article[i].get('pageView') %></td>
+                        -->
                         <td class="t-c">
                             <%if(article[i].get('status')){ %>
                             <strong>已发布</strong>
