@@ -83,7 +83,7 @@
                     <div class="am-form-group">
                         <label for="image">微淘主图图片(大小750px*422px): <i>*</i></label>
                         <input required id="image-weitao" name="image-weitao" type="text" placeholder="输入微淘文章主图" value="<%= article.get('image')%>"/>
-                        <div class="main-image-view">
+                        <div class="main-image-weitao-view">
                             <% if(article.get('image')) { %>
                             <a href="<%= article.get('imageWeitao') %>" target="_blank">
                                 <img width="100" src="<%= article.get('imageWeitao') %>?imageMogr2/thumbnail/100">
