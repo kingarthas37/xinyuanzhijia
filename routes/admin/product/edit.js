@@ -51,6 +51,7 @@ router.get('/:productId', function (req, res, next) {
             let query = new AV.Query(Product);
             query.equalTo('productId', productId);
             query.first().done(product => {
+                console.log(product);
                 data = extend(data, {product});
                 resolve();
             });
@@ -152,7 +153,7 @@ router.post('/:productId', (req, res) => {
     let instruction = req.body['instruction'];
     let use = req.body['use'];
     let detailImage = req.body['detail-image'];
-
+    let isPublic = req.body['is-public'] == 'true' ? true : false;
     let productId = parseInt(req.params.productId);
 
     AV.Promise.when(
@@ -175,7 +176,8 @@ router.post('/:productId', (req, res) => {
                     property,
                     instruction,
                     use,
-                    detailImage
+                    detailImage,
+                    isPublic
                 }).then(result => {
                     resolve(result);
                 });
@@ -197,7 +199,8 @@ router.post('/:productId', (req, res) => {
                 property,
                 instruction,
                 use,
-                detailImage
+                detailImage,
+                isPublic
             }).then(result => {
                 resolve(result);
             });

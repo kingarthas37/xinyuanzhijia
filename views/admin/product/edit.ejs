@@ -188,6 +188,20 @@
 
                     <hr/>
 
+                    <!-- is public start -->
+                    <div class="am-form-group">
+                        <label for="is-public">是否公开编辑权限
+                            <small></small>
+                            :</label>
+                        <select name="is-public" id="is-public">
+                            <option value="false">否</option>
+                            <option <% if(product.get('isPublic') == true) { %>selected<% } %> value="true">是</option>
+                        </select>
+                    </div>
+                    <!-- is public end -->
+
+                    <hr />
+
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary" data-target="_self" data-action="">保存</button>
 

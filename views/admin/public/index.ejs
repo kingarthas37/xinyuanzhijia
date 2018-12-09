@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+<% if (flash.success != '') { %>
+<div class="am-alert am-alert-success">
+    <p><%= flash.success %></p>
+</div>
+<% } %>
+
+<div class="am-cf admin-main">
+
+    <!-- sidebar start -->
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content admin-product-page">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"></a>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-form">
+                <div class="cf">
+                    <div class="am-u-sm-12 am-u-md-4">
+                        <form action="/admin/product" method="get">
+                            <div class="am-form-group">
+                                <div class="am-input-group am-input-group-sm">
+                                    <input type="text" name="search" value="<%= search %>" class="search am-form-field"
+                                           placeholder="搜索产品">
+                                    <input type="hidden" name="onsale" value="<%= onsale %>"/>
+                                    <input type="hidden" name="product-method-id" value="<%= productMethodId %>"/>
+                                    <input type="hidden" name="is-short-stock" value="<%= isShortStock %>"/>
+                                    <input type="hidden" name="update-stock-date" value="<%= updateStockDate %>"/>
+                                    <input type="hidden" name="is-update-stock" value="<%= isUpdateStock %>"/>
+                                    <input type="hidden" name="hot" value="<%= hot %>"/>
+                                    <input type="hidden" name="stock" value="<%= adminStock %>"/>
+                                    <input type="hidden" name="is-sales" value="<%= isSales %>"/>
+                                    <input type="hidden" name="is-translation" value="<%= isTranslation %>"/>
+                                    <span class="am-input-group-btn"><button class="am-btn am-btn-primary"
+                                                                             type="submit">搜索</button></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-2">
+                        <div class="am-form-group">
+                            <select class="select-product-method">
+                                <option value="">产品类型</option>
+                                <% for (var i = 0;i < productMethod.length; i++) { %>
+                                <option
+                                <% if(productMethod[i].get('productMethodId') === productMethodId ) { %>
+                                selected="selected"
+                                <% } %>
+                                value="<%= productMethod[i].get('productMethodId'); %>"> <%= productMethod[i].get('name'); %></option>
+                                <%
+                                } %>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-2">
+                        <div class="am-form-group">
+                            <select class="select-category-1">
+                                <option value="">商品一级分类</option>
+                                <% for (var i = 0;i < category1.length; i++) { %>
+                                <option
+                                <% if(category1[i].get('category1Id') === category1Id ) { %>
+                                selected="selected"
+                                <% } %>value="<%= category1[i].get('category1Id') %>"> <%= category1[i].get('name'); %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-2">
+                        <div class="am-form-group">
+                            <select class="select-category-2">
+                                <option value="">商品二级分类</option>
+                                <% for (var i = 0;i < category2.length; i++) { %>
+                                <option
+                                <% if(category2[i].get('category2Id') === category2Id ) { %>
+                                selected="selected"
+                                <% } %>
+                                value="<%= category2[i].get('category2Id') %>"> <%= category2[i].get('name'); %><% if(!category2[i].get('isKeepStock')) {%>(否)<%}%></option>
+                                <% }
+                                %>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-2">
+                        <div class="am-form-group">
+                            <select class="select-order">
+                                <option value="createdAt">排序(默认)</option>
+                                <option value="sales" <% if(order == 'sales') { %>selected="selected"<% } %>>销量</option>
+                                <option value="updatedAt" <% if(order == 'updatedAt') { %>selected="selected"<% } %>>更新时间</option>
+                                <option value="productId" <% if(order == 'productId') { %>selected="selected"<% } %>>ID号</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="am-g">
+            <div  class="table-view am-u-sm-12">
+                <table id="product-list" class="am-table am-table-striped">
+                    <thead>
+                    <tr>
+                        <th class="product-title">产品名称</th>
+                        <th class="t-c">预览</th>
+                        <th class="t-c">产品url</th>
+                        <th class="t-c">网店url</th>
+                        <th class="t-c">原图</th>
+                        <!-- <th class="t-c">内容</th> -->
+                        <!-- <th class="t-c">附件</th> -->
+                        <th class="t-c">选项</th>
+                        <th class="t-c">复制</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for(var i = 0; i < product.length; i++) { %>
+                    <tr data-product-id="<%= product[i].get('productId') %>" class="product-row<% if(product[i].get('isParent') == true){ %>    main-product-row<% } %>">
+                        <td class="product-title">
+
+                            <% if(product[i].mainImage) { %>
+                            <a target="_blank" href="<%= product[i].mainImage.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>"><img
+                                    width="32" src="<%= product[i].mainImage.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>?imageMogr2/thumbnail/32" alt="" data-am-popover="{content:'<img width=250 src=<%= product[i].mainImage.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>?imageMogr2/thumbnail/250>', trigger:'hover focus'}"></a>
+                            <% }else{ %>
+                            <img src="//lc-JoaBcRTt.cn-n1.lcfile.com/d4c225054f005a4d7d39.png?imageMogr2/thumbnail/32"
+                                 width="32"/>
+                            <% } %>
+
+                            <% if(product[i].get('colorTag')){%>
+                            <a href="/admin/product?color-tag=<%= product[i].get('colorTag') %>&product-method-id=<%= productMethodId %>&onsale=<%= onsale %>">(<%= product[i].get('colorTag') %>)</a>
+                            <%}%>
+
+                            <% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %>
+                            <a title="产品属性分类设置"
+                               class="set-product-parent <% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %>on<% } %>" <% if(product[i].get('isParent') == true) { %>parentProductId="<%= product[i].get('productId') %>"<% } else if(product[i].get('parentProductId')) { %>parentProductId="<%= product[i].get('parentProductId') %>"<% } %>"  href="javascript:;"><i class="am-icon-ellipsis-v"></i></a>
+                            <% } %>
+                            <a class="title<% if(!product[i].get('isOnsale')) { %> product-out<% } %> <% if(product[i].get('isHot')) { %> product-hot<% } %><% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %> product-parent<%}%>"
+                               href="/admin/product/edit/<%= product[i].get('productId') %>"
+                               data-popover-source-price="<% if(product[i].get('originalPrice')) { %> <%= product[i].get('originalPrice') %> <% }else{ %>-<% } %>"
+                               data-popover-cost-price="<% if(product[i].get('costPrice')) { %> <%= product[i].get('costPrice') %> <% }else{ %>-<% } %>"
+                               data-popover-price="<% if(product[i].get('price')) { %> <%= product[i].get('price') %> <% }else{ %>-<% } %>"
+                               data-popover-sales="<%= product[i].get('sales') %>"
+                               data-parent-id="<%=product[i].get('parentProductId') %>"
+                               data-createdate="<%=product[i].createdAt.getTime() %>"
+                            >
+                                <% if(product[i].get('isHot')) { %>
+                                <sup class="hot"></sup>
+                                <% } %>
+                                <% if(product[i].get('isParent') == true){ %><strong>(主)</strong> <% } %><%= product[i].get('name') %> {<%= product[i].get('productId') %>}
+                            </a>
+
+                            <a title="复制标题" href="javascript:;" class="copy-product-title" data-text="<%= product[i].get('name')%>" data-id="<%= product[i].get('productId') %>" ><i  class="am-icon-copy"></i></a>
+
+                            <a title="剩余库存" class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock">
+                                <%if(product[i].get('isOnly')){%>
+                                <i class="am-icon-warning"></i>
+                                <%} else {%>
+                                <i class="am-icon-inbox <%if(product[i].get('stock')){%> instock<%}%>">
+                                    <%if(product[i].get('stock')){%>
+                                    <em class="stock-num"><%= product[i].get('stock') %></em>
+                                    <%} else if(product[i].get('sold')>0) {%>
+                                    <em class="stock-num sold"><%= (0 - product[i].get('sold')) %></em>
+                                    <% } else { %>
+                                    <em class="stock-num none">0</em>
+                                    <%}%>
+                                </i>
+                                <%}%>
+                            </a>
+
+
+                            <a title="已预定数量" class="link-modal-viewport"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock">
+                                <i class="am-icon-arrow-circle-o-down  <% if(product[i].get('reserve')){ %> instock<% } %>">
+                                    <% if(product[i].get('reserve')){ %>
+                                    <em class="stock-num"><%= product[i].get('reserve') %></em>
+                                    <% } %>
+                                </i>
+                            </a>
+
+                            <a title="属性设置" class="link-modal-viewport"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#settings"><i
+                                    class="am-icon-gear"></i></a>
+
+                            <a title="上下架设置" class="set-onsale" isonsale="<%= product[i].get('isOnsale') %>"
+                               href="javascript:;"><i class="am-icon-level-up"></i></a>
+
+                            <a title="热门产品设置" class="set-hot" ishot="<%= product[i].get('isHot') %>"
+                               href="javascript:;"><i class="am-icon-flash"></i></a>
+
+                            <a title="缺货/断货设置"
+                               class="set-short-stock <% if(product[i].get('isShortStock')) { %>on<% } %>"
+                               isshortstock="<%= product[i].get('isShortStock') %>" href="javascript:;"><i
+                                    class="am-icon-level-down"></i></a>
+
+                            <a title="重新上架设置"
+                               class="set-update-stock <% if(product[i].get('isUpdateStock')) { %>on<% } %>"
+                               isupdatestock="<%= product[i].get('isUpdateStock') %>" href="javascript:;"
+
+                            <% if(product[i].get('isUpdateStock')) { %>
+                            data-am-popover="{trigger: 'hover',content:'<label><input type=checkbox <% if(product[i].get('offlineTag').updateTotaobaoImage == '1') { %>checked <%}%>class=update-totaobao-image />主图</label><span class=sp></span><label><input type=checkbox <% if(product[i].get('offlineTag').updateTotaobaoTitle == '1') { %>checked <%}%> class=update-totaobao-title />标题</label><span class=sp></span><label><input type=checkbox <% if(product[i].get('offlineTag').updateTotaobaoContent == '1') { %>checked <%}%> class=update-totaobao-content />内容</label><span class=sp></span><label><input type=checkbox <% if(product[i].get('offlineTag').updateTotaobaoPrice == '1') { %>checked <%}%> class=update-totaobao-price />价格</label><span class=sp></span><label><input type=checkbox <% if(product[i].get('offlineTag').updateTotaobaoCategory == '1') { %>checked <%}%> class=update-totaobao-category />分类</label>'}"
+                            <% } else { %>
+                            data-am-popover="{content:'<label><input checked=true type=checkbox class=update-totaobao-image />主图</label><span class=sp></span><label><input checked=true  type=checkbox class=update-totaobao-title />标题</label><span class=sp></span><label><input checked=true  type=checkbox class=update-totaobao-content />内容</label><span class=sp></span><label><input checked=true  type=checkbox class=update-totaobao-price />价格</label><span class=sp></span><label><input type=checkbox class=update-totaobao-category />分类</label><span class=sp></span><a href=javascript:; class=update-totaobao-confirm data-product-id=<%= product[i].get('productId') %>><strong>确认</strong></a>'}"
+                            <% } %>
+
+                            ><i class="am-icon-retweet"></i></a>
+
+                            <a title="库存提醒设置"
+                               class="set-warning-stock <% if(product[i].get('updateStockDate') != 1) { %>on<% } %>"
+                               updatestockdate="<%= product[i].get('isUpdateStock') %>" href="javascript:;"><i
+                                    class="am-icon-dropbox"></i></a>
+
+                            <a title="促销" class="set-discount <% if(product[i].get('isSales')=='1') { %>on-1<%}%><% if(product[i].get('isSales')=='2') { %>on-2<%}%><% if(product[i].get('isSales')=='3') { %>on-3<%}%><% if(product[i].get('isSales')=='4') { %>on-4<%}%><% if(product[i].get('isSales')=='5') { %>on-5<%}%>" href="javascript:;" data-state="<%if(product[i].get('isSales')) {%><%= product[i].get('isSales')%><%}else{%>0<%}%>"><i class="am-icon-usd"><% if(parseInt(product[i].get('discount')) > 0) { %><em class="discount-num"><%= product[i].get('discount')%></em><%}%></i></a>
+
+                            <a title="无库存时是否下架淘宝" href="javascript:;" class="set-outstock-off method-<%= product[i].get('productMethod')%> <% if(product[i].get('isStock') == true) { %>on<% } %>" isstockdate="<%= product[i].get('isStock') %>"><i class="am-icon-long-arrow-down"></i></a>
+
+                            <a title="产品翻译更新设置"
+                               class="set-product-trans <% if(product[i].get('isTranslation') == true) { %>on<% } %>" istranslationdate="<%= product[i].get('isTranslation') %>"  href="javascript:;"><i class="am-icon-language"></i></a>
+
+                            <% for(var j = 0;j < product[i].get('productMethod').length;j++) { %>
+                            <a title="同类产品"
+                               href="/admin/product?product-method-id=<%= product[i].get('productMethod')[j] %>&category1-id=<%= product[i].get('category1')[j] %>&category2-id=<%= product[i].get('category2')[j] %>&onsale=<%= onsale %>&limit=200"><i
+                                    class="am-icon-tag"></i></a>
+                            <% } %>
+
+                        </td>
+
+                        <td class="t-c">
+                            <a target="_blank"
+                               href="/admin/product/preview/<%= product[i].get('productId') %>?product-method-id=<%= productMethodId %>"><i
+                                    class="am-icon-external-link"></i></a>
+                        </td>
+
+                        <td class="t-c">
+                            <span class="purchase-link" data-product-id="<%= product[i].get('productId') %>">
+                                <% if(product[i].get('purchaseLink').length) { %>
+                                <% for(var j = 0;j < product[i].get('purchaseLink').length;j++) { %>
+                                <% if(product[i].get('purchaseLink')[j]) { %>
+                                <a href="<%= product[i].get('purchaseLink')[j] %>" target="_blank"><i
+                                        class="am-icon-link <%if( product[i].get('maximum') && (product[i].get('stock') + product[i].get('reserve')) >= product[i].get('maximum')) { %>off<%}%>"></i></a>
+                                <% } %>
+                                <% } %>
+                                <% }else{ %>
+                                -
+                                <% } %>
+                                <%if(product[i].get('maximum')){ %>
+                                    <span class="maximum <%if( (product[i].get('stock') + product[i].get('reserve')) >= product[i].get('maximum')) { %>off<%}%>"><%= product[i].get('maximum') %></span>
+                                    <%if(product[i].get('maximum') > (product[i].get('stock') + product[i].get('reserve'))) { %>
+                                        <span class="maximum-reserve">(+<%= product[i].get('maximum') - (product[i].get('stock') + product[i].get('reserve')) %>)</span>
+                                    <%}%>
+                                <%}%>
+                            </span>
+                            <a class="link-modal-viewport"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#purchase-link"><i
+                                    class="am-icon-edit"></i></a>
+                        </td>
+
+                        <td class="t-c">
+                            <span class="shop-link" data-product-id="<%= product[i].get
+                            ('productId') %>">
+                                <% if(product[i].get('shopLink').length) { %>
+                                <% for(var j = 0;j < product[i].get('shopLink').length;j++) { %>
+                                <% if(product[i].get('shopLink')[j]) { %>
+                                <a href="<%= product[i].get('shopLink')[j] %>" target="_blank"><i
+                                        class="am-icon-link"></i></a>
+                                <% } %>
+                                <% } %>
+                                <% }else{ %>
+                                -
+                                <% } %>
+                            </span>
+                            <a class="link-modal-viewport" title="编辑"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#shop-link"><i
+                                    class="am-icon-edit"></i></a>
+                        </td>
+
+                        <td class="t-c">
+                            <% if(product[i].get('imageSource')) { %>
+                            <% var imageSrouces = product[i].get('imageSource').split('\n');
+                            for (var k=0;k<imageSrouces.length;k++ ) { %>
+                            <a target="_blank" href="<%= imageSrouces[k].replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace('ac-JoaBcRTt.clouddn.com','lc-JoaBcRTt.cn-n1.lcfile.com') %>"><i
+                                    class="am-icon-image"></i></a>
+                            <%}%>
+                            <% }else{ %>
+                            -
+                            <% } %>
+                            <a class="link-modal-viewport"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#image-source"><i
+                                    class="am-icon-edit"></i></a>
+
+                            <% if(product[i].get('imageSource')) { %>
+                            <a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
+                               class="image-source-download"><i class="am-icon-download"></i></a>
+                            <div class="image-source-group">
+                                <input type="hidden" class="image-source-value"
+                                       value="<%= product[i].get('imageSource').replace('ac-JoaBcRTt.clouddn.com','lc-JoaBcRTt.cn-n1.lcfile.com').replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>">
+
+                            </div>
+                            <% } %>
+
+                        </td>
+
+                        <!--
+                        <td class="t-c">
+                            <a class="link-modal-viewport" title="内容管理"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#content-manage"><i
+                                        class="am-icon-book"></i></a>
+                        </td>
+                        -->
+                        <!--
+                        <td class="t-c">
+                            <a class="link-modal-viewport" title="附件管理"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#attachment-manage"><i
+                                        class="am-icon-paperclip"></i></a>
+                        </td>
+                        -->
+                        <td class="t-c">
+                            <div class="am-dropdown" data-am-dropdown>
+                                <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><i
+                                        class="am-icon-ellipsis-h"></i></button>
+                                <ul class="am-dropdown-content">
+                                    <li><a href="/admin/product/copy/<%= product[i].get('productId') %>">复制</a></li>
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="link-bind-category">关联分类属性</a></li>
+                                    <!--
+                                    <li><a href="/admin/product/copy/ten/<%= product[i].get('productId') %>">复制十条</a></li>
+                                    -->
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="link-change-discount">设置促销折扣</a></li>
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" data-category2-id="<%= product[i].get('category2')[0] %>" class="link-change-category-discount">分类批量设置促销折扣</a></li>
+
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
+                                           data-category2-id="<%= product[i].get('category2')[0] %>"
+                                           class="link-change-price">批量改价</a></li>
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
+                                           data-category2-id="<%= product[i].get('category2')[0] %>"
+                                           class="link-change-cost-price">批量修改成本价</a></li>
+
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="link-change-maximum">设置预定最高数量</a></li>
+
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" data-category2-id="<%= product[i].get('category2')[0] %>" class="link-change-category-maximum">批量设置预定最高数量</a></li>
+
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
+                                           class="link-copy-etsy">生成Etsy</a></li>
+                                    <li>
+                                        <a href="/admin/product/groups/<%= product[i].get('productId') %>?product-method-id=<%= product[i].get('productMethod')[0] %>&category1-id=<%= product[i].get('category1')[0] %>&category2-id=<%= product[i].get('category2')[0] %>">产品组合管理</a>
+                                    </li>
+                                    <li><a class="link-modal-viewport"
+                                           href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#tags">标签管理</a>
+                                    </li>
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="link-change-color-tag">设置颜色标记</a>
+                                    </li>
+                                    <li><a class="link-modal-viewport"
+                                           href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#set-comment">备注</a>
+                                    </li>
+                                    <li><a href="javascript:;" data-id="<%= product[i].get('productId') %>"
+                                           class="remove-product">删除</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td class="t-c">
+                            <div class="am-dropdown" data-am-dropdown>
+                                <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>
+                                    <i class="am-icon-ellipsis-h"></i>
+                                </button>
+                                <ul class="am-dropdown-content">
+                                    <li>
+                                        <form class="form-copy-product-content">
+                                            <label><input type="checkbox" name="name"> 产品名称</label>
+                                            <label><input type="checkbox" name="detail"> 产品详情</label>
+                                            <label><input type="checkbox" name="property"> 产品属性</label>
+                                            <label><input type="checkbox" name="instruction"> 产品说明</label>
+                                            <label><input type="checkbox" name="use"> 产品使用说明</label>
+                                            <label><input type="checkbox" name="review"> 店主评语</label>
+                                            <label><input type="checkbox" name="detailImage"> 产品图片</label>
+                                            <div class="t-c">
+                                                <button type="button" class="am-btn am-btn-primary am-btn-sm">复制
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+
+                <div class="am-pager am-cf">
+                    <div class="am-fl">
+                        <ul class="am-pagination">
+                            <%- pagerHtml %>
+                        </ul>
+                    </div>
+                    <div class="am-fr">
+                        第<%= pager.page %>页 共<%= pager.count %>条
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <a href="/admin/product/add" class="am-btn am-btn-primary" role="button">添加新产品</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- content end -->
+
+</div>
+
+
+<!-- modal 删除产品 -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="confirm-remove-product">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            确定要删除这条记录吗？
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+        </div>
+    </div>
+</div>
+<!-- modal 删除产品 -->
+
+
+<!-- modal alert -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">提示</div>
+        <div class="am-modal-bd"></div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm>确认</span>
+        </div>
+    </div>
+</div>
+<!-- modal alert -->
+
+<!-- modal viewport iframe -->
+<div class="am-modal am-modal-prompt" tabindex="-1" id="modal-viewport">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd"><a href="javascript:;" class="am-close am-close-spin" data-am-modal-close="">×</a>
+        </div>
+        <div class="am-modal-bd"></div>
+    </div>
+</div>
+<!-- modal viewport iframe -->
+
+<!-- modal confirm -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-confirm">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            确定更新此分类内容？
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+        </div>
+    </div>
+</div>
+<!-- modal confirm -->
+
+<!-- modal etsy -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-copy-etsy">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">输入Etsy.com产品地址</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-copy-etsy"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal etsy -->
+
+<!-- modal changePrice -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-change-price">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">输入更改的价格</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-change-price"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal changePrice -->
+
+<!-- modal loading -->
+<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="modal-loading">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">正在导入...</div>
+        <div class="am-modal-bd">
+            <span class="am-icon-spinner am-icon-spin"></span>
+        </div>
+    </div>
+</div>
+<!-- modal lodaing -->
+
+<!-- modal bind category -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-bind-category">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">输入主产品ID (取消关联请留空文本框)</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-bind-category"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal  bind category -->
+
+<!-- modal changeDiscount -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-change-discount">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">输入促销折扣</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-change-discount"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal changeDiscount -->
+
+<!-- modal changeDiscountByCategory -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-change-category-discount">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">输入促销折扣</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-change-category-discount"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal changeDiscountByCategory -->
+
+<!-- modal changeMaximum -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-change-maximum">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">输入预定数最高数量</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-change-maximum"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal changeMaximum -->
+
+<!-- modal changeMaximumByCategory -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-change-category-maximum">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">批量输入预定数最高数量</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-change-category-maximum"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal changeMaximumByCategory -->
+
+<!-- modal changeMaximumByCategory -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-change-color-tag">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">设置颜色标记</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-change-color-tag"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal changeMaximumByCategory -->
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">closeViewportModal
+
+$(function () {
+    var public = require('public');
+    public.indexFun();
+});
+
+window.gReloadPageVar = true;
+
+//iframe window关闭
+function closeViewportModal() {
+    $('#modal-viewport').modal('close');
+    if(window.gReloadPageVar) {
+        location.reload();
+    } else {
+        window.gReloadPageVar = true;
+    }
+}
+
+</script>
+</body>
+</html>
