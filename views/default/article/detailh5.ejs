@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <meta name="keywords" content="" >
+    <meta name="description" content="" >
+    <% include ../partials/css %>
+    <% include ../partials/tongji %>
+</head>
+<body class="user-page user-cart-page">
+
+<% include ../partials/header-sub %>
+
+<% if(article) { %>
+
+
+            <a href="/blog/<%= article.get('articleId') %>"><img src="<%= article.get('image') %>" class="lazy" width="100" height="100"  /></a>
+
+            <h3>
+                <a href="/blog/<%= article.get('articleId') %>"><%= article.get('name') %></a>
+            </h3>
+            <p>
+                <%=article.get('summary')%>
+            </p>
+            <p>
+                人气: <span class="price"><%=article.get('pageView')%></strong></span>
+            </p>
+    <%=article.get('content')%>
+<% } else { %>
+<div class="">
+    <div></div>
+    <p>没有文章</p>
+</div>
+<%}%>
+
+
+<% include ../partials/js %>
+
+<script>
+    $(function() {
+        var cart = require('cart');
+        cart.init();
+    });
+</script>
+</body>
+</html>
