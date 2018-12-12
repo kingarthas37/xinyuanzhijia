@@ -127,7 +127,7 @@ router.post('/', (req, res) => {
     
     let product = new Product();
     let productHistory = new ProductHistory();
-    
+    let isPublic = req.body['is-public'] == 'true' ? true : false;
     
     product.save({
         name,
@@ -142,7 +142,8 @@ router.post('/', (req, res) => {
         property,
         instruction,
         use,
-        detailImage
+        detailImage,
+        isPublic
     }).then(result => {
         let query = new AV.Query(Product);
         query.equalTo('objectId',result.id);
@@ -163,7 +164,8 @@ router.post('/', (req, res) => {
             property,
             instruction,
             use,
-            detailImage
+            detailImage,
+            isPublic
         });
         
     }).then(() => {
