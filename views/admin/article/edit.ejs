@@ -61,8 +61,8 @@
 
                     <!-- images start -->
                     <div class="am-form-group">
-                        <label for="image">文章主图图片(大小750px*750px): <i>*</i></label>
-                        <input required id="image" name="image" type="text" placeholder="输入文章图片" value="<%= article.get('image')%>"/>
+                        <label for="image">文章主图图片(大小750px*750px): </label>
+                        <input id="image" name="image" type="text" placeholder="输入文章图片" value="<%= article.get('image')%>"/>
                         <div class="main-image-view">
                             <% if(article.get('image')) { %>
                              <a href="<%= article.get('image') %>" target="_blank">
@@ -98,6 +98,14 @@
                     <!-- images weitao end -->
 
                     <hr>
+
+                    <!-- 文章简介 -->
+                    <div class="am-form-group">
+                        <label for="content">文章简介 <small>(md5)</small>:</label>
+                        <textarea id="summary" name="summary" rows="3"><%= article.get('summary') %></textarea>
+                    </div>
+
+                    <hr/>
 
                     <!-- content start -->
                     <div class="am-form-group">
