@@ -47,6 +47,7 @@ router.post('/:articleId', (req, res) => {
     let articleId = parseInt(req.params.articleId);
     let articleCategoryId = parseInt(req.body['articleCategoryId']);
     let content = req.body['content'];
+    let summary = req.body['summary'];
     let name = req.body['name'];
     let image = req.body['image'];
     let taoBaoLink = req.body['taoBaoLink'];
@@ -57,7 +58,7 @@ router.post('/:articleId', (req, res) => {
     let originalLink = req.body['originalLink'];
     let englishName = req.body['englishName'];
     let imageWeitao = req.body['image-weitao'];
-    article.update({articleCategoryId,content,name,image,taoBaoLink,videoLink, detailImages, status, weiBoLink, originalLink,englishName,imageWeitao}, articleId).then(() => {
+    article.update({articleCategoryId,content,summary,name,image,taoBaoLink,videoLink, detailImages, status, weiBoLink, originalLink,englishName,imageWeitao}, articleId).then(() => {
         req.flash('success', '文章编辑成功!');
         res.redirect('/admin/article');
     });

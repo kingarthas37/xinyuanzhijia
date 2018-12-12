@@ -38,6 +38,7 @@ router.post('/', (req, res) => {
     base.isAdminUserLogin(req, res);  //判断是否登录
     let articleCategoryId = parseInt(req.body['articleCategoryId']);
     let content = req.body['content'];
+    let summary = req.body['summary'];
     let name = req.body['name'];
     let image = req.body['image'];
     let taoBaoLink = req.body['taoBaoLink'];
@@ -48,7 +49,7 @@ router.post('/', (req, res) => {
     let originalLink = req.body['originalLink'];
     let englishName = req.body['englishName'];
     let imageWeitao = req.body['image-weitao'];
-    article.add({articleCategoryId,content,name,image,taoBaoLink,videoLink, detailImages,status, weiBoLink, originalLink,englishName,imageWeitao}).then(() => {
+    article.add({articleCategoryId,content,summary,name,image,taoBaoLink,videoLink, detailImages,status, weiBoLink, originalLink,englishName,imageWeitao}).then(() => {
         req.flash('success', '文章添加成功!');
         res.redirect('/admin/article');
     });
