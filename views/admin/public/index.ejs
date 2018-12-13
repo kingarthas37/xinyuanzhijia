@@ -125,6 +125,7 @@
                         <th class="t-c">详情</th>
                         <th class="t-c">成本价</th>
                         <th class="t-c">预览</th>
+                        <th class="t-c">原图</th>
                         <th class="t-c">选项</th>
                         <th class="t-c">复制</th>
                     </tr>
@@ -239,6 +240,31 @@
                             <a target="_blank"
                                href="/admin/product/preview/<%= product[i].get('productId') %>?product-method-id=<%= productMethodId %>"><i
                                         class="am-icon-external-link"></i></a>
+                        </td>
+
+                        <td class="t-c">
+                            <% if(product[i].get('imageSource')) { %>
+                            <% var imageSrouces = product[i].get('imageSource').split('\n');
+                            for (var k=0;k<imageSrouces.length;k++ ) { %>
+                            <a target="_blank" href="<%= imageSrouces[k].replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace('ac-JoaBcRTt.clouddn.com','lc-JoaBcRTt.cn-n1.lcfile.com') %>"><i
+                                        class="am-icon-image"></i></a>
+                            <%}%>
+                            <% }else{ %>
+                            -
+                            <% } %>
+                            <a class="link-modal-viewport"
+                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#image-source"><i
+                                        class="am-icon-edit"></i></a>
+
+                            <% if(product[i].get('imageSource')) { %>
+                            <a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
+                               class="image-source-download"><i class="am-icon-download"></i></a>
+                            <div class="image-source-group">
+                                <input type="hidden" class="image-source-value"
+                                       value="<%= product[i].get('imageSource').replace('ac-JoaBcRTt.clouddn.com','lc-JoaBcRTt.cn-n1.lcfile.com').replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>">
+
+                            </div>
+                            <% } %>
                         </td>
 
                         <!--
