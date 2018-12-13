@@ -46,7 +46,14 @@ router.get('/', (req, res) => {
                 resolve();
             });
         })
-    ).then(() => { res.render('default/article', data); });
+    ).then(() => {
+        let ua =new RegExp('Mobile');
+        let views = 'default/article';
+        if(ua.test(req.headers['user-agent'])){
+            views = 'default/article/indexh5';
+        }
+        res.render(views, data);
+    });
 });
 
 router.get('/ajax', (req, res) => {
@@ -87,7 +94,12 @@ router.get('/:articleId',(req,res)=> {
             });
         })
     ).then(() => {
-        res.render('default/article/detail', data);
+        let ua =new RegExp('Mobile');
+        let views = 'default/article/detail';
+        if(ua.test(req.headers['user-agent'])){
+            views = 'default/article/detailh5';
+        }
+        res.render(views, data);
     });
 
 });
