@@ -1076,8 +1076,25 @@ footer {
       overflow: hidden;
       font-size: 14px;
       font-weight: bold;
-      margin: 0 0 5px 0; }
+      margin: 0 0 5px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; }
       .main-list li .detail h3 a.out-stock {
+        color: #999; }
+    .main-list li .detail h4 {
+      height: 40px;
+      line-height: 20px;
+      overflow: hidden;
+      font-size: 12px;
+      font-weight: normal;
+      margin: 0 0 5px 0;
+      color: #545454;
+      padding: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; }
+      .main-list li .detail h4 a.out-stock {
         color: #999; }
     .main-list li .detail p {
       color: #545454;
