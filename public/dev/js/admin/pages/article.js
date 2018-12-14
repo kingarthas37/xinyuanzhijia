@@ -116,6 +116,58 @@ module.exports = {
             */
         }
 
+
+        //编辑markdown换行
+        {
+
+            $('.btn-replace-br').click(function () {
+               let target = $($(this).attr('data-target'));
+               let text = target.val();
+               let _this = this;
+               text = text.replace(/(.)\n/gi,'$1  \n');
+               target.val(text);
+               $(this).parent().find('label').text('自动替换换行设置完成!');
+            });
+
+        }
+
+        //取消自动换行
+        {
+            $('.btn-replace-br-cancel').click(function () {
+                let target = $($(this).attr('data-target'));
+                let text = target.val();
+                let _this = this;
+                text = text.replace(/(.)  \n/gi,'$1\n');
+                target.val(text);
+                $(this).parent().find('label').text('取消自动替换换行设置完成!');
+            });
+        }
+
+        //全屏编辑
+        {
+
+            $('.btn-edit-fullscreen').click(function () {
+                let _this = this;
+                let target = $($(this).attr('data-target'));
+                let modal = $('#modal-detail-fullscreen');
+                let textarea = modal.find('.textarea-detail-fullscreen');
+                textarea.val(target.val());
+                modal.modal({
+                    relatedTarget: this,
+                    width:$(window).width() - 100,
+                    onConfirm: function(options) {
+                        target.val(textarea.val());
+                        $(_this).parent().find('label').text('编辑完成!');
+                    },
+                    onCancel: function() {
+                    }
+                });
+
+
+            });
+
+        }
+
     },
 
     uploadDetailImageSuccess(data) {

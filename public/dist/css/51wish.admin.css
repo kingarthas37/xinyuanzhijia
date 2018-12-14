@@ -870,7 +870,6 @@ span.hot:after {
   font-weight: normal;
   margin: 0 0  20px 0;
   padding: 0;
-  height: 50px;
   line-height: 50px;
   text-align: center;
   border-bottom: 1px dashed #ddd; }
@@ -889,5 +888,13 @@ span.hot:after {
   padding-bottom: 20px; }
 
 /* admin-public-page */
+/* admin-article-page */
+.admin-article-page .detail-label-info {
+  margin-left: 10px;
+  color: #5eb95e;
+  font-weight: bold; }
+
+.admin-article-page .textarea-detail-fullscreen {
+  width: 99%; }
 
 /*# sourceMappingURL=51wish.admin.css.map */

@@ -5,7 +5,7 @@
     <title><%= title %></title>
     <% include ../partials/css %>
 </head>
-<body>
+<body  class="admin-article-page">
 
 <% include ../partials/header %>
 
@@ -100,6 +100,13 @@
                     <div class="am-form-group">
                         <label for="content">文章详情 <small>(md5)</small>:</label>
                         <textarea id="content" name="content" rows="10"></textarea>
+                        <br>
+                        <div>
+                            <button type="button" class="btn-edit-fullscreen am-btn am-btn-primary" data-target="#content">全屏编辑</button>
+                            <button type="button" class="btn-replace-br am-btn am-btn-primary" data-target="#content">自动替换换行</button>
+                            <button type="button" class="btn-replace-br-cancel am-btn am-btn-primary" data-target="#content">取消自动替换换行</button>
+                            <label class="detail-label-info"></label>
+                        </div>
                     </div>
 
 
@@ -175,6 +182,19 @@
     </div>
     <!-- content end -->
 
+</div>
+
+<!-- modal fullscreen detail -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-detail-fullscreen">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            <textarea class="textarea-detail-fullscreen" rows="20"></textarea>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm>保存</span>
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+        </div>
+    </div>
 </div>
 
 
