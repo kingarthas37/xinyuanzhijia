@@ -20,12 +20,23 @@
         <div class="l">
             <a href="/blog">博客/文章</a>
             <i class="am-icon-angle-right"></i>
-            <a href="#">测试分类2</a>
+            <a href="#"><% if(articleCategory) {
+                for(var i = 0; i < articleCategory.length; i++) {
+                if (articleCategory[i].get('articleCategoryId') == article.get('articleCategoryId')) {
+                %>
+                    <%=articleCategory[i].get('name') %>
+                    <%
+                }
+                %>
+
+                <%    }
+                }
+                %></a>
         </div>
         <div class="r">
-            阅读量:99
+            阅读量:<%=article.get('pageView')%>
             <span class="split"></span>
-            2018年05月23日 18:35
+            <%=article.get('createdAt')%>
         </div>
     </div>
 
