@@ -32,7 +32,7 @@
             <div class="am-form">
                 <div class="cf">
                     <div class="am-u-sm-12 am-u-md-4">
-                        <form action="/admin/product" method="get">
+                        <form action="/admin/public" method="get">
                             <div class="am-form-group">
                                 <div class="am-input-group am-input-group-sm">
                                     <input type="text" name="search" value="<%= search %>" class="search am-form-field"
@@ -58,13 +58,12 @@
                             <select class="select-product-method">
                                 <option value="">产品类型</option>
                                 <% for (var i = 0;i < productMethod.length; i++) { %>
-                                <option
-                                <% if(productMethod[i].get('productMethodId') === productMethodId ) { %>
-                                selected="selected"
+                                <% if(productMethod[i].get('productMethodId') === 32) {%>
+                                <option <% if(productMethod[i].get('productMethodId') === productMethodId ) { %>
+                                        selected="selected"
+                                        <% } %> value="<%= productMethod[i].get('productMethodId'); %>"> <%= productMethod[i].get('name'); %></option>
+                                <%}%>
                                 <% } %>
-                                value="<%= productMethod[i].get('productMethodId'); %>"> <%= productMethod[i].get('name'); %></option>
-                                <%
-                                } %>
                             </select>
                         </div>
                     </div>
@@ -122,7 +121,7 @@
                     <tr>
                         <th class="product-title">产品名称</th>
                         <th class="t-c">属性</th>
-                        <th class="t-c">详情</th>
+                        <th class="t-c">备注</th>
                         <th class="t-c">成本价</th>
                         <th class="t-c">预览</th>
                         <th class="t-c">原图</th>
@@ -221,19 +220,19 @@
                         </td>
 
                         <td class="t-c">
-                            <% if(product[i].get('property')) { %> <%= product[i].get('property') %>
-                            <a href="javascript:;" title=" <%= product[i].get('property') %>">查看属性</a>
+                            <% if(product[i].get('property')) { %>
+                            <a href="javascript:;"  title="<%= product[i].get('property') %>">查看</a>
                             <% }else{ %>-<%}%>
                         </td>
 
                         <td class="t-c">
-                            <% if(product[i].get('detail')) { %> <%= product[i].get('detail') %>
-                            <a href="javascript:;" title=" <%= product[i].get('detail') %>">查看详情</a>
+                            <% if(product[i].get('detail')) { %>
+                            <a href="javascript:;" title=" <%= product[i].get('detail') %>">查看</a>
                             <% }else{ %>-<%}%>
                         </td>
 
                         <td class="t-c">
-                            <% if(product[i].get('costPrice')) { %> <%= product[i].get('costPrice') %>.0 <% }else{ %>-<%}%>
+                            <% if(product[i].get('costPrice')) { %>￥<%= product[i].get('costPrice') %>.0 <% }else{ %>-<%}%>
                         </td>
 
                         <td class="t-c">
@@ -597,8 +596,8 @@
 <script type="text/javascript">closeViewportModal
 
 $(function () {
-    var public = require('public');
-    public.indexFun();
+    var publicPage = require('public');
+    publicPage.indexFun();
 });
 
 window.gReloadPageVar = true;

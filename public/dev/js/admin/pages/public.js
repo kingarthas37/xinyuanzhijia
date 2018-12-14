@@ -28,7 +28,7 @@ module.exports = {
             let isSales = $('input[name=is-sales]').val();
             productMethod.change(function(){
                 if(this.value) {
-                    return location.href = utils.urlParamsComponent('/admin/product',{
+                    return location.href = utils.urlParamsComponent('/admin/public',{
                         'product-method-id':this.value,
                         'onsale':onsaleVal,
                         'is-short-stock':isShortStock,
@@ -41,7 +41,7 @@ module.exports = {
                         'is-sales': isSales
                     });
                 }
-                location.href = utils.urlParamsComponent('/admin/product',{
+                location.href = utils.urlParamsComponent('/admin/public',{
                     'onsale':onsaleVal,
                     'is-short-stock':isShortStock,
                     'update-stock-date':updateStockDate,
@@ -56,7 +56,8 @@ module.exports = {
 
             category1.change(function() {
                 if(this.value) {
-                    return location.href = utils.urlParamsComponent('/admin/product',{
+
+                    return location.href = utils.urlParamsComponent('/admin/public',{
                         'product-method-id':productMethodVal,
                         'category1-id':this.value,
                         'onsale':onsaleVal,
@@ -70,7 +71,7 @@ module.exports = {
                         'is-sales': isSales
                     });
                 }
-                location.href = utils.urlParamsComponent('/admin/product',{
+                location.href = utils.urlParamsComponent('/admin/public',{
                     'product-method-id':productMethodVal,
                     'onsale':onsaleVal,
                     'is-short-stock':isShortStock,
@@ -86,7 +87,7 @@ module.exports = {
 
             category2.change(function() {
                 if(this.value) {
-                    return location.href = utils.urlParamsComponent('/admin/product',{
+                    return location.href = utils.urlParamsComponent('/admin/public',{
                         'product-method-id':productMethodVal,
                         'category1-id':category1Val,
                         'category2-id':this.value,
@@ -101,7 +102,7 @@ module.exports = {
                         'is-sales': isSales
                     });
                 }
-                location.href = utils.urlParamsComponent('/admin/product',{
+                location.href = utils.urlParamsComponent('/admin/public',{
                     'product-method-id':productMethodVal,
                     'category1-id':category1Val,
                     'onsale':onsaleVal,
@@ -118,7 +119,7 @@ module.exports = {
 
 
             onsale.change(function() {
-                location.href = utils.urlParamsComponent('/admin/product',{
+                location.href = utils.urlParamsComponent('/admin/public',{
                     'product-method-id':productMethodVal,
                     'category1-id':category1Val,
                     'category2-id':category2Val,
@@ -135,7 +136,7 @@ module.exports = {
             });
 
             order.change(function() {
-                return location.href = utils.urlParamsComponent('/admin/product',{
+                return location.href = utils.urlParamsComponent('/admin/public',{
                     'product-method-id':productMethodVal,
                     'category1-id':category1Val,
                     'category2-id':category2Val,
@@ -188,7 +189,7 @@ module.exports = {
                     rows.each(function() {
                         let title = $(this).find('.title');
                         title.popover({
-                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>30天销量: ${title.data('popover-thirty')} | 90天销量: ${title.data('popover-ninety')} <br/>  ${twoMonth}月份销量: ${title.data('popover-two-month')} | ${lastMonth}月份销量: ${title.data('popover-last-month')}  <br/>总销量: ${title.data('popover-sales')}`,
+                            content:`成本价:￥${title.data('popover-cost-price')}`,
                             trigger:'hover'
                         });
                     });
