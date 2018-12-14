@@ -82,9 +82,9 @@
                     <!-- image weitao start -->
                     <div class="am-form-group">
                         <label for="image">微淘主图图片(大小750px*422px): </label>
-                        <input id="image-weitao" name="image-weitao" type="text" placeholder="输入微淘文章主图" value="<%= article.get('image')%>"/>
+                        <input id="image-weitao" name="image-weitao" type="text" placeholder="输入微淘文章主图" value="<%= article.get('imageWeitao')%>"/>
                         <div class="main-image-weitao-view">
-                            <% if(article.get('image')) { %>
+                            <% if(article.get('imageWeitao')) { %>
                             <a href="<%= article.get('imageWeitao') %>" target="_blank">
                                 <img width="100" src="<%= article.get('imageWeitao') %>?imageMogr2/thumbnail/100">
                             </a>
