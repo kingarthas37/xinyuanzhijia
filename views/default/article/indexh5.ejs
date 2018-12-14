@@ -8,7 +8,7 @@
     <% include ../partials/css %>
     <% include ../partials/tongji %>
 </head>
-<body class="user-page user-cart-page">
+<body class="user-page user-blog-detail-page">
 
 <% include ../partials/header-sub %>
 
@@ -23,9 +23,9 @@
             <h3>
                 <a href="/blog/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
             </h3>
-            <p>
+            <h4>
                 <%=article[i].get('summary')%>
-            </p>
+            </h4>
             <p>
                 人气: <span class="price"><%=article[i].get('pageView')%></strong></span>
             </p>

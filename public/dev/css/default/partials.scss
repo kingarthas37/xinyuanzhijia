@@ -72,7 +72,7 @@ header {
             i {
                 font-size: 24px;
                 font-weight: normal;
-                color: #fff;
+                color: $colorMainYellow;
             }
         }
         .title {
@@ -509,7 +509,7 @@ footer {
             }
 
             p {
-                color: #999;
+                color: #545454;
                 padding: 0;
                 margin: 0 0 5px 0;
                 line-height: 20px;
@@ -689,7 +689,8 @@ header {
     }
 
     &.sub {
-        background: $colorMain;
+        background: url('//lc-quipuwpj.cn-n1.lcfile.com/8338d107df1b791ba8fb.png');
+        //background: $colorMain;
 
         &.fixed {
             position: absolute;
@@ -719,11 +720,11 @@ header {
             i {
                 font-size: 24px;
                 font-weight: normal;
-                color: #fff;
+                color: $colorMainYellow;
             }
         }
         .title {
-            color: #fff;
+            color: $colorMainYellow;
             font-size: 16px;
             height: 50px;
             line-height: 50px;
@@ -748,7 +749,7 @@ header {
             i {
                 font-size: 24px;
                 font-weight: normal;
-                color: #fff;
+                color: $colorMainYellow;
                 &.am-icon-search {
                     font-size: 16px;
                 }
@@ -760,6 +761,7 @@ header {
             .am-dropdown {
                 .am-dropdown-toggle {
                     padding: 0;
+                    background: none;
                 }
                 a {
                     border:none;
@@ -1150,13 +1152,33 @@ footer {
                 font-size: 14px;
                 font-weight: bold;
                 margin: 0 0 5px 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                a.out-stock {
+                    color: #999;
+                }
+            }
+
+            h4 {
+                height: 40px;
+                line-height: 20px;
+                overflow: hidden;
+                font-size: 12px;
+                font-weight: normal;
+                margin: 0 0 5px 0;
+                color: #545454;
+                padding: 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
                 a.out-stock {
                     color: #999;
                 }
             }
 
             p {
-                color: #999;
+                color: #545454;
                 padding: 0;
                 margin: 0 0 5px 0;
                 line-height: 20px;
