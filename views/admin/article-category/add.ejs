@@ -27,14 +27,26 @@
 
                 <form id="form-add-product" class="am-form" method="post" >
 
-                    <!--  course template start -->
+
                     <div class="am-form-group">
                         <label for="name" >分类名称<i>*</i></label>
-                        <input type="text" name="name" id="name" value="" />
+                        <input required type="text" name="name" id="name" value="" />
                     </div>
-                    <!--  course template end -->
 
                     <hr/>
+
+                    <div class="am-form-group">
+                        <label for="name" >分类图标 <small>(256px*256px)</small></label>
+                        <input type="text" name="category-icon" id="category-icon" value="" />
+                    </div>
+
+                    <hr>
+
+                    <div class="am-form-group">
+                            <label><strong>是否发布分类</strong> <input type="checkbox" name="push-category"></label>
+                    </div>
+
+                    <hr>
 
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
