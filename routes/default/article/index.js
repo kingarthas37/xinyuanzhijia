@@ -92,6 +92,12 @@ router.get('/:articleId',(req,res)=> {
                 data = extend(data, {article:item});
                 resolve();
             });
+        }),
+        new AV.Promise(resolve => {
+            articleCategory.getArticleCategory({'limit':999}).then(category => {
+                data = extend(data, {articleCategory:category.items, articleCategoryCount: category.count});
+                resolve();
+            });
         })
     ).then(() => {
         let ua =new RegExp('Mobile');
