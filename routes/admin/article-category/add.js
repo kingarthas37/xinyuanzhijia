@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
     let name = req.body['name'];
     let parentId = req.body['parentId'];
     let icon = req.body['category-icon'];
-    let isPublish = req.body['push-category'];
+    let isPublish = req.body['push-category'] == 'true' ? true : false;;
     articleCategory.add({name, parentId,icon,isPublish}).then(() => {
         req.flash('success', '添加文章分类成功!');
         res.redirect('/admin/article-category');
