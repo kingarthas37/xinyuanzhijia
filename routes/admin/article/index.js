@@ -30,10 +30,12 @@ router.get('/', (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let search = req.query.search || null;
     let articleCategoryId = req.query['article-category-id'] ? parseInt(req.query['article-category-id']) : null;
-    let options = {page, limit, search, articleCategoryId};
+    let isParent = true;
+    let options = {page, limit, search, articleCategoryId,isParent};
     data = extend(data, {
         search,
-        articleCategoryId
+        articleCategoryId,
+        isParent
     });
     AV.Promise.when(
         new AV.Promise(resolve => {
@@ -100,6 +102,38 @@ router.get('/copy/:articleId',(req,res)=> {
 
     },err => console.info(err));
 
+});
+
+router.get('/seed/:articleId',(req,res) => {
+    let parentArticleId = parseInt(req.params.articleId);
+    let options = {parentArticleId};
+    let list;
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            article.getArticle(options).then(result => {
+                list = extend(list, {
+                    article:result.items,
+                    count:result.count
+                });
+                resolve();
+            });
+        })
+    ).then(() => { res.send({list}) });
+});
+
+router.get('/article-category-count/:articleCategoryId',(req,res) => {
+    let articleCategoryId = parseInt(req.params.articleCategoryId);
+    let limit = 1;
+    let options = {articleCategoryId,limit};
+    let count = 0;
+    AV.Promise.when(
+        new AV.Promise(resolve => {
+            article.getArticle(options).then(result => {
+                count = result.count;
+                resolve();
+            });
+        })
+    ).then(() => { res.send({count}) });
 });
 
 module.exports = router;

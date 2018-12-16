@@ -57,12 +57,23 @@ router.post('/', (req, res) => {
     let englishName = req.body['englishName'];
     let imageWeitao = req.body['image-weitao'];
     let tag = req.body['tag'] || [];
+    let parentArticleId = req.body['parent-article-id'] ? parseInt(req.body['parent-article-id']) : 0;
+    let isParent = parentArticleId > 0 ? false : true;
     if (tag.length == 1) {
         tag = [tag];
     }
-    article.add({articleCategoryId,content,summary,name,image,taoBaoLink,videoLink, detailImages,status, weiBoLink, originalLink,englishName,imageWeitao,tag}).then(() => {
-        req.flash('success', '文章添加成功!');
-        res.redirect('/admin/article');
+    article.add({articleCategoryId,content,summary,name,image,taoBaoLink,videoLink, detailImages,status, weiBoLink, originalLink,englishName,imageWeitao,tag,parentArticleId,isParent}).then(() => {
+        if (parentArticleId > 0) {
+            let isParent = true;
+            article.updateArticleIsParent(isParent,parentArticleId).then(() => {
+                req.flash('success', '文章添加成功!');
+                res.redirect('/admin/article');
+            });
+        } else {
+            req.flash('success', '文章添加成功!');
+            res.redirect('/admin/article');
+        }
+
     });
 });
 
