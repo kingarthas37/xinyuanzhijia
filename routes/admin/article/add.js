@@ -12,6 +12,7 @@ let config = require('../../../lib/config');
 //class
 let article = require('../../../lib/models/article').createNew();
 let articleCategory = require('../../../lib/models/article-category').createNew();
+let articleTag = require('../../../lib/models/article-tag').createNew();
 let base = require('../../../lib/models/base');
 let markdown = require('markdown').markdown;
 
@@ -27,6 +28,12 @@ router.get('/', (req, res) => {
         new AV.Promise(resolve => {
             articleCategory.getArticleCategory({limit: 999}).then(result => {
                 data = extend(data, {articleCategory: result.items});
+                resolve();
+            });
+        }),
+        new AV.Promise(resolve => {
+            articleTag.getArticleTag({limit:999}).then(result => {
+                data = extend(data, {articleTag: result.items});
                 resolve();
             });
         })
@@ -49,7 +56,11 @@ router.post('/', (req, res) => {
     let originalLink = req.body['originalLink'];
     let englishName = req.body['englishName'];
     let imageWeitao = req.body['image-weitao'];
-    article.add({articleCategoryId,content,summary,name,image,taoBaoLink,videoLink, detailImages,status, weiBoLink, originalLink,englishName,imageWeitao}).then(() => {
+    let tag = req.body['tag'] || [];
+    if (tag.length == 1) {
+        tag = [tag];
+    }
+    article.add({articleCategoryId,content,summary,name,image,taoBaoLink,videoLink, detailImages,status, weiBoLink, originalLink,englishName,imageWeitao,tag}).then(() => {
         req.flash('success', '文章添加成功!');
         res.redirect('/admin/article');
     });

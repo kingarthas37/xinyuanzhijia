@@ -169,6 +169,20 @@
                     <!-- push end -->
 
                     <hr>
+
+                    <div class="">
+                        <div>
+                            <label><strong>标签：</strong>
+                                <% if (articleTag) { %>
+                                <% for (var i = 0; i < articleTag.length; i++) { %>
+                                <input type="checkbox" name="tag" value="<%= articleTag[i].get('articleTagId')%>" /><%=articleTag[i].get('name')%>&nbsp;&nbsp;
+                                <% }
+                                } %>
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
                         <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>

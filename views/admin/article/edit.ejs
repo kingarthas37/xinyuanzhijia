@@ -198,6 +198,30 @@
                     <!-- push end -->
 
                     <hr>
+
+                    <div>
+                        <div>
+                            <label><strong>标签：</strong>
+                            <% if (articleTag) { %>
+                                <% for (var i = 0; i < articleTag.length; i++) {
+                                var checked = '';
+                                %>
+                                <% if (article.get('tag').length > 0) { %>
+                                    <% for (var k = 0; k < article.get('tag').length; k++) { %>
+                                <% if(article.get('tag')[k] == articleTag[i].get('articleTagId')) {
+                                    checked = "checked";
+                                } %>
+                                <% } %>
+                                <% }%>
+                                <input type="checkbox" name="tag" <%=checked%> value="<%= articleTag[i].get('articleTagId')%>" /><%=articleTag[i].get('name')%>&nbsp;&nbsp;
+                                <%
+                                }
+                            } %>
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
                         <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
