@@ -10,30 +10,27 @@ let extend = require('xtend');
 let config = require('../../../lib/config');
 
 //class
-let articleCategory = require('../../../lib/models/article-category').createNew();
+let articleTag = require('../../../lib/models/article-tag').createNew();
 let base = require('../../../lib/models/base');
 
 let data = extend(config.data, {
-    title: `${config.data.titleAdmin} - 添加文章分类`,
+    title: `${config.data.titleAdmin} - 添加文章标签`,
     currentTag: 'article',
-    currentPage: 'article-category'
+    currentPage: 'article-tag'
 });
 
 router.get('/', (req, res) => {
     base.isAdminUserLogin(req, res);  //判断是否登录
-    res.render('admin/article-category/add', data)
+    res.render('admin/article-tag/add', data)
 });
 
 
 router.post('/', (req, res) => {
     base.isAdminUserLogin(req, res);  //判断是否登录
     let name = req.body['name'];
-    let parentId = req.body['parentId'];
-    let icon = req.body['category-icon'];
-    let isPublish = req.body['push-category'];
-    articleCategory.add({name, parentId,icon,isPublish}).then(() => {
-        req.flash('success', '添加文章分类成功!');
-        res.redirect('/admin/article-category');
+    articleTag.add({name}).then(() => {
+        req.flash('success', '添加文章标签成功!');
+        res.redirect('/admin/article-tag');
     });
 });
 

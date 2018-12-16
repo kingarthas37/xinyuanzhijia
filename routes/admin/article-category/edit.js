@@ -33,8 +33,10 @@ router.post('/:articleCategoryId', (req, res) => {
     base.isAdminUserLogin(req, res);  //判断是否登录
     let articleCategoryId = parseInt(req.params.articleCategoryId);
     let name = req.body['name'];
-    let parentId = req.body['parentId']
-    articleCategory.update({name, parentId}, articleCategoryId).then(() => {
+    let parentId = req.body['parentId'];
+    let icon = req.body['category-icon'];
+    let isPublish = req.body['push-category'];
+    articleCategory.update({name, parentId,icon,isPublish}, articleCategoryId).then(() => {
         req.flash('success', '编辑文章分类成功!');
         res.redirect('/admin/article-category');
     });

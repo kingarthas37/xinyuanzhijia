@@ -100,4 +100,7 @@ module.exports = {
     '/admin/article-category/add':require('./admin/article-category/add'),
     '/admin/article-category/edit':require('./admin/article-category/edit'),
     '/admin/public/':require('./admin/public'),
+    '/admin/article-tag':require('./admin/article-tag'),
+    '/admin/article-tag/add':require('./admin/article-tag/add'),
+    '/admin/article-tag/edit':require('./admin/article-tag/edit'),
 };
