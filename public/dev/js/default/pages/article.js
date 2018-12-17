@@ -44,6 +44,16 @@ module.exports = {
             }
         });
 
+        $('.crumb .tags').each(function (i,n) {
+            let _this = this;
+            let id = $(this).data('id');
+            $.ajax({
+                url:`/admin/article/article-category-count/${id}`,
+            }).done(function (data) {
+                $(_this).find('em').text('('+ data.count + ')');
+            });
+        });
+
     }
 
 };

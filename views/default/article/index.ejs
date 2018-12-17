@@ -15,7 +15,7 @@
 <div class="crumb">
     <a href="/blog" <%if(!articleCategoryId) { %> class="on"<%}%>>所有分类 <%if(!articleCategoryId) { %>(<%= count %>)<%}%></a>
     <% for (var k=0; k<articleCategory.length; k++) { %>
-        <a <% if(articleCategoryId == articleCategory[k].get('articleCategoryId')) { %> class="on" <% } %> href="/blog?catid=<%= articleCategory[k].get('articleCategoryId')%>"><%= articleCategory[k].get('name')%> <% if(articleCategoryId == articleCategory[k].get('articleCategoryId')) { %>(<%= count %>)<% } %></a>
+        <a data-id="<%= articleCategory[k].get('articleCategoryId')%>" class="tags <% if(articleCategoryId == articleCategory[k].get('articleCategoryId')) { %>on<% } %>" href="/blog?catid=<%= articleCategory[k].get('articleCategoryId')%>"><%= articleCategory[k].get('name')%> <% if(articleCategoryId == articleCategory[k].get('articleCategoryId')) { %>(<%= count %>)<% } else { %><em></em><%}%></a>
     <% } %>
 </div>
 
