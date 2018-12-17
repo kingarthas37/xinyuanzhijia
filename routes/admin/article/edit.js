@@ -68,10 +68,11 @@ router.post('/:articleId', (req, res) => {
     let tag = req.body['tag'] || [];
     let parentArticleId = req.body['parent-article-id'] ? parseInt(req.body['parent-article-id']) : 0;
     let isParent = parentArticleId > 0 ? false : true;
+    let sort = req.body['sort'] ? parseInt(req.body['sort']) : 0;
     if (tag.length == 1) {
         tag = [tag];
     }
-    article.update({articleCategoryId,content,summary,name,image,taoBaoLink,videoLink, detailImages, status, weiBoLink, originalLink,englishName,imageWeitao,tag,isParent,parentArticleId}, articleId).then(() => {
+    article.update({articleCategoryId,content,summary,name,image,taoBaoLink,videoLink, detailImages, status, weiBoLink, originalLink,englishName,imageWeitao,tag,isParent,parentArticleId,sort}, articleId).then(() => {
         if (parentArticleId > 0) {
             let isParent = true;
             article.updateArticleIsParent(isParent,parentArticleId).then(() => {

@@ -124,7 +124,8 @@ router.get('/seed/:articleId',(req,res) => {
 router.get('/article-category-count/:articleCategoryId',(req,res) => {
     let articleCategoryId = parseInt(req.params.articleCategoryId);
     let limit = 1;
-    let options = {articleCategoryId,limit};
+    let status = 1;
+    let options = {articleCategoryId,limit, status};
     let count = 0;
     AV.Promise.when(
         new AV.Promise(resolve => {
