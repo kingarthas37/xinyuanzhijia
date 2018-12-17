@@ -189,6 +189,48 @@
 
                     <hr>
 
+
+                    <div>
+                            <label>选择标签：</label>
+                            <div>
+                                <% if (articleTag) { %>
+                                <% for (var i = 0; i < articleTag.length; i++) {
+                                    var checked = '';
+                                %>
+                                <% if (article.get('tag').length > 0) { %>
+                                <% for (var k = 0; k < article.get('tag').length; k++) { %>
+                                <% if(article.get('tag')[k] == articleTag[i].get('articleTagId')) {
+                                    checked = "checked";
+                                } %>
+                                <% } %>
+                                <% }%>
+                                <label> <input type="checkbox" name="tag" <%=checked%> value="<%= articleTag[i].get('articleTagId')%>" /> <%=articleTag[i].get('name')%> </label><span class="sp"></span>
+                                <%
+                                }
+                                } %>
+                            </div>
+
+                    </div>
+
+                    <hr>
+                    <div class="am-form-group">
+                        <div>
+                            <label>父文章ID：</label>
+                            <input type="text" name="parent-article-id" value="<%article.get('parentArticleId')%>">
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="am-form-group">
+                        <div>
+                            <label>子文章排序编号：</label>
+                            <input type="text" name="sort" value="<%article.get('sort')%>">
+                        </div>
+                    </div>
+
+                    <hr>
+
                     <!-- push start -->
                     <div class="am-form-group">
                         <div>
@@ -199,47 +241,6 @@
 
                     <hr>
 
-                    <div>
-                        <div>
-                            <label><strong>标签：</strong>
-                            <% if (articleTag) { %>
-                                <% for (var i = 0; i < articleTag.length; i++) {
-                                var checked = '';
-                                %>
-                                <% if (article.get('tag').length > 0) { %>
-                                    <% for (var k = 0; k < article.get('tag').length; k++) { %>
-                                <% if(article.get('tag')[k] == articleTag[i].get('articleTagId')) {
-                                    checked = "checked";
-                                } %>
-                                <% } %>
-                                <% }%>
-                                <input type="checkbox" name="tag" <%=checked%> value="<%= articleTag[i].get('articleTagId')%>" /><%=articleTag[i].get('name')%>&nbsp;&nbsp;
-                                <%
-                                }
-                            } %>
-                            </label>
-                        </div>
-                    </div>
-
-                    <hr>
-                    <!-- push start -->
-                    <div class="am-form-group">
-                        <div>
-                            <label><strong>父文章ID：<input type="text" name="parent-article-id" value="<%article.get('parentArticleId')%>"></strong></label>
-                        </div>
-                    </div>
-                    <!-- push end -->
-
-                    <hr>
-
-                    <div class="am-form-group">
-                        <div>
-                            <label><strong>子文章排序编号：<input type="text" name="sort" value="<%article.get('sort')%>"></strong></label>
-                        </div>
-                    </div>
-                    <!-- push end -->
-
-                    <hr>
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
                         <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>

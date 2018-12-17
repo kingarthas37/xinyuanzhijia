@@ -162,7 +162,7 @@
 
                     <hr>
 
-                    <div class="am-form-group">
+                    <div>
                         <label>选择标签：</label>
                         <div>
                             <% if (articleTag) { %>
@@ -175,35 +175,33 @@
 
                     <hr>
 
-                    <!-- push start -->
                     <div class="am-form-group">
                         <div>
                             <label>父文章ID：</label>
                             <input type="text" name="parent-article-id" value="">
                         </div>
                     </div>
-                    <!-- push end -->
 
                     <hr>
 
-                    <!-- push start -->
+                    <div class="am-form-group">
+                        <div>
+                            <label> 子文章排序编号：</label>
+                            <input type="text" name="sort" value="">
+                        </div>
+                    </div>
+
+                    <hr>
+
                     <div class="am-form-group">
                         <div>
                             <label><strong>发布文章：<input type="checkbox" name="status"></strong></label>
                         </div>
                     </div>
-                    <!-- push end -->
 
                     <hr>
 
-                    <div class="am-form-group">
-                        <div>
-                            <label><strong>子文章排序编号：<input type="text" name="sort" value=""></strong></label>
-                        </div>
-                    </div>
-                    <!-- push end -->
 
-                    <hr>
 
                     <div class="am-form-group">
                         <button id="submit" type="submit" class="am-btn am-btn-primary">保存</button>
