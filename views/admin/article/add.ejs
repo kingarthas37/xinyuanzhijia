@@ -146,6 +146,8 @@
                     </div>
                     <!-- weibo link end -->
 
+                    <hr>
+
                     <!-- video start -->
                     <div class="am-form-group">
                         <label for="video-link">文章视频：</label>
@@ -160,33 +162,34 @@
 
                     <hr>
 
+                    <div class="am-form-group">
+                        <label>选择标签：</label>
+                        <div>
+                            <% if (articleTag) { %>
+                            <% for (var i = 0; i < articleTag.length; i++) { %>
+                            <label><input type="checkbox" name="tag" value="<%= articleTag[i].get('articleTagId')%>" /> <%=articleTag[i].get('name')%></label> <span class="sp"></span>
+                            <% }
+                            } %>
+                        </div>
+                    </div>
+
+                    <hr>
+
                     <!-- push start -->
                     <div class="am-form-group">
                         <div>
-                            <label><strong>发布文章：<input type="checkbox" name="status"></strong></label>
+                            <label>父文章ID：</label>
+                            <input type="text" name="parent-article-id" value="">
                         </div>
                     </div>
                     <!-- push end -->
 
                     <hr>
 
-                    <div class="">
-                        <div>
-                            <label><strong>标签：</strong>
-                                <% if (articleTag) { %>
-                                <% for (var i = 0; i < articleTag.length; i++) { %>
-                                <input type="checkbox" name="tag" value="<%= articleTag[i].get('articleTagId')%>" /><%=articleTag[i].get('name')%>&nbsp;&nbsp;
-                                <% }
-                                } %>
-                            </label>
-                        </div>
-                    </div>
-
-                    <hr>
                     <!-- push start -->
                     <div class="am-form-group">
                         <div>
-                            <label><strong>父文章ID：<input type="text" name="parent-article-id" value=""></strong></label>
+                            <label><strong>发布文章：<input type="checkbox" name="status"></strong></label>
                         </div>
                     </div>
                     <!-- push end -->
