@@ -73,10 +73,12 @@ module.exports = {
     addFun:function () {
         this.domEvent();
         this.setImageList();
+        this.setZclip();
         $('#name')[0].focus();
     },
     editFun:function () {
         this.domEvent();
+        this.setZclip();
         this.setImageList();
     },
     domEvent() {
