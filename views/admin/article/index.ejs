@@ -83,9 +83,14 @@
                     <% for(var i=0; i < article.length; i++) {%>
                     <tr>
                         <td>
-                            <a href="<%=article[i].get('image') %>" target="_blank">
-                                <img width="40" src="<%=article[i].get('image') %>?imageMogr2/thumbnail/40" alt="" data-am-popover="{content:'<img width=150 src=<%=article[i].get('image') %>?imageMogr2/thumbnail/150>', trigger:'hover focus'}">
-                            </a>
+
+                            <% if(article[i].get('image')) {%>
+                                <a href="<%=article[i].get('image') %>" target="_blank">
+                                    <img width="40" src="<%=article[i].get('image') %>?imageMogr2/thumbnail/40" alt="" data-am-popover="{content:'<img width=150 src=<%=article[i].get('image') %>?imageMogr2/thumbnail/150>', trigger:'hover focus'}">
+                                </a>
+                            <%} else {%>
+                                <img width="40" src="//lc-quipuwpj.cn-n1.lcfile.com/23726f840c784a3ede12.jpg?imageMogr2/thumbnail/40" alt="">
+                            <%}%>
 
                             <a title="<%= article[i].get('englishName') %>" href="/admin/article/edit/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
                         </td>
