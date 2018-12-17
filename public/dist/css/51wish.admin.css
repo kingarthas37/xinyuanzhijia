@@ -807,6 +807,13 @@ span.hot:after {
 .admin-article-page .am-table td {
   vertical-align: middle; }
 
+.admin-article-page .am-table tr.child td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 30px;
+  font-size: 12px !important;
+  background-color: #feffed; }
+
 .admin-article-page .main-image-view img, .admin-article-page .main-image-weitao-view img {
   margin-top: 15px; }
 

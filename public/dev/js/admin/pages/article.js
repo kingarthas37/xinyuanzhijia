@@ -68,6 +68,33 @@ module.exports = {
             });
         }
 
+        //获取子文章
+        {
+            $('.article-title').each(function(i,n){
+                let id = $(n).data('id');
+                let tr = $(n).parents('tr');
+                $.ajax({
+                    url:`/admin/article/seed/${id}`,
+                    success:function (data) {
+                        if(!data.list.count) {
+                            return false;
+                        }
+                        $.each(data.list.article,function (i, n) {
+
+                            tr.after(`
+                                <tr class="child"> 
+                                    <td colspan="9"> 
+                                    <img width="30" src="//lc-quipuwpj.cn-n1.lcfile.com/23726f840c784a3ede12.jpg?imageMogr2/thumbnail/30" alt="">
+                                    <a href="/admin/article/edit/${n.articleId}">${n.name}</a> </td>
+                                </tr>
+                            `);
+                        });
+
+                    }
+                });
+            });
+        }
+
     },
 
     addFun:function () {
