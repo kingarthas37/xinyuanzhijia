@@ -1,0 +1,42 @@
+<div id="search-box" class="am-offcanvas">
+    <div class="am-offcanvas-bar">
+
+        <div class="search-title">
+
+            <div class="search">
+                <form action="/blog" method="get" class="search-form">
+                    <input type="hidden" id="search-article-method" name="method">
+                    <input type="text" id="search-input" name="keywords" class="search-input" placeholder="搜索内容">
+                    <button class="submit" type="submit"><i class="am-icon-search"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="search-close">
+                <a href="javascript:;">取消</a>
+            </div>
+
+        </div>
+
+        <div class="search-article-history">
+            <h3>我的搜索历史</h3>
+            <ul></ul>
+            <a class="clear-history" href="javascript:;">清空历史记录</a>
+        </div>
+
+
+        <!--<div class="search-hot">
+            <h3>大家都在搜</h3>
+            <div>
+                <a href="#"></a>
+            </div>
+        </div>-->
+
+    </div>
+</div>
+
+<footer>
+    <p><strong>心愿之家 51WISH</strong></p>
+    <p>Copyright © 2016-<%= new Date().getFullYear() %> 51wish.cn 版权所有</p>
+    <p><a class="link" href="/index">首页</a></p>
+</footer>

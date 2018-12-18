@@ -8,6 +8,7 @@ let extend = require('xtend');
 let config = require('../../../lib/config');
 let article = require('../../../lib/models/article').createNew();
 let articleCategory = require('../../../lib/models/article-category').createNew();
+let articleTag = require('../../../lib/models/article-tag').createNew();
 let AV = require('leanengine');
 let pager = require('../../../lib/component/pager');
 let flash = require('connect-flash');
@@ -27,18 +28,41 @@ router.get('/', (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let articleCategoryId = req.query.catid ? parseInt(req.query.catid) : '';
     let status = 1; //只显示发布的文章
-    let options = {page,limit, articleCategoryId, status};
+    let search = req.query.keywords ? req.query.keywords : '';
+    let options = {page,limit, articleCategoryId, status, search};
     data = extend(data, {articleCategoryId});
     AV.Promise.when(
         new AV.Promise(resolve => {
-            article.getArticle(options).then(result => {
-                let count = result.count;
-                data = extend(data, {
-                    count,
-                    article:result.items
+            if (search) {
+                articleCategory.getArticleCategory({name:search}).then(category => {
+                    if (category.count > 0) {
+                        let articleCategoryId = category.items[0].get('articleCategoryId');
+                        articleTag.getArticleTag({name:search}).then(tag => {
+                            options.articleCategoryId = articleCategoryId;
+                            if (tag.count > 0) {
+                                options.tag = tag.items[0].get('articleTagId');
+                            }
+                            article.getArticle(options).then(result => {
+                                let count = result.count;
+                                data = extend(data, {
+                                    count,
+                                    article:result.items
+                                });
+                                resolve();
+                            });
+                        });
+                    }
                 });
-                resolve();
-            });
+            } else {
+                article.getArticle(options).then(result => {
+                    let count = result.count;
+                    data = extend(data, {
+                        count,
+                        article:result.items
+                    });
+                    resolve();
+                });
+            }
         }),
         new AV.Promise(resolve => {
             articleCategory.getArticleCategory({'limit':999}).then(category => {
