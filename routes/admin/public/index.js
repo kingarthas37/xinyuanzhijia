@@ -28,7 +28,7 @@ var isArray = require('util').isArray;
 
 let data = extend(config.data, {
     title: `${config.data.titleAdmin} - 产品列表页`,
-    currentTag: 'product',
+    currentTag: 'product-public',
     currentPage: 'product-index',
     watermark:config.watermark
 });
