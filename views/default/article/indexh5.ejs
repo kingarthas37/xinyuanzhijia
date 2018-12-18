@@ -42,13 +42,13 @@
 <%}%>
 
 
-<% include ../partials/footer %>
+<% include ../partials/footer-article %>
 <% include ../partials/js %>
 
 <script>
     $(function() {
-        var cart = require('cart');
-        cart.init();
+        var articleIndex = require('article-index');
+        articleIndex.init();
     });
 </script>
 </body>
