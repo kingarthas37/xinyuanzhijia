@@ -6,11 +6,28 @@ let utils = require('../common/utils');
 module.exports = {
 
     indexFun:function() {
+
+        //分类select
+        {
+            let search = $('input[name=search]').val();
+            $('#articleCategory').change(function() {
+                if(this.value) {
+                    return location.href = utils.urlParamsComponent('/admin/article',{
+                        search,
+                        'article-category-id': this.value
+                    });
+                }
+                location.href = utils.urlParamsComponent('/admin/article',{
+                    search,
+                    'article-category-id': this.value
+                });
+            });
+        }
+
         //删除product
         {
             let alert = $('#modal-alert');
-            let search = $('input[name=search]').val();
-            $('.remove-article').click(function() {
+            $('.am-table').on('click','.remove-article',function () {
                 $('#confirm-remove-article').modal({
                     relatedTarget: this,
                     onConfirm: function() {
@@ -32,29 +49,17 @@ module.exports = {
                     },
                     onCancel:()=> { return false; }
                 });
-
                 return false;
+            });
 
-            });
-            $('#articleCategory').change(function() {
-                if(this.value) {
-                    return location.href = utils.urlParamsComponent('/admin/article',{
-                        search,
-                        'article-category-id': this.value
-                    });
-                }
-                location.href = utils.urlParamsComponent('/admin/article',{
-                    search,
-                    'article-category-id': this.value
-                });
-            });
         }
 
         //预览
         {
+
             let modal = $('#modal-preview');
 
-            $('.btn-preview').click(function () {
+            $('.am-table').on('click','.btn-preview',function () {
                 let iframe = $('#iframe-article');
                 let articleId = parseInt($(this).data('id'));
                 modal.modal();
@@ -81,11 +86,54 @@ module.exports = {
                         }
                         $.each(data.list.article,function (i, n) {
 
+                            let weiboUrl = (()=> {
+                                return n.weiBoLink ? `<a target="_blank" href="${n.weiBoLink}"><i class="am-icon-link"></i></a>` : '-';
+                            })();
+
+                            let originalUrl = (()=>{
+                                return n.originalLink ? `<a target="_blank" href="${n.originalLink}"><i class="am-icon-link"></i></a>` : '-';
+                            })();
+
+                            let taoBaoUrl = (()=>{
+                                return n.taoBaoLink ? `<a target="_blank" href="${n.taoBaoLink}"><i class="am-icon-link"></i></a>` : '-';
+                            })();
+
+                            let videoLink = (()=>{
+                                return n.videoLink ? `<a target="_blank" href="${n.videoLink}"><i class="am-icon-link"></i></a>` : '-';
+                            })();
+
+                            let suatus = (()=>{
+                                return n.status ? '<strong>已发布</strong>' : '未发布';
+                            })();
+
+                              let date = new Date(n.updatedAt).getFullYear() + '-' + (new Date(n.updatedAt).getMonth()+1) + '-' + new Date(n.updatedAt).getDate();
+
+
                             tr.after(`
                                 <tr class="child"> 
-                                    <td colspan="9"> 
+                                    <td colspan="2" class="child-title"> 
                                     <img width="30" src="//lc-quipuwpj.cn-n1.lcfile.com/23726f840c784a3ede12.jpg?imageMogr2/thumbnail/30" alt="">
-                                    <a href="/admin/article/edit/${n.articleId}">${n.name}</a> </td>
+                                    <a href="/admin/article/edit/${n.articleId}">${n.name}</a> 
+                                    </td>
+                                    <td class="t-c">
+                                        ${weiboUrl}
+                                    </td>           
+                                    <td class="t-c">
+                                        ${originalUrl}
+                                    </td>
+                                    <td class="t-c">
+                                        ${taoBaoUrl}
+                                    </td>
+                                    <td class="t-c">
+                                        ${videoLink}
+                                    </td>
+                                    <td class="t-c">${suatus}</td>
+                                    <td>
+                                        预览 复制 删除
+                                    </td>
+                                    <td class="t-c">
+                                        ${date}
+                                    </td>
                                 </tr>
                             `);
                         });
