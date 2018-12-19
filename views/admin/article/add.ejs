@@ -72,18 +72,6 @@
 
                     <hr>
 
-                    <div class="am-form-group group-attach-image">
-                        <label for="detail-images">文章附加图片(大小750px*750px，可多选)：</label>
-                        <div class="upload-content">
-                            <iframe class="upload" src="/admin/article/upload?callback=uploadAttachImagesSuccess" frameborder="0"></iframe>
-                        </div>
-                        <ul class="image-list"></ul>
-                        <input id="attach-images" name="attach-images" type="hidden">
-                    </div>
-
-                    <!-- images end -->
-
-                    <hr/>
 
                     <!-- images weitao start -->
                     <div class="am-form-group">
@@ -96,6 +84,17 @@
                         </div>
                     </div>
                     <!-- images weitao end -->
+
+                    <hr/>
+
+                    <div class="am-form-group group-attach-image">
+                        <label for="detail-images">微博/微淘附加图片(大小750px*750px，如有微淘附加图，请上传750px*422px尺寸图，可多选)：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/article/upload?callback=uploadAttachImagesSuccess" frameborder="0"></iframe>
+                        </div>
+                        <ul class="image-list"></ul>
+                        <input id="attach-images" name="attach-images" type="hidden">
+                    </div>
 
                     <hr/>
 
