@@ -350,63 +350,6 @@
     }
   }
 
-  .brand {
-    dl {
-      margin:0 0 10px 0;
-      display: flex;
-      dt {
-        width: 80px;
-        img {
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          margin:0;
-        }
-      }
-      dd {
-        flex:1;
-        h4 {
-          margin:0;
-          font-size: 14px;
-          height: 20px;
-          line-height: 20px;
-        }
-        p {
-          margin:0;
-          font-size: 13px;
-          line-height: 20px;
-          height: 40px;
-          overflow: hidden;
-        }
-      }
-    }
-  }
-
-  .buy-button {
-    z-index: 999;
-    position: fixed;
-    width: 100%;
-    bottom: 15px;
-    left: 0;
-    padding: 5px 15px;
-    //   background: rgba(255, 255, 255, 0.5);
-    .am-btn {
-      border: none;
-      color: #fff;
-      background: linear-gradient(to right, $colorGradient1 0%, $colorGradient2 100%);
-      height: 45px;
-      display: block;
-      width: 100%;
-      margin:auto;
-      font-size: 18px;
-      border-radius: 5px;
-      text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
-      &.on {
-        opacity: 0.75;
-      }
-    }
-  }
-
   .events {
     padding: 10px 0;
     border-bottom: 5px solid #eee;
@@ -419,7 +362,7 @@
         height: 30px;
         line-height: 30px;
         font-size: 16px;
-        background: $colorGradient1;
+        background: #000;
         color: #fff;
         border-radius: 50%;
       }
@@ -431,7 +374,7 @@
       }
       &.active {
         i {
-          background: $colorGradient2;
+          background: $colorMainYellow;
         }
       }
     }
@@ -515,7 +458,7 @@
 
   .share-bg {
     position: fixed;
-    background: #000 url("//ac-QuiPuWpJ.clouddn.com/a92368907c6801747a12.png") no-repeat right top;
+    background: #000 url("//lc-quipuwpj.cn-n1.lcfile.com/a92368907c6801747a12.png") no-repeat right top;
     background-size: 50%;
     opacity: 0.9;
     top:0;

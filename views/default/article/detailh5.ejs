@@ -12,60 +12,59 @@
 
 <% include ../partials/header-sub %>
 
-<% if(article) { %>
+    <div class="crumb">
+        <a href="/blog">文章分类</a> <i class="am-icon-angle-right"></i>
+            <% for(var i = 0; i<articleCategory.length; i++) {
+                if (article.get('articleCategoryId') == articleCategory[i].get('articleCategoryId')) {
+            %>
+        <a href="/blog?catid=<%=articleCategory[i].get('articleCategoryId')%>"><%=articleCategory[i].get('name') %></a>
+            <%
+                break;
+                }
+            } %>
+    </div>
 
-<div class="crumb">
-    <a href="/blog">文章分类</a> <i class="am-icon-angle-right"></i>
-        <% for(var i = 0; i<articleCategory.length; i++) {
-            if (article.get('articleCategoryId') == articleCategory[i].get('articleCategoryId')) {
+    <h1 class="main-title">
+        <a href="/blog/<%= article.get('articleId') %>"><%= article.get('name') %></a>
+    </h1>
+
+    <div class="title-info">
+        <span>浏览量:<%=article.get('pageView')%></span> <span>更新日期:<%= article.get('updatedAt').getFullYear() + '-' + (article.get('updatedAt').getMonth()+1) + '-' +  article.get('updatedAt').getDate() %></span>
+    </div>
+
+    <h4 class="crumb-main-article">主文章：<a href="#">《魔法生活的每一天》-《A YEAR & A DAY OF SPELLS FOR EMPOWERING LIFE》</a></h4>
+
+    <% if(article.get('tag').length>0) { %>
+    <div class="tag-content">
+        标签：
+        <% if (articleTag) {
+            for(var t=0;t<articleTag.length;t++) {
+                if(article.get('tag').indexOf(String(articleTag[t].get('articleTagId')))>=0) {
         %>
-    <a href="/blog?catid=<%=articleCategory[i].get('articleCategoryId')%>"><%=articleCategory[i].get('name') %></a>
-        <%
-            break;
+        <span><a href="/blog?tag=<%=articleTag[t].get('articleTagId')%>"><%=articleTag[t].get('name')%></a></span>
+        <%      }
             }
         } %>
-</div>
+    </div>
+    <% } %>
 
-<h1 class="main-title">
-    <a href="/blog/<%= article.get('articleId') %>"><%= article.get('name') %></a>
-</h1>
-
-<div class="title-info">
-    <span>浏览量:<%=article.get('pageView')%></span> <span>更新日期:<%= article.get('updatedAt').getFullYear() + '-' + (article.get('updatedAt').getMonth()+1) + '-' +  article.get('updatedAt').getDate() %></span>
-</div>
-
-<h4 class="crumb-main-article">主文章：<a href="#">《魔法生活的每一天》-《A YEAR & A DAY OF SPELLS FOR EMPOWERING LIFE》</a></h4>
-
-<% if(article.get('tag').length>0) { %>
-<div class="tag-content">
-    标签：
-    <% if (articleTag) {
-        for(var t=0;t<articleTag.length;t++) {
-            if(article.get('tag').indexOf(String(articleTag[t].get('articleTagId')))>=0) {
-    %>
-    <span><a href="/blog?tag=<%=articleTag[t].get('articleTagId')%>"><%=articleTag[t].get('name')%></a></span>
-    <%      }
-        }
-    } %>
-</div>
-<% } %>
-
-<% if(article.get('image')) {%>
-<div class="main-image">
-    <img src="<%= article.get('image'); %>" alt="">
-</div>
-<%}%>
+    <% if(article.get('image')) {%>
+    <div class="main-image">
+        <img src="<%= article.get('image'); %>" alt="">
+    </div>
+    <%}%>
 
 
-<div class="detail">
-    <%- article.get('content')%>
-</div>
+    <div class="detail">
+        <%- article.get('content')%>
+    </div>
 
-<%}%>
+    <div class="child-detail-content" data-id="<%= article.get('articleId') %>"></div>
 
-<div class="child-detail-content" data-id="<%= article.get('articleId') %>">
-
-</div>
+    <div class="events">
+        <a class="events-good" href="javascript:;"><i class="am-icon-thumbs-up"></i> <span>点赞 ( <em>0</em> )</span> </a>
+        <a class="events-share" href="javascript:;"><i class="am-icon-share"></i> <span>分享给好友</span> </a>
+    </div>
 
 <% include ../partials/footer-article %>
 <% include ../partials/js %>

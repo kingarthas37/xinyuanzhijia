@@ -82,6 +82,43 @@ module.exports = {
             });
         }
 
+        //点赞,分享
+        this.eventsGood();
+        this.eventsShare();
+
+    },
+    eventsGood() {
+        let _this = this;
+        let btnEventsGood = $('.events-good');
+        btnEventsGood.click(function() {
+            if($(this).hasClass('active')) {
+                return false;
+            }
+            $(this).addClass('active');
+            let em = $(this).find('em');
+            let count = em.text() || 0;
+            if(count === 0) {
+                em.text('( 1 )');
+            } else {
+                em.text(parseInt(count) + 1);
+            }
+
+            $.ajax({url:`/product/statistics/approval/${_this.productId}`});
+        });
+
+    },
+
+    eventsShare() {
+        let _this = this;
+        let btnEventsShare = $('.events-share');
+        btnEventsShare.click(function() {
+            $(this).addClass('active');
+            $('body').append('<div class="share-bg"></div>');
+            $('.share-bg').click(function() {
+                $(this).detach();
+            });
+            $.ajax({url:`/product/statistics/share/${_this.productId}`});
+        });
 
     }
 

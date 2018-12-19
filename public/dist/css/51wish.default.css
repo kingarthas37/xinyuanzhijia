@@ -2886,7 +2886,7 @@ a.pswp__share--download:hover {
     border-bottom-color: #000; }
   .detail-page .share-bg {
     position: fixed;
-    background: #000 url("//ac-QuiPuWpJ.clouddn.com/a92368907c6801747a12.png") no-repeat right top;
+    background: #000 url("//lc-quipuwpj.cn-n1.lcfile.com/a92368907c6801747a12.png") no-repeat right top;
     background-size: 50%;
     opacity: 0.9;
     top: 0;
@@ -3307,55 +3307,6 @@ a.pswp__share--download:hover {
   .article-detail-page .param li span {
     padding-left: 4px; }
 
-.article-detail-page .brand dl {
-  margin: 0 0 10px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex; }
-  .article-detail-page .brand dl dt {
-    width: 80px; }
-    .article-detail-page .brand dl dt img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      margin: 0; }
-  .article-detail-page .brand dl dd {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1; }
-    .article-detail-page .brand dl dd h4 {
-      margin: 0;
-      font-size: 14px;
-      height: 20px;
-      line-height: 20px; }
-    .article-detail-page .brand dl dd p {
-      margin: 0;
-      font-size: 13px;
-      line-height: 20px;
-      height: 40px;
-      overflow: hidden; }
-
-.article-detail-page .buy-button {
-  z-index: 999;
-  position: fixed;
-  width: 100%;
-  bottom: 15px;
-  left: 0;
-  padding: 5px 15px; }
-  .article-detail-page .buy-button .am-btn {
-    border: none;
-    color: #fff;
-    background: linear-gradient(to right, #6397f5 0%, #f67bbb 100%);
-    height: 45px;
-    display: block;
-    width: 100%;
-    margin: auto;
-    font-size: 18px;
-    border-radius: 5px;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
-    .article-detail-page .buy-button .am-btn.on {
-      opacity: 0.75; }
-
 .article-detail-page .events {
   padding: 10px 0;
   border-bottom: 5px solid #eee;
@@ -3368,7 +3319,7 @@ a.pswp__share--download:hover {
       height: 30px;
       line-height: 30px;
       font-size: 16px;
-      background: #6397f5;
+      background: #000;
       color: #fff;
       border-radius: 50%; }
     .article-detail-page .events a span {
@@ -3377,7 +3328,7 @@ a.pswp__share--download:hover {
       font-size: 12px;
       line-height: 30px; }
     .article-detail-page .events a.active i {
-      background: #f67bbb; }
+      background: #f8cf2b; }
 
 .article-detail-page .recommend h3 {
   margin: 0;
@@ -3439,7 +3390,7 @@ a.pswp__share--download:hover {
 
 .article-detail-page .share-bg {
   position: fixed;
-  background: #000 url("//ac-QuiPuWpJ.clouddn.com/a92368907c6801747a12.png") no-repeat right top;
+  background: #000 url("//lc-quipuwpj.cn-n1.lcfile.com/a92368907c6801747a12.png") no-repeat right top;
   background-size: 50%;
   opacity: 0.9;
   top: 0;
