@@ -13,7 +13,6 @@
 <% include ../partials/header-sub %>
 
 <% if(article) { %>
-
 <div class="crumb">
     <div class="l"><a href="/blog">文章列表</a> <i class="am-icon-angle-right"></i> <a href="#">精油</a></div>
     <div class="r">浏览量: <span class="price"><%=article.get('pageView')%></strong></span></div>
@@ -41,11 +40,17 @@
     <%- article.get('content')%>
 </div>
 
-<% } else { %>
-
-
 <%}%>
 
+<div class="child-detail">
+    <h3>相关子文章</h3>
+    <ul>
+        <li><a href="#">子文章列表</a></li>
+        <li><a href="#">子文章列表</a></li>
+        <li><a href="#">子文章列表</a></li>
+        <li><a href="#">子文章列表</a></li>
+    </ul>
+</div>
 
 <% include ../partials/js %>
 

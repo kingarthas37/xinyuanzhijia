@@ -3253,6 +3253,11 @@ a.pswp__share--download:hover {
 .article-detail-page .detail {
   padding: 20px 15px;
   font-size: 13px; }
+  .article-detail-page .detail h2 {
+    background: #000;
+    color: #f0da80;
+    padding: 4px;
+    font-size: 15px; }
   .article-detail-page .detail h3 {
     font-size: 14px;
     height: 14px;
@@ -3425,5 +3430,8 @@ a.pswp__share--download:hover {
   left: 0;
   right: 0;
   z-index: 999; }
+
+.article-detail-page .child-detail {
+  padding: 20px 15px; }
 
 /*# sourceMappingURL=51wish.default.css.map */
