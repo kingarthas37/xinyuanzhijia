@@ -24,6 +24,7 @@
             break;
             }
         } %>
+    <div class="r">浏览量: <span class="price"><%=article.get('pageView')%></strong></span></div>
 </div>
 
 <h1>
@@ -41,20 +42,29 @@
     } %>
 </div>
 <% } %>
-<!--
-    <p>
-        人气: <span class="price"><%=article.get('pageView')%></strong></span>
-    </p>
-    -->
+
+<% if(article.get('image')) {%>
+<div class="main-image">
+    <img src="<%= article.get('image'); %>" alt="">
+</div>
+<%}%>
+
+
 <div class="detail">
     <%- article.get('content')%>
 </div>
 
-<% } else { %>
-
-
 <%}%>
 
+<div class="child-detail">
+    <h3>相关子文章</h3>
+    <ul>
+        <li><a href="#">子文章列表</a></li>
+        <li><a href="#">子文章列表</a></li>
+        <li><a href="#">子文章列表</a></li>
+        <li><a href="#">子文章列表</a></li>
+    </ul>
+</div>
 
 <% include ../partials/js %>
 

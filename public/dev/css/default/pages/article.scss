@@ -135,8 +135,12 @@
 .article-detail-page {
 
   .crumb {
+    @extend %clearfix;
     font-size: 14px;
     padding: 10px;
+    .r {
+      font-size: 12px;
+    }
   }
 
   h1 {
@@ -262,91 +266,28 @@
       margin-right: 4px;
       padding: 4px 12px;
       border-radius: 2px;
-      color: #7988e0;
-      background-color: #eff5ff;
+      color: #f0da80;
+      background-color: #000;
     }
   }
 
-  .attachment-content {
-    border-bottom: 5px solid #eee;
-    &.on {
-      ul {
-        display: block;
-      }
-    }
-    .show {
-      font-weight: bold;
-      display: block;
-      height: 36px;
-      line-height: 36px;
-      text-align: center;
-      font-size: 13px;
-    }
-    ul {
-      display: none;
-      padding: 0 15px;
-      font-size: 13px;
-      li {
-        height: 30px;
-        line-height: 30px;
-        border-bottom: 1px dashed #eee;
-      }
-      margin-bottom: 15px;
-    }
-  }
 
-  .am-tabs {
-    .am-nav-tabs {
-      border-color: #eee;
+  .main-image {
+    padding: 10px 15px 0 15px;
+    img {
+      width: 100%;
     }
-    .am-tabs-bd {
-      border: none;
-    }
-
-    &.row-3 {
-      .am-tabs-nav {
-        li {
-          width: 33%;
-        }
-      }
-    }
-
-    .am-tabs-nav {
-      li {
-        width: 50%;
-        text-align: center;
-        border: none;
-        a {
-          font-size: 15px;
-          padding: 0 15px;
-          height: 45px;
-          line-height: 45px;
-          margin: 0;
-          display: inline-block;
-          color: #666;
-          border: none !important;
-          border-bottom: 1px solid #eee !important;
-        }
-        &.am-active {
-          a {
-            font-weight: bold;
-            border-bottom: 2px solid $colorMain !important;
-            color: $colorMain;
-          }
-        }
-      }
-    }
-    .am-tab-panel {
-      padding: 20px 15px;
-      line-height: 26px;
-    }
-
   }
 
   .detail {
     padding: 20px 15px;
-    line-height: 26px;
     font-size: 13px;
+    h2 {
+      background: #000;
+      color: #f0da80;
+      padding: 4px;
+      font-size: 15px;
+    }
     h3 {
       font-size: 14px;
       height: 14px;
@@ -561,6 +502,13 @@
     left:0;
     right:0;
     z-index: 999;
+  }
+
+  .child-detail {
+    padding: 20px 15px;
+    h3 {
+
+    }
   }
 
 }
