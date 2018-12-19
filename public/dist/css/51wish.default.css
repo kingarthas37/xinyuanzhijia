@@ -3432,6 +3432,17 @@ a.pswp__share--download:hover {
   z-index: 999; }
 
 .article-detail-page .child-detail {
-  padding: 20px 15px; }
+  padding: 0 15px 15px 15px; }
+  .article-detail-page .child-detail h3 {
+    font-size: 14px;
+    border-left: 4px solid #f8cf2b;
+    padding-left: 6px;
+    color: #000;
+    margin-bottom: 10px; }
+  .article-detail-page .child-detail li {
+    margin-left: 15px;
+    margin-bottom: 5px;
+    list-style: decimal;
+    font-size: 14px; }
 
 /*# sourceMappingURL=51wish.default.css.map */
