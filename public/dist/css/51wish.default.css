@@ -542,7 +542,7 @@ footer {
 .main-list li {
   margin: 0 10px;
   padding: 10px 0;
-  border-bottom: 1px dashed #b8c0ec;
+  border-bottom: 1px dashed #e0e0e0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1048,7 +1048,7 @@ footer {
 .main-list li {
   margin: 0 10px;
   padding: 10px 0;
-  border-bottom: 1px dashed #b8c0ec;
+  border-bottom: 1px dashed #e0e0e0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3149,12 +3149,14 @@ a.pswp__share--download:hover {
 
 .article-detail-page .title-info {
   padding: 0 10px;
+  color: #999;
+  text-align: center;
   height: 20px;
   line-height: 20px;
   font-size: 12px;
   margin-bottom: 5px; }
   .article-detail-page .title-info span {
-    margin-right: 10px; }
+    margin: 0 5px; }
 
 .article-detail-page .crumb-main-article {
   font-size: 12px;
@@ -3250,6 +3252,7 @@ a.pswp__share--download:hover {
         color: #e2264d; }
 
 .article-detail-page .tag-content {
+  font-size: 12px;
   padding: 0 10px;
   line-height: 26px; }
   .article-detail-page .tag-content span {
@@ -3273,8 +3276,8 @@ a.pswp__share--download:hover {
   .article-detail-page .detail h2 {
     background: #000;
     color: #f0da80;
-    padding: 4px;
-    font-size: 15px; }
+    padding: 4px 6px;
+    font-size: 14px; }
   .article-detail-page .detail h3 {
     font-size: 14px;
     height: 14px;
@@ -3421,9 +3424,6 @@ a.pswp__share--download:hover {
     position: static;
     height: 20px;
     line-height: 10px; }
-
-.article-detail-page footer {
-  padding-bottom: 70px; }
 
 .article-detail-page .am-popover {
   max-width: 220px; }

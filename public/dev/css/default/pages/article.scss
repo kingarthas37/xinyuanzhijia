@@ -162,12 +162,14 @@
   .title-info {
     @extend %clearfix;
     padding:  0 10px;
+    color: #999;
+    text-align: center;
     height: 20px;
     line-height: 20px;
     font-size: 12px;
     margin-bottom: 5px;
     span {
-      margin-right: 10px;
+      margin:0 5px;
     }
   }
 
@@ -278,6 +280,7 @@
   }
 
   .tag-content {
+    font-size: 12px;
     padding: 0 10px;
     line-height: 26px;
     span {
@@ -307,8 +310,8 @@
     h2 {
       background: #000;
       color: #f0da80;
-      padding: 4px;
-      font-size: 15px;
+      padding: 4px 6px;
+      font-size: 14px;
     }
     h3 {
       font-size: 14px;
@@ -494,10 +497,6 @@
       height: 20px;
       line-height: 10px;
     }
-  }
-
-  footer {
-    padding-bottom: 70px;
   }
 
   .am-popover {
