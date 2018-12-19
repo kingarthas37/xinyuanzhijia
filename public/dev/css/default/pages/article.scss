@@ -131,3 +131,436 @@
   }
 
 }
+
+.article-detail-page {
+
+  .crumb {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  h1 {
+    margin: 0 0 10px 0;
+    padding: 0 10px;
+    font-size: 16px;
+    color: $colorMain;
+    .hot {
+      padding-left: 32px;
+    }
+    .events-share {
+      font-weight: normal;
+      color: $colorGreen;
+      font-size: 14px;
+    }
+  }
+
+  .info-content {
+    display: flex;
+    padding: 0 10px;
+    border-bottom: 5px solid #eee;
+    .info {
+      padding: 10px 0;
+      flex: 1;
+      height: 80px;
+      div {
+        @extend %clearfix;
+        border-right: 1px dashed #ddd;
+      }
+      .price {
+        float: left;
+        font-weight: bold;
+        height: 44px;
+        line-height: 44px;
+        font-size: 22px;
+        color:#f40;
+        display: block;
+        a {
+          font-size: 12px;
+          color: #888;
+          font-weight: normal;
+        }
+      }
+      .stock {
+        float: right;
+        padding-right:15px;
+        height: 44px;
+        line-height: 44px;
+        font-size: 14px;
+        a {
+          font-weight: bold;
+          i {
+            font-weight: normal;
+          }
+        }
+        .in-stock {
+          color: $colorGreen;
+        }
+        .out-stock {
+          color: $colorOrange;
+        }
+        .short-stock {
+          color: $colorRed;
+        }
+
+      }
+      p {
+        color: $colorMain;
+        display: flex;
+        margin:0;
+        padding: 0 15px 0 0;
+        font-size: 12px;
+        height: 16px;
+        line-height: 16px;
+        border-right: 1px dashed #ddd;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        span {
+          flex: 1;
+          display: block;
+          &:nth-child(2) {
+            text-align: center;
+          }
+          &:nth-child(3) {
+            text-align: right;
+          }
+        }
+      }
+    }
+    .favorite-box {
+      margin-left: 10px;
+      height: 80px;
+      width: 80px;
+      position: relative;
+      span {
+        color: #999;
+        position: absolute;
+        bottom: 6px;
+        left: 0;
+        width: 80px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        font-size: 12px;
+        z-index: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &.active {
+          color: #e2264d;
+        }
+      }
+    }
+  }
+
+  .tag-content {
+    padding: 0 10px;
+    line-height: 26px;
+    span {
+      white-space: nowrap;
+      font-size: 12px;
+      margin-right: 4px;
+      padding: 4px 12px;
+      border-radius: 2px;
+      color: #7988e0;
+      background-color: #eff5ff;
+    }
+  }
+
+  .attachment-content {
+    border-bottom: 5px solid #eee;
+    &.on {
+      ul {
+        display: block;
+      }
+    }
+    .show {
+      font-weight: bold;
+      display: block;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      font-size: 13px;
+    }
+    ul {
+      display: none;
+      padding: 0 15px;
+      font-size: 13px;
+      li {
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px dashed #eee;
+      }
+      margin-bottom: 15px;
+    }
+  }
+
+  .am-tabs {
+    .am-nav-tabs {
+      border-color: #eee;
+    }
+    .am-tabs-bd {
+      border: none;
+    }
+
+    &.row-3 {
+      .am-tabs-nav {
+        li {
+          width: 33%;
+        }
+      }
+    }
+
+    .am-tabs-nav {
+      li {
+        width: 50%;
+        text-align: center;
+        border: none;
+        a {
+          font-size: 15px;
+          padding: 0 15px;
+          height: 45px;
+          line-height: 45px;
+          margin: 0;
+          display: inline-block;
+          color: #666;
+          border: none !important;
+          border-bottom: 1px solid #eee !important;
+        }
+        &.am-active {
+          a {
+            font-weight: bold;
+            border-bottom: 2px solid $colorMain !important;
+            color: $colorMain;
+          }
+        }
+      }
+    }
+    .am-tab-panel {
+      padding: 20px 15px;
+      line-height: 26px;
+    }
+
+  }
+
+  .detail {
+    padding: 20px 15px;
+    line-height: 26px;
+    font-size: 13px;
+    h3 {
+      font-size: 14px;
+      height: 14px;
+      line-height: 14px;
+      margin: 0 0 10px 0;
+      border-left: 2px solid $colorMain;
+      padding-left: 6px;
+      color: $colorMain;
+    }
+    .content {
+      margin-bottom: 15px;
+    }
+    ul {
+      margin-bottom: 10px;
+    }
+    p {
+      margin: 0 0 10px 0;
+    }
+    img {
+      margin: 10px 0;
+      width: 100%;
+    }
+  }
+
+  .param {
+    li {
+      display: flex;
+      font-size: 13px;
+      border-bottom: 1px dashed #efefef;
+      line-height: 20px;
+      padding: 5px 0;
+      span {
+        padding-left: 4px;
+      }
+    }
+  }
+
+  .brand {
+    dl {
+      margin:0 0 10px 0;
+      display: flex;
+      dt {
+        width: 80px;
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          margin:0;
+        }
+      }
+      dd {
+        flex:1;
+        h4 {
+          margin:0;
+          font-size: 14px;
+          height: 20px;
+          line-height: 20px;
+        }
+        p {
+          margin:0;
+          font-size: 13px;
+          line-height: 20px;
+          height: 40px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  .buy-button {
+    z-index: 999;
+    position: fixed;
+    width: 100%;
+    bottom: 15px;
+    left: 0;
+    padding: 5px 15px;
+    //   background: rgba(255, 255, 255, 0.5);
+    .am-btn {
+      border: none;
+      color: #fff;
+      background: linear-gradient(to right, $colorGradient1 0%, $colorGradient2 100%);
+      height: 45px;
+      display: block;
+      width: 100%;
+      margin:auto;
+      font-size: 18px;
+      border-radius: 5px;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+      &.on {
+        opacity: 0.75;
+      }
+    }
+  }
+
+  .events {
+    padding: 10px 0;
+    border-bottom: 5px solid #eee;
+    text-align: center;
+    a {
+      width: 100px;
+      display: inline-block;
+      i {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        background: $colorGradient1;
+        color: #fff;
+        border-radius: 50%;
+      }
+      span {
+        display: block;
+        color: $colorGray;
+        font-size: 12px;
+        line-height: 30px;
+      }
+      &.active {
+        i {
+          background: $colorGradient2;
+        }
+      }
+    }
+  }
+
+  .recommend {
+    h3 {
+      margin: 0;
+      font-size: 13px;
+      color: $colorMain;
+      padding: 0 0 10px 10px;
+      height: 36px;
+      line-height: 36px;
+      border-bottom: 1px dashed #ddd;
+    }
+  }
+
+  .slider-recommend {
+
+    border-bottom: 5px solid #eee;
+    background: #fff;
+
+    .am-slides {
+      @extend %clearfix;
+      dl {
+        width: 33%;
+        float: left;
+        padding: 10px 10px 5px 10px;
+      }
+      dt {
+        margin-bottom: 4px;
+        position: relative;
+        img {
+          width: 100%;
+        }
+        em {
+          position: absolute;
+          left: auto;
+          bottom:0;
+          right:0;
+          background:rgba(40, 154, 50, 0.8);
+          color: #fff;
+          font-size: 11px;
+          height: 16px;
+          line-height: 16px;
+          padding: 0 5px;
+          font-weight: normal;
+        }
+      }
+      dd {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 12px;
+        height: 32px;
+        line-height: 16px;
+      }
+    }
+
+    .am-control-nav {
+      position: static;
+      height: 20px;
+      line-height: 10px;
+    }
+  }
+
+  footer {
+    padding-bottom: 70px;
+  }
+
+  .am-popover {
+    max-width: 220px;
+  }
+
+  .am-popover-inner {
+    color: #fff;
+    border:none;
+    box-shadow: none;
+    background: #000;
+  }
+  .am-popover-caret {
+    border-bottom-color: #000;
+  }
+
+  .share-bg {
+    position: fixed;
+    background: #000 url("//ac-QuiPuWpJ.clouddn.com/a92368907c6801747a12.png") no-repeat right top;
+    background-size: 50%;
+    opacity: 0.9;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index: 999;
+  }
+
+}
