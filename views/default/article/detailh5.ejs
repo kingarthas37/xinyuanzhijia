@@ -15,18 +15,32 @@
 <% if(article) { %>
 
 <div class="crumb">
-    <a href="#">文章分类</a> <i class="am-icon-angle-right"></i> <a href="#">精油</a>
+    <a href="#">文章分类</a> <i class="am-icon-angle-right"></i>
+        <% for(var i = 0; i<articleCategory.length; i++) {
+            if (article.get('articleCategoryId') == articleCategory[i].get('articleCategoryId')) {
+        %>
+    <a href="/blog?catid=<%=articleCategory[i].get('articleCategoryId')%>"><%=articleCategory[i].get('name') %></a>
+        <%
+            break;
+            }
+        } %>
 </div>
 
 <h1>
     <a href="/blog/<%= article.get('articleId') %>"><%= article.get('name') %></a>
 </h1>
-
+<% if(article.get('tag').length>0) { %>
 <div class="tag-content">
-    <span>金钱</span>
-    <span>招财</span>
+    <% if (articleTag) {
+        for(var t=0;t<articleTag.length;t++) {
+            if(article.get('tag').indexOf(String(articleTag[t].get('articleTagId')))>=0) {
+    %>
+    <span><%=articleTag[i].get('name')%></span>
+    <%      }
+        }
+    } %>
 </div>
-
+<% } %>
 <!--
     <p>
         人气: <span class="price"><%=article.get('pageView')%></strong></span>
