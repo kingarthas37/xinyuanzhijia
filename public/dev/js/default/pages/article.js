@@ -64,7 +64,7 @@ module.exports = {
             let id = content.attr('data-id');
             let html = `
                 <div class="child-detail">
-                    <h3>相关子文章</h3>
+                    <h3>阅读所有文章</h3>
                     <ul>
                     </ul>
                 </div>

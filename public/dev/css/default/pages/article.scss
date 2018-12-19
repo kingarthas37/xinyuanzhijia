@@ -143,8 +143,9 @@
     }
   }
 
-  h1 {
-    margin: 0 0 10px 0;
+  .main-title {
+    text-align: center;
+    margin: 0 0 5px 0;
     padding: 0 10px;
     font-size: 16px;
     color: $colorMain;
@@ -156,6 +157,25 @@
       color: $colorGreen;
       font-size: 14px;
     }
+  }
+
+  .title-info {
+    @extend %clearfix;
+    padding:  0 10px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    margin-bottom: 5px;
+    span {
+      margin-right: 10px;
+    }
+  }
+
+  .crumb-main-article {
+    font-size: 12px;
+    padding: 0 10px;
+    margin:0 0 5px 0;
+    font-weight: normal;
   }
 
   .info-content {
