@@ -29,7 +29,8 @@ router.get('/', (req, res) => {
     let articleCategoryId = req.query.catid ? parseInt(req.query.catid) : '';
     let status = 1; //只显示发布的文章
     let search = req.query.keywords ? req.query.keywords : '';
-    let options = {page,limit, articleCategoryId, status, search};
+    let tag = req.query.tag ? req.query.tag : '';
+    let options = {page,limit, articleCategoryId, status, search, tag};
     data = extend(data, {articleCategoryId});
     AV.Promise.when(
         new AV.Promise(resolve => {
