@@ -147,14 +147,16 @@ module.exports = {
 
     addFun:function () {
         this.domEvent();
-        this.setImageList();
+        this.setDetailImageList();
+        this.setAttachImageList();
         this.setZclip();
         $('#name')[0].focus();
     },
     editFun:function () {
         this.domEvent();
         this.setZclip();
-        this.setImageList();
+        this.setDetailImageList();
+        this.setAttachImageList();
     },
     domEvent() {
 
@@ -248,17 +250,26 @@ module.exports = {
     },
 
     uploadDetailImageSuccess(data) {
-        let imageView = $('.image-list');
+        let imageView = $('.group-detail-image .image-list');
         $.each(data,(i,n)=> {
             imageView.append(`<li data-id="${n.id}" class="am-cf"><div class="am-fl"><input type="checkbox" /></div><div class="am-fr"><p><a class="img-link" href="${n.url}" target="_blank"><img src="${n.url}?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a> | <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> | <a class="remove" href="javascript:;">删除</a></p></div></li>`);
         });
         this.updateDetailImage();
     },
+
+    uploadAttachImagesSuccess(data) {
+        let imageView = $('.group-attach-image .image-list');
+        $.each(data,(i,n)=> {
+            imageView.append(`<li data-id="${n.id}" class="am-cf"><div class="am-fl"><input type="checkbox" /></div><div class="am-fr"><p><a class="img-link" href="${n.url}" target="_blank"><img src="${n.url}?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a> | <a class="remove" href="javascript:;">删除</a></p></div></li>`);
+        });
+        this.updateAttachImage();
+    },
+    
     //更新image list
     updateDetailImage:function() {
 
         let input = $('#detail-images');
-        let imageView = $('.image-list');
+        let imageView = $('.group-detail-image .image-list');
         let value = '';
 
         imageView.find('input[type=checkbox]').each(function(i,n) {
@@ -271,6 +282,23 @@ module.exports = {
         this.setZclip();
 
     },
+
+    //更新image list
+    updateAttachImage:function() {
+
+        let input = $('#attach-images');
+        let imageView = $('.group-attach-image .image-list');
+        let value = '';
+
+        imageView.find('input[type=checkbox]').each(function(i,n) {
+            let content = $(this).parents('li');
+            value += content.find('.img-link').attr('href') + ',';
+        });
+        value = value.substr(0,value.length-1);
+        input.val(value);
+
+    },
+
     setZclip:function() {
         let detailImage = $('#content');
         let imageView = $('.image-list');
@@ -298,10 +326,10 @@ module.exports = {
         });
     },
 
-    setImageList:function() {
+    setDetailImageList:function() {
 
         let _this = this;
-        let imageView = $('.image-list');
+        let imageView = $('.group-detail-image .image-list');
         let detailImage = $('#content');
 
         imageView.on('click','.move',function() {
@@ -325,6 +353,38 @@ module.exports = {
 
             content.detach();
             _this.updateDetailImage();
+
+        });
+
+    },
+
+    setAttachImageList:function () {
+
+        let _this = this;
+        let imageView = $('.group-attach-image .image-list');
+        let detailImage = $('#content');
+
+        imageView.on('click','.move',function() {
+            let content = $(this).parents('li');
+            if(content.index() === 0) {
+                return false;
+            }
+            content.after(content.prev());
+            _this.updateAttachImage();
+        });
+
+        imageView.on('click','.remove',function() {
+            let content = $(this).parents('li');
+
+            //自动删除文本框中图片链接
+            let imageSrc = content.find('img').attr('src');
+            imageSrc = imageSrc.replace('?imageMogr2/thumbnail/100','');
+            imageSrc = `![](${imageSrc})`;
+            let val = detailImage.val().replace(imageSrc,'');
+            detailImage.val($.trim(val));
+
+            content.detach();
+            _this.updateAttachImage();
 
         });
 

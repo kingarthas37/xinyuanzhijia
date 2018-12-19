@@ -79,6 +79,29 @@
 
                     <hr/>
 
+                    <div class="am-form-group group-attach-image">
+                        <label for="detail-images">文章附加图片(大小750px*750px，可多选)：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/article/upload?callback=uploadAttachImagesSuccess" frameborder="0"></iframe>
+                        </div>
+                        <ul class="image-list">
+                            <% if (article.get('attachImages')) { %>
+                            <%  var attachImageArray = article.get('attachImages').split(',');
+                            if(article.get('attachImages').length) {
+                            for (var i =0;i< attachImageArray.length; i++) { %>
+                            <li class="am-cf">
+                                <div class="am-fl"><input type="checkbox" /></div>
+                                <div class="am-fr">
+                                    <p><a class="img-link" href="<%= attachImageArray[i]%>" target="_blank"><img src="<%= attachImageArray[i] %>?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a><span class="sp"></span><a class="remove" href="javascript:;">删除</a></p></div></li>
+                            <% } %>
+                            <% } %>
+                            <% } %>
+                        </ul>
+                        <input id="attach-images" name="attach-images" type="hidden">
+                    </div>
+
+                    <hr>
+
                     <!-- image weitao start -->
                     <div class="am-form-group">
                         <label for="image">微淘主图图片(大小750px*422px): </label>
@@ -123,7 +146,7 @@
                     <hr>
 
                     <!-- images start -->
-                    <div class="am-form-group">
+                    <div class="am-form-group group-detail-image">
                         <label for="detail-images">添加详情图片(建议图片宽度：800px，可多选图片)：</label>
                         <div class="upload-content">
                             <iframe class="upload" src="/admin/article/upload?callback=uploadDetailImageSuccess" frameborder="0"></iframe>
@@ -136,7 +159,7 @@
                             <li class="am-cf">
                                 <div class="am-fl"><input type="checkbox" /></div>
                                 <div class="am-fr">
-                                    <p><a class="img-link" href="<%= detailImageArray[i]%>" target="_blank"><img src="<%= detailImageArray[i] %>?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a> <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> <a class="remove" href="javascript:;">删除</a></p></div></li>
+                                    <p><a class="img-link" href="<%= detailImageArray[i]%>" target="_blank"><img src="<%= detailImageArray[i] %>?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a><span class="sp"></span><span class="copy"><a class="copy-url" href="javascript:;">复制</a></span><span class="sp"></span><a class="remove" href="javascript:;">删除</a></p></div></li>
                             <% } %>
                             <% } %>
                             <% } %>
@@ -286,6 +309,11 @@
     //iframe upload detail images callback
     function uploadDetailImageSuccess(data) {
         article.uploadDetailImageSuccess(data);
+    }
+
+    //iframe upload upload attach images callback
+    function uploadAttachImagesSuccess(data) {
+        article.uploadAttachImagesSuccess(data);
     }
 
     //iframe upload callback

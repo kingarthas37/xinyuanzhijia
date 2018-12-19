@@ -69,6 +69,18 @@
                             <iframe class="upload" src="/admin/article/upload?callback=uploadMainImageSuccess" frameborder="0"></iframe>
                         </div>
                     </div>
+
+                    <hr>
+
+                    <div class="am-form-group group-attach-image">
+                        <label for="detail-images">文章附加图片(大小750px*750px，可多选)：</label>
+                        <div class="upload-content">
+                            <iframe class="upload" src="/admin/article/upload?callback=uploadAttachImagesSuccess" frameborder="0"></iframe>
+                        </div>
+                        <ul class="image-list"></ul>
+                        <input id="attach-images" name="attach-images" type="hidden">
+                    </div>
+
                     <!-- images end -->
 
                     <hr/>
@@ -89,7 +101,7 @@
 
                     <!-- 文章简介 -->
                     <div class="am-form-group">
-                        <label for="content">文章简介 <small>(md5)</small>:</label>
+                        <label for="content">文章简介 <small>(markdown语法)</small>:</label>
                         <textarea id="summary" name="summary" rows="3"></textarea>
                     </div>
 
@@ -98,7 +110,7 @@
 
                     <!-- content start -->
                     <div class="am-form-group">
-                        <label for="content">文章详情 <small>(md5)</small>:</label>
+                        <label for="content">文章详情 <small>(markdown语法)</small>:</label>
                         <textarea id="content" name="content" rows="10"></textarea>
                         <br>
                         <div>
@@ -112,7 +124,7 @@
 
 
                     <!-- images start -->
-                    <div class="am-form-group">
+                    <div class="am-form-group group-detail-image">
                         <label for="detail-images">添加详情图片(建议图片宽度：800px，可多选图片)：</label>
                         <div class="upload-content">
                             <iframe class="upload" src="/admin/article/upload?callback=uploadDetailImageSuccess" frameborder="0"></iframe>
@@ -134,14 +146,14 @@
 
                     <!-- weibo link start -->
                     <div class="am-form-group">
-                        <label for="content">微博链接 <small>(md5)</small>:</label>
+                        <label for="content">微博链接 <small>(markdown语法)</small>:</label>
                         <input type="text" id="weiBoLink" name="weiBoLink">
                     </div>
                     <!-- weibo link end -->
 
                     <!-- weibo link start -->
                     <div class="am-form-group">
-                        <label for="content">原文链接 <small>(md5)</small>:</label>
+                        <label for="content">原文链接 <small>(markdown语法)</small>:</label>
                         <input type="text" id="originalLink" name="originalLink">
                     </div>
                     <!-- weibo link end -->
@@ -248,10 +260,16 @@
         article.uploadDetailImageSuccess(data);
     }
 
+    //iframe upload upload attach images callback
+    function uploadAttachImagesSuccess(data) {
+        article.uploadAttachImagesSuccess(data);
+    }
+
     //iframe upload callback
     function uploadMainImageSuccess(data) {
         $('#image').val(data[0].url).trigger('change');
     }
+
     //iframe upload callback
     function uploadVideoFileSuccess(data) {
         $('#video-link').val(data[0].url).trigger('change');;
