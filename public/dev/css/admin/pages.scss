@@ -602,7 +602,6 @@
             td {
                 padding-top: 5px;
                 padding-bottom: 5px;
-                font-size: 12px !important;
                 background-color:#feffed;
             }
             .child-title {
@@ -664,6 +663,15 @@
         }
     }
 
+    .detail-label-info {
+        margin-left:10px;
+        color: #5eb95e;
+        font-weight: bold;
+    }
+    .textarea-detail-fullscreen {
+        width: 99%;
+    }
+
 }
 
 /* admin-article-preview-page */
@@ -703,14 +711,3 @@
 
 }
 
-/* admin-article-page */
-.admin-article-page {
-    .detail-label-info {
-        margin-left:10px;
-        color: #5eb95e;
-        font-weight: bold;
-    }
-    .textarea-detail-fullscreen {
-        width: 99%;
-    }
-}

@@ -86,6 +86,15 @@ module.exports = {
                         }
                         $.each(data.list.article,function (i, n) {
 
+                            let image = (()=>{
+                                 if(n.image) {
+                                   return
+                                     `<a href="${n.image}" target="_blank"><img width="40" src="${n.image}?imageMogr2/thumbnail/40" alt="" data-am-popover="{content:'<img width=150 src=${n.image}?imageMogr2/thumbnail/150>', trigger:'hover focus'}"></a>`;
+                                 } else {
+                                     return `<img width="40" src="//lc-quipuwpj.cn-n1.lcfile.com/23726f840c784a3ede12.jpg?imageMogr2/thumbnail/40" alt="">`;
+                                 }
+                            })();
+
                             let weiboUrl = (()=> {
                                 return n.weiBoLink ? `<a target="_blank" href="${n.weiBoLink}"><i class="am-icon-link"></i></a>` : '-';
                             })();
@@ -112,8 +121,9 @@ module.exports = {
                             tr.after(`
                                 <tr class="child"> 
                                     <td colspan="2" class="child-title"> 
-                                    <img width="30" src="//lc-quipuwpj.cn-n1.lcfile.com/23726f840c784a3ede12.jpg?imageMogr2/thumbnail/30" alt="">
-                                    <a href="/admin/article/edit/${n.articleId}">${n.name}</a> 
+                                        ${image}
+                                        <a href="/admin/article/edit/${n.articleId}">${n.name}</a> 
+                                    
                                     </td>
                                     <td class="t-c">
                                         ${weiboUrl}
@@ -129,7 +139,9 @@ module.exports = {
                                     </td>
                                     <td class="t-c">${suatus}</td>
                                     <td>
-                                        预览 复制 删除
+                                     <a href="javascript:;" target="_blank" data-id="${n.articleId}" class="btn-preview">预览</a>
+                                     <a href="/admin/article/copy/${n.articleId}">复制</a>
+                                     <a href="javascript:;" data-id="${n.articleId}" class="remove-article">删除</a>
                                     </td>
                                     <td class="t-c">
                                         ${date}
