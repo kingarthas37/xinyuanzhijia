@@ -56,21 +56,17 @@
 
 <%}%>
 
-<div class="child-detail">
-    <h3>相关子文章</h3>
-    <ul>
-        <li><a href="#">子文章列表</a></li>
-        <li><a href="#">子文章列表</a></li>
-        <li><a href="#">子文章列表</a></li>
-        <li><a href="#">子文章列表</a></li>
-    </ul>
+<div class="child-detail-content" data-id="<%= article.get('articleId') %>">
+
 </div>
+
 
 <% include ../partials/js %>
 
 <script>
     $(function() {
-
+        var article = require('article');
+        article.initDetailMobile();
     });
 </script>
 </body>

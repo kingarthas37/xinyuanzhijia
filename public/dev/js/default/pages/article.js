@@ -54,6 +54,35 @@ module.exports = {
             });
         });
 
+    },
+
+    initDetailMobile() {
+
+        //获取子文章
+        {
+            let content = $('.child-detail-content');
+            let id = content.attr('data-id');
+            let html = `
+                <div class="child-detail">
+                    <h3>相关子文章</h3>
+                    <ul>
+                    </ul>
+                </div>
+            `;
+            $.ajax({
+                url: `/admin/article/seed/${id}`
+            }).done(function (data) {
+                if(data.list.article.length) {
+                    content.append(html);
+                    $.each(data.list.article,function (i, n) {
+                        content.find('ul').append(`<li><a href="/blog/${n.articleId}">${n.name}</a></li>`);
+                    });
+                }
+
+            });
+        }
+
+
     }
 
 };
