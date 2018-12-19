@@ -51,6 +51,21 @@ router.get('/', (req, res) => {
                                 resolve();
                             });
                         });
+                    } else {
+                        articleTag.getArticleTag({name:search}).then(tag => {
+                            options.articleCategoryId = articleCategoryId;
+                            if (tag.count > 0) {
+                                options.tag = tag.items[0].get('articleTagId');
+                            }
+                            article.getArticle(options).then(result => {
+                                let count = result.count;
+                                data = extend(data, {
+                                    count,
+                                    article:result.items
+                                });
+                                resolve();
+                            });
+                        });
                     }
                 });
             } else {
