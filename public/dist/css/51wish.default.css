@@ -3242,8 +3242,9 @@ a.pswp__share--download:hover {
     margin-right: 4px;
     padding: 4px 12px;
     border-radius: 2px;
-    color: #f0da80;
     background-color: #000; }
+    .article-detail-page .tag-content span a {
+      color: #f0da80; }
 
 .article-detail-page .main-image {
   padding: 10px 15px 0 15px; }
