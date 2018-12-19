@@ -15,7 +15,9 @@
 <% if(article) { %>
 
 <div class="crumb">
-    <a href="#">文章分类</a> <i class="am-icon-angle-right"></i> <a href="#">精油</a>
+    <div class="l"><a href="/blog">文章列表</a> <i class="am-icon-angle-right"></i> <a href="#">精油</a></div>
+    <div class="r">浏览量: <span class="price"><%=article.get('pageView')%></strong></span></div>
+
 </div>
 
 <h1>
@@ -27,11 +29,14 @@
     <span>招财</span>
 </div>
 
-<!--
-    <p>
-        人气: <span class="price"><%=article.get('pageView')%></strong></span>
-    </p>
-    -->
+
+<% if(article.get('image')) {%>
+<div class="main-image">
+    <img src="<%= article.get('image'); %>" alt="">
+</div>
+<%}%>
+
+
 <div class="detail">
     <%- article.get('content')%>
 </div>
