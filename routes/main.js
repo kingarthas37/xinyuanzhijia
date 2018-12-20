@@ -37,6 +37,7 @@ module.exports = {
     '/course/user':require('./default/course/user'),
 
     '/blog':require('./default/article'),
+    '/blog/statistics':require('./default/article/statistics'),
     
     //admin
     '/admin/login':require('./admin/sign/login'),

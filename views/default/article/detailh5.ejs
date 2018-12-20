@@ -33,8 +33,8 @@
         <span>浏览量:<%=article.get('pageView')%></span> <span>更新日期:<%= article.get('updatedAt').getFullYear() + '-' + (article.get('updatedAt').getMonth()+1) + '-' +  article.get('updatedAt').getDate() %></span>
     </div>
 
-    <% if(article.get('isParent')){%>
-    <h4 class="crumb-main-article">主文章：<a href="#">《魔法生活的每一天》-《A YEAR & A DAY OF SPELLS FOR EMPOWERING LIFE》</a></h4>
+    <% if(article.get('parentArticleId') > 0 && parentArticle){%>
+    <h4 class="crumb-main-article">主文章：<a href="/blog/<%=article.get('parentArticleId')%>"><%=parentArticle.get('name')%></a></h4>
     <%}%>
 
     <% if(article.get('tag').length>0) { %>
@@ -55,15 +55,15 @@
 
         <div class="info">
             <div class="img">
-                <img width="60" src="http://lc-QuiPuWpJ.cn-n1.lcfile.com/e50d2b6022445d27ba2f.jpg?imageMogr2/thumbnail/60" alt="">
+                <img width="60" src="<%=nextArticle.get('image')%>" alt="">
             </div>
-            <div class="text">下一篇：<a href="#">这个课程不是什么 -《A YEAR & A DAY OF SPELLS FOR EMPOWERING LIFE》</a></div>
+            <div class="text">下一篇：<a href="/blog/<%=nextArticle.get('articleId')%>"><%=nextArticle.get('name')%></a></div>
         </div>
 
         <div class="favorite-box">
             <input id="favorite" type="checkbox" data-product-id="" checked="checked" />
             <label for="favorite" aria-label="like"><i class="am-icon-heart"></i></label>
-            <span class="active"><i class="favorite-text">已收藏</i>(<i class="favorite-count">111</i>)</span>
+            <span <%if(wish){%>class="active"<%}%> ><i class="favorite-text"><%if(wish){%>已收藏<%}else{%>收藏<%}%></i>(<i class="favorite-count"><%= wishCount %></i>)</span>
         </div>
     </div>
 
@@ -81,7 +81,7 @@
     <div class="child-detail-content" data-id="<%= article.get('articleId') %>"></div>
 
     <div class="events">
-        <a class="events-good" href="javascript:;"><i class="am-icon-thumbs-up"></i> <span>点赞 ( <em>0</em> )</span> </a>
+        <a class="events-good" href="javascript:;"><i class="am-icon-thumbs-up"></i> <span>点赞 ( <em><%=article.get('approval')%></em> )</span> </a>
         <a class="events-share" href="javascript:;"><i class="am-icon-share"></i> <span>分享给好友</span> </a>
     </div>
 

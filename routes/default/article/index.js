@@ -9,6 +9,7 @@ let config = require('../../../lib/config');
 let article = require('../../../lib/models/article').createNew();
 let articleCategory = require('../../../lib/models/article-category').createNew();
 let articleTag = require('../../../lib/models/article-tag').createNew();
+let articleWish = require('../../../lib/models/article-wish').createNew();
 let AV = require('leanengine');
 let pager = require('../../../lib/component/pager');
 let flash = require('connect-flash');
@@ -119,6 +120,7 @@ router.get('/ajax', (req, res) => {
 
 router.get('/:articleId',(req,res)=> {
     let articleId = parseInt(req.params.articleId);
+    let member = req.cookies.login ? article.getDecodeByBase64(req.cookies.login) : null;
     AV.Promise.when(
         new AV.Promise(resolve => {
             article.getArticleByArticleId(articleId).then(result => {
@@ -130,7 +132,14 @@ router.get('/:articleId',(req,res)=> {
             article.getArticleByArticleId(articleId).then(item => {
 				item.set('content', markdown.toHTML(item.get('content')));
                 data = extend(data, {article:item});
-                resolve();
+                if (item.get('parentArticleId') > 0) {
+                    article.getArticleByArticleId(item.get('parentArticleId')).then(parentItem => {
+                        data = extend(data, {parentArticle:parentItem});
+                        resolve();
+                    });
+                } else {
+                    resolve();
+                }
             });
         }),
         new AV.Promise(resolve => {
@@ -142,6 +151,29 @@ router.get('/:articleId',(req,res)=> {
         new AV.Promise(resolve => {
             articleTag.getArticleTag({'limit':999}).then(tag => {
                 data = extend(data, {articleTag:tag.items});
+                resolve();
+            });
+        }),
+        new AV.Promise(resolve => {
+            if (member) {
+                articleWish.getWishByCommonMemberIdAndArticleId(member.id, articleId).then(result => {
+                    data = extend(data, result);
+                    resolve();
+                });
+            } else {
+                data = extend(data, {wish:false});
+                resolve();
+            }
+        }),
+        new AV.Promise(resolve => {
+            articleWish.getWishCountByArticleId(articleId).then(result => {
+                data = extend(data, {'wishCount': result.count});
+                resolve();
+            });
+        }),
+        new AV.Promise(resolve => {
+            article.getArticle({notId:articleId,limit:1,page:Math.ceil(Math.random()*5)}).then(nextItem => {
+                data = extend(data, {nextArticle:nextItem.items[0]});
                 resolve();
             });
         })
