@@ -73,13 +73,12 @@ module.exports = {
             $.ajax({
                 url: `/admin/article/seed/${id}`
             }).done(function (data) {
-                if(data.list.article.length) {
+                if(data.list.article) {
                     content.append(html);
                     $.each(data.list.article,function (i, n) {
                         content.find('ul').append(`<li><a href="/blog/${n.articleId}">${n.name}</a></li>`);
                     });
                 }
-
             });
         }
 

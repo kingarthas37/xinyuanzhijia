@@ -137,7 +137,7 @@
   .crumb {
     @extend %clearfix;
     font-size: 14px;
-    padding: 10px;
+    padding: 10px 15px;
     .r {
       font-size: 12px;
     }
@@ -146,7 +146,7 @@
   .main-title {
     text-align: center;
     margin: 0 0 5px 0;
-    padding: 0 10px;
+    padding: 0 15px;
     font-size: 16px;
     color: $colorMain;
     .hot {
@@ -180,108 +180,9 @@
     font-weight: normal;
   }
 
-  .info-content {
-    display: flex;
-    padding: 0 10px;
-    border-bottom: 5px solid #eee;
-    .info {
-      padding: 10px 0;
-      flex: 1;
-      height: 80px;
-      div {
-        @extend %clearfix;
-        border-right: 1px dashed #ddd;
-      }
-      .price {
-        float: left;
-        font-weight: bold;
-        height: 44px;
-        line-height: 44px;
-        font-size: 22px;
-        color:#f40;
-        display: block;
-        a {
-          font-size: 12px;
-          color: #888;
-          font-weight: normal;
-        }
-      }
-      .stock {
-        float: right;
-        padding-right:15px;
-        height: 44px;
-        line-height: 44px;
-        font-size: 14px;
-        a {
-          font-weight: bold;
-          i {
-            font-weight: normal;
-          }
-        }
-        .in-stock {
-          color: $colorGreen;
-        }
-        .out-stock {
-          color: $colorOrange;
-        }
-        .short-stock {
-          color: $colorRed;
-        }
-
-      }
-      p {
-        color: $colorMain;
-        display: flex;
-        margin:0;
-        padding: 0 15px 0 0;
-        font-size: 12px;
-        height: 16px;
-        line-height: 16px;
-        border-right: 1px dashed #ddd;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        span {
-          flex: 1;
-          display: block;
-          &:nth-child(2) {
-            text-align: center;
-          }
-          &:nth-child(3) {
-            text-align: right;
-          }
-        }
-      }
-    }
-    .favorite-box {
-      margin-left: 10px;
-      height: 80px;
-      width: 80px;
-      position: relative;
-      span {
-        color: #999;
-        position: absolute;
-        bottom: 6px;
-        left: 0;
-        width: 80px;
-        height: 20px;
-        line-height: 20px;
-        text-align: center;
-        font-size: 12px;
-        z-index: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        &.active {
-          color: #e2264d;
-        }
-      }
-    }
-  }
-
   .tag-content {
     font-size: 12px;
-    padding: 0 10px;
+    padding: 0 15px;
     line-height: 26px;
     span {
       white-space: nowrap;
@@ -295,7 +196,6 @@
       }
     }
   }
-
 
   .main-image {
     padding: 10px 15px 0 15px;
@@ -483,6 +383,60 @@
       list-style: decimal;
       font-size: 14px;
 
+    }
+  }
+
+  .info-content {
+    display: flex;
+    padding: 0 15px;
+
+    .info {
+      display: flex;
+      margin-top: 15px;
+      margin-right: 10px;
+      flex: 1;
+      height: 60px;
+      @extend %clearfix;
+
+      .img {
+        float: left;
+        width: 60px;
+        margin-right: 10px;
+      }
+
+      .text {
+        flex: 1;
+        font-size: 12px;
+        border-right: 1px dashed #ddd;
+        height: 60px;
+        line-height: 20px;
+        overflow: hidden;
+      }
+
+    }
+    .favorite-box {
+      margin-left: 10px;
+      height: 80px;
+      width: 80px;
+      position: relative;
+      span {
+        color: #999;
+        position: absolute;
+        bottom: 6px;
+        left: 0;
+        width: 80px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        font-size: 12px;
+        z-index: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &.active {
+          color: #e2264d;
+        }
+      }
     }
   }
 
