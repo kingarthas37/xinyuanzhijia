@@ -15,8 +15,8 @@ let flash = require('connect-flash');
 let markdown = require('markdown').markdown;
 
 let data = extend(config.data, {
-    title: `${config.data.name} - 博客`,
-    headerTitle: '博客',
+    title: `${config.data.name} - 文章`,
+    headerTitle: '文章',
     currentPage: 'article',
     pageType: 'article'
 });

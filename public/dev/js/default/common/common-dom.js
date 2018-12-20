@@ -4,7 +4,6 @@ let Bloodhound = require('bloodhound');
 
 $(function() {
 
-    
     //返回首页按钮
     {
         $('.go-back').click(function() {
@@ -19,6 +18,7 @@ $(function() {
     
     //搜索面板
     {
+        /*
         let searchGoPanel = $('.search-go-panel');
         let searchBox = $('#search-box');
         let searchClose = $('.search-close').find('a');
@@ -38,7 +38,7 @@ $(function() {
         searchBox.on('open.offcanvas.amui', function() {
             searchInput[0].focus();
         });
-        
+        */
     }
     
     //am-alert
@@ -49,7 +49,8 @@ $(function() {
             setTimeout(()=> amAlert.fadeOut(),2000);
         }
     }
-    
+
+    /*
     //搜索面板选择搜索主题 
     {
         let searchInput = $('#search-input');
@@ -155,7 +156,8 @@ $(function() {
         
     }
     
-    
+    */
+
     //$.fn产品列表页infinitescroll
     {
         $.fn.setInfinitescroll = function(opts) {
@@ -191,7 +193,7 @@ $(function() {
                     $('#infscr-loading').detach();
                     container.infinitescroll('unbind');
                     container.append('<div class="loading"></div>');
-                    let msg = $('<div id="infscr-loading" style="display:none;">当前选择下已加载全部内容</div>');
+                    let msg = $('<div id="infscr-loading" style="display:none;">已加载全部内容</div>');
                     container.find('.loading').append(msg);
                     msg.fadeIn();
                     setTimeout(()=> {
