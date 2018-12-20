@@ -126,7 +126,6 @@ module.exports = {
 
     searchFun() {
 
-
         //搜索面板
         {
             let searchGoPanel = $('.search-go-panel');
@@ -151,7 +150,7 @@ module.exports = {
 
         //header搜索typeahead
         {
-            return false;
+            /*
             let searchBox = $('#search-box');
             let searchInput = searchBox.find('#search-input');
 
@@ -184,13 +183,12 @@ module.exports = {
             searchBox.find('.tt-menu').css({
                 width:WIN_WIDTH
             });
-
+*/
         }
-
         //搜索历史记录
         {
             //$.cookie('new-homepage-guide-clicked', true, { expires:new Date(new Date().getTime() + 1000*60*60*24*30), path: '/' });
-            let cookie = $.cookie('search-result');
+            let cookie = $.cookie('search-article-result');
             let searchInput = $('#search-input');
             let searchHistoryList = $('.search-history ul');
             let searchForm = $('.search-form');
@@ -213,7 +211,7 @@ module.exports = {
                 if(array.length> 5) {
                     array.length = 5;
                 }
-                $.cookie('search-result',array.join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:'/'});
+                $.cookie('search-article-result',array.join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:'/'});
             });
 
             $('.clear-history').click(function() {
@@ -221,7 +219,7 @@ module.exports = {
                     return false;
                 }
                 searchHistoryList.find('li').detach();
-                $.cookie('search-result','',{expires:new Date(new Date().getTime()),path:'/'});
+                $.cookie('search-article-result','',{expires:new Date(new Date().getTime()),path:'/'});
             });
 
         }
