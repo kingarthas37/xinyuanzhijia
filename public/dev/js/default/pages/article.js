@@ -58,7 +58,7 @@ module.exports = {
     },
 
     initDetailMobile() {
-
+        this.articleId = $('.child-detail-content').attr('data-id');
         //获取子文章
         {
             let content = $('.child-detail-content');
@@ -104,7 +104,7 @@ module.exports = {
                 em.text(parseInt(count) + 1);
             }
 
-            $.ajax({url:`/product/statistics/approval/${_this.productId}`});
+            $.ajax({url:`/article/statistics/approval/${_this.articleId}`});
         });
 
     },
@@ -118,7 +118,7 @@ module.exports = {
             $('.share-bg').click(function() {
                 $(this).detach();
             });
-            $.ajax({url:`/product/statistics/share/${_this.productId}`});
+            $.ajax({url:`/article/statistics/share/${_this.articleId}`});
         });
 
     },

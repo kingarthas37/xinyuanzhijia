@@ -3,6 +3,8 @@
 let user = require('../../../lib/models/common-member').createNew();
 let productWish = require('../../../lib/models/product-wish').createNew();
 let product = require('../../../lib/models/product').createNew();
+let article = require('../../../lib/models/article').createNew();
+let articleWish = require('../../../lib/models/article-wish').createNew();
 let config = user.getConfig();
 let router = user.getRouter();
 let AV = user.getAV();
@@ -106,6 +108,40 @@ router.get('/edit/:productId', (req, res) => {
         let productId = req.params.productId ? req.params.productId : null;
         if (productId && member.id) {
             productWish.edit({'productId':productId,'commonMemberId':member.id,'status':false}).then(()=>{
+                res.send({success:1});
+            });
+        } else {
+            res.send({success:0});
+        }
+    }
+});
+
+router.get('/article/add/:articleId', (req,res) => {
+    let sessionData = req.cookies.login;
+    if(!req.cookies.login) {
+        res.send({success: -1});
+    } else {
+        let member = user.getDecodeByBase64(sessionData);
+        let articleId = req.params.articleId ? req.params.articleId : null;
+        if (articleId && member.id) {
+            articleWish.add({'articleId':articleId,'commonMemberId':member.id})
+            res.send({success:1});
+        } else {
+            res.send({success:0});
+        }
+    }
+});
+
+//保存userinfo
+router.get('/article/edit/:articleId', (req, res) => {
+    let sessionData = req.cookies.login;
+    if(!req.cookies.login) {
+        res.send({success: -1});
+    } else {
+        let member = user.getDecodeByBase64(sessionData);
+        let articleId = req.params.articleId ? req.params.articleId : null;
+        if (articleId && member.id) {
+            articleWish.edit({'articleId':articleId,'commonMemberId':member.id,'status':false}).then(()=>{
                 res.send({success:1});
             });
         } else {
