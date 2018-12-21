@@ -1,4 +1,5 @@
-.article-page {
+//pc
+.article-desktop-page {
   background-image:url('//lc-JoaBcRTt.cn-n1.lcfile.com/0360b8aeefb196dc3c79.jpg');
   background-repeat: repeat-y;
   background-size: 100%;
@@ -132,6 +133,22 @@
 
 }
 
+
+//h5
+.article-list-page {
+  .main-list {
+
+    .info {
+      font-size: 12px;
+      .views {
+        color:red;
+      }
+    }
+  }
+
+}
+
+//h5
 .article-detail-page {
 
   .crumb {
@@ -161,21 +178,21 @@
 
   .title-info {
     @extend %clearfix;
-    padding:  0 10px;
+    padding:  0 15px;
     color: #999;
     text-align: center;
     height: 20px;
     line-height: 20px;
     font-size: 12px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     span {
       margin:0 5px;
     }
   }
 
   .crumb-main-article {
-    font-size: 12px;
-    padding: 0 10px;
+    font-size: 13px;
+    padding: 5px 15px;
     margin:0 0 5px 0;
     font-weight: normal;
   }

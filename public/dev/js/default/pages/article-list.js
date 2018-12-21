@@ -67,34 +67,21 @@ module.exports = {
             }
         });
 
-        mainList.on('click','.fav',function() {
 
-            if (!window.isLogin) {
-                location.href = `/user/login?return=${location.pathname}`;
-                return false;
-            }
-
-            let productId = $(this).parents('li').data('product-id');
-
-            if($(this).hasClass('add')) {
+        //子文章
+        {
+            $('.main-list li').each(function (i, n) {
+                let id = $(n).attr('data-id');
                 $.ajax({
-                    url: `/user/wish/edit/${productId}`
-                }).then(data => {
-                    if (data.success) {
-                        $(this).removeClass('add').text('收藏');
+                    url:`/admin/article/seed/${id}`
+                }).done(function (data) {
+                    if(data.list.count) {
+                        $(n).find('.info').append(` <span>${data.list.count}篇子文章</span>`);
                     }
                 });
+            });
 
-            } else {
-                $.ajax({
-                    url: `/user/wish/add/${productId}`
-                }).then(data => {
-                    if (data.success) {
-                        $(this).addClass('add').text('已收藏');
-                    }
-                });
-            }
-        });
+        }
 
     }
 
