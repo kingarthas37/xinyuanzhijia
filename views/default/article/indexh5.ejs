@@ -45,7 +45,11 @@
                 <a href="/blog/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
             </h3>
             <h4>
-                <%=article[i].get('summary')%>
+                <% if(article[i].get('summary')) {%>
+                    <%=article[i].get('summary')%>
+                <% } else {%>
+                    <%= article[i].get('name') %>
+                <%}%>
             </h4>
             <div class="info">
                 <div class="info-view">人气: <span class="views"><%=article[i].get('pageView')%></span></div>
