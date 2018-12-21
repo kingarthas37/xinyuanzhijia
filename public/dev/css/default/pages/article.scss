@@ -139,10 +139,27 @@
   .main-list {
 
     .info {
+      @extend %clearfix;
+      height: 20px;
+      line-height: 20px;
       font-size: 12px;
-      .views {
-        color:red;
+      .info-view {
+        float: left;
+        .views {
+          color:red;
+        }
       }
+      .info-child {
+        float: left;
+        span {
+          background:$colorOrange;
+          color:#fff;
+          margin-left:10px;
+          padding: 1px 4px;
+          border-radius: 2px;
+        }
+      }
+
     }
   }
 
@@ -193,7 +210,7 @@
   .crumb-main-article {
     font-size: 13px;
     padding: 5px 15px;
-    margin:0 0 5px 0;
+    margin:0;
     font-weight: normal;
   }
 

@@ -76,7 +76,7 @@ module.exports = {
                     url:`/admin/article/seed/${id}`
                 }).done(function (data) {
                     if(data.list.count) {
-                        $(n).find('.info').append(` <span>${data.list.count}篇子文章</span>`);
+                        $(n).find('.info-child').append(`<span>${data.list.count}篇子文章</span>`);
                     }
                 });
             });

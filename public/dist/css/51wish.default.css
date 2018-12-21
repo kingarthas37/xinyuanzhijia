@@ -1,9 +1,9 @@
 @charset "UTF-8";
-.main-tab:before, .main-menu .am-dropdown .am-dropdown-content li:before, .main-list li .detail p:before, .detail-page .info-content .info div:before, .detail-page .slider-recommend .am-slides:before, .article-desktop-page .main-list:before, .article-desktop-page .main-list li .content .info:before, .article-detail-page .crumb:before, .article-detail-page .title-info:before, .article-detail-page .slider-recommend .am-slides:before, .article-detail-page .info-content .info:before, .main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after, .main-list li .detail p:after, .detail-page .info-content .info div:after, .detail-page .slider-recommend .am-slides:after, .article-desktop-page .main-list:after, .article-desktop-page .main-list li .content .info:after, .article-detail-page .crumb:after, .article-detail-page .title-info:after, .article-detail-page .slider-recommend .am-slides:after, .article-detail-page .info-content .info:after {
+.main-tab:before, .main-menu .am-dropdown .am-dropdown-content li:before, .main-list li .detail p:before, .detail-page .info-content .info div:before, .detail-page .slider-recommend .am-slides:before, .article-desktop-page .main-list:before, .article-desktop-page .main-list li .content .info:before, .article-list-page .main-list .info:before, .article-detail-page .crumb:before, .article-detail-page .title-info:before, .article-detail-page .slider-recommend .am-slides:before, .article-detail-page .info-content .info:before, .main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after, .main-list li .detail p:after, .detail-page .info-content .info div:after, .detail-page .slider-recommend .am-slides:after, .article-desktop-page .main-list:after, .article-desktop-page .main-list li .content .info:after, .article-list-page .main-list .info:after, .article-detail-page .crumb:after, .article-detail-page .title-info:after, .article-detail-page .slider-recommend .am-slides:after, .article-detail-page .info-content .info:after {
   content: ' ';
   display: table; }
 
-.main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after, .main-list li .detail p:after, .detail-page .info-content .info div:after, .detail-page .slider-recommend .am-slides:after, .article-desktop-page .main-list:after, .article-desktop-page .main-list li .content .info:after, .article-detail-page .crumb:after, .article-detail-page .title-info:after, .article-detail-page .slider-recommend .am-slides:after, .article-detail-page .info-content .info:after {
+.main-tab:after, .main-menu .am-dropdown .am-dropdown-content li:after, .main-list li .detail p:after, .detail-page .info-content .info div:after, .detail-page .slider-recommend .am-slides:after, .article-desktop-page .main-list:after, .article-desktop-page .main-list li .content .info:after, .article-list-page .main-list .info:after, .article-detail-page .crumb:after, .article-detail-page .title-info:after, .article-detail-page .slider-recommend .am-slides:after, .article-detail-page .info-content .info:after {
   clear: both; }
 
 #search-box .twitter-typeahead .tt-menu a {
@@ -3129,9 +3129,21 @@ a.pswp__share--download:hover {
         padding: 0; }
 
 .article-list-page .main-list .info {
+  height: 20px;
+  line-height: 20px;
   font-size: 12px; }
-  .article-list-page .main-list .info .views {
-    color: red; }
+  .article-list-page .main-list .info .info-view {
+    float: left; }
+    .article-list-page .main-list .info .info-view .views {
+      color: red; }
+  .article-list-page .main-list .info .info-child {
+    float: left; }
+    .article-list-page .main-list .info .info-child span {
+      background: #ff7d00;
+      color: #fff;
+      margin-left: 10px;
+      padding: 1px 4px;
+      border-radius: 2px; }
 
 .article-detail-page .crumb {
   font-size: 14px;
@@ -3166,7 +3178,7 @@ a.pswp__share--download:hover {
 .article-detail-page .crumb-main-article {
   font-size: 13px;
   padding: 5px 15px;
-  margin: 0 0 5px 0;
+  margin: 0;
   font-weight: normal; }
 
 .article-detail-page .tag-content {

@@ -326,12 +326,6 @@ module.exports = {
             clipboard.on('success',data => {
                 imageView.find('.oncopy').removeClass('oncopy');
                 $(this).addClass('oncopy');
-                let detailText = detailImage.val();
-                if(!$.trim(detailText)) {
-                    detailImage.val(detailText + data.text);
-                } else {
-                    detailImage.val(detailText + '\n' + data.text);
-                }
             });
         });
     },

@@ -23,10 +23,6 @@
                 }
             } %>
 
-        <% if(article.get('parentArticleId') > 0 && parentArticle){%>
-        <h4 class="crumb-main-article">父文章：<a href="/blog/<%=article.get('parentArticleId')%>"><%=parentArticle.get('name')%></a></h4>
-        <%}%>
-
     </div>
 
     <h1 class="main-title">
@@ -36,6 +32,10 @@
     <div class="title-info">
         <span>浏览量:<%=article.get('pageView')%></span> <span>更新日期:<%= article.get('updatedAt').getFullYear() + '-' + (article.get('updatedAt').getMonth()+1) + '-' +  article.get('updatedAt').getDate() %></span>
     </div>
+
+    <% if(article.get('parentArticleId') > 0 && parentArticle){%>
+    <h4 class="crumb-main-article">父文章：<a href="/blog/<%=article.get('parentArticleId')%>"><%=parentArticle.get('name')%></a></h4>
+    <%}%>
 
     <% if(article.get('tag').length>0) { %>
     <div class="tag-content">
