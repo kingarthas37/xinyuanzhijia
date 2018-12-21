@@ -104,7 +104,7 @@ module.exports = {
                 em.text(parseInt(count) + 1);
             }
 
-            $.ajax({url:`/article/statistics/approval/${_this.articleId}`});
+            $.ajax({url:`/blog/statistics/approval/${_this.articleId}`});
         });
 
     },
@@ -118,7 +118,7 @@ module.exports = {
             $('.share-bg').click(function() {
                 $(this).detach();
             });
-            $.ajax({url:`/article/statistics/share/${_this.articleId}`});
+            $.ajax({url:`/blog/statistics/share/${_this.articleId}`});
         });
 
     },

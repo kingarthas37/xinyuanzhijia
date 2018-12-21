@@ -107,7 +107,7 @@ router.get('/copy/:articleId',(req,res)=> {
 router.get('/seed/:articleId',(req,res) => {
     let parentArticleId = parseInt(req.params.articleId);
     let options = {parentArticleId};
-    let list;
+    let list,articleCategoryList;
     AV.Promise.when(
         new AV.Promise(resolve => {
             article.getArticle(options).then(result => {
@@ -117,8 +117,14 @@ router.get('/seed/:articleId',(req,res) => {
                 });
                 resolve();
             });
+        }),
+        new AV.Promise(resolve => {
+            articleCategory.getArticleCategory({limit: 999}).then(result => {
+                articleCategoryList =  result.items;
+                resolve();
+            });
         })
-    ).then(() => { res.send({list}) });
+    ).then(() => { res.send({list,articleCategoryList}) });
 });
 
 router.get('/article-category-count/:articleCategoryId',(req,res) => {

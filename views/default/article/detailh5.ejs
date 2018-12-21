@@ -61,7 +61,7 @@
         </div>
 
         <div class="favorite-box">
-            <input id="favorite" type="checkbox" data-product-id="" checked="checked" />
+            <input id="favorite" type="checkbox" data-article-id="<%=article.get('articleId')%>" <%if(wish){%>checked="checked"<%}%> />
             <label for="favorite" aria-label="like"><i class="am-icon-heart"></i></label>
             <span <%if(wish){%>class="active"<%}%> ><i class="favorite-text"><%if(wish){%>已收藏<%}else{%>收藏<%}%></i>(<i class="favorite-count"><%= wishCount %></i>)</span>
         </div>

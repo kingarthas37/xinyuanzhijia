@@ -31,8 +31,9 @@ router.get('/', (req, res) => {
     let status = 1; //只显示发布的文章
     let search = req.query.keywords ? req.query.keywords : '';
     let tag = req.query.tag ? req.query.tag : '';
-    let options = {page,limit, articleCategoryId, status, search, tag};
-    data = extend(data, {articleCategoryId});
+    let order = req.query.order || '';
+    let options = {page,limit, articleCategoryId, status, search, tag, order};
+    data = extend(data, {catid:articleCategoryId,keywords:search,tag,order});
     AV.Promise.when(
         new AV.Promise(resolve => {
             if (search) {
@@ -102,15 +103,61 @@ router.get('/ajax', (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let articleCategoryId = req.query.catid ? parseInt(req.query.catid) : '';
     let status = 1; //只显示发布的文章
-    let options = {page,limit, articleCategoryId, status};
+    let search = req.query.keywords ? req.query.keywords : '';
+    let tag = req.query.tag ? req.query.tag : '';
+    let order = req.query.order || '';
+    let options = {page,limit, articleCategoryId, status, search, tag, order};
     AV.Promise.when(
         new AV.Promise(resolve => {
-            article.getArticle(options).then(result => {
-                let count = result.count;
-                data = extend(data, {
-                    count,
-                    items:result.items
+            if (search) {
+                articleCategory.getArticleCategory({name:search}).then(category => {
+                    if (category.count > 0) {
+                        let articleCategoryId = category.items[0].get('articleCategoryId');
+                        articleTag.getArticleTag({name:search}).then(tag => {
+                            options.articleCategoryId = articleCategoryId;
+                            if (tag.count > 0) {
+                                options.tag = tag.items[0].get('articleTagId');
+                            }
+                            article.getArticle(options).then(result => {
+                                let count = result.count;
+                                data = extend(data, {
+                                    count,
+                                    article:result.items
+                                });
+                                resolve();
+                            });
+                        });
+                    } else {
+                        articleTag.getArticleTag({name:search}).then(tag => {
+                            options.articleCategoryId = articleCategoryId;
+                            if (tag.count > 0) {
+                                options.tag = tag.items[0].get('articleTagId');
+                            }
+                            article.getArticle(options).then(result => {
+                                let count = result.count;
+                                data = extend(data, {
+                                    count,
+                                    article:result.items
+                                });
+                                resolve();
+                            });
+                        });
+                    }
                 });
+            } else {
+                article.getArticle(options).then(result => {
+                    let count = result.count;
+                    data = extend(data, {
+                        count,
+                        article:result.items
+                    });
+                    resolve();
+                });
+            }
+        }),
+        new AV.Promise(resolve => {
+            articleCategory.getArticleCategory({'limit':999}).then(category => {
+                data = extend(data, {articleCategory:category.items, articleCategoryCount: category.count});
                 resolve();
             });
         })
@@ -172,7 +219,7 @@ router.get('/:articleId',(req,res)=> {
             });
         }),
         new AV.Promise(resolve => {
-            article.getArticle({notId:articleId,limit:1,page:Math.ceil(Math.random()*5)}).then(nextItem => {
+            article.getArticle({notId:articleId,limit:1,page:Math.ceil(Math.random()*3),status:1, isParent:true}).then(nextItem => {
                 data = extend(data, {nextArticle:nextItem.items[0]});
                 resolve();
             });
