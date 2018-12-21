@@ -27,11 +27,11 @@
     </div>
     <div class="am-u-sm-6">
         <div class="am-dropdown sort am-dropdown-flip" data-am-dropdown>
-            <% let orderName = order == 'pageViews' ? '热门' : '上新时间';
+            <% let orderName = order == 'pageView' ? '热门' : '上新时间';
             %>
             <button class="am-btn am-btn-primary am-dropdown-toggle"><span><%=orderName%></span> <span class="am-icon-caret-down"></span></button>
             <ul class="am-dropdown-content">
-                <li><a href="/blog?order=pageViews&catid=<%=catid%>">热门 <i class="am-icon-star"></i></a></li>
+                <li><a href="/blog?order=pageView&catid=<%=catid%>">热门 <i class="am-icon-star"></i></a></li>
                 <li><a href="/blog?order=createdAt&catid=<%=catid%>">上新时间 <i class="am-icon-calendar-check-o"></i></a></li>
             </ul>
         </div>

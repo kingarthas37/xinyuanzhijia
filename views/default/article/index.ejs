@@ -13,7 +13,7 @@
 <% include ../partials-desktop/menu %>
 
 <div class="crumb">
-    <a href="/blog" <%if(!articleCategoryId) { %> class="on"<%}%>>所有分类 <%if(!articleCategoryId) { %>(<%= count %>)<%}%></a>
+    <a href="/blog" <%if(!catid) { %> class="on"<%}%>>所有分类 <%if(!catid) { %>(<%= count %>)<%}%></a>
     <% for (var k=0; k<articleCategory.length; k++) { %>
         <a data-id="<%= articleCategory[k].get('articleCategoryId')%>" class="tags <% if(articleCategoryId == articleCategory[k].get('articleCategoryId')) { %>on<% } %>" href="/blog?catid=<%= articleCategory[k].get('articleCategoryId')%>"><%= articleCategory[k].get('name')%> <% if(articleCategoryId == articleCategory[k].get('articleCategoryId')) { %>(<%= count %>)<% } else { %><em></em><%}%></a>
     <% } %>
