@@ -93,6 +93,8 @@
 
                             <a class="article-title" data-id="<%= article[i].get('articleId') %>" title="<%= article[i].get('englishName') %>" href="/admin/article/edit/<%= article[i].get('articleId') %>"><%= article[i].get('name') %> {<%= article[i].get('articleId') %>}</a>
 
+                            <a href="javascript:;" title="发布" class="push"><i class="am-icon-retweet"></i></a>
+
                         </td>
                         <td class="t-c">
                             <% for(var j = 0; j < articleCategory.length; j++) { %>

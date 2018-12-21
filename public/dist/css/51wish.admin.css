@@ -804,6 +804,9 @@ span.hot:after {
       width: 700px; }
 
 /* admin article page */
+.admin-article-page .article-title {
+  margin-right: 4px; }
+
 .admin-article-page .am-table td {
   vertical-align: middle; }
 
