@@ -60,6 +60,7 @@ router.post('/:articleId', (req, res) => {
     let taoBaoLink = req.body['taoBaoLink'];
     let videoLink = req.body['video-link'];
     let detailImages = req.body['detail-images'];
+    let attachImages = req.body['attach-images'];
     let status = req.body['status'] ? 1 : 0;
     let weiBoLink = req.body['weiBoLink'];
     let originalLink = req.body['originalLink'];
@@ -72,7 +73,7 @@ router.post('/:articleId', (req, res) => {
     if (tag.length == 1) {
         tag = [tag];
     }
-    article.update({articleCategoryId,content,summary,name,image,taoBaoLink,videoLink, detailImages, status, weiBoLink, originalLink,englishName,imageWeitao,tag,isParent,parentArticleId,sort}, articleId).then(() => {
+    article.update({articleCategoryId,content,summary,name,image,taoBaoLink,videoLink, detailImages, attachImages,status, weiBoLink, originalLink,englishName,imageWeitao,tag,isParent,parentArticleId,sort}, articleId).then(() => {
         if (parentArticleId > 0) {
             let isParent = true;
             article.updateArticleIsParent(isParent,parentArticleId).then(() => {
