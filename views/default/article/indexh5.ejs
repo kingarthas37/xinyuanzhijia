@@ -12,6 +12,27 @@
 
 <% include ../partials/header-sub %>
 
+<div class="main-article-menu am-g am-g-fixed">
+    <div class="am-u-sm-6">
+        <div class="am-dropdown am-dropdown-flip" data-am-dropdown>
+            <ul class="am-dropdown-content">
+                <li class="am-dropdown-header"><a href="#">精油</a></li>
+                <li class="am-dropdown-header"><a href="#">魔法</a></li>
+            </ul>
+            <button class="am-btn am-btn-primary am-dropdown-toggle"><span>文章分类</span> <span class="am-icon-caret-down"></span></button>
+        </div>
+    </div>
+    <div class="am-u-sm-6">
+        <div class="am-dropdown sort am-dropdown-flip" data-am-dropdown>
+            <button class="am-btn am-btn-primary am-dropdown-toggle"><span>上新时间</span> <span class="am-icon-caret-down"></span></button>
+            <ul class="am-dropdown-content">
+                <li><a href="/product?order=pageViews&amp;method=3">热门 <i class="am-icon-star"></i></a></li>
+                <li><a href="/product?order=onsaleDate&amp;method=3">上新时间 <i class="am-icon-calendar-check-o"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <% if(article) { %>
 <ul class="main-list">
     <% for(var i=0; i < article.length; i++) {%>
@@ -34,7 +55,6 @@
     </li>
     <% } %>
 </ul>
-
 <%}%>
 
 

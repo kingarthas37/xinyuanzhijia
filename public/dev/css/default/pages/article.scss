@@ -163,6 +163,107 @@
     }
   }
 
+  .main-article-menu {
+    background: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    .am-u-sm-6 {
+      padding: 0;
+      &:last-child {
+        &:after {
+          display: none;
+        }
+      }
+      &:after {
+        content: " ";
+        height: 20px;
+        border-right: 1px solid #ddd;
+        position: absolute;
+        right: 0;
+        top: 10px;
+      }
+    }
+    .am-dropdown {
+      display: block;
+      .am-btn {
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13px;
+        background: none;
+        border: none;
+        display: block;
+        color: #666;
+        height: 36px;
+        line-height: 36px;
+        padding: 0;
+        margin: 0 auto;
+      }
+      .am-icon-caret-down {
+        font-size: 8px;
+        position: relative;
+        top: -2px;
+      }
+      .am-dropdown-content {
+        &:first-child {
+          left:0;
+          right:auto;
+        }
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        padding: 5px 0;
+        margin: 0;
+        width: 100%;
+        min-width: 100%;
+        &:before {
+          display: none;
+        }
+        &:after {
+          display: none;
+        }
+        li {
+          margin: 0 10px;
+          padding: 0;
+          border-bottom: 1px dashed #efefef;
+          @extend %clearfix;
+          a {
+            width: 100%;
+            display: block;
+            padding: 0 2px;
+            float: left;
+            font-size: 14px;
+            @extend %text-overflow;
+            height: 32px;
+            line-height: 32px;
+            span {
+              float: left;
+            }
+          }
+          &.am-active {
+            a {
+              background: $colorMain;
+            }
+          }
+          i {
+            width: 20px;
+            text-align: center;
+            float: right;
+            font-size: 13px;
+            display: block;
+            height: 32px;
+            line-height: 32px;
+            color: $colorMain;
+          }
+        }
+
+      }
+      &.am-active {
+        .am-btn {
+          color: $colorMain;
+        }
+      }
+    }
+  }
+
 }
 
 //h5
