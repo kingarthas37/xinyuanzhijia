@@ -96,9 +96,7 @@ router.get('/', (req, res) => {
         if(ua.test(req.headers['user-agent'])){
             views = 'default/article/indexh5';
         }
-        console.log(views);
-        res.send({success:1});
-        //res.render(views, data);
+        res.render('default/article/indexh5', data);
     });
 });
 
