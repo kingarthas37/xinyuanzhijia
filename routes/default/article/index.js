@@ -89,6 +89,7 @@ router.get('/', (req, res) => {
             });
         })
     ).then(() => {
+        console.log(data);
         let ua =new RegExp('Mobile');
         let views = 'default/article';
         if(ua.test(req.headers['user-agent'])){
