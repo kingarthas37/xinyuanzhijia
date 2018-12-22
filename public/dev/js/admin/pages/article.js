@@ -81,6 +81,7 @@ module.exports = {
                 $.ajax({
                     url:`/admin/article/seed/${id}`,
                     success:function (data) {
+console.log(data);
                         if(!data.list.count) {
                             return false;
                         }
@@ -91,6 +92,19 @@ module.exports = {
                                      return `<a href="${n.image}" target="_blank"><img width="40" src="${n.image}?imageMogr2/thumbnail/40" alt="" data-am-popover="{content:'<img width=150 src=${n.image}?imageMogr2/thumbnail/150>', trigger:'hover focus'}"></a>`;
                                  }
                                 return `<img width="40" src="//lc-quipuwpj.cn-n1.lcfile.com/23726f840c784a3ede12.jpg?imageMogr2/thumbnail/40" alt="">`;
+                            })();
+
+                            let categoryName = (()=> {
+                                let obj = {};
+                                $.each(data.articleCategoryList,function (i1,n1) {
+                                   if(n1.articleCategoryId === n.articleCategoryId) {
+                                       obj = {
+                                           name:n1.name,
+                                           id:n1.articleCategoryId
+                                       };
+                                   }
+                                });
+                                return `<a href="/admin/article?article-category-id=${obj.id}">${obj.name}</a>`;
                             })();
 
                             let weiboUrl = (()=> {
@@ -118,10 +132,13 @@ module.exports = {
 
                             tr.after(`
                                 <tr class="child"> 
-                                    <td colspan="2" class="child-title"> 
+                                    <td class="child-title"> 
                                         ${image}
                                         <a href="/admin/article/edit/${n.articleId}">${n.name}</a> 
                                     
+                                    </td>
+                                    <td class="t-c">
+                                        ${categoryName}
                                     </td>
                                     <td class="t-c">
                                         ${weiboUrl}
