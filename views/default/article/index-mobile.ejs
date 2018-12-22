@@ -6,6 +6,7 @@
     <meta name="keywords" content="" >
     <meta name="description" content="" >
     <% include ../partials/css %>
+    <% include ../partials/tongji %>
 </head>
 <body class="user-page article-list-page">
 
@@ -15,11 +16,7 @@
     <div class="am-u-sm-6">
         <div class="am-dropdown am-dropdown-flip" data-am-dropdown>
             <ul class="am-dropdown-content">
-                <% let categoryName = "文章分类"; %>
-                <% for(var c=0;c<articleCategory.length;c++) { %>
-                <% if (catid == articleCategory[c].get('articleCategoryId')) { categoryName = articleCategory[c].get('name'); } %>
-                <li class="am-dropdown-header"><a href="/blog?catid=<%=articleCategory[c].get('articleCategoryId')%>"><%=articleCategory[c].get('name')%></a></li>
-                <% } %>
+
             </ul>
             <button class="am-btn am-btn-primary am-dropdown-toggle"><span><%=categoryName%></span> <span class="am-icon-caret-down"></span></button>
         </div>
@@ -73,11 +70,11 @@
 <script>
     $(function() {
 
-        // var article = require('article');
-        // article.searchFun();
-        //
-        // var articleList = require('article-list');
-        // articleList.init();
+        var article = require('article');
+        article.searchFun();
+
+        var articleList = require('article-list');
+        articleList.init();
 
     });
 </script>
