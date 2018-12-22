@@ -1,1 +1,76 @@
-123
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/meta %>
+    <title><%= title %></title>
+    <meta name="keywords" content="" >
+    <meta name="description" content="" >
+    <% include ../partials/css %>
+    <% include ../partials/tongji %>
+</head>
+<body class="user-page article-list-page">
+
+<% include ../partials/header-sub %>
+
+<div class="main-article-menu am-g am-g-fixed">
+    <div class="am-u-sm-6">
+        <div class="am-dropdown am-dropdown-flip" data-am-dropdown>
+            <ul class="am-dropdown-content">
+                <% let categoryName = "文章分类"; %>
+                <% for(var c = 0;c < articleCategory.length;c++) { %>
+                <% if (catid == articleCategory[c].get('articleCategoryId')) { categoryName = articleCategory[c].get('name'); } %>
+                <li class="am-dropdown-header"><a href="/blog?catid=<%=articleCategory[c].get('articleCategoryId')%>"><%=articleCategory[c].get('name')%></a></li>
+                <% } %>
+            </ul>
+            <button class="am-btn am-btn-primary am-dropdown-toggle"><span><%=categoryName%></span> <span class="am-icon-caret-down"></span></button>
+        </div>
+    </div>
+
+</div>
+
+<% if(article) { %>
+<ul class="main-list">
+    <% for(var i=0; i < article.length; i++) {%>
+    <li data-id="<%= article[i].get('articleId') %>">
+        <div class="img">
+            <%if (article[i].createdAt.setMonth(article[i].createdAt.getMonth() + 2) > new Date()){ %><em class="new"></em><%}%>
+            <a href="/blog/<%= article[i].get('articleId') %>"><img src="<%= article[i].get('image') %>" class="lazy" width="100" height="100"  /></a>
+        </div>
+        <div class="detail">
+            <h3>
+                <a href="/blog/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
+            </h3>
+            <h4>
+                <% if(article[i].get('summary')) {%>
+                    <%=article[i].get('summary')%>
+                <% } else {%>
+                    <%= article[i].get('name') %>
+                <%}%>
+            </h4>
+            <div class="info">
+                <div class="info-view">人气: <span class="views"><%=article[i].get('pageView')%></span></div>
+                <div class="info-child"></div>
+            </div>
+        </div>
+    </li>
+    <% } %>
+</ul>
+<%}%>
+
+
+<% include ../partials/footer-article %>
+<% include ../partials/js %>
+
+<script>
+    $(function() {
+
+        var article = require('article');
+        article.searchFun();
+
+        var articleList = require('article-list');
+        articleList.init();
+
+    });
+</script>
+</body>
+</html>
