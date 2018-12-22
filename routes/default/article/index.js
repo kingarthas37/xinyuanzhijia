@@ -91,12 +91,10 @@ router.get('/', (req, res) => {
     ).then(() => {
         let ua =new RegExp('Mobile');
         let views = 'default/article';
-        console.log(ua.test(req.headers['user-agent']));
-        console.log(req.headers['user-agent']);
         if(ua.test(req.headers['user-agent'])){
-            views = 'default/article/indexh5';
+            views = 'default/article/index-mobile';
         }
-        res.render('default/article/indexh5', data);
+        res.render(views, data);
     });
 });
 
@@ -230,7 +228,7 @@ router.get('/:articleId',(req,res)=> {
         let ua =new RegExp('Mobile');
         let views = 'default/article/detail';
         if(ua.test(req.headers['user-agent'])){
-            views = 'default/article/detailh5';
+            views = 'default/article/detail-mobile';
         }
         res.render(views, data);
     });
