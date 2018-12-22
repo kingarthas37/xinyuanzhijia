@@ -92,9 +92,11 @@ router.get('/', (req, res) => {
         let ua =new RegExp('Mobile');
         let views = 'default/article';
         console.log(ua.test(req.headers['user-agent']));
+        console.log(req.headers['user-agent']);
         if(ua.test(req.headers['user-agent'])){
             views = 'default/article/indexh5';
         }
+        console.log(views);
         res.send({success:1});
         //res.render(views, data);
     });
