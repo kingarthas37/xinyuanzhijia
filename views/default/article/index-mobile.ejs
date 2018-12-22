@@ -8,54 +8,29 @@
     <% include ../partials/css %>
     <% include ../partials/tongji %>
 </head>
-<body class="article-desktop-page desktop-page">
+<body class="user-page article-list-page">
 
-<% include ../partials-desktop/menu %>
+<% include ../partials/header-sub %>
 
-<div class="crumb">
-    <a href="/blog" <%if(!catid) { %> class="on"<%}%>>所有分类 <%if(!catid) { %>(<%= count %>)<%}%></a>
-    <% for (var k=0; k<articleCategory.length; k++) { %>
-    <a data-id="<%= articleCategory[k].get('articleCategoryId')%>" class="tags <% if(catid == articleCategory[k].get('articleCategoryId')) { %>on<% } %>" href="/blog?catid=<%= articleCategory[k].get('articleCategoryId')%>"><%= articleCategory[k].get('name')%> <% if(catid == articleCategory[k].get('articleCategoryId')) { %>(<%= count %>)<% } else { %><em></em><%}%></a>
-    <% } %>
+<div class="main-article-menu am-g am-g-fixed">
+
 </div>
 
-<ul class="main-list">
-    <% if(article) { %>
-    <% for(var i=0; i < article.length; i++) {%>
-    <li>
-        <div class="content">
-            <div class="main-img">
-                <a href="/blog/<%= article[i].get('articleId') %>"><img width="260" height="260" src="<%= article[i].get('image') %>" alt="<%= article[i].get('name') %>"></a>
-            </div>
-            <div class="title">
-                <a href="/blog/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
-            </div>
-            <div class="info">
-                <div class="left">
+123456
 
-                </div>
-                <div class="right">
-                    <span>人气:<%=article[i].get('pageView')%></span>
-                    <span class="split"></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </li>
-    <% }
-    } %>
-</ul>
 
-<div class="navigation">
-    <a href="/blog/ajax?page=1"></a>
-</div>
-
-<% include ../partials-desktop/footer %>
+<% include ../partials/footer-article %>
 <% include ../partials/js %>
+
 <script>
     $(function() {
+
         var article = require('article');
-        article.initDesktop();
+        article.searchFun();
+
+        var articleList = require('article-list');
+        articleList.init();
+
     });
 </script>
 </body>
