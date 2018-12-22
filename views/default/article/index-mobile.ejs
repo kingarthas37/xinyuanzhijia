@@ -13,6 +13,18 @@
 <% include ../partials/header-sub %>
 
 <div class="main-article-menu am-g am-g-fixed">
+    <div class="am-u-sm-6">
+        <div class="am-dropdown am-dropdown-flip" data-am-dropdown>
+            <ul class="am-dropdown-content">
+                <% let categoryName = "文章分类"; %>
+                <% for(var c = 0;c < articleCategory.length;c++) { %>
+                <% if (catid == articleCategory[c].get('articleCategoryId')) { categoryName = articleCategory[c].get('name'); } %>
+                <li class="am-dropdown-header"><a href="/blog?catid=<%=articleCategory[c].get('articleCategoryId')%>"><%=articleCategory[c].get('name')%></a></li>
+                <% } %>
+            </ul>
+            <button class="am-btn am-btn-primary am-dropdown-toggle"><span><%=categoryName%></span> <span class="am-icon-caret-down"></span></button>
+        </div>
+    </div>
 
 </div>
 
