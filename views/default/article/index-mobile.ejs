@@ -8,72 +8,54 @@
     <% include ../partials/css %>
     <% include ../partials/tongji %>
 </head>
-<body class="user-page article-list-page">
+<body class="article-desktop-page desktop-page">
 
-<% include ../partials/header-sub %>
+<% include ../partials-desktop/menu %>
 
-<div class="main-article-menu am-g am-g-fixed">
-    <div class="am-u-sm-6">
-        <div class="am-dropdown am-dropdown-flip" data-am-dropdown>
-            <ul class="am-dropdown-content">
-                <% let categoryName = "文章分类"; %>
-                <% for(var c = 0;c < articleCategory.length;c++) { %>
-                <% if (catid == articleCategory[c].get('articleCategoryId')) { categoryName = articleCategory[c].get('name'); } %>
-                <li class="am-dropdown-header"><a href="/blog?catid=<%=articleCategory[c].get('articleCategoryId')%>"><%=articleCategory[c].get('name')%></a></li>
-                <% } %>
-            </ul>
-            <button class="am-btn am-btn-primary am-dropdown-toggle"><span><%=categoryName%></span> <span class="am-icon-caret-down"></span></button>
-        </div>
-    </div>
-    <div class="am-u-sm-6">
-        <div class="am-dropdown sort am-dropdown-flip" data-am-dropdown>
-
-        </div>
-    </div>
+<div class="crumb">
+    <a href="/blog" <%if(!catid) { %> class="on"<%}%>>所有分类 <%if(!catid) { %>(<%= count %>)<%}%></a>
+    <% for (var k=0; k<articleCategory.length; k++) { %>
+    <a data-id="<%= articleCategory[k].get('articleCategoryId')%>" class="tags <% if(catid == articleCategory[k].get('articleCategoryId')) { %>on<% } %>" href="/blog?catid=<%= articleCategory[k].get('articleCategoryId')%>"><%= articleCategory[k].get('name')%> <% if(catid == articleCategory[k].get('articleCategoryId')) { %>(<%= count %>)<% } else { %><em></em><%}%></a>
+    <% } %>
 </div>
 
-<% if(article) { %>
 <ul class="main-list">
+    <% if(article) { %>
     <% for(var i=0; i < article.length; i++) {%>
-    <li data-id="<%= article[i].get('articleId') %>">
-        <div class="img">
-            <%if (article[i].createdAt.setMonth(article[i].createdAt.getMonth() + 2) > new Date()){ %><em class="new"></em><%}%>
-            <a href="/blog/<%= article[i].get('articleId') %>"><img src="<%= article[i].get('image') %>" class="lazy" width="100" height="100"  /></a>
-        </div>
-        <div class="detail">
-            <h3>
+    <li>
+        <div class="content">
+            <div class="main-img">
+                <a href="/blog/<%= article[i].get('articleId') %>"><img width="260" height="260" src="<%= article[i].get('image') %>" alt="<%= article[i].get('name') %>"></a>
+            </div>
+            <div class="title">
                 <a href="/blog/<%= article[i].get('articleId') %>"><%= article[i].get('name') %></a>
-            </h3>
-            <h4>
-                <% if(article[i].get('summary')) {%>
-                    <%=article[i].get('summary')%>
-                <% } else {%>
-                    <%= article[i].get('name') %>
-                <%}%>
-            </h4>
+            </div>
             <div class="info">
-                <div class="info-view">人气: <span class="views"><%=article[i].get('pageView')%></span></div>
-                <div class="info-child"></div>
+                <div class="left">
+
+                </div>
+                <div class="right">
+                    <span>人气:<%=article[i].get('pageView')%></span>
+                    <span class="split"></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </li>
-    <% } %>
+    <% }
+    } %>
 </ul>
-<%}%>
 
+<div class="navigation">
+    <a href="/blog/ajax?page=1"></a>
+</div>
 
-<% include ../partials/footer-article %>
+<% include ../partials-desktop/footer %>
 <% include ../partials/js %>
-
 <script>
     $(function() {
-
         var article = require('article');
-        article.searchFun();
-
-        var articleList = require('article-list');
-        articleList.init();
-
+        article.initDesktop();
     });
 </script>
 </body>
