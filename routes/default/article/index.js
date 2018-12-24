@@ -25,6 +25,17 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
+    let ua =new RegExp('Mobile');
+    let views = 'default/article/index';
+    if(ua.test(req.headers['user-agent'])){
+        views = 'default/article/index-mobile';
+    } else {
+        res.redirect('/blog/list');
+    }
+    res.render(views, data);
+});
+
+router.get('/list', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let articleCategoryId = req.query.catid ? parseInt(req.query.catid) : '';
@@ -90,9 +101,9 @@ router.get('/', (req, res) => {
         })
     ).then(() => {
         let ua =new RegExp('Mobile');
-        let views = 'default/article';
+        let views = 'default/article/list';
         if(ua.test(req.headers['user-agent'])){
-            views = 'default/article/index-mobile';
+            views = 'default/article/list-mobile';
         }
         res.render(views, data);
     });
