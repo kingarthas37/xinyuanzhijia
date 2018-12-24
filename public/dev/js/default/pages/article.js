@@ -85,6 +85,55 @@ module.exports = {
         //点赞,分享
         this.eventsGood();
         this.eventsShare();
+        this.favoriteProduct();
+    },
+
+    favoriteProduct() {
+
+        let favorite = $('#favorite');
+        let favoriteText = $('.favorite-text');
+        let favoriteCount = $('.favorite-count');
+
+        favorite.click(function () {
+
+            if (!window.isLogin) {
+                location.href = `/user/login?return=${location.pathname}`;
+                return false;
+            }
+
+            let id = $(this).data('article-id');
+            let count = parseInt(favoriteCount.text());
+
+            if (this.checked) {
+
+                $.ajax({
+                    url: `/user/wish/article/add/${id}`
+                }).then(data => {
+
+                    if (data.success) {
+                        favoriteText.parent().addClass('active');
+                        favoriteText.text('已收藏');
+                        favoriteCount.text(count + 1);
+                    }
+
+                });
+
+            } else {
+
+                $.ajax({
+                    url: `/user/wish/article/edit/${id}`
+                }).then(data => {
+
+                    if (data.success) {
+                        favoriteText.parent().removeClass('active');
+                        favoriteText.text('收藏');
+                        favoriteCount.text(count - 1);
+                    }
+
+                });
+
+            }
+        });
 
     },
 
