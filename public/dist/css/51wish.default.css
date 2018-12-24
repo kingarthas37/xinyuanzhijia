@@ -3441,6 +3441,7 @@ a.pswp__share--download:hover {
       -webkit-box-flex: 1;
           -ms-flex: 1;
               flex: 1;
+      padding-right: 5px;
       font-size: 12px;
       border-right: 1px dashed #ddd;
       height: 60px;
