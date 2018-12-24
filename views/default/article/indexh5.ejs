@@ -16,7 +16,8 @@
     <div class="am-u-sm-6">
         <div class="am-dropdown am-dropdown-flip" data-am-dropdown>
             <ul class="am-dropdown-content">
-                <% let categoryName = "文章分类"; %>
+                <li class="am-dropdown-header"><a href="/blog">所有分类</a></li>
+                <% let categoryName = "所有分类"; %>
                 <% for(var c=0;c<articleCategory.length;c++) { %>
                 <% if (catid == articleCategory[c].get('articleCategoryId')) { categoryName = articleCategory[c].get('name'); } %>
                 <li class="am-dropdown-header"><a href="/blog?catid=<%=articleCategory[c].get('articleCategoryId')%>"><%=articleCategory[c].get('name')%></a></li>
