@@ -89,10 +89,11 @@ router.get('/', (req, res) => {
             });
         })
     ).then(() => {
+        console.log(data);
         let ua =new RegExp('Mobile');
         let views = 'default/article';
         if(ua.test(req.headers['user-agent'])){
-            views = 'default/article/indexh5';
+            views = 'default/article/index-mobile';
         }
         res.render(views, data);
     });
@@ -228,7 +229,7 @@ router.get('/:articleId',(req,res)=> {
         let ua =new RegExp('Mobile');
         let views = 'default/article/detail';
         if(ua.test(req.headers['user-agent'])){
-            views = 'default/article/detailh5';
+            views = 'default/article/detail-mobile';
         }
         res.render(views, data);
     });
