@@ -219,8 +219,11 @@ router.get('/:articleId',(req,res)=> {
             });
         }),
         new AV.Promise(resolve => {
-            article.getArticle({notId:articleId,limit:1,page:Math.ceil(Math.random()*3),status:1, isParent:true}).then(nextItem => {
-                data = extend(data, {nextArticle:nextItem.items[0]});
+            article.getNextArticleByArticleId(articleId).then(nextItem => {
+                if (nextItem) {
+                    nextItem = nextItem[0];
+                }
+                data = extend(data, {nextArticle:nextItem});
                 resolve();
             });
         })

@@ -54,10 +54,12 @@
     <div class="info-content">
 
         <div class="info">
+            <% if (nextArticle) { %>
             <div class="img">
                 <img width="60" src="<%=nextArticle.get('image')%>" alt="">
             </div>
             <div class="text">下一篇：<a href="/blog/<%=nextArticle.get('articleId')%>"><%=nextArticle.get('name')%></a></div>
+            <% } %>
         </div>
 
         <div class="favorite-box">
