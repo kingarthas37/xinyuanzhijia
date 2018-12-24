@@ -182,10 +182,22 @@ router.get('/:articleId',(req,res)=> {
                 if (item.get('parentArticleId') > 0) {
                     article.getArticleByArticleId(item.get('parentArticleId')).then(parentItem => {
                         data = extend(data, {parentArticle:parentItem});
-                        resolve();
+                        article.getNextArticleByArticleId(articleId, 1, false, item.get('parentArticleId')).then(nextItem => {
+                            if (nextItem) {
+                                nextItem = nextItem[0];
+                            }
+                            data = extend(data, {nextArticle:nextItem});
+                            resolve();
+                        });
                     });
                 } else {
-                    resolve();
+                    article.getNextArticleByArticleId(articleId).then(nextItem => {
+                        if (nextItem) {
+                            nextItem = nextItem[0];
+                        }
+                        data = extend(data, {nextArticle:nextItem});
+                        resolve();
+                    });
                 }
             });
         }),
@@ -215,15 +227,6 @@ router.get('/:articleId',(req,res)=> {
         new AV.Promise(resolve => {
             articleWish.getWishCountByArticleId(articleId).then(result => {
                 data = extend(data, {'wishCount': result.count});
-                resolve();
-            });
-        }),
-        new AV.Promise(resolve => {
-            article.getNextArticleByArticleId(articleId).then(nextItem => {
-                if (nextItem) {
-                    nextItem = nextItem[0];
-                }
-                data = extend(data, {nextArticle:nextItem});
                 resolve();
             });
         })
