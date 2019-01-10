@@ -39,6 +39,15 @@
                 </ul>
             </li>
 
+
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target:'#collapse-haocai-product'}">耗材产品列表<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub <%if(currentTag === 'product' && productMethodId == '33'){ %>am-in<%}%>" id="collapse-haocai-product">
+                    <li><a href="/admin/product?product-method-id=33&category1-id=174" <%if(currentPage === 'product-index' && productMethodId == '33' && category1Id == '174' && onsale == 0 && !isShortStock && !isUpdateStock && !updateStockDate && !adminStock && !hot && !isTranslation && !isSales){ %>class="current"<%}%> >耗材产品列表</a></li>
+                    <li><a href="/admin/product?product-method-id=33&category1-id=175" <%if(currentPage === 'product-index' && productMethodId == '33' && category1Id == '175' && onsale == 0 && !isShortStock && !isUpdateStock && !updateStockDate && !adminStock && !hot && !isTranslation && !isSales){ %>class="current"<%}%> >批货产品列表</a></li>
+                </ul>
+            </li>
+
             <li class="admin-parent">
                 <a class="am-cf" data-am-collapse="{target:'#collapse-product-settings'}">产品设置<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
                 <ul class="am-list am-collapse admin-sidebar-sub <%if(currentTag === 'product-settings'){ %>am-in<%}%>" id="collapse-product-settings">
