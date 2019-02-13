@@ -215,7 +215,7 @@
                                href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#settings"><i
                                         class="am-icon-gear"></i></a>
 
-                            <a title="上下架设置" class="set-onsale" isonsale="<%= product[i].get('isOnsale') %>"
+                            <a title="上下架设置" <% if(!product[i].get('isOnsale')) { %>style="color: #BBBBBB;"<% } %> class="set-onsale" isonsale="<%= product[i].get('isOnsale') %>"
                                href="javascript:;"><i class="am-icon-level-up"></i></a>
 
                             <a title="热门产品设置" class="set-hot" ishot="<%= product[i].get('isHot') %>"
