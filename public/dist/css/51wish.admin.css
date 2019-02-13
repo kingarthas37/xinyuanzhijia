@@ -551,6 +551,9 @@ span.hot:after {
 .admin-product-page .set-product-trans.on {
   color: #F37B1D; }
 
+.admin-product-page .set-onsale.off {
+  color: #bbb; }
+
 .admin-product-page .product-out {
   color: #666; }
 

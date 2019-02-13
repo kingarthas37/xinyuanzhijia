@@ -289,6 +289,12 @@
           color: #F37B1D;
       }
     }
+
+    .set-onsale {
+        &.off {
+            color: #bbb;
+        }
+    }
     
     .product-out {
         color: #666;

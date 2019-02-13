@@ -571,9 +571,11 @@ module.exports = {
                         if(isOnsale) {
                             title.removeClass('product-out');
                             $(this).attr('isonsale','true');
+                            $(this).removeClass('off');
                         } else {
                             title.addClass('product-out');
                             $(this).attr('isonsale','false');
+                            $(this).addClass('off');
                         }
                     }
                 });
