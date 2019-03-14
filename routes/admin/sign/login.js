@@ -22,6 +22,16 @@ router.get('/',function(req,res,next) {
     });
     
     res.render('admin/sign/login',data);
+    // AV.User.requestPasswordReset('kingarthas37@hotmail.com').then(function (success) {
+    //     console.log(success);
+    //     data = extend(data,{
+    //         flash: {success: req.flash('success'),error: req.flash('error')}
+    //     });
+    //
+    //     res.render('admin/sign/login',data);
+    // }, function (error) {
+    //     console.log(error);
+    // });  //密码重置
     
 });
 
