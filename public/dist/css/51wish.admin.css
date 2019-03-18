@@ -386,6 +386,9 @@ span.hot:after {
 .admin-product-page .product-row.hide-maximum {
   display: none; }
 
+.admin-product-page .product-row.hide-no-product {
+  display: none; }
+
 .admin-product-page .no-wisdom-stock td {
   color: #999 !important; }
   .admin-product-page .no-wisdom-stock td a {

@@ -55,6 +55,10 @@
         display: none;
     }
 
+    .product-row.hide-no-product {
+        display: none;
+    }
+
     .no-wisdom-stock {
         td {
             color: #999 !important;
