@@ -935,7 +935,7 @@ module.exports = {
             if($.cookie('hide-nostock-product')) {
                 checkbox.prop('checked',true);
                 $('.stock-num.none').each(function (i, n) {
-                    $(this).parents('.product-row').addClass('hide-hide-no-product');
+                    $(this).parents('.product-row').addClass('hide-no-product');
                 });
             }
 
@@ -943,11 +943,11 @@ module.exports = {
                 if(this.checked) {
                     $.cookie('hide-nostock-product','true',{expires:new Date(new Date().getTime() + 1000*60*60*24*365),path:'/',domain:location.host});
                     $('.stock-num.none').each(function (i, n) {
-                        $(this).parents('.product-row').addClass('hide-hide-no-product');
+                        $(this).parents('.product-row').addClass('hide-no-product');
                     });
                 } else {
                     $.cookie('hide-nostock-product','',{expires:new Date(new Date().getTime()),path:'/',domain:location.host});
-                    $('.product-row.hide-hide-no-product').removeClass('hide-hide-no-product');
+                    $('.product-row.hide-no-product').removeClass('hide-no-product');
                 }
             });
 
