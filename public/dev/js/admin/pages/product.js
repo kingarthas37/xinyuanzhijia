@@ -36,7 +36,6 @@ module.exports = {
                         'is-update-stock':isUpdateStock,
                         hot,
                         stock,
-                        search,
                         'is-translation':isTranslation,
                         'is-sales': isSales
                     });

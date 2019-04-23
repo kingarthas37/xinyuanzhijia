@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
     let order = req.query.order;
     let onsale = req.query.onsale ? parseInt(req.query.onsale) : 0;
 
-    let productMethodId = 0;// req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 0;
+    let productMethodId = req.query['product-method-id'] ? parseInt(req.query['product-method-id']) : 0;
     let category1Id = req.query['category1-id'] ? parseInt(req.query['category1-id']) : 0;
     let category2Id = req.query['category2-id'] ? parseInt(req.query['category2-id']) : 0;
     let search = req.query['search'] ? req.query['search'].trim() : '';
