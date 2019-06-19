@@ -186,8 +186,12 @@ module.exports = {
                     });
                     rows.each(function() {
                         let title = $(this).find('.title');
+                        let thirtySales = title.data('popover-sales') < title.data('popover-thirty') ? title.data('popover-sales') : title.data('popover-thirty');
+                        let ninetySales = title.data('popover-sales') < title.data('popover-ninety') ? title.data('popover-sales') : title.data('popover-ninety');
+                        let twoMonthSales = title.data('popover-sales') < title.data('popover-two-month') ? title.data('popover-sales') : title.data('popover-two-month');
+                        let lastMonthSales = title.data('popover-sales') < title.data('popover-last-month') ? title.data('popover-sales') : title.data('popover-last-month');
                         title.popover({
-                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>30天销量: ${title.data('popover-thirty')} | 90天销量: ${title.data('popover-ninety')} <br/>  ${twoMonth}月份销量: ${title.data('popover-two-month')} | ${lastMonth}月份销量: ${title.data('popover-last-month')}  <br/>总销量: ${title.data('popover-sales')}`,
+                            content:`原价: ${title.data('popover-source-price')} | 成本价:￥${title.data('popover-cost-price')} | 定价: ￥${title.data('popover-price')} <br/>30天销量: ${thirtySales} | 90天销量: ${ninetySales} <br/>  ${twoMonth}月份销量: ${twoMonthSales} | ${lastMonth}月份销量: ${lastMonthSales}  <br/>总销量: ${title.data('popover-sales')}`,
                             trigger:'hover'
                         });
                     });
