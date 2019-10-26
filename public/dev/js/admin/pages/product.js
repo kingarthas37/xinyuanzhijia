@@ -1465,6 +1465,21 @@ module.exports = {
             _this.updateMainImage();
         });
 
+        $('.check-all-images').click(function () {
+            $('.image-list').find('input').prop('checked',true);
+        });
+
+        $('.copy-all-images').click(function(){
+
+            let detailImage = $('#detail-image');
+            let imageView = $('.image-list');
+
+            imageView.find('.img-link').each(function (i,n) {
+                detailImage[0].value += `![](${$(n).attr('href')})` + '\n';
+            });
+
+        });
+
     },
 
 
