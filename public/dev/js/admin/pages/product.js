@@ -1466,7 +1466,9 @@ module.exports = {
         });
 
         $('.check-all-images').click(function () {
-            $('.image-list').find('input').prop('checked',true);
+           setTimeout(()=> {
+               $('.image-list').find('input:unchecked').click();
+           },1);
         });
 
         $('.copy-all-images').click(function(){
