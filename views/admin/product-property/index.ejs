@@ -90,7 +90,7 @@
                                             <div class="am-form-inline">
                                                 <div class="am-form-group">
                                                     <select name="stock" data-stock="<% if(product.get('stock')) {%><%=product.get('stock')%><%}else{%>0<%}%>">
-                                                        <% for(var i=0;i<301;i++) { %>
+                                                        <% for(var i=0;i<401;i++) { %>
                                                         <option <% if(product.get('stock') == i) { %>selected="selected"<%}%> value="<%=i%>"><%=i%></option>
                                                         <% }%>
                                                     </select>
