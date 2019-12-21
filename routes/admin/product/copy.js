@@ -35,7 +35,6 @@ router.get('/:productId', function (req, res, next) {
     let query = new AV.Query(Product);
     query.equalTo('productId',productId);
     query.first().then(result => {
-        
         let productData = {
             name:'(新建产品) ' + result.get('name'),
             nameEn:result.get('nameEn'),
@@ -51,16 +50,17 @@ router.get('/:productId', function (req, res, next) {
             property:result.get('property'),
             instruction:result.get('instruction'),
             use:result.get('use'),
-            detailImage:result.get('detailImage')
+            detailImage:result.get('detailImage'),
+            costPrice:(result.get('costPrice') == undefined ? 0 : result.get('costPrice')),
+            price:(result.get('price') == undefined ? 0 : result.get('price')),
+            originalPrice:(result.get('originalPrice') == undefined ? '0' : result.get('originalPrice'))
         };
 
         return product.save(productData);
         
     }).then(() => {
-        
         req.flash('success', '复制产品成功!');
         res.redirect('/admin/product');
-        
     },err => console.info(err));
 
 });
