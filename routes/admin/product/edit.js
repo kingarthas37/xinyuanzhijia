@@ -51,7 +51,7 @@ router.get('/:productId', function (req, res, next) {
             let query = new AV.Query(Product);
             query.equalTo('productId', productId);
             query.first().done(product => {
-                console.log(product);
+                // console.log(product);
                 data = extend(data, {product});
                 resolve();
             });

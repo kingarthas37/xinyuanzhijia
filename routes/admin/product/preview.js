@@ -209,6 +209,31 @@ router.post('/shot', (req, res) => {
 
 });
 
+//shot
+router.post('/shot-one', (req, res) => {
+
+    base.isAdminUserLogin(req, res);  //判断是否登录
+
+    let name = req.body.name.substr(0, 20);
+    let html = req.body.html;
+    let shotIndex = parseInt(req.body.shotIndex);
+    let htmlHeight = parseInt(req.body.htmlHeight);
+    let segmentHeight = parseInt(req.body.segmentHeight);
+
+    shot({
+        name,
+        html,
+        htmlHeight,
+        segmentHeight,
+        shotIndex
+    }).then(function() {
+        res.json({success:1});
+    },function(err) {
+        res.send(err);
+    });
+
+});
+
 //匹配name大小写,转换
 function toUpperCase(name) {
     let reg = /\[([^\]]*)\]/;
