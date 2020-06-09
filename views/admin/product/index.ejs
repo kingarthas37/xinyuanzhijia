@@ -183,7 +183,7 @@
                                 <% } %>
                                 <% if(product[i].get('isParent') == true){ %><strong>(主)</strong> <% } %><%= product[i].get('name') %> {<%= product[i].get('productId') %>}
                             </a>
-
+                            （<%=product[i].get('comment') %>）
                             <a title="复制标题" href="javascript:;" class="copy-product-title" data-text="<%= product[i].get('name')%>" data-id="<%= product[i].get('productId') %>" ><i  class="am-icon-copy"></i></a>
 
                             <a title="剩余库存" class="link-modal-viewport" href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#stock">
