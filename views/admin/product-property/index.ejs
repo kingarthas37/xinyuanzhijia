@@ -198,10 +198,7 @@
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
                                 <form class="am-form" action="/admin/product-property/settings/<%= product.get('productId') %>" method="post">
-                                    <label>原价:</label>
-                                    <div class="am-form-group">
-                                        <input name="original-price" type="text" value="<%= product.get('originalPrice') %>" autocomplete="off" placeholder="输入价格" />
-                                    </div>
+
                                     <label>成本价(RMB):</label>
                                     <div class="am-form-group">
                                         <input name="cost-price" type="text" value="<%= product.get('costPrice') %>" autocomplete="off" placeholder="输入成本价" />
@@ -209,6 +206,11 @@
                                     <label>定价(RMB):</label>
                                     <div class="am-form-group">
                                         <input name="price" type="text" value="<%= product.get('price') %>" autocomplete="off" placeholder="输入价格" />
+                                    </div>
+
+                                    <label>最低批发价:</label>
+                                    <div class="am-form-group">
+                                        <input name="original-price" type="text" value="<%= product.get('originalPrice') %>" autocomplete="off" placeholder="输入价格" />
                                     </div>
 
                                     <label>产地/国家:</label>
