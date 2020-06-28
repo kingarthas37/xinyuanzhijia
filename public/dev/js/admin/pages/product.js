@@ -526,6 +526,56 @@ module.exports = {
             });
 
         }
+
+        {// 改最低批发价
+            let modal = $('#modal-change-price');
+            let input = $('.input-change-price');
+            let modalLoading = $('#modal-loading');
+
+            $('.link-change-wholesale-price').click(function() {
+                let productId = $(this).data('product-id');
+                let category2Id=$(this).data('category2-id');
+                modalLoading.find('.am-modal-hd').text('正在修改...');
+                // console.info(productId);
+                modal.modal({
+                    relatedTarget: this,
+                    onConfirm: function(e) {
+
+                        if(!$.trim(input.val())) {
+                            alert('请输入正确的价格');
+                            // return;
+                        }else{
+                            $.ajax({
+                                type:'post',
+                                url:'/admin/product/sync-wholesale-price',
+                                data:{
+                                    'productId':productId,
+                                    'wholesalePrice':$.trim(input.val()),
+                                    'category2Id':category2Id
+                                }
+                            }).then(
+                                result => {
+                                    modalLoading.find('.am-modal-hd').text('修改成功!正在更新...');
+                                    setTimeout(()=> {
+                                        location.reload();
+                                    },1000);
+                                },
+                                err => {
+                                    modalLoading.find('.am-modal-hd').text('修改失败,请重试!');
+                                    setTimeout(()=> {
+                                        modalLoading.modal('close');
+                                    },1000);
+                                }
+                            );
+                            modalLoading.modal();
+                        }
+                    }
+                });
+                input[0].focus();
+                return false;
+            });
+
+        }
         
         //copy title
         {

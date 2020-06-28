@@ -623,6 +623,30 @@ router.post('/sync-cost-price',(req,res)=> {
     });
 });
 
+router.post('/sync-wholesale-price',(req,res)=> {
+    let productId = parseInt(req.body['productId']);
+    let price = parseFloat(req.body['wholesalePrice']);
+    let category2Id = parseInt(req.body['category2Id']);
+    let success = [];
+    pro.getProductsByCategoryId([category2Id]).then(items => {
+        async.forEachLimit(items,5, function(item, callback){
+            console.log('***************************');
+            console.log(item);
+            item.set('originalPrice', price);
+            item.save().then(()=> {
+                success.push(item.attributes.productId);
+                callback();
+            });
+        }, function(err){
+            console.log('product sync original price:' + err);
+            if(err) {
+                console.log('product sync original price:' + err);
+            }
+            res.send({success:success, count:success.length});
+        });
+    });
+});
+
 router.post('/set-parent-product', (req,res) => {
     let productId = parseInt(req.body['productId']);
     req.body['parentProductId'] = req.body['parentProductId'] || 0;
