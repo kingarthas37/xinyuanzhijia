@@ -151,7 +151,7 @@ router.post('/settings/:productId', (req, res) => {
     let isShortStock = req.body['is-short-stock'] ? true : false;
     let arrivedTime = parseInt(req.body['arrived-time']);
     let onsaleDate = new Date(req.body['onsale-date']);
-    let originalPrice = req.body['original-price'];
+    let wholesalePrice = parseInt(req.body['original-price']);
 
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
@@ -170,7 +170,7 @@ router.post('/settings/:productId', (req, res) => {
             isShortStock,
             arrivedTime,
             onsaleDate,
-            originalPrice
+            wholesalePrice
         });
 
     }).then(() => {
