@@ -372,6 +372,8 @@
                                     <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
                                            data-category2-id="<%= product[i].get('category2')[0] %>"
                                            class="link-change-wholesale-price">批量修改最低批发价</a></li>
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
+                                           class="link-change-binding-product">设置捆绑产品</a></li>
                                     <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="link-change-maximum">设置预定最高数量</a></li>
 
                                     <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" data-category2-id="<%= product[i].get('category2')[0] %>" class="link-change-category-maximum">批量设置预定最高数量</a></li>
@@ -660,6 +662,33 @@
     </div>
 </div>
 <!-- modal changeMaximumByCategory -->
+
+<!-- modal binding product -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-change-binding-product">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">输入捆绑产品ID</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-change-binding-id"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-hd">输入捆绑产品数量</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-change-binding-number"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal binding product -->
 
 
 <% include ../partials/footer %>

@@ -576,6 +576,56 @@ module.exports = {
             });
 
         }
+
+        {// 设置捆绑商品
+            let modal = $('#modal-change-binding-product');
+            let bindingId = $('.input-change-binding-id');
+            let bindingNumber = $('.input-change-binding-number');
+            let modalLoading = $('#modal-loading');
+
+            $('.link-change-binding-product').click(function() {
+                let productId = $(this).data('product-id');
+                modalLoading.find('.am-modal-hd').text('正在绑定...');
+                // console.info(productId);
+                modal.modal({
+                    relatedTarget: this,
+                    onConfirm: function(e) {
+
+                        if(!$.trim(bindingId.val())) {
+                            alert('请输入正确的产品ID');
+                            // return;
+                        }else{
+                            $.ajax({
+                                type:'post',
+                                url:'/admin/product/set-binding-product',
+                                data:{
+                                    'productId':productId,
+                                    'bindingId':$.trim(bindingId.val()),
+                                    'bindingNumber':$.trim(bindingNumber.val())
+                                }
+                            }).then(
+                                result => {
+                                    modalLoading.find('.am-modal-hd').text('绑定成功!正在更新...');
+                                    setTimeout(()=> {
+                                        location.reload();
+                                    },1000);
+                                },
+                                err => {
+                                    modalLoading.find('.am-modal-hd').text('绑定失败,请重试!');
+                                    setTimeout(()=> {
+                                        modalLoading.modal('close');
+                                    },1000);
+                                }
+                            );
+                            modalLoading.modal();
+                        }
+                    }
+                });
+                input[0].focus();
+                return false;
+            });
+
+        }
         
         //copy title
         {

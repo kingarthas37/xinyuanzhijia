@@ -644,6 +644,23 @@ router.post('/sync-wholesale-price',(req,res)=> {
     });
 });
 
+router.post('/set-binding-product',(req,res)=> {
+    let productId = parseInt(req.body['productId']);
+    let bindingId = parseInt(req.body['bindingId']);
+    let bindingNumber = parseInt(req.body['bindingNumber']);
+    let query = new AV.Query(Product);
+    query.equalTo('productId',productId);
+    query.first().then(result => {
+        result.set('bindingId', bindingId);
+        result.set('bindingNumber', bindingNumber);
+        return result.save();
+    }).then(result => {
+        res.send({
+            success:1
+        });
+    });
+});
+
 router.post('/set-parent-product', (req,res) => {
     let productId = parseInt(req.body['productId']);
     req.body['parentProductId'] = req.body['parentProductId'] || 0;
@@ -860,6 +877,21 @@ router.post('/set-color-tag',(req,res)=> {
             res.send({
                 success:1
             });
+        });
+    });
+});
+
+router.get('/get-binding-product/:productId', function (req, res) {
+    let productId = parseInt(req.params.productId);
+    console.log(productId);
+    let query = new AV.Query(Product);
+    query.equalTo('productId',productId);
+    query.select('bindingId,bindingNumber');
+    query.first().then(result => {
+        console.log(result);
+        res.send({
+            bindingId:result.get('bindingId'),
+            bindingNumber:result.get('bindingNumber')
         });
     });
 });
