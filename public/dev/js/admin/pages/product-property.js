@@ -55,8 +55,9 @@ module.exports = {
     
     //库存
     setStockContent() {
+
         let content = $('#stock');
-        let stock = content.find('select[name=stock]');
+        let stock = content.find('input[name=stock]');
         let sales = content.find('[name=sales]');
         let stockMinus = content.find('.stock-minus');
         let stockPlus = content.find('.stock-plus');
@@ -65,12 +66,17 @@ module.exports = {
         let reserve = $('#reserve');
         let soldPlus = content.find('.sold-plus');
         let soldMinus = content.find('.sold-minus');
-        
+
+        setTimeout(function() {
+            stock[0].focus();
+            stock[0].select();
+        },100);
+
         stockMinus.click(function() {
             let stockValue = parseInt(stock.val());
             let salesValue = parseInt(sales.val());
             if(stockValue > 0) {
-                stock.find(`option[value=${stockValue - 1}]`)[0].selected = true;
+                stock.val(stockValue-1);
                 sales.val(salesValue + 1);
             }
             stock.trigger('change');
@@ -78,7 +84,7 @@ module.exports = {
 
         stockPlus.click(function() {
             let stockValue = parseInt(stock.val());
-            stock.find(`option[value=${stockValue + 1}]`)[0].selected = true;
+            stock.val(stockValue+1);
             stock.trigger('change');
         });
         
@@ -127,20 +133,6 @@ module.exports = {
                     }
                 });
             }
-        }
-
-        //普通状态stock change，该表在途input值
-        {
-            let currentStock = stock.data('stock');
-            stock.change(function() {
-                /*
-                if(parseInt(reserve.val()) > 0) {
-                    let stockChanged = this.value - currentStock;
-                    reserve.val(parseInt(reserve.val()) - stockChanged );
-                    currentStock = this.value;
-                }
-                */
-            });
         }
         
         //sold加减
