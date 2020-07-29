@@ -67,7 +67,7 @@ module.exports = {
         let previewContent = $('.preview-content');
 
         let styles = `<style>
-            body { margin:0; width:750px; background: #fff;  font-family:'Segoe UI','Lucida Grande','Helvetica','Arial','Microsoft YaHei'; font-size: 20px; line-height: 30px; }
+            body { margin:0; width:750px; background: #fff;  font-family:'Segoe UI','Lucida Grande','Helvetica','Arial','Microsoft YaHei'; font-size: 22px; line-height: 32px; }
             section { padding: 0; margin: 0 0 20px 0; }
             section img { margin:0;}
             div { padding: 0 15px; margin-bottom: 20px;}
@@ -100,7 +100,7 @@ module.exports = {
                     type:'post',
                     data:{
                         html:styles + html,
-                        segmentHeight:480,
+                        segmentHeight:600,
                         htmlHeight:previewContent.height(),
                         name:'产品-' + $('h4').text().replace(/\//g,'')
                     },
