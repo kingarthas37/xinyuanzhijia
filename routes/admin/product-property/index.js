@@ -140,7 +140,7 @@ router.post('/settings/:productId', (req, res) => {
 
     let productId = parseInt(req.params.productId);
     let price = parseInt(req.body.price);
-    let costPrice = parseInt(req.body['cost-price']);
+    let costPrice = parseFloat(req.body['cost-price']);
     let country = req.body.country;
     let isHandmade = req.body['is-handmade'] ? true : false;
     let isDocument = req.body['is-document'] ? true : false;
