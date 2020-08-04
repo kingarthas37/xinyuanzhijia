@@ -22,9 +22,9 @@
                         <%}%>
                     <%}%>
                 <% } %>
-                <!--
+
                 <button type="button" class="am-btn am-btn-success btn-shot-one" onclick="webShotOneDiv()">生成指定淘宝详情图片</button>
-                -->
+
             </div>
         </div>
         <div class="r">
@@ -50,32 +50,32 @@
             -->
 
             <% if (detail) { %>
-            <section><img src="//lc-QuiPuWpJ.cn-n1.lcfile.com/c8c692660310d927f999.jpg"/></section>
+            <section><img src="http://lc-QuiPuWpJ.cn-n1.lcfile.com/c8c692660310d927f999.jpg"/></section>
             <div><%- detail %></div>
             <% } %>
             
             <% if (review) { %>
-            <section><img src="//lc-QuiPuWpJ.cn-n1.lcfile.com/b78d774f107117619634.jpg"></section>
+            <section><img src="http://lc-QuiPuWpJ.cn-n1.lcfile.com/b78d774f107117619634.jpg"></section>
             <div><%- review %></div>
             <% } %>
     
             <% if (property) { %>
-            <section><img src="//lc-QuiPuWpJ.cn-n1.lcfile.com/2a268d091b76378126fc.jpg"></section>
+            <section><img src="http://lc-QuiPuWpJ.cn-n1.lcfile.com/2a268d091b76378126fc.jpg"></section>
             <div><%- property %></div>
             <% } %>
 
             <% if (use) { %>
-            <section><img src="//lc-QuiPuWpJ.cn-n1.lcfile.com/e15c2b3c39c88fd51b6b.jpg"/></section>
+            <section><img src="http://lc-QuiPuWpJ.cn-n1.lcfile.com/e15c2b3c39c88fd51b6b.jpg"/></section>
             <div><%- use %></div>
             <% } %>
             
             <% if (instruction) { %>
-            <section><img src="//lc-QuiPuWpJ.cn-n1.lcfile.com/517be985cb90181ec8e5.jpg"/></section>
+            <section><img src="http://lc-QuiPuWpJ.cn-n1.lcfile.com/517be985cb90181ec8e5.jpg"/></section>
             <div><%- instruction %></div>
             <% } %>
     
             <% if (detailImage) { %>
-            <section><img src="//lc-QuiPuWpJ.cn-n1.lcfile.com/318c99b30a8bb4032e30.jpg"/></section>
+            <section><img src="http://lc-QuiPuWpJ.cn-n1.lcfile.com/318c99b30a8bb4032e30.jpg"/></section>
             <div><%- detailImage %></div>
             <% } %>
 
@@ -183,7 +183,7 @@
             type:'post',
             data:{
                 html:styles + html,
-                segmentHeight:480,
+                segmentHeight:600,
                 htmlHeight:previewContent.height(),
                 shotIndex:$("#shot-index").val(),
                 name:'产品-' + $('h4').text().replace(/\//g,'')
