@@ -52,7 +52,10 @@ router.get('/:productId',(req,res)=> {
                 name = toUpperCase(name);
                 
                 //水印判断不同淘宝店铺
-                let watermark = productMethodId === 21 ? config.watermark.muxue928 : config.watermark.main;
+                let watermark = config.watermark.main;
+                if(productMethodId === 3 || productMethodId === 31 || productMethodId === 37 || productMethodId === 38) {
+                    watermark = config.watermark.muxue928;
+                }
                 let detailImage = product.get('detailImage').replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com');
                 if (/.JPG/.test(detailImage)) {
                     detailImage = detailImage.replace(/\.JPG/gi,'.JPG'+ watermark);
