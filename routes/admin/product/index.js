@@ -187,6 +187,17 @@ router.get('/', (req, res) => {
                 resolve();
             });
 
+        }),
+
+        new AV.Promise(resolve => {
+            let query = new AV.Query(Product);
+            query.select('colorTag');
+            query.descending('colorTag');
+            query.first().then(color => {
+                data = extend(data, {colorTag:color.get('colorTag')});
+                resolve();
+
+            });
         })
     ).then(() => res.render('admin/product', data));
 
@@ -883,7 +894,6 @@ router.post('/set-color-tag',(req,res)=> {
 
 router.get('/get-binding-product/:productId', function (req, res) {
     let productId = parseInt(req.params.productId);
-    console.log(productId);
     let query = new AV.Query(Product);
     query.equalTo('productId',productId);
     query.select('bindingId,bindingNumber');
@@ -892,6 +902,17 @@ router.get('/get-binding-product/:productId', function (req, res) {
         res.send({
             bindingId:result.get('bindingId'),
             bindingNumber:result.get('bindingNumber')
+        });
+    });
+});
+
+router.get('/get-color-tag', function (req, res) {
+    let query = new AV.Query(Product);
+    query.select('colorTag');
+    query.descending('colorTag');
+    query.first().then(result => {
+        res.send({
+            colorTag:result.get('colorTag')
         });
     });
 });
