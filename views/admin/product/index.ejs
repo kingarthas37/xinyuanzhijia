@@ -388,6 +388,8 @@
                                     </li>
                                     <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" class="link-change-color-tag">设置供货商标识号</a>
                                     </li>
+                                    <li><a href="javascript:;" data-product-id="<%= product[i].get('productId') %>" data-category2-id="<%= product[i].get('category2')[0] %>" class="link-change-color-tags">批量设置供货商标识号</a>
+                                    </li>
                                     <li><a class="link-modal-viewport"
                                            href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#set-comment">备注</a>
                                     </li>
@@ -652,6 +654,25 @@
             <div class="am-form">
                 <div class="am-form-group">
                     <input type="text" class="input-change-color-tag"/>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<!-- modal changeMaximumByCategory -->
+
+<!-- modal changeMaximumByCategory -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="modal-change-color-tags">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">批量设置供货商标识号(最新标识号:<%= colorTag%>)</div>
+        <div class="am-modal-bd">
+            <div class="am-form">
+                <div class="am-form-group">
+                    <input type="text" class="input-change-color-tags"/>
                 </div>
             </div>
         </div>

@@ -892,6 +892,27 @@ router.post('/set-color-tag',(req,res)=> {
     });
 });
 
+router.post('/set-color-tags',(req,res)=> {
+    let productId = parseInt(req.body['productId']);
+    let colorTag = parseFloat(req.body['colorTag']);
+    let category2Id = parseInt(req.body['category2Id']);
+    let success = [];
+    pro.getProductsByCategoryId([category2Id]).then(items => {
+        async.forEachLimit(items,5, function(item, callback){
+            item.set('colorTag', colorTag);
+            item.save().then(()=> {
+                success.push(item.attributes.productId);
+                callback();
+            });
+        }, function(err){
+            if(err) {
+                console.log('set category colorTag:' + err);
+            }
+            res.send({success:success, count:success.length});
+        });
+    });
+});
+
 router.get('/get-binding-product/:productId', function (req, res) {
     let productId = parseInt(req.params.productId);
     let query = new AV.Query(Product);
