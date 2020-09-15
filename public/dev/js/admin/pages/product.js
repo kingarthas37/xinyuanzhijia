@@ -1393,7 +1393,7 @@ module.exports = {
 
         }
 
-        {// 分类批量设置促销折扣
+        {// 批量设置供货商标识号
             let modal = $('#modal-change-color-tags');
             let input = $('.input-change-color-tags');
             let modalLoading = $('#modal-loading');
@@ -1412,7 +1412,7 @@ module.exports = {
                         }else{
                             $.ajax({
                                 type:'post',
-                                url:'/set-color-tag',
+                                url:'/admin/product/set-color-tags',
                                 data:{
                                     'productId':productId,
                                     'colorTag':$.trim(input.val()),
