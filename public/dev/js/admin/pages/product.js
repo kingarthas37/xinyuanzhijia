@@ -13,7 +13,7 @@ module.exports = {
             let order = $('.select-order');
             let productMethod = $('.select-product-method');
             let onsale = $('input[name=onsale]');
-            
+
             let category1Val = category1.val();
             let category2Val = category2.val();
             let productMethodVal = productMethod.val();
@@ -197,13 +197,13 @@ module.exports = {
                     });
 
                     $('.recommend-purchase').removeAttr('disabled');
-                   
+
                 });
             });
         }
-        
-       
-        
+
+
+
         //删除product
         {
             let alert = $('#modal-alert');
@@ -241,7 +241,7 @@ module.exports = {
                 $(this).addClass('on');
             });
         }
-        
+
         //编辑定位
         {
             setTimeout(function () {
@@ -253,13 +253,13 @@ module.exports = {
                 }
             },0);
         }
-        
-        
+
+
         //modal viewport iframe
         {
             let modalViewport = $('#modal-viewport');
             let modalViewportContent = modalViewport.find('.am-modal-bd');
-            
+
             $('.link-modal-viewport').click(function() {
                 modalViewportContent.append('<iframe class="iframe-viewport" src="" frameborder="0"></iframe>');
                 let iframe = modalViewport.find('iframe');
@@ -276,16 +276,16 @@ module.exports = {
                 modalViewportContent.empty();
             });
         }
-        
-        
+
+
         //copy product content
         {
             let form = $('.form-copy-product-content');
             let modalConfirm = $('#modal-confirm');
             let modalAlert = $('#modal-alert');
-            
+
             form.find('.am-btn').click(function() {
-                
+
                 let productId = parseInt($(this).parents('tr').data('product-id'));
 
                 if(form.serialize() ==='') {
@@ -299,7 +299,7 @@ module.exports = {
                 form.find('input[type=checkbox]:checked').each(function() {
                     data.push(this.name);
                 });
-                
+
                 modalConfirm.modal({
                     relatedTarget:this,
                     onConfirm: function() {
@@ -315,38 +315,38 @@ module.exports = {
                                 modalAlert.modal({
                                     relatedTarget: this,
                                     onConfirm: function() {
-                                        location.reload();   
+                                        location.reload();
                                     }
                                 }).find('.am-modal-bd').text('复制成功!');
                             }
                         });
                     }
                 });
-                
+
             });
         }
-        
-        
+
+
         //copy etsy
         {
-            
+
             let modal = $('#modal-copy-etsy');
             let input = $('.input-copy-etsy');
             let modalLoading = $('#modal-loading');
-            
-            
+
+
             $('.link-copy-etsy').click(function() {
                 let productId = $(this).data('product-id');
                 modalLoading.find('.am-modal-hd').text('正在导入...');
                 modal.modal({
                     relatedTarget: this,
                     onConfirm: function(e) {
-                        
+
                         if(!$.trim(input.val()) || $.trim(input.val()).indexOf('etsy.com') ===-1) {
                             alert('请输入正确的etsy.com链接');
                             return;
                         }
-                        
+
                         $.ajax({
                             url:'/admin/product/spider-info',
                             data:{
@@ -376,13 +376,13 @@ module.exports = {
                             }
                         );
                         modalLoading.modal();
-                        
+
                     }
                 });
                 input[0].focus();
                 return false;
             });
-            
+
         }
 
         //关联分类属性
@@ -475,7 +475,7 @@ module.exports = {
             });
 
         }
-        
+
         {// 改成本价
             let modal = $('#modal-change-price');
             let input = $('.input-change-price');
@@ -626,7 +626,7 @@ module.exports = {
             });
 
         }
-        
+
         //copy title
         {
             $('.copy-product-title').each(function(i,n) {
@@ -640,8 +640,8 @@ module.exports = {
                 });
             });
         }
-        
-        
+
+
         {
             $('.image-source-download').click(function() {
                 let group = $(this).next();
@@ -657,9 +657,9 @@ module.exports = {
                         this.dispatchEvent(evObj);
                     });
                 }
-            });  
+            });
         }
-        
+
         {
             $('.set-onsale').click(function() {
                 let isOnsale = $(this).attr('isonsale') === 'true' ? false : true;
@@ -682,7 +682,7 @@ module.exports = {
                         }
                     }
                 });
-                
+
             });
         }
 
@@ -1345,7 +1345,7 @@ module.exports = {
 
         }
 
-        {// 设置颜色标记
+        {// 设置供货商标识号
             let modal = $('#modal-change-color-tag');
             let input = $('.input-change-color-tag');
             let modalLoading = $('#modal-loading');
@@ -1393,7 +1393,7 @@ module.exports = {
 
         }
 
-        {// 分类批量设置促销折扣
+        {//批量设置供货商标识号
             let modal = $('#modal-change-color-tags');
             let input = $('.input-change-color-tags');
             let modalLoading = $('#modal-loading');
@@ -1412,7 +1412,7 @@ module.exports = {
                         }else{
                             $.ajax({
                                 type:'post',
-                                url:'/set-color-tag',
+                                url:'/admin/product/set-color-tags',
                                 data:{
                                     'productId':productId,
                                     'colorTag':$.trim(input.val()),
