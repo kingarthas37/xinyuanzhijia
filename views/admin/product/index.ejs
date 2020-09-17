@@ -161,7 +161,7 @@
                             <% } %>
 
                             <% if(product[i].get('colorTag')){%>
-                            <a href="/admin/product?color-tag=<%= product[i].get('colorTag') %>">(<%= product[i].get('colorTag') %>)</a>
+                            <a href="/admin/product?color-tag=<%= product[i].get('colorTag') %>&limit=200">(<%= product[i].get('colorTag') %>)</a>
                             <%}%>
 
                             <% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %>
