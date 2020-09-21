@@ -93,7 +93,8 @@ router.get('/ten/:productId', function (req, res, next) {
             property:result.get('property'),
             instruction:result.get('instruction'),
             use:result.get('use'),
-            detailImage:result.get('detailImage')
+            detailImage:result.get('detailImage'),
+            colorTag:result.get('colorTag')
         };
         var i = 0;
 
