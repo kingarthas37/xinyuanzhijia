@@ -36,7 +36,7 @@
                         <form action="/admin/product" method="get">
                             <div class="am-form-group">
                                 <div class="am-input-group am-input-group-sm">
-                                    <input type="text" name="search" value="<%= search %>" class="search am-form-field"
+                                    <input style="width: 50%" type="text" name="search" value="<%= search %>" class="search am-form-field"
                                            placeholder="搜索产品">
                                     <input type="hidden" name="onsale" value="<%= onsale %>"/>
                                     <input type="hidden" name="is-short-stock" value="<%= isShortStock %>"/>
@@ -46,6 +46,8 @@
                                     <input type="hidden" name="stock" value="<%= adminStock %>"/>
                                     <input type="hidden" name="is-sales" value="<%= isSales %>"/>
                                     <input type="hidden" name="is-translation" value="<%= isTranslation %>"/>
+                                    <input style="width: 50%;" type="text" name="search-comment" value="<%= searchComment %>" class="search am-form-field"
+                                           placeholder="搜索产品备注">
                                     <span class="am-input-group-btn"><button class="am-btn am-btn-primary"
                                                                              type="submit">搜索</button></span>
                                 </div>

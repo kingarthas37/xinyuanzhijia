@@ -53,7 +53,8 @@ router.get('/:productId', function (req, res, next) {
             detailImage:result.get('detailImage'),
             costPrice:(result.get('costPrice') == undefined ? 0 : result.get('costPrice')),
             price:(result.get('price') == undefined ? 0 : result.get('price')),
-            originalPrice:(result.get('originalPrice') == undefined ? '0' : result.get('originalPrice'))
+            originalPrice:(result.get('originalPrice') == undefined ? '0' : result.get('originalPrice')),
+            colorTag:result.get('colorTag')
         };
 
         return product.save(productData);
@@ -93,8 +94,7 @@ router.get('/ten/:productId', function (req, res, next) {
             property:result.get('property'),
             instruction:result.get('instruction'),
             use:result.get('use'),
-            detailImage:result.get('detailImage'),
-            colorTag:result.get('colorTag')
+            detailImage:result.get('detailImage')
         };
         var i = 0;
 

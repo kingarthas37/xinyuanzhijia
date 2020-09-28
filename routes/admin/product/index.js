@@ -57,6 +57,7 @@ router.get('/', (req, res) => {
     let isSales = req.query['is-sales'] || '';
     let parentProductId = req.query['parent-product-id'] ? parseInt(req.query['parent-product-id']) : '';
     let colorTag = req.query['color-tag'] ? parseInt(req.query['color-tag']) : '';
+    let searchComment = req.query['search-comment'] || '';
     if ((isShortStock || updateStockDate || adminStock || isUpdateStock) && !order) {
         order = 'updatedAt';
     } else if (!order) {
@@ -84,10 +85,11 @@ router.get('/', (req, res) => {
         isTranslation,
         parentProductId,
         isSales,
-        colorTag
+        colorTag,
+        searchComment
     });
 
-    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock, hot, isTranslation, parentProductId, isSales, colorTag};
+    let options = {search, page, limit, onsale, productMethodId, category1Id, category2Id, order, isShortStock, isUpdateStock, updateStockDate, adminStock, hot, isTranslation, parentProductId, isSales, colorTag,searchComment};
     AV.Promise.when(
         //获取count
         new AV.Promise(resolve => {
@@ -113,7 +115,8 @@ router.get('/', (req, res) => {
                             'is-translation': isTranslation,
                             parentProductId,
                             'is-sales':isSales,
-                            'color-tag':colorTag
+                            'color-tag':colorTag,
+                            'search-comment':searchComment
                         }
                     })
                 });
