@@ -104,4 +104,26 @@ module.exports = {
     '/admin/article-tag':require('./admin/article-tag'),
     '/admin/article-tag/add':require('./admin/article-tag/add'),
     '/admin/article-tag/edit':require('./admin/article-tag/edit'),
+
+    //order
+    '/order/spent':require('./order/spent'),
+    '/order/customer/edit':require('./order/customer/edit'),
+    '/order/customer':require('./order/customer'),
+    '/order/customer/add':require('./order/customer/add'),
+    '/order/identity/edit':require('./order/identity/edit'),
+    '/order/identity':require('./order/identity'),
+    '/order/identity/add':require('./order/identity/add'),
+    '/order/identity/upload':require('./order/identity/upload'),
+    '/order/product-book':require('./order/product-book'),
+    '/order/product-book/add':require('./order/product-book/add'),
+    '/order/product-book/edit':require('./order/product-book/edit'),
+    '/order/order':require('./order/order'),
+    '/order/order/add':require('./order/order/add'),
+    '/order/order/edit':require('./order/order/edit'),
+    '/order/remark':require('./order/remark'),
+    '/order/remark/add':require('./order/remark/add'),
+    '/order/remark/edit':require('./order/remark/edit'),
+    '/order/ship-order':require('./order/ship-order'),
+    '/order/ship-order/add':require('./order/ship-order/add'),
+    '/order/ship-order/edit':require('./order/ship-order/edit')
 };
