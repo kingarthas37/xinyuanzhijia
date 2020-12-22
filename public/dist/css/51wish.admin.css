@@ -339,6 +339,12 @@ span.hot:after {
   max-width: 100%; }
   .admin-order-page fieldset {
     margin-top: 30px; }
+  .admin-order-page .am-form label {
+    font-weight: bold; }
+    .admin-order-page .am-form label i {
+      color: red;
+      font-size: 16px;
+      font-style: normal; }
 
 /* admin sign page */
 .admin-sign-page {

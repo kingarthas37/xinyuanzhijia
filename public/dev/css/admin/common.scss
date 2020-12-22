@@ -451,4 +451,15 @@ span.hot {
     fieldset {
         margin-top: 30px;
     }
+
+    .am-form {
+        label {
+            font-weight: bold;
+            i {
+                color: red;
+                font-size: 16px;
+                font-style: normal;
+            }
+        }
+    }
 }
