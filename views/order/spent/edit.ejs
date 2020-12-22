@@ -30,8 +30,8 @@
             <div id="content-expenses-comment" class="am-form-group">
                 <label>支出说明：(每笔支出请换行,可用逗号隔开个比金额)</label>
                 <textarea id="spent-user3-comment" name="spent-user3-comment" rows="8" placeholder="输入支出说明"><%if(lastday){%><%if (!earning.get('spentUser3Comment')){ %>工资 \0
-中国银行信用卡账单 \0
-农商银行信用卡账单 \0
+中国银行国外信用卡账单 \0
+中国银行国内信用卡账单 \0
 中国银行信用卡账单(戴明军) \0
 中通快递费 \0
 直通车 \0
@@ -39,7 +39,7 @@
 信用卡，花呗服务费 \0
 房租 \15800
 缴税 \0
-其他(淘宝服务费、损耗) \1500<%}else{%><%= earning.get('spentUser3Comment') %><%}%><%}else{%><%= earning.get('spentUser3Comment') %><%}%></textarea>
+其他(淘宝服务费、损耗) \2000<%}else{%><%= earning.get('spentUser3Comment') %><%}%><%}else{%><%= earning.get('spentUser3Comment') %><%}%></textarea>
             </div>
 
             <hr/>
