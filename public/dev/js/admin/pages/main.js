@@ -12,3 +12,6 @@ require('./upload');
 require('./sign');
 require('./import-order');
 require('./article-category');
+
+//order
+require('./spent');
