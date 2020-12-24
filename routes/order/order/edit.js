@@ -59,7 +59,7 @@ router.get('/:orderId', function (req, res, next) {
         },
 
         function () {
-            res.render('order/edit', data);
+            res.render('order/order/edit', data);
         }
 
     ]);
