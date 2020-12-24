@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+
+<div class="am-container common-page customer-page">
+
+    <form id="form-edit-customer" class="am-form" action="/customer/edit" method="post">
+
+        <input type="hidden" name="customer-id" value="<%= customer.get('customerId') %>"/>
+            
+        <fieldset>
+
+            <legend>编辑收货人地址：</legend>
+
+            <!-- name start -->
+            <div id="content-name" class="am-form-group">
+                <label>收货人姓名：<i>*</i> </label>
+                <input id="name" required name="name" type="text" placeholder="输入收货人姓名" value="<%= customer.get('name') %>" />
+            </div>
+            <!-- name end -->
+
+            <hr/>
+
+            <!-- taobaoname start -->
+            <div id="content-taobao" class="am-form-group">
+                <label>是否淘宝用户：</label>
+                <div>
+                    <label class="normal"> <input name="is-taobao-user" type="checkbox"  <%  if(customer.get('isTaobaoUser')){%>checked="checked"<%} %>> 是否淘宝用户</label>
+                </div>
+            </div>
+            <!-- taobaoname end -->
+
+            <hr/>
+
+            <!-- weixinname start -->
+            <div id="content-weixin" class="am-form-group">
+                <label>微信号：</label>
+                <input id="weixin" name="weixin" type="text" placeholder="输入微信用户名" value="<%= customer.get('weixin') %>" />
+            </div>
+            <!-- weixinname end -->
+
+            <hr/>
+
+            <!-- shipping address start -->
+            <div id="content-address" class="am-form-group">
+                <label>收货信息：</label>
+                <div class="am-form-horizontal">
+                    <% var address = customer.get('address'); %>
+                    <% for (var i=0; i< address.length;i++) { %>
+                    <div class="list-group-field address-field am-form-group">
+                        <div class="am-u-sm-11"><input class="address" name="address" type="text" placeholder="输入收货地址" value="<%= address[i] %>" /></div><label class="am-u-sm-1 am-form-label">
+                        <a href="javascript:;" class="remove">- 删除</a> </label>
+                    </div>
+                    <% } %>
+                    <p><a class="address-add" href="javascript:;">+ 添加收货信息</a> </p>
+                </div>
+            </div>
+            <!-- shipping address end -->
+
+            <hr/>
+            
+            <h3>该用户购买记录:</h3>
+            
+                <% for (var i=0;i <order.length ;i++) { %>
+                    <div class="customer-order-list">
+                        
+                        <%if(order[i].get('client')){%><strong>[代发: <%= order[i].get('client')%>]</strong><%}%>
+                        
+                        <%=order[i].get('shippingDate').getFullYear()%>/<%=(order[i].get('shippingDate').getMonth()+1)%>/<%=order[i].updatedAt.getDate()%>
+
+                        <span class="split"></span> 快递公司:
+                        <% if(order[i].get('shippingCompany') == 'tiantian') {%>天天<%}%>
+                        <% if(order[i].get('shippingCompany') == 'shunfeng') {%>顺丰<%}%>
+                        <% if(order[i].get('shippingCompany') == 'baishi') {%>百世汇通<%}%>
+                        <% if(order[i].get('shippingCompany') == 'other') {%>其他<%}%>
+                        <span class="split"></span> 快递单号: <a href="http://www.kuaidi100.com/auto.shtml?nu=<%= order[i].get('trackingNumber') %>" target="_blank"><%= order[i].get('trackingNumber') %></a>
+                        
+                        <ul>
+                            <% for(var j=0;j< order[i].get('name').length;j++) { %>
+                            <li><a href="/order/edit/<%= order[i].get('orderId') %>"><%= order[i].get('name')[j] %></a></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                <% } %>
+
+            
+            <div class="am-form-group">
+                <button type="submit" class="am-btn am-btn-primary">保存</button>
+            </div>
+
+        </fieldset>
+
+    </form>
+
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    $(function() {
+        var customer = require('customer');
+        customer.editFun();
+    });
+</script>
+</body>
+</html>

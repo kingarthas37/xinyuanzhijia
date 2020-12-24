@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+<div class="am-container common-page purchase-page">
+    
+    <form id="form-add-purchase" class="am-form" action="" method="post" target="">
+
+        <fieldset>
+
+            <legend>添加新订单</legend>
+
+            <!-- name start -->
+            <div id="content-name" class="am-form-group">
+                <label>订单名称简写：<i>*</i> </label>
+                <input id="purchase-name" required name="purchase-name" type="text" placeholder="输入订单名称" />
+            </div>
+            <!-- name end -->
+
+            <hr/>
+
+            <!-- description start -->
+            <div id="content-description" class="am-form-group typeahead-content">
+                <label>网站名称描述(自动填充)：</label>
+                <input type="text" id="purchase-description" name="purchase-description" autocomplete="off" placeholder="输入网站名称描述"/>
+            </div>
+            <!-- description end -->
+
+            <hr/>
+
+            <!-- sitetype start -->
+            <div class="am-form-group">
+                <label>网站类型：</label>
+                <select name="site-type" id="site-type">
+                    <option value="normal" <%if(siteType === 'normal') { %>selected<% } %>>默认网站</option>
+                    <option value="etsy" <%if(siteType === 'etsy') { %>selected<% } %> >Etsy.com</option>
+                    <option value="ebay" <%if(siteType === 'ebay') { %>selected<% } %> >Ebay.com</option>
+                </select>
+            </div>
+            <!-- sitetype end -->
+
+            <hr/>
+
+            <!-- image start -->
+            <div id="content-image" class="am-form-group">
+                <label>图片展示：</label>
+                <input type="hidden" id="purchase-image" name="purchase-image"/>
+                <div>
+                    <div class="purchase-image">
+                        <img src="" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- image end -->
+
+            <hr/>
+
+            <!-- order url start -->
+            <div class="am-form-group">
+                <label>网站订单链接:</label>
+                <input type="text" id="purchase-order-url" name="purchase-order-url">
+            </div>
+            <!-- order url end -->
+
+            <!-- orderLink start -->
+            <div id="content-order-link" class="am-form-group">
+                <label>网站订单链接描述：(格式:链接必须以http://或https://开头,每一条换行,后面数量必须使用"*"表示)</label>
+                <textarea id="purchase-order-link" name="purchase-order-link" placeholder="输入网站查看订单链接描述" rows="5"></textarea>
+            </div>
+            <!-- orderLink end -->
+
+            <hr/>
+            
+            <!-- website start -->
+            <div id="content-website" class="am-form-group">
+                <label>网站地址：</label>
+                <input type="text" id="purchase-website" name="purchase-website" placeholder="输入网址"/>
+            </div>
+            <!-- website end -->
+
+            <hr/>
+
+            <!-- file-upload start -->
+            <div class="am-form-group">
+                <label>上传订单截图： </label>
+                <div>
+                    <iframe class="upload-title" src="/file-manage/upload" frameborder="0"></iframe>
+                </div>
+                <input id="order-screen" name="order-screen" type="text"/>
+            </div>
+            <!-- file-upload end -->
+
+            <hr/>
+
+            <!-- mail start -->
+            <div id="content-mail" class="am-form-group">
+                <label>对方联系邮箱：</label>
+                <input id="purchase-mail" name="purchase-mail" type="text" placeholder="输入对方联系邮箱" />
+            </div>
+            <!-- mail end -->
+
+            <hr/>
+
+            <!-- amount start -->
+            <div id="content-amount" class="am-form-group">
+                <label>订单金额(RMB)：<i>*</i></label>
+                <input  id="purchase-amount" name="purchase-amount" required type="text" placeholder="输入订单金额" />
+            </div>
+            <!-- amount end -->
+
+            <!-- isSolid start -->
+            <div id="content-is-solid" class="am-form-group">
+                <label>是否加固
+                <input id="purchase-is-solid" type="checkbox" class="ckb-shipping-status" name="purchase-is-solid">
+                </label>
+            </div>
+            <!-- isSolid end -->
+
+            <hr/>
+
+            <!-- shippingType start -->
+            <div id="content-shipping-type" class="am-form-group">
+                <label>物流方式：</label>
+                <select name="purchase-shipping-type" id="purchase-shipping-type">
+                    <option value="yuntao">运淘</option>
+                    <option value="direct">直邮</option>
+                    <option value="tianji">天际</option>
+                    <option value="zhuanyunsifang">转运四方</option>
+                    <option value="haidaibao">海带宝</option>
+                    <option value="zhuanyunbang">转运帮</option>
+                    <option value="8dexpress">八达网</option>
+                    <option value="shunfeng">顺丰</option>
+                    <option value="other">其他</option>
+                    <option value="yuntao-andrea">运淘-Andrea</option>
+                    <option value="yuntao-coco">运淘-Coco</option>
+                </select>
+            </div>
+            <!-- shippingType end -->
+            
+            <hr/>
+
+            <!-- shipping company start -->
+            <div class="am-form-group">
+                <label>物流公司：</label>
+                <select id="purchase-shipping-company" name="purchase-shipping-company">
+                    <option value="none">无</option>
+                    <option value="usps">USPS</option>
+                    <option value="chinapost">中国邮政</option>
+                    <option value="ems">EMS</option>
+                    <option value="ups">UPS</option>
+                    <option value="fedex">Fedex</option>
+                    <option value="dhl">DHL</option>
+                    <option value="other">其他</option>
+                </select>
+            </div>
+            <!-- shipping company end -->
+
+            <hr/>
+
+            <!-- trackingNumber start -->
+            <div id="content-tracking-number" class="am-form-group">
+                <label>Tracking Number：(如果是带连接http的单号则会列表页直接打开)</label>
+                <input id="purchase-tracking-number" name="purchase-tracking-number" type="text" placeholder="输入tracking number" />
+            </div>
+            <!-- trackingNumber end -->
+
+            <hr/>
+
+            <!-- coupon start -->
+            <div class="am-form-group">
+                <label>coupon code:</label>
+                <input id="coupon" name="coupon" type="text" placeholder="输入coupon code" />
+            </div>
+            <!-- coupon end -->
+
+            <hr/>
+
+            <!-- shipping status start -->
+            <div class="am-form-group">
+                <label>物流状态：</label>
+                <select name="shipping-status">
+                    <option value="notshipped">未发货</option>
+                    <option value="shipped">已发货</option>
+                    <option value="forward">到达转运公司</option>
+                    <option value="arrived">已到货</option>
+                </select>
+            </div>
+            <!-- shipping status end -->
+
+            <hr/>
+            
+            <!-- comment start -->
+            <div id="content-comment" class="am-form-group">
+                <label>备注信息：</label>
+                <textarea id="purchase-comment" name="purchase-comment" rows="5" placeholder="输入备注信息"></textarea>
+            </div>
+            <!-- comment end -->
+
+            <hr/>
+
+            <div class="am-form-group">
+                <button type="submit" class="am-btn am-btn-primary" data-action="/purchase/add" data-target="_self">保存</button>
+            </div>
+
+        </fieldset>
+
+    </form>
+    
+</div>
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    $(function() {
+        var purchase = require('purchase');
+        purchase.addFun();
+    });
+
+    function uploadSuccess(url) {
+        $('#order-screen').val(url);
+    }
+</script>
+</body>
+</html>

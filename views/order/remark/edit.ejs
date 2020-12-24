@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+
+<div class="am-container common-page">
+
+    <form id="form-add-remark" class="am-form" action="/remark/edit" method="post">
+        
+        <input type="hidden" name="remark-id" value="<%= id %>"/>
+        
+        <fieldset>
+
+            <legend>编辑产品预订信息</legend>
+
+            <!-- remark title start -->
+            <div id="content-title" class="am-form-group">
+                <label>产品预订标题：<i>*</i> </label>
+                <input id="title" required name="title" type="text" placeholder="输入产品预订标题" value="<%= remark.get('title')%>" />
+            </div>
+            <!-- remark title end -->
+
+            <hr/>
+
+            <!-- remark name start -->
+            <div id="content-name" class="am-form-group">
+                <label>用户名:</label>
+                <input id="name" name="name" type="text" placeholder="输入用户名" />
+            </div>
+            <!-- remark name end -->
+
+            <hr/>
+
+            <!-- type start -->
+            <div id="content-type" class="am-form-group">
+                <label>产品预订类型：</label>
+                <select name="type" id="type">
+                    <option value="taobao" <% if (remark.get('type') === 'taobao') {%>selected="selected"<% } %> >淘宝用户名</option>
+                    <option value="name" <% if (remark.get('type') === 'name') {%>selected="selected"<% } %> >真实姓名</option>
+                    <option value="weixin" <% if (remark.get('type') === 'weixin') {%>selected="selected"<% } %> >微信用户名</option>
+                    <option value="web" <% if (remark.get('type') === 'web') {%>selected="selected"<% } %> >网站用户</option>
+                    <option value="other" <% if (remark.get('type') === 'other') {%>selected="selected"<% } %> >其他</option>
+                </select>
+            </div>
+            <!-- type end -->
+
+            <hr/>
+
+            <!-- content start -->
+            <div id="content-content" class="am-form-group">
+                <label>产品预订备注：</label>
+                <textarea name="content" id="content" placeholder="输入产品预订备注" rows="5"><%= remark.get('content')%></textarea>
+            </div>
+            <!-- content end -->
+
+            <hr/>
+
+            <!-- status start -->
+            <div id="content-is-complete" class="am-form-group">
+                <label>是否完结：</label>
+                <div><label><input id="is-complete" name="is-complete" type="checkbox" <% if(remark.get('isComplete')) { %>checked="checked"<% } %> > 已完成</label></div>
+            </div>
+            <!-- status end -->
+
+            <hr/>
+
+            <div class="am-form-group">
+                <button type="submit" class="am-btn am-btn-primary">保存</button>
+                <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
+            </div>
+
+        </fieldset>
+
+    </form>
+
+
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    $(function() {
+        var remark = require('remark');
+        remark.editFun();
+    });
+</script>
+</body>
+</html>

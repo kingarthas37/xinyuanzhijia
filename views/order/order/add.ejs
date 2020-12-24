@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+<div class="am-container common-page order-page">
+
+    <form id="form-add-order" class="am-form" action="/order/add<% if(searchNotShipped){%>?search-notshipped=on<%}%>" method="post">
+
+        <fieldset>
+
+            <legend><a href="/order/add">添加新发货订单</a></legend>
+
+            <!-- order name start -->
+            <div id="content-name" class="am-form-group typeahead-content">
+                <label>订单内容：<i>*</i> <em>(自动填充)</em></label>
+                <div class="content-name-group am-form-horizontal">
+                    <div class="list-group-field am-form-group">
+                        <div class="am-u-sm-8">
+                            <input class="name" name="name" type="text" placeholder="输入订单内容" autocomplete="off">
+                        </div>
+                        <div class="am-u-sm-1">
+                            <select name="shipping-count">
+                                <% for(var i=1;i<=110;i++){%>
+                                    <option value="<%=i%>"><%=i%></option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <label class="am-u-sm-3 am-form-label">
+                            <input type="hidden" name="is-gift" class="is-gift">
+                            <input type="hidden" name="is-shipping" class="is-shipping">
+                            <label><input class="ckb-is-gift" type="checkbox"> 赠品</label>
+                            <span class="split"></span>
+                            <label><input class="ckb-is-shipping" type="checkbox"> 已发货</label>
+                            <span class="split"></span>
+                            <a href="javascript:;" class="remove">删除</a>
+                        </label>
+                    </div>
+                </div>
+                <div><a href="javascript:;" class="order-batch-add">+批量添加订单</a> <span class="sp"></span> <a class="order-add" href="javascript:;">+添加订单内容</a></div>
+            </div>
+            <!-- order name end -->
+
+            <!-- taobaoname start -->
+                <input id="taobao" name="taobao" type="hidden" placeholder="输入淘宝用户名"/>
+            <!-- taobaoname end -->
+
+            <hr/>
+
+            <!-- customer name start -->
+            <div id="content-customer-name" class="am-form-group typeahead-content">
+                <label>
+                    淘宝昵称/收货人/客户姓名：<i>*</i> <em>(自动填充)</em>
+                    <span class="check-customer-id"></span>
+                    <span class="check-customer-rename"></span>
+                </label>
+                <input type="hidden" id="customer-name-id" name="customer-name-id"/>
+                <div class="am-form-horizontal">
+                    <div class="am-form-group">
+                        <div class="am-u-sm-10">
+                            <input id="customer-name" required name="customer-name" type="text" placeholder="输入淘宝昵称/收货人/客户姓名"
+                                   autocomplete="off"/>
+                            <div class="is-taobao-user"><label> <input class="ckb-is-taobao-user" name="is-taobao-user" checked="checked" type="checkbox"> 淘宝用户</label></div>
+                        </div>
+                        <label class="am-u-sm-2 am-form-label">
+                            <input type="checkbox" checked="checked" class="new-customer" name="new-customer"/> 新增收货人
+                        </label>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- customer name end -->
+
+            <hr/>
+
+            <!-- shipping address start -->
+            <div id="content-shipping-address" class="am-form-group">
+                <label>收货人联系地址：<i>*</i> </label>
+                <div class="am-form-horizontal">
+                    <div class="am-form-group">
+                        <div class="am-u-sm-10">
+                            <input id="shipping-address" required name="shipping-address" type="text"
+                                   placeholder="输入收货人/客户地址" autocomplete="off"/>
+                        </div>
+                        <label class="am-u-sm-2 am-form-label">
+                            <input type="checkbox" checked="checked" class="new-address" name="new-address"/> 新增收货地址
+                        </label>
+                    </div>
+                </div>
+                <ul class="address-list"></ul>
+            </div>
+            <!-- shipping address end -->
+
+            <hr/>
+
+            <!-- order comment start -->
+            <div id="content-comment" class="am-form-group">
+                <label>备注信息：</label>
+                <textarea name="comment" id="comment" rows="3" placeholder="填写备注信息"></textarea>
+            </div>
+            <!-- order comment end -->
+
+            <hr/>
+
+            <!-- shipping shipping company -->
+            <div id="content-shipping-company" class="am-form-group">
+                <label>快递公司：</label>
+                <select name="shipping-company" id="shipping-company">
+                    <option value="zhongtong">中通</option>
+                    <option value="shunfeng">顺丰</option>
+                    <option value="shunfengkongyun">顺丰空运</option>
+                    <option value="shunfengdaofu">顺丰到付</option>
+                </select>
+            </div>
+            <!-- shipping shipping company -->
+
+            <hr>
+
+            <!-- order shop order link start -->
+            <div class="am-form-group">
+                <label>店铺订单详情链接：<em>(多个使用回车隔开)</em></label>
+                <textarea name="shop-order-link" id="shop-order-link" rows="3" placeholder="店铺订单详情链接"></textarea>
+            </div>
+            <!-- order shop order link end -->
+
+            <hr>
+
+            <!-- client name start -->
+            <div class="am-form-group">
+                <label>代发人姓名：</label>
+                <div class="am-form-group">
+                    <input id="client" name="client" type="text" placeholder="输入代发人" autocomplete="off">
+                </div>
+            </div>
+            <!-- client name end -->
+
+            <hr/>
+
+            <!-- client name start -->
+            <div class="am-form-group">
+                <label>代发人地址：</label>
+                <div class="am-form-group">
+                    <input id="client-address" name="client-address" type="text" placeholder="输入代发人地址" autocomplete="off">
+                </div>
+            </div>
+            <!-- client name end -->
+
+            <hr/>
+
+            <!-- shipping date start -->
+            <div id="content-shipping-date" class="am-form-group off">
+                <label>发货日期：<i>*</i> </label>
+                <input type="text" name="shipping-date" id="shipping-date" placeholder="发货日期" value="<%= currentDate %>"
+                       data-am-datepicker="{format:'yyyy-mm-dd'}" readonly required/>
+            </div>
+            <!-- shipping date end -->
+
+
+            <hr/>
+
+            <!-- shipping tracking number -->
+            <div id="content-tracking-number" class="am-form-group">
+                <label>快递单号：</label>
+                <input type="text" name="tracking-number" id="tracking-number" placeholder="快递单号" autocomplete="off"/>
+            </div>
+            <!-- shipping tracking number -->
+
+            <hr/>
+
+            <!-- shipping status start-->
+            <div id="content-shipping-status" class="am-form-group">
+                <label>发货状态：</label>
+                <select name="shipping-status" id="shipping-status">
+                    <option selected="selected" value="notshipped">未发货</option>
+                    <option value="shipped">已发货</option>
+                </select>
+            </div>
+            <!-- shipping status end -->
+
+            <hr/>
+
+            <!-- isNewShop start-->
+            <div id="content-shipping-status" class="am-form-group">
+                <label>是否新店订单：</label>
+                <div>
+                    <label class="normal">
+                        是否新店订单 <input class="is-new-shop" type="checkbox" name="is-new-shop">
+                    </label>
+                </div>
+            </div>
+            <!-- isNewShop end -->
+
+            <hr>
+
+
+
+            <div class="am-form-group">
+                <button type="submit" class="am-btn am-btn-primary">保存</button>
+                <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
+            </div>
+
+        </fieldset>
+
+    </form>
+
+
+    <!-- modal 批量添加 -->
+    <div class="am-modal am-modal-alert" tabindex="-1" id="modal-order-batch-add">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">输入淘宝订单内容</div>
+            <div class="am-modal-bd">
+                <textarea  id="batch-text" rows="3"></textarea>
+                <button id="batch-create" type="button" class="am-btn am-btn-primary">生成订单</button>
+            </div>
+        </div>
+    </div>
+    <!-- modal 批量添加 -->
+
+</div>
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    $(function () {
+        var order = require('order');
+        order.addFun();
+    });
+</script>
+</body>
+</html>

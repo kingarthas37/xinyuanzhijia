@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+<div class="am-container common-page product-book-page">
+
+    <form id="form-add-product-book" class="am-form" action="/product-book/add" method="post">
+
+        <fieldset>
+
+            <legend><a href="/product-book/add">添加客户预定信息</a></legend>
+
+
+            <div class="am-form-horizontal">
+                
+                <div class="am-form-group">
+                    <div class="am-u-sm-12">
+                        <label>预定产品：<i>*</i> </label>
+                    </div>
+                </div>
+                
+                <div class="product-list">
+                    <div class="am-form-group typeahead-content">
+                        <div class="am-u-sm-7">
+                            <input class="product-name" required name="product-name" autocomplete="off" type="text" placeholder="输入产品名">
+                        </div>
+                        <div class="am-u-sm-2">
+                            <input class="product-image" name="product-image" type="text" placeholder="输入图片链接">
+                        </div>
+                        <div class="am-u-sm-1">
+                            <select class="product-count" name="product-count">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="am-u-sm-1 am-form-label t-c">
+                            <label><input type="checkbox" class="ckb-product-state"> <span class="small-screen-hide">已发货</span></label>
+                            <input type="hidden" name="product-state" class="product-state"/>
+                        </div>
+                        <div class="am-u-sm-1 am-form-label"><a href="javascript:;" class="remove">删除</a></div>
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <div class="am-u-sm-12">
+                        <a class="product-add" href="javascript:;"><i class="am-icon-plus"></i> 添加产品名</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- file-upload start -->
+            <div class="am-form-group">
+                <iframe class="upload-title" src="/file-manage/upload" frameborder="0"></iframe>
+            </div>
+            <!-- file-upload end -->
+
+            
+            <!-- product-book customer name start -->
+            <div class="am-form-group typeahead-content">
+                <label>客户姓名(自动填充)：<i>*</i> </label>
+                <input id="customer-name" required name="customer-name" type="text" placeholder="输入姓名"/>
+                <input type="text" id="customer-id" required name="customer-id">
+            </div>
+            <div class="am-form-group customer-info">
+                用户信息: 姓名:- | 淘宝号:- | 微信号:- | 地址:-
+            </div>
+            <!-- product-book customer name end -->
+            
+            <hr/>
+
+
+            <!-- product-book customer name start -->
+            <div class="am-form-group typeahead-content">
+                <label>支付方式：</label>
+                <select name="pay" class="pay">
+                    <option value="">选择支付方式</option>
+                    <option value="weixin">微信</option>
+                    <option value="alipay">支付宝</option>
+                    <option value="weidian">微店</option>
+                    <option value="taobao">淘宝</option>
+                    <option value="other">其他</option>
+                </select>
+            </div>
+           
+            <!-- product-book customer name end -->
+
+            <hr/>
+            
+            
+            <!-- comment start -->
+            <div class="am-form-group">
+                <label>预定备注：(淘宝直接复制定点链接)</label>
+                <textarea name="comment" id="comment" placeholder="备注" rows="5"></textarea>
+            </div>
+            <!-- comment end -->
+
+            <hr/>
+
+            <div class="am-form-group">
+                <button type="submit" class="am-btn am-btn-primary">保存</button>
+                <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
+            </div>
+
+        </fieldset>
+
+    </form>
+
+</div>
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    $(function () {
+        var productBook = require('product-book');
+        productBook.addFun();
+    });
+
+    //iframe upload callback
+    function uploadSuccess(url) {
+        $('.product-image:last').val(url);
+    }
+</script>
+</body>
+</html>

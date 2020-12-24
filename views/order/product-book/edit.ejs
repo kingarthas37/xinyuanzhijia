@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+
+<div class="am-container common-page product-book-page">
+
+    <form id="form-edit-product-book" class="am-form" action="/product-book/edit/<%= productBook.get('productBookId') %>" method="post">
+
+        <fieldset>
+
+            <legend><a href="/product-book/edit/<%=productBook.get('productBookId')%>">编辑客户预定信息</a></legend>
+
+
+            <div class="am-form-horizontal">
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-12">
+                        <label>预定产品：<i>*</i> </label>
+                    </div>
+                </div>
+
+                <div class="product-list">
+                    <% for(var i=0;i<productBook.get('productName').length;i++) { %>
+                    <div class="am-form-group typeahead-content">
+                        <div class="am-u-sm-7">
+                            <input value="<%= productBook.get('productName')[i] %>" class="product-name" required name="product-name" type="text" placeholder="输入产品名">
+                        </div>
+                        <div class="am-u-sm-2">
+                            <input value="<%= productBook.get('productImage')[i] %>" class="product-image" name="product-image" type="text" placeholder="输入图片链接">
+                        </div>
+                        <div class="am-u-sm-1">
+                            <select class="product-count" name="product-count">
+                                <%for(var j=1;j<=5;j++) {%>
+                                    <option value="<%= j %>" <% if(productBook.get('productCount')[i]==j){ %>selected="selected"<%}%> ><%=j%></option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="am-u-sm-1 am-form-label">
+                            <label><input <% if(productBook.get('productState')[i]) {%>checked="checked"<%}%> type="checkbox" class="ckb-product-state"> 已发货</label>
+                            <input type="hidden" name="product-state" class="product-state" <% if(productBook.get('productState')[i]) {%>value="on"<%}%>>
+                        </div>
+                        <div class="am-u-sm-1 am-form-label"><a href="javascript:;" class="remove">删除</a></div>
+                        <div class="am-u-sm-1"></div>
+                    </div>
+                    <% }%>
+                </div>
+                <div class="am-form-group">
+                    <div class="am-u-sm-12">
+                        <a class="product-add" href="javascript:;"><i class="am-icon-plus"></i> 添加产品名</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- product-book customer name start -->
+            <div class="am-form-group typeahead-content">
+                <label>客户姓名(自动填充)：<i>*</i> </label>
+                <input id="customer-name" value="<%= productBook.get('customerName') %>" required name="customer-name" type="text" placeholder="输入姓名"/>
+                <input type="text" id="customer-id" required name="customer-id" value="<%= customer.get('customerId')%>">
+            </div>
+            <div class="am-form-group customer-info">
+                用户信息: 姓名:<a href="/customer/edit/<%= customer.get('customerId')%>"><%= customer.get('name')%></a> | 淘宝号:<% if(customer.get('taobao')) {%><%=customer.get('taobao')%><%} else{ %>-<%}%> | 微信号:<% if(customer.get('weixin')) {%><%=customer.get('weixin')%><%} else{ %>-<%}%> | 地址:<% if(customer.get('address')) {%><%=customer.get('address')%><%} else{ %>-<%}%>
+            </div>
+            <!-- product-book customer name end -->
+
+            <hr/>
+
+            <!-- product-book customer name start -->
+            <div class="am-form-group typeahead-content">
+                <label>支付方式：</label>
+                <select name="pay" class="pay">
+                    <option value="" <% if(productBook.get('pay')===''){%>checked="checked"<%}%> >选择支付方式</option>
+                    <option value="weixin" <% if(productBook.get('pay')==='weixin'){%>selected="selected"<%}%>>微信</option>
+                    <option value="alipay" <% if(productBook.get('pay')==='alipay'){%>selected="selected"<%}%>>支付宝</option>
+                    <option value="weidian" <% if(productBook.get('pay')==='weidian'){%>selected="selected"<%}%>>微店</option>
+                    <option value="taobao" <% if(productBook.get('pay')==='taobao'){%>selected="selected"<%}%>>淘宝</option>
+                    <option value="other" <% if(productBook.get('pay')==='other'){%>selected="selected"<%}%>>其他</option>
+                </select>
+            </div>
+
+            <!-- comment start -->
+            <div class="am-form-group">
+                <label>预定备注：(淘宝直接复制定点链接)</label>
+                <textarea name="comment" id="comment" placeholder="备注" rows="5"><%= productBook.get('comment') %></textarea>
+            </div>
+            <!-- comment end -->
+
+            <hr/>
+
+            <div class="am-form-group">
+                <button type="submit" class="am-btn am-btn-primary">保存</button>
+                <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
+            </div>
+
+        </fieldset>
+
+    </form>
+
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    $(function() {
+        var productBook = require('product-book');
+        productBook.editFun();
+    });
+</script>
+</body>
+</html>

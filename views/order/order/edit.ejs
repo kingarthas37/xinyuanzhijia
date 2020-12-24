@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
+    <title><%= title %></title>
+    <% include ../partials/css %>
+</head>
+<body>
+
+<% include ../partials/header %>
+
+
+<div class="am-container common-page order-page">
+
+    <form id="form-edit-order" class="am-form" action="/order/edit<% if(searchNotShipped){%>?search-notshipped=on<%}%>" method="post">
+
+        <input type="hidden" name="order-id" value="<%= order.get('orderId') %>"/>
+        
+        <fieldset>
+
+            <legend>编辑新发货订单</legend>
+
+            <!-- order name start -->
+            <div id="content-name" class="am-form-group typeahead-content">
+                <label>订单内容：<i>*</i> <em>(自动填充)</em></label>
+                <div class="content-name-group am-form-horizontal">
+                    <%for(var i=0;i<order.get('name').length;i++) {%>
+                    <div class="list-group-field am-form-group">
+                        <div class="am-u-sm-8">
+                            <input class="name" name="name" type="text" placeholder="输入订单内容" autocomplete="off" value="<%= order.get('name')[i] %>">
+                        </div>
+                        <div class="am-u-sm-1">
+                            <select name="shipping-count">
+                                <% for(var j=1;j<=110;j++){%>
+                                    <option value="<%=j%>"  <%if(order.get('shippingCount')[i] === j){%>selected="selected"<%}%>><%=j%></option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <label class="am-u-sm-3 am-form-label">
+                            <input type="hidden" name="is-gift" class="is-gift" <%if(order.get('isGift')[i]){ %>value="1"<%}else{%>value="0"<%}%>>
+                            <input type="hidden" name="is-shipping" class="is-shipping" <%if(order.get('isShipping')[i]){ %>value="1"<%}else{%>value="0"<%}%>>
+                            <label><input class="ckb-is-gift" type="checkbox" <%if(order.get('isGift')[i]){ %>checked="checked"<%}%>> 赠品</label>
+                            <span class="split"></span>
+                            <label><input class="ckb-is-shipping" type="checkbox" <%if(order.get('isShipping')[i]){ %>checked="checked"<%}%>> 已发货</label>
+                            <span class="split"></span>
+                            <a href="javascript:;" class="remove">删除</a>
+                        </label>
+                    </div>
+                    <%}%>
+                </div>
+                <div><a href="javascript:;" class="order-batch-add">+批量添加订单</a> <a class="order-add" href="javascript:;">+添加订单内容</a> </div>
+            </div>
+            <!-- order name end -->
+
+            <hr/>
+
+            
+            <!-- customer name start -->
+            <div id="content-customer-name" class="am-form-group typeahead-content">
+                <label>
+                    淘宝昵称/收货人/客户姓名：<i>*</i> <em>(自动填充)</em>
+                    <span class="check-customer-id"></span>
+                    <span class="check-customer-rename"></span>
+                </label>
+                <input type="hidden" id="customer-name-id" name="customer-name-id" value="<%= order.get('customerId') %>"/>
+                <div class="am-form-horizontal">
+                    <div class="am-form-group">
+                        <input id="customer-name" required name="customer-name" type="text" placeholder="输入收货人/客户姓名" autocomplete="off" value="<%= order.get('customerName') %>" />
+                        <div class="is-taobao-user"><label> <input disabled="disabled" class="ckb-is-taobao-user" name="is-taobao-user" <% if(order.get('isTaobaoUser')){%>checked="checked"<%}%> type="checkbox"> 淘宝用户</label></div>
+                    </div>
+                </div>
+                <div class="large-screen-hide">
+                    <label class="normal">移动端快捷复制:</label>
+                    <div class="am-form-group"><input type="text" class="copy-field copy-phone"/></div>
+                    <div class="am-form-group"><input type="text" class="copy-field copy-thumb-address"/></div>
+                </div>
+            </div>
+            <!-- customer name end -->
+
+            <hr/>
+
+            <!-- shipping address start -->
+            <div id="content-shipping-address" class="am-form-group">
+                <label>收货人联系地址(如地址需要调整，直接修改即可)：<i>*</i> </label>
+                <div class="am-form-horizontal">
+                    <div class="am-form-group">
+                        <textarea rows="3" id="shipping-address" required name="shipping-address" placeholder="输入收货人/客户地址"><%= order.get('shippingAddress')%></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- shipping address end -->
+
+            <hr>
+
+            <!-- order comment start -->
+            <div id="content-comment" class="am-form-group">
+                <label>备注信息：</label>
+                <textarea name="comment" id="comment" rows="3" placeholder="填写备注信息"><%= order.get('comment')%></textarea>
+            </div>
+            <!-- order comment end -->
+
+            <hr/>
+
+            <!-- shipping shipping company -->
+            <div id="content-shipping-company" class="am-form-group">
+                <label>快递公司：</label>
+                <select name="shipping-company" id="shipping-company">
+                    <option value="zhongtong" <% if(order.get('shippingCompany') === 'zhongtong') { %>selected="selected"<% } %>>中通</option>
+                    <option value="shunfeng" <% if(order.get('shippingCompany') === 'shunfeng') { %>selected="selected"<% } %>>顺丰</option>
+                    <option value="shunfengkongyun" <% if(order.get('shippingCompany') === 'shunfengkongyun') { %>selected="selected"<% } %>>顺丰空运</option>
+                    <option value="shunfengdaofu" <% if(order.get('shippingCompany') === 'shunfengdaofu') { %>selected="selected"<% } %>>顺丰到付</option>
+                </select>
+            </div>
+            <!-- shipping shipping company -->
+
+            <!-- taobaoname start -->
+                <input id="taobao" name="taobao" type="hidden" placeholder="输入淘宝用户名" value="<%= order.get('taobaoName') %>" />
+            <!-- taobaoname end -->
+
+            <hr/>
+
+            <!-- order shop order link start -->
+            <div class="am-form-group">
+                <label>店铺订单详情链接： <em>(多个使用回车隔开)</em></label>
+                <textarea name="shop-order-link" id="shop-order-link" rows="3" placeholder="店铺订单详情链接"><%= order.get('shopOrderLink') %></textarea>
+            </div>
+            <!-- order shop order link end -->
+
+            <hr/>
+
+            <!-- client name start -->
+            <div class="am-form-group">
+                <label>代发人姓名： </label>
+                <div class="am-form-group">
+                    <input id="client" name="client" type="text" placeholder="输入代发人姓名" value="<%= order.get('client') %>" autocomplete="off">
+                </div>
+            </div>
+            <!-- client name end -->
+
+            <hr/>
+
+            <!-- client name start -->
+            <div class="am-form-group">
+                <label>代发人地址：</label>
+                <div class="am-form-group">
+                    <input id="client-address" name="client-address" type="text" placeholder="输入代发人地址" value="<%= order.get('clientAddress') %>" autocomplete="off">
+                </div>
+            </div>
+            <!-- client name end -->
+
+            <hr/>
+
+            <!-- shipping date start -->
+            <div id="content-shipping-date" class="am-form-group off">
+                <label>发货日期：<i>*</i> </label>
+                <input type="text" name="shipping-date" id="shipping-date" placeholder="发货日期" value="<%= order.get('shippingDate').getFullYear() %>-<%= order.get('shippingDate').getMonth() + 1 %>-<%= order.get('shippingDate').getDate() %>" data-am-datepicker="{format:'yyyy-mm-dd'}" readonly required />
+            </div>
+            <!-- shipping date end -->
+
+            <hr/>
+
+            <!-- shipping tracking number -->
+            <div id="content-tracking-number" class="am-form-group">
+                <label>快递单号：</label>
+                <input type="text" name="tracking-number" id="tracking-number" placeholder="快递单号" autocomplete="off" value="<%= order.get('trackingNumber') %>"/>
+            </div>
+            <!-- shipping tracking number -->
+
+            <hr/>
+
+            <!-- shipping status start-->
+            <div id="content-shipping-status" class="am-form-group">
+                <label>发货状态：</label>
+                <select name="shipping-status" id="shipping-status">
+                    <option value="notshipped" <% if(order.get('shippingStatus') === 'notshipped') { %>selected="selected"<% } %>>未发货</option>
+                    <option value="shipped" <% if(order.get('shippingStatus') === 'shipped') { %>selected="selected"<% } %>>已发货</option>
+                </select>
+            </div>
+            <!-- shipping status end -->
+
+            <hr/>
+
+
+            <!-- isNewShop start-->
+            <div id="content-shipping-status" class="am-form-group">
+                <label>是否新店订单：</label>
+                <div>
+                    <label class="normal">
+                        是否新店订单 <input class="is-new-shop" type="checkbox" name="is-new-shop" <% if(order.get('isNewShop')) { %>checked="checked"<% } %> >
+                    </label>
+                </div>
+            </div>
+            <!-- isNewShop end -->
+
+            <hr>
+
+            <div class="am-form-group">
+                <button type="submit" class="am-btn am-btn-primary">保存</button>
+                <button type="button" class="am-btn am-btn-primary" onclick="history.back(-1);">返回</button>
+            </div>
+
+        </fieldset>
+
+    </form>
+
+
+    <!-- modal 批量添加 -->
+    <div class="am-modal am-modal-alert" tabindex="-1" id="modal-order-batch-add">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">输入淘宝订单内容</div>
+            <div class="am-modal-bd">
+                <textarea  id="batch-text" rows="3"></textarea>
+                <button id="batch-create" type="button" class="am-btn am-btn-primary">生成订单</button>
+            </div>
+        </div>
+    </div>
+    <!-- modal 批量添加 -->
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../partials/js %>
+
+<script type="text/javascript">
+    $(function() {
+        var order = require('order');
+        order.editFun();
+    });
+</script>
+</body>
+</html>
