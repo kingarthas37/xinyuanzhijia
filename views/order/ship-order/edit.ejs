@@ -11,13 +11,13 @@
 
 <% include ../partials/header %>
 
-<div class="am-container common-page ship-order-page">
+<div class="am-container common-page admin-order-page ship-order-page">
 
-    <form id="form-add-identity" class="am-form" action="/ship-order/edit/<%=item.get('shipOrderId')%>" method="post">
+    <form id="form-add-identity" class="am-form" action="/order/ship-order/edit/<%=item.get('shipOrderId')%>" method="post">
 
         <fieldset>
 
-            <legend><a href="/identity/add">编辑转运订单</a></legend>
+            <legend><a href="/order/ship-order/edit/<%=item.get('shipOrderId')%>">编辑转运订单</a></legend>
 
             <!-- name start -->
             <div class="am-form-group">

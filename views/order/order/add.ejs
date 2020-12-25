@@ -11,13 +11,13 @@
 
 <% include ../partials/header %>
 
-<div class="am-container common-page order-page">
+<div class="am-container common-page admin-order-page order-page">
 
-    <form id="form-add-order" class="am-form" action="/order/add<% if(searchNotShipped){%>?search-notshipped=on<%}%>" method="post">
+    <form id="form-add-order" class="am-form" action="/order/order/add<% if(searchNotShipped){%>?search-notshipped=on<%}%>" method="post">
 
         <fieldset>
 
-            <legend><a href="/order/add">添加新发货订单</a></legend>
+            <legend><a href="/order/order/add">添加新发货订单</a></legend>
 
             <!-- order name start -->
             <div id="content-name" class="am-form-group typeahead-content">

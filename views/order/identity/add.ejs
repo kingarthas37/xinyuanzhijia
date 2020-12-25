@@ -13,11 +13,11 @@
 
 <div class="am-container common-page identity-page">
     
-    <form id="form-add-identity" class="am-form" action="/identity/add" method="post">
+    <form id="form-add-identity" class="am-form" action="/order/identity/add" method="post">
 
         <fieldset>
 
-            <legend><a href="/identity/add">添加身份证</a></legend>
+            <legend><a href="/order/identity/add">添加身份证</a></legend>
             
             <!-- name start -->
             <div class="am-form-group">
@@ -63,7 +63,7 @@
             <div class="am-form-group">
                 <label>上传身份证正面照： </label>
                 <div>
-                    <iframe class="upload-title" src="/identity/upload?callback=frontUploadCallback" frameborder="0"></iframe>
+                    <iframe class="upload-title" src="/order/identity/upload?callback=frontUploadCallback" frameborder="0"></iframe>
                 </div>
                 <input id="card-image-front" name="card-image-front" type="text" placeholder="身份证正面" />
                 <div id="card-front-view" class="card-view"></div>
@@ -75,7 +75,7 @@
             <div class="am-form-group">
                 <label>上传身份证反面照： </label>
                 <div>
-                    <iframe class="upload-title" src="/identity/upload?callback=backUploadCallback" frameborder="0"></iframe>
+                    <iframe class="upload-title" src="/order/identity/upload?callback=backUploadCallback" frameborder="0"></iframe>
                 </div>
                 <input id="card-image-back" name="card-image-back" type="text" placeholder="身份证反面" />
                 <div id="card-back-view" class="card-view"></div>
@@ -87,7 +87,7 @@
             <div class="am-form-group">
                 <label>上传身份证正反面照： </label>
                 <div>
-                    <iframe class="upload-title" src="/identity/upload?callback=allUploadCallback" frameborder="0"></iframe>
+                    <iframe class="upload-title" src="/order/identity/upload?callback=allUploadCallback" frameborder="0"></iframe>
                 </div>
                 <input id="card-image-all" name="card-image-all" type="text" placeholder="身份证正反面" />
                 <div id="card-all-view" class="card-view"></div>

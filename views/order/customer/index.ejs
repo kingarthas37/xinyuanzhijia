@@ -11,7 +11,7 @@
 
 <% include ../partials/header %>
 
-<div class="am-container common-page customer-page">
+<div class="am-container common-page admin-order-page customer-page">
 
     <% if (flash.success != '') { %>
     <div class="am-alert am-alert-success">
@@ -21,9 +21,9 @@
     
         <fieldset>
 
-            <legend><a href="/customer">收货人管理列表</a></legend>
+            <legend><a href="/order/customer">收货人管理列表</a></legend>
 
-            <form class="am-form-inline" role="form" action="/customer">
+            <form class="am-form-inline" role="form" action="/order/customer">
                 <div class="am-form-group">
                   搜索：<input type="text" name="customer-search" class="am-form-field" placeholder="搜索">
                 </div>
@@ -44,7 +44,7 @@
                 <tbody>
                 <% for(var i=0; i < customer.length; i++) {%>
                 <tr>
-                    <td><a href="/customer/edit/<%= customer[i].get('customerId') %>"><%= customer[i].get('name') %></a> </td>
+                    <td><a href="/order/customer/edit/<%= customer[i].get('customerId') %>"><%= customer[i].get('name') %></a> </td>
                     <td class="t-c"><%= customer[i].get('isTaobaoUser') ? '是' : '否' %></td>
                     <td class="small-screen-hide t-c"><%=customer[i].updatedAt.getFullYear()%>-<%=(customer[i].updatedAt.getMonth()+1)%>-<%=customer[i].updatedAt.getDate()%></td>
                     <td><a href="javascript:;" class="remove-customer" data-id="<%= customer[i].get('customerId') %>">删除</a></td>
@@ -55,16 +55,16 @@
             
             <ul class="am-pagination">
                 <% if (customerPager.prev) { %> <li>
-                    <a href="/customer?page=<%= customerPager.prev %><% if (search) {%>&customer-search=<%=search%> <%}%>">上一页</a></li> <% } %>
+                    <a href="/order/customer?page=<%= customerPager.prev %><% if (search) {%>&customer-search=<%=search%> <%}%>">上一页</a></li> <% } %>
                 <% if (customerPager.next) { %> <li>
-                    <a href="/customer?page=<%= customerPager.next %><% if (search) {%>&customer-search=<%=search%> <%}%>">下一页</a></li> <% } %>
+                    <a href="/order/customer?page=<%= customerPager.next %><% if (search) {%>&customer-search=<%=search%> <%}%>">下一页</a></li> <% } %>
                 <li class="count">第<%=customerPager.page%>页 共<%=customerCount%>条</li>
             </ul>
             
             <hr/>
 
             <div class="am-form-group">
-                <a href="/customer/add" class="am-btn am-btn-primary" role="button">添加收货人</a>
+                <a href="/order/customer/add" class="am-btn am-btn-primary" role="button">添加收货人</a>
             </div>
 
         </fieldset>

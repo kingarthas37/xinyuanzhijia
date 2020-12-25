@@ -87,14 +87,6 @@ footer p {
     background: #2d3e50;
 }
 
-.loading-elem {
-    &.on {
-        background: url('../images/admin/common/loading.gif') no-repeat center;
-        padding: 0 8px;
-        background-size:contain;
-    }
-}
-
 
 .typeahead-content .twitter-typeahead {
     display: block !important;
@@ -447,6 +439,7 @@ span.hot {
 
 
 .admin-order-page {
+    font-size: 15px;
     max-width: 100%;
     fieldset {
         margin-top: 30px;
@@ -463,3 +456,7 @@ span.hot {
         }
     }
 }
+
+
+
+

@@ -11,7 +11,7 @@
 
 <% include ../partials/header %>
 
-<div class="am-container common-page">
+<div class="am-container admin-order-page common-page">
 
     <% if (flash.success != '') { %>
     <div class="am-alert am-alert-success">
@@ -21,9 +21,9 @@
 
     <fieldset>
 
-        <legend><a href="/ship-order">转运订单列表</a></legend>
+        <legend><a href="/order/ship-order">转运订单列表</a></legend>
 
-        <form class="am-form-inline" role="form" action="/ship-order">
+        <form class="am-form-inline" role="form" action="/order/ship-order">
             <div class="am-form-group">
                 搜索国内快递单号：<input type="text" name="search-tracking-number" class="am-form-field" placeholder="搜索">
                 <span></span>
@@ -37,7 +37,7 @@
         <hr/>
 
         <div class="am-form-group tab-btn">
-            <a href="/ship-order/add" class="am-btn am-btn-primary" role="button">添加转运订单</a>
+            <a href="/order/ship-order/add" class="am-btn am-btn-primary" role="button">添加转运订单</a>
             <a href="javascript:;" class="search-all-tracking am-btn am-btn-primary" role="button">一件查询物流信息</a>
             <a href="javascript:;" class="copy-yuntao-code am-btn am-btn-primary" role="button">复制运淘代码</a>
             <a href="javascript:;" class="check-yuntao-code am-btn am-btn-primary" role="button">匹配运淘代码</a>
@@ -74,7 +74,7 @@
                     </td>
                     <td class="ship-order-name">
 
-                        <a class="ship-order-number" href="/ship-order/edit/<%=items[i].get('shipOrderId')%>"><%=items[i].get('transferOrderNumber')%></a>
+                        <a class="ship-order-number" href="/order/ship-order/edit/<%=items[i].get('shipOrderId')%>"><%=items[i].get('transferOrderNumber')%></a>
                         <a href="javascript:;" title="复制单号" class="clipboard-order" data-clipboard-text="<%=items[i].get('transferOrderNumber')%>"><i class="am-icon am-icon-copy"></i></a>
                         <a href="javascript:;" class="edit-ship-order" data-id="<%=items[i].get('shipOrderId')%>"><i class="am-icon am-icon-edit"></i></a>
                     </td>
@@ -120,9 +120,9 @@
 
         <ul class="am-pagination">
             <% if (orderPager.prev) { %> <li>
-            <a href="/ship-order?page=<%= orderPager.prev %>&search-tracking-number=<%=searchTrackingNumber%>&search-transfer-order-number=<%=searchTransferOrderNumber%>">上一页</a></li> <% } %>
+            <a href="/order/ship-order?page=<%= orderPager.prev %>&search-tracking-number=<%=searchTrackingNumber%>&search-transfer-order-number=<%=searchTransferOrderNumber%>">上一页</a></li> <% } %>
             <% if (orderPager.next) { %> <li>
-            <a href="/ship-order?page=<%= orderPager.next %>&search-tracking-number=<%=searchTrackingNumber%>&search-transfer-order-number=<%=searchTransferOrderNumber%>">下一页</a></li> <% } %>
+            <a href="/order/ship-order?page=<%= orderPager.next %>&search-tracking-number=<%=searchTrackingNumber%>&search-transfer-order-number=<%=searchTransferOrderNumber%>">下一页</a></li> <% } %>
 
             <li class="count">
                 <em>第<%=orderPager.page%>页 共<%= orderCount %>条</em>
@@ -140,7 +140,7 @@
         <hr/>
 
         <div class="am-form-group">
-            <a href="/ship-order/add" class="am-btn am-btn-primary" role="button">添加转运订单</a>
+            <a href="/order/ship-order/add" class="am-btn am-btn-primary" role="button">添加转运订单</a>
         </div>
 
     </fieldset>

@@ -11,45 +11,45 @@
 
 <% include ../partials/header %>
 
-<div class="am-container common-page order-page">
+<div class="am-container common-page admin-order-page order-page">
 
     <% if (flash.success != '') { %>
     <div class="am-alert am-alert-success">
         <p><%= flash.success %></p>
     </div>
     <% } %>
-    
-        <fieldset>
 
-            <legend><a href="/order">发货订单列表</a></legend>
-            
-            <form role="form" action="/order" class="am-g am-form">
+    <fieldset>
 
-                <input type="hidden" id="limit" name="limit" value="<%= limit %>">
-                <input type="hidden" id="search-not-shipped" name="search-not-shipped" value="<%= searchNotShipped %>">
-                <input type="hidden" id="search-shipping" name="search-shipping" value="<%= searchShipping %>">
+        <legend><a href="/order/order">发货订单列表</a></legend>
 
-                <div class="am-u-lg-2 am-u-sm-4">
-                    <input type="text" name="search-order-name" class="am-form-field" placeholder="搜索订单名">
-                </div>
-                
-                <div class="am-u-lg-2 am-u-sm-4">
-                    <input type="text" name="search-customer-name" class="am-form-field" placeholder="搜索淘宝/用户名">
-                </div>
-                
-                <div class="am-u-lg-2 small-screen-hide">
-                    <input type="text" name="search-address" class="am-form-field" placeholder="搜索姓名/地址">
-                </div>
+        <form role="form" action="/order/order" class="am-g am-form">
 
-                <div class="am-u-lg-2 small-screen-hide">
-                    <input type="text" name="search-comment" class="am-form-field" placeholder="备注">
-                </div>
-                
-                <div class="am-u-lg-1 am-u-sm-4">
-                    <button type="submit" class="am-btn am-btn-primary">搜索</button>
-                </div>
+            <input type="hidden" id="limit" name="limit" value="<%= limit %>">
+            <input type="hidden" id="search-not-shipped" name="search-not-shipped" value="<%= searchNotShipped %>">
+            <input type="hidden" id="search-shipping" name="search-shipping" value="<%= searchShipping %>">
 
-                <!--
+            <div class="am-u-lg-2 am-u-sm-4">
+                <input type="text" name="search-order-name" class="am-form-field" placeholder="搜索订单名">
+            </div>
+
+            <div class="am-u-lg-2 am-u-sm-4">
+                <input type="text" name="search-customer-name" class="am-form-field" placeholder="搜索淘宝/用户名">
+            </div>
+
+            <div class="am-u-lg-2 small-screen-hide">
+                <input type="text" name="search-address" class="am-form-field" placeholder="搜索姓名/地址">
+            </div>
+
+            <div class="am-u-lg-2 small-screen-hide">
+                <input type="text" name="search-comment" class="am-form-field" placeholder="备注">
+            </div>
+
+            <div class="am-u-lg-1 am-u-sm-4">
+                <button type="submit" class="am-btn am-btn-primary">搜索</button>
+            </div>
+
+            <!--
                 <div class="am-u-lg-2 am-u-sm-4 am-u-end">
                     <select name="search-shipping" class="select-shipping">
                         <option value="">所有快递</option>
@@ -63,43 +63,43 @@
                 </div>
                 -->
 
-                <div class="am-u-lg-2 am-u-sm-4 am-u-end">
-                    <label class="normal">未发货：<input type="checkbox" class="ckb-not-shipped" <%if(searchNotShipped){%>checked="checked"<%}%> /></label>
-                </div>
-            </form>
+            <div class="am-u-lg-2 am-u-sm-4 am-u-end">
+                <label class="normal">未发货：<input type="checkbox" class="ckb-not-shipped" <%if(searchNotShipped){%>checked="checked"<%}%> /></label>
+            </div>
+        </form>
 
-            <hr/>
+        <hr/>
 
-            <div class="order-page-info am-form-group clearfix">
-                <div class="l">
-                    <a href="/order/add<% if(searchNotShipped){%>?search-notshipped=on<%}%>" class="am-btn am-btn-primary" role="button">添加新订单</a>
-                    <a href="/order/add?is-new-shop=true<% if(searchNotShipped){%>&search-notshipped=on<%}%>" class="am-btn am-btn-primary" role="button">添加新店新订单</a>
-                    <span class="sp"></span>
+        <div class="order-page-info am-form-group clearfix">
+            <div class="l">
+                <a href="/order/order/add<% if(searchNotShipped){%>?search-notshipped=on<%}%>" class="am-btn am-btn-primary" role="button">添加新订单</a>
+                <a href="/order/order/add?is-new-shop=true<% if(searchNotShipped){%>&search-notshipped=on<%}%>" class="am-btn am-btn-primary" role="button">添加新店新订单</a>
+                <span class="sp"></span>
 
-                    <span class="show-not-ship-count">
+                <span class="show-not-ship-count">
                         近1天主店（<i class="main-shop-day-1"></i>）条,新店（<i class="sub-shop-day-1"></i>）条;
                         近3天主店（<i class="main-shop-day-3"></i>）条,新店（<i class="sub-shop-day-3"></i>）条未发货记录
                     </span>
-                </div>
-                <div class="r">
-                    <label class="normal">只显示主店订单 <input type="checkbox" class="ckb-show-main-shop-order" /></label>
-                    <span class="sp"></span>
-                    <label class="normal">只显示新店订单 <input type="checkbox" class="ckb-show-new-shop-order" /></label>
-                </div>
-
+            </div>
+            <div class="r">
+                <label class="normal">只显示主店订单 <input type="checkbox" class="ckb-show-main-shop-order" /></label>
+                <span class="sp"></span>
+                <label class="normal">只显示新店订单 <input type="checkbox" class="ckb-show-new-shop-order" /></label>
             </div>
 
-            
-            <table class="am-table">
+        </div>
 
-                <tbody>
-                <% for(var i=0; i < order.length; i++) {%>
 
-                <tr data-order-id="<%= order[i].get('orderId') %>" data-customer-id="<%= order[i].get('customerId') %>" class="product-order-list <% if (order[i].get('shippingStatus') !== 'shipped' ) { %>off<%}%><% if (order[i].get('isNewShop')) { %> new-shop-order<%} else {%> main-shop-order<%}%>">
+        <table class="am-table">
 
-                    <td class="t-c small-screen-hide">
-                        <input order-id="<%= order[i].get('orderId') %>" class="ckb-shipped" type="checkbox" <% if (order[i].get('shippingStatus') === 'shipped' ) { %>checked="checked"<%}%>/>
-                    </td>
+            <tbody>
+            <% for(var i=0; i < order.length; i++) {%>
+
+            <tr data-order-id="<%= order[i].get('orderId') %>" data-customer-id="<%= order[i].get('customerId') %>" class="product-order-list <% if (order[i].get('shippingStatus') !== 'shipped' ) { %>off<%}%><% if (order[i].get('isNewShop')) { %> new-shop-order<%} else {%> main-shop-order<%}%>">
+
+                <td class="t-c small-screen-hide">
+                    <input order-id="<%= order[i].get('orderId') %>" class="ckb-shipped" type="checkbox" <% if (order[i].get('shippingStatus') === 'shipped' ) { %>checked="checked"<%}%>/>
+                </td>
 
                 <td>
 
@@ -118,12 +118,13 @@
                             }
                         %>
                         <%if(shippingCompany) {%>
-                            <strong class="font-red">(<%= shippingCompany %>)</strong>
+                        <strong class="font-red">(<%= shippingCompany %>)</strong>
                         <%}%>
 
                         <span><strong>[ID:<%=order[i].get('orderId')%>]</strong> </span>
-
-                        <% if(order[i].get('isNewCustomer')){%><span class="font-red small-screen-hide">(新用户)</span><%}%>
+                        <span class="product-number"></span>
+                        <% if(order[i].get('isNewShop')) { %><span class="font-red">[新店]</span><%}%>
+                        <% if(order[i].get('isNewCustomer')){%><span class="font-red small-screen-hide">[新用户]</span><%}%>
 
                         <span class="tb-user-name"></span>
 
@@ -136,8 +137,8 @@
                         <div class="am-dropdown" data-am-dropdown>
                             <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>选项 <span class="am-icon-caret-down"></span></button>
                             <ul class="am-dropdown-content">
-                                <li><a href="/order/remove/<%= order[i].get('orderId') %>" class="remove-order">删除</a></li>
-                                <li><a href="/order/add?name=<%= encodeURIComponent(order[i].get('name')[0]) %>&tracking-number=<%= order[i].get('trackingNumber')%>">复制</a></li>
+                                <li><a href="/order/order/remove/<%= order[i].get('orderId') %>" class="remove-order">删除</a></li>
+                                <li><a href="/order/order/add?name=<%= encodeURIComponent(order[i].get('name')[0]) %>&tracking-number=<%= order[i].get('trackingNumber')%>">复制</a></li>
                             </ul>
                         </div>
 
@@ -150,20 +151,23 @@
 
                     <!-- phone -->
                     <div class="user-name large-screen-hide">
-                        ID:<%= order[i].get('orderId') %><span class="sp"></span>
-                        用户名:<%= order[i].get('customerName') %><span class="sp"></span>
-                        <%=(order[i].get('shippingDate').getMonth()+1)%>/<%=order[i].get('shippingDate').getDate()%></div>
+                        [ID:<%= order[i].get('orderId') %>]
+
+                        <span class="product-number"></span>
+
+                        <%= order[i].get('customerName') %>
+
+                        <%=(order[i].get('shippingDate').getMonth()+1)%>-<%=order[i].get('shippingDate').getDate()%></div>
                     <!-- phone -->
 
                     <%for(var j=0; j<order[i].get('name').length;j++) {%>
                     <div class="order-split" data-id="<% if(/\{id\:\d+\}/.test(order[i].get('name')[j])){%><%= order[i].get('name')[j].replace(/([^\{]+\{id\:)(\d+)(.*)/,'$2').replace('{','') %><%}%>"  data-stock="" data-count="<%= order[i].get('shippingCount')[j]%>">
-                        <span class="image loading-elem on" data-id="<% if(/\{id\:\d+\}/.test(order[i].get('name')[j])){%><%= order[i].get('name')[j].replace(/([^\{]+\{id\:)(\d+)(.*)/,'$2').replace('{','') %><%}%>"></span>
+                        <span class="image" data-id="<% if(/\{id\:\d+\}/.test(order[i].get('name')[j])){%><%= order[i].get('name')[j].replace(/([^\{]+\{id\:)(\d+)(.*)/,'$2').replace('{','') %><%}%>"></span>
 
-                        <a class="product-title" href="/order/edit/<%= order[i].get('orderId') %><%if(searchNotShipped){ %>?search-notshipped=on<%}%>" <% if(/\{id\:\d+\}/.test(order[i].get('name')[j])){%>title="productId:<%= order[i].get('name')[j].replace(/([^\{]+\{id\:)(\d+)(.*)/,'$2').replace('{','') %>"<%}%>>
+                        <a class="product-title" href="/order/order/edit/<%= order[i].get('orderId') %><%if(searchNotShipped){ %>?search-notshipped=on<%}%>" <% if(/\{id\:\d+\}/.test(order[i].get('name')[j])){%>title="productId:<%= order[i].get('name')[j].replace(/([^\{]+\{id\:)(\d+)(.*)/,'$2').replace('{','') %>"<%}%>>
 
                             <% if(order[i].get('isGift')[j]){%>(赠)<%}%>
                             <% if(order[i].get('shippingCount')[j] > 1){ %><strong class="font-red product-count"><%= order[i].get('shippingCount')[j] %></strong><% }else{%><span class="product-count"><%= order[i].get('shippingCount')[j] %></span><%}%>*<%= order[i].get('name')[j] %>
-                            <% if (order[i].get('isNewShop')) { %><strong>新店</strong><%}%>
                         </a>
 
                         <% if(/\{id\:\d+\}/.test(order[i].get('name')[j])) {%>
@@ -181,47 +185,47 @@
 
                 </td>
 
-                      <td class="t-c small-screen-hide" width="300">
-                          <%= order[i].get('customerName') %>
-                          <br>
+                <td class="t-c small-screen-hide" width="300">
+                    <%= order[i].get('customerName') %>
+                    <br>
 
-                          <button class="am-btn am-btn-primary am-btn-sm clipboard-customer-name small-screen-hide" data-clipboard-text="<% if(order[i].get('client')){%><%=order[i].get('client')%><%}else{%><%=order[i].get('customerName')%><%}%>"><i class="am-icon am-icon-copy"></i> <span>复制淘宝名</span></button>
+                    <button class="am-btn am-btn-primary am-btn-sm clipboard-customer-name small-screen-hide" data-clipboard-text="<% if(order[i].get('client')){%><%=order[i].get('client')%><%}else{%><%=order[i].get('customerName')%><%}%>"><i class="am-icon am-icon-copy"></i> <span>复制淘宝名</span></button>
 
 
-                      </td>
+                </td>
 
-                </tr>
-                <% } %>
-                </tbody>
-            </table>
-            
-            <ul class="am-pagination">
-                <% if (orderPager.prev) { %> <li>
-                    <a href="/order?page=<%= orderPager.prev %><% if(searchOrderName) {%>&search-order-name=<%=searchOrderName%><%}%><% if(searchCustomerName) {%>&search-customer-name=<%=searchCustomerName%><%}%><% if(searchAddress) {%>&search-address=<%=searchAddress%><%}%><% if(searchNotShipped) {%>&search-not-shipped=<%=searchNotShipped%><%}%><% if(limit) {%>&limit=<%=limit%><%}%><% if(searchShipping) {%>&search-shipping=<%=searchShipping%><%}%>">上一页</a></li> <% } %>
-                <% if (orderPager.next) { %> <li>
-                    <a href="/order?page=<%= orderPager.next %><% if(searchOrderName) {%>&search-order-name=<%=searchOrderName%><%}%><% if(searchCustomerName) {%>&search-customer-name=<%=searchCustomerName%><%}%><% if(searchAddress) {%>&search-address=<%=searchAddress%><%}%><% if(searchNotShipped) {%>&search-not-shipped=<%=searchNotShipped%><%}%><% if(limit) {%>&limit=<%=limit%><%}%><% if(searchShipping) {%>&search-shipping=<%=searchShipping%><%}%>">下一页</a></li> <% } %>
-                
-                <li class="count">
-                    <em>第<%=orderPager.page%>页 共<%= orderCount %>条</em>
-                    <select class="select-limit">
-                        <option value="">20</option>
-                        <option value="40" <%if(limit==40){%>selected="selected"<%}%> >40</option>
-                        <option value="60" <%if(limit==60){%>selected="selected"<%}%> >60</option>
-                        <option value="80" <%if(limit==80){%>selected="selected"<%}%> >80</option>
-                        <option value="100" <%if(limit==100){%>selected="selected"<%}%> >100</option>
-                    </select>
-                </li>
-              
-            </ul>
-            
-            <hr/>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
 
-            <div class="am-form-group">
-                <a href="/order/add<% if(searchNotShipped){%>?search-notshipped=on<%}%>" class="am-btn am-btn-primary" role="button">添加新订单</a>
-                <a href="/order/add?is-new-shop=true<% if(searchNotShipped){%>&search-notshipped=on<%}%>" class="am-btn am-btn-primary" role="button">添加新店新订单</a>
-            </div>
+        <ul class="am-pagination">
+            <% if (orderPager.prev) { %> <li>
+                <a href="/order/order?page=<%= orderPager.prev %><% if(searchOrderName) {%>&search-order-name=<%=searchOrderName%><%}%><% if(searchCustomerName) {%>&search-customer-name=<%=searchCustomerName%><%}%><% if(searchAddress) {%>&search-address=<%=searchAddress%><%}%><% if(searchNotShipped) {%>&search-not-shipped=<%=searchNotShipped%><%}%><% if(limit) {%>&limit=<%=limit%><%}%><% if(searchShipping) {%>&search-shipping=<%=searchShipping%><%}%>">上一页</a></li> <% } %>
+            <% if (orderPager.next) { %> <li>
+                <a href="/order/order?page=<%= orderPager.next %><% if(searchOrderName) {%>&search-order-name=<%=searchOrderName%><%}%><% if(searchCustomerName) {%>&search-customer-name=<%=searchCustomerName%><%}%><% if(searchAddress) {%>&search-address=<%=searchAddress%><%}%><% if(searchNotShipped) {%>&search-not-shipped=<%=searchNotShipped%><%}%><% if(limit) {%>&limit=<%=limit%><%}%><% if(searchShipping) {%>&search-shipping=<%=searchShipping%><%}%>">下一页</a></li> <% } %>
 
-        </fieldset>
+            <li class="count">
+                <em>第<%=orderPager.page%>页 共<%= orderCount %>条</em>
+                <select class="select-limit">
+                    <option value="">20</option>
+                    <option value="40" <%if(limit==40){%>selected="selected"<%}%> >40</option>
+                    <option value="60" <%if(limit==60){%>selected="selected"<%}%> >60</option>
+                    <option value="80" <%if(limit==80){%>selected="selected"<%}%> >80</option>
+                    <option value="100" <%if(limit==100){%>selected="selected"<%}%> >100</option>
+                </select>
+            </li>
+
+        </ul>
+
+        <hr/>
+
+        <div class="am-form-group">
+            <a href="/order/order/add<% if(searchNotShipped){%>?search-notshipped=on<%}%>" class="am-btn am-btn-primary" role="button">添加新订单</a>
+            <a href="/order/order/add?is-new-shop=true<% if(searchNotShipped){%>&search-notshipped=on<%}%>" class="am-btn am-btn-primary" role="button">添加新店新订单</a>
+        </div>
+
+    </fieldset>
 
 
 </div>
@@ -307,7 +311,7 @@
                     <button type="button" class="am-btn am-btn-primary stock-reset">重置</button>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -320,7 +324,7 @@
             <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
         </div>
         <div class="am-modal-bd">
-            
+
         </div>
     </div>
 </div>
@@ -331,13 +335,13 @@
 <% include ../partials/js %>
 
 <script type="text/javascript">
-    
+
     $(function() {
         var order = require('order');
         order.indexFun();
     });
-    
-    
+
+
 </script>
 </body>
 </html>

@@ -15,3 +15,7 @@ require('./article-category');
 
 //order
 require('./spent');
+require('./order');
+require('./customer');
+require('./identity');
+require('./ship-order');

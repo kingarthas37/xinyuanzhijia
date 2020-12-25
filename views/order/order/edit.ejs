@@ -12,9 +12,9 @@
 <% include ../partials/header %>
 
 
-<div class="am-container common-page order-page">
+<div class="am-container common-page admin-order-page order-page">
 
-    <form id="form-edit-order" class="am-form" action="/order/edit<% if(searchNotShipped){%>?search-notshipped=on<%}%>" method="post">
+    <form id="form-edit-order" class="am-form" action="/order/order/edit<% if(searchNotShipped){%>?search-notshipped=on<%}%>" method="post">
 
         <input type="hidden" name="order-id" value="<%= order.get('orderId') %>"/>
         

@@ -11,7 +11,7 @@
 
 <% include ../partials/header %>
 
-<div class="am-container common-page">
+<div class="am-container admin-order-page common-page">
 
     <% if (flash.success != '') { %>
     <div class="am-alert am-alert-success">
@@ -21,9 +21,9 @@
 
     <fieldset>
 
-        <legend><a href="/identity">身份证列表</a></legend>
+        <legend><a href="/order/identity">身份证列表</a></legend>
 
-        <form class="am-form-inline" role="form" action="/identity">
+        <form class="am-form-inline" role="form" action="/order/identity">
             <div class="am-form-group">
                 搜索身份证姓名：<input type="text" name="search-name" class="am-form-field" placeholder="搜索">
             </div>
@@ -57,12 +57,12 @@
             <tbody>
             <% for(var i=0; i < identity.length; i++) {%>
             <tr>
-                <td><a href="/identity/edit/<%= identity[i].get('identityId') %>"><%= identity[i].get('name') %></a> </td>
+                <td><a href="/order/identity/edit/<%= identity[i].get('identityId') %>"><%= identity[i].get('name') %></a> </td>
                 <td class="t-c"><%= identity[i].get('cardNo') %></td>
                 <td class="t-c"><a href="<%= identity[i].get('cardImageFront').replace('ac-JoaBcRTt.clouddn.com','lc-joabcrtt.cn-n1.lcfile.com') %>" target="_blank">查看</a><span class="split"></span><a href="<%= identity[i].get('cardImageFront').replace('ac-JoaBcRTt.clouddn.com','lc-joabcrtt.cn-n1.lcfile.com') %>" download>下载</a></td>
                 <td class="t-c"><a href="<%= identity[i].get('cardImageBack').replace('ac-JoaBcRTt.clouddn.com','lc-joabcrtt.cn-n1.lcfile.com') %>" target="_blank">查看</a><span class="split"></span><a href="<%= identity[i].get('cardImageBack').replace('ac-JoaBcRTt.clouddn.com','lc-joabcrtt.cn-n1.lcfile.com')%>" download>下载</a></td>
                 <td class="t-c"><a href="<%= identity[i].get('cardImageAll').replace('ac-JoaBcRTt.clouddn.com','lc-joabcrtt.cn-n1.lcfile.com') %>" target="_blank">查看</a><span class="split"></span><a href="<%= identity[i].get('cardImageAll').replace('ac-JoaBcRTt.clouddn.com','lc-joabcrtt.cn-n1.lcfile.com') %>" download>下载</a></td>
-                <td class="t-c"><a class="remove-identity" href="/identity/remove/<%= identity[i].get('identityId') %>">删除</a></td>
+                <td class="t-c"><a class="remove-identity" href="/order/identity/remove/<%= identity[i].get('identityId') %>">删除</a></td>
             </tr>
             <% } %>
             </tbody>
@@ -70,16 +70,16 @@
 
         <ul class="am-pagination">
             <% if (pager.prev) { %> <li>
-            <a href="/identity?page=<%= pager.prev %><% if(searchName) {%>&search-name=<%=searchName%> <%}%>">上一页</a></li> <% } %>
+            <a href="/order/identity?page=<%= pager.prev %><% if(searchName) {%>&search-name=<%=searchName%> <%}%>">上一页</a></li> <% } %>
             <% if (pager.next) { %> <li>
-            <a href="/identity?page=<%= pager.next %><% if(searchName) {%>&search-name=<%=searchName%> <%}%>">下一页</a></li> <% } %>
+            <a href="/order/identity?page=<%= pager.next %><% if(searchName) {%>&search-name=<%=searchName%> <%}%>">下一页</a></li> <% } %>
             <li class="count">第<%=pager.page%>页 共<%= count %>条</li>
         </ul>
 
         <hr/>
 
         <div class="am-form-group">
-            <a href="/identity/add" class="am-btn am-btn-primary" role="button">添加身份证</a>
+            <a href="/order/identity/add" class="am-btn am-btn-primary" role="button">添加身份证</a>
         </div>
 
     </fieldset>

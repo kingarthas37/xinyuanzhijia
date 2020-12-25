@@ -12,12 +12,12 @@
 <% include ../partials/header %>
 
 
-<div class="am-container common-page customer-page">
+<div class="am-container common-page admin-order-page customer-page">
 
-    <form id="form-edit-customer" class="am-form" action="/customer/edit" method="post">
+    <form id="form-edit-customer" class="am-form" action="/order/customer/edit" method="post">
 
         <input type="hidden" name="customer-id" value="<%= customer.get('customerId') %>"/>
-            
+
         <fieldset>
 
             <legend>编辑收货人地址：</legend>
