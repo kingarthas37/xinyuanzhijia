@@ -501,7 +501,6 @@ router.get('/remove-customer-address',(req,res)=> {
 
     query.equalTo('customerId', customerId);
     query.first().then(result => {
-        console.log(result);
         result.set('address',address || []);
         return result.save();
     }).then(()=> {

@@ -75,7 +75,6 @@ router.post('/', function (req, res, next) {
 
     var customer = new Customer();
     var orderTrack = new OrderTrack();
-    
     async.waterfall([
         
         function(cb) {
@@ -123,7 +122,6 @@ router.post('/', function (req, res, next) {
                     cb(null);
                 }
             }
-            
         },
     
         //取到新的customerId,如果有customerId,则保存到order，否则保存已有的customerId
@@ -162,7 +160,6 @@ router.post('/', function (req, res, next) {
             orderTrack.set('isNewShop',isNewShop ==='on'?true:false);
             orderTrack.set('isNewCustomer',newCustomer === 'on' ? true : false);
             orderTrack.set('isTaobaoUser',isTaobaoUser === 'on' ? true:false);
-            
             orderTrack.save(null, {
                 success: function () {
                     let notshipped = req.query['search-notshipped'] === 'on' ? '?search-notshipped=on' : '';
@@ -173,7 +170,6 @@ router.post('/', function (req, res, next) {
                     next(err);
                 }
             });
-        
         }
     
     ]);
