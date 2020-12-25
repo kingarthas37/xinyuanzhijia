@@ -11,7 +11,7 @@
 
 <% include ../partials/header %>
 
-<div class="am-container common-page purchase-contact-page">
+<div class="am-container common-page admin-order-page purchase-contact-page">
 
     <% if (flash.success != '') { %>
     <div class="am-alert am-alert-success">
@@ -21,9 +21,9 @@
     
     <fieldset>
 
-    <legend><a href="/purchase-contact">网站联系方式列表(<% if(siteType==='normal') { %>默认网站<% } else { %><%= siteType %><%}%>)</a></legend>
+    <legend><a href="/order/purchase-contact">网站联系方式列表(<% if(siteType==='normal') { %>默认网站<% } else { %><%= siteType %><%}%>)</a></legend>
 
-    <form class="am-form-inline" role="form" action="/purchase-contact">
+    <form class="am-form-inline" role="form" action="/order/purchase-contact">
         <div class="am-form-group">
             搜索名称：<input type="text" name="purchase-contact-search" class="am-form-field" placeholder="搜索">
         </div>
@@ -48,11 +48,11 @@
         <% for(var i=0; i < purchaseContact.length; i++) {%>
         <tr>
             <td><a target="_blank" href="<%=purchaseContact[i].get('imageUrl') %>"><img width="80" src="<%=purchaseContact[i].get('imageUrl') %>?imageMogr2/thumbnail/80" alt=""/></a></td>
-            <td><a href="/purchase-contact/edit/<%= purchaseContact[i].get('purchaseContactId') %>"><%= purchaseContact[i].get('name') %></a> </td>
+            <td><a href="/order/purchase-contact/edit/<%= purchaseContact[i].get('purchaseContactId') %>"><%= purchaseContact[i].get('name') %></a> </td>
             <td class="t-c"><% if(purchaseContact[i].get('shop')) { %><a href="<%=purchaseContact[i].get('shop') %>" target="_blank">网店链接<% } else { %>--<% } %></a></td>
             <td class="t-c"><% if(purchaseContact[i].get('website')) { %><a href="<%=purchaseContact[i].get('website') %>" target="_blank">官网链接</a> <% } else { %>--<% } %></td>
             <td class="small-screen-hide"><%=purchaseContact[i].get('email') %></td>
-            <td class="small-screen-hide"><a href="/purchase-contact/remove/<%= purchaseContact[i].get('purchaseContactId') %>" class="remove-purchase-contact">删除</a> </td>
+            <td class="small-screen-hide"><a href="/order/purchase-contact/remove/<%= purchaseContact[i].get('purchaseContactId') %>" class="remove-purchase-contact">删除</a> </td>
         </tr>
         <% } %>
         </tbody>
@@ -60,16 +60,16 @@
 
     <ul class="am-pagination">
         <% if (purchaseContactPager.prev) { %> <li>
-        <a href="/purchase-contact?page=<%= purchaseContactPager.prev %><% if (search) {%>&purchase-contact-search=<%=search%> <%}%><% if(siteType==='etsy') {%>&site-type=etsy<% } %>">上一页</a></li> <% } %>
+        <a href="/order/purchase-contact?page=<%= purchaseContactPager.prev %><% if (search) {%>&purchase-contact-search=<%=search%> <%}%><% if(siteType==='etsy') {%>&site-type=etsy<% } %>">上一页</a></li> <% } %>
         <% if (purchaseContactPager.next) { %> <li>
-        <a href="/purchase-contact?page=<%= purchaseContactPager.next %><% if (search) {%>&purchase-contact-search=<%=search%> <%}%><% if(siteType==='etsy') {%>&site-type=etsy<% } %>">下一页</a></li> <% } %>
+        <a href="/order/purchase-contact?page=<%= purchaseContactPager.next %><% if (search) {%>&purchase-contact-search=<%=search%> <%}%><% if(siteType==='etsy') {%>&site-type=etsy<% } %>">下一页</a></li> <% } %>
         <li class="count">第<%=purchaseContactPager.page%>页 共<%=purchaseContactCount%>条</li>
     </ul>
 
     <hr/>
 
     <div class="am-form-group">
-        <a href="/purchase-contact/add?site-type=<%= siteType %>" class="am-btn am-btn-primary" role="button">添加网站联系方式</a>
+        <a href="/order/purchase-contact/add?site-type=<%= siteType %>" class="am-btn am-btn-primary" role="button">添加网站联系方式</a>
     </div>
 
 </fieldset>

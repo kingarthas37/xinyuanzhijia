@@ -19,3 +19,5 @@ require('./order');
 require('./customer');
 require('./identity');
 require('./ship-order');
+require('./purchase');
+require('./purchase-contact');
