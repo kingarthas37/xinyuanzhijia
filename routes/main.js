@@ -133,5 +133,5 @@ module.exports = {
     '/order/purchase-contact':require('./order/purchase-contact'),
     '/order/purchase-contact/add':require('./order/purchase-contact/add'),
     '/order/purchase-contact/edit':require('./order/purchase-contact/edit'),
-    '/order/purchase-contact/uploadgit lib':require('./order/purchase-contact/upload'),
+    '/order/purchase-contact/upload':require('./order/purchase-contact/upload'),
 };
