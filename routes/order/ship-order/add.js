@@ -37,7 +37,7 @@ router.get('/', function (req, res, next) {
         searchNotShipped
     });
 
-    res.render('ship-order/add', data);
+    res.render('order/ship-order/add', data);
 
 });
 
