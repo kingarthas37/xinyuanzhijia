@@ -60,15 +60,22 @@ router.post('/', function (req, res, next) {
     shipOrder.set('count', count);
     shipOrder.set('name',name);
     shipOrder.set('realCount', realCount);
-    shipOrder.save(null, {
-        success: function () {
-            req.flash('success', '添加订单成功!');
-            res.redirect('/order/ship-order?limit=500');
-        },
-        error: function (err) {
-            req.flash('error', '添加订单失败!');
-        }
+    shipOrder.save().then((success) => {
+        req.flash('success', '添加订单成功!');
+        res.redirect('/order/ship-order?limit=500');
+    }, (error) => {
+        console.log(error);
+        req.flash('error', '添加订单失败!');
     });
+    // shipOrder.save(null, {
+    //     success: function () {
+    //         req.flash('success', '添加订单成功!');
+    //         res.redirect('/order/ship-order?limit=500');
+    //     },
+    //     error: function (err) {
+    //         req.flash('error', '添加订单失败!');
+    //     }
+    // });
 });
 
 module.exports = router;
