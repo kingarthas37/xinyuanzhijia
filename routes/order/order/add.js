@@ -27,7 +27,10 @@ router.get('/', function (req, res, next) {
     if (!req.currentUser) {
         return res.redirect('/?return=' + encodeURIComponent(req.originalUrl));
     }
-
+    let cql = 'select orderId from OrderTrack order by orderId desc limit 1';
+    AV.Query.doCloudQuery(cql).then(function(data) {
+        console.log(data.results[0].get('orderId'));
+    });
     let searchNotShipped = req.query['search-notshipped'];
     
     data = extend(data,{
@@ -81,28 +84,32 @@ router.post('/', function (req, res, next) {
             
             //如果是新用户，注册customer
             if(newCustomer && !customerId) {
+                let cql = 'select customerId from Customer order by customerId desc limit 1';
+                AV.Query.doCloudQuery(cql).then(function(data) {
+                    customer.set('customerId',(data.results[0].get('customerId')+1));
+                    customer.set('name',customerName);
+                    customer.set('taobao',taobao);
+                    customer.set('address',[shippingAddress]);
+                    customer.set('isTaobaoUser',isTaobaoUser === 'on' ? true:false);
 
-                customer.set('name',customerName);
-                customer.set('taobao',taobao);
-                customer.set('address',[shippingAddress]);
-                customer.set('isTaobaoUser',isTaobaoUser === 'on' ? true:false);
-                
-                customer.save().then(function(customer) {
-                    
-                    var query = new AV.Query(Customer);
-                    query.get(customer.id,{
-                        success:function(customer) {
-                            
-                            //获取新的customerId，重新赋值
-                            customerId = customer.get('customerId');
-                            cb(null);
-                        },
-                        error:function(err) {
-                            next(err);
-                        }
+                    customer.save().then(function(customer) {
+
+                        var query = new AV.Query(Customer);
+                        query.get(customer.id,{
+                            success:function(customer) {
+
+                                //获取新的customerId，重新赋值
+                                customerId = customer.get('customerId');
+                                cb(null);
+                            },
+                            error:function(err) {
+                                next(err);
+                            }
+                        });
+
                     });
-                    
                 });
+
                 
             } else {
                 
@@ -126,49 +133,51 @@ router.post('/', function (req, res, next) {
     
         //取到新的customerId,如果有customerId,则保存到order，否则保存已有的customerId
         function() {
+            let cql = 'select orderId from OrderTrack order by orderId desc limit 1';
+            AV.Query.doCloudQuery(cql).then(function(data) {
+                //productId shipping
+                let productId = [];
+                for(let i=0;i<name.length;i++) {
+                    if(/\{id\:\d+\}/.test(name[i])) {
+                        productId.push(/\{id\:(\d+)\}/.exec(name[i])[1]);
+                    }else {
+                        productId.push("");
+                    }
+                }
 
-            //productId shipping
-            let productId = [];
-            for(let i=0;i<name.length;i++) {
-                if(/\{id\:\d+\}/.test(name[i])) {
-                    productId.push(/\{id\:(\d+)\}/.exec(name[i])[1]);
-                }else {
-                    productId.push("");
-                }
-            }
-            
-            //shipping count
-            shippingCount = shippingCount.map(item => parseInt(item));
-            
-            orderTrack.set('name',name);
-            orderTrack.set('productId',productId);
-            orderTrack.set('isGift',isGift);
-            orderTrack.set('isShipping',isShipping);
-            orderTrack.set('shippingCount',shippingCount);
-            orderTrack.set('client',client);
-            orderTrack.set('clientAddress',clientAddress);
-            orderTrack.set('shopOrderLink',shopOrderLink);
-            orderTrack.set('customerId',customerId);
-            orderTrack.set('customerName',customerName);
-            orderTrack.set('taobaoName',taobao);
-            orderTrack.set('shippingDate',new Date(shippingDate));
-            orderTrack.set('shippingAddress',shippingAddress);
-            orderTrack.set('shippingCompany',shippingCompany);
-            orderTrack.set('trackingNumber',trackingNumber);
-            orderTrack.set('shippingStatus',shippingStatus);
-            orderTrack.set('comment',comment);
-            orderTrack.set('isNewShop',isNewShop ==='on'?true:false);
-            orderTrack.set('isNewCustomer',newCustomer === 'on' ? true : false);
-            orderTrack.set('isTaobaoUser',isTaobaoUser === 'on' ? true:false);
-            orderTrack.save(null, {
-                success: function () {
-                    let notshipped = req.query['search-notshipped'] === 'on' ? '?search-notshipped=on' : '';
-                    req.flash('success', '添加订单成功!');
-                    res.redirect(`/order/order${notshipped}`);
-                },
-                error: function (err) {
-                    next(err);
-                }
+                //shipping count
+                shippingCount = shippingCount.map(item => parseInt(item));
+                orderTrack.set('orderId',(data.results[0].get('orderId')+1));
+                orderTrack.set('name',name);
+                orderTrack.set('productId',productId);
+                orderTrack.set('isGift',isGift);
+                orderTrack.set('isShipping',isShipping);
+                orderTrack.set('shippingCount',shippingCount);
+                orderTrack.set('client',client);
+                orderTrack.set('clientAddress',clientAddress);
+                orderTrack.set('shopOrderLink',shopOrderLink);
+                orderTrack.set('customerId',customerId);
+                orderTrack.set('customerName',customerName);
+                orderTrack.set('taobaoName',taobao);
+                orderTrack.set('shippingDate',new Date(shippingDate));
+                orderTrack.set('shippingAddress',shippingAddress);
+                orderTrack.set('shippingCompany',shippingCompany);
+                orderTrack.set('trackingNumber',trackingNumber);
+                orderTrack.set('shippingStatus',shippingStatus);
+                orderTrack.set('comment',comment);
+                orderTrack.set('isNewShop',isNewShop ==='on'?true:false);
+                orderTrack.set('isNewCustomer',newCustomer === 'on' ? true : false);
+                orderTrack.set('isTaobaoUser',isTaobaoUser === 'on' ? true:false);
+                orderTrack.save(null, {
+                    success: function () {
+                        let notshipped = req.query['search-notshipped'] === 'on' ? '?search-notshipped=on' : '';
+                        req.flash('success', '添加订单成功!');
+                        res.redirect(`/order/order${notshipped}`);
+                    },
+                    error: function (err) {
+                        next(err);
+                    }
+                });
             });
         }
     
