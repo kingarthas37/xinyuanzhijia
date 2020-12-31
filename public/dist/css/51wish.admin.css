@@ -559,7 +559,7 @@ body.viewport-window header, body.viewport-window .admin-sidebar, body.viewport-
   background: #eeffee;
   color: #4bad4b; }
   .order-page .check-customer-id i {
-    color: #4bad4b; }
+    color: #4bad4b !important; }
   .order-page .check-customer-id.on {
     display: inline; }
 
