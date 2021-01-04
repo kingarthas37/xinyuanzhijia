@@ -203,11 +203,11 @@ module.exports = {
                             if (parseInt(i) === id) {
                                 $(n).removeClass('on').html(`<a href="${data.images[i]}" target="_blank"><img width="60" src="${data.images[i]}?imageMogr2/thumbnail/60"/></a>`);
                             } else if (!id) {
-                                $(n).removeClass('on').html(`<img width="60" src="${window.assets['no-image-src']}?imageMogr2/thumbnail/60"/>`);
+                                $(n).removeClass('on').html(`<img width="60" src="//lc-joabcrtt.cn-n1.lcfile.com/d4c225054f005a4d7d39.png?imageMogr2/thumbnail/60"/>`);
                             }
                         }
                     } else {
-                        $(n).removeClass('on').html(`<img width="60" src="${window.assets['no-image-src']}?imageMogr2/thumbnail/60"/>`);
+                        $(n).removeClass('on').html(`<img width="60" src="//lc-joabcrtt.cn-n1.lcfile.com/d4c225054f005a4d7d39.png?imageMogr2/thumbnail/60"/>`);
                     }
 
                 });
