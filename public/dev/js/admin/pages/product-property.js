@@ -70,7 +70,7 @@ module.exports = {
         setTimeout(function() {
             stock[0].focus();
             stock[0].select();
-        },100);
+        },500);
 
         stockMinus.click(function() {
             let stockValue = parseInt(stock.val());
