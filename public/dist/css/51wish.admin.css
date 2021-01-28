@@ -142,7 +142,7 @@ p.normal {
   color: red; }
 
 .common-page .am-alert {
-  z-index: 999;
+  z-index: 9999;
   border: none;
   margin: 10px 0; }
 

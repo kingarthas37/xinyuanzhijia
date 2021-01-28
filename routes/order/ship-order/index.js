@@ -164,7 +164,7 @@ router.post('/copy/:id/', function(req, res) {
             newShipOrder.save(null, {
                 success: function () {
                     req.flash('success', '复制订单成功!');
-                    res.redirect('/ship-order');
+                    res.redirect('/order/ship-order');
                 },
                 error: function (err) {
                     req.flash('error', '复制订单失败!');

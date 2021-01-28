@@ -433,6 +433,7 @@ module.exports = {
                         arr.push(location.href);
                         arr.push($.trim($('.col-sm-9.text-left').eq(7).text()));
                         arr.push(/单号为([a-zA-Z0-9]+)/.exec($('.table').eq(3).find('tr:last').text())[1]);
+                        arr.push($.trim($('.col-sm-9.text-left').eq(8).text()));
                         arr.join();
                     `;
                 }
@@ -497,6 +498,8 @@ module.exports = {
 
                 let arr = input.val().split(',');
                 let tr = table.find(`tr[data-ship-order-id=${arr[0]}]`);
+                //顺丰
+                let sfCode = arr[4] + ":" + arr[5].substring(arr[5].length-4);
                 $.ajax({
                     url:`/order/ship-order/go-yuntao-code`,
                     type:'post',
@@ -504,14 +507,14 @@ module.exports = {
                         shipOrderId:arr[0],
                         link:arr[2],
                         name:arr[3],
-                        trackingNumber:arr[4]
+                        trackingNumber:sfCode
                     },
                     success(data) {
                         tr.removeClass('bold');
                         tr.find('.td-name').html(`<span clas="show-name">${arr[3]}</span>`);
                         tr.find('.td-link').html(`<a href="${arr[2]}" target="_blank">链接</a>`);
                         tr.find('.td-tracking-number').html(`
-                            <a href="javascript:;" title="查询快递" class="search-tracking" data-tracking="${arr[4]}">${arr[4]}</a>
+                            <a href="javascript:;" title="查询快递" class="search-tracking" data-tracking="${arr[4]}">${sfCode}</a>
                          
                         `);
                         if(!tr.find('.ckb-is-haiguan').prop('checked')) {
