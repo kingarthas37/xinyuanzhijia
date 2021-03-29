@@ -104,28 +104,29 @@ router.post('/stock/:productId', (req, res) => {
 
     let productId = parseInt(req.params.productId);
     let stock = parseInt(req.body.stock);
-    let sales = parseInt(req.body.sales);
+    let sales = req.body.sales ? parseInt(req.body.sales) : '';
     let reserve = parseInt(req.body.reserve);
     let updateStockDate = parseInt(req.body.updateStockDate);
     let sold =parseInt(req.body.sold);
 
-    if (updateStockDate == 1) {
+    if (updateStockDate === 1) {
         updateStockDate = (Date.parse(new Date()) / 1000);
-    } else if (updateStockDate == 0) {
+    } else if (updateStockDate === 0) {
         updateStockDate = 0;
     } else {
         updateStockDate = 1;
     }
-
+    let update = {stock, reserve, sold};
+    if (sales !== '') {
+        update = extend(update, {sales});
+    }
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
     query.first().then(item => {
-        if (updateStockDate != 1) {
+        if (updateStockDate !== 1) {
             item.set('updateStockDate', updateStockDate);
         }
-        return item.save({
-            stock,sales,reserve,sold
-        });
+        return item.save(update);
 
     }).then(() => {
         res.redirect(`/admin/product-property/${productId}?viewport=window`);
