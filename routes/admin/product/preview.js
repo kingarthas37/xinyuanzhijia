@@ -56,6 +56,9 @@ router.get('/:productId',(req,res)=> {
                 if(productMethodId === 3 || productMethodId === 31 || productMethodId === 37 || productMethodId === 38) {
                     watermark = config.watermark.muxue928;
                 }
+                if(productMethodId === 39) {
+                    watermark = '';
+                }
                 let detailImage = product.get('detailImage').replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com');
                 if (/.JPG/.test(detailImage)) {
                     detailImage = detailImage.replace(/\.JPG/gi,'.JPG'+ watermark);
