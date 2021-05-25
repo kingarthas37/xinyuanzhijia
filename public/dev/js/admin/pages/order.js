@@ -27,6 +27,11 @@ module.exports = {
                     let title = '';
                     let html = '';
 
+                    if(tr.find('.update-stock .on')[0]) {
+                        alert('订单中含有已更新库存产品，请去除勾选后重新更新!');
+                        return false;
+                    }
+
                     //查询库存数是否为1
                     tr.find('.order-split').filter(function() {
                         return !$(this).hasClass('is-parent-product');
