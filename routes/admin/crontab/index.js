@@ -94,7 +94,7 @@ router.get('/get-product', (req, res) => {
                         if(mainImage) {
                             for(let i in mainImage) {
                                 if(!n.mainImage) {
-                                    n.mainImage = mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com');
+                                    n.mainImage = mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi,'image.wish698.cn');
                                 }
                             }
                         }

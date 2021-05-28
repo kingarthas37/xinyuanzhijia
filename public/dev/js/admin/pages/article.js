@@ -91,7 +91,7 @@ console.log(data);
                                  if(n.image) {
                                      return `<a href="${n.image}" target="_blank"><img width="40" src="${n.image}?imageMogr2/thumbnail/40" alt="" data-am-popover="{content:'<img width=150 src=${n.image}?imageMogr2/thumbnail/150>', trigger:'hover focus'}"></a>`;
                                  }
-                                return `<img width="40" src="//lc-quipuwpj.cn-n1.lcfile.com/23726f840c784a3ede12.jpg?imageMogr2/thumbnail/40" alt="">`;
+                                return `<img width="40" src="//image.wish698.cn/23726f840c784a3ede12.jpg?imageMogr2/thumbnail/40" alt="">`;
                             })();
 
                             let categoryName = (()=> {
