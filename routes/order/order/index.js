@@ -258,7 +258,7 @@ router.get('/get-image', (req, res)=> {
             
             if(JSON.stringify(image.get('mainImage'))=== '{}') {
                 imgArr.push({
-                    url:'//lc-JoaBcRTt.cn-n1.lcfile.com/d4c225054f005a4d7d39.png'
+                    url:'//image.wish698.cn/d4c225054f005a4d7d39.png'
                 });
             } else {
                 for (let i in image.get('mainImage')) {
@@ -268,7 +268,7 @@ router.get('/get-image', (req, res)=> {
                 }
             }
             
-            data[image.get('productId')] = imgArr[0].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace('ac-JoaBcRTt.clouddn.com','lc-JoaBcRTt.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn');
+            data[image.get('productId')] = imgArr[0].url.replace('ac-QuiPuWpJ.clouddn.com','image.wish698.cn').replace('ac-JoaBcRTt.clouddn.com','image.wish698.cn').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn');
         });
         
         res.send({
