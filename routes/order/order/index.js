@@ -268,7 +268,7 @@ router.get('/get-image', (req, res)=> {
                 }
             }
             
-            data[image.get('productId')] = imgArr[0].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace('ac-JoaBcRTt.clouddn.com','lc-JoaBcRTt.cn-n1.lcfile.com');
+            data[image.get('productId')] = imgArr[0].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace('ac-JoaBcRTt.clouddn.com','lc-JoaBcRTt.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn');
         });
         
         res.send({
@@ -457,7 +457,7 @@ router.get('/product', (req, res) => {
         for (let i = 0; i < results.length; i++) {
             let imageArr = [];
             for (let key in results[i].get('mainImage')) {
-                imageArr.push(results[i].get('mainImage')[key].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') );
+                imageArr.push(results[i].get('mainImage')[key].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') );
             }
             let obj = {
               //  'value': `${results[i].get('name')} {id:${results[i].get('productId')}} {库:${results[i].get('stock')}} `,

@@ -20,7 +20,7 @@
             <tr>
                 <td class="img">
                     <div class="img-border">
-                        <img src="<% for(var n in product[i].get('mainImage')) { %><% if(product[i].attributes.mainImage[n].isMainImage) { %><%= product[i].attributes.mainImage[n].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>?imageMogr2/thumbnail/120<%break;}}%>" alt="">
+                        <img src="<% for(var n in product[i].get('mainImage')) { %><% if(product[i].attributes.mainImage[n].isMainImage) { %><%= product[i].attributes.mainImage[n].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>?imageMogr2/thumbnail/120<%break;}}%>" alt="">
                     </div>
                 </td>
                 <td class="text">

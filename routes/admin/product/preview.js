@@ -60,11 +60,12 @@ router.get('/:productId',(req,res)=> {
                     watermark = '';
                 }
                 let detailImage = product.get('detailImage').replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com');
-                if (/.JPG/.test(detailImage)) {
-                    detailImage = detailImage.replace(/\.JPG/gi,'.JPG'+ watermark);
-                } else {
-                    detailImage = detailImage.replace(/\.jpg/gi,'.jpg'+ watermark);
-                }
+                detailImage = detailImage.replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi,'image.wish698.cn');
+                // if (/.JPG/.test(detailImage)) {
+                //     detailImage = detailImage.replace(/\.JPG/gi,'.JPG'+ watermark);
+                // } else {
+                //     detailImage = detailImage.replace(/\.jpg/gi,'.jpg'+ watermark);
+                // }
                 data = extend(data,{
                     product,
                     name:markdown.toHTML(name),

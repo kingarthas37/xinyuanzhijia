@@ -27,7 +27,7 @@
     <% var imageViewArray = [];
         for(var i in item.mainImage){
             if(item.mainImage[i].isMainImage) {
-                imageViewArray.push(item.mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com')+water)
+                imageViewArray.push(item.mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn')+water)
             }
     }
     %>

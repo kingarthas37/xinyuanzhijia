@@ -176,7 +176,7 @@
                         <ul class="image-list">
                             <% if (mainImage) { %>
                             <% for (var i=0;i< mainImage.length; i++) { %>
-                            <li data-id="<%= mainImage[i].id%>" class="am-cf"><div class="am-fl"><input <% if(mainImage[i].isMainImage){%>checked="checked"<%}%> type="checkbox" /></div><div class="am-fr"><p><a class="img-link" href="<%= mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com')%>" target="_blank"><img src="<%= mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com') %>?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a> <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> <a class="remove" href="javascript:;">删除</a></p></div></li>
+                            <li data-id="<%= mainImage[i].id%>" class="am-cf"><div class="am-fl"><input <% if(mainImage[i].isMainImage){%>checked="checked"<%}%> type="checkbox" /></div><div class="am-fr"><p><a class="img-link" href="<%= mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>" target="_blank"><img src="<%= mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a> <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> <a class="remove" href="javascript:;">删除</a></p></div></li>
                             <% } %>
                             <% } %>
                         </ul>
@@ -185,8 +185,8 @@
                             <span class="sp"></span>
                             <a href="javascript:;" class="copy-all-images">复制所有图片</a>
                         </p>
-                        <textarea id="detail-image" name="detail-image" rows="10" placeholder="输入产品图片"><%= product.get('detailImage').replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com') %></textarea>
-                        <input id="main-image" name="main-image" type="hidden" value="<%= JSON.stringify(product.get('mainImage')).replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com') %>" />
+                        <textarea id="detail-image" name="detail-image" rows="10" placeholder="输入产品图片"><%= product.get('detailImage').replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %></textarea>
+                        <input id="main-image" name="main-image" type="hidden" value="<%= JSON.stringify(product.get('mainImage')).replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>" />
                     </div>
                     <!-- images end -->
 
