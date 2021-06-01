@@ -265,7 +265,7 @@ router.get('/shipping-status',(req,res)=> {
 router.get('/get-spider-info',(req,res)=> {
 
     let url = req.query.url;
-    var result = {title: '-', image: '//image.wish698.cn/d4c225054f005a4d7d39.png?imageMogr2/thumbnail/24'};
+    var result = {title: '-', image: '//order-image.wish698.cn/d4c225054f005a4d7d39.png?imageMogr2/thumbnail/24'};
     var response = res;
     var domain = url.match(spider.domain);
     var spiderConfig = spider.spider;

@@ -59,9 +59,9 @@
             <tr>
                 <td><a href="/order/identity/edit/<%= identity[i].get('identityId') %>"><%= identity[i].get('name') %></a> </td>
                 <td class="t-c"><%= identity[i].get('cardNo') %></td>
-                <td class="t-c"><a href="<%= identity[i].get('cardImageFront').replace('ac-JoaBcRTt.clouddn.com','image.wish698.cn') %>" target="_blank">查看</a><span class="split"></span><a href="<%= identity[i].get('cardImageFront').replace('ac-JoaBcRTt.clouddn.com','lc-joabcrtt.cn-n1.lcfile.com') %>" download>下载</a></td>
-                <td class="t-c"><a href="<%= identity[i].get('cardImageBack').replace('ac-JoaBcRTt.clouddn.com','image.wish698.cn') %>" target="_blank">查看</a><span class="split"></span><a href="<%= identity[i].get('cardImageBack').replace('ac-JoaBcRTt.clouddn.com','lc-joabcrtt.cn-n1.lcfile.com')%>" download>下载</a></td>
-                <td class="t-c"><a href="<%= identity[i].get('cardImageAll').replace('ac-JoaBcRTt.clouddn.com','image.wish698.cn') %>" target="_blank">查看</a><span class="split"></span><a href="<%= identity[i].get('cardImageAll').replace('ac-JoaBcRTt.clouddn.com','lc-joabcrtt.cn-n1.lcfile.com') %>" download>下载</a></td>
+                <td class="t-c"><a href="<%= identity[i].get('cardImageFront').replace('ac-JoaBcRTt.clouddn.com','order-image.wish698.cn') %>" target="_blank">查看</a><span class="split"></span><a href="<%= identity[i].get('cardImageFront').replace('ac-JoaBcRTt.clouddn.com','order-image.wish698.cn') %>" download>下载</a></td>
+                <td class="t-c"><a href="<%= identity[i].get('cardImageBack').replace('ac-JoaBcRTt.clouddn.com','order-image.wish698.cn') %>" target="_blank">查看</a><span class="split"></span><a href="<%= identity[i].get('cardImageBack').replace('ac-JoaBcRTt.clouddn.com','order-image.wish698.cn')%>" download>下载</a></td>
+                <td class="t-c"><a href="<%= identity[i].get('cardImageAll').replace('ac-JoaBcRTt.clouddn.com','order-image.wish698.cn') %>" target="_blank">查看</a><span class="split"></span><a href="<%= identity[i].get('cardImageAll').replace('ac-JoaBcRTt.clouddn.com','order-image.wish698.cn') %>" download>下载</a></td>
                 <td class="t-c"><a class="remove-identity" href="/order/identity/remove/<%= identity[i].get('identityId') %>">删除</a></td>
             </tr>
             <% } %>
