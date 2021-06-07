@@ -343,7 +343,7 @@ router.get('/get-binding-product', (req, res)=> {
         res.json({
             stock: result.get('stock'),
             name:result.get('name'),
-            mainImage:result.get('mainImage')
+            mainImage:result.get('mainImage').replace('ac-JoaBcRTt.clouddn.com','image.wish698.cn').replace('lc-QuiPuWpJ.cn-n1.lcfile.com','image.wish698.cn')
         });
     });
 
