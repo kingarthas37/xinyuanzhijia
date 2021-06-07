@@ -131,6 +131,7 @@ router.get('/', function (req, res, next) {
             }
 
             let cql = `select * from OrderTrack ${cqlWhere} limit ${skip},${limit} order by orderId ${order}`;
+            console.log(cql);
             AV.Query.doCloudQuery(cql).then(function (results) {
                 data = extend(data, {
                     order: results.results
@@ -343,7 +344,7 @@ router.get('/get-binding-product', (req, res)=> {
         res.json({
             stock: result.get('stock'),
             name:result.get('name'),
-            mainImage:result.get('mainImage').replace('ac-JoaBcRTt.clouddn.com','image.wish698.cn').replace('lc-QuiPuWpJ.cn-n1.lcfile.com','image.wish698.cn')
+            mainImage:result.get('mainImage')
         });
     });
 
