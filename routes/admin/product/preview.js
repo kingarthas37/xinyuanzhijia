@@ -57,15 +57,15 @@ router.get('/:productId',(req,res)=> {
                     watermark = config.watermark.muxue928;
                 }
                 if(productMethodId === 39) {
-                    watermark = '';
+                    watermark = config.watermark.muxueMine;
                 }
                 let detailImage = product.get('detailImage').replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com');
                 detailImage = detailImage.replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi,'image.wish698.cn');
-                // if (/.JPG/.test(detailImage)) {
-                //     detailImage = detailImage.replace(/\.JPG/gi,'.JPG'+ watermark);
-                // } else {
-                //     detailImage = detailImage.replace(/\.jpg/gi,'.jpg'+ watermark);
-                // }
+                 if (/.JPG/.test(detailImage)) {
+                     detailImage = detailImage.replace(/\.JPG/gi,'.JPG'+ watermark);
+                 } else {
+                     detailImage = detailImage.replace(/\.jpg/gi,'.jpg'+ watermark);
+                 }
                 data = extend(data,{
                     product,
                     name:markdown.toHTML(name),
