@@ -131,7 +131,6 @@ router.get('/', function (req, res, next) {
             }
 
             let cql = `select * from OrderTrack ${cqlWhere} limit ${skip},${limit} order by orderId ${order}`;
-            console.log(cql);
             AV.Query.doCloudQuery(cql).then(function (results) {
                 data = extend(data, {
                     order: results.results

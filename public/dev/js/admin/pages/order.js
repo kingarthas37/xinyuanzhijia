@@ -798,7 +798,7 @@ module.exports = {
 
                                         let imageArr = [];
                                         for(let i in _data.mainImage) {
-                                            imageArr.push(_data.mainImage[i].url);
+                                            imageArr.push(_data.mainImage[i].url.replace('ac-JoaBcRTt.clouddn.com','image.wish698.cn').replace('lc-QuiPuWpJ.cn-n1.lcfile.com','image.wish698.cn'));
                                         }
 
                                         let outClassName = '';
