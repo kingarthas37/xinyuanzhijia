@@ -103,12 +103,16 @@ router.post('/stock/:productId', (req, res) => {
     base.isAdminUserLogin(req, res);  //判断是否登录
 
     let productId = parseInt(req.params.productId);
-    let stock = parseInt(req.body.stock);
+    let stock = req.body.stock ? parseInt(req.body.stock) : '';
     let sales = req.body.sales ? parseInt(req.body.sales) : '';
     let reserve = parseInt(req.body.reserve);
     let updateStockDate = parseInt(req.body.updateStockDate);
     let sold =parseInt(req.body.sold);
-
+    if (stock === '' || stock === null || stock < 0 || isNaN(stock)) {
+        let message = '库存不合法';
+        let code = 0;
+        return res.send({code, message});
+    }
     if (updateStockDate === 1) {
         updateStockDate = (Date.parse(new Date()) / 1000);
     } else if (updateStockDate === 0) {
