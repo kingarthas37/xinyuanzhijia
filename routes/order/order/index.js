@@ -368,7 +368,7 @@ router.get('/set-stock', (req, res)=> {
 
 router.post('/set-stock', (req, res)=> {
     let productId = parseInt(req.body['product-id']);
-    let stock = parseInt(req.body['stock']);
+    let stock = req.body['stock'] ? parseInt(req.body['stock']) : '';
     let sales = parseInt(req.body['sales']);
     let updateStockDate = parseInt(req.body.updateStockDate);
     if (updateStockDate == 1) {
@@ -377,6 +377,11 @@ router.post('/set-stock', (req, res)=> {
         updateStockDate = 0;
     } else {
         updateStockDate = 1;
+    }
+    if (stock === '' || stock === null || stock < 0 || isNaN(stock)) {
+        let message = '库存不合法';
+        let code = 0;
+        return res.send({"success":code, message});
     }
     let query = new AV.Query(Product);
     query.equalTo('productId', productId);
