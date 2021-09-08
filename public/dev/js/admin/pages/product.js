@@ -1040,7 +1040,7 @@ module.exports = {
             if($.cookie('hide-outstock-product')) {
                 checkbox.prop('checked',true);
                 products.each(function(i,n) {
-                   $(n).parents('tr').addClass('hide-no-product');
+                   $(n).parents('tr').removeClass('hide-no-product');
                });
             }
 
@@ -1048,12 +1048,12 @@ module.exports = {
                 if(this.checked) {
                     $.cookie('hide-outstock-product','true',{expires:new Date(new Date().getTime() + 1000*60*60*24*365),path:'/',domain:location.host});
                     products.each(function(i,n) {
-                        $(n).parents('tr').removeClass('hide-no-product');
+                        $(n).parents('tr').addClass('hide-no-product');
                     });
                 } else {
                     $.cookie('hide-outstock-product','',{expires:new Date(new Date().getTime()),path:'/',domain:location.host});
                     products.each(function(i,n) {
-                        $(n).parents('tr').addClass('hide-no-product');
+                        $(n).parents('tr').removeClass('hide-no-product');
                     });
                 }
             });
