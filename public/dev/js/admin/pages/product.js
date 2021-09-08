@@ -1032,6 +1032,34 @@ module.exports = {
 
         }
 
+        //隐藏下架产品
+        {
+            let products = $('.product-out');
+
+            let checkbox = $('.hide-outstock-product');
+            if($.cookie('hide-outstock-product')) {
+                checkbox.prop('checked',true);
+                products.each(function(i,n) {
+                   $(n).parents('tr').addClass('hide-no-product');
+               });
+            }
+
+            checkbox.click(function () {
+                if(this.checked) {
+                    $.cookie('hide-outstock-product','true',{expires:new Date(new Date().getTime() + 1000*60*60*24*365),path:'/',domain:location.host});
+                    products.each(function(i,n) {
+                        $(n).parents('tr').removeClass('hide-no-product');
+                    });
+                } else {
+                    $.cookie('hide-outstock-product','',{expires:new Date(new Date().getTime()),path:'/',domain:location.host});
+                    products.each(function(i,n) {
+                        $(n).parents('tr').addClass('hide-no-product');
+                    });
+                }
+            });
+
+        }
+
         //隐藏无现货产品
         {
             let checkbox = $('.hide-nostock-product');
