@@ -174,7 +174,7 @@ $(function() {
             container.infinitescroll({
                 debug: false,
                 loading: {
-                    img:'//lc-joabcrtt.cn-n1.lcfile.com/8ded071cdd14788c50fa.gif',
+                    img:'//image.wish698.cn/35949f652a23d8e4958f.gif',
                     msgText:'加载中...',
                     speed: 500
                 },

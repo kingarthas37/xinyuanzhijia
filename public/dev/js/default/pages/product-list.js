@@ -5,7 +5,10 @@ let utils = require('../common/utils');
 module.exports = {
 
     init() {
-        
+
+
+
+        /*
         let mainList = $('.main-list');
         mainList.setInfinitescroll({
             setPathParse:(path,page)=> {
@@ -26,7 +29,7 @@ module.exports = {
                                 break;
                             }
                         }
-                        return img;
+                        return img.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn');
                     })();
 
                     let stock = item.stock > 0 ? '<span class="active"><i class="am-icon-check"></i>现货</span>' :'';
@@ -42,7 +45,7 @@ module.exports = {
                     content += `
                     <li data-product-id="${item.productId}">
                         <div class="img">
-                            <a href="/product/detail/${item.productId}"><img src="//lc-joabcrtt.cn-n1.lcfile.com/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="${image}?imageMogr2/thumbnail/200"></a>
+                            <a href="/product/detail/${item.productId}"><img src="//image.wish698.cn/df9e62d1d9532ed9b308.png" class="lazy" width="100" height="100" data-original="${image}?imageMogr2/thumbnail/200"></a>
                         </div>
                         <div class="detail">
                             <h3>
@@ -95,7 +98,7 @@ module.exports = {
                 });
             }
         });
-        
+        */
     }
 
 };

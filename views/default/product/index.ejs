@@ -53,7 +53,9 @@
                 <li><a href="/product?order=sales<%=path%>">销量 <i class="am-icon-line-chart"></i></a></li>
                 <li><a href="/product?price=asc<%=path%>">价格低-高 <i class="am-icon-sort-amount-desc"></i></a></li>
                 <li><a href="/product?price=desc<%=path%>">价格高-低 <i class="am-icon-sort-amount-asc"></i></a></li>
+                <!--
                 <li><a href="/product?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&stock=1&method=<%=method%>">现货 <i class="am-icon-plane"></i></a></li>
+                -->
                 <li><a href="/product?order=onsaleDate<%=path%>">上架时间 <i class="am-icon-calendar-check-o"></i></a></li>
             </ul>
         </div>
@@ -69,7 +71,13 @@
         <div class="img">
             <%if (items[i].get('isHot')){ %><em class="hot"></em><%}%>
             <%if (items[i].get('isNewSale')){ %><em class="new"></em><%}%>
-            <a href="/product/detail/<%=items[i].get('productId') %>"><img src="//image.wish698.cn/3a994354f637e827ae7e.png" class="lazy" width="100" height="100" data-original="<% for(var n in items[i].get('mainImage')) { %><% if(items[i].attributes.mainImage[n].isMainImage) { %><%= items[i].attributes.mainImage[n].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
+
+            <!--
+            <a href="/product/detail/<%=items[i].get('productId') %>"><img src="//image.wish698.cn/df9e62d1d9532ed9b308.png" class="lazy" width="100" height="100" data-original="<% for(var n in items[i].get('mainImage')) { %><% if(items[i].attributes.mainImage[n].isMainImage) { %><%= items[i].attributes.mainImage[n].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>?imageMogr2/thumbnail/200<%break;}}%>" /></a>
+            -->
+
+            <a href="/product/detail/<%=items[i].get('productId') %>"><img src="<% for(var n in items[i].get('mainImage')) { %><% if(items[i].attributes.mainImage[n].isMainImage) { %><%= items[i].attributes.mainImage[n].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>?imageMogr2/thumbnail/200<%break;}}%>" width="100" height="100" /></a>
+
         </div>
         <div class="detail">
             <h3>

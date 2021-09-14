@@ -1703,32 +1703,32 @@ module.exports = {
                 //验证敏感词
                 let reg= /魔法油|符咒|巫术|占卜|通灵|改运|消灾|避祸/;
                 if(reg.test($('#name').val())) {
-                    alert('标题包含敏感词!');
+               //     alert('标题包含敏感词!');
                     return false;
                 }
 
                 if(reg.test($('#review').val())) {
-                    alert('店主评语包含敏感词!');
+               //     alert('店主评语包含敏感词!');
                     return false;
                 }
 
                 if(reg.test($('#detail').val())) {
-                    alert('详情包含敏感词!');
+               //     alert('详情包含敏感词!');
                     return false;
                 }
 
                 if(reg.test($('#property').val())) {
-                    alert('产品属性包含敏感词!');
+               //     alert('产品属性包含敏感词!');
                     return false;
                 }
 
                 if(reg.test($('#instruction').val())) {
-                    alert('产品说明包含敏感词!');
+                //    alert('产品说明包含敏感词!');
                     return false;
                 }
 
                 if(reg.test($('#use').val())) {
-                    alert('产品使用说明包含敏感词!');
+               //     alert('产品使用说明包含敏感词!');
                     return false;
                 }
 
