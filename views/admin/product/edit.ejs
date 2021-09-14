@@ -35,14 +35,16 @@
                     </div>
 
                     <div class="am-form-group">
+                        <label for="name-tb">产品淘宝标题:</label>
+                        <input id="name-tb" name="name-tb" type="text" placeholder="输入产品淘宝标题" autocomplete="off" value="<%= product.get('nameTb') %>" />
+                    </div>
+
+                    <div class="am-form-group">
                         <label for="name-en">产品副标题:</label>
                         <input id="name-en" name="name-en" type="text" placeholder="输入产品副标题" autocomplete="off" value="<%= product.get('nameEn') %>" />
                     </div>
 
-                    <div class="am-form-group">
-                        <label for="name-tb">产品淘宝标题:</label>
-                        <input id="name-tb" name="name-tb" type="text" placeholder="输入产品淘宝标题" autocomplete="off" <%= product.get('nameTb') %>/>
-                    </div>
+
 
                     <hr/>
                     
