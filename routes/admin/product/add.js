@@ -111,6 +111,8 @@ router.post('/', (req, res) => {
     name = name.toUpperCase().trim().replace(/\t/g,' ').replace(/\s+/g,' ');
     let nameEn = req.body['name-en'];
     nameEn = nameEn.toUpperCase().trim().replace(/\t/g,' ').replace(/\s+/g,' ');
+    let nameTb = req.body['name-tb'];
+    nameTb = nameTb.toUpperCase().trim().replace(/\t/g,' ').replace(/\s+/g,' ');
     let mainImage = req.body['main-image'] ? JSON.parse(req.body['main-image']) : null;
     let productMethod = getQueryData(req.body['select-product-method']);
     let category1 = getQueryData(req.body['select-category-1']);
@@ -132,6 +134,7 @@ router.post('/', (req, res) => {
     product.save({
         name,
         nameEn,
+        nameTb,
         mainImage,
         productMethod,
         category1,
@@ -155,6 +158,7 @@ router.post('/', (req, res) => {
             productId,
             name,
             nameEn,
+            nameTb,
             mainImage,
             productMethod,
             category1,
