@@ -66,6 +66,7 @@ router.get('/:productId',(req,res)=> {
                  } else {
                      detailImage = detailImage.replace(/\.jpg/gi,'.jpg'+ watermark);
                  }
+
                 data = extend(data,{
                     product,
                     name:markdown.toHTML(name),
