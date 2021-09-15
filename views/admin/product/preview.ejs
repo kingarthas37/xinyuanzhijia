@@ -37,9 +37,9 @@
     <h4><%- name %></h4>
 
     <hr/>
-    
+
     <div class="content">
-        
+
         <div class="preview-content">
 
             <!--
@@ -49,31 +49,39 @@
             <% } %>
             -->
 
-            <% if (detail) { %>
-            <section><img src="http://image.wish698.cn/c8c692660310d927f999.jpg"/></section>
-            <div><%- detail %></div>
-            <% } %>
-            
-            <% if (review) { %>
-            <section><img src="http://image.wish698.cn/b78d774f107117619634.jpg"></section>
-            <div><%- review %></div>
-            <% } %>
-    
+            <%if(!nameTb){%>
+                <% if (detail) { %>
+                <section><img src="http://image.wish698.cn/c8c692660310d927f999.jpg"/></section>
+                <div><%- detail %></div>
+                <% } %>
+            <%}%>
+
+            <%if(!nameTb){%>
+                <% if (review) { %>
+                <section><img src="http://image.wish698.cn/b78d774f107117619634.jpg"></section>
+                <div><%- review %></div>
+                <% } %>
+            <%}%>
+
             <% if (property) { %>
             <section><img src="http://image.wish698.cn/2a268d091b76378126fc.jpg"></section>
             <div><%- property %></div>
             <% } %>
 
-            <% if (use) { %>
-            <section><img src="http://image.wish698.cn/e15c2b3c39c88fd51b6b.jpg"/></section>
-            <div><%- use %></div>
-            <% } %>
-            
-            <% if (instruction) { %>
-            <section><img src="http://image.wish698.cn/517be985cb90181ec8e5.jpg"/></section>
-            <div><%- instruction %></div>
-            <% } %>
-    
+            <%if(!nameTb){%>
+                <% if (use) { %>
+                <section><img src="http://image.wish698.cn/e15c2b3c39c88fd51b6b.jpg"/></section>
+                <div><%- use %></div>
+                <% } %>
+            <%}%>
+
+            <%if(!nameTb){%>
+                <% if (instruction) { %>
+                <section><img src="http://image.wish698.cn/517be985cb90181ec8e5.jpg"/></section>
+                <div><%- instruction %></div>
+                <% } %>
+            <%}%>
+
             <% if (detailImage) { %>
             <section><img src="http://image.wish698.cn/318c99b30a8bb4032e30.jpg"/></section>
             <div><%- detailImage %></div>
@@ -86,7 +94,7 @@
                 <% if(product.get('groups')[i].products.length) {%>
                     <div><img src="https://img.alicdn.com/imgextra/i4/42879206/TB2Dw47p9BjpuFjSsplXXa5MVXa_!!42879206.png"></div>
                     <div class="recommend-content">
-            
+
                     </div>
                     <hr>
                     <div class="am-form">
@@ -103,9 +111,9 @@
                 <%}%>
             <%}%>
         <% } %>
-        
+
     </div>
-    
+
 </div>
 
 

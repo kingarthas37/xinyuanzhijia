@@ -70,6 +70,7 @@ router.get('/:productId',(req,res)=> {
                     product,
                     name:markdown.toHTML(name),
                     nameEn:markdown.toHTML(product.get('nameEn')),
+                    nameTb:markdown.toHTML(product.get('nameTb')),
                     detail: markdown.toHTML(product.get('detail')),
                     review: markdown.toHTML(product.get('review')),
                     property: markdown.toHTML(product.get('property')),
@@ -130,6 +131,7 @@ router.post('/quick-preview', function (req, res) {
     name = toUpperCase(name);
 
     let nameEn = req.body['name-en'];
+    let nameTb = req.body['name-tb'];
     let banner = req.body['banner'];
     let detail = req.body['detail'];
     let review = req.body['review'];
@@ -145,6 +147,7 @@ router.post('/quick-preview', function (req, res) {
     data = extend(data,{
         name:name,
         nameEn:nameEn,
+        nameTb:nameTb,
         banner:banner,
         detail: markdown.toHTML(detail),
         review: markdown.toHTML(review),

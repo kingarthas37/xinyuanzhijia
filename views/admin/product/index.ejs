@@ -184,7 +184,9 @@
                                 <% if(product[i].get('isHot')) { %>
                                 <sup class="hot"></sup>
                                 <% } %>
-                                <% if(product[i].get('isParent') == true){ %><strong>(主)</strong> <% } %><%= product[i].get('name') %> {<%= product[i].get('productId') %><%if(product[i].get('bindingId')){%> : <strong><%=product[i].get('bindingNumber')%>*<%= product[i].get('bindingId')%></strong><%}%>}
+                                <% if(product[i].get('isParent') == true){ %><strong>(主)</strong> <% } %>
+                                <% if(product[i].get('nameTb')){ %>[淘标] <% } %>
+                                <%= product[i].get('name') %> {<%= product[i].get('productId') %><%if(product[i].get('bindingId')){%> : <strong><%=product[i].get('bindingNumber')%>*<%= product[i].get('bindingId')%></strong><%}%>}
                             </a>
                             <% if(product[i].get('comment')) {%>
                              <span>(注:<%=product[i].get('comment') %>)</span>
