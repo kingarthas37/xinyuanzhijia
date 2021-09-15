@@ -641,6 +641,20 @@ module.exports = {
             });
         }
 
+        //copy taobao title
+        {
+            $('.copy-title-taobao').each(function(i,n) {
+                let clipboard = new Clipboard(n, {
+                    text: function() {
+                        return `${$(n).data('text')}`;
+                    }
+                });
+                clipboard.on('success',data => {
+                    $(n).addClass('on');
+                });
+            });
+        }
+
 
         {
             $('.image-source-download').click(function() {
