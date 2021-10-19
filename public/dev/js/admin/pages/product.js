@@ -385,6 +385,57 @@ module.exports = {
 
         }
 
+        //批量修改分类
+        {
+
+            let modal = $('#modal-change-category');
+            let modalLoading = $('#modal-loading');
+
+            let input1 = $('.input-change-category-id1');
+            let input2 = $('.input-change-category-id2');
+            let input3 = $('.input-change-category-id3');
+
+            $('.link-change-category').click(function () {
+                let productId = $(this).data('product-id');
+                modalLoading.find('.am-modal-hd').text('正在修改...');
+                modal.modal({
+                    relatedTarget: this,
+                    onConfirm: function(e) {
+
+                        alert('老贾');
+                        console.log(input1.val(),input2.val(),input3.val());
+                        /*
+                        $.ajax({
+                            type:'post',
+                            url:'/admin/product/set-parent-product',
+                            data:{
+                                'productId':productId,
+                                'parentProductId':input.val()
+                            }
+                        }).then(
+                            result => {
+                                modalLoading.find('.am-modal-hd').text('修改成功!正在更新...');
+                                setTimeout(()=> {
+                                    location.reload();
+                                },1000);
+                            },
+                            err => {
+                                console.info(err);
+                                modalLoading.find('.am-modal-hd').text('修改失败,请重试!');
+                                setTimeout(()=> {
+                                    modalLoading.modal('close');
+                                },1000);
+                            }
+                        );
+                        */
+                        modalLoading.modal();
+                    }
+                });
+                input1[0].focus();
+            });
+        }
+
+
         //关联分类属性
         {
             let modal = $('#modal-bind-category');
