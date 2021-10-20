@@ -942,5 +942,28 @@ router.get('/get-color-tag', function (req, res) {
     });
 });
 
+router.post('/set-update-category', function (req, res) {
+    let oldCategory2Id = parseInt(req.body['oldCategory2Id']);
+    let productMethod = parseInt(req.body['productMethod']);
+    let category1Id = parseFloat(req.body['category1Id']);
+    let category2Id = parseInt(req.body['category2Id']);
+    let success = [];
+    pro.getProductsByCategoryId([oldCategory2Id]).then(items => {
+        async.forEachLimit(items,5, function(item, callback){
+            item.set('category2Id', [category2Id]);
+            item.set('category1Id', [category1Id]);
+            item.set('productMethod', [productMethod]);
+            item.save().then(()=> {
+                success.push(item.attributes.productId);
+                callback();
+            });
+        }, function(err){
+            if(err) {
+                console.log('set update category:' + err);
+            }
+            res.send({success:success, count:success.length});
+        });
+    });
+});
 
 module.exports = router;

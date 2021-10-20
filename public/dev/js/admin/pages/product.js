@@ -396,21 +396,17 @@ module.exports = {
             let input3 = $('.input-change-category-id3');
 
             $('.link-change-category').click(function () {
-                let productId = $(this).data('product-id');
+                // let productId = $(this).data('product-id');
+                let oldCategory2Id = $(this).data('category2-id');
                 modalLoading.find('.am-modal-hd').text('正在修改...');
                 modal.modal({
                     relatedTarget: this,
                     onConfirm: function(e) {
-
-                        alert('老贾');
-                        console.log(input1.val(),input2.val(),input3.val());
-                        /*
                         $.ajax({
                             type:'post',
-                            url:'/admin/product/set-parent-product',
+                            url:'/admin/product/set-update-category',
                             data:{
-                                'productId':productId,
-                                'parentProductId':input.val()
+                                'oldCategory2Id':oldCategory2Id
                             }
                         }).then(
                             result => {
@@ -427,7 +423,6 @@ module.exports = {
                                 },1000);
                             }
                         );
-                        */
                         modalLoading.modal();
                     }
                 });
