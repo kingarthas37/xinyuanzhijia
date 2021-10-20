@@ -391,9 +391,7 @@ module.exports = {
             let modal = $('#modal-change-category');
             let modalLoading = $('#modal-loading');
 
-            let input1 = $('.input-change-category-id1');
-            let input2 = $('.input-change-category-id2');
-            let input3 = $('.input-change-category-id3');
+            let input = $('.input-change-category-id');
 
             $('.link-change-category').click(function () {
                 // let productId = $(this).data('product-id');
@@ -402,17 +400,22 @@ module.exports = {
                 modal.modal({
                     relatedTarget: this,
                     onConfirm: function(e) {
+                        let arr = input.val().split('|');
+                        alert(arr);
                         $.ajax({
                             type:'post',
                             url:'/admin/product/set-update-category',
                             data:{
-                                'oldCategory2Id':oldCategory2Id
+                                'oldCategory2Id':oldCategory2Id,
+                                'productMethod':arr[0],
+                                'category1Id':arr[1],
+                                'category2Id':arr[2]
                             }
                         }).then(
                             result => {
                                 modalLoading.find('.am-modal-hd').text('修改成功!正在更新...');
                                 setTimeout(()=> {
-                                    location.reload();
+                              //      location.reload();
                                 },1000);
                             },
                             err => {
@@ -426,7 +429,7 @@ module.exports = {
                         modalLoading.modal();
                     }
                 });
-                input1[0].focus();
+                input[0].focus();
             });
         }
 
