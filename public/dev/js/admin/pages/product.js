@@ -401,7 +401,6 @@ module.exports = {
                     relatedTarget: this,
                     onConfirm: function(e) {
                         let arr = input.val().split('|');
-                        alert(arr);
                         $.ajax({
                             type:'post',
                             url:'/admin/product/set-update-category',
@@ -415,7 +414,7 @@ module.exports = {
                             result => {
                                 modalLoading.find('.am-modal-hd').text('修改成功!正在更新...');
                                 setTimeout(()=> {
-                              //      location.reload();
+                                    location.reload();
                                 },1000);
                             },
                             err => {
