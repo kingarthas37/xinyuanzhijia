@@ -972,22 +972,20 @@ module.exports = {
 
         //显示规格
         {
-
-            $('.set-product-parent').each(function () {
-                 let row = $(this).parents('tr');
-                 if(row.hasClass('main-product-row')) {
-                     return;
-                 }
-                 let parentId = parseInt($(this).attr('parentproductid'));
-                 let parentTargetRow = $('.main-product-row[data-product-id='+ parentId + ']');
-                 if(parentTargetRow.length) {
-                     row.addClass('sub-product-row');
-                     parentTargetRow.after(row);
-                 } else {
-                    // row.detach();
-                 }
-            });
-
+            setTimeout(function() {
+                $('.set-product-parent').each(function () {
+                    let row = $(this).parents('tr');
+                    if(row.hasClass('main-product-row')) {
+                        return;
+                    }
+                    let parentId = parseInt($(this).attr('parentproductid'));
+                    let parentTargetRow = $('.main-product-row[data-product-id='+ parentId + ']');
+                    if(parentTargetRow.length) {
+                        row.addClass('sub-product-row');
+                        parentTargetRow.after(row);
+                    }
+                });
+            },1000);
         }
 
         //检测check-wisdomproducts-stock
