@@ -950,8 +950,8 @@ router.post('/set-update-category', function (req, res) {
     let success = [];
     pro.getProductsByCategoryId([oldCategory2Id]).then(items => {
         async.forEachLimit(items,5, function(item, callback){
-            item.set('category2Id', [category2Id]);
-            item.set('category1Id', [category1Id]);
+            item.set('category2', [category2Id]);
+            item.set('category1', [category1Id]);
             item.set('productMethod', [productMethod]);
             item.save().then(()=> {
                 success.push(item.attributes.productId);
