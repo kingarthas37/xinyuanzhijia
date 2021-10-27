@@ -454,9 +454,10 @@ module.exports = {
                             }
                         }).then(
                             result => {
-                                modalLoading.find('.am-modal-hd').text('关联成功!正在更新...');
+                                modalLoading.find('.am-modal-hd').text('关联成功!');
                                 setTimeout(()=> {
-                                    location.reload();
+                                    modalLoading.modal('close');
+                                   // location.reload();
                                 },1000);
                             },
                             err => {
@@ -1818,9 +1819,9 @@ module.exports = {
         let imageView = $('.image-list');
         let value = {};
 
-        imageView.find('input[type=checkbox]').each(function() {
+        imageView.find('input[type=checkbox]').each(function(i,n) {
             let content = $(this).parents('li');
-            value[content.data('id')] = {
+            value[i] = {
                 "url":content.find('.img-link').attr('href'),
                 "isMainImage":this.checked
             };
