@@ -457,7 +457,7 @@ module.exports = {
                                 modalLoading.find('.am-modal-hd').text('关联成功!');
                                 setTimeout(()=> {
                                     modalLoading.modal('close');
-                                   // location.reload();
+                                    location.reload();
                                 },1000);
                             },
                             err => {
