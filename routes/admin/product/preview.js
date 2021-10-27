@@ -53,12 +53,14 @@ router.get('/:productId',(req,res)=> {
                 
                 //水印判断不同淘宝店铺
                 let watermark = config.watermark.main;
+                /*
                 if(productMethodId === 3 || productMethodId === 31 || productMethodId === 37 || productMethodId === 38) {
                     watermark = config.watermark.muxue928;
                 }
                 if(productMethodId === 39) {
                     watermark = config.watermark.muxueMine;
                 }
+                */
                 let detailImage = product.get('detailImage').replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com');
                 detailImage = detailImage.replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi,'image.wish698.cn');
                  if (/.JPG/.test(detailImage)) {
