@@ -45,12 +45,14 @@ module.exports = {
         
         images.each(function() {
             let src = this.src;
-            $(this).data('src-source',src.replace(/\?.+/,''));
-            $(this).data('src-target',src);
+            let mark = '?imageView2/0/q/75|watermark/1/image/aHR0cDovL2ltYWdlLndpc2g2OTguY24vMDdkMWFkNGQ4NzNjYjM3NTNmN2EucG5n/dissolve/100/gravity/SouthEast/dx/0/dy/50|imageslim';
+            $(this).data('src-source',src);
+            $(this).data('src-target',src + mark);
         });
         
         $('.disable-watermark').click(function() {
-            if(this.checked) {
+
+            if(!this.checked) {
                 images.each(function() {
                     $(this).attr('src',$(this).data('src-source'));
                 });
