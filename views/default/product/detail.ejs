@@ -50,7 +50,12 @@
     <a href="/product?method=<%=item.productMethod[0]%>&cat1=<%=category1.category1Id%>"><%=category1.name%></a> <i class="am-icon-angle-right"></i> <a href="/product?method=<%=item.productMethod[0]%>&cat1=<%=category1.category1Id%>&cat2=<%=category2.category2Id%>"><%=category2.name%></a>
 </div>
 
-<h1><%if(item.isHot){%><sup class="hot"></sup><%}%><%- item.name %> <a title="分享给好友" class="events-share" href="javascript:;"><i class="am-icon-share-alt"></i></a></h1>
+<h1><%if(item.isHot){%><sup class="hot"></sup><%}%><%- item.name %>
+    [ID:<%= item.productId %>]
+    <!--
+    <a title="分享给好友" class="events-share" href="javascript:;"><i class="am-icon-share-alt"></i></a>
+    -->
+</h1>
 
 <div class="guarantee-content">
     <span><i class="am-icon-leaf"></i> 正品保障</span>
@@ -65,9 +70,11 @@
     <div class="info">
         <div>
             <span class="price">¥ <%= (item.price ? item.price : '-') %> <a href="javascript:;" data-am-popover="{content:'此价格为参考价格,实际价格请参考淘宝店铺。'}"> 参考价格 <i class="am-icon-question-circle"></i></a></span>
-            
+
+            <!--
             <% if(item.stock){%>
-            <span class="stock"><a class="in-stock" href="javascript:;">
+            <span class="stock">
+                <a class="in-stock" href="javascript:;">
                 库存:
                 <%if(item.stock < 11){%>
                     <%= item.stock%>
@@ -76,7 +83,8 @@
                 <%}%>
             </a></span>
             <%}%>
-            
+            -->
+
             <span class="stock">
                 <% if(item.isShortStock && item.isOnly){%>
                 <a class="short-stock" href="javascript:;" data-am-popover="{content:'该产品只有一件并已售完,请继续关注上架新品.'}"> 已售完 <i class="am-icon-question-circle"></i></a>
@@ -154,6 +162,7 @@
         
         <div class="am-tab-panel param" id="tab-product-param">
             <ul>
+                <!--
                 <% if(item.country == 'us') { %><li>产地/国家: 美国</li> 
                 <% } else if(item.country == 'in') { %><li>产地/国家: 印度</li>
                 <% } else if(item.country == 'tw') { %><li>产地/国家: 中国台湾</li>  
@@ -165,13 +174,17 @@
                 <% } else if(item.country == 'ca') { %><li>产地/国家: 加拿大</li>  
                 <% } else if(item.country == 'cn') { %><li>产地/国家: 中国</li>  
                 <% } else if(item.country == 'other') { %><li>产地/国家: 其他</li><%}%>
-                
+
+-->
+
+                <!--
                 <% if(item.arrivedTime == 1) { %><li>到货时间: <span class="color-green"><strong>非常快 (约1-2周)</strong></span></li>
                 <% } else if(item.arrivedTime == 2) { %><li>到货时间: <span class="color-green"><strong>较快 (约2-3周)</strong></span></li>
                 <% } else if(item.arrivedTime == 3) { %><li>到货时间: <span class="color-orange">一般 (约3-4周)</span></li>
                 <% } else if(item.arrivedTime == 4) { %><li>到货时间: <span class="color-orange">较慢 (1个月以上)</span></li>
                 <% } else if(item.arrivedTime == 5) { %><li>到货时间: <span class="color-orange">非常慢 (2个月以上)</span></li>
                 <%}%>
+                -->
                 
                 <%- item.property.replace('<ul>','').replace('</ul>',''); %>
             </ul>
@@ -200,14 +213,18 @@
 
 <div class="events">
     <a class="events-good" href="javascript:;"><i class="am-icon-thumbs-up"></i> <span>点赞  <%if(item.approval){%>( <em><%=item.approval%></em> )<%}%></span> </a>
+    <!--
     <a class="events-share" href="javascript:;"><i class="am-icon-share"></i> <span>分享给好友</span> </a>
+    -->
 </div>
 
 <div class="recommend-content"></div>
 
+<!--
 <div class="buy-button">
     <button type="button" id="buy" class="am-btn am-btn-default">去淘宝店铺购买</button>
 </div>
+-->
 
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="pswp__bg"></div>

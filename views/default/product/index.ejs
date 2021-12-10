@@ -24,7 +24,7 @@
             <ul class="am-dropdown-content">
                 <% for(var i=0; i<category1.length; i++) { %>
                 <% if (cat1 == category1[i].get('category1Id')) { category1Name = category1[i].get('name'); } %>
-                <li data-id="<%= category1[i].get('category1Id')%>" class="am-dropdown-header"><a href="/product?cat1=<%=category1[i].get('category1Id')%>&method=<%=method%>&stock=<%=stock%>"><%= category1[i].get('name')%></a></li>
+                <li data-id="<%= category1[i].get('category1Id')%>" class="am-dropdown-header"><a href="/product?method=<%=method%>&cat1=<%=category1[i].get('category1Id')%>&stock=1&limit=500"><%= category1[i].get('name')%></a></li>
                 <% } %>
             </ul>
             <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span><%= category1Name%></span> <span class="am-icon-caret-down"></span></button>
@@ -36,7 +36,7 @@
                 <% if(category2) { %>
                 <% for(var i=0; i<category2.length; i++) { %>
                 <% if (cat2 == category2[i].get('category2Id')) { category2Name = category2[i].get('name'); } %>
-                <li data-id="<%= category2[i].get('category1Id')%>" class="am-dropdown-header"><a href="/product?cat1=<%= cat1 %>&cat2=<%=category2[i].get('category2Id')%>&method=<%=method%>&stock=<%=stock%>"><%= category2[i].get('name')%></a></li>
+                <li data-id="<%= category2[i].get('category1Id')%>" class="am-dropdown-header"><a href="/product?method=<%=method%>&cat1=<%= cat1 %>&cat2=<%=category2[i].get('category2Id')%>&stock=1&limit=500"><%= category2[i].get('name')%></a></li>
                 <% } %>
                 <% } else { %>
                 <li data-id="" class="am-dropdown-header"><a href="javascript:;">请选择一级分类</a></li>
@@ -49,14 +49,14 @@
         <div class="am-dropdown sort" data-am-dropdown>
             <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><span><%= sortTitle%></span> <span class="am-icon-caret-down"></span></button>
             <ul class="am-dropdown-content">
-                <li><a href="/product?order=pageViews<%=path%>">热门 <i class="am-icon-star"></i></a></li>
-                <li><a href="/product?order=sales<%=path%>">销量 <i class="am-icon-line-chart"></i></a></li>
-                <li><a href="/product?price=asc<%=path%>">价格低-高 <i class="am-icon-sort-amount-desc"></i></a></li>
-                <li><a href="/product?price=desc<%=path%>">价格高-低 <i class="am-icon-sort-amount-asc"></i></a></li>
+                <li><a href="/product?order=pageViews<%=path%>&limit=500">热门 <i class="am-icon-star"></i></a></li>
+                <li><a href="/product?order=sales<%=path%>&limit=500">销量 <i class="am-icon-line-chart"></i></a></li>
+                <li><a href="/product?price=asc<%=path%>&limit=500">价格低-高 <i class="am-icon-sort-amount-desc"></i></a></li>
+                <li><a href="/product?price=desc<%=path%>&limit=500">价格高-低 <i class="am-icon-sort-amount-asc"></i></a></li>
                 <!--
                 <li><a href="/product?keywords=<%= keywords%>&cat1=<%=cat1%>&cat2=<%=cat2%>&stock=1&method=<%=method%>">现货 <i class="am-icon-plane"></i></a></li>
                 -->
-                <li><a href="/product?order=onsaleDate<%=path%>">上架时间 <i class="am-icon-calendar-check-o"></i></a></li>
+                <li><a href="/product?order=onsaleDate<%=path%>&limit=500">上架时间 <i class="am-icon-calendar-check-o"></i></a></li>
             </ul>
         </div>
     </div>
@@ -67,6 +67,9 @@
 <% if (count > 0) { %>
 <ul class="main-list">
     <% for(var i=0; i< items.length;i++) {%>
+
+    <% if(items[i].get('isParent') !== true) { %>
+
     <li data-product-id="<%=items[i].get('productId') %>">
         <div class="img">
             <%if (items[i].get('isHot')){ %><em class="hot"></em><%}%>
@@ -82,9 +85,15 @@
         <div class="detail">
             <h3>
                 <a href="/product/detail/<%=items[i].get('productId') %>" <%if(items[i].get('isShortStock')) {%>class="out-stock"<%}%> >
+
+                    <!--
                     <% if (items[i].get('stock') > 0) { %>[现货]<% } %>
                     <% if (items[i].get('isShortStock')) {%>[缺货]<%}%>
+                    -->
                     <%= items[i].get('name') %>
+                    [ID:<%=items[i].get('productId') %>]
+
+
                 </a>
             </h3>
             <p>
@@ -93,14 +102,15 @@
                 <a class="fav <%if(items[i].get('isWish')){%>add<%}%>" href="javascript:;"><%if(items[i].get('isWish')){%>已收藏<%}else{%>收藏<%}%></a>
             </p>
             <p>
-                <% if (items[i].get('isRefund')) { %><span class="active"><i class="am-icon-history"></i>7天退款</span><% } %>
                 <% if (items[i].get('stock') > 0) { %><span class="active"><i class="am-icon-check"></i>现货</span><% } %>
+                <% if (items[i].get('isRefund')) { %><span class="active"><i class="am-icon-history"></i>7天退款</span><% } %>
                 <% if (items[i].get('isHandmade')) { %><span class="active"><i class="am-icon-modx"></i>纯手工</span><% } %>
                 <% if (items[i].get('isOnly')) { %><span class="active"><i class="am-icon-gavel"></i>只此一件 </span><% } %>
             </p>
         </div>
     </li>
 
+    <%}%>
     <% } %>
 </ul>
 <div class="navigation">
