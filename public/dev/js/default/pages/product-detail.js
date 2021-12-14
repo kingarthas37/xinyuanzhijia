@@ -7,7 +7,7 @@ let utils = require('../common/utils');
 module.exports = {
 
     init() {
- 
+
         this.productId = $('#product-id').val();
         
         //收藏
@@ -23,9 +23,11 @@ module.exports = {
         });
         
         //主图预览图懒加载
+        /*
         $('img.lazy-container').lazyload({
             container: $('.lazy-container-view')
         });
+        */
 
         //图片预览
         {

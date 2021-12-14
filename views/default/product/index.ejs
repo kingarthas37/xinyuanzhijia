@@ -97,9 +97,11 @@
                 </a>
             </h3>
             <p>
-                <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price') + '.00' : '-') %></strong></span>
+                <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price').toFixed(2) : '-') %></strong></span>
                 <span><%=items[i].get('pageViews') %>次浏览</span>
+                <!--
                 <a class="fav <%if(items[i].get('isWish')){%>add<%}%>" href="javascript:;"><%if(items[i].get('isWish')){%>已收藏<%}else{%>收藏<%}%></a>
+                -->
             </p>
             <p>
                 <% if (items[i].get('stock') > 0) { %><span class="active"><i class="am-icon-check"></i>现货</span><% } %>

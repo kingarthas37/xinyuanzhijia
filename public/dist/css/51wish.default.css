@@ -2393,7 +2393,8 @@ a.pswp__share--download:hover {
 .index-page .am-tabs .am-tabs-nav li {
   width: 50%;
   text-align: center;
-  border: none; }
+  border: none;
+  margin-bottom: 3px; }
   .index-page .am-tabs .am-tabs-nav li a {
     font-size: 15px;
     padding: 0 15px;
@@ -2403,7 +2404,7 @@ a.pswp__share--download:hover {
     display: inline-block;
     color: #666;
     border: none !important;
-    border-bottom: 1px solid #eee !important; }
+    border-bottom: 1px solid #ddd !important; }
   .index-page .am-tabs .am-tabs-nav li.am-active a {
     font-weight: bold;
     font-size: 16px;
