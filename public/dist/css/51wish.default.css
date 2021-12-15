@@ -2390,26 +2390,28 @@ a.pswp__share--download:hover {
 .index-page .am-tabs.row-3 .am-tabs-nav li {
   width: 33%; }
 
-.index-page .am-tabs .am-tabs-nav li {
-  width: 50%;
-  text-align: center;
-  border: none;
-  margin-bottom: 3px; }
-  .index-page .am-tabs .am-tabs-nav li a {
-    font-size: 15px;
-    padding: 0 15px;
-    height: 45px;
-    line-height: 45px;
-    margin: 0;
-    display: inline-block;
-    color: #666;
-    border: none !important;
-    border-bottom: 1px solid #ddd !important; }
-  .index-page .am-tabs .am-tabs-nav li.am-active a {
-    font-weight: bold;
-    font-size: 16px;
-    border-bottom: 3px solid #000000 !important;
-    color: #000000; }
+.index-page .am-tabs .am-tabs-nav {
+  border-bottom: none; }
+  .index-page .am-tabs .am-tabs-nav li {
+    width: 50%;
+    text-align: center;
+    border: none;
+    margin-bottom: 3px; }
+    .index-page .am-tabs .am-tabs-nav li a {
+      font-size: 15px;
+      padding: 0 15px;
+      height: 45px;
+      line-height: 45px;
+      margin: 0;
+      display: inline-block;
+      color: #666;
+      border: none !important;
+      border-bottom: 1px solid #ddd !important; }
+    .index-page .am-tabs .am-tabs-nav li.am-active a {
+      font-weight: bold;
+      font-size: 16px;
+      border-bottom: 3px solid #000000 !important;
+      color: #000000; }
 
 .index-page .am-tabs .am-tab-panel {
   padding: 0; }
