@@ -26,6 +26,7 @@ let data = extend(config.data, {
 
 //首页
 router.get('/', (req, res) => {
+
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
     let keywords = req.query.keywords || '';
@@ -156,6 +157,7 @@ router.get('/', (req, res) => {
                             console.log('product open sell:' + err);
                         }
                         data = extend(data, {items});
+                        console.log(items);
                         resolve();
                     });
                 } else {

@@ -23,13 +23,16 @@ let data = extend(config.data, {
 //首页
 router.get('/', (req, res) => {
     let page = req.query.page ? parseInt(req.query.page) : 1;
-    let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
+   // let limit = req.query.limit ? parseInt(req.query.limit) : config.page.limit;
+    let limit = 500;
     let keywords = req.query.keywords || null;
-    let stock = req.query.stock || null;
-    let order = req.query.order || 'createdAt';
+  //  let stock = req.query.stock || null;
+    let stock = 1;
+   // let order = req.query.order || 'createdAt';
+    let order = 'sales';
     let category1Id = req.query.cat1 || null;
     let category2Id = req.query.cat2 || null;
-    let productMethodId = req.query.method || 3;
+    let productMethodId = req.query.method || null;
     let price = req.query.price || null;
     let onsale = 1;
     let sortTitle = '智能排序';
@@ -79,6 +82,7 @@ router.get('/', (req, res) => {
             'method': productMethodId,
             'path': path
         });
+
     if (keywords) {
         let member = req.cookies.login ? product.getDecodeByBase64(req.cookies.login) : null;
         let memberId = member ? member.id : null;

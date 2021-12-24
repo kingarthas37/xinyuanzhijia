@@ -64,9 +64,11 @@ router.get('/:productId',(req,res)=> {
                 let detailImage = product.get('detailImage').replace(/ac-QuiPuWpJ.clouddn.com/gi,'lc-QuiPuWpJ.cn-n1.lcfile.com');
                 detailImage = detailImage.replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi,'image.wish698.cn');
                  if (/.JPG/.test(detailImage)) {
-                     detailImage = detailImage.replace(/\.JPG/gi,'.JPG'+ watermark);
+                   //  detailImage = detailImage.replace(/\.JPG/gi,'.JPG'+ watermark);
+                     detailImage = detailImage.replace(/\.JPG/gi,'.JPG');
                  } else {
-                     detailImage = detailImage.replace(/\.jpg/gi,'.jpg'+ watermark);
+                  //   detailImage = detailImage.replace(/\.jpg/gi,'.jpg'+ watermark);
+                     detailImage = detailImage.replace(/\.jpg/gi,'.jpg');
                  }
 
                 data = extend(data,{
@@ -203,9 +205,10 @@ function imageSet(html) {
 router.post('/shot', (req, res) => {
 
     base.isAdminUserLogin(req, res);  //判断是否登录
-    
+
     let name = req.body.name.substr(0, 20);
     let html = req.body.html;
+
     let htmlHeight = parseInt(req.body.htmlHeight);
     let segmentHeight = parseInt(req.body.segmentHeight);
 

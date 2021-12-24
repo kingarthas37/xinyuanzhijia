@@ -102,7 +102,7 @@ module.exports = {
                     type:'post',
                     data:{
                         html:styles + html,
-                        segmentHeight:600,
+                        segmentHeight:1200,
                         htmlHeight:previewContent.height(),
                         name:'产品-' + $('h4').text().replace(/\//g,'')
                     },
