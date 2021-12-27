@@ -86,6 +86,13 @@ module.exports = {
             trigger:'hover',
             html:true
         });
+
+
+        let inputSearch = $('#input-product-search');
+        $('#button-product-search').click(function() {
+            location.href = '/search?keywords=' + $.trim(inputSearch.val()) + '&limit=500&order=sales&stock=1';
+        });
+
     }
 
 };
