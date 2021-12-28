@@ -91,11 +91,7 @@
                     <% if (items[i].get('isShortStock')) {%>[缺货]<%}%>
                     -->
 
-                    <%if (items[i].get('nameTb')){%>
-                        <%= items[i].get('nameTb') %>
-                    <%}else{%>
-                        <%= items[i].get('name') %>
-                    <%}%>
+                    <%= items[i].get('name') %>
 
                     [ID:<%=items[i].get('productId') %>]
 
