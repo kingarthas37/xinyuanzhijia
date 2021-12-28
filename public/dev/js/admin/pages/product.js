@@ -1550,6 +1550,16 @@ module.exports = {
         this.setImageList();
         this.setZclip();
         this.saveData();
+
+         $('.name-change').click(function() {
+             let name = $('#name');
+             let nameTb = $('#name-tb');
+             let value1 = name.val();
+             let value2 = nameTb.val();
+             name.val(value2);
+             nameTb.val(value1);
+         });
+
     },
 
     //一级,二级分类选择
