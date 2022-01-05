@@ -13,12 +13,13 @@ let extend = require('xtend');
 require('../../../lib/utils');
 
 let data = extend(config.data, {
-    title:`${config.data.name}我的购物足迹`,
-    headerTitle:'我的购物足迹',
+    title:`${config.data.name}我的购物车`,
+    headerTitle:'我的购物车',
     currentPage: 'shopping-cart'
 });
 
 router.get('/', (req,res) => {
+    /*
     let carts = req.cookies.xcarts;
     let sessionData = req.cookies.login;
     data = extend(data, {'items':[]});
@@ -68,8 +69,10 @@ router.get('/', (req,res) => {
             }
         }
     ], function (err, values) {
-        res.render('default/shopping-cart', data);
+
     });
+    */
+    res.render('default/shopping-cart', data);
 });
 
 router.post('/add', (req,res) => {
