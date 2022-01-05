@@ -19,10 +19,11 @@ let data = extend(config.data, {
 });
 
 router.get('/', (req,res) => {
-    /*
-    let carts = req.cookies.xcarts;
-    let sessionData = req.cookies.login;
+
+   // let carts = req.cookies.xcarts;
+   // let sessionData = req.cookies.login;
     data = extend(data, {'items':[]});
+    /*
     async.series([
         cb=> {
             if (carts && sessionData) {
