@@ -97,7 +97,10 @@ module.exports = {
              //   modalBuy.find('.success').removeClass('on');
             //    modalBuy.find('.failed').addClass('on');
               //  modalBuy.modal();
-                addToCart();
+                //  addToCart();
+
+                location.href = '/shopping-cart';
+
             });
             
             
@@ -121,8 +124,6 @@ module.exports = {
                     count:1
                 }
             }).then(data => {
-                alert(6);
-                location.href = '/shopping-cart';
                 console.info('成功添加到购物车!');
             },error => {
                 console.info('添加到购物车失败!',error);
