@@ -93,7 +93,7 @@ module.exports = {
             let tbName = $('.tb-name');
             let productMethodId = parseInt($('#product-method-id').val());
 
-            buyButton.click(function() {alert(4);
+            buyButton.click(function() {
              //   modalBuy.find('.success').removeClass('on');
             //    modalBuy.find('.failed').addClass('on');
               //  modalBuy.modal();
@@ -121,6 +121,7 @@ module.exports = {
                     count:1
                 }
             }).then(data => {
+                alert(6);
                 location.href = '/shopping-cart';
                 console.info('成功添加到购物车!');
             },error => {
