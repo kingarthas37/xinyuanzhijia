@@ -93,27 +93,12 @@ module.exports = {
             let tbName = $('.tb-name');
             let productMethodId = parseInt($('#product-method-id').val());
 
-            if(shopLink.val()) {
-                let clipboard = new Clipboard(buyButton[0], {
-                    text: function() {
-                        return shopLink.val();
-                    }
-                });
-
-                clipboard.on('success',data => {
-                    modalBuy.find('.success').addClass('on');
-                    modalBuy.find('.failed').removeClass('on');
-                    modalBuy.modal();
-                    addToCart();
-                });
-            } else {
-                buyButton.click(function() {
-                    modalBuy.find('.success').removeClass('on');
-                    modalBuy.find('.failed').addClass('on');
-                    modalBuy.modal();
-                    addToCart();
-                });
-            }
+            buyButton.click(function() {alert(4);
+             //   modalBuy.find('.success').removeClass('on');
+            //    modalBuy.find('.failed').addClass('on');
+              //  modalBuy.modal();
+                addToCart();
+            });
             
             
             
@@ -136,6 +121,7 @@ module.exports = {
                     count:1
                 }
             }).then(data => {
+                location.href = '/shopping-cart';
                 console.info('成功添加到购物车!');
             },error => {
                 console.info('添加到购物车失败!',error);

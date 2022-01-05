@@ -2344,6 +2344,7 @@ a.pswp__share--download:hover {
       border-radius: 4px;
       position: relative; }
       .index-page section .search-go .search-go-panel input {
+        width: 85%;
         outline: none;
         border: none;
         position: absolute;
@@ -2362,7 +2363,8 @@ a.pswp__share--download:hover {
         right: 5px;
         top: 5px;
         font-size: 14px;
-        color: #000000; }
+        color: #000000;
+        padding: 0 5px; }
 
 .index-page .nav {
   border-bottom: 5px solid #eee; }
@@ -2991,7 +2993,7 @@ a.pswp__share--download:hover {
   z-index: 999; }
 
 .user-cart-page .icon-taobao {
-  background: url("//ac-JoaBcRTt.clouddn.com/90d163a516bd8ea00f01.png");
+  background: url("//wish698.cn/90d163a516bd8ea00f01.png");
   background-size: 100%;
   background-position: center;
   width: 16px;

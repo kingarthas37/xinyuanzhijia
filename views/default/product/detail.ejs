@@ -186,6 +186,8 @@
             </ul>
         </div>
 
+
+
         <%if(item.productBrandId){%>
         <div class="am-tab-panel detail brand" id="tab-product-brand">
             <dl>
@@ -207,6 +209,10 @@
     
 </div>
 
+<div class="buy-button">
+    <button type="button" id="buy" class="am-btn am-btn-default">加入购物车</button>
+</div>
+
 <div class="events">
     <a class="events-good" href="javascript:;"><i class="am-icon-thumbs-up"></i> <span>点赞  <%if(item.approval){%>( <em><%=item.approval%></em> )<%}%></span> </a>
     <!--
@@ -214,13 +220,10 @@
     -->
 </div>
 
+
+
 <div class="recommend-content"></div>
 
-<!--
-<div class="buy-button">
-    <button type="button" id="buy" class="am-btn am-btn-default">去淘宝店铺购买</button>
-</div>
--->
 
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="pswp__bg"></div>
