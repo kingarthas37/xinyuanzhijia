@@ -19,13 +19,16 @@ let data = extend(config.data, {
 });
 
 router.get('/get-product',(req,res)=> {
-    let id = req.query.id;
+    let id = parseInt(req.query.id);
     product.getProductById(id).then(value => {
-        console.log(value);
         res.send({
-            id:value.productId,
-            name:value.name,
-            mainImage:value.mainImage
+            success:1,
+            data:{
+                id:value.get('productId'),
+                name:value.get('name'),
+                mainImage:value.get('mainImage'),
+                price:value.get('price')
+            }
         });
     });
 });

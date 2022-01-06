@@ -111,16 +111,15 @@ module.exports = {
                     arr.forEach(item => {
                         if (!newArr.includes(item)) {
                             newArr.push(item);
-                            console.log(newArr);
                         }
                     });
-
                     newArr.push(productId);
                     $.cookie('cart',newArr.join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:utils.getCookieUrl()});
                 } else {
                     $.cookie('cart',[productId].join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:utils.getCookieUrl()});
-                }
 
+                }
+            //    $.cookie('cart','5518,5519,5520',{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:'/'});
               //  $.cookie('search-result','',{expires:new Date(new Date().getTime()),path:'/'});
 
                setTimeout(function() {

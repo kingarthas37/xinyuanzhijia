@@ -81,7 +81,14 @@
     .am-container {
         margin-bottom:20px;
     }
-    
+
+  .clear-cart {
+    text-align: center;
+    a {
+      text-decoration: underline;
+    }
+  }
+
     .clear-cart-button {
         margin-bottom: 20px;
         width: 100%;

@@ -28,48 +28,71 @@ module.exports = {
 
             let list = $('.main-list');
             let produstsArr = $.cookie('cart').split(',');
+            let html = '';
 
-            produstsArr.each(function(i,n) {
+            let newArr = []; //去重后
+            let newArrObj = {};
+            produstsArr.forEach(item => {
+                if (!newArr.includes(item)) {
+                    newArr.push(item);
+                    newArrObj[item] =1;
+                } else {
+                    newArrObj[item] ++;
+                }
+            });
+
+
+
+
+              for(let i in newArrObj) {
 
                 $.ajax({
                     url:'/shopping-cart/get-product',
                     type:'get',
                     data:{
-                        id:n
+                        id:i
                     }
                 }).then(data => {
 
-                    console.log(data);
+                    let image = (()=> {
+                        let img = '';
+                        for(let n in data.data.mainImage) {
+                            if (data.data.mainImage[n].isMainImage) {
+                                img = data.data.mainImage[n].url;
+                                break;
+                            }
+                        }
+                        return img;
+                    })();
+
+                   list.append(`
+                     <li class="prod-id-${data.data.id}">
+                        <div class="img">
+                            <a href="/product/detail/${data.data.id}"><img src="${image}" width="100" height="100" ></a>
+                        </div>
+                        <div class="detail">
+                            <h3>
+                                <a href="/product/detail/${data.data.id}" >
+                                   [ID:${data.data.id}] ${data.data.name}
+                                </a>
+                            </h3>
+                            <p>
+                                价格: <span class="price">¥<strong>${data.data.price}</strong></span>
+                                <span class="sp"></span>
+                                数量：<span class="count">${newArrObj[i]}</span>
+                            </p>
+                          </div>
+                       </li>
+                    
+                    `);
+
 
                 },error => {
-
+                    console.log(error);
                 });
 
-                list.append(
+            };
 
-                    `
-                     <li>
-        <div class="img">
-            <a href="/product/detail/"><img src="//image.wish698.cn/23a7ffd0d52e7424fa1e.png" width="100" height="100" ></a>
-        </div>
-        <div class="detail">
-            <h3>
-                <a href="/product/detail" >
-                    大地曼陀罗神谕卡 [英/MOTHER EARTH MANDALA CARD] {7246}
-                </a>
-            </h3>
-            <p>
-                价格: <span class="price">¥<strong>19</strong></span>
-            </p>
-
-        </div>
-    </li>
-                    
-                    `
-
-                );
-
-            });
 
 
         } else {

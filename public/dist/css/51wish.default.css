@@ -565,7 +565,7 @@ footer {
         -ms-flex: 1;
             flex: 1; }
     .main-list li .detail h3 {
-      height: 40px;
+      height: 60px;
       line-height: 20px;
       overflow: hidden;
       font-size: 14px;
@@ -2965,6 +2965,11 @@ a.pswp__share--download:hover {
 
 .user-cart-page .am-container {
   margin-bottom: 20px; }
+
+.user-cart-page .clear-cart {
+  text-align: center; }
+  .user-cart-page .clear-cart a {
+    text-decoration: underline; }
 
 .user-cart-page .clear-cart-button {
   margin-bottom: 20px;
