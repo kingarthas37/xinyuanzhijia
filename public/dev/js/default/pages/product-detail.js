@@ -116,9 +116,9 @@ module.exports = {
                     });
 
                     newArr.push(productId);
-                    $.cookie('cart',newArr.join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:location.origin});
+                    $.cookie('cart',newArr.join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:utils.getCookieUrl()});
                 } else {
-                    $.cookie('cart',[productId].join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:location.origin});
+                    $.cookie('cart',[productId].join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:utils.getCookieUrl()});
                 }
 
               //  $.cookie('search-result','',{expires:new Date(new Date().getTime()),path:'/'});

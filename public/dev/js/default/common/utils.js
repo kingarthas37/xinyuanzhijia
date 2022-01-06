@@ -18,6 +18,14 @@ module.exports = {
         } else {
             return false;
         }
+    },
+
+    getCookieUrl:()=> {
+        if(location.port=== '3000') {
+            return location.origin;
+        } else {
+            return '/';
+        }
     }
 
 };

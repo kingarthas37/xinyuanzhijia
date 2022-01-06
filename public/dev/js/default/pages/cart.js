@@ -31,7 +31,7 @@ module.exports = {
             modalClearCart.modal({
                 relatedTarget: this,
                 onConfirm: function(options) {
-                    $.cookie('cart','',{expires:new Date(new Date().getTime()),path:location.origin});
+                    $.cookie('cart','',{expires:new Date(new Date().getTime()),path:utils.getCookieUrl()});
                    // location.href = '/shopping-cart?empty=true';
                 }
             });
