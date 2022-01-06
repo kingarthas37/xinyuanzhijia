@@ -6,8 +6,10 @@ module.exports = {
 
     init() {
 
-        let modalBuy = $('#modal-buy');
-        
+
+        //let modalBuy = $('#modal-buy');
+
+        /*
         $('.shop-add-link').each(function(i,n) {
             let clipboard = new Clipboard(n, {
                 text: function() {
@@ -20,13 +22,17 @@ module.exports = {
                 modalBuy.modal();
             });
         });
-        
+        */
+
+
+
         let modalClearCart = $('#modal-clear-cart');
         $('#clear-cart').click(function() {
             modalClearCart.modal({
                 relatedTarget: this,
                 onConfirm: function(options) {
-                    location.href = '/shopping-cart?empty=true';
+                    $.cookie('cart','',{expires:new Date(new Date().getTime()),path:location.origin});
+                   // location.href = '/shopping-cart?empty=true';
                 }
             });
         });

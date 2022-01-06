@@ -9,6 +9,7 @@ module.exports = {
     init() {
 
         this.productId = $('#product-id').val();
+        let productId =  $('#product-id').val();
         
         //收藏
         this.favoriteProduct();
@@ -99,7 +100,32 @@ module.exports = {
               //  modalBuy.modal();
                 //  addToCart();
 
-                location.href = '/shopping-cart';
+           //     $.cookie('cart','',{expires:new Date(new Date().getTime()),path:'http://localhost:3000'});
+
+                if($.cookie('cart')) {
+                    let arr = [];
+                    arr = $.cookie('cart').split(',');
+
+                    let newArr = []; //去重后
+
+                    arr.forEach(item => {
+                        if (!newArr.includes(item)) {
+                            newArr.push(item);
+                            console.log(newArr);
+                        }
+                    });
+
+                    newArr.push(productId);
+                    $.cookie('cart',newArr.join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:location.origin});
+                } else {
+                    $.cookie('cart',[productId].join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:location.origin});
+                }
+
+              //  $.cookie('search-result','',{expires:new Date(new Date().getTime()),path:'/'});
+
+               setTimeout(function() {
+                   location.href = '/shopping-cart';
+               },100);
 
             });
             
