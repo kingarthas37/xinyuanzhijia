@@ -18,11 +18,25 @@ let data = extend(config.data, {
     currentPage: 'shopping-cart'
 });
 
+router.get('/get-product',(req,res)=> {
+    let id = req.query.id;
+    product.getProductById(id).then(value => {
+        console.log(value);
+        res.send({
+            id:value.productId,
+            name:value.name,
+            mainImage:value.mainImage
+        });
+    });
+});
+
 router.get('/', (req,res) => {
 
    // let carts = req.cookies.xcarts;
    // let sessionData = req.cookies.login;
     data = extend(data, {'items':[]});
+
+
     /*
     async.series([
         cb=> {
