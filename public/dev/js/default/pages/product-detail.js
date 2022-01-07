@@ -102,7 +102,6 @@ module.exports = {
 
            //     $.cookie('cart','',{expires:new Date(new Date().getTime()),path:'http://localhost:3000'});
 
-                $(this).text('加购中...');
                 if($.cookie('cart')) {
                     let arr = [];
                     arr = $.cookie('cart').split(',');
