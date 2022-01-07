@@ -159,5 +159,18 @@
             padding: 0 20px;
         }
     }
-    
+
+    .price-all {
+        font-size: 20px;
+        text-align: right;
+        font-weight: bold;
+        p {
+            margin:0;
+            padding: 10px 10px 10px 0;
+        }
+        strong,span {
+            color:red;
+        }
+    }
+
 }

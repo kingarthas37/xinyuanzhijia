@@ -561,6 +561,7 @@ footer {
       height: 100px; }
   .main-list li .detail {
     margin-left: 10px;
+    font-size: 14px;
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1; }
@@ -1069,9 +1070,10 @@ footer {
     margin-left: 10px;
     -webkit-box-flex: 1;
         -ms-flex: 1;
-            flex: 1; }
+            flex: 1;
+    font-size: 14px; }
     .main-list li .detail h3 {
-      height: 40px;
+      height: 60px;
       line-height: 20px;
       overflow: hidden;
       font-size: 14px;
@@ -1082,6 +1084,9 @@ footer {
       -webkit-box-orient: vertical; }
       .main-list li .detail h3 a.out-stock {
         color: #999; }
+    .main-list li .detail .count-dom {
+      font-weight: bold;
+      padding: 0 5px; }
     .main-list li .detail h4 {
       height: 40px;
       line-height: 20px;
@@ -1101,7 +1106,7 @@ footer {
       padding: 0;
       margin: 0 0 5px 0;
       line-height: 20px;
-      font-size: 12px; }
+      font-size: 14px; }
       .main-list li .detail p:last-child {
         margin-bottom: 0; }
       .main-list li .detail p span {
@@ -3030,6 +3035,16 @@ a.pswp__share--download:hover {
   text-align: center;
   color: #999;
   padding: 0 20px; }
+
+.user-cart-page .price-all {
+  font-size: 20px;
+  text-align: right;
+  font-weight: bold; }
+  .user-cart-page .price-all p {
+    margin: 0;
+    padding: 10px 10px 10px 0; }
+  .user-cart-page .price-all strong, .user-cart-page .price-all span {
+    color: red; }
 
 .article-desktop-page {
   background-image: url("//lc-JoaBcRTt.cn-n1.lcfile.com/0360b8aeefb196dc3c79.jpg");

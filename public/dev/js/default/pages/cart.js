@@ -7,26 +7,67 @@ module.exports = {
     init() {
 
 
-        //let modalBuy = $('#modal-buy');
+        let list = $('.main-list');
+        let priceAll = $('.price-all');
 
-        /*
-        $('.shop-add-link').each(function(i,n) {
-            let clipboard = new Clipboard(n, {
-                text: function() {
-                    return $(n).data('shop-link');
+
+        $('#send-product').click(function() {
+            alert('请将购物页面截屏给客服即可');
+        });
+
+        list.on('click','.delete',function() {
+            $(this).parents('li').detach();
+            resetList();
+        });
+
+        list.on('click','.count-plus',function() {
+            let div = $(this).parents('li');
+            let count = parseInt(div.find('.count').text());
+            count ++;
+            div.find('.count').text(count);
+            resetList();
+        });
+
+        list.on('click','.count-minus',function() {
+            let div = $(this).parents('li');
+            let count = parseInt(div.find('.count').text());
+            if(count > 1) {
+                count --;
+                div.find('.count').text(count);
+            } else {
+                div.detach();
+            }
+            resetList();
+        });
+
+        function resetList() {
+            let arr = [];
+            list.find('.count').each(function(i,n) {
+                let count = parseInt($(this).text());
+                for(let i=0;i<count;i++) {
+                    arr.push($(n).data('id'));
                 }
             });
-            clipboard.on('success',data => {
-                modalBuy.find('.success').addClass('on');
-                modalBuy.find('.failed').removeClass('on');
-                modalBuy.modal();
+            $.cookie('cart',arr.join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:utils.getCookieUrl()});
+            console.log($.cookie('cart'));
+            resetAllPrice();
+        }
+
+        function resetAllPrice() {
+            let prices = 0;
+            list.find('.price').each(function() {
+                let div = $(this).parents('li');
+                let price = parseInt($(this).text());
+                let count = parseInt(div.find('.count').text());
+                price = price * count;
+                prices += price;
             });
-        });
-        */
+            priceAll.html(`<p>总金额：<strong>¥</strong><span>${prices}</span></p>`);
+        }
 
         if($.cookie('cart')) {
 
-            let list = $('.main-list');
+
             let produstsArr = $.cookie('cart').split(',');
             let html = '';
 
@@ -40,9 +81,6 @@ module.exports = {
                     newArrObj[item] ++;
                 }
             });
-
-
-
 
               for(let i in newArrObj) {
 
@@ -66,7 +104,7 @@ module.exports = {
                     })();
 
                    list.append(`
-                     <li class="prod-id-${data.data.id}">
+                     <li id="${data.data.id}">
                         <div class="img">
                             <a href="/product/detail/${data.data.id}"><img src="${image}" width="100" height="100" ></a>
                         </div>
@@ -76,16 +114,22 @@ module.exports = {
                                    [ID:${data.data.id}] ${data.data.name}
                                 </a>
                             </h3>
-                            <p>
-                                价格: <span class="price">¥<strong>${data.data.price}</strong></span>
-                                <span class="sp"></span>
-                                数量：<span class="count">${newArrObj[i]}</span>
-                            </p>
+                            <div class="cart-dom">
+                                <p>
+                                    价格: ¥ <span class="price">${data.data.price}</span>
+                                    <span class="sp"></span>
+                                  
+                                    数量：<a href="javascript:;" class="count-dom count-minus">-</a> <span class="count" data-id="${data.data.id}">${newArrObj[i]}</span> <a href="javascript:;" class="count-dom count-plus">+</a>
+                                    <span class="sp"></span>
+                                    <a href="javascript:;" class="delete">[删除]</a>
+                                </p>
+                            </div>
+                            
                           </div>
                        </li>
                     
                     `);
-
+                    resetAllPrice();
 
                 },error => {
                     console.log(error);
@@ -111,5 +155,8 @@ module.exports = {
             });
         });
     }
+
+
+
 
 };

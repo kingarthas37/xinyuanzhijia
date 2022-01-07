@@ -102,6 +102,7 @@ module.exports = {
 
            //     $.cookie('cart','',{expires:new Date(new Date().getTime()),path:'http://localhost:3000'});
 
+                $(this).text('加购中...');
                 if($.cookie('cart')) {
                     let arr = [];
                     arr = $.cookie('cart').split(',');
@@ -123,10 +124,10 @@ module.exports = {
             //    $.cookie('cart','5518,5519,5520',{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:'/'});
               //  $.cookie('search-result','',{expires:new Date(new Date().getTime()),path:'/'});
 
-                console.log($.cookie('cart'));
+
                setTimeout(function() {
                    location.href = '/shopping-cart';
-               },3000);
+               },1000);
 
             });
             
