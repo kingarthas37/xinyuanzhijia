@@ -1087,6 +1087,15 @@ footer {
     .main-list li .detail .count-dom {
       font-weight: bold;
       padding: 0 5px; }
+    .main-list li .detail .count {
+      font-weight: bold; }
+      .main-list li .detail .count.red {
+        color: red; }
+    .main-list li .detail .stock {
+      display: none;
+      color: red; }
+      .main-list li .detail .stock.on {
+        display: inline; }
     .main-list li .detail h4 {
       height: 40px;
       line-height: 20px;

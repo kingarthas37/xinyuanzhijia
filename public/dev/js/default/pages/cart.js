@@ -12,7 +12,7 @@ module.exports = {
 
 
         $('#send-product').click(function() {
-            alert('请将购物页面截屏给客服即可');
+            alert('请将截屏给客服即可');
         });
 
         list.on('click','.delete',function() {
@@ -24,7 +24,17 @@ module.exports = {
             let div = $(this).parents('li');
             let count = parseInt(div.find('.count').text());
             count ++;
+
+            let stock = parseInt(div.find('.stock').attr('data-stock'));
+            if(count>stock) {
+                div.find('.stock').addClass('on');
+            }else {
+                div.find('.stock').removeClass('on');
+            }
+
+            div.find('.count').addClass('red');
             div.find('.count').text(count);
+
             resetList();
         });
 
@@ -33,6 +43,19 @@ module.exports = {
             let count = parseInt(div.find('.count').text());
             if(count > 1) {
                 count --;
+                if(count===1) {
+                    div.find('.count').removeClass('red');
+                } else {
+                    div.find('.count').addClass('red');
+                }
+
+                let stock = parseInt(div.find('.stock').attr('data-stock'));
+                if(count>stock) {
+                    div.find('.stock').addClass('on');
+                }else {
+                    div.find('.stock').removeClass('on');
+                }
+
                 div.find('.count').text(count);
             } else {
                 div.detach();
@@ -49,7 +72,6 @@ module.exports = {
                 }
             });
             $.cookie('cart',arr.join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:utils.getCookieUrl()});
-            console.log($.cookie('cart'));
             resetAllPrice();
         }
 
@@ -103,6 +125,17 @@ module.exports = {
                         return img;
                     })();
 
+
+                    let countColor = '';
+                    if(newArrObj[i] >1){
+                        countColor = 'red';
+                    }
+
+                    let showStock = '';
+                    if(newArrObj[i] > data.data.stock) {
+                        showStock = 'on';
+                    }
+
                    list.append(`
                      <li id="${data.data.id}">
                         <div class="img">
@@ -111,7 +144,7 @@ module.exports = {
                         <div class="detail">
                             <h3>
                                 <a href="/product/detail/${data.data.id}" >
-                                   [ID:${data.data.id}] ${data.data.name}
+                                   [ID: ${data.data.id}] ${data.data.name}
                                 </a>
                             </h3>
                             <div class="cart-dom">
@@ -119,9 +152,11 @@ module.exports = {
                                     价格: ¥ <span class="price">${data.data.price}</span>
                                     <span class="sp"></span>
                                   
-                                    数量：<a href="javascript:;" class="count-dom count-minus">-</a> <span class="count" data-id="${data.data.id}">${newArrObj[i]}</span> <a href="javascript:;" class="count-dom count-plus">+</a>
+                                    数量：<a href="javascript:;" class="count-dom count-minus">-</a> <span class="count ${countColor}" data-id="${data.data.id}">${newArrObj[i]}</span> <a href="javascript:;" class="count-dom count-plus">+</a>
                                     <span class="sp"></span>
                                     <a href="javascript:;" class="delete">[删除]</a>
+                                    <span class="sp"></span>
+                                    <span class="stock ${showStock}" data-stock="${data.data.stock}">超出库存数!</span>
                                 </p>
                             </div>
                             

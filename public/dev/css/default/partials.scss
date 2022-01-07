@@ -1167,6 +1167,21 @@ footer {
                 padding: 0 5px;
             }
 
+            .count {
+                &.red {
+                    color: red;
+                }
+                font-weight: bold;
+            }
+
+            .stock {
+                display: none;
+                &.on {
+                    display: inline;
+                }
+                color: red;
+            }
+
             h4 {
                 height: 40px;
                 line-height: 20px;

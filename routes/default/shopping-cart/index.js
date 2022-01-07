@@ -27,7 +27,8 @@ router.get('/get-product',(req,res)=> {
                 id:value.get('productId'),
                 name:value.get('name'),
                 mainImage:value.get('mainImage'),
-                price:value.get('price')
+                price:value.get('price'),
+                stock:value.get('stock')
             }
         });
     });
