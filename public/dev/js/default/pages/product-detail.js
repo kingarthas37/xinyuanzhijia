@@ -114,7 +114,7 @@ module.exports = {
                         }
                     });
                     newArr.push(productId);
-                    $.cookie('cart',newArr.join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:utils.getCookieUrl()});
+                    $.cookie('cart',(arr.push(productId)).join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:utils.getCookieUrl()});
                 } else {
                     $.cookie('cart',[productId].join(),{expires:new Date(new Date().getTime() + 1000*60*60*24*30),path:utils.getCookieUrl()});
 
@@ -124,7 +124,7 @@ module.exports = {
 
                setTimeout(function() {
                    location.href = '/shopping-cart';
-               },100);
+               },3000);
 
             });
             
