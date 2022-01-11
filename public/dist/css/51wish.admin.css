@@ -1508,7 +1508,7 @@ span.hot:after {
 .admin-product-page .product-out {
   color: #666; }
 
-.admin-product-page .copy-product-title.on {
+.admin-product-page .copy-product-title.on, .admin-product-page .copy-taobao-id.on {
   color: #5eb95e; }
 
 .admin-product-page .copy-title-taobao.on {

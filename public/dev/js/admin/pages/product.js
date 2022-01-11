@@ -690,6 +690,40 @@ module.exports = {
             });
         }
 
+        //copy taobao itemid
+        {
+            $('.copy-taobao-id').each(function(i,n){
+
+                let link = $(n).parent().find('.shop-link a').attr('href');
+                let taobaoItemid = (()=>{
+                    if(/itemid=/.test(link)){
+                        return /itemid=(\d+)/.exec(link)[1];
+                    }
+
+                    if(/id=/.test(link)){
+                        return /id=(\d+)/.exec(link)[1];
+                    }
+
+                    return 'err';
+
+                })();
+                $(n).attr('data-text',taobaoItemid);
+
+                let clipboard = new Clipboard(n, {
+                    text: function() {
+                        return $(n).data('text');
+                    }
+                });
+                clipboard.on('success',data => {
+                    $(n).addClass('on');
+                });
+
+            });
+
+
+
+        }
+
         //copy taobao title
         {
             $('.copy-title-taobao').each(function(i,n) {

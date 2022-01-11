@@ -143,9 +143,7 @@
                         <th class="t-c">预览</th>
                         <th class="t-c">产品url</th>
                         <th class="t-c">网店url</th>
-                        <th class="t-c">原图</th>
-                       <!-- <th class="t-c">内容</th> -->
-                        <!-- <th class="t-c">附件</th> -->
+
                         <th class="t-c">选项</th>
                         <th class="t-c">复制</th>
                     </tr>
@@ -317,48 +315,14 @@
                             <a class="link-modal-viewport" title="编辑"
                                href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#shop-link"><i
                                         class="am-icon-edit"></i></a>
-                        </td>
 
-                        <td class="t-c">
-                            <% if(product[i].get('imageSource')) { %>
-                                <% var imageSrouces = product[i].get('imageSource').split('\n');
-                                for (var k=0;k<imageSrouces.length;k++ ) { %>
-                                    <a target="_blank" href="<%= imageSrouces[k].replace('ac-QuiPuWpJ.clouddn.com','image.wish698.cn').replace('ac-JoaBcRTt.clouddn.com','image.wish698.cn').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>"><i
-                                        class="am-icon-image"></i></a>
-                                <%}%>
-                            <% }else{ %>
-                            -
-                            <% } %>
-                            <a class="link-modal-viewport"
-                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#image-source"><i
-                                        class="am-icon-edit"></i></a>
-
-                            <% if(product[i].get('imageSource')) { %>
-                            <a href="javascript:;" data-product-id="<%= product[i].get('productId') %>"
-                               class="image-source-download"><i class="am-icon-download"></i></a>
-                            <div class="image-source-group">
-                                <input type="hidden" class="image-source-value"
-                                       value="<%= product[i].get('imageSource').replace('ac-JoaBcRTt.clouddn.com','image.wish698.cn').replace('ac-QuiPuWpJ.clouddn.com','image.wish698.cn').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>">
-
-                            </div>
-                            <% } %>
+                            <% if(product[i].get('shopLink').length) { %>
+                            <a title="复制淘宝ID" href="javascript:;" class="copy-taobao-id"><i class="am-icon-copy"></i></a>
+                            <%}%>
 
                         </td>
 
-                        <!--
-                        <td class="t-c">
-                            <a class="link-modal-viewport" title="内容管理"
-                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#content-manage"><i
-                                        class="am-icon-book"></i></a>
-                        </td>
-                        -->
-                        <!--
-                        <td class="t-c">
-                            <a class="link-modal-viewport" title="附件管理"
-                               href="/admin/product-property/<%= product[i].get('productId') %>?viewport=window#attachment-manage"><i
-                                        class="am-icon-paperclip"></i></a>
-                        </td>
-                        -->
+
                         <td class="t-c">
                             <div class="am-dropdown" data-am-dropdown>
                                 <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle><i
