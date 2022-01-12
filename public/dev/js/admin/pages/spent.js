@@ -56,6 +56,19 @@ module.exports = {
             }
             input.val(amount.toFixed(2));
         });
+
+        $('.copy-text').each(function(i,n) {
+
+            let clipboard = new Clipboard(n, {
+                text: function() {
+                    return `${$(n).data('text')}`;
+                }
+            });
+            clipboard.on('success',data => {
+                $(n).addClass('on');
+            });
+
+        });
         
     }
 };
