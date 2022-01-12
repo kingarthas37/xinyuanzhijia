@@ -21,14 +21,16 @@
 
     <fieldset>
 
-        <legend><a href="/order/spent">采购记账统计</a></legend>
+        <legend><a href="/order/spent">报销记账统计</a></legend>
 
         <div class="earning-info">
             <strong><%= currentDate.getFullYear() %>年<%= currentDate.getMonth() + 1 %>月</strong> <span class="sp"></span>
-            主店支出: <span class="am-badge am-text-default" id="total-user3"></span> <span class="sp"></span>
-            新店支出: <span class="am-badge am-badge-default am-text-default" id="total-user2"></span>
-            网店退款: <span class="am-badge am-text-default" id="total-user4"></span> <span class="sp"></span>
-            网店收入: <span class="am-badge am-text-default" id="total-user1"></span> <span class="sp"></span>
+            支出-王璘: <span class="am-badge am-text-default" id="total-user3"></span> <span class="sp"></span>
+            支出-孙莹慧: <span class="am-badge am-text-default" id="total-user4"></span> <span class="sp"></span>
+
+            收入-王璘: <span class="am-badge am-text-default" id="total-user1"></span> <span class="sp"></span>
+            收入-孙莹慧: <span class="am-badge am-badge-default am-text-default" id="total-user2"></span>
+
             净利润：<span class="am-badge am-badge-success am-text-default" id="total-spent"></span> <span class="sp"></span>
         </div>
 
@@ -47,10 +49,10 @@
             <thead>
             <tr>
                 <th>日期</th>
-                <th>支出</th>
-                <th>退款</th>
-                <th>网店收入</th>
-                <th>其他收入</th>
+                <th>支出-王璘</th>
+                <th>支出-孙莹慧</th>
+                <th>收入-王璘</th>
+                <th>收入-孙莹慧</th>
                 <th>编辑</th>
             </tr>
             </thead>

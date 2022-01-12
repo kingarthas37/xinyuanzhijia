@@ -62,11 +62,11 @@
                         <dd class="am-accordion-bd am-collapse">
                             <div class="am-accordion-content">
                                 <form class="am-form" action="/admin/product-property/shop-link/<%= product.get('productId') %>" method="post">
-                                    <label>主店淘宝店铺链接:</label>
+                                    <label>淘宝店铺链接1:</label>
                                     <div class="am-form-group">
                                         <input name="shop-link" type="text" value="<%if(product.get('shopLink')){ %><%= product.get('shopLink')[0] %><%}%>" autocomplete="off" placeholder="输入微店链接" />
                                     </div>
-                                    <label>新店淘宝店铺链接:</label>
+                                    <label>淘宝店铺链接2:</label>
                                     <div class="am-form-group">
                                         <input name="shop-link" type="text" value="<%if(product.get('shopLink')){ %><%= product.get('shopLink')[1] %><%}%>" autocomplete="off" placeholder="输入淘宝店铺链接"/>
                                     </div>
