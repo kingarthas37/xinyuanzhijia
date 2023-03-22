@@ -75,7 +75,7 @@
     "watchify": "~3.6.0"
   },
   "engines": {
-    "node": "4.x"
+    "node": "19.8.1"
   },
   "browser": {
     "jquery": "./public/js/jquery.min.js",
