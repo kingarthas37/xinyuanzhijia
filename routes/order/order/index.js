@@ -135,7 +135,7 @@ router.get('/', function (req, res, next) {
                 data = extend(data, {
                     order: results.results
                 });
-                consolg.log('111');
+                console.log('111');
                 console.log( results.results);
                 res.render('order/order', data);
             });
