@@ -92,8 +92,8 @@ router.get('/:id', (req, res) => {
             var onSaleDate = data.item.onsaleDate ? data.item.onsaleDate : data.item.createdAt;
             var monthNum = product.getMct(product.formartDate(onSaleDate), currentDate, seperator);
             var monthSales = monthNum > 0 ? (data.item.sales / monthNum) : 0;
-            if (monthSales < 1) {
-                data.item.monthSales = "少于1";
+            if (monthSales < 10) {
+                data.item.monthSales = "0-10件";
             } else {
                 data.item.monthSales = Math.ceil(monthSales);
             }
