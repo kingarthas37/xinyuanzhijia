@@ -83,6 +83,7 @@ router.get('/:id', (req, res) => {
             data.item.instruction = markdown.toHTML(data.item.instruction);
             data.item.use = markdown.toHTML(data.item.use);
             data.item.detailImage = markdown.toHTML(data.item.detailImage);
+            data.item.review = markdown.toHTML(data.item.review);
             var date = new Date();
             var seperator = "-";
             var year = date.getFullYear();
