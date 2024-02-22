@@ -260,7 +260,7 @@ router.get('/products-id/:productIds', (req, res) => {
                 limit: 9,
                 page: 1,
                 ids: productIds.toString(),
-                select: 'name,mainImage,productId'
+                select: 'name,mainImage,productId,review'
             }).then(items => {
                 data = extend(data, {items});
                 resolve();
