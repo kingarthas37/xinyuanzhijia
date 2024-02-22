@@ -72,7 +72,9 @@
 
     <li data-product-id="<%=items[i].get('productId') %>">
         <div class="img">
+            <!--
             <%if (items[i].get('isHot')){ %><em class="hot"></em><%}%>
+            -->
             <%if (items[i].get('isNewSale')){ %><em class="new"></em><%}%>
 
             <!--
@@ -99,7 +101,9 @@
             </h3>
             <p>
                 <span class="price">¥<strong> <%= (items[i].get('price') ? items[i].get('price').toFixed(2) : '-') %></strong></span>
+                <!--
                 <span><%=items[i].get('pageViews') %>次浏览</span>
+                -->
                 <!--
                 <a class="fav <%if(items[i].get('isWish')){%>add<%}%>" href="javascript:;"><%if(items[i].get('isWish')){%>已收藏<%}else{%>收藏<%}%></a>
                 -->

@@ -93,7 +93,7 @@ router.get('/:id', (req, res) => {
             var monthNum = product.getMct(product.formartDate(onSaleDate), currentDate, seperator);
             var monthSales = monthNum > 0 ? (data.item.sales / monthNum) : 0;
             if (monthSales < 10) {
-                data.item.monthSales = "0-10件";
+                data.item.monthSales = "<10件";
             } else {
                 data.item.monthSales = Math.ceil(monthSales);
             }
