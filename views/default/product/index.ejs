@@ -94,7 +94,8 @@
                     -->
 
                     <%= items[i].get('name') %>
-                    <%= items[i].get('review') %>
+                    店主评语：
+                    <%= items[i].get('review') || '无'%>
                     [ID:<%=items[i].get('productId') %>]
 
                 </a>
