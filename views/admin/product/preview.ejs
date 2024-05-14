@@ -76,18 +76,19 @@
             <div><%- property %></div>
             <% } %>
 
-            <%if(!nameTb){%>
-                <% if (use) { %>
-                <section><img src="http://image.wish698.cn/e15c2b3c39c88fd51b6b.jpg"/></section>
-                <div><%- use %></div>
-                <% } %>
-            <%}%>
 
             <%if(!nameTb){%>
                 <% if (instruction) { %>
                 <section><img src="http://image.wish698.cn/517be985cb90181ec8e5.jpg"/></section>
                 <div><%- instruction %></div>
                 <% } %>
+            <%}%>
+
+            <%if(!nameTb){%>
+            <% if (use) { %>
+            <section><img src="http://image.wish698.cn/e15c2b3c39c88fd51b6b.jpg"/></section>
+            <div><%- use %></div>
+            <% } %>
             <%}%>
 
             <% if (detailImage) { %>
