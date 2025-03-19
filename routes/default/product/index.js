@@ -80,8 +80,8 @@ router.get('/', (req, res) => {
             'cat2': category2Id,
             'price': price,
             'sortTitle': sortTitle,
-            'category1Name': '产品一级分类',
-            'category2Name': '产品二级分类',
+            'category1Name': '产品分类',
+            'category2Name': '产品分类',
             'method': productMethodId,
             'path': path
         });
