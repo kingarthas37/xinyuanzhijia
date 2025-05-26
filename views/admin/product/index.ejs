@@ -171,7 +171,7 @@
                             <% } %>
 
                             <% if(product[i].get('nameTb')){ %>
-                            <a href="javascript:;" class="copy-title-taobao" data-text="<%= product[i].get('nameTb')%>" title="点击复制'<%= product[i].get('nameTb')%>'">[淘标]</a>
+                            <a href="javascript:;" class="copy-title-taobao" data-text="<%= product[i].get('nameTb')%>" title="点击复制'<%= product[i].get('nameTb')%>'">[外标]</a>
                             <% } %>
 
                             <a class="title<% if(!product[i].get('isOnsale')) { %> product-out<% } %> <% if(product[i].get('isHot')) { %> product-hot<% } %><% if(product[i].get('isParent') == true || product[i].get('parentProductId')) { %> product-parent<%}%>"
