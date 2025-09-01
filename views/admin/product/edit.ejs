@@ -196,7 +196,7 @@
                             <% if (mainImage) { %>
                             <% for (var i=0;i< mainImage.length; i++) { %>
                             <li data-id="<%= mainImage[i].id%>" class="am-cf"><div class="am-fl"><input <% if(mainImage[i].isMainImage){%>checked="checked"<%}%> type="checkbox" /></div><div class="am-fr"><p>
-                                        <a class="img-link" href="<%= mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>?imageMogr2/thumbnail/1280" target="_blank"><img src="<%= mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a> <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> <a class="remove" href="javascript:;">删除</a></p></div></li>
+                                        <a class="img-link" href="<%= mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>" target="_blank"><img src="<%= mainImage[i].url.replace('ac-QuiPuWpJ.clouddn.com','lc-QuiPuWpJ.cn-n1.lcfile.com').replace(/lc-QuiPuWpJ.cn-n1.lcfile.com/gi, 'image.wish698.cn') %>?imageMogr2/thumbnail/100"/></a></p><p><a class="move" href="javascript:;">前移</a> <span class="copy"><a class="copy-url" href="javascript:;">复制</a></span> <a class="remove" href="javascript:;">删除</a></p></div></li>
                             <% } %>
                             <% } %>
                         </ul>
